@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Σελίδα /professionals: η 3η κάρτα επαγγελματία (Γιάννης Κώστα) εμφανίζεται χωρίς φωτογραφία και αφήνει άδειο λευκό block στην κορυφή. Διόρθωσε το source της εικόνας και βάλε αξιόπιστο fallback image + fixed aspect ratio ώστε να μη διαλύεται οπτικά η κάρτα.",
+      "addedAt": "2026-03-04T20:32:56Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Σελίδα /professionals/giannis-kosta-klimatismos: η κεντρική φωτογραφία προφίλ είναι broken (φαίνεται alt text αντί για εικόνα). Αυτό σκοτώνει εμπιστοσύνη. Διόρθωσε asset path/CDN και πρόσθεσε server-side validation ώστε να μην δημοσιεύεται προφίλ με νεκρή εικόνα.",
+      "addedAt": "2026-03-04T20:32:56Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Σελίδα /professionals/giannis-kosta-klimatismos: στο section 'Αξιολογήσεις' εμφανίζεται κόκκινο μήνυμα σφάλματος validation πριν ο χρήστης κάνει οποιαδήποτε ενέργεια. Μην δείχνεις errors από προεπιλογή — ενεργοποίησε validation μόνο μετά από submit/interaction.",
+      "addedAt": "2026-03-04T20:32:56Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Homepage (mobile): το badge 'PREMIUM MARKETPLACE FOR HOME SERVICES' είναι στα αγγλικά ενώ όλη η σελίδα είναι στα ελληνικά. Αυτό δείχνει πρόχειρο template και όχι ελληνικό brand. Κάνε πλήρη γλωσσική ενοποίηση στα ελληνικά ή βάλε language toggle με συνεπή copy strategy.",
+      "addedAt": "2026-03-04T20:32:56Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Homepage: το page length είναι υπερβολικό (τεράστιο endless list υπηρεσιών) και θυμίζει dump περιεχομένου αντί για marketplace landing. Σπάσε την πληροφορία με ισχυρά φίλτρα, pagination/accordion ανά κατηγορία και lazy loading για να μειωθεί το αρχικό βάρος και το scroll fatigue.",
+      "addedAt": "2026-03-04T20:32:56Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
