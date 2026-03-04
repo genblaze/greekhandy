@@ -4,7 +4,7 @@
       "id": "qa-critical-fixes-wave-1",
       "name": "QA Critical Fixes (Wave 1)",
       "description": "Fix critical trust/UX/SEO issues from QA: broken professional images with robust fallbacks + publish validation gates, remove public-facing failure diagnostics and defer validation errors until user interaction, ensure complete OG/Twitter metadata, ship SEO-safe custom 404 UX, and improve homepage language consistency + information architecture (less endless-scroll fatigue).",
-      "priority": 1,
+      "priority": 2,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -12,7 +12,7 @@
       "id": "leads-directory-page",
       "name": "Leads Directory Page",
       "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",
-      "priority": 2,
+      "priority": 3,
       "status": "in-progress",
       "estimatedComplexity": "medium"
     },
@@ -20,7 +20,7 @@
       "id": "search-browse",
       "name": "Search & Browse",
       "description": "Search bar on homepage, category grid with icons, city filter dropdown. Users can find services by keyword or browse categories.",
-      "priority": 3,
+      "priority": 4,
       "status": "complete",
       "estimatedComplexity": "medium"
     },
@@ -28,7 +28,7 @@
       "id": "contact-forms",
       "name": "Contact Forms",
       "description": "Per-service lead capture form with name, phone, email, description fields. Email notification to admin (SMTP-configured). Thank-you page after submission.",
-      "priority": 4,
+      "priority": 5,
       "status": "complete",
       "estimatedComplexity": "medium"
     },
@@ -36,15 +36,15 @@
       "id": "professional-profiles",
       "name": "Professional Profiles",
       "description": "MVP slices complete: basic professional listing + profile pages + professional registration form submission + homepage search results include approved/published profiles + basic moderation workflow (pending queue with approve/reject and draft profile creation) + photos/portfolio display on profiles.",
-      "priority": 5,
+      "priority": 6,
       "status": "complete",
       "estimatedComplexity": "high"
     },
     {
       "id": "premium-sitewide-design-system",
       "name": "Premium Sitewide Experience",
-      "description": "Airbnb-level premium visual and UX system across every surface: homepage, category pages, service pages, profile pages, booking flow, messaging threads, moderation/admin pages, and all states (empty/loading/error).",
-      "priority": 6,
+      "description": "Airbnb-level premium visual and UX system across every surface: homepage, category pages, service pages, profile pages, booking flow, messaging threads, moderation/admin pages, and all states (empty/loading/error). Founder directive (2026-03-04): make the site feel world-class and non-templated with a unique GreekHandy brand identity; this is now the #1 priority.",
+      "priority": 1,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
