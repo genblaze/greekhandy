@@ -1,5 +1,5 @@
 {
-  "lastManagerRun": "2026-03-04T17:35:40Z",
+  "lastManagerRun": "2026-03-04T17:37:31Z",
   "activeAgents": {
     "research": {
       "status": "running",
@@ -37,6 +37,6 @@
     "jobsResearched": 110,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Cycle run: assessed pipeline/roadmap/leads/directives, checked active sessions (15m + 60m view) and recent git activity, committed+pushed repo state, found no active founder directives, and kept all six agents on current in-scope tasks without duplicate relaunches.",
+  "lastDecision": "Cycle run: assessed pipeline/roadmap/leads/directives, checked active sessions (15m/60m/180m) and recent git activity, committed+pushed repo state, found no active founder directives, and kept all six agents on current in-scope tasks without duplicate relaunches.",
   "blockers": []
 }
