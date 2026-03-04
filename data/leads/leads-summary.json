@@ -1,5 +1,5 @@
 {
-  "totalLeads": 394,
+  "totalLeads": 444,
   "byCategory": {
     "ilektrologoi": 40,
     "ydravlikoi": 40,
@@ -9,7 +9,8 @@
     "kleidarades": 50,
     "ksyloyrgoi": 50,
     "plakadades": 50,
-    "kipouroi": 44
+    "kipouroi": 44,
+    "metakomiseis": 50
   },
-  "lastUpdated": "2026-03-04T16:24:09Z"
+  "lastUpdated": "2026-03-04T16:25:42Z"
 }
