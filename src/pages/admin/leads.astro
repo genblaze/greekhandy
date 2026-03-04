@@ -210,7 +210,7 @@ const hasLeads = directoryData.leads.length > 0;
                     <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Ενεργά φίλτρα</p>
                     <button type="button" data-clear-url-filters aria-keyshortcuts="Alt+Shift+X" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός URL</button>
                   </div>
-                  <div data-active-filters class="mt-2 flex flex-wrap gap-2" aria-live="polite"></div>
+                  <div data-active-filters class="mt-2 flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible" aria-live="polite"></div>
                   <p data-active-filters-summary class="mt-1 text-[11px] text-slate-500" aria-live="polite">Ενεργά φίλτρα: 0</p>
                   <p data-no-active-filters class="mt-2 text-xs text-slate-500">Δεν υπάρχουν ενεργά φίλτρα.</p>
 
@@ -441,15 +441,18 @@ const hasLeads = directoryData.leads.length > 0;
               </section>
 
               <section data-selection-dock class="pointer-events-none fixed inset-x-0 bottom-3 z-30 hidden px-4">
-                <div class="pointer-events-auto mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur">
+                <div class="pointer-events-auto mx-auto flex max-w-4xl flex-col gap-3 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur md:flex-row md:items-center md:justify-between">
                   <div>
                     <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
                     <p data-selection-next-hint id="leads-selection-next-hint" class="mt-1 text-xs text-slate-600" aria-live="polite">Επόμενο βήμα μετατροπής: εφαρμόστε outreach, μετά segment και follow-up (Alt+Shift+T για quick +24h). Alt+Z για άμεση αναίρεση της τελευταίας μαζικής outreach αλλαγής.</p>
                     <p data-selection-last-action class="mt-1 text-[11px] text-slate-500" aria-live="polite">Τελευταία ενέργεια: —</p>
                     <p data-selection-segment-breakdown class="mt-0.5 text-[11px] text-slate-500" aria-live="polite">Επιλεγμένα ανά segment: hot 0 • warm 0 • cold 0 • untagged 0</p>
                     <p data-undo-availability class="mt-0.5 text-[11px] text-slate-500" aria-live="polite">Αναίρεση outreach: μη διαθέσιμη μέχρι την επόμενη μαζική αλλαγή.</p>
+                    <ul data-bulk-audit-rail class="mt-1 space-y-0.5 text-[11px] text-slate-500" aria-live="polite" aria-label="Ιστορικό πρόσφατων bulk ενεργειών">
+                      <li>Audit rail: χωρίς πρόσφατες bulk ενέργειες.</li>
+                    </ul>
                   </div>
-                  <div class="flex flex-wrap items-center gap-2">
+                  <div class="flex w-full gap-2 overflow-x-auto pb-1 md:w-auto md:flex-wrap md:overflow-visible">
                     <button type="button" data-selection-dock-contacted="true" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+E" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Έγινε επαφή</button>
                     <button type="button" data-selection-dock-contacted="false" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+N" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-3 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Εκκρεμεί επαφή</button>
                     <button type="button" data-selection-dock-segment="hot" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+1" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-3 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Segment Hot</button>
@@ -574,6 +577,7 @@ const hasLeads = directoryData.leads.length > 0;
         const selectionLastAction = root.querySelector('[data-selection-last-action]');
         const selectionSegmentBreakdown = root.querySelector('[data-selection-segment-breakdown]');
         const undoAvailability = root.querySelector('[data-undo-availability]');
+        const bulkAuditRail = root.querySelector('[data-bulk-audit-rail]');
         const selectionDockButtons = Array.from(root.querySelectorAll('[data-selection-dock-contacted]'));
         const selectionDockSegmentButtons = Array.from(root.querySelectorAll('[data-selection-dock-segment]'));
         const selectionDockFollowupAt = root.querySelector('[data-selection-dock-followup-at]');
@@ -662,6 +666,29 @@ const hasLeads = directoryData.leads.length > 0;
           const minutes = Math.floor(totalSeconds / 60);
           const seconds = totalSeconds % 60;
           return `${minutes}:${String(seconds).padStart(2, '0')}`;
+        };
+
+        const renderBulkAuditRail = () => {
+          if (!(bulkAuditRail instanceof HTMLElement)) return;
+          bulkAuditRail.innerHTML = '';
+          if (bulkAuditEvents.length === 0) {
+            const li = document.createElement('li');
+            li.textContent = 'Audit rail: χωρίς πρόσφατες bulk ενέργειες.';
+            bulkAuditRail.appendChild(li);
+            return;
+          }
+          bulkAuditEvents.slice(0, 4).forEach((event) => {
+            const li = document.createElement('li');
+            li.textContent = `${event.time} — ${event.text}`;
+            bulkAuditRail.appendChild(li);
+          });
+        };
+
+        const pushBulkAudit = (text) => {
+          const now = new Date();
+          const time = now.toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' });
+          bulkAuditEvents = [{ time, text }, ...bulkAuditEvents].slice(0, 8);
+          renderBulkAuditRail();
         };
 
         const setLastActionNote = (message) => {
@@ -848,6 +875,7 @@ const hasLeads = directoryData.leads.length > 0;
         let previousSelectionCount = null;
         let previousRenderedViewState = '';
         let lastBulkOutreachSnapshot = null;
+        let bulkAuditEvents = [];
         const PRESET_STORAGE_KEY = 'admin-leads-presets-v1';
         const LAST_PRESET_STORAGE_KEY = 'admin-leads-last-preset-v1';
 

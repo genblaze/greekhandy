@@ -193,18 +193,45 @@ const professionalSlug = latest?.professionalSlug ?? '';
 const hasMissingParams = !hasThreadId || !hasViewerEmail;
 const hasViewerParamIssue = hasMissingParams || hasInvalidViewerEmail;
 const hasAccessIssue = !hasViewerParamIssue && !isParticipant && !threadLoadError;
+const hasFailedSendStatus = messageStatus === 'invalid' || messageStatus === 'error';
 const composerInitialState = messageStatus === 'submitted'
   ? 'success'
   : messageStatus === 'invalid' || messageStatus === 'error' || messageStatus === 'blocked'
     ? 'error'
     : 'idle';
-const composerInitialStateLabel = composerInitialState === 'success'
+const composerInitialStateLabel = messageStatus === 'submitted'
   ? 'Το τελευταίο μήνυμα στάλθηκε επιτυχώς.'
-  : composerInitialState === 'error'
-    ? 'Η τελευταία αποστολή απέτυχε. Ελέγξτε το κείμενο και δοκιμάστε ξανά.'
-    : 'Το composer είναι έτοιμο για αποστολή.';
+  : messageStatus === 'invalid'
+    ? 'Η αποστολή απέτυχε λόγω μη έγκυρου περιεχομένου. Το πρόχειρο διατηρήθηκε για διόρθωση.'
+    : messageStatus === 'error'
+      ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο διατηρήθηκε για άμεσο retry.'
+      : messageStatus === 'blocked'
+        ? 'Η αποστολή απενεργοποιήθηκε από moderation.'
+        : 'Το composer είναι έτοιμο για αποστολή.';
 const composerDraftStorageKey = canLoadThreadData ? `gh:thread-composer-draft:${threadId}:${viewerEmail}` : '';
 const shouldClearComposerDraftOnLoad = messageStatus === 'submitted';
+const composerRetryPanelTitle = messageStatus === 'invalid'
+  ? 'Η αποστολή διακόπηκε: χρειάζεται διόρθωση περιεχομένου'
+  : 'Η αποστολή διακόπηκε προσωρινά';
+const composerRetryPanelDescription = messageStatus === 'invalid'
+  ? 'Διορθώστε το μήνυμα και ξαναστείλτε το από τον composer.'
+  : 'Δοκιμάστε ξανά από τον composer μόλις επιβεβαιώσετε σύνδεση και περιεχόμενο.';
+const composerRetryPanelToneClass = messageStatus === 'invalid'
+  ? 'border-amber-300 bg-amber-50 text-amber-900'
+  : 'border-rose-300 bg-rose-50 text-rose-900';
+const composerAriaDescribedBy = [
+  'thread-composer-description',
+  'composer-state',
+  'composer-shortcuts',
+  'composer-error',
+  'composer-count',
+  'composer-live',
+  'composer-submit-live',
+  'thread-offline-alert',
+  hasFailedSendStatus ? 'composer-retry-panel' : ''
+]
+  .filter(Boolean)
+  .join(' ');
 
 const participants = new Set<string>();
 for (const message of threadMessages) {
@@ -332,6 +359,22 @@ const historyStateRecoveryHint = showLoadingState
       : 'Η ανάγνωση ιστορικού είναι σταθερή και έτοιμη για επόμενο triage βήμα.';
 const historyStateAriaRole = threadLoadError && !hasPartialThreadHistory ? 'alert' : 'status';
 const historyStateAriaLive = threadLoadError && !hasPartialThreadHistory ? 'assertive' : 'polite';
+const historyStatePhaseLabel = showLoadingState
+  ? 'Loading'
+  : threadLoadError
+    ? hasPartialThreadHistory ? 'Partial' : 'Error'
+    : threadMessages.length === 0
+      ? 'Empty'
+      : 'Ready';
+const historyStatePhaseClass = showLoadingState
+  ? 'border-sky-300 bg-sky-100 text-sky-900'
+  : threadLoadError
+    ? hasPartialThreadHistory
+      ? 'border-amber-300 bg-amber-100 text-amber-900'
+      : 'border-rose-300 bg-rose-100 text-rose-900'
+    : threadMessages.length === 0
+      ? 'border-slate-300 bg-slate-100 text-slate-700'
+      : 'border-emerald-300 bg-emerald-100 text-emerald-900';
 const threadStatePrimaryActionLabel = hasViewerParamIssue
   ? 'Επιστροφή στη λίστα'
   : hasAccessIssue
@@ -507,13 +550,19 @@ for (const message of threadMessages) {
       )}
       {messageStatus === 'invalid' && (
         <div class="thread-toast thread-toast--amber js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
-          <p class="text-sm font-semibold">Μη έγκυρα στοιχεία μηνύματος. Ελέγξτε το περιεχόμενο και προσπαθήστε ξανά.</p>
+          <p class="text-sm font-semibold">Μη έγκυρα στοιχεία μηνύματος. Το πρόχειρο διατηρήθηκε και μπορείτε να δοκιμάσετε ξανά από τον composer.</p>
+          <a href="#thread-interaction" class="mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+            Άνοιγμα composer για διόρθωση
+          </a>
           <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
       {messageStatus === 'error' && (
         <div class="thread-toast thread-toast--rose js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
-          <p class="text-sm font-semibold">Δεν ήταν δυνατή η αποστολή μηνύματος. Προσπαθήστε ξανά σε λίγο.</p>
+          <p class="text-sm font-semibold">Δεν ήταν δυνατή η αποστολή μηνύματος. Το πρόχειρο διατηρήθηκε για άμεσο retry.</p>
+          <a href="#thread-interaction" class="mt-2 inline-flex rounded-md border border-rose-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-rose-900 transition hover:border-rose-400 hover:bg-rose-100">
+            Άνοιγμα composer για retry
+          </a>
           <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
