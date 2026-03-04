@@ -1,0 +1,67 @@
+{
+  "featureId": "unified-moderation-queue-copy",
+  "version": "mvp-v1",
+  "locale": "el-GR",
+  "queue": {
+    "title": "Ουρά ελέγχου",
+    "subtitle": "Έλεγχος εκκρεμών στοιχείων"
+  },
+  "filters": {
+    "all": "Όλα",
+    "pending": "Σε εκκρεμότητα",
+    "approved": "Εγκρίθηκαν",
+    "rejected": "Απορρίφθηκαν",
+    "highRisk": "Υψηλού ρίσκου",
+    "searchPlaceholder": "Αναζήτηση με όνομα ή ID"
+  },
+  "itemLabels": {
+    "type": "Τύπος",
+    "submittedAt": "Υποβλήθηκε",
+    "reporter": "Υποβολέας",
+    "target": "Αφορά",
+    "reason": "Αιτία",
+    "status": "Κατάσταση"
+  },
+  "actions": {
+    "review": "Προβολή",
+    "approve": "Έγκριση",
+    "reject": "Απόρριψη",
+    "escalate": "Κλιμάκωση",
+    "restore": "Επαναφορά"
+  },
+  "states": {
+    "empty": {
+      "title": "Δεν υπάρχουν στοιχεία",
+      "description": "Δεν βρέθηκαν εγγραφές με αυτά τα φίλτρα."
+    },
+    "loading": {
+      "title": "Φόρτωση ουράς",
+      "description": "Φέρνουμε τα πιο πρόσφατα στοιχεία."
+    },
+    "error": {
+      "title": "Αποτυχία φόρτωσης",
+      "description": "Κάτι πήγε στραβά. Δοκίμασε ξανά.",
+      "retry": "Επανάληψη"
+    }
+  },
+  "confirmations": {
+    "approve": {
+      "title": "Έγκριση στοιχείου;",
+      "message": "Το στοιχείο θα δημοσιευτεί.",
+      "confirm": "Ναι, έγκριση",
+      "cancel": "Άκυρο"
+    },
+    "reject": {
+      "title": "Απόρριψη στοιχείου;",
+      "message": "Το στοιχείο θα απορριφθεί και δεν θα εμφανίζεται δημόσια.",
+      "confirm": "Ναι, απόρριψη",
+      "cancel": "Άκυρο"
+    },
+    "escalate": {
+      "title": "Κλιμάκωση για έλεγχο;",
+      "message": "Θα σταλεί στη 2η βαθμίδα ελέγχου.",
+      "confirm": "Ναι, κλιμάκωση",
+      "cancel": "Άκυρο"
+    }
+  }
+}
