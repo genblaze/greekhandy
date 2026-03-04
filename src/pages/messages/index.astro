@@ -14,6 +14,13 @@ import {
 const url = new URL(Astro.request.url);
 const viewerEmail = (url.searchParams.get('viewerEmail') ?? '').trim().toLowerCase();
 const status = (url.searchParams.get('status') ?? '').trim();
+const searchQueryRaw = (url.searchParams.get('q') ?? '').trim();
+const searchQuery = searchQueryRaw.toLowerCase();
+const showUnreadOnly = (url.searchParams.get('unread') ?? '') === '1';
+const showBlockedOnly = (url.searchParams.get('blocked') ?? '') === '1';
+const showReportedOnly = (url.searchParams.get('reported') ?? '') === '1';
+const activeFilterCount = Number(showUnreadOnly) + Number(showBlockedOnly) + Number(showReportedOnly);
+const hasListFilters = Boolean(searchQueryRaw) || activeFilterCount > 0;
 const knownListStatuses = new Set(['', 'loading', 'invalid', 'forbidden', 'error']);
 const showLoadingState = status === 'loading';
 const hasUnknownStatus = status !== '' && !knownListStatuses.has(status);
@@ -108,6 +115,24 @@ const threads = Array.from(threadMap.entries())
           : threadAction === 'reject'
             ? 'Η τελευταία αναφορά ολοκληρώθηκε χωρίς περιορισμό.'
             : 'Δεν υπάρχει ενεργός περιορισμός moderation.';
+    const moderationBannerTitle = isBlocked
+      ? 'Ισχυρός περιορισμός thread'
+      : isAdminHidden
+        ? 'Περιορισμένη ορατότητα περιεχομένου'
+        : threadAction === 'review'
+          ? 'Ανοιχτή αναφορά σε moderation'
+          : threadAction === 'reject'
+            ? 'Αναφορά καταχωρήθηκε'
+            : '';
+    const moderationBannerClass = isBlocked
+      ? 'border-rose-300 bg-rose-50/90 text-rose-950'
+      : isAdminHidden
+        ? 'border-orange-300 bg-orange-50/90 text-orange-950'
+        : threadAction === 'review'
+          ? 'border-sky-300 bg-sky-50/90 text-sky-950'
+          : threadAction === 'reject'
+            ? 'border-amber-300 bg-amber-50/90 text-amber-950'
+            : '';
     const lastPreview = lastMessageHidden
       ? 'Το τελευταίο μήνυμα έχει αποκρυφτεί από moderation.'
       : truncatePreview(lastMessage.message);
@@ -134,6 +159,8 @@ const threads = Array.from(threadMap.entries())
       moderationState,
       moderationLabel,
       moderationHint,
+      moderationBannerTitle,
+      moderationBannerClass,
       threadAction
     };
   })
@@ -148,7 +175,32 @@ const totalReported = threads.filter((thread) => thread.isReported).length;
 const totalModerated = threads.filter((thread) => thread.isModerated).length;
 const totalActive = threads.filter((thread) => thread.stateTone === 'active').length;
 const totalUnreadLabel = totalUnread > 0 ? formatUnreadCount(totalUnread) : 'Χωρίς μη αναγνωσμένα';
-const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
+const filteredThreads = threads.filter((thread) => {
+  if (showUnreadOnly && !thread.hasUnread) return false;
+  if (showBlockedOnly && !thread.isBlocked) return false;
+  if (showReportedOnly && !thread.isReported) return false;
+  if (!searchQuery) return true;
+  const searchableText = [
+    thread.professionalSlug,
+    thread.threadId,
+    thread.counterpartEmail,
+    thread.senderLabel,
+    thread.lastPreview
+  ]
+    .join(' ')
+    .toLowerCase();
+  return searchableText.includes(searchQuery);
+});
+const filteredThreadsCount = filteredThreads.length;
+const hasFilteredResults = filteredThreadsCount > 0;
+const clearFiltersHref = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
+const listReturnParams = new URLSearchParams();
+if (viewerEmail) listReturnParams.set('viewerEmail', viewerEmail);
+if (searchQueryRaw) listReturnParams.set('q', searchQueryRaw);
+if (showUnreadOnly) listReturnParams.set('unread', '1');
+if (showBlockedOnly) listReturnParams.set('blocked', '1');
+if (showReportedOnly) listReturnParams.set('reported', '1');
+const listReturnTo = `/messages?${listReturnParams.toString()}`;
 ---
 
 <Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με καθαρή ιεραρχία, moderation badges και βασικές ενέργειες.">
@@ -223,6 +275,55 @@ const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
       </div>
     )}
 
+    {viewerEmail && (
+      <section class="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <form method="GET" action="/messages" class="space-y-4" aria-label="Αναζήτηση και φίλτρα συνομιλιών">
+          <input type="hidden" name="viewerEmail" value={viewerEmail} />
+          <div>
+            <label for="thread-search" class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Αναζήτηση thread</label>
+            <input
+              id="thread-search"
+              type="search"
+              name="q"
+              value={searchQueryRaw}
+              placeholder="slug, email, preview, thread id"
+              class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+            />
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Γρήγορα φίλτρα</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <label class={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showUnreadOnly ? 'border-sky-400 bg-sky-100 text-sky-900' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}>
+                <input type="checkbox" name="unread" value="1" checked={showUnreadOnly} class="h-3.5 w-3.5 accent-sky-600" />
+                Μη αναγνωσμένα ({totalUnread})
+              </label>
+              <label class={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showBlockedOnly ? 'border-rose-400 bg-rose-100 text-rose-900' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}>
+                <input type="checkbox" name="blocked" value="1" checked={showBlockedOnly} class="h-3.5 w-3.5 accent-rose-600" />
+                Μπλοκαρισμένα ({totalBlocked})
+              </label>
+              <label class={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showReportedOnly ? 'border-sky-400 bg-sky-100 text-sky-900' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}>
+                <input type="checkbox" name="reported" value="1" checked={showReportedOnly} class="h-3.5 w-3.5 accent-sky-600" />
+                Αναφερόμενα ({totalReported})
+              </label>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button type="submit" class="rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700">Εφαρμογή</button>
+            {hasListFilters && (
+              <a href={clearFiltersHref} class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                Καθαρισμός φίλτρων
+              </a>
+            )}
+            <p class="text-xs text-slate-500">
+              Εμφάνιση: <span class="font-semibold text-slate-700">{filteredThreadsCount}</span> από <span class="font-semibold text-slate-700">{totalThreads}</span> threads
+            </p>
+          </div>
+        </form>
+      </section>
+    )}
+
     {!viewerEmail && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-950">
         <p class="text-base font-semibold">Δεν ήταν δυνατή η φόρτωση των συνομιλιών.</p>
@@ -249,7 +350,15 @@ const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
           </div>
         )}
 
-        {!showLoadingState && threads.map((thread) => (
+        {!showLoadingState && !listLoadError && threads.length > 0 && !hasFilteredResults && (
+          <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-6 shadow-sm">
+            <p class="text-lg font-semibold text-slate-900">Δεν βρέθηκαν συνομιλίες με αυτά τα φίλτρα.</p>
+            <p class="mt-2 text-sm text-slate-600">Δοκιμάστε διαφορετική αναζήτηση ή αφαιρέστε κάποιο φίλτρο για να δείτε περισσότερα threads.</p>
+            <a href={clearFiltersHref} class="mt-3 inline-flex rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Καθαρισμός φίλτρων</a>
+          </div>
+        )}
+
+        {!showLoadingState && filteredThreads.map((thread) => (
           <article
             class={`relative overflow-hidden rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md ${
               thread.stateTone === 'blocked'
@@ -300,7 +409,10 @@ const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
               <span>Κρυφά: <strong class="font-semibold text-slate-700">{thread.hiddenMessagesCount}</strong></span>
               <span>Κατάσταση moderation: <strong class="font-semibold text-slate-700">{thread.moderationLabel}</strong></span>
             </div>
-            <p class="mt-2 text-xs text-slate-500">{thread.moderationHint}</p>
+            <div class={`mt-3 rounded-lg border px-3 py-2 text-xs ${thread.isModerated ? thread.moderationBannerClass : 'border-slate-200 bg-slate-50 text-slate-600'}`}>
+              {thread.isModerated && <p class="font-semibold">{thread.moderationBannerTitle}</p>}
+              <p class={thread.isModerated ? 'mt-0.5' : ''}>{thread.moderationHint}</p>
+            </div>
 
             <div class="mt-4 flex flex-wrap items-center gap-2.5">
               <a
