@@ -1,0 +1,20 @@
+{
+  "id": "greenhouse-irrigation-automation-argiostoli",
+  "slug": "aftomatismos-ardefsis-thermokipiou-argiostoli",
+  "nameGr": "Αυτοματισμός Άρδευσης Θερμοκηπίου στο Αργοστόλι",
+  "nameEn": "Greenhouse Irrigation Automation in Αργοστόλι",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Αυτοματισμός άρδευσης θερμοκηπίου στο Αργοστόλι με αισθητήρες και προγραμματισμό για σταθερή παραγωγικότητα. SEO intent: καλύπτει εμπορικά queries «αυτοματισμός ποτίσματος θερμοκήπιο Αργοστόλι».",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "260-1800€",
+  "demand": "high",
+  "keywords": [
+    "αυτοματισμός ποτίσματος θερμοκηπίου Αργοστόλι",
+    "άρδευση θερμοκηπίου Αργοστόλι",
+    "τεχνικός αυτοματισμών άρδευσης",
+    "smart irrigation θερμοκήπιο",
+    "αισθητήρες υγρασίας εδάφους"
+  ],
+  "status": "researched"
+}

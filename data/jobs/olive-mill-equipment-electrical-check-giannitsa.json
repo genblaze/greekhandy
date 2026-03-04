@@ -1,0 +1,20 @@
+{
+  "id": "olive-mill-equipment-electrical-check-giannitsa",
+  "slug": "ilektrologikos-elegxos-exoplismou-elaiotriveiou-giannitsa",
+  "nameGr": "Ηλεκτρολογικός Έλεγχος Εξοπλισμού Ελαιοτριβείου στα Γιαννιτσά",
+  "nameEn": "Olive Mill Equipment Electrical Check in Γιαννιτσά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Ηλεκτρολογικός έλεγχος εξοπλισμού ελαιοτριβείου στα Γιαννιτσά με μετρήσεις ασφάλειας και πρόληψη διακοπών λειτουργίας. SEO intent: στοχεύει B2B αναζητήσεις «ηλεκτρολόγος ελαιοτριβείο Γιαννιτσά».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "120-680€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολόγος ελαιοτριβείο Γιαννιτσά",
+    "έλεγχος ηλεκτρολογικής εγκατάστασης ελαιοτριβείου",
+    "συντήρηση ηλεκτρομηχανολογικού εξοπλισμού",
+    "B2B ηλεκτρολογικές υπηρεσίες",
+    "ασφάλεια επαγγελματικού χώρου"
+  ],
+  "status": "researched"
+}
