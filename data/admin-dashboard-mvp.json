@@ -1,19 +1,25 @@
 {
   "featureId": "admin-dashboard",
-  "version": "mvp-v1",
-  "dependsOn": ["messaging-mvp"],
-  "goal": "Launch a minimal protected admin view that lets one operator process all pending moderation work without opening the database or code.",
+  "version": "mvp-v1.1",
+  "dependsOn": [
+    "professional-profiles",
+    "reviews-ratings",
+    "booking-system-mvp",
+    "messaging-mvp"
+  ],
+  "goal": "Ship one protected admin queue where a single operator can process core moderation workload (profiles, reviews, bookings, messages) without switching tools.",
   "launchScope": {
     "surfaces": [
       "admin login gate (single admin role)",
       "admin dashboard home with queue summary cards",
-      "unified moderation queue list",
-      "queue item detail panel with approve/reject/hide actions"
+      "unified moderation queue list (single combined feed)",
+      "queue item detail panel with per-type moderation actions"
     ],
     "inScopeQueues": [
       "professional profile approvals (pending)",
       "review moderation (pending/flagged)",
-      "reported messages from messaging MVP (open)"
+      "booking moderation (pending/flagged)",
+      "messaging moderation (reported messages open)"
     ],
     "outOfScope": [
       "analytics charts and funnels",
@@ -22,13 +28,13 @@
       "bulk actions",
       "user management",
       "audit export",
-      "booking/payment operations"
+      "payment operations"
     ]
   },
   "minimalDataContract": {
     "queueItem": {
       "id": "string",
-      "type": "profile | review | message_report",
+      "type": "profile | review | booking | message_report",
       "status": "pending | flagged | open",
       "submittedAt": "datetime",
       "primaryLabel": "string",
@@ -39,14 +45,15 @@
     "actions": {
       "profile": ["approve", "reject"],
       "review": ["publish", "reject"],
+      "booking": ["approve", "reject", "needs_info"],
       "message_report": ["hide_message", "dismiss_report", "block_sender"]
     }
   },
   "defaultWorkflow": [
     "Admin authenticates and lands on /admin",
-    "Dashboard shows count cards: pending profiles, pending/flagged reviews, open message reports",
-    "Admin opens queue sorted by oldest submittedAt first",
-    "Admin applies one action from item detail",
+    "Dashboard shows count cards: profiles, reviews, bookings, message reports",
+    "Admin opens unified queue sorted by oldest submittedAt first",
+    "Admin reviews item detail and applies one supported action",
     "Item leaves active queue and action is stored in audit log"
   ],
   "operationalConstraints": [
@@ -58,11 +65,11 @@
   ],
   "acceptanceCriteria": [
     "Unauthenticated users cannot access any /admin route",
-    "Admin dashboard home displays accurate queue counts for profiles, reviews, and message reports",
-    "Unified queue lists at least id, type, submittedAt, status, and riskLevel for each active item",
-    "Admin can complete one moderation action for each queue type end-to-end",
+    "Admin dashboard home displays accurate queue counts for profiles, reviews, bookings, and message reports",
+    "Unified queue displays mixed item types in one list with id, type, submittedAt, status, and riskLevel",
+    "Admin can complete one moderation action end-to-end for each type: profile, review, booking, message report",
     "Successful action removes item from active queue and persists audit metadata",
     "No analytics, bulk actions, or user management UI is required for launch"
   ],
-  "shipDefinition": "MVP is shippable when one admin can clear daily moderation backlog from this dashboard in under 30 minutes without manual DB edits."
+  "shipDefinition": "MVP is shippable when one admin can clear daily moderation backlog (profiles/reviews/bookings/messages) from one queue in under 30 minutes without manual DB edits."
 }
