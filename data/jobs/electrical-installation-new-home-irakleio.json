@@ -1,0 +1,20 @@
+{
+  "id": "electrical-installation-new-home-irakleio",
+  "slug": "ilektrologiki-egkatastasi-neou-spitiou-irakleio",
+  "nameGr": "Ηλεκτρολογική Εγκατάσταση Νέου Σπιτιού στο Ηράκλειο",
+  "nameEn": "New Home Electrical Installation in Ηράκλειο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Πλήρης ηλεκτρολογική εγκατάσταση νέας κατοικίας στο Ηράκλειο με γραμμές, πίνακα, πρίζες και φωτισμό. SEO intent: καλύπτει transactional αναζητήσεις όπως «ηλεκτρολογική εγκατάσταση σπίτι Ηράκλειο» και «κόστος ηλεκτρολόγου νέας οικοδομής».",
+  "typicalDuration": "2-7 ημέρες",
+  "priceRangeEUR": "900-4800€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολογική εγκατάσταση Ηράκλειο",
+    "ηλεκτρολόγος νέα κατοικία Ηράκλειο",
+    "ηλεκτρολογικά νέας οικοδομής",
+    "πλήρης εγκατάσταση ρεύματος",
+    "κόστος ηλεκτρολογικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

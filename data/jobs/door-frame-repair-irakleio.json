@@ -1,0 +1,20 @@
+{
+  "id": "door-frame-repair-irakleio",
+  "slug": "episkevi-kasas-portas-irakleio",
+  "nameGr": "Επισκευή Κάσας Πόρτας στο Ηράκλειο",
+  "nameEn": "Door Frame Repair in Ηράκλειο",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επισκευή ξύλινης ή μεταλλικής κάσας πόρτας στο Ηράκλειο για στρεβλώσεις, φθορές και προβλήματα κλεισίματος. SEO intent: καλύπτει άμεσες αναζητήσεις όπως «επισκευή κάσας πόρτας Ηράκλειο» και «ξυλουργός πόρτες».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή κάσας πόρτας Ηράκλειο",
+    "ξυλουργός πόρτες Ηράκλειο",
+    "πόρτα δεν κλείνει σωστά",
+    "επισκευή ξύλινης πόρτας",
+    "ευθυγράμμιση κάσας"
+  ],
+  "status": "researched"
+}

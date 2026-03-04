@@ -1,0 +1,20 @@
+{
+  "id": "piano-heavy-item-moving-volos",
+  "slug": "metafora-pianou-vareon-antikeimenon-volos",
+  "nameGr": "Μεταφορά Πιάνου & Βαρέων Αντικειμένων στον Βόλο",
+  "nameEn": "Piano & Heavy Item Moving in Βόλος",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Εξειδικευμένη μεταφορά πιάνου και βαρέων αντικειμένων στον Βόλο με ιμάντες, προστατευτικά και έμπειρο συνεργείο. SEO intent: απαντά σε high-intent αναζητήσεις «μεταφορά πιάνου Βόλος» και «μεταφορική βαρέα αντικείμενα».",
+  "typicalDuration": "2-8 ώρες",
+  "priceRangeEUR": "190-980€",
+  "demand": "high",
+  "keywords": [
+    "μεταφορά πιάνου Βόλος",
+    "μεταφορά βαρέων αντικειμένων Βόλος",
+    "ειδική μετακόμιση πιάνου",
+    "μεταφορική με ανυψωτικό",
+    "ασφαλής μεταφορά ευαίσθητων αντικειμένων"
+  ],
+  "status": "researched"
+}

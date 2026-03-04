@@ -1,0 +1,20 @@
+{
+  "id": "solar-water-heater-service-larisa",
+  "slug": "syntirisi-iliakou-thermosifona-larisa",
+  "nameGr": "Συντήρηση Ηλιακού Θερμοσίφωνα στη Λάρισα",
+  "nameEn": "Solar Water Heater Service in Λάρισα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Συντήρηση ηλιακού θερμοσίφωνα στη Λάρισα με έλεγχο κυκλώματος, βαλβίδων, αντιψυκτικού και απόδοσης. SEO intent: στοχεύει υψηλής πρόθεσης αναζητήσεις «service ηλιακού Λάρισα» και «τεχνικός ηλιακού θερμοσίφωνα άμεσα».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "65-190€",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση ηλιακού θερμοσίφωνα Λάρισα",
+    "service ηλιακού Λάρισα",
+    "τεχνικός ηλιακού θερμοσίφωνα",
+    "αλλαγή αντιψυκτικού ηλιακού",
+    "βλάβη ηλιακού νερού"
+  ],
+  "status": "researched"
+}

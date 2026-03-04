@@ -1,0 +1,20 @@
+{
+  "id": "electrical-panel-upgrade-volos",
+  "slug": "anavathmisi-ilektrologikou-pinaka-volos",
+  "nameGr": "Αναβάθμιση Ηλεκτρολογικού Πίνακα στον Βόλο",
+  "nameEn": "Electrical Panel Upgrade in Βόλος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Αναβάθμιση ηλεκτρολογικού πίνακα στον Βόλο για ασφάλεια, νέα φορτία και συμμόρφωση με σύγχρονες προδιαγραφές. SEO intent: στοχεύει υψηλής πρόθεσης αναζητήσεις όπως «αλλαγή ηλεκτρολογικού πίνακα Βόλος» και «ηλεκτρολόγος πίνακας τιμή».",
+  "typicalDuration": "4-8 ώρες",
+  "priceRangeEUR": "260-980€",
+  "demand": "high",
+  "keywords": [
+    "αναβάθμιση ηλεκτρολογικού πίνακα Βόλος",
+    "αλλαγή πίνακα ρεύματος Βόλος",
+    "ηλεκτρολόγος πίνακας",
+    "ασφάλειες πίνακα ανακαίνιση",
+    "πίνακας κατοικίας νέα εγκατάσταση"
+  ],
+  "status": "researched"
+}

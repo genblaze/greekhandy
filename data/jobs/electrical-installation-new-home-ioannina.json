@@ -1,0 +1,20 @@
+{
+  "id": "electrical-installation-new-home-ioannina",
+  "slug": "ilektrologiki-egkatastasi-neou-spitiou-ioannina",
+  "nameGr": "Ηλεκτρολογική Εγκατάσταση Νέου Σπιτιού στα Ιωάννινα",
+  "nameEn": "New Home Electrical Installation in Ιωάννινα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Πλήρης ηλεκτρολογική εγκατάσταση νέας κατοικίας στα Ιωάννινα με γραμμές, πίνακα, πρίζες και φωτισμό. SEO intent: καλύπτει transactional αναζητήσεις όπως «ηλεκτρολογική εγκατάσταση σπίτι Ιωάννινα» και «κόστος ηλεκτρολόγου νέας οικοδομής».",
+  "typicalDuration": "2-7 ημέρες",
+  "priceRangeEUR": "900-4800€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολογική εγκατάσταση Ιωάννινα",
+    "ηλεκτρολόγος νέα κατοικία Ιωάννινα",
+    "ηλεκτρολογικά νέας οικοδομής",
+    "πλήρης εγκατάσταση ρεύματος",
+    "κόστος ηλεκτρολογικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

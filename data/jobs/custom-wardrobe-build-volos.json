@@ -1,0 +1,20 @@
+{
+  "id": "custom-wardrobe-build-volos",
+  "slug": "kataskevi-ntoulapas-kata-paraggelia-volos",
+  "nameGr": "Κατασκευή Ντουλάπας Κατά Παραγγελία στον Βόλο",
+  "nameEn": "Custom Wardrobe Build in Βόλος",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Κατασκευή ντουλάπας στα μέτρα του χώρου στον Βόλο με επιλογή υλικών, μηχανισμών και εσωτερικής διαρρύθμισης. SEO intent: στοχεύει εμπορικές αναζητήσεις «ντουλάπα κατά παραγγελία Βόλος» και «ξυλουργός ντουλάπες».",
+  "typicalDuration": "3-10 ημέρες",
+  "priceRangeEUR": "650-3200€",
+  "demand": "high",
+  "keywords": [
+    "ντουλάπα κατά παραγγελία Βόλος",
+    "ξυλουργός ντουλάπες Βόλος",
+    "κατασκευή ντουλάπας υπνοδωματίου",
+    "ντουλάπα στα μέτρα μου",
+    "έπιπλα κατά παραγγελία"
+  ],
+  "status": "researched"
+}

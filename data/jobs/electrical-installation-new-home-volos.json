@@ -1,0 +1,20 @@
+{
+  "id": "electrical-installation-new-home-volos",
+  "slug": "ilektrologiki-egkatastasi-neou-spitiou-volos",
+  "nameGr": "Ηλεκτρολογική Εγκατάσταση Νέου Σπιτιού στον Βόλο",
+  "nameEn": "New Home Electrical Installation in Βόλος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Πλήρης ηλεκτρολογική εγκατάσταση νέας κατοικίας στον Βόλο με γραμμές, πίνακα, πρίζες και φωτισμό. SEO intent: καλύπτει transactional αναζητήσεις όπως «ηλεκτρολογική εγκατάσταση σπίτι Βόλος» και «κόστος ηλεκτρολόγου νέας οικοδομής».",
+  "typicalDuration": "2-7 ημέρες",
+  "priceRangeEUR": "900-4800€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολογική εγκατάσταση Βόλος",
+    "ηλεκτρολόγος νέα κατοικία Βόλος",
+    "ηλεκτρολογικά νέας οικοδομής",
+    "πλήρης εγκατάσταση ρεύματος",
+    "κόστος ηλεκτρολογικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

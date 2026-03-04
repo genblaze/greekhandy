@@ -1,0 +1,20 @@
+{
+  "id": "door-frame-repair-volos",
+  "slug": "episkevi-kasas-portas-volos",
+  "nameGr": "Επισκευή Κάσας Πόρτας στον Βόλο",
+  "nameEn": "Door Frame Repair in Βόλος",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επισκευή ξύλινης ή μεταλλικής κάσας πόρτας στον Βόλο για στρεβλώσεις, φθορές και προβλήματα κλεισίματος. SEO intent: καλύπτει άμεσες αναζητήσεις όπως «επισκευή κάσας πόρτας Βόλος» και «ξυλουργός πόρτες».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή κάσας πόρτας Βόλος",
+    "ξυλουργός πόρτες Βόλος",
+    "πόρτα δεν κλείνει σωστά",
+    "επισκευή ξύλινης πόρτας",
+    "ευθυγράμμιση κάσας"
+  ],
+  "status": "researched"
+}

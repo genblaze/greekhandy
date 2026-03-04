@@ -1,0 +1,20 @@
+{
+  "id": "electrical-installation-new-home-larisa",
+  "slug": "ilektrologiki-egkatastasi-neou-spitiou-larisa",
+  "nameGr": "Ηλεκτρολογική Εγκατάσταση Νέου Σπιτιού στη Λάρισα",
+  "nameEn": "New Home Electrical Installation in Λάρισα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Πλήρης ηλεκτρολογική εγκατάσταση νέας κατοικίας στη Λάρισα με γραμμές, πίνακα, πρίζες και φωτισμό. SEO intent: καλύπτει transactional αναζητήσεις όπως «ηλεκτρολογική εγκατάσταση σπίτι Λάρισα» και «κόστος ηλεκτρολόγου νέας οικοδομής».",
+  "typicalDuration": "2-7 ημέρες",
+  "priceRangeEUR": "900-4800€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολογική εγκατάσταση Λάρισα",
+    "ηλεκτρολόγος νέα κατοικία Λάρισα",
+    "ηλεκτρολογικά νέας οικοδομής",
+    "πλήρης εγκατάσταση ρεύματος",
+    "κόστος ηλεκτρολογικής εγκατάστασης"
+  ],
+  "status": "researched"
+}
