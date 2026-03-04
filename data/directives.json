@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Homepage canonical is wrong/inconsistent: / returns canonical http://100.95.148.70:4322/ while category pages canonicalize to https://greekhandy.gr/... . Pick one public host (production domain) and enforce it everywhere, plus add 301 redirects from IP host to canonical domain to avoid duplicate-indexing.",
-      "addedAt": "2026-03-04T21:03:50Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "HTTP response headers are missing charset (content-type is just text/html). Greek text can degrade into mojibake in some clients/crawlers. Serve text/html; charset=utf-8 globally and verify decoding consistency on all templates.",
-      "addedAt": "2026-03-04T21:03:50Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "High-intent public routes are hard-404ing right now: /blog and /epikoinonia. Either ship real pages immediately or remove all references/sitemap entries and 301 them to relevant live destinations. Dead-end pages kill trust.",
-      "addedAt": "2026-03-04T21:03:50Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Slug strategy is inconsistent and creates avoidable 404s: /katharismos fails while /katharismoi exists. Implement redirect aliases for singular/plural Greek category variants (and common transliteration variants) instead of punishing users for natural URL guesses.",
-      "addedAt": "2026-03-04T21:03:50Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Homepage ships an extreme HTML payload (~2.8MB, ~447 internal links in initial markup) that looks programmatic and bloated. Split long service/city lists behind progressive disclosure (accordion + pagination/load-more) and trim above-the-fold DOM so first load feels like a real product, not an SEO dump.",
-      "addedAt": "2026-03-04T21:03:50Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -116,6 +90,36 @@
       "addedAt": "2026-03-04T20:48:11Z",
       "source": "slack",
       "processedAt": "2026-03-04T20:49:53Z"
+    },
+    {
+      "directive": "Homepage canonical is wrong/inconsistent: / returns canonical http://100.95.148.70:4322/ while category pages canonicalize to https://greekhandy.gr/... . Pick one public host (production domain) and enforce it everywhere, plus add 301 redirects from IP host to canonical domain to avoid duplicate-indexing.",
+      "addedAt": "2026-03-04T21:03:50Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T21:04:59Z"
+    },
+    {
+      "directive": "HTTP response headers are missing charset (content-type is just text/html). Greek text can degrade into mojibake in some clients/crawlers. Serve text/html; charset=utf-8 globally and verify decoding consistency on all templates.",
+      "addedAt": "2026-03-04T21:03:50Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T21:04:59Z"
+    },
+    {
+      "directive": "High-intent public routes are hard-404ing right now: /blog and /epikoinonia. Either ship real pages immediately or remove all references/sitemap entries and 301 them to relevant live destinations. Dead-end pages kill trust.",
+      "addedAt": "2026-03-04T21:03:50Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T21:04:59Z"
+    },
+    {
+      "directive": "Slug strategy is inconsistent and creates avoidable 404s: /katharismos fails while /katharismoi exists. Implement redirect aliases for singular/plural Greek category variants (and common transliteration variants) instead of punishing users for natural URL guesses.",
+      "addedAt": "2026-03-04T21:03:50Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T21:04:59Z"
+    },
+    {
+      "directive": "Homepage ships an extreme HTML payload (~2.8MB, ~447 internal links in initial markup) that looks programmatic and bloated. Split long service/city lists behind progressive disclosure (accordion + pagination/load-more) and trim above-the-fold DOM so first load feels like a real product, not an SEO dump.",
+      "addedAt": "2026-03-04T21:03:50Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T21:04:59Z"
     }
   ]
 }

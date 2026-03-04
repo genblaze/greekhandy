@@ -9,6 +9,14 @@
       "estimatedComplexity": "high"
     },
     {
+      "id": "qa-critical-fixes-wave-2",
+      "name": "QA Critical Fixes (Wave 2)",
+      "description": "Wave 2 QA fixes: enforce single canonical production host and redirects from IP host, serve text/html; charset=utf-8 globally, resolve dead /blog and /epikoinonia routes with real pages or redirects, add singular/plural/transliteration slug aliases, and reduce homepage initial payload/link bloat with progressive disclosure.",
+      "priority": 2,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "leads-directory-page",
       "name": "Leads Directory Page",
       "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",
