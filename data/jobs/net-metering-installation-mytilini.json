@@ -1,0 +1,20 @@
+{
+  "id": "net-metering-installation-mytilini",
+  "slug": "egkatastasi-net-metering-mytilini",
+  "nameGr": "Εγκατάσταση Net Metering στη Μυτιλήνη",
+  "nameEn": "Net Metering Installation in Μυτιλήνη",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Εγκατάσταση net metering στη Μυτιλήνη με μελέτη φορτίου, διαστασιολόγηση φωτοβολταϊκών και υποστήριξη σύνδεσης. SEO intent: στοχεύει εμπορικές αναζητήσεις «net metering Μυτιλήνη» και «φωτοβολταϊκό με συμψηφισμό».",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "3500-9800€",
+  "demand": "high",
+  "keywords": [
+    "net metering Μυτιλήνη",
+    "εγκατάσταση φωτοβολταϊκών Μυτιλήνη",
+    "συμψηφισμός ενέργειας",
+    "inverter εγκατάσταση",
+    "μείωση λογαριασμού ρεύματος"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "aluminum-frame-repair-drama",
+  "slug": "episkevi-koufomaton-alouminiou-drama",
+  "nameGr": "Επισκευή Κουφωμάτων Αλουμινίου στη Δράμα",
+  "nameEn": "Aluminum Frame Repair in Δράμα",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επισκευή κουφωμάτων αλουμινίου στη Δράμα για προβλήματα κύλισης, στεγάνωσης και μηχανισμών. SEO intent: καλύπτει high-intent όρους «επισκευή κουφωμάτων Δράμα» και «τεχνικός αλουμινίων άμεσα».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "45-280€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή κουφωμάτων αλουμινίου Δράμα",
+    "τεχνικός αλουμινίων Δράμα",
+    "παράθυρο δεν κλείνει",
+    "στεγάνωση κουφωμάτων",
+    "ρύθμιση μηχανισμού κουφώματος"
+  ],
+  "status": "researched"
+}
