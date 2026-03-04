@@ -19,9 +19,9 @@
     {
       "id": "professional-profiles",
       "name": "Professional Profiles",
-      "description": "Registration form for professionals. Profile pages with photo, bio, services offered, areas served, portfolio gallery. Listing in search results.",
+      "description": "MVP slice complete: basic professional listing + profile pages with bio, services and areas served. Next: registration flow, photos/portfolio, listing in search results.",
       "priority": 3,
-      "status": "planned",
+      "status": "in-progress",
       "estimatedComplexity": "high"
     },
     {

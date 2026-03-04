@@ -6,12 +6,16 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
 
 - Service/category SEO pages from JSON content
 - Homepage search + browse + city filters
-- **Contact Forms MVP (new):**
+- **Contact Forms MVP:**
   - Per-service lead form (`name`, `phone`, `email`, `description`)
   - Server endpoint at `POST /api/contact`
   - Thank-you flow at `/thank-you`
   - Lead persistence to `data/contact-submissions.ndjson`
   - Admin email notification via SMTP (when configured)
+- **Professional Profiles MVP slice:**
+  - Professionals directory at `/professionals`
+  - Individual profile pages at `/professionals/[slug]`
+  - Profile includes bio, services, areas served, contact info
 
 ## Local Development
 
