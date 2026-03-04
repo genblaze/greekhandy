@@ -32,6 +32,12 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Review moderation queue at `/professionals/reviews-moderation?key=...`
   - Review moderation endpoint at `POST /api/reviews/moderate` (approve/reject)
   - Approved reviews stored in `data/reviews.json`
+- **Booking Requests MVP slice:**
+  - Booking request form on each professional profile
+  - Submission endpoint at `POST /api/bookings/submit` (saved as `pending`)
+  - Moderation queue at `/professionals/bookings-moderation?key=...`
+  - Moderation endpoint at `POST /api/bookings/moderate` (approve/reject actions logged)
+  - Submission persistence in `data/booking-submissions.ndjson` and action log in `data/booking-moderation-actions.ndjson`
 
 ## Local Development
 
