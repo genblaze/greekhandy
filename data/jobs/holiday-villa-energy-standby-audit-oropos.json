@@ -1,0 +1,20 @@
+{
+  "id": "holiday-villa-energy-standby-audit-oropos",
+  "slug": "elegxos-katanalosis-standby-exoxikis-vilas-oropos",
+  "nameGr": "Έλεγχος Κατανάλωσης Standby Εξοχικής Βίλας στον Ωρωπό",
+  "nameEn": "Holiday Villa Standby Energy Audit in Ωρωπός",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Έλεγχος κατανάλωσης standby στον Ωρωπό σε εξοχική βίλα με προτάσεις μείωσης σπατάλης και αυτοματισμούς απενεργοποίησης. SEO intent: στοχεύει αναζητήσεις «μείωση κατανάλωσης εξοχικού Ωρωπός».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "110-520€",
+  "demand": "high",
+  "keywords": [
+    "μείωση κατανάλωσης εξοχικού Ωρωπός",
+    "standby ρεύμα έλεγχος Ωρωπός",
+    "ηλεκτρολόγος ενεργειακός έλεγχος κατοικίας",
+    "smart off συσκευών",
+    "εξοικονόμηση ρεύματος βίλα"
+  ],
+  "status": "researched"
+}

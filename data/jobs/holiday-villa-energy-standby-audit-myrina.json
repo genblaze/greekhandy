@@ -1,0 +1,20 @@
+{
+  "id": "holiday-villa-energy-standby-audit-myrina",
+  "slug": "elegxos-katanalosis-standby-exoxikis-vilas-myrina",
+  "nameGr": "Έλεγχος Κατανάλωσης Standby Εξοχικής Βίλας στη Μύρινα",
+  "nameEn": "Holiday Villa Standby Energy Audit in Μύρινα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Έλεγχος κατανάλωσης standby στη Μύρινα σε εξοχική βίλα με προτάσεις μείωσης σπατάλης και αυτοματισμούς απενεργοποίησης. SEO intent: στοχεύει αναζητήσεις «μείωση κατανάλωσης εξοχικού Μύρινα».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "110-520€",
+  "demand": "high",
+  "keywords": [
+    "μείωση κατανάλωσης εξοχικού Μύρινα",
+    "standby ρεύμα έλεγχος Μύρινα",
+    "ηλεκτρολόγος ενεργειακός έλεγχος κατοικίας",
+    "smart off συσκευών",
+    "εξοικονόμηση ρεύματος βίλα"
+  ],
+  "status": "researched"
+}

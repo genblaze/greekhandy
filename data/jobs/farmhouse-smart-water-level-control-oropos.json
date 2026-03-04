@@ -1,0 +1,20 @@
+{
+  "id": "farmhouse-smart-water-level-control-oropos",
+  "slug": "egkatastasi-smart-elegxou-stathmis-nerou-dexameni-oropos",
+  "nameGr": "Εγκατάσταση Smart Ελέγχου Στάθμης Νερού Δεξαμενής στον Ωρωπό",
+  "nameEn": "Farmhouse Smart Water Level Control in Ωρωπός",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εγκατάσταση smart ελέγχου στάθμης δεξαμενής στον Ωρωπό με ειδοποιήσεις και αυτοματισμούς πλήρωσης/διακοπής. SEO intent: καλύπτει high-intent αναζητήσεις «στάθμη δεξαμενής νερού app Ωρωπός».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "130-640€",
+  "demand": "high",
+  "keywords": [
+    "στάθμη δεξαμενής νερού app Ωρωπός",
+    "smart έλεγχος δεξαμενής Ωρωπός",
+    "υδραυλικός αυτοματισμός δεξαμενής",
+    "αισθητήρας στάθμης νερού",
+    "διακοπή υπερχείλισης δεξαμενής"
+  ],
+  "status": "researched"
+}

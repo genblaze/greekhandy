@@ -1,0 +1,20 @@
+{
+  "id": "holiday-villa-energy-standby-audit-argos-orestiko",
+  "slug": "elegxos-katanalosis-standby-exoxikis-vilas-argos-orestiko",
+  "nameGr": "Έλεγχος Κατανάλωσης Standby Εξοχικής Βίλας στο Άργος Ορεστικό",
+  "nameEn": "Holiday Villa Standby Energy Audit in Άργος Ορεστικό",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Έλεγχος κατανάλωσης standby στο Άργος Ορεστικό σε εξοχική βίλα με προτάσεις μείωσης σπατάλης και αυτοματισμούς απενεργοποίησης. SEO intent: στοχεύει αναζητήσεις «μείωση κατανάλωσης εξοχικού Άργος Ορεστικό».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "110-520€",
+  "demand": "high",
+  "keywords": [
+    "μείωση κατανάλωσης εξοχικού Άργος Ορεστικό",
+    "standby ρεύμα έλεγχος Άργος Ορεστικό",
+    "ηλεκτρολόγος ενεργειακός έλεγχος κατοικίας",
+    "smart off συσκευών",
+    "εξοικονόμηση ρεύματος βίλα"
+  ],
+  "status": "researched"
+}

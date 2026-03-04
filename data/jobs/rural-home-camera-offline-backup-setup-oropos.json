@@ -1,0 +1,20 @@
+{
+  "id": "rural-home-camera-offline-backup-setup-oropos",
+  "slug": "egkatastasi-backup-kameron-xoris-internet-oropos",
+  "nameGr": "Εγκατάσταση Backup Καμερών χωρίς Internet στον Ωρωπό",
+  "nameEn": "Rural Home Camera Offline Backup Setup in Ωρωπός",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εγκατάσταση συστήματος καμερών με offline backup στον Ωρωπό για περιοχές με ασταθές internet και αυξημένη ανάγκη ασφάλειας. SEO intent: καλύπτει queries «κάμερες χωρίς internet Ωρωπός».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "240-1100€",
+  "demand": "high",
+  "keywords": [
+    "κάμερες χωρίς internet Ωρωπός",
+    "offline καταγραφή καμερών Ωρωπός",
+    "σύστημα ασφαλείας αγροικίας",
+    "backup καταγραφικό cctv",
+    "τεχνικός καμερών απομακρυσμένη περιοχή"
+  ],
+  "status": "researched"
+}
