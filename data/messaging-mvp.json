@@ -1,0 +1,76 @@
+{
+  "featureId": "messaging",
+  "version": "mvp-v1",
+  "goal": "Enable a customer and a professional to exchange basic in-platform messages tied to a lead, with minimal moderation and safety controls.",
+  "inScope": [
+    "One-to-one threads between customer and professional",
+    "Thread is created from an existing lead/contact request",
+    "Plain text messages only",
+    "Ordered message history within each thread",
+    "Unread indicator + last-message preview in thread list",
+    "Basic email notification for new unread message",
+    "Basic moderation actions: report message, block sender, admin hide message"
+  ],
+  "outOfScope": [
+    "Group chat",
+    "File/image attachments",
+    "Voice notes, calls, video",
+    "Typing indicators and read receipts",
+    "Push notifications/mobile app delivery",
+    "Message edit/delete by sender",
+    "Auto-translation"
+  ],
+  "minimalDataModel": {
+    "conversation": {
+      "id": "string",
+      "leadId": "string",
+      "customerUserId": "string",
+      "professionalUserId": "string",
+      "status": "active | blocked | closed",
+      "createdAt": "datetime",
+      "updatedAt": "datetime",
+      "lastMessageAt": "datetime"
+    },
+    "message": {
+      "id": "string",
+      "conversationId": "string",
+      "senderUserId": "string",
+      "body": "string (1-2000 chars)",
+      "createdAt": "datetime",
+      "visibility": "visible | hidden_by_moderation"
+    },
+    "conversationParticipant": {
+      "conversationId": "string",
+      "userId": "string",
+      "unreadCount": "number",
+      "lastReadMessageId": "string|null",
+      "isBlocked": "boolean"
+    },
+    "messageReport": {
+      "id": "string",
+      "messageId": "string",
+      "reportedByUserId": "string",
+      "reason": "abuse | spam | harassment | other",
+      "createdAt": "datetime",
+      "status": "open | reviewed"
+    }
+  },
+  "moderationAndSafetyConstraints": [
+    "Only participants in a conversation can read or send messages in that conversation",
+    "Messages are immutable in MVP (no sender edits/deletes), except admin hide",
+    "Rate limit sends per user (example: max 20 messages / 5 minutes) to reduce spam",
+    "Block action immediately prevents future messages from blocked sender in that conversation",
+    "Report action is available per message and stores reason + audit trail",
+    "Admin can hide a message from both participants without deleting audit data",
+    "Basic server-side content checks: reject empty body, oversized body, and obvious script/html injection"
+  ],
+  "acceptanceCriteria": [
+    "A conversation is auto-created from a lead and both sides can exchange text messages",
+    "Thread list shows latest message preview and unread state for each participant",
+    "Opening a thread marks unread messages as read for the viewer",
+    "Users cannot access conversations where they are not a participant",
+    "Blocked sender cannot send additional messages in blocked conversation",
+    "Reported message appears in admin moderation queue with reason and timestamp",
+    "All MVP messaging JSON schemas remain valid and parseable"
+  ]
+}

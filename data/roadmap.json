@@ -45,7 +45,7 @@
       "name": "Messaging",
       "description": "Chat between users and professionals. Message threads per inquiry. Notification system. Chat history.",
       "priority": 6,
-      "status": "planned",
+      "status": "in-progress",
       "estimatedComplexity": "high"
     },
     {
