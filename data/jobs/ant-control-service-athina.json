@@ -1,0 +1,20 @@
+{
+  "id": "ant-control-service-athina",
+  "slug": "antimetopisi-myrmigkion-athina",
+  "nameGr": "Αντιμετώπιση Μυρμηγκιών στην Αθήνα",
+  "nameEn": "Ant Control Service in Athens",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Επαγγελματική αντιμετώπιση μυρμηγκιών στην Αθήνα με εντοπισμό φωλιάς και στοχευμένη εφαρμογή gel ή ψεκασμού. Υπηρεσία υψηλής πρόθεσης για επίμονες προσβολές σε κουζίνα, μπαλκόνι και αποθήκες.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "αντιμετώπιση μυρμηγκιών Αθήνα",
+    "απεντόμωση μυρμηγκιών",
+    "μυρμήγκια στο σπίτι",
+    "gel για μυρμήγκια",
+    "συνεργείο απεντόμωσης"
+  ],
+  "status": "researched"
+}

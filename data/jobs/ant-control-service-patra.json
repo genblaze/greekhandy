@@ -1,0 +1,20 @@
+{
+  "id": "ant-control-service-patra",
+  "slug": "antimetopisi-myrmigkion-patra",
+  "nameGr": "Αντιμετώπιση Μυρμηγκιών στην Πάτρα",
+  "nameEn": "Ant Control Service in Patras",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Επαγγελματική αντιμετώπιση μυρμηγκιών στην Πάτρα με εντοπισμό φωλιάς και στοχευμένη εφαρμογή gel ή ψεκασμού. Υπηρεσία υψηλής πρόθεσης για επίμονες προσβολές σε κουζίνα, μπαλκόνι και αποθήκες.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "αντιμετώπιση μυρμηγκιών Πάτρα",
+    "απεντόμωση μυρμηγκιών",
+    "μυρμήγκια στο σπίτι",
+    "gel για μυρμήγκια",
+    "συνεργείο απεντόμωσης"
+  ],
+  "status": "researched"
+}

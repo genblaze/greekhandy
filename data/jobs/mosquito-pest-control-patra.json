@@ -1,0 +1,20 @@
+{
+  "id": "mosquito-pest-control-patra",
+  "slug": "apentomosi-kounoupion-patra",
+  "nameGr": "Απεντόμωση Κουνουπιών στην Πάτρα",
+  "nameEn": "Mosquito Pest Control in Patras",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Εξειδικευμένη απεντόμωση κουνουπιών στην Πάτρα για αυλές, μπαλκόνια και κοινόχρηστους χώρους με ασφαλείς εφαρμογές. Υψηλής πρόθεσης υπηρεσία για άμεση αντιμετώπιση ενόχλησης και προστασία οικογένειας.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "50-170€",
+  "demand": "high",
+  "keywords": [
+    "απεντόμωση κουνουπιών Πάτρα",
+    "ψεκασμός για κουνούπια",
+    "καταπολέμηση κουνουπιών",
+    "απεντόμωση αυλής",
+    "συνεργείο απεντόμωσης"
+  ],
+  "status": "researched"
+}

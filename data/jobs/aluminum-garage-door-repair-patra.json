@@ -1,0 +1,20 @@
+{
+  "id": "aluminum-garage-door-repair-patra",
+  "slug": "episkevi-gkarazoportas-alouminiou-patra",
+  "nameGr": "Επισκευή Γκαραζόπορτας Αλουμινίου στην Πάτρα",
+  "nameEn": "Aluminum Garage Door Repair in Patras",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επισκευή γκαραζόπορτας αλουμινίου στην Πάτρα για βλάβες μηχανισμού, οδηγών και μοτέρ με γρήγορη τεχνική επέμβαση. Κατάλληλο για αναζητήσεις άμεσης εξυπηρέτησης με ισχυρή εμπορική πρόθεση.",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "120-590€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή γκαραζόπορτας Πάτρα",
+    "γκαραζόπορτα αλουμινίου",
+    "service γκαραζόπορτας",
+    "βλάβη μοτέρ γκαραζόπορτας",
+    "τεχνικός γκαραζόπορτας"
+  ],
+  "status": "researched"
+}

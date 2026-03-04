@@ -1,0 +1,20 @@
+{
+  "id": "flea-pest-control-thessaloniki",
+  "slug": "apentomosi-psyllon-thessaloniki",
+  "nameGr": "Απεντόμωση Ψύλλων στην Θεσσαλονίκη",
+  "nameEn": "Flea Pest Control in Thessaloniki",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Απεντόμωση ψύλλων στην Θεσσαλονίκη σε σπίτια και επαγγελματικούς χώρους με στοχευμένες εφαρμογές και οδηγίες πρόληψης. Ιδανικό για αναζητήσεις με επείγουσα ανάγκη υγειονομικής αποκατάστασης.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "απεντόμωση ψύλλων Θεσσαλονίκη",
+    "ψύλλοι στο σπίτι",
+    "απολύμανση ψύλλων",
+    "συνεργείο απεντόμωσης ψύλλων",
+    "επαγγελματική απεντόμωση"
+  ],
+  "status": "researched"
+}

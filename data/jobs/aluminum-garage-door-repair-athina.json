@@ -1,0 +1,20 @@
+{
+  "id": "aluminum-garage-door-repair-athina",
+  "slug": "episkevi-gkarazoportas-alouminiou-athina",
+  "nameGr": "Επισκευή Γκαραζόπορτας Αλουμινίου στην Αθήνα",
+  "nameEn": "Aluminum Garage Door Repair in Athens",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επισκευή γκαραζόπορτας αλουμινίου στην Αθήνα για βλάβες μηχανισμού, οδηγών και μοτέρ με γρήγορη τεχνική επέμβαση. Κατάλληλο για αναζητήσεις άμεσης εξυπηρέτησης με ισχυρή εμπορική πρόθεση.",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "140-650€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή γκαραζόπορτας Αθήνα",
+    "γκαραζόπορτα αλουμινίου",
+    "service γκαραζόπορτας",
+    "βλάβη μοτέρ γκαραζόπορτας",
+    "τεχνικός γκαραζόπορτας"
+  ],
+  "status": "researched"
+}

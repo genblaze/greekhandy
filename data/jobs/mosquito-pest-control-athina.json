@@ -1,0 +1,20 @@
+{
+  "id": "mosquito-pest-control-athina",
+  "slug": "apentomosi-kounoupion-athina",
+  "nameGr": "Απεντόμωση Κουνουπιών στην Αθήνα",
+  "nameEn": "Mosquito Pest Control in Athens",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Εξειδικευμένη απεντόμωση κουνουπιών στην Αθήνα για αυλές, μπαλκόνια και κοινόχρηστους χώρους με ασφαλείς εφαρμογές. Υψηλής πρόθεσης υπηρεσία για άμεση αντιμετώπιση ενόχλησης και προστασία οικογένειας.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "60-190€",
+  "demand": "high",
+  "keywords": [
+    "απεντόμωση κουνουπιών Αθήνα",
+    "ψεκασμός για κουνούπια",
+    "καταπολέμηση κουνουπιών",
+    "απεντόμωση αυλής",
+    "συνεργείο απεντόμωσης"
+  ],
+  "status": "researched"
+}
