@@ -392,6 +392,13 @@ const nextTriageQueueHint = !nextTriageThread
   ? 'Η ουρά θα ενεργοποιηθεί μόλις προκύψει νέο thread.'
   : nextTriageThread.priorityHint;
 const clearFiltersHref = buildListHref();
+const currentViewHref = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: showReportedOnly,
+  sort: sortMode
+});
 const listReturnTo = buildListHref({
   q: searchQueryRaw,
   unread: showUnreadOnly,
@@ -437,6 +444,23 @@ const unreadFirstSortHref = buildListHref({
 const unreadQueueHref = buildListHref({ unread: true, sort: 'unread' });
 const blockedQueueHref = buildListHref({ blocked: true, sort: 'unread' });
 const reportedQueueHref = buildListHref({ reported: true, sort: 'unread' });
+const triageCriticalCount = triageOrderedThreads.filter((thread) => thread.priorityTier === 'critical').length;
+const triageHighCount = triageOrderedThreads.filter((thread) => thread.priorityTier === 'high').length;
+const triageMediumCount = triageOrderedThreads.filter((thread) => thread.priorityTier === 'medium').length;
+const triageNormalCount = triageOrderedThreads.filter((thread) => thread.priorityTier === 'normal').length;
+const triagePositionByThread = new Map(triageOrderedThreads.map((thread, index) => [thread.threadId, index + 1]));
+const hasPartialResults = Boolean(listLoadError) && filteredThreadsCount > 0;
+const listStateSummary = showLoadingState
+  ? 'Η λίστα συνομιλιών φορτώνει. Περιμένετε λίγα δευτερόλεπτα για πλήρη συγχρονισμό.'
+  : listLoadError
+    ? hasPartialResults
+      ? `Υπάρχει σφάλμα φόρτωσης αλλά προβάλλονται ${filteredThreadsCount} διαθέσιμα threads.`
+      : 'Υπάρχει σφάλμα φόρτωσης και δεν είναι διαθέσιμα αποτελέσματα.'
+    : threads.length === 0
+      ? 'Δεν υπάρχουν συνομιλίες ακόμα για αυτόν τον λογαριασμό.'
+      : hasFilteredResults
+        ? `Προβάλλονται ${filteredThreadsCount} threads από ${totalThreads}.`
+        : 'Τα τρέχοντα φίλτρα δεν επιστρέφουν αποτελέσματα.';
 const activeFilterChips: Array<{ label: string; href: string; tone: 'sky' | 'rose' | 'amber' }> = [];
 if (showUnreadOnly) activeFilterChips.push({ label: 'Μόνο μη αναγνωσμένα', href: unreadChipHref, tone: 'sky' });
 if (showBlockedOnly) activeFilterChips.push({ label: 'Μόνο μπλοκαρισμένα', href: blockedChipHref, tone: 'rose' });
@@ -445,6 +469,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
 
 <Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με καθαρή ιεραρχία, moderation badges και βασικές ενέργειες.">
   <main class="messages-shell mx-auto max-w-6xl px-4 py-10 md:py-14">
+    <a href="#messages-results" class="messages-skip-link">Μετάβαση στη λίστα συνομιλιών</a>
     <section class="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-gradient-to-br from-[#f9fcff] via-white to-[#f4f7fb] p-6 shadow-[0_12px_40px_-24px_rgba(15,23,42,0.35)] md:p-8">
       <div class="flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -546,12 +571,12 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
     </section>
 
     {listLoadError && (
-      <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900">
+      <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900" role="alert" aria-live="assertive">
         <p class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της λίστας.</p>
         <p class="mt-1 text-sm">{listLoadError}</p>
-        <p class="mt-1 text-xs">Μπορεί να λείπουν badges/moderation ενδείξεις μέχρι να επανέλθει η ανάγνωση δεδομένων.</p>
+        <p class="mt-1 text-xs">Μπορεί να λείπουν badges/moderation ενδείξεις μέχρι να επανέλθει η ανάγνωση δεδομένων. {hasPartialResults ? 'Προβάλλονται όσα στοιχεία ήταν διαθέσιμα.' : 'Δεν βρέθηκαν ανακτήσιμα στοιχεία.'}</p>
         <div class="mt-3 flex flex-wrap items-center gap-2">
-          <a href={buildListHref({ q: searchQueryRaw, unread: showUnreadOnly, blocked: showBlockedOnly, reported: showReportedOnly, sort: sortMode })} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+          <a href={currentViewHref} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
             Επανάληψη φόρτωσης
           </a>
           <a href={clearFiltersHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
@@ -706,7 +731,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
     )}
 
     {viewerEmail && (
-      <section id="messages-triage" class="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.45)]" aria-label="Triage σύνοψη inbox">
+      <section id="messages-triage" class="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.45)]" aria-label="Triage σύνοψη inbox" aria-describedby="messages-triage-queue-summary">
         <div class="flex flex-wrap items-start justify-between gap-3">
           <div>
             <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Προτεινόμενη επόμενη κίνηση</p>
@@ -716,6 +741,9 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
             <p class="mt-1 text-sm font-semibold text-slate-900">{nextTriageLabel}</p>
             <p class="mt-1 text-xs text-slate-600">{nextTriageHint}</p>
             <p class="mt-1 text-[11px] text-slate-500">{nextTriageQueueHint}</p>
+            <p id="messages-triage-queue-summary" class="mt-1 text-[11px] text-slate-500">
+              Ουρά: <span class="font-semibold text-slate-700">{triageOrderedThreads.length}</span> threads · Κρίσιμα <span class="font-semibold text-slate-700">{triageCriticalCount}</span> · Υψηλά <span class="font-semibold text-slate-700">{triageHighCount}</span> · Μεσαία <span class="font-semibold text-slate-700">{triageMediumCount}</span> · Κανονικά <span class="font-semibold text-slate-700">{triageNormalCount}</span>
+            </p>
           </div>
           {nextTriageThread && (
             <a href={nextTriageHref} class="inline-flex rounded-lg border border-slate-900 bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-slate-700">
@@ -749,10 +777,16 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
     )}
 
     {viewerEmail && (
-      <section id="messages-results" class="mt-6 space-y-4" role="list" aria-label="Αποτελέσματα συνομιλιών" tabindex="-1">
+      <section id="messages-results" class="mt-6 space-y-4" role="list" aria-label="Αποτελέσματα συνομιλιών" tabindex="-1" aria-busy={showLoadingState ? 'true' : 'false'} aria-describedby="messages-results-state">
+        <p id="messages-results-state" class="sr-only" aria-live="polite" aria-atomic="true">{listStateSummary}</p>
         {showLoadingState && (
           <div class="rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-sm text-sky-900" role="status" aria-live="polite" aria-atomic="true">
             Η λίστα συγχρονίζεται. Φορτώνουμε δείκτες προτεραιότητας, unread counts και moderation states ώστε να εμφανιστεί καθαρή ουρά triage.
+          </div>
+        )}
+        {!showLoadingState && hasPartialResults && (
+          <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-900" role="status" aria-live="polite" aria-atomic="true">
+            Μερικά δεδομένα λείπουν λόγω σφάλματος φόρτωσης. Τα παρακάτω αποτελέσματα μπορεί να είναι ελλιπή.
           </div>
         )}
         {showLoadingState && LOADING_SKELETON_ROWS.map((item) => (
@@ -800,6 +834,8 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
           const threadHeadingId = `thread-heading-${threadDomId}`;
           const threadPreviewId = `thread-preview-${threadDomId}`;
           const threadStatusId = `thread-status-${threadDomId}`;
+          const threadQueueId = `thread-queue-${threadDomId}`;
+          const threadQueuePosition = triagePositionByThread.get(thread.threadId) ?? null;
           return (
             <article
               class={`thread-card ${
@@ -814,12 +850,20 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                         : 'thread-card--active'
               }`}
               aria-labelledby={threadHeadingId}
-              aria-describedby={`${threadPreviewId} ${threadStatusId}`}
+              aria-describedby={`${threadPreviewId} ${threadStatusId} ${threadQueueId}`}
               data-priority={thread.priorityTier}
               role="listitem"
             >
-              <div class={`inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold ${thread.priorityClass}`}>
-                {thread.priorityLabel}
+              <div class="flex flex-wrap items-center gap-2">
+                <div class={`inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold ${thread.priorityClass}`}>
+                  {thread.priorityLabel}
+                </div>
+                {threadQueuePosition && (
+                  <p id={threadQueueId} class="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700">
+                    Θέση ουράς: #{threadQueuePosition}
+                  </p>
+                )}
+                {!threadQueuePosition && <p id={threadQueueId} class="text-[11px] text-slate-500">Το thread δεν έχει θέση στην τρέχουσα ουρά.</p>}
               </div>
               <div class="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -892,8 +936,8 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                   <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.responseFlowLabel}</p>
                 </div>
                 <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                  Επόμενο βήμα
-                  <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.moderationNextStepLabel}</p>
+                  Θέση στην ουρά
+                  <p class={`mt-0.5 text-sm font-semibold ${threadQueuePosition && threadQueuePosition <= 3 ? 'text-indigo-900' : 'text-slate-800'}`}>{threadQueuePosition ? `#${threadQueuePosition}` : 'Εκτός τρέχουσας ουράς'}</p>
                 </div>
               </div>
 
