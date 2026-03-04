@@ -1,0 +1,20 @@
+{
+  "id": "emergency-power-restoration-ioannina",
+  "slug": "amesi-apokatastasi-revmatos-ioannina",
+  "nameGr": "Άμεση Αποκατάσταση Ρεύματος στα Ιωάννινα",
+  "nameEn": "Emergency Power Restoration in Ιωάννινα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση αποκατάσταση ρεύματος στα Ιωάννινα για βλάβες πίνακα, καμένες ασφάλειες και τοπικές διακοπές στην εγκατάσταση. SEO intent: καλύπτει επείγοντα queries «ηλεκτρολόγος χωρίς ρεύμα Ιωάννινα» και «αποκατάσταση ρεύματος άμεσα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "αποκατάσταση ρεύματος Ιωάννινα",
+    "ηλεκτρολόγος 24ωρο Ιωάννινα",
+    "χωρίς ρεύμα σπίτι",
+    "βλάβη ηλεκτρολογικού πίνακα",
+    "επείγουσα ηλεκτρολογική επισκευή"
+  ],
+  "status": "researched"
+}

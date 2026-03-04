@@ -1,0 +1,20 @@
+{
+  "id": "emergency-power-restoration-patra",
+  "slug": "amesi-apokatastasi-revmatos-patra",
+  "nameGr": "Άμεση Αποκατάσταση Ρεύματος στην Πάτρα",
+  "nameEn": "Emergency Power Restoration in Πάτρα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση αποκατάσταση ρεύματος στην Πάτρα για βλάβες πίνακα, καμένες ασφάλειες και τοπικές διακοπές στην εγκατάσταση. SEO intent: καλύπτει επείγοντα queries «ηλεκτρολόγος χωρίς ρεύμα Πάτρα» και «αποκατάσταση ρεύματος άμεσα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "αποκατάσταση ρεύματος Πάτρα",
+    "ηλεκτρολόγος 24ωρο Πάτρα",
+    "χωρίς ρεύμα σπίτι",
+    "βλάβη ηλεκτρολογικού πίνακα",
+    "επείγουσα ηλεκτρολογική επισκευή"
+  ],
+  "status": "researched"
+}

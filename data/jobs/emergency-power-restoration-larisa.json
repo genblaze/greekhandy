@@ -1,0 +1,20 @@
+{
+  "id": "emergency-power-restoration-larisa",
+  "slug": "amesi-apokatastasi-revmatos-larisa",
+  "nameGr": "Άμεση Αποκατάσταση Ρεύματος στη Λάρισα",
+  "nameEn": "Emergency Power Restoration in Λάρισα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση αποκατάσταση ρεύματος στη Λάρισα για βλάβες πίνακα, καμένες ασφάλειες και τοπικές διακοπές στην εγκατάσταση. SEO intent: καλύπτει επείγοντα queries «ηλεκτρολόγος χωρίς ρεύμα Λάρισα» και «αποκατάσταση ρεύματος άμεσα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "αποκατάσταση ρεύματος Λάρισα",
+    "ηλεκτρολόγος 24ωρο Λάρισα",
+    "χωρίς ρεύμα σπίτι",
+    "βλάβη ηλεκτρολογικού πίνακα",
+    "επείγουσα ηλεκτρολογική επισκευή"
+  ],
+  "status": "researched"
+}

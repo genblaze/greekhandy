@@ -1,0 +1,20 @@
+{
+  "id": "home-energy-audit-upgrade-plan-patra",
+  "slug": "energeiakos-elegxos-kai-plano-anavathmisis-patra",
+  "nameGr": "Ενεργειακός Έλεγχος & Πλάνο Αναβάθμισης Κατοικίας στην Πάτρα",
+  "nameEn": "Home Energy Audit & Upgrade Plan in Πάτρα",
+  "categoryId": "insulation-specialists",
+  "categorySlug": "monoseis-ygromonoseis",
+  "intent": "Ενεργειακός έλεγχος κατοικίας στην Πάτρα και πρόταση πλάνου αναβάθμισης με μόνωση, κουφώματα και HVAC βελτιώσεις. SEO intent: καλύπτει αναζητήσεις με ισχυρή πρόθεση αγοράς όπως «ενεργειακή αναβάθμιση σπιτιού Πάτρα».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "120-480€",
+  "demand": "high",
+  "keywords": [
+    "ενεργειακός έλεγχος κατοικίας Πάτρα",
+    "ενεργειακή αναβάθμιση σπιτιού Πάτρα",
+    "μείωση λογαριασμού ρεύματος σπίτι",
+    "μελέτη εξοικονόμησης ενέργειας",
+    "σύμβουλος ενεργειακής απόδοσης"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "heat-pump-installation-patra",
+  "slug": "egkatastasi-antlias-thermotitas-patra",
+  "nameGr": "Εγκατάσταση Αντλίας Θερμότητας στην Πάτρα",
+  "nameEn": "Heat Pump Installation in Πάτρα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Μελέτη και εγκατάσταση αντλίας θερμότητας στην Πάτρα για αποδοτική θέρμανση/ψύξη και χαμηλότερο ενεργειακό κόστος. SEO intent: στοχεύει εμπορικές αναζητήσεις όπως «αντλία θερμότητας Πάτρα τιμή» και «εγκατάσταση heat pump κατοικίας».",
+  "typicalDuration": "2-6 ημέρες",
+  "priceRangeEUR": "3.500-13.000€",
+  "demand": "high",
+  "keywords": [
+    "αντλία θερμότητας Πάτρα",
+    "εγκατάσταση heat pump Πάτρα",
+    "ενεργειακή αναβάθμιση θέρμανσης",
+    "κόστος αντλίας θερμότητας",
+    "τεχνικός αντλιών θερμότητας"
+  ],
+  "status": "researched"
+}
