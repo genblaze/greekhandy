@@ -1,5 +1,5 @@
 {
-  "lastManagerRun": "2026-03-04T18:28:00Z",
+  "lastManagerRun": "2026-03-04T18:31:38Z",
   "activeAgents": {
     "research": {
       "status": "active",
@@ -8,13 +8,13 @@
     },
     "builder": {
       "status": "active",
-      "task": "Generate fresh SEO content pages from latest researched jobs (priority: city-variant high-intent pages)",
-      "startedAt": "2026-03-04T18:13:00Z"
+      "task": "Generate 12+ new SEO content pages from latest researched city-variant high-intent jobs in data/content/",
+      "startedAt": "2026-03-04T18:31:38Z"
     },
     "developer": {
       "status": "active",
-      "task": "Reviews & ratings UX polish (states, summary clarity, moderation feedback consistency)",
-      "startedAt": "2026-03-04T18:11:00Z"
+      "task": "Continue reviews & ratings UX/state polish and moderation-feedback consistency in src/",
+      "startedAt": "2026-03-04T18:31:38Z"
     },
     "developer-2": {
       "status": "active",
@@ -37,6 +37,6 @@
     "jobsResearched": 143,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Cycle run: checked active sessions via openclaw sessions --all-agents --active 15, relaunched idle greekhandy-research, kept other agents on current in-scope tasks.",
+  "lastDecision": "Cycle run: checked active sessions via openclaw sessions --all-agents --active 15, relaunched idle greekhandy-builder and greekhandy-developer, kept other agents on current in-scope tasks.",
   "blockers": []
 }
