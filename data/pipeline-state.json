@@ -1,5 +1,5 @@
 {
-  "lastManagerRun": "2026-03-04T16:32:00Z",
+  "lastManagerRun": "2026-03-04T16:37:35Z",
   "activeAgents": {
     "research": {
       "status": "running",
@@ -27,6 +27,6 @@
     "jobsResearched": 110,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Founder priorities enforced: pause admin-dashboard work, keep continuous site quality improvements, accelerate SEO content expansion, and sustain always-on worker lead acquisition.",
+  "lastDecision": "Processed founder directive: added roadmap item for leads directory page with category and related filters; kept active agents running per scope.",
   "blockers": []
 }

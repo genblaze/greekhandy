@@ -12,6 +12,12 @@
       "addedAt": "2026-03-04T16:28:24Z",
       "source": "slack",
       "processedAt": "2026-03-04T16:29:33Z"
+    },
+    {
+      "directive": "Add a roadmap item for a leads page where leads can be viewed by category (and related filters).",
+      "addedAt": "2026-03-04T16:35:24Z",
+      "source": "slack",
+      "processedAt": "2026-03-04T16:37:35Z"
     }
   ]
 }
