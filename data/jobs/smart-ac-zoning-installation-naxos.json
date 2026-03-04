@@ -1,0 +1,20 @@
+{
+  "id": "smart-ac-zoning-installation-naxos",
+  "slug": "egkatastasi-smart-zones-klimatismou-naxos",
+  "nameGr": "Εγκατάσταση Smart Ζωνών Κλιματισμού στη Νάξο",
+  "nameEn": "Smart AC Zoning Installation in Νάξος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εγκατάσταση smart zoning κλιματισμού στη Νάξο για ανεξάρτητο έλεγχο θερμοκρασίας ανά χώρο και εξοικονόμηση ενέργειας. SEO intent: στοχεύει εμπορικές αναζητήσεις «smart κλιματισμός ζώνες Νάξος».",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "480-2400€",
+  "demand": "high",
+  "keywords": [
+    "smart zoning κλιματισμού Νάξος",
+    "ζώνες κλιματισμού σπίτι Νάξος",
+    "έξυπνος έλεγχος θερμοκρασίας",
+    "τεχνικός κλιματισμού αυτοματισμός",
+    "μείωση κατανάλωσης ac"
+  ],
+  "status": "researched"
+}

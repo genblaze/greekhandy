@@ -1,0 +1,20 @@
+{
+  "id": "premium-villa-deep-cleaning-chalkida",
+  "slug": "genikos-katharismos-vilas-premium-chalkida",
+  "nameGr": "Premium Γενικός Καθαρισμός Βίλας στη Χαλκίδα",
+  "nameEn": "Premium Villa Deep Cleaning in Χαλκίδα",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Premium γενικός καθαρισμός βίλας στη Χαλκίδα με λεπτομερή φροντίδα σε εσωτερικούς/εξωτερικούς χώρους και ευπαθείς επιφάνειες. SEO intent: στοχεύει υψηλής αξίας queries «καθαρισμός βίλας Χαλκίδα».",
+  "typicalDuration": "6-14 ώρες",
+  "priceRangeEUR": "220-980€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός βίλας Χαλκίδα",
+    "premium cleaning service Χαλκίδα",
+    "γενικός καθαρισμός πολυτελούς κατοικίας",
+    "συνεργείο καθαρισμού βίλας",
+    "deep cleaning εξοχικής κατοικίας"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "premium-villa-deep-cleaning-naxos",
+  "slug": "genikos-katharismos-vilas-premium-naxos",
+  "nameGr": "Premium Γενικός Καθαρισμός Βίλας στη Νάξο",
+  "nameEn": "Premium Villa Deep Cleaning in Νάξος",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Premium γενικός καθαρισμός βίλας στη Νάξο με λεπτομερή φροντίδα σε εσωτερικούς/εξωτερικούς χώρους και ευπαθείς επιφάνειες. SEO intent: στοχεύει υψηλής αξίας queries «καθαρισμός βίλας Νάξος».",
+  "typicalDuration": "6-14 ώρες",
+  "priceRangeEUR": "220-980€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός βίλας Νάξος",
+    "premium cleaning service Νάξος",
+    "γενικός καθαρισμός πολυτελούς κατοικίας",
+    "συνεργείο καθαρισμού βίλας",
+    "deep cleaning εξοχικής κατοικίας"
+  ],
+  "status": "researched"
+}
