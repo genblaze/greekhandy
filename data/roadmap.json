@@ -51,10 +51,10 @@
     {
       "id": "admin-dashboard",
       "name": "Admin Dashboard",
-      "description": "Admin panel to manage listings, moderate reviews, view analytics, manage users. Protected routes with authentication.",
+      "description": "MVP slice scoped for immediate post-messaging launch: protected /admin shell + queue count overview + unified moderation queue for pending profiles, reviews, and reported messages. Single-item moderation actions only. Spec: data/admin-dashboard-mvp.json.",
       "priority": 7,
-      "status": "planned",
-      "estimatedComplexity": "high"
+      "status": "in-progress",
+      "estimatedComplexity": "medium"
     },
     {
       "id": "payment",

@@ -1,0 +1,68 @@
+{
+  "featureId": "admin-dashboard",
+  "version": "mvp-v1",
+  "dependsOn": ["messaging-mvp"],
+  "goal": "Launch a minimal protected admin view that lets one operator process all pending moderation work without opening the database or code.",
+  "launchScope": {
+    "surfaces": [
+      "admin login gate (single admin role)",
+      "admin dashboard home with queue summary cards",
+      "unified moderation queue list",
+      "queue item detail panel with approve/reject/hide actions"
+    ],
+    "inScopeQueues": [
+      "professional profile approvals (pending)",
+      "review moderation (pending/flagged)",
+      "reported messages from messaging MVP (open)"
+    ],
+    "outOfScope": [
+      "analytics charts and funnels",
+      "multi-admin roles/permissions",
+      "advanced filtering/search",
+      "bulk actions",
+      "user management",
+      "audit export",
+      "booking/payment operations"
+    ]
+  },
+  "minimalDataContract": {
+    "queueItem": {
+      "id": "string",
+      "type": "profile | review | message_report",
+      "status": "pending | flagged | open",
+      "submittedAt": "datetime",
+      "primaryLabel": "string",
+      "secondaryLabel": "string",
+      "sourceId": "string",
+      "riskLevel": "low | medium | high"
+    },
+    "actions": {
+      "profile": ["approve", "reject"],
+      "review": ["publish", "reject"],
+      "message_report": ["hide_message", "dismiss_report", "block_sender"]
+    }
+  },
+  "defaultWorkflow": [
+    "Admin authenticates and lands on /admin",
+    "Dashboard shows count cards: pending profiles, pending/flagged reviews, open message reports",
+    "Admin opens queue sorted by oldest submittedAt first",
+    "Admin applies one action from item detail",
+    "Item leaves active queue and action is stored in audit log"
+  ],
+  "operationalConstraints": [
+    "All /admin routes require authenticated admin session",
+    "Every moderation action writes actorId, action, targetId, timestamp",
+    "State changes must map to existing feature states (no new public statuses)",
+    "Action latency target: <1 second server response for single item action",
+    "If an action fails, item remains unchanged and error is shown"
+  ],
+  "acceptanceCriteria": [
+    "Unauthenticated users cannot access any /admin route",
+    "Admin dashboard home displays accurate queue counts for profiles, reviews, and message reports",
+    "Unified queue lists at least id, type, submittedAt, status, and riskLevel for each active item",
+    "Admin can complete one moderation action for each queue type end-to-end",
+    "Successful action removes item from active queue and persists audit metadata",
+    "No analytics, bulk actions, or user management UI is required for launch"
+  ],
+  "shipDefinition": "MVP is shippable when one admin can clear daily moderation backlog from this dashboard in under 30 minutes without manual DB edits."
+}
