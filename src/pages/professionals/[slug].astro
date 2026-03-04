@@ -427,7 +427,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           )}
         </div>
 
-        <form action="/api/reviews/submit" method="POST" class="mt-6 rounded-xl border border-blue-100 bg-blue-50 p-4" data-review-form id="submit-review">
+        <form action="/api/reviews/submit" method="POST" class="mt-6 rounded-xl border border-blue-100 bg-blue-50 p-4" data-review-form id="submit-review" aria-describedby="review-feedback submit-feedback-live">
           <h3 class="text-base font-bold text-gray-900">Υποβολή κριτικής</h3>
           <p class="mt-1 text-xs text-gray-600">Οι κριτικές ελέγχονται και γίνονται δημόσιες μόνο μετά από έγκριση.</p>
 
@@ -445,7 +445,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
             <p data-feedback-status="approved" class="hidden rounded-md bg-emerald-100 px-3 py-2 text-sm text-emerald-800">Κατάσταση: approved. Η κριτική είναι πλέον δημόσια και μετρά στη σύνοψη αξιοπιστίας.</p>
             <p data-feedback-status="rejected" class="hidden rounded-md bg-slate-100 px-3 py-2 text-sm text-slate-800">Κατάσταση: rejected. Η κριτική δεν δημοσιεύτηκε και δεν μετρά στη βαθμολογία. Μπορείτε να υποβάλετε νέα, πιο συγκεκριμένη εμπειρία.</p>
             <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε βαθμολογία και σχόλιο.</p>
-            <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε πρόβλημα. Δοκιμάστε ξανά.</p>
+            <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δεν χάνονται τα δημόσια δεδομένα· δοκιμάστε ξανά σε λίγο.</p>
           </div>
 
           <input type="hidden" name="professionalSlug" value={profile.slug} />
@@ -513,7 +513,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           </p>
           <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το αίτημά σας καταχωρήθηκε και είναι σε αναμονή moderation (pending).</p>
           <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε σωστά τα υποχρεωτικά πεδία (υπηρεσία, στοιχεία επικοινωνίας, μήνυμα) και δοκιμάστε ξανά.</p>
-          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε πρόβλημα. Δοκιμάστε ξανά.</p>
+          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
         </div>
 
         <form
@@ -586,7 +586,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το μήνυμά σας καταχωρήθηκε για triage.</p>
           <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία και δοκιμάστε ξανά.</p>
           <p data-feedback-status="blocked" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Αυτή η συνομιλία έχει μπλοκαριστεί από moderation.</p>
-          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε πρόβλημα. Δοκιμάστε ξανά.</p>
+          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
         </div>
 
         <form
@@ -653,6 +653,20 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
         };
         const submitLiveRegion = document.querySelector('#submit-feedback-live');
         const pendingTimeouts = new WeakMap();
+        const getSessionFlag = (key) => {
+          try {
+            return window.sessionStorage.getItem(key);
+          } catch {
+            return null;
+          }
+        };
+        const setSessionFlag = (key, value) => {
+          try {
+            window.sessionStorage.setItem(key, value);
+          } catch {
+            // Ignore storage failures (private mode / blocked storage) to keep UX functional.
+          }
+        };
         const clearPendingTimeout = (form) => {
           const timer = pendingTimeouts.get(form);
           if (typeof timer === 'number') {
@@ -787,7 +801,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           if (!status) return;
 
           if (groupName === 'review') {
-            const reviewAttempted = window.sessionStorage.getItem('review-submit-attempted') === '1';
+            const reviewAttempted = getSessionFlag('review-submit-attempted') === '1';
             const serverOutcomeStatuses = new Set(['pending', 'approved', 'rejected']);
             if (!reviewAttempted && !serverOutcomeStatuses.has(status)) {
               return;
@@ -806,7 +820,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
 
         const reviewForm = document.querySelector('[data-review-form]');
         if (reviewForm instanceof HTMLFormElement) {
-          const markReviewInteracted = () => window.sessionStorage.setItem('review-submit-attempted', '1');
+          const markReviewInteracted = () => setSessionFlag('review-submit-attempted', '1');
           reviewForm.addEventListener('input', markReviewInteracted, { once: true });
           reviewForm.addEventListener('submit', (event) => {
             if (reviewForm.getAttribute('aria-busy') === 'true') {
