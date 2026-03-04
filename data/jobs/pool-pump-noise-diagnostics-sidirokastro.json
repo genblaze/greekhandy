@@ -1,0 +1,20 @@
+{
+  "id": "pool-pump-noise-diagnostics-sidirokastro",
+  "slug": "diagnosi-thoryvou-antlias-pisinas-sidirokastro",
+  "nameGr": "Διάγνωση Θορύβου Αντλίας Πισίνας στο Σιδηρόκαστρο",
+  "nameEn": "Pool Pump Noise Diagnostics in Σιδηρόκαστρο",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Διάγνωση θορύβου αντλίας πισίνας στο Σιδηρόκαστρο με έλεγχο ρουλεμάν, ευθυγράμμισης και υδραυλικής ροής. SEO intent: στοχεύει αναζητήσεις «αντλία πισίνας κάνει θόρυβο Σιδηρόκαστρο».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "αντλία πισίνας κάνει θόρυβο Σιδηρόκαστρο",
+    "διάγνωση αντλίας πισίνας",
+    "service μηχανοστασίου πισίνας",
+    "βλάβη ρουλεμάν αντλίας",
+    "τεχνικός πισίνας θόρυβος"
+  ],
+  "status": "researched"
+}

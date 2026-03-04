@@ -1,0 +1,20 @@
+{
+  "id": "home-battery-backup-health-check-sidirokastro",
+  "slug": "elegxos-ygeias-systimatos-backup-mpatarias-spitiou-sidirokastro",
+  "nameGr": "Έλεγχος Υγείας Συστήματος Backup Μπαταρίας Σπιτιού στο Σιδηρόκαστρο",
+  "nameEn": "Home Battery Backup Health Check in Σιδηρόκαστρο",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Έλεγχος υγείας συστήματος backup μπαταρίας στο Σιδηρόκαστρο με μετρήσεις κύκλων, απόδοσης και ασφάλειας λειτουργίας. SEO intent: στοχεύει εμπορικές αναζητήσεις «έλεγχος μπαταρίας φωτοβολταϊκού Σιδηρόκαστρο».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "80-320€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος μπαταρίας φωτοβολταϊκού Σιδηρόκαστρο",
+    "backup battery service Σιδηρόκαστρο",
+    "υγεία μπαταρίας inverter",
+    "συντήρηση αποθήκευσης ενέργειας",
+    "τεχνικός συστήματος backup"
+  ],
+  "status": "researched"
+}

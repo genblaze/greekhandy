@@ -1,0 +1,20 @@
+{
+  "id": "home-battery-backup-health-check-tyrnavos",
+  "slug": "elegxos-ygeias-systimatos-backup-mpatarias-spitiou-tyrnavos",
+  "nameGr": "Έλεγχος Υγείας Συστήματος Backup Μπαταρίας Σπιτιού στον Τύρναβο",
+  "nameEn": "Home Battery Backup Health Check in Τύρναβος",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Έλεγχος υγείας συστήματος backup μπαταρίας στον Τύρναβο με μετρήσεις κύκλων, απόδοσης και ασφάλειας λειτουργίας. SEO intent: στοχεύει εμπορικές αναζητήσεις «έλεγχος μπαταρίας φωτοβολταϊκού Τύρναβος».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "80-320€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος μπαταρίας φωτοβολταϊκού Τύρναβος",
+    "backup battery service Τύρναβος",
+    "υγεία μπαταρίας inverter",
+    "συντήρηση αποθήκευσης ενέργειας",
+    "τεχνικός συστήματος backup"
+  ],
+  "status": "researched"
+}

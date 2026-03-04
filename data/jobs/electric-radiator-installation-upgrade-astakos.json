@@ -1,0 +1,20 @@
+{
+  "id": "electric-radiator-installation-upgrade-astakos",
+  "slug": "egkatastasi-kai-anavathmisi-ilektrikou-kalorifer-astakos",
+  "nameGr": "Εγκατάσταση & Αναβάθμιση Ηλεκτρικού Καλοριφέρ στον Αστακό",
+  "nameEn": "Electric Radiator Installation Upgrade in Αστακός",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση και αναβάθμιση ηλεκτρικού καλοριφέρ στον Αστακό με ασφαλή σύνδεση και βελτιωμένο έλεγχο θέρμανσης. SEO intent: καλύπτει αναζητήσεις «ηλεκτρικό καλοριφέρ εγκατάσταση Αστακός».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "180-860€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρικό καλοριφέρ εγκατάσταση Αστακός",
+    "ηλεκτρολόγος θέρμανσης Αστακός",
+    "αναβάθμιση θερμαντικού σώματος",
+    "έλεγχος κατανάλωσης θέρμανσης",
+    "τοποθέτηση ηλεκτρικού panel"
+  ],
+  "status": "researched"
+}
