@@ -20,8 +20,8 @@
   "stats": {
     "categoriesResearched": 10,
     "jobsResearched": 77,
-    "contentPagesBuilt": 57
+    "contentPagesBuilt": 87
   },
-  "lastDecision": "Expanded taxonomy with 5 new categories (locksmiths, carpenters, tilers, gardeners, movers) and added seed + long-tail job records; next step is generate/build corresponding content pages for new categories and jobs.",
+  "lastDecision": "Generated missing content pages for the newly researched categories and jobs and synchronized content page totals.",
   "blockers": []
 }
