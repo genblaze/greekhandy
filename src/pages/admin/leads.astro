@@ -345,7 +345,7 @@ const hasLeads = directoryData.leads.length > 0;
             const rawScore = Number(card.dataset.score || -1);
             const score = Number.isFinite(rawScore) ? rawScore : -1;
             const newest = Number(card.dataset.newest || 0);
-            const searchableText = [name, phone, email, categoryLabel, city, `score:${score}`].join(' ').toLowerCase();
+            const searchableText = [name, phone, email, categoryLabel, city, statusLabel, `score:${score}`].join(' ').toLowerCase();
 
             return {
               card,
@@ -463,6 +463,8 @@ const hasLeads = directoryData.leads.length > 0;
           const normalizedSearch = criteria.search.trim().toLowerCase();
           const scoreSearchMatch = normalizedSearch.match(/score\s*:\s*(\d+)/);
           const scoreFromSearch = scoreSearchMatch ? Number(scoreSearchMatch[1]) : null;
+          const textSearch = normalizedSearch.replace(/score\s*:\s*\d+/g, '').replace(/\s+/g, ' ').trim();
+
           const minScore = criteria.minScore === 'any' ? -1 : Number(criteria.minScore);
           const effectiveScoreThreshold = Number.isFinite(scoreFromSearch) ? Math.max(minScore, scoreFromSearch) : minScore;
 
@@ -470,7 +472,7 @@ const hasLeads = directoryData.leads.length > 0;
           const cityMatch = criteria.city === 'all' || lead.city === criteria.city;
           const statusMatch = criteria.status === 'all' || lead.status === criteria.status;
           const scoreMatch = effectiveScoreThreshold <= -1 || lead.score >= effectiveScoreThreshold;
-          const searchMatch = !normalizedSearch || lead.searchableText.includes(normalizedSearch);
+          const searchMatch = !textSearch || lead.searchableText.includes(textSearch);
           return categoryMatch && cityMatch && statusMatch && scoreMatch && searchMatch;
         };
 

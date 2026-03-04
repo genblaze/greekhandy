@@ -423,7 +423,7 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
             </span>
           </p>
           <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το αίτημά σας καταχωρήθηκε και είναι σε αναμονή moderation (pending).</p>
-          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία και δοκιμάστε ξανά.</p>
+          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε σωστά τα υποχρεωτικά πεδία (υπηρεσία, στοιχεία επικοινωνίας, μήνυμα) και δοκιμάστε ξανά.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε πρόβλημα. Δοκιμάστε ξανά.</p>
         </div>
 
@@ -446,7 +446,7 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
             </div>
             <div>
               <label for="bookingPhone" class="mb-1 block text-sm font-semibold text-gray-800">Τηλέφωνο *</label>
-              <input id="bookingPhone" name="phone" required maxlength="40" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="bookingPhone" name="phone" required maxlength="40" pattern="[0-9+()\-\s]{7,20}" title="Συμπληρώστε έγκυρο τηλέφωνο (7-20 χαρακτήρες)." class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
             </div>
             <div>
               <label for="bookingEmail" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>
@@ -462,6 +462,8 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
             <label for="bookingMessage" class="mb-1 block text-sm font-semibold text-gray-800">Λεπτομέρειες αιτήματος *</label>
             <textarea id="bookingMessage" name="message" rows="4" required maxlength="2000" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
           </div>
+
+          <p class="mt-2 text-xs text-blue-700">Καταστάσεις αιτήματος: pending (σε αναμονή) → approved (εγκρίθηκε) ή rejected (απορρίφθηκε).</p>
 
           <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος">Αποστολή αιτήματος</button>
         </form>
@@ -657,7 +659,14 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
 
         for (const form of document.querySelectorAll('[data-pending-form]')) {
           if (!(form instanceof HTMLFormElement)) continue;
-          form.addEventListener('submit', () => {
+          form.addEventListener('submit', (event) => {
+            if (form.hasAttribute('data-booking-form') && !form.checkValidity()) {
+              event.preventDefault();
+              showFeedbackStatus('booking', 'invalid');
+              form.reportValidity();
+              return;
+            }
+
             if (form.hasAttribute('data-booking-form')) {
               showFeedbackStatus('booking', 'loading');
             }

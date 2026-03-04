@@ -95,7 +95,7 @@ const hasAnyBookings = bookings.length > 0;
           <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Η κατάσταση άλλαξε από άλλη ενέργεια. Ανανεώστε τη σελίδα και δοκιμάστε ξανά.</p>
         )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
-        {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα.</p>}
+        {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα μετάβασης. Ελέγξτε ότι το αίτημα έχει έγκυρο bookingId και επιτρεπτό targetState (pending/approved/rejected).</p>}
         {status === 'unauthorized' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Μη εξουσιοδοτημένη ενέργεια moderation.</p>}
 
         <div data-booking-moderation-loading class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite">
