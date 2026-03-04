@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const status = Astro.url.searchParams.get('status') ?? 'ok';
+const isSuccess = status === 'ok';
+const isInvalid = status === 'invalid';
+---
+
+<Layout
+  title="Ευχαριστούμε για την αίτηση | GreekHandy"
+  description="Η αίτηση εγγραφής επαγγελματία υποβλήθηκε."
+>
+  <main class="mx-auto max-w-3xl px-4 py-20">
+    <section class="rounded-2xl border bg-white p-8 shadow-sm md:p-12">
+      {isSuccess && (
+        <>
+          <h1 class="text-3xl font-bold text-gray-900">Η αίτησή σας καταχωρήθηκε</h1>
+          <p class="mt-4 text-gray-700">Ευχαριστούμε! Η ομάδα GreekHandy θα εξετάσει τα στοιχεία σας και θα επικοινωνήσει σύντομα.</p>
+        </>
+      )}
+
+      {isInvalid && (
+        <>
+          <h1 class="text-3xl font-bold text-gray-900">Λείπουν στοιχεία</h1>
+          <p class="mt-4 text-gray-700">Παρακαλούμε συμπληρώστε όλα τα υποχρεωτικά πεδία και δοκιμάστε ξανά.</p>
+        </>
+      )}
+
+      {!isSuccess && !isInvalid && (
+        <>
+          <h1 class="text-3xl font-bold text-gray-900">Κάτι πήγε στραβά</h1>
+          <p class="mt-4 text-gray-700">Δεν ήταν δυνατή η αποστολή της αίτησης τώρα. Προσπαθήστε ξανά αργότερα.</p>
+        </>
+      )}
+
+      <div class="mt-8 flex gap-3">
+        <a href="/professionals" class="rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white hover:bg-blue-800">Επιστροφή στους επαγγελματίες</a>
+        <a href="/professionals/register" class="rounded-lg border border-gray-300 px-5 py-3 font-semibold text-gray-700 hover:bg-gray-50">Νέα αίτηση</a>
+      </div>
+    </section>
+  </main>
+</Layout>

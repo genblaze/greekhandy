@@ -12,10 +12,14 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Thank-you flow at `/thank-you`
   - Lead persistence to `data/contact-submissions.ndjson`
   - Admin email notification via SMTP (when configured)
-- **Professional Profiles MVP slice:**
+- **Professional Profiles MVP slices:**
   - Professionals directory at `/professionals`
   - Individual profile pages at `/professionals/[slug]`
   - Profile includes bio, services, areas served, contact info
+  - Professional registration page at `/professionals/register`
+  - Registration endpoint at `POST /api/professionals/register`
+  - Registration thank-you flow at `/professionals/thank-you`
+  - Registration persistence to `data/professional-registrations.ndjson`
 
 ## Local Development
 
