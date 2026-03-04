@@ -2053,12 +2053,24 @@ const hasLeads = directoryData.leads.length > 0;
         const applyBulkSegment = (segmentValue) => {
           const count = selectedLeadIds.size;
           if (count <= 0) return;
-          const ok = window.confirm(`Επιβεβαίωση μαζικού segment '${segmentValue}' για ${count} leads;\n\nΗ ενέργεια επηρεάζει μόνο το segment.`);
+          const impacted = parsedCards.filter((entry) => selectedLeadIds.has(entry.id) && entry.segment !== segmentValue).length;
+          if (impacted === 0) {
+            if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Δεν απαιτείται αλλαγή: όλα τα επιλεγμένα leads είναι ήδη σε segment ${segmentValue}.`;
+            setLastActionNote(`Καμία αλλαγή: segment ήδη ${segmentValue}`);
+            return;
+          }
+
+          const ok = window.confirm(`Επιβεβαίωση μαζικού segment '${segmentValue}'\n\nΣύνολο επιλογής: ${count} leads\nΘα αλλάξουν πραγματικά: ${impacted} leads\n\nΗ ενέργεια επηρεάζει μόνο το segment.`);
           if (!ok) return;
+          if (impacted >= 25) {
+            const secondConfirm = window.confirm(`Επιβεβαίωση υψηλού όγκου: θα αλλάξει segment σε ${impacted} leads. Να συνεχίσω;`);
+            if (!secondConfirm) return;
+          }
 
           let changed = 0;
           parsedCards.forEach((entry) => {
             if (!selectedLeadIds.has(entry.id)) return;
+            if (entry.segment === segmentValue) return;
             entry.segment = segmentValue;
             segmentState = { ...segmentState, [entry.id]: segmentValue };
             entry.searchableText = [entry.name, entry.phone, entry.email, entry.categoryLabel, entry.city, entry.statusLabel, `score:${entry.score}`, entry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', entry.segment, entry.note].join(' ').toLowerCase();
@@ -2080,12 +2092,27 @@ const hasLeads = directoryData.leads.length > 0;
         const applyBulkFollowupDate = (isoDateTime) => {
           const count = selectedLeadIds.size;
           if (count <= 0 || !isoDateTime) return;
-          const ok = window.confirm(`Ορισμός follow-up για ${count} leads στις ${new Date(isoDateTime).toLocaleString('el-GR')};\n\nΗ ενέργεια παραμένει περιορισμένη στα επιλεγμένα leads.`);
+          const impacted = parsedCards.filter((entry) => {
+            if (!selectedLeadIds.has(entry.id)) return false;
+            return entry.nextAction?.at !== isoDateTime;
+          }).length;
+          if (impacted === 0) {
+            if (liveRegion instanceof HTMLElement) liveRegion.textContent = 'Δεν απαιτείται αλλαγή: το ίδιο follow-up υπάρχει ήδη στα επιλεγμένα leads.';
+            setLastActionNote('Καμία αλλαγή: follow-up ήδη ορισμένο στην ίδια στιγμή');
+            return;
+          }
+
+          const ok = window.confirm(`Ορισμός follow-up στις ${new Date(isoDateTime).toLocaleString('el-GR')}\n\nΣύνολο επιλογής: ${count} leads\nΘα αλλάξουν πραγματικά: ${impacted} leads\n\nΗ ενέργεια παραμένει περιορισμένη στα επιλεγμένα leads.`);
           if (!ok) return;
+          if (impacted >= 25) {
+            const secondConfirm = window.confirm(`Επιβεβαίωση υψηλού όγκου: θα οριστεί follow-up σε ${impacted} leads. Να συνεχίσω;`);
+            if (!secondConfirm) return;
+          }
 
           let changed = 0;
           parsedCards.forEach((entry) => {
             if (!selectedLeadIds.has(entry.id)) return;
+            if (entry.nextAction?.at === isoDateTime) return;
             entry.nextAction = { kind: entry.nextAction?.kind || 'followup', at: isoDateTime };
             nextActionState = { ...nextActionState, [entry.id]: entry.nextAction };
             appendActivity(entry, 'Bulk: ορίστηκε follow-up ημερομηνία');
