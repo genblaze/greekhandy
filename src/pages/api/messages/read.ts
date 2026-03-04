@@ -2,9 +2,11 @@ import type { APIRoute } from 'astro';
 import {
   clean,
   MESSAGE_READ_STATE_FILE_PATH,
+  MESSAGE_SUBMISSIONS_FILE_PATH,
   readNdjson,
   writeNdjson,
-  type MessageReadState
+  type MessageReadState,
+  type MessageSubmission
 } from '../../../lib/messaging';
 
 export const POST: APIRoute = async ({ request, redirect }) => {
@@ -16,6 +18,13 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   if (!threadId || !viewerEmail) return redirect(`${returnTo}${returnTo.includes('?') ? '&' : '?'}status=invalid`, 303);
 
   try {
+    const threadMessages = (await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH)).filter((message) => message.threadId === threadId);
+    const isParticipant = threadMessages.some(
+      (message) => message.senderEmail.toLowerCase() === viewerEmail || message.recipientEmail.toLowerCase() === viewerEmail
+    );
+
+    if (!isParticipant) return redirect(`${returnTo}${returnTo.includes('?') ? '&' : '?'}status=forbidden`, 303);
+
     const states = await readNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH);
     const next = states.filter((entry) => !(entry.threadId === threadId && entry.viewerEmail === viewerEmail));
     next.push({ threadId, viewerEmail, lastReadAt: new Date().toISOString() });

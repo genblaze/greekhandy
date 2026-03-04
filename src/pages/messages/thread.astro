@@ -60,6 +60,7 @@ const professionalSlug = latest?.professionalSlug ?? '';
         {status === 'reported' && <p class="mt-4 rounded-lg bg-emerald-50 px-4 py-3 text-emerald-800">Η αναφορά καταχωρήθηκε.</p>}
         {status === 'report-error' && <p class="mt-4 rounded-lg bg-red-50 px-4 py-3 text-red-800">Δεν ήταν δυνατή η αναφορά.</p>}
         {status === 'report-invalid' && <p class="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα στοιχεία αναφοράς.</p>}
+        {status === 'report-forbidden' && <p class="mt-4 rounded-lg bg-red-50 px-4 py-3 text-red-800">Δεν έχετε πρόσβαση για αναφορά αυτού του μηνύματος.</p>}
 
         <section class="mt-6 space-y-3">
           {threadMessages.length === 0 && <p class="rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-700">Δεν υπάρχουν μηνύματα ακόμη.</p>}

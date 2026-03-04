@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 
 const SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
 const ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
+const VISIBILITY_FILE_PATH = resolve(process.cwd(), 'data', 'message-visibility-actions.ndjson');
 
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
@@ -45,6 +46,8 @@ const readNdjson = async <T,>(path: string): Promise<T[]> => {
 
 const submissions = await readNdjson<MessageSubmission>(SUBMISSIONS_FILE_PATH);
 const actions = await readNdjson<ActionLog>(ACTIONS_FILE_PATH);
+const visibilityActions = await readNdjson<{ messageId?: string; action?: string }>(VISIBILITY_FILE_PATH);
+const hiddenMessageIds = new Set(visibilityActions.filter((entry) => entry.action === 'hide' && entry.messageId).map((entry) => entry.messageId as string));
 
 const latestActionByThread = new Map<string, ActionLog>();
 for (const action of actions) latestActionByThread.set(action.threadId, action);
@@ -120,7 +123,7 @@ const pendingThreads = Array.from(submissionsByThread.entries())
                 <ul class="mt-2 space-y-2">
                   {messages.map((message) => (
                     <li class="rounded-md bg-white p-2">
-                      <p class="text-sm text-gray-700">{message.message}</p>
+                      <p class="text-sm text-gray-700">{hiddenMessageIds.has(message.id || '') ? 'Το μήνυμα έχει κρυφτεί από moderation.' : message.message}</p>
                       <p class="mt-1 text-xs text-gray-500">{new Date(message.submittedAt).toLocaleString('el-GR')}</p>
                     </li>
                   ))}

@@ -44,12 +44,17 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
 - **Admin Dashboard MVP copy asset:**
   - Greek UI copy for auth gate, moderation queue labels, status chips, empty/error states, and basic analytics labels
   - Source file: `data/admin-dashboard-copy.json`
-- **Messaging Requests MVP slice:**
+- **Messaging MVP slice:**
   - Message request form on each professional profile
-  - Submission endpoint at `POST /api/messages/submit` (saved as `pending`)
+  - Submission endpoint at `POST /api/messages/submit` (participant guardrails + block checks)
+  - Thread list view at `/messages?viewerEmail=...` with latest preview + unread count
+  - Thread view at `/messages/thread?threadId=...&viewerEmail=...` with chronological history and report action
+  - Read-state endpoint at `POST /api/messages/read` (participant-only)
   - Thread triage queue at `/professionals/messages-moderation?key=...`
   - Triage endpoint at `POST /api/messages/triage` (`review`/`reject`/`block` actions logged)
-  - Submission persistence in `data/message-submissions.ndjson` and action log in `data/message-triage-actions.ndjson`
+  - Message report endpoint at `POST /api/messages/report` (participant-only)
+  - Admin hide endpoint at `POST /api/messages/hide`
+  - Persistence files: `data/message-submissions.ndjson`, `data/message-triage-actions.ndjson`, `data/message-read-state.ndjson`, `data/message-reports.ndjson`, `data/message-visibility-actions.ndjson`
 - **Admin Dashboard MVP shell:**
   - Protected overview at `/admin?key=...`
   - Queue cards for pending profiles, reviews, bookings, and message threads
