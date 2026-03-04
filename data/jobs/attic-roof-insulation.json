@@ -1,0 +1,13 @@
+{
+  "id": "attic-roof-insulation",
+  "slug": "monosi-stegis-attikis",
+  "nameGr": "Μόνωση στέγης και σοφίτας",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Θερμομόνωση στέγης/σοφίτας για μείωση θερμικών απωλειών και καλύτερη άνεση.",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "1.200-6.500€",
+  "demand": "high",
+  "notes": "Υψηλής αξίας παρέμβαση με άμεσο όφελος στην κατανάλωση ενέργειας.",
+  "status": "researched"
+}

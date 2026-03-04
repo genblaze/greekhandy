@@ -1,0 +1,13 @@
+{
+  "id": "gutter-installation-cleaning",
+  "slug": "egkatastasi-katharismos-ydroorron",
+  "nameGr": "Εγκατάσταση και καθαρισμός υδρορροών",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Τοποθέτηση νέων υδρορροών και απομάκρυνση φραγών για σωστή απορροή ομβρίων.",
+  "typicalDuration": "4-10 ώρες",
+  "priceRangeEUR": "180-1.200€",
+  "demand": "medium",
+  "notes": "Προλαμβάνει υγρασίες σε τοίχους και θεμέλια.",
+  "status": "researched"
+}

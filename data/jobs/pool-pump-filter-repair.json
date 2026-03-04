@@ -1,0 +1,13 @@
+{
+  "id": "pool-pump-filter-repair",
+  "slug": "episkevi-antlias-filtroy-pisinas",
+  "nameGr": "Επισκευή αντλίας και φίλτρου πισίνας",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Διάγνωση θορύβου ή χαμηλής πίεσης και αποκατάσταση αντλίας/φίλτρου.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "120-900€",
+  "demand": "medium",
+  "notes": "Αυξημένα αιτήματα στην αρχή της θερινής περιόδου.",
+  "status": "researched"
+}

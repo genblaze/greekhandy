@@ -1,0 +1,13 @@
+{
+  "id": "pool-weekly-maintenance",
+  "slug": "evdomadiaia-syntirisi-pisinas",
+  "nameGr": "Εβδομαδιαία συντήρηση πισίνας",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Έλεγχος χημικών, καθαρισμός φίλτρων και ρύθμιση συστήματος κυκλοφορίας νερού.",
+  "typicalDuration": "1-2 ώρες/επίσκεψη",
+  "priceRangeEUR": "80-280€ / μήνα",
+  "demand": "high",
+  "notes": "Σταθερό επαναλαμβανόμενο service με υψηλή διατήρηση πελατών.",
+  "status": "researched"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "cctv-installation",
+  "slug": "egkatastasi-kameron-cctv",
+  "nameGr": "Εγκατάσταση καμερών CCTV",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Μελέτη σημείων, τοποθέτηση καμερών και ρύθμιση απομακρυσμένης παρακολούθησης.",
+  "typicalDuration": "1-2 ημέρες",
+  "priceRangeEUR": "350-2.800€",
+  "demand": "high",
+  "notes": "Υψηλή ζήτηση σε κατοικίες βραχυχρόνιας μίσθωσης και μικρές επιχειρήσεις.",
+  "status": "researched"
+}

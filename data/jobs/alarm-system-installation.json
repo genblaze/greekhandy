@@ -1,0 +1,13 @@
+{
+  "id": "alarm-system-installation",
+  "slug": "egkatastasi-synagermou",
+  "nameGr": "Εγκατάσταση συστήματος συναγερμού",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Τοποθέτηση κεντρικής μονάδας, αισθητήρων και παραμετροποίηση σεναρίων όπλισης.",
+  "typicalDuration": "6-12 ώρες",
+  "priceRangeEUR": "300-1.900€",
+  "demand": "high",
+  "notes": "Συχνή απαίτηση για ασφαλιστικές καλύψεις κατοικιών.",
+  "status": "researched"
+}

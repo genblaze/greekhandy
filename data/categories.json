@@ -346,5 +346,70 @@
       "energy-window-replacement",
       "roller-shutter-repair"
     ]
+  },
+  {
+    "id": "roofing-specialists",
+    "slug": "steges-skepes",
+    "nameGr": "Στέγες & Σκεπές",
+    "nameEn": "Roofing Specialists",
+    "description": "Κατασκευή, επισκευή και μόνωση στεγών, κεραμοσκεπών και υδρορροών.",
+    "icon": "🏚️",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "larisa",
+      "volos",
+      "ioannina"
+    ],
+    "priority": 17,
+    "seedJobs": [
+      "roof-tile-repair",
+      "gutter-installation-cleaning",
+      "attic-roof-insulation"
+    ]
+  },
+  {
+    "id": "pool-services",
+    "slug": "syntirisi-pisinas",
+    "nameGr": "Συντήρηση Πισίνας",
+    "nameEn": "Pool Services",
+    "description": "Συντήρηση, απολύμανση, επισκευές εξοπλισμού και στεγανοποίηση πισίνας.",
+    "icon": "🏊",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "volos"
+    ],
+    "priority": 18,
+    "seedJobs": [
+      "pool-weekly-maintenance",
+      "pool-pump-filter-repair",
+      "pool-liner-waterproofing"
+    ]
+  },
+  {
+    "id": "security-systems",
+    "slug": "systimata-asfaleias",
+    "nameGr": "Συστήματα Ασφαλείας",
+    "nameEn": "Security Systems",
+    "description": "Εγκατάσταση συναγερμών, καμερών CCTV και ελέγχου πρόσβασης για κατοικίες και επιχειρήσεις.",
+    "icon": "📹",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa",
+      "volos"
+    ],
+    "priority": 19,
+    "seedJobs": [
+      "cctv-installation",
+      "alarm-system-installation",
+      "access-control-installation"
+    ]
   }
 ]

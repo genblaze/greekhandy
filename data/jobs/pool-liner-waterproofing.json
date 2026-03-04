@@ -1,0 +1,13 @@
+{
+  "id": "pool-liner-waterproofing",
+  "slug": "stenotopoiisi-ependysis-pisinas",
+  "nameGr": "Στεγανοποίηση επένδυσης πισίνας",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εντοπισμός απωλειών νερού και στεγανοποίηση επένδυσης/αρμών πισίνας.",
+  "typicalDuration": "1-4 ημέρες",
+  "priceRangeEUR": "700-4.800€",
+  "demand": "medium",
+  "notes": "Υψηλής αξίας εργασία αποκατάστασης με εξειδικευμένα υλικά.",
+  "status": "researched"
+}
