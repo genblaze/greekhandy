@@ -1,0 +1,150 @@
+{
+  "featureId": "booking-system",
+  "version": "mvp-v1",
+  "goal": "Ship the smallest reliable booking request flow so customers can request a specific service slot and admins can safely moderate requests before handoff.",
+  "launchScope": {
+    "surfaces": [
+      "service/job detail pages",
+      "booking request form",
+      "admin moderation queue (basic list + approve/reject)",
+      "request confirmation screen"
+    ],
+    "inScope": [
+      "customer selects service",
+      "customer picks preferred date and time window",
+      "customer submits request with contact details",
+      "request stored as pending for moderation",
+      "admin can approve or reject",
+      "basic email notification on approved request"
+    ],
+    "outOfScope": [
+      "live professional calendar sync",
+      "instant booking confirmation",
+      "reschedule/cancel self-service",
+      "in-app chat",
+      "payments/deposits"
+    ]
+  },
+  "requestFlow": {
+    "steps": [
+      "service",
+      "dateTime",
+      "submit"
+    ],
+    "fields": {
+      "service": [
+        "jobSlug (required)",
+        "jobTitle (required, denormalized)"
+      ],
+      "dateTime": [
+        "preferredDate (required, local date)",
+        "preferredWindow (required enum: morning|afternoon|evening)",
+        "timezone (default Europe/Athens)"
+      ],
+      "submit": [
+        "fullName (required, 2-80 chars)",
+        "phone (required, E.164 or GR local normalized)",
+        "email (optional, valid format)",
+        "addressArea (required, 2-120 chars)",
+        "notes (optional, max 800 chars)",
+        "consentToContact (required=true)"
+      ]
+    },
+    "uiStates": [
+      "draft",
+      "submitting",
+      "submitted",
+      "validation-error",
+      "rate-limited"
+    ]
+  },
+  "constraints": {
+    "dateRules": [
+      "preferredDate must be >= tomorrow (no same-day for MVP)",
+      "preferredDate must be <= 45 days from today",
+      "block past dates"
+    ],
+    "timeWindowRules": [
+      "morning = 09:00-12:00",
+      "afternoon = 12:00-16:00",
+      "evening = 16:00-20:00"
+    ],
+    "submissionLimits": [
+      "max 3 booking requests per phone per 24h",
+      "max 5 booking requests per IP per 24h"
+    ],
+    "dedupe": "reject exact duplicates (same phone + jobSlug + preferredDate + preferredWindow) within 12h"
+  },
+  "moderationSafeguards": {
+    "states": [
+      "pending",
+      "approved",
+      "rejected",
+      "flagged"
+    ],
+    "defaultFlow": "pending -> approved unless blocked by safeguards",
+    "autoRejectRules": [
+      "invalid phone after normalization",
+      "missing consentToContact",
+      "notes contain clear spam URL patterns",
+      "duplicate submission hit by dedupe rule"
+    ],
+    "autoFlagRules": [
+      "high velocity: >2 requests from same phone in 1h",
+      "notes include phone/email different from submitter contact",
+      "suspicious keyword match list (casino, crypto giveaway, adult spam)"
+    ],
+    "manualReviewSla": "flagged items reviewed within 24h",
+    "audit": [
+      "store moderationReason",
+      "store moderatorId for manual actions",
+      "append-only status history"
+    ]
+  },
+  "minimalDataModel": {
+    "bookingRequest": [
+      "id",
+      "jobSlug",
+      "jobTitle",
+      "preferredDate",
+      "preferredWindow",
+      "timezone",
+      "fullName",
+      "phoneNormalized",
+      "email",
+      "addressArea",
+      "notes",
+      "consentToContact",
+      "status",
+      "moderationReason",
+      "suspicionScore",
+      "createdAt",
+      "updatedAt"
+    ],
+    "indexes": [
+      "status,createdAt",
+      "jobSlug,preferredDate,status",
+      "phoneNormalized,createdAt"
+    ]
+  },
+  "notifications": {
+    "approved": [
+      "email to customer (if email present)",
+      "email to ops/admin inbox"
+    ],
+    "rejected": [
+      "optional silent reject for obvious spam",
+      "generic error copy to user when immediate reject occurs"
+    ]
+  },
+  "acceptanceCriteria": [
+    "User can complete service -> date/time -> submit flow in <= 3 screens",
+    "Server validates required fields and date/time constraints",
+    "Valid request is created with status=pending",
+    "Auto-reject and auto-flag safeguards trigger from configured rules",
+    "Admin can approve or reject pending/flagged requests with reason",
+    "Approved request triggers email notifications to customer/admin",
+    "Duplicate and rate-limited submissions are blocked with clear error copy",
+    "All status transitions are recorded in audit history"
+  ]
+}

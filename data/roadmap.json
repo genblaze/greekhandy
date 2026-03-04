@@ -35,9 +35,9 @@
     {
       "id": "booking-system",
       "name": "Booking System",
-      "description": "Availability calendar for professionals. Booking flow: select service → pick date/time → confirm. Email confirmations to both parties.",
+      "description": "MVP slice defined: booking request flow (service -> date/time window -> submit), server-side constraints, moderation safeguards (pending/approved/rejected/flagged), and acceptance criteria captured in data/booking-system-mvp.json.",
       "priority": 5,
-      "status": "planned",
+      "status": "in-progress",
       "estimatedComplexity": "high"
     },
     {
