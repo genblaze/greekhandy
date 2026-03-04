@@ -1,0 +1,20 @@
+{
+  "id": "solar-panel-cleaning-maintenance-volos",
+  "slug": "katharismos-syntirisi-fotovoltaikon-volos",
+  "nameGr": "Καθαρισμός & Συντήρηση Φωτοβολταϊκών στον Βόλο",
+  "nameEn": "Solar Panel Cleaning & Maintenance in Βόλος",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Καθαρισμός πάνελ και συντήρηση φωτοβολταϊκού συστήματος στον Βόλο για υψηλότερη απόδοση και πρόληψη βλαβών. SEO intent: καλύπτει συναλλακτικές αναζητήσεις «καθαρισμός φωτοβολταϊκών Βόλος» και «service inverter».",
+  "typicalDuration": "2-4 ώρες",
+  "priceRangeEUR": "80-320€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός φωτοβολταϊκών Βόλος",
+    "συντήρηση φωτοβολταϊκών Βόλος",
+    "service inverter",
+    "μείωση απόδοσης πάνελ",
+    "τεχνικός φωτοβολταϊκών service"
+  ],
+  "status": "researched"
+}

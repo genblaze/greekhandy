@@ -1,0 +1,20 @@
+{
+  "id": "airbnb-turnover-cleaning-larisa",
+  "slug": "katharismos-airbnb-allagi-episkepton-larisa",
+  "nameGr": "Καθαρισμός Airbnb Μεταξύ Επισκεπτών στη Λάρισα",
+  "nameEn": "Airbnb Turnover Cleaning in Λάρισα",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Καθαρισμός Airbnb στη Λάρισα μεταξύ κρατήσεων με αλλαγή λευκών ειδών και έλεγχο ετοιμότητας χώρου. SEO intent: καλύπτει έντονα εμπορικές αναζητήσεις «cleaning Airbnb Λάρισα» και «καθαρισμός βραχυχρόνιας μίσθωσης».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "45-190€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός Airbnb Λάρισα",
+    "turnover cleaning Λάρισα",
+    "βραχυχρόνια μίσθωση καθαρισμός",
+    "αλλαγή λευκών ειδών Airbnb",
+    "συνεργείο καθαρισμού καταλύματος"
+  ],
+  "status": "researched"
+}

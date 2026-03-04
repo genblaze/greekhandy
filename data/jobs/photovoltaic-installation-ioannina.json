@@ -1,0 +1,20 @@
+{
+  "id": "photovoltaic-installation-ioannina",
+  "slug": "egkatastasi-fotovoltaikou-systimatos-ioannina",
+  "nameGr": "Εγκατάσταση Φωτοβολταϊκού Συστήματος στα Ιωάννινα",
+  "nameEn": "Photovoltaic Installation in Ιωάννινα",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Μελέτη, αδειοδότηση και εγκατάσταση φωτοβολταϊκού συστήματος στα Ιωάννινα με inverter και πλήρη ηλεκτρολογική διασύνδεση. SEO intent: στοχεύει τοπικές αναζητήσεις υψηλής πρόθεσης όπως «φωτοβολταϊκά Ιωάννινα τιμή» και «εγκατάσταση net metering Ιωάννινα».",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "4.500-12.500€",
+  "demand": "high",
+  "keywords": [
+    "φωτοβολταϊκά Ιωάννινα",
+    "εγκατάσταση φωτοβολταϊκών Ιωάννινα",
+    "net metering Ιωάννινα",
+    "ενεργειακή αυτονομία κατοικίας",
+    "τεχνικός φωτοβολταϊκών"
+  ],
+  "status": "researched"
+}

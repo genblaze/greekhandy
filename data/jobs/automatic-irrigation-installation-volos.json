@@ -1,0 +1,20 @@
+{
+  "id": "automatic-irrigation-installation-volos",
+  "slug": "egkatastasi-aftomatou-potismatos-volos",
+  "nameGr": "Εγκατάσταση Αυτόματου Ποτίσματος στον Βόλο",
+  "nameEn": "Automatic Irrigation Installation in Βόλος",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Μελέτη και εγκατάσταση αυτόματου ποτίσματος στον Βόλο για κήπους και αυλές με σωστή κατανομή νερού. SEO intent: στοχεύει τοπικές αναζητήσεις «αυτόματο πότισμα Βόλος» και «τεχνικός ποτίσματος κήπου».",
+  "typicalDuration": "1-2 ημέρες",
+  "priceRangeEUR": "180-1200€",
+  "demand": "high",
+  "keywords": [
+    "αυτόματο πότισμα Βόλος",
+    "εγκατάσταση ποτίσματος Βόλος",
+    "τεχνικός ποτίσματος κήπου",
+    "σταλάκτες και εκτοξευτήρες",
+    "άρδευση κήπου"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "airbnb-turnover-cleaning-volos",
+  "slug": "katharismos-airbnb-allagi-episkepton-volos",
+  "nameGr": "Καθαρισμός Airbnb Μεταξύ Επισκεπτών στον Βόλο",
+  "nameEn": "Airbnb Turnover Cleaning in Βόλος",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Καθαρισμός Airbnb στον Βόλο μεταξύ κρατήσεων με αλλαγή λευκών ειδών και έλεγχο ετοιμότητας χώρου. SEO intent: καλύπτει έντονα εμπορικές αναζητήσεις «cleaning Airbnb Βόλος» και «καθαρισμός βραχυχρόνιας μίσθωσης».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "45-190€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός Airbnb Βόλος",
+    "turnover cleaning Βόλος",
+    "βραχυχρόνια μίσθωση καθαρισμός",
+    "αλλαγή λευκών ειδών Airbnb",
+    "συνεργείο καθαρισμού καταλύματος"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "photovoltaic-installation-volos",
+  "slug": "egkatastasi-fotovoltaikou-systimatos-volos",
+  "nameGr": "Εγκατάσταση Φωτοβολταϊκού Συστήματος στον Βόλο",
+  "nameEn": "Photovoltaic Installation in Βόλος",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Μελέτη, αδειοδότηση και εγκατάσταση φωτοβολταϊκού συστήματος στον Βόλο με inverter και πλήρη ηλεκτρολογική διασύνδεση. SEO intent: στοχεύει τοπικές αναζητήσεις υψηλής πρόθεσης όπως «φωτοβολταϊκά Βόλος τιμή» και «εγκατάσταση net metering Βόλος».",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "4.500-12.500€",
+  "demand": "high",
+  "keywords": [
+    "φωτοβολταϊκά Βόλος",
+    "εγκατάσταση φωτοβολταϊκών Βόλος",
+    "net metering Βόλος",
+    "ενεργειακή αυτονομία κατοικίας",
+    "τεχνικός φωτοβολταϊκών"
+  ],
+  "status": "researched"
+}
