@@ -259,6 +259,7 @@ const hasLeads = directoryData.leads.length > 0;
                   <button type="button" data-bulk-segment="cold" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Bulk: Cold</button>
                   <input type="datetime-local" data-bulk-followup-at aria-label="Ορισμός ημερομηνίας και ώρας follow-up για επιλεγμένα leads" class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
                   <button type="button" data-bulk-followup-set aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Bulk: Follow-up date</button>
+                  <button type="button" data-bulk-outreach-undo aria-label="Αναίρεση τελευταίας μαζικής ενημέρωσης επικοινωνίας" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αναίρεση outreach</button>
                   <p id="leads-selection-summary" data-selection-summary class="text-xs font-medium text-slate-600" role="status" aria-live="polite" aria-atomic="true">0 επιλεγμένα</p>
                 </div>
                 <div class="mt-3 grid gap-2 border-t border-slate-200 pt-3 sm:grid-cols-3" data-filter-analytics>
@@ -276,7 +277,8 @@ const hasLeads = directoryData.leads.length > 0;
                   <p class="rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-xs text-sky-900">Today: <strong data-followup-today>0</strong></p>
                   <p class="rounded-md border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-xs text-indigo-900">This week: <strong data-followup-week>0</strong></p>
                 </div>
-                <div class="mt-3 flex flex-wrap gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Sortable columns">
+                <p class="mt-3 text-[11px] text-slate-500" aria-live="polite">Shortcuts: Shift+A επιλογή ορατών, Alt+1/2/3 bulk segment, Alt+Shift+H/W/C επιλογή ορατών segment, Alt+Z αναίρεση outreach.</p>
+                <div class="mt-2 flex flex-wrap gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Sortable columns">
                   <button type="button" data-sort-col="name" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Όνομα</button>
                   <button type="button" data-sort-col="category" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Κατηγορία</button>
                   <button type="button" data-sort-col="city" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Πόλη</button>
@@ -440,6 +442,7 @@ const hasLeads = directoryData.leads.length > 0;
                     <button type="button" data-selection-dock-segment="cold" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-3 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Cold</button>
                     <input type="datetime-local" data-selection-dock-followup-at aria-label="Ορισμός ημερομηνίας και ώρας follow-up για επιλεγμένα leads" class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
                     <button type="button" data-selection-dock-followup-set aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-3 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Follow-up date</button>
+                    <button type="button" data-selection-dock-outreach-undo aria-label="Αναίρεση τελευταίας μαζικής ενημέρωσης επικοινωνίας" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Undo outreach</button>
                     <button type="button" data-selection-dock-clear aria-label="Καθαρισμός επιλογής από το dock" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός επιλογής</button>
                   </div>
                 </div>
@@ -539,6 +542,7 @@ const hasLeads = directoryData.leads.length > 0;
         const bulkSegmentButtons = Array.from(root.querySelectorAll('[data-bulk-segment]'));
         const bulkFollowupAt = root.querySelector('[data-bulk-followup-at]');
         const bulkFollowupSet = root.querySelector('[data-bulk-followup-set]');
+        const bulkOutreachUndo = root.querySelector('[data-bulk-outreach-undo]');
         const selectionSummary = root.querySelector('[data-selection-summary]');
         const selectionDock = root.querySelector('[data-selection-dock]');
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
@@ -547,6 +551,7 @@ const hasLeads = directoryData.leads.length > 0;
         const selectionDockSegmentButtons = Array.from(root.querySelectorAll('[data-selection-dock-segment]'));
         const selectionDockFollowupAt = root.querySelector('[data-selection-dock-followup-at]');
         const selectionDockFollowupSet = root.querySelector('[data-selection-dock-followup-set]');
+        const selectionDockOutreachUndo = root.querySelector('[data-selection-dock-outreach-undo]');
         const selectionDockClear = root.querySelector('[data-selection-dock-clear]');
         const analyticsContacted = root.querySelector('[data-analytics-contacted]');
         const analyticsQualified = root.querySelector('[data-analytics-qualified]');
@@ -792,6 +797,7 @@ const hasLeads = directoryData.leads.length > 0;
         let activeDetailLeadId = '';
         let previousSelectionCount = null;
         let previousRenderedViewState = '';
+        let lastBulkOutreachSnapshot = null;
         const PRESET_STORAGE_KEY = 'admin-leads-presets-v1';
 
         const readPresets = () => {
@@ -930,6 +936,8 @@ const hasLeads = directoryData.leads.length > 0;
           });
           if (clearSelectionButton instanceof HTMLButtonElement) clearSelectionButton.disabled = count === 0;
           if (selectionDockClear instanceof HTMLButtonElement) selectionDockClear.disabled = count === 0;
+          if (bulkOutreachUndo instanceof HTMLButtonElement) bulkOutreachUndo.disabled = !lastBulkOutreachSnapshot;
+          if (selectionDockOutreachUndo instanceof HTMLButtonElement) selectionDockOutreachUndo.disabled = !lastBulkOutreachSnapshot;
 
           bulkStatusButtons.forEach((button) => {
             if (!(button instanceof HTMLButtonElement)) return;
@@ -960,6 +968,16 @@ const hasLeads = directoryData.leads.length > 0;
           }
           if (selectionDockFollowupSet instanceof HTMLButtonElement) {
             selectionDockFollowupSet.setAttribute('aria-label', `Ορισμός follow-up ημερομηνίας από το dock για ${count} επιλεγμένα leads`);
+          }
+          if (bulkOutreachUndo instanceof HTMLButtonElement) {
+            bulkOutreachUndo.setAttribute('aria-label', lastBulkOutreachSnapshot
+              ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας (${lastBulkOutreachSnapshot.changed} leads)`
+              : 'Δεν υπάρχει πρόσφατη μαζική outreach ενέργεια για αναίρεση');
+          }
+          if (selectionDockOutreachUndo instanceof HTMLButtonElement) {
+            selectionDockOutreachUndo.setAttribute('aria-label', lastBulkOutreachSnapshot
+              ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας από το dock (${lastBulkOutreachSnapshot.changed} leads)`
+              : 'Δεν υπάρχει πρόσφατη μαζική outreach ενέργεια για αναίρεση');
           }
 
           if (previousSelectionCount !== null && previousSelectionCount !== count) {
@@ -1854,12 +1872,15 @@ const hasLeads = directoryData.leads.length > 0;
         const applyBulkOutreach = (targetContacted) => {
           const count = selectedLeadIds.size;
           if (count <= 0) return;
-          const ok = window.confirm(`Επιβεβαίωση μαζικής ενέργειας για ${count} leads: ${targetContacted ? 'Επικοινωνήθηκε' : 'Χωρίς επαφή'};`);
+          const nextLabel = targetContacted ? 'Επικοινωνήθηκε' : 'Χωρίς επαφή';
+          const ok = window.confirm(`Θα ενημερωθούν ${count} επιλεγμένα leads σε κατάσταση outreach: ${nextLabel}.\n\nΜπορείτε να κάνετε άμεση αναίρεση με "Αναίρεση outreach".`);
           if (!ok) return;
 
+          const snapshot = [];
           let changed = 0;
           parsedCards.forEach((entry) => {
             if (!selectedLeadIds.has(entry.id)) return;
+            snapshot.push({ id: entry.id, isContacted: entry.isContacted, lastContactedTs: entry.lastContactedTs });
             entry.isContacted = targetContacted;
             entry.lastContactedTs = targetContacted ? Date.now() : null;
             entry.searchableText = [
@@ -1880,11 +1901,39 @@ const hasLeads = directoryData.leads.length > 0;
             syncActiveDetail(entry);
             changed += 1;
           });
+
+          lastBulkOutreachSnapshot = changed > 0 ? { entries: snapshot, changed, targetContacted } : null;
+
           if (liveRegion instanceof HTMLElement) {
             liveRegion.textContent = changed > 0
-              ? `Ενημερώθηκαν ${changed} leads.`
+              ? `Ενημερώθηκαν ${changed} leads σε ${nextLabel}. Διαθέσιμη αναίρεση.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk ενέργεια.';
           }
+          renderSelectionState();
+          scheduleRun();
+        };
+
+        const undoBulkOutreach = () => {
+          if (!lastBulkOutreachSnapshot?.entries?.length) return;
+          const ok = window.confirm(`Αναίρεση τελευταίας bulk outreach ενέργειας για ${lastBulkOutreachSnapshot.changed} leads;`);
+          if (!ok) return;
+
+          lastBulkOutreachSnapshot.entries.forEach((item) => {
+            const entry = parsedCards.find((lead) => lead.id === item.id);
+            if (!entry) return;
+            entry.isContacted = Boolean(item.isContacted);
+            entry.lastContactedTs = item.lastContactedTs ?? null;
+            entry.searchableText = [entry.name, entry.phone, entry.email, entry.categoryLabel, entry.city, entry.statusLabel, `score:${entry.score}`, entry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', entry.segment, entry.note].join(' ').toLowerCase();
+            appendActivity(entry, 'Undo: επαναφορά προηγούμενης outreach κατάστασης');
+            syncOutreachRecord(entry);
+            renderCardOutreach(entry);
+            syncActiveDetail(entry);
+          });
+
+          const restoredCount = lastBulkOutreachSnapshot.changed;
+          lastBulkOutreachSnapshot = null;
+          if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Ολοκληρώθηκε αναίρεση outreach για ${restoredCount} leads.`;
+          renderSelectionState();
           scheduleRun();
         };
 
@@ -1969,6 +2018,14 @@ const hasLeads = directoryData.leads.length > 0;
             if (!segmentValue) return;
             applyBulkSegment(segmentValue);
           });
+        });
+
+        bulkOutreachUndo?.addEventListener('click', () => {
+          undoBulkOutreach();
+        });
+
+        selectionDockOutreachUndo?.addEventListener('click', () => {
+          undoBulkOutreach();
         });
 
         bulkFollowupSet?.addEventListener('click', () => {
@@ -2057,6 +2114,10 @@ const hasLeads = directoryData.leads.length > 0;
           if (event.altKey && event.key.toLowerCase() === 'd') {
             event.preventDefault();
             if (selectionDockFollowupAt instanceof HTMLInputElement && !selectionDockFollowupAt.disabled) selectionDockFollowupAt.focus();
+          }
+          if (event.altKey && event.key.toLowerCase() === 'z') {
+            event.preventDefault();
+            undoBulkOutreach();
           }
 
           const activeEntry = getActiveDetailEntry();
