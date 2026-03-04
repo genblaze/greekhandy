@@ -154,6 +154,17 @@ const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
       </p>
     )}
 
+    {viewerEmail && (
+      <div class="mt-5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-600">
+        <span class="font-semibold text-slate-800">Καταστάσεις moderation:</span>
+        <span class="ml-2 inline-flex flex-wrap gap-2 align-middle">
+          <span class="rounded-full border border-amber-300 bg-amber-100 px-2 py-0.5 font-semibold text-amber-900">Αναφορά</span>
+          <span class="rounded-full border border-rose-300 bg-rose-100 px-2 py-0.5 font-semibold text-rose-900">Block</span>
+          <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 font-semibold text-orange-900">Hide</span>
+        </span>
+      </div>
+    )}
+
     {!viewerEmail && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-950">
         <p class="text-base font-semibold">Δεν ήταν δυνατή η φόρτωση των συνομιλιών.</p>
@@ -173,9 +184,10 @@ const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
         ))}
 
         {!showLoadingState && threads.length === 0 && (
-          <div class="rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm">
+          <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-6 shadow-sm">
             <p class="text-lg font-semibold text-slate-900">Δεν υπάρχουν συνομιλίες ακόμη.</p>
-            <p class="mt-2 text-sm text-slate-600">Μόλις σταλεί ή ληφθεί το πρώτο μήνυμα, θα εμφανιστεί εδώ με ένδειξη κατάστασης.</p>
+            <p class="mt-2 text-sm text-slate-600">Μόλις σταλεί ή ληφθεί το πρώτο μήνυμα, θα εμφανιστεί εδώ με ένδειξη μη αναγνωσμένων και moderation.</p>
+            <p class="mt-3 text-xs font-medium text-slate-500">Tip: ανοίξτε μια υπηρεσία και στείλτε μήνυμα για να ξεκινήσει thread.</p>
           </div>
         )}
 
