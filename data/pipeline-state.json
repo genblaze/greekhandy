@@ -1,10 +1,10 @@
 {
-  "lastManagerRun": "2026-03-04T18:31:52Z",
+  "lastManagerRun": "2026-03-04T18:46:30Z",
   "activeAgents": {
     "research": {
       "status": "active",
-      "task": "Research and add 20+ high-intent Greek service sub-jobs with Athens/Thessaloniki/Patra city variants in unsaturated categories",
-      "startedAt": "2026-03-04T18:28:00Z"
+      "task": "Research and add 20+ high-intent Greek service sub-jobs with Athens/Thessaloniki/Patra city variants in under-covered categories",
+      "startedAt": "2026-03-04T18:46:30Z"
     },
     "builder": {
       "status": "active",
@@ -37,6 +37,6 @@
     "jobsResearched": 143,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Cycle run: checked active sessions via openclaw sessions --all-agents --active 15, relaunched idle greekhandy-builder, greekhandy-developer, and greekhandy-developer-3; kept research/developer-2/leads on current in-scope tasks.",
+  "lastDecision": "Cycle run: checked active sessions via openclaw sessions --all-agents --active 15, relaunched idle greekhandy-research; kept builder/developer/developer-2/developer-3/leads on current in-scope tasks.",
   "blockers": []
 }
