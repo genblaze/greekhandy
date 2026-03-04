@@ -411,6 +411,7 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
       <section class="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-5">
         <h2 class="text-lg font-bold text-gray-900">Αίτημα Κράτησης</h2>
         <p class="mt-1 text-sm text-gray-600">Στείλτε αίτημα και θα επικοινωνήσουμε μαζί σας για επιβεβαίωση.</p>
+        <p class="mt-2 rounded-lg border border-blue-200 bg-white px-3 py-2 text-xs text-blue-800">Lifecycle αιτήματος: <strong>pending</strong> (σε έλεγχο) → <strong>approved</strong> ή <strong>rejected</strong>. Μετά την υποβολή θα λάβετε σελίδα παρακολούθησης κατάστασης.</p>
 
         <div class="mt-3 space-y-2" data-feedback-group="booking" aria-live="polite">
           <p data-feedback-status="loading" class="hidden rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-blue-800">

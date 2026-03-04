@@ -105,6 +105,11 @@ const hasAnyBookings = bookings.length > 0;
           </span>
         </div>
 
+        <div class="mt-6 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+          <p class="font-semibold text-slate-900">Flow μεταβάσεων</p>
+          <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong> ή <strong>rejected</strong>. Αν χρειαστεί διόρθωση, επιτρέπεται επαναφορά σε <strong>pending</strong>.</p>
+        </div>
+
         <section class="mt-8 grid gap-3 sm:grid-cols-3">
           {orderedStates.map((state) => (
             <div class={`rounded-xl border p-4 ${stateMeta[state].badge}`}>
