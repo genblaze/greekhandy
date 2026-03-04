@@ -251,7 +251,7 @@ const hasLeads = directoryData.leads.length > 0;
                 </div>
                 <div class="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Μαζικές ενέργειες μετατροπής">
                   <button type="button" data-select-visible aria-label="Επιλογή όλων των ορατών leads σε αυτή τη σελίδα" aria-keyshortcuts="Shift+A" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επιλογή ορατών</button>
-                  <button type="button" data-clear-selection aria-label="Καθαρισμός τρέχουσας επιλογής leads" aria-keyshortcuts="Shift+U" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός</button>
+                  <button type="button" data-clear-selection aria-label="Καθαρισμός τρέχουσας επιλογής leads" aria-keyshortcuts="Shift+U Alt+Backspace" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός</button>
                   <button type="button" data-bulk-contacted="true" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+E" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Έγινε επαφή</button>
                   <button type="button" data-bulk-contacted="false" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+N" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Εκκρεμεί επαφή</button>
                   <button type="button" data-bulk-segment="hot" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+1" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Μαζικά: Segment Hot</button>
@@ -439,6 +439,7 @@ const hasLeads = directoryData.leads.length > 0;
                     <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
                     <p data-selection-next-hint id="leads-selection-next-hint" class="mt-1 text-xs text-slate-600" aria-live="polite">Επόμενο βήμα μετατροπής: εφαρμόστε outreach, μετά segment και follow-up. Alt+Z για άμεση αναίρεση της τελευταίας μαζικής outreach αλλαγής.</p>
                     <p data-selection-last-action class="mt-1 text-[11px] text-slate-500" aria-live="polite">Τελευταία ενέργεια: —</p>
+                    <p data-selection-segment-breakdown class="mt-0.5 text-[11px] text-slate-500" aria-live="polite">Επιλεγμένα ανά segment: hot 0 • warm 0 • cold 0 • untagged 0</p>
                     <p data-undo-availability class="mt-0.5 text-[11px] text-slate-500" aria-live="polite">Αναίρεση outreach: μη διαθέσιμη μέχρι την επόμενη μαζική αλλαγή.</p>
                   </div>
                   <div class="flex flex-wrap items-center gap-2">
@@ -556,6 +557,7 @@ const hasLeads = directoryData.leads.length > 0;
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
         const selectionNextHint = root.querySelector('[data-selection-next-hint]');
         const selectionLastAction = root.querySelector('[data-selection-last-action]');
+        const selectionSegmentBreakdown = root.querySelector('[data-selection-segment-breakdown]');
         const undoAvailability = root.querySelector('[data-undo-availability]');
         const selectionDockButtons = Array.from(root.querySelectorAll('[data-selection-dock-contacted]'));
         const selectionDockSegmentButtons = Array.from(root.querySelectorAll('[data-selection-dock-segment]'));
@@ -936,6 +938,13 @@ const hasLeads = directoryData.leads.length > 0;
           const selectedEntries = parsedCards.filter((entry) => selectedLeadIds.has(entry.id));
           const withoutContact = selectedEntries.filter((entry) => !entry.isContacted).length;
           const overdueFollowups = selectedEntries.filter((entry) => classifyFollowup(entry.nextAction?.at) === 'overdue').length;
+          const selectedHot = selectedEntries.filter((entry) => entry.segment === 'hot').length;
+          const selectedWarm = selectedEntries.filter((entry) => entry.segment === 'warm').length;
+          const selectedCold = selectedEntries.filter((entry) => entry.segment === 'cold').length;
+          const selectedUntagged = selectedEntries.length - selectedHot - selectedWarm - selectedCold;
+          if (selectionSegmentBreakdown instanceof HTMLElement) {
+            selectionSegmentBreakdown.textContent = `Επιλεγμένα ανά segment: hot ${selectedHot} • warm ${selectedWarm} • cold ${selectedCold} • untagged ${selectedUntagged}`;
+          }
           if (selectionNextHint instanceof HTMLElement) {
             if (count === 0) {
               selectionNextHint.textContent = 'Επόμενο βήμα μετατροπής: επιλέξτε ορατά leads (Shift+A) και εφαρμόστε την κατάλληλη μαζική ενέργεια.';
@@ -1961,7 +1970,10 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ενημερώθηκαν ${changed} leads σε "${nextLabel}". Η αναίρεση παραμένει διαθέσιμη για ${BULK_UNDO_WINDOW_MINUTES} λεπτά.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk ενέργεια.';
           }
-          if (changed > 0) setLastActionNote(`Bulk outreach → ${nextLabel} (${changed} leads, με ενεργό παράθυρο αναίρεσης)`);
+          if (changed > 0) {
+            const undoUntil = new Date(Date.now() + BULK_UNDO_WINDOW_MS).toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' });
+            setLastActionNote(`Bulk outreach → ${nextLabel} (${changed} leads, αναίρεση έως ${undoUntil})`);
+          }
           renderSelectionState();
           scheduleRun();
         };
