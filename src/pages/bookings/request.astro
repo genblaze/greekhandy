@@ -274,7 +274,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
         )}
 
         {moderationState === 'reschedule_requested' && (
-          <div class="mt-4 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-sm text-violet-900" role="status" aria-live="polite" aria-atomic="true">
+          <div class="mt-4 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-sm text-violet-900" role="status" aria-live="polite" aria-atomic="true" aria-describedby="booking-actions-guardrail-help">
             Το αίτημα αλλαγής είναι σε έλεγχο. Δεν χρειάζεται νέα ενέργεια μέχρι να ολοκληρωθεί η απόφαση moderation.
           </div>
         )}
@@ -340,7 +340,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
             </form>
           )}
         </div>
-        <p id="booking-actions-guardrail-help" class="mt-2 text-xs text-slate-600">Σημείωση ασφάλειας: οι ενέργειες εμφανίζονται μόνο όταν επιτρέπεται η μετάβαση στην τρέχουσα κατάσταση.</p>
+        <p id="booking-actions-guardrail-help" class="mt-2 text-xs text-slate-600">Σημείωση ασφάλειας: οι ενέργειες εμφανίζονται μόνο όταν επιτρέπεται η μετάβαση στην τρέχουσα κατάσταση. Αν η κατάσταση αλλάξει στο μεταξύ, απαιτείται ανανέωση πριν από νέα ενέργεια.</p>
       </section>
     )}
   </main>

@@ -161,7 +161,7 @@ const hasAnyBookings = bookings.length > 0;
         )}
         {status === 'unauthorized' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800" role="alert" aria-live="assertive">Μη εξουσιοδοτημένη ενέργεια moderation.</p>}
 
-        <div data-booking-moderation-loading class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite" aria-atomic="true">
+        <div data-booking-moderation-loading class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite" aria-atomic="true" aria-describedby="booking-expected-actual-guardrail">
           <span class="inline-flex items-center gap-2">
             <span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-blue-300 border-t-blue-700"></span>
             Καταχώρηση μετάβασης κατάστασης... ενημερώνουμε το lifecycle του αιτήματος.
@@ -310,6 +310,7 @@ const hasAnyBookings = bookings.length > 0;
               loadingBanner.classList.remove('hidden');
               loadingBanner.setAttribute('role', 'status');
               loadingBanner.setAttribute('aria-live', 'polite');
+              loadingBanner.setAttribute('aria-busy', 'true');
               loadingBanner.textContent = 'Καταχώρηση μετάβασης... οι υπόλοιπες ενέργειες κλειδώθηκαν προσωρινά για batch-safe αποφυγή διπλών μεταβάσεων.';
             }
 
@@ -331,6 +332,9 @@ const hasAnyBookings = bookings.length > 0;
                   candidateButton.removeAttribute('aria-busy');
                   candidateButton.textContent = defaultLabel;
                   submissionLocked = false;
+                  if (loadingBanner instanceof HTMLElement) {
+                    loadingBanner.removeAttribute('aria-busy');
+                  }
                 }, 12000);
               }
             }
