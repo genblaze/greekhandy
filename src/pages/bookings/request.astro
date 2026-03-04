@@ -59,6 +59,13 @@ const statusStyles: Record<BookingModerationState, { badge: string; tone: string
     label: 'Απορρίφθηκε',
     summary: 'Το αίτημα δεν εγκρίθηκε στο στάδιο moderation.',
     hint: 'Μπορείτε να υποβάλετε νέο αίτημα με πιο συγκεκριμένες λεπτομέρειες ή να επιλέξετε άλλον επαγγελματία.'
+  },
+  cancelled: {
+    badge: 'bg-slate-100 text-slate-900 border border-slate-300',
+    tone: 'border-slate-300 bg-slate-100 text-slate-900',
+    label: 'Ακυρώθηκε',
+    summary: 'Το αίτημα ακυρώθηκε και δεν θα προχωρήσει σε ανάθεση.',
+    hint: 'Αν θέλετε, μπορείτε να δημιουργήσετε νέο αίτημα με ενημερωμένες λεπτομέρειες.'
   }
 };
 
@@ -78,24 +85,30 @@ const canOpenProfessionalProfile = Boolean(professionalSlug);
 const statusPills: Array<{ key: BookingModerationState; label: string }> = [
   { key: 'pending', label: 'Σε αναμονή' },
   { key: 'approved', label: 'Εγκρίθηκε' },
-  { key: 'rejected', label: 'Απορρίφθηκε' }
+  { key: 'rejected', label: 'Απορρίφθηκε' },
+  { key: 'cancelled', label: 'Ακυρώθηκε' }
 ];
 
 const timelineSteps: Array<{ key: BookingModerationState; title: string; detail: string }> = [
   { key: 'pending', title: '1. Υποβολή & Έλεγχος', detail: 'Το αίτημα έχει ληφθεί και είναι σε moderation.' },
   { key: 'approved', title: '2A. Έγκριση', detail: 'Το αίτημα εγκρίθηκε και προχωρά σε επικοινωνία.' },
-  { key: 'rejected', title: '2B. Απόρριψη', detail: 'Το αίτημα απορρίφθηκε και μπορείτε να στείλετε νέο.' }
+  { key: 'rejected', title: '2B. Απόρριψη', detail: 'Το αίτημα απορρίφθηκε και μπορείτε να στείλετε νέο.' },
+  { key: 'cancelled', title: '2C. Ακύρωση', detail: 'Το αίτημα ακυρώθηκε με ασφάλεια και έκλεισε.' }
 ];
 const professionalStatusBadge = moderationState === 'approved'
   ? 'Ο επαγγελματίας ενημερώθηκε'
   : moderationState === 'rejected'
     ? 'Δεν προχώρησε σε επαγγελματία'
-    : 'Σε αναμονή επαγγελματία';
+    : moderationState === 'cancelled'
+      ? 'Η ανάθεση ακυρώθηκε'
+      : 'Σε αναμονή επαγγελματία';
 const customerStatusBadge = moderationState === 'approved'
   ? 'Πελάτης: αναμένεται επικοινωνία'
   : moderationState === 'rejected'
     ? 'Πελάτης: προτείνεται νέο αίτημα'
-    : 'Πελάτης: αναμονή ελέγχου';
+    : moderationState === 'cancelled'
+      ? 'Πελάτης: αίτημα ακυρωμένο'
+      : 'Πελάτης: αναμονή ελέγχου';
 
 ---
 
@@ -163,7 +176,7 @@ const customerStatusBadge = moderationState === 'approved'
           {reviewedAt && <p class="mt-1 text-xs opacity-85">Τελευταία ενημέρωση: {reviewedAt}</p>}
         </div>
 
-        <div class="mt-4 grid gap-2 sm:grid-cols-3">
+        <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {statusPills.map((pill) => {
             const isActive = moderationState === pill.key;
             const isCompleted = pill.key === 'pending' && moderationState !== 'pending';

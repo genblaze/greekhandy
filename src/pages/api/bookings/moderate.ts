@@ -13,12 +13,13 @@ import {
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const short = (value: string, max = 80) => encodeURIComponent(value.slice(0, max));
 
-const isState = (value: string): value is BookingModerationState => ['pending', 'approved', 'rejected'].includes(value);
+const isState = (value: string): value is BookingModerationState => ['pending', 'approved', 'rejected', 'cancelled'].includes(value);
 
 const toTargetState = (inputAction: string, inputTargetState: string): BookingModerationState | null => {
   if (isState(inputTargetState)) return inputTargetState;
   if (inputAction === 'approve') return 'approved';
   if (inputAction === 'reject') return 'rejected';
+  if (inputAction === 'cancel') return 'cancelled';
   if (inputAction === 'reset') return 'pending';
   return null;
 };
@@ -52,6 +53,10 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
     if (expectedState && currentState !== expectedState) {
       return redirect(`${returnUrl}&status=stale&bookingId=${short(bookingId)}&expected=${short(expectedState)}&actual=${short(currentState)}`, 303);
+    }
+
+    if (targetState === 'cancelled' && currentState !== 'pending') {
+      return redirect(`${returnUrl}&status=guardrail&bookingId=${short(bookingId)}&expected=${short('pending')}&actual=${short(currentState)}&reason=${short('cancel-only-from-pending')}`, 303);
     }
 
     if (currentState === targetState) {

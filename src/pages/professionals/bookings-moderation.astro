@@ -24,6 +24,7 @@ const statusTo = (url.searchParams.get('to') ?? '').trim();
 const statusExpected = (url.searchParams.get('expected') ?? '').trim();
 const statusActual = (url.searchParams.get('actual') ?? '').trim();
 const statusReason = (url.searchParams.get('reason') ?? '').trim();
+const isCancellationGuardrail = statusReason === 'cancel-only-from-pending';
 
 const formatDateTime = (value: string | undefined) => {
   const timestamp = Date.parse(value ?? '');
@@ -54,12 +55,18 @@ const stateMeta: Record<BookingModerationState, { label: string; badge: string; 
     label: 'Απορρίφθηκε',
     badge: 'border-rose-200 bg-rose-50 text-rose-900',
     timelineTitle: 'Απόρριψη & Επανυποβολή'
+  },
+  cancelled: {
+    label: 'Ακυρώθηκε',
+    badge: 'border-slate-300 bg-slate-100 text-slate-800',
+    timelineTitle: 'Ακύρωση από χρήστη'
   }
 };
 
 const transitionTargets: Array<{ state: BookingModerationState; label: string; buttonClass: string }> = [
   { state: 'approved', label: 'Μετάβαση σε Εγκρίθηκε', buttonClass: 'bg-emerald-700 hover:bg-emerald-800 text-white' },
   { state: 'rejected', label: 'Μετάβαση σε Απορρίφθηκε', buttonClass: 'bg-rose-700 hover:bg-rose-800 text-white' },
+  { state: 'cancelled', label: 'Ακύρωση αιτήματος', buttonClass: 'bg-slate-700 hover:bg-slate-800 text-white' },
   { state: 'pending', label: 'Επαναφορά σε Αναμονή', buttonClass: 'border border-gray-300 text-gray-700 hover:bg-gray-50' }
 ];
 
@@ -78,17 +85,18 @@ const bookings = submissions
 const groupedBookings: Record<BookingModerationState, typeof bookings> = {
   pending: bookings.filter((entry) => entry.resolution.state === 'pending'),
   approved: bookings.filter((entry) => entry.resolution.state === 'approved'),
-  rejected: bookings.filter((entry) => entry.resolution.state === 'rejected')
+  rejected: bookings.filter((entry) => entry.resolution.state === 'rejected'),
+  cancelled: bookings.filter((entry) => entry.resolution.state === 'cancelled')
 };
 
-const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejected'];
+const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejected', 'cancelled'];
 const hasAnyBookings = bookings.length > 0;
 ---
 
 <Layout title="Lifecycle Moderation Κρατήσεων | GreekHandy" description="Εσωτερική σελίδα διαχείρισης και μεταβάσεων κατάστασης αιτημάτων κράτησης.">
   <main class="mx-auto max-w-5xl px-4 py-14">
     <h1 class="text-3xl font-bold text-gray-900">Lifecycle Moderation Αιτημάτων Κράτησης</h1>
-    <p class="mt-2 text-gray-700">Ορατότητα σε όλα τα αιτήματα και έλεγχος μεταβάσεων κατάστασης (pending / approved / rejected).</p>
+    <p class="mt-2 text-gray-700">Ορατότητα σε όλα τα αιτήματα και έλεγχος μεταβάσεων κατάστασης (pending / approved / rejected / cancelled).</p>
 
     {!isAuthorized && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
@@ -113,10 +121,15 @@ const hasAnyBookings = bookings.length > 0;
             Batch-safe guardrail: η κατάσταση άλλαξε πριν την καταχώρηση{statusBookingId ? ` (αίτημα ${statusBookingId})` : ''}. Αναμενόταν {statusExpected || 'unknown'}, αλλά βρέθηκε {statusActual || 'unknown'}. Κάντε ανανέωση και ξαναδοκιμάστε.
           </p>
         )}
+        {status === 'guardrail' && (
+          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
+            Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isCancellationGuardrail ? 'Η ακύρωση επιτρέπεται μόνο από κατάσταση pending.' : 'Ελέγξτε τους κανόνες μετάβασης.'}
+          </p>
+        )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
         {status === 'invalid' && (
           <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
-            Μη έγκυρα δεδομένα μετάβασης. Απαιτείται bookingId, expectedState και επιτρεπτό targetState (pending/approved/rejected).
+            Μη έγκυρα δεδομένα μετάβασης. Απαιτείται bookingId, expectedState και επιτρεπτό targetState (pending/approved/rejected/cancelled).
             {statusReason === 'missing-or-invalid-expected-state' && ' Εντοπίστηκε κενό ή μη έγκυρο expectedState για batch-safe προστασία.'}
           </p>
         )}
@@ -131,10 +144,10 @@ const hasAnyBookings = bookings.length > 0;
 
         <div class="mt-6 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
           <p class="font-semibold text-slate-900">Flow μεταβάσεων</p>
-          <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong> ή <strong>rejected</strong>. Αν χρειαστεί διόρθωση, επιτρέπεται επαναφορά σε <strong>pending</strong>.</p>
+          <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Guardrail: η ακύρωση επιτρέπεται μόνο από pending. Αν χρειαστεί διόρθωση, επιτρέπεται επαναφορά σε <strong>pending</strong>.</p>
         </div>
 
-        <section class="mt-8 grid gap-3 sm:grid-cols-3">
+        <section class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {orderedStates.map((state) => (
             <div class={`rounded-xl border p-4 ${stateMeta[state].badge}`}>
               <p class="text-xs font-semibold uppercase tracking-wide opacity-80">{state}</p>
@@ -203,7 +216,11 @@ const hasAnyBookings = bookings.length > 0;
                   <span class="text-xs font-medium text-slate-500">Τρέχουσα κατάσταση: {resolution.state}</span>
 
                   {transitionTargets
-                    .filter((target) => target.state !== resolution.state)
+                    .filter((target) => {
+                      if (target.state === resolution.state) return false;
+                      if (target.state === 'cancelled' && resolution.state !== 'pending') return false;
+                      return true;
+                    })
                     .map((target) => (
                       <form action="/api/bookings/moderate" method="POST" data-moderation-form>
                         <input type="hidden" name="moderationKey" value={moderationKey} />
