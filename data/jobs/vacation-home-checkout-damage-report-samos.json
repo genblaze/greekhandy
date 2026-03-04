@@ -1,0 +1,20 @@
+{
+  "id": "vacation-home-checkout-damage-report-samos",
+  "slug": "elegxos-zimion-meta-checkout-katalymatos-samos",
+  "nameGr": "Έλεγχος Ζημιών μετά Checkout Καταλύματος στη Σάμο",
+  "nameEn": "Vacation Home Checkout Damage Report in Σάμος",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Έλεγχος ζημιών μετά checkout καταλύματος στη Σάμο με αναφορά, φωτοτεκμηρίωση και άμεση ενημέρωση ιδιοκτήτη. SEO intent: καλύπτει αναζητήσεις διαχείρισης καταλύματος «damage report Airbnb Σάμος».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος ζημιών καταλύματος Σάμος",
+    "damage report Airbnb Σάμος",
+    "διαχείριση checkout καταλύματος",
+    "αναφορά κατάστασης ακινήτου",
+    "inspection βραχυχρόνιας μίσθωσης"
+  ],
+  "status": "researched"
+}

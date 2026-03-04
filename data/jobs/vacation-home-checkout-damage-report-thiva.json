@@ -1,0 +1,20 @@
+{
+  "id": "vacation-home-checkout-damage-report-thiva",
+  "slug": "elegxos-zimion-meta-checkout-katalymatos-thiva",
+  "nameGr": "Έλεγχος Ζημιών μετά Checkout Καταλύματος στη Θήβα",
+  "nameEn": "Vacation Home Checkout Damage Report in Θήβα",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Έλεγχος ζημιών μετά checkout καταλύματος στη Θήβα με αναφορά, φωτοτεκμηρίωση και άμεση ενημέρωση ιδιοκτήτη. SEO intent: καλύπτει αναζητήσεις διαχείρισης καταλύματος «damage report Airbnb Θήβα».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος ζημιών καταλύματος Θήβα",
+    "damage report Airbnb Θήβα",
+    "διαχείριση checkout καταλύματος",
+    "αναφορά κατάστασης ακινήτου",
+    "inspection βραχυχρόνιας μίσθωσης"
+  ],
+  "status": "researched"
+}
