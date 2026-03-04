@@ -2,34 +2,34 @@
   "lastManagerRun": "2026-03-04T17:49:28Z",
   "activeAgents": {
     "research": {
-      "status": "running",
-      "task": "Research high-impact SEO expansion opportunities and produce top-priority job data additions for underserved service × city searches.",
-      "startedAt": "2026-03-04T16:32:00Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     },
     "builder": {
-      "status": "running",
-      "task": "Generate/upgrade high-priority SEO content pages from job data with polished Greek copy and metadata improvements.",
-      "startedAt": "2026-03-04T16:32:00Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     },
     "developer": {
-      "status": "running",
-      "task": "Leads Directory Page MVP in src/: build internal leads listing by category with city/status/search filters and polished UI.",
-      "startedAt": "2026-03-04T16:43:39Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     },
     "leads": {
-      "status": "running",
-      "task": "Continue broad lead acquisition across high-demand trades and cities with deduped additions in data/leads/.",
-      "startedAt": "2026-03-04T16:29:00Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     },
     "developer-2": {
-      "status": "running",
-      "task": "Booking MVP: booking request detail/status page + premium UI consistency in src/.",
-      "startedAt": "2026-03-04T16:40:00Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     },
     "developer-3": {
-      "status": "running",
-      "task": "Messaging MVP: thread list unread/preview polish + empty/error UX states in src/.",
-      "startedAt": "2026-03-04T16:40:00Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     }
   },
   "stats": {
