@@ -196,6 +196,10 @@ const professionalServiceSchema = {
 
 const profileMetaTitle = `${profile.name} | ${profile.profession} σε ${profile.city || 'Ελλάδα'} | GreekHandy`;
 const profileMetaDescription = `Επαγγελματικό προφίλ GreekHandy: ${profile.name}, ${profile.profession}${profile.city ? ` στη ${profile.city}` : ''}. Δείτε υπηρεσίες, περιοχές εξυπηρέτησης και αξιολογήσεις πελατών.`;
+
+const reviewStatusParam = (Astro.url.searchParams.get('review') || '').trim();
+const bookingStatusParam = (Astro.url.searchParams.get('booking') || '').trim();
+const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 ---
 
 <Layout
@@ -294,7 +298,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
         <div class="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 class="text-lg font-bold text-gray-900">Αξιολογήσεις</h2>
-            <p class="mt-1 text-xs text-gray-600">Δημόσια εμφανίζονται μόνο κριτικές με κατάσταση approved. Οι pending/rejected δεν επηρεάζουν τη δημόσια εικόνα.</p>
+            <p class="mt-1 text-xs text-gray-600">Δημόσια εμφανίζονται μόνο κριτικές που έχουν εγκριθεί. Όσες βρίσκονται σε έλεγχο ή δεν εγκρίνονται δεν επηρεάζουν τη δημόσια εικόνα.</p>
             {verifiedBadgeDisclaimer && <p class="mt-1 text-xs text-gray-500">{verifiedBadgeDisclaimer}</p>}
           </div>
           <div class="flex flex-col items-end gap-2">
@@ -448,6 +452,9 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
             <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δεν χάνονται τα δημόσια δεδομένα· δοκιμάστε ξανά σε λίγο.</p>
           </div>
 
+          {reviewStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Συμπληρώστε βαθμολογία και σχόλιο για να ολοκληρωθεί η κριτική.</p>}
+          {reviewStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η υποβολή δεν ολοκληρώθηκε προσωρινά. Δοκιμάστε ξανά σε λίγο.</p>}
+
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
@@ -515,6 +522,9 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε σωστά τα υποχρεωτικά πεδία (υπηρεσία, στοιχεία επικοινωνίας, μήνυμα) και δοκιμάστε ξανά.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
         </div>
+
+        {bookingStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του αιτήματος και δοκιμάστε ξανά.</p>}
+        {bookingStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή δεν ολοκληρώθηκε προσωρινά. Δοκιμάστε ξανά σε λίγο.</p>}
 
         <form
           action="/api/bookings/submit"
@@ -588,6 +598,10 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           <p data-feedback-status="blocked" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Αυτή η συνομιλία έχει μπλοκαριστεί από moderation.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
         </div>
+
+        {messageStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του μηνύματος και δοκιμάστε ξανά.</p>}
+        {messageStatusParam === 'blocked' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η συνομιλία δεν είναι διαθέσιμη αυτή τη στιγμή.</p>}
+        {messageStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή μηνύματος δεν ολοκληρώθηκε προσωρινά. Δοκιμάστε ξανά σε λίγο.</p>}
 
         <form
           action="/api/messages/submit"
