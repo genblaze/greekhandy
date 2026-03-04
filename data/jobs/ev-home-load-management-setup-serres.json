@@ -1,0 +1,20 @@
+{
+  "id": "ev-home-load-management-setup-serres",
+  "slug": "rythmisi-fortiou-fortisti-ev-spiti-serres",
+  "nameGr": "Ρύθμιση Φορτίου Φορτιστή EV Κατοικίας στις Σέρρες",
+  "nameEn": "EV Home Load Management Setup in Σέρρες",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Ρύθμιση διαχείρισης φορτίου φορτιστή EV στις Σέρρες για ασφαλή φόρτιση χωρίς υπερφόρτωση ηλεκτρικής εγκατάστασης. SEO intent: στοχεύει εμπορικές αναζητήσεις «load management φορτιστή Σέρρες» και «ρύθμιση wallbox κατοικίας».",
+  "typicalDuration": "2-4 ώρες",
+  "priceRangeEUR": "180-720€",
+  "demand": "high",
+  "keywords": [
+    "load management φορτιστή Σέρρες",
+    "ρύθμιση wallbox Σέρρες",
+    "έξυπνη φόρτιση ηλεκτρικού αυτοκινήτου",
+    "διαχείριση φορτίου κατοικίας",
+    "τεχνικός EV charger"
+  ],
+  "status": "researched"
+}

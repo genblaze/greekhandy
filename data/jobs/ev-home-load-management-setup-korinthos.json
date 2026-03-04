@@ -1,0 +1,20 @@
+{
+  "id": "ev-home-load-management-setup-korinthos",
+  "slug": "rythmisi-fortiou-fortisti-ev-spiti-korinthos",
+  "nameGr": "Ρύθμιση Φορτίου Φορτιστή EV Κατοικίας στην Κόρινθο",
+  "nameEn": "EV Home Load Management Setup in Κόρινθος",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Ρύθμιση διαχείρισης φορτίου φορτιστή EV στην Κόρινθο για ασφαλή φόρτιση χωρίς υπερφόρτωση ηλεκτρικής εγκατάστασης. SEO intent: στοχεύει εμπορικές αναζητήσεις «load management φορτιστή Κόρινθος» και «ρύθμιση wallbox κατοικίας».",
+  "typicalDuration": "2-4 ώρες",
+  "priceRangeEUR": "180-720€",
+  "demand": "high",
+  "keywords": [
+    "load management φορτιστή Κόρινθος",
+    "ρύθμιση wallbox Κόρινθος",
+    "έξυπνη φόρτιση ηλεκτρικού αυτοκινήτου",
+    "διαχείριση φορτίου κατοικίας",
+    "τεχνικός EV charger"
+  ],
+  "status": "researched"
+}
