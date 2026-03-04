@@ -133,7 +133,7 @@ const hasAnyBookings = bookings.length > 0;
     {isAuthorized && (
       <>
         {status === 'updated' && (
-          <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800" role="status" aria-live="polite">
+          <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800" role="status" aria-live="polite" aria-atomic="true">
             Η μετάβαση ολοκληρώθηκε{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}{statusFrom && statusTo ? `: ${statusFrom} → ${statusTo}` : ''}.
           </p>
         )}
@@ -172,6 +172,7 @@ const hasAnyBookings = bookings.length > 0;
           <p class="font-semibold text-slate-900">Flow μεταβάσεων</p>
           <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Από <strong>approved</strong> επιτρέπεται αίτημα αλλαγής (<strong>reschedule_requested</strong>), που κλείνει με <strong>approved</strong> ή <strong>reschedule_rejected</strong>.</p>
           <p id="booking-expected-actual-guardrail" class="mt-2 text-xs text-slate-600">Κανόνας ασφαλείας: αν εντοπιστεί ασυμφωνία expectedState/actualState, η ενέργεια ακυρώνεται και απαιτείται ανανέωση.</p>
+          <p class="mt-1 text-xs text-slate-600">Σε edge states (reschedule_requested / cancelled) εμφανίζονται μόνο συμβατές ενέργειες για αποφυγή λανθασμένων μεταβάσεων.</p>
         </div>
 
         <section class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

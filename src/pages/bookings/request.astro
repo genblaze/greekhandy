@@ -263,7 +263,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
 
         {isPendingLongerThanDay && (
           <div class="mt-4 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite">
-            Το αίτημα παραμένει σε αναμονή για πάνω από 24 ώρες. Αυτό συνήθως σημαίνει ότι βρίσκεται ακόμη σε έλεγχο moderation.
+            Το αίτημα παραμένει σε αναμονή για πάνω από 24 ώρες. Αυτό συνήθως σημαίνει ότι βρίσκεται ακόμη σε έλεγχο moderation. Μπορείτε να χρησιμοποιήσετε «Αίτημα ενημέρωσης» για επιβεβαίωση.
           </div>
         )}
 
@@ -329,7 +329,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
             </a>
           )}
           {moderationState === 'approved' && booking && (
-            <form action="/api/bookings/request-update" method="POST" class="inline-flex" aria-label={`Αίτημα αλλαγής ραντεβού για κράτηση ${bookingId}`}>
+            <form action="/api/bookings/request-update" method="POST" class="inline-flex" aria-label={`Αίτημα αλλαγής ραντεβού για κράτηση ${bookingId}`} aria-describedby="booking-actions-guardrail-help">
               <input type="hidden" name="bookingId" value={bookingId} />
               <input type="hidden" name="requestedAction" value="reschedule" />
               <input type="hidden" name="email" value={booking.email} />
