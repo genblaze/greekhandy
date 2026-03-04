@@ -65,6 +65,8 @@ const statusStyles: Record<BookingModerationState, { badge: string; tone: string
 const statusView = statusStyles[moderationState];
 const submittedAt = booking ? toDateString(booking.submittedAt) : null;
 const reviewedAt = latestAction ? toDateString(latestAction.actedAt) : null;
+const bookingAgeHours = booking ? Math.floor((Date.now() - Date.parse(booking.submittedAt)) / (1000 * 60 * 60)) : null;
+const isPendingLongerThanDay = moderationState === 'pending' && typeof bookingAgeHours === 'number' && bookingAgeHours >= 24;
 const justSubmitted = statusParam === 'submitted';
 const hasLookupError = statusParam === 'error';
 const hasInvalidLookup = statusParam === 'invalid';
@@ -193,6 +195,12 @@ const customerStatusBadge = moderationState === 'approved'
             })}
           </ol>
         </div>
+
+        {isPendingLongerThanDay && (
+          <div class="mt-4 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+            Το αίτημα παραμένει σε αναμονή για πάνω από 24 ώρες. Αυτό συνήθως σημαίνει ότι βρίσκεται ακόμη σε έλεγχο moderation.
+          </div>
+        )}
 
         {moderationResolution.hasUnknownData && (
           <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">

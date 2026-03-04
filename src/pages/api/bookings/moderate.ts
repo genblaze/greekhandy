@@ -38,8 +38,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const bookingId = clean(formData.get('bookingId'));
   const returnUrl = `/professionals/bookings-moderation?key=${encodeURIComponent(moderationKey)}`;
 
-  if (!bookingId || !targetState || (expectedState && !isState(expectedState))) {
-    return redirect(`${returnUrl}&status=invalid`, 303);
+  if (!bookingId || !targetState || !expectedState || !isState(expectedState)) {
+    return redirect(`${returnUrl}&status=invalid&reason=missing-or-invalid-expected-state`, 303);
   }
 
   try {

@@ -23,6 +23,7 @@ const statusFrom = (url.searchParams.get('from') ?? '').trim();
 const statusTo = (url.searchParams.get('to') ?? '').trim();
 const statusExpected = (url.searchParams.get('expected') ?? '').trim();
 const statusActual = (url.searchParams.get('actual') ?? '').trim();
+const statusReason = (url.searchParams.get('reason') ?? '').trim();
 
 const formatDateTime = (value: string | undefined) => {
   const timestamp = Date.parse(value ?? '');
@@ -113,7 +114,12 @@ const hasAnyBookings = bookings.length > 0;
           </p>
         )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
-        {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα μετάβασης. Ελέγξτε ότι το αίτημα έχει έγκυρο bookingId και επιτρεπτό targetState (pending/approved/rejected).</p>}
+        {status === 'invalid' && (
+          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
+            Μη έγκυρα δεδομένα μετάβασης. Απαιτείται bookingId, expectedState και επιτρεπτό targetState (pending/approved/rejected).
+            {statusReason === 'missing-or-invalid-expected-state' && ' Εντοπίστηκε κενό ή μη έγκυρο expectedState για batch-safe προστασία.'}
+          </p>
+        )}
         {status === 'unauthorized' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Μη εξουσιοδοτημένη ενέργεια moderation.</p>}
 
         <div data-booking-moderation-loading class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite">
@@ -190,10 +196,11 @@ const hasAnyBookings = bookings.length > 0;
                   </p>
                 )}
 
-                <div class="mt-4 flex flex-wrap gap-3">
+                <div class="mt-4 flex flex-wrap items-center gap-3">
                   <a href={getBookingStatusPath(bookingId)} class="rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">
                     Προβολή σελίδας κατάστασης πελάτη
                   </a>
+                  <span class="text-xs font-medium text-slate-500">Τρέχουσα κατάσταση: {resolution.state}</span>
 
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state)
