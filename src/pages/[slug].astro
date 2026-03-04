@@ -44,7 +44,7 @@ const parentCategory = isJobPage ? categories.find((c: any) => c.id === category
 // Find sub-jobs for category pages
 const subJobs = !isJobPage ? Object.values(allContent).filter((p: any) => p.categoryId === category.id || p.categorySlug === category.slug) : [];
 
-const highVolumeFilterSlugs = new Set(['ydravlikoi']);
+const highVolumeFilterSlugs = new Set(['ydravlikoi', 'ilektrologoi']);
 const enableAdvancedCategoryUX = !isJobPage && (highVolumeFilterSlugs.has(category.slug) || subJobs.length >= 18);
 const cityTokens = ['athina', 'thessaloniki', 'patra', 'irakleio', 'larisa', 'volos', 'ioannina'];
 const urgencyKeywords = ['amesi', 'ektakti', 'epeigon'];
@@ -60,6 +60,12 @@ const classifyBudget = (priceRange: string | undefined) => {
 
 const getJobCity = (job: any) => cityTokens.find((token) => job.slug?.endsWith(`-${token}`)) || 'all';
 const isUrgentJob = (job: any) => urgencyKeywords.some((kw) => (job.slug || '').includes(kw) || (job.nameGr || '').toLocaleLowerCase('el-GR').includes(kw));
+const classifyAvailability = (job: any) => {
+  const duration = (job.summary?.typicalDuration || '').toLocaleLowerCase('el-GR');
+  if (isUrgentJob(job) || duration.includes('άμεσα') || duration.includes('24')) return 'asap';
+  if (duration.includes('ημέρ') || duration.includes('εβδομάδ')) return 'this-week';
+  return 'flexible';
+};
 
 // Resolve related category names
 const relatedCategories = (category.relatedCategories || []).map((slug: string) => ({
@@ -209,7 +215,7 @@ const faqSchema = category.faq?.length ? {
           {enableAdvancedCategoryUX && subJobs.length > 0 && (
             <div class="mt-4 rounded-xl border border-slate-200 bg-white p-4">
               <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Φίλτρα κατηγορίας</p>
-              <div class="mt-3 grid gap-3 sm:grid-cols-4">
+              <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
                 <select data-filter-urgency class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
                   <option value="all">Όλες οι προτεραιότητες</option>
                   <option value="urgent">Επείγον</option>
@@ -231,6 +237,12 @@ const faqSchema = category.faq?.length ? {
                   <option value="medium">Μεσαίο</option>
                   <option value="high">Αυξημένο</option>
                 </select>
+                <select data-filter-availability class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                  <option value="all">Όλη η διαθεσιμότητα</option>
+                  <option value="asap">Άμεσα διαθέσιμο</option>
+                  <option value="this-week">Μέσα στην εβδομάδα</option>
+                  <option value="flexible">Ευέλικτο ραντεβού</option>
+                </select>
                 <button type="button" data-filter-reset class="rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-white">Καθαρισμός</button>
               </div>
             </div>
@@ -240,7 +252,7 @@ const faqSchema = category.faq?.length ? {
             <>
               <div class="mt-4 hidden rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-900" data-subjobs-loading role="status" aria-live="polite">
                 <p class="font-semibold">Ενημέρωση λίστας υπηρεσιών...</p>
-                <p class="mt-1 text-xs">Εφαρμόζουμε φίλτρα προτεραιότητας, πόλης και budget.</p>
+                <p class="mt-1 text-xs">Εφαρμόζουμε φίλτρα προτεραιότητας, πόλης, budget και διαθεσιμότητας.</p>
               </div>
               <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-subjobs-empty role="status" aria-live="polite">
                 <p class="font-semibold text-orange-900">Δεν βρέθηκαν υπηρεσίες με αυτά τα φίλτρα.</p>
@@ -268,6 +280,7 @@ const faqSchema = category.faq?.length ? {
                     data-urgency={isUrgentJob(job) ? 'urgent' : 'standard'}
                     data-city={getJobCity(job)}
                     data-budget={classifyBudget(job.summary?.priceRangeEUR)}
+                    data-availability={classifyAvailability(job)}
                     class={`block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md ${index >= initialVisibleSubJobs ? 'hidden' : ''}`}
                   >
                     <h3 class="font-semibold text-slate-900">{job.nameGr}</h3>
@@ -282,9 +295,13 @@ const faqSchema = category.faq?.length ? {
               </div>
 
               {subJobs.length > initialVisibleSubJobs && (
-                <div class="mt-4 flex items-center justify-between gap-3">
+                <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
                   <p class="text-sm text-slate-600" data-subjobs-count aria-live="polite">Εμφανίζονται {initialVisibleSubJobs} από {subJobs.length} υπηρεσίες.</p>
-                  <button type="button" data-load-more-subjobs class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
+                  <div class="flex items-center gap-2">
+                    <button type="button" data-page-prev class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Προηγούμενα</button>
+                    <button type="button" data-page-next class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Επόμενα</button>
+                    <button type="button" data-load-more-subjobs class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
+                  </div>
                 </div>
               )}
 
@@ -313,9 +330,12 @@ const faqSchema = category.faq?.length ? {
         const urgency = document.querySelector('[data-filter-urgency]');
         const city = document.querySelector('[data-filter-city]');
         const budget = document.querySelector('[data-filter-budget]');
+        const availability = document.querySelector('[data-filter-availability]');
         const resetFilters = document.querySelector('[data-filter-reset]');
         const resetFromEmpty = document.querySelector('[data-reset-subjob-filters]');
         const loadMore = document.querySelector('[data-load-more-subjobs]');
+        const pagePrev = document.querySelector('[data-page-prev]');
+        const pageNext = document.querySelector('[data-page-next]');
         const counter = document.querySelector('[data-subjobs-count]');
         const loadingState = document.querySelector('[data-subjobs-loading]');
         const emptyState = document.querySelector('[data-subjobs-empty]');
@@ -323,6 +343,7 @@ const faqSchema = category.faq?.length ? {
         const retryState = document.querySelector('[data-subjobs-retry]');
         const initialLimit = cards.filter((card) => card.getAttribute('data-visible-initial') === '1').length || 12;
         let visibleLimit = initialLimit;
+        let pageStart = 0;
         let filterTimer = null;
 
         const setBusyState = (isBusy) => {
@@ -344,31 +365,39 @@ const faqSchema = category.faq?.length ? {
             const urgencyValue = urgency instanceof HTMLSelectElement ? urgency.value : 'all';
             const cityValue = city instanceof HTMLSelectElement ? city.value : 'all';
             const budgetValue = budget instanceof HTMLSelectElement ? budget.value : 'all';
-            const hasActiveFilters = urgencyValue !== 'all' || cityValue !== 'all' || budgetValue !== 'all';
+            const availabilityValue = availability instanceof HTMLSelectElement ? availability.value : 'all';
+            const hasActiveFilters = urgencyValue !== 'all' || cityValue !== 'all' || budgetValue !== 'all' || availabilityValue !== 'all';
 
-            let matched = 0;
-            cards.forEach((card) => {
-              const matches = (urgencyValue === 'all' || card.getAttribute('data-urgency') === urgencyValue)
+            const filteredCards = cards.filter((card) => {
+              return (urgencyValue === 'all' || card.getAttribute('data-urgency') === urgencyValue)
                 && (cityValue === 'all' || card.getAttribute('data-city') === cityValue)
-                && (budgetValue === 'all' || card.getAttribute('data-budget') === budgetValue);
-
-              if (!matches) {
-                card.classList.add('hidden');
-                return;
-              }
-
-              matched += 1;
-              const shouldShow = matched <= visibleLimit;
-              card.classList.toggle('hidden', !shouldShow);
+                && (budgetValue === 'all' || card.getAttribute('data-budget') === budgetValue)
+                && (availabilityValue === 'all' || card.getAttribute('data-availability') === availabilityValue);
             });
+
+            const matched = filteredCards.length;
+            const pageSize = visibleLimit;
+            if (pageStart >= matched) pageStart = 0;
+            const pageEnd = Math.min(pageStart + pageSize, matched);
+
+            cards.forEach((card) => card.classList.add('hidden'));
+            filteredCards.slice(pageStart, pageEnd).forEach((card) => card.classList.remove('hidden'));
 
             if (counter instanceof HTMLElement) {
               counter.textContent = matched === 0
                 ? 'Δεν υπάρχουν υπηρεσίες με αυτά τα φίλτρα.'
-                : `Εμφανίζονται ${Math.min(matched, visibleLimit)} από ${matched} υπηρεσίες.`;
+                : `Εμφανίζονται ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`;
             }
             if (loadMore instanceof HTMLButtonElement) {
-              loadMore.classList.toggle('hidden', matched <= visibleLimit || matched === 0);
+              loadMore.classList.toggle('hidden', matched <= pageSize || matched === 0);
+            }
+            if (pagePrev instanceof HTMLButtonElement) {
+              pagePrev.disabled = pageStart === 0 || matched === 0;
+              pagePrev.classList.toggle('opacity-50', pagePrev.disabled);
+            }
+            if (pageNext instanceof HTMLButtonElement) {
+              pageNext.disabled = pageEnd >= matched || matched === 0;
+              pageNext.classList.toggle('opacity-50', pageNext.disabled);
             }
             if (emptyState instanceof HTMLElement) {
               emptyState.classList.toggle('hidden', matched > 0 || !hasActiveFilters);
@@ -390,14 +419,17 @@ const faqSchema = category.faq?.length ? {
           if (urgency instanceof HTMLSelectElement) urgency.value = 'all';
           if (city instanceof HTMLSelectElement) city.value = 'all';
           if (budget instanceof HTMLSelectElement) budget.value = 'all';
+          if (availability instanceof HTMLSelectElement) availability.value = 'all';
           visibleLimit = initialLimit;
+          pageStart = 0;
           runFilters();
         };
 
-        [urgency, city, budget].forEach((el) => {
+        [urgency, city, budget, availability].forEach((el) => {
           if (el instanceof HTMLSelectElement) {
             el.addEventListener('change', () => {
               visibleLimit = initialLimit;
+              pageStart = 0;
               runFilters();
             });
           }
@@ -416,9 +448,24 @@ const faqSchema = category.faq?.length ? {
           });
         }
 
+        if (pagePrev instanceof HTMLButtonElement) {
+          pagePrev.addEventListener('click', () => {
+            pageStart = Math.max(0, pageStart - visibleLimit);
+            runFilters();
+          });
+        }
+
+        if (pageNext instanceof HTMLButtonElement) {
+          pageNext.addEventListener('click', () => {
+            pageStart += visibleLimit;
+            runFilters();
+          });
+        }
+
         if (retryState instanceof HTMLButtonElement) {
           retryState.addEventListener('click', () => {
             visibleLimit = initialLimit;
+            pageStart = 0;
             runFilters();
           });
         }
