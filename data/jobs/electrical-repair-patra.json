@@ -1,0 +1,20 @@
+{
+  "id": "electrical-repair-patra",
+  "slug": "episkevi-ilektrologikis-vlavis-patra",
+  "nameGr": "Επισκευή Ηλεκτρολογικής Βλάβης στην Πάτρα",
+  "nameEn": "Electrical Repair in Πάτρα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση επισκευή ηλεκτρολογικής βλάβης στην Πάτρα για βραχυκύκλωμα, πτώση ρεύματος ή προβληματικές γραμμές. SEO intent: καλύπτει επείγουσες αναζητήσεις «ηλεκτρολόγος βλάβη Πάτρα τώρα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολογική βλάβη Πάτρα",
+    "ηλεκτρολόγος άμεσα Πάτρα",
+    "βραχυκύκλωμα σπίτι",
+    "πτώση ρεύματος γραμμή",
+    "επισκευή ρεύματος"
+  ],
+  "status": "researched"
+}

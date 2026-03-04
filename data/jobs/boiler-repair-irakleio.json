@@ -1,0 +1,20 @@
+{
+  "id": "boiler-repair-irakleio",
+  "slug": "episkevi-levita-irakleio",
+  "nameGr": "Επισκευή Λέβητα στο Ηράκλειο",
+  "nameEn": "Boiler Repair in Ηράκλειο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Διάγνωση και επισκευή λέβητα στο Ηράκλειο για προβλήματα θέρμανσης, διαρροές ή βλάβες καυστήρα. SEO intent: στοχεύει εμπορικές αναζητήσεις όπως «επισκευή λέβητα Ηράκλειο» και «τεχνικός θέρμανσης άμεσα».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή λέβητα Ηράκλειο",
+    "τεχνικός καυστήρα Ηράκλειο",
+    "λέβητας δεν ανάβει",
+    "service λέβητα πετρελαίου",
+    "τεχνικός θέρμανσης άμεσα"
+  ],
+  "status": "researched"
+}

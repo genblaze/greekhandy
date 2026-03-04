@@ -1,0 +1,20 @@
+{
+  "id": "tap-faucet-installation-irakleio",
+  "slug": "egkatastasi-vrysis-mikti-irakleio",
+  "nameGr": "Εγκατάσταση Βρύσης/Μπαταρίας στο Ηράκλειο",
+  "nameEn": "Tap & Faucet Installation in Ηράκλειο",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Τοποθέτηση ή αντικατάσταση βρύσης και μπαταρίας στο Ηράκλειο σε κουζίνα ή μπάνιο με έλεγχο στεγανότητας. SEO intent: στοχεύει αναζητήσεις άμεσης αγοράς όπως «υδραυλικός για βρύση Ηράκλειο».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "35-120€",
+  "demand": "high",
+  "keywords": [
+    "αλλαγή βρύσης Ηράκλειο",
+    "εγκατάσταση μπαταρίας Ηράκλειο",
+    "υδραυλικός κουζίνας",
+    "διαρροή βρύσης λύση",
+    "τοποθέτηση μίκτη"
+  ],
+  "status": "researched"
+}

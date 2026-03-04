@@ -1,0 +1,20 @@
+{
+  "id": "electrical-repair-ioannina",
+  "slug": "episkevi-ilektrologikis-vlavis-ioannina",
+  "nameGr": "Επισκευή Ηλεκτρολογικής Βλάβης στα Ιωάννινα",
+  "nameEn": "Electrical Repair in Ιωάννινα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση επισκευή ηλεκτρολογικής βλάβης στα Ιωάννινα για βραχυκύκλωμα, πτώση ρεύματος ή προβληματικές γραμμές. SEO intent: καλύπτει επείγουσες αναζητήσεις «ηλεκτρολόγος βλάβη Ιωάννινα τώρα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολογική βλάβη Ιωάννινα",
+    "ηλεκτρολόγος άμεσα Ιωάννινα",
+    "βραχυκύκλωμα σπίτι",
+    "πτώση ρεύματος γραμμή",
+    "επισκευή ρεύματος"
+  ],
+  "status": "researched"
+}

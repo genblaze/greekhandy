@@ -1,0 +1,20 @@
+{
+  "id": "lighting-installation-patra",
+  "slug": "egkatastasi-fotismou-patra",
+  "nameGr": "Εγκατάσταση Φωτισμού στην Πάτρα",
+  "nameEn": "Lighting Installation in Πάτρα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση φωτιστικών, σποτ και LED στην Πάτρα με ασφαλή καλωδίωση και έλεγχο κυκλωμάτων. SEO intent: στοχεύει αναζητήσεις υψηλής πρόθεσης όπως «ηλεκτρολόγος φωτιστικά Πάτρα».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "50-260€",
+  "demand": "high",
+  "keywords": [
+    "εγκατάσταση φωτιστικών Πάτρα",
+    "ηλεκτρολόγος φωτισμός Πάτρα",
+    "τοποθέτηση σποτ οροφής",
+    "αλλαγή φωτισμού led",
+    "τεχνικός ηλεκτρολόγος άμεσα"
+  ],
+  "status": "researched"
+}

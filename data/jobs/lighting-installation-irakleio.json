@@ -1,0 +1,20 @@
+{
+  "id": "lighting-installation-irakleio",
+  "slug": "egkatastasi-fotismou-irakleio",
+  "nameGr": "Εγκατάσταση Φωτισμού στο Ηράκλειο",
+  "nameEn": "Lighting Installation in Ηράκλειο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση φωτιστικών, σποτ και LED στο Ηράκλειο με ασφαλή καλωδίωση και έλεγχο κυκλωμάτων. SEO intent: στοχεύει αναζητήσεις υψηλής πρόθεσης όπως «ηλεκτρολόγος φωτιστικά Ηράκλειο».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "50-260€",
+  "demand": "high",
+  "keywords": [
+    "εγκατάσταση φωτιστικών Ηράκλειο",
+    "ηλεκτρολόγος φωτισμός Ηράκλειο",
+    "τοποθέτηση σποτ οροφής",
+    "αλλαγή φωτισμού led",
+    "τεχνικός ηλεκτρολόγος άμεσα"
+  ],
+  "status": "researched"
+}

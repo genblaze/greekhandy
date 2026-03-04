@@ -1,0 +1,20 @@
+{
+  "id": "electrical-repair-irakleio",
+  "slug": "episkevi-ilektrologikis-vlavis-irakleio",
+  "nameGr": "Επισκευή Ηλεκτρολογικής Βλάβης στο Ηράκλειο",
+  "nameEn": "Electrical Repair in Ηράκλειο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση επισκευή ηλεκτρολογικής βλάβης στο Ηράκλειο για βραχυκύκλωμα, πτώση ρεύματος ή προβληματικές γραμμές. SEO intent: καλύπτει επείγουσες αναζητήσεις «ηλεκτρολόγος βλάβη Ηράκλειο τώρα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολογική βλάβη Ηράκλειο",
+    "ηλεκτρολόγος άμεσα Ηράκλειο",
+    "βραχυκύκλωμα σπίτι",
+    "πτώση ρεύματος γραμμή",
+    "επισκευή ρεύματος"
+  ],
+  "status": "researched"
+}
