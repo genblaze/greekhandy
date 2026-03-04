@@ -75,9 +75,9 @@
     {
       "id": "admin-dashboard",
       "name": "Admin Dashboard",
-      "description": "MVP slice scoped for immediate post-messaging launch: protected /admin shell + queue count overview + unified moderation queue for pending profiles, reviews, bookings, and reported messages. Single-item moderation actions only. Spec: data/admin-dashboard-mvp.json.",
+      "description": "MVP slice scoped for immediate post-messaging launch: protected /admin shell + queue count overview + unified moderation queue for pending profiles, reviews, bookings, and reported messages. Single-item moderation actions only. Spec: data/admin-dashboard-mvp.json. [Founder directive 2026-03-04: paused/stopped.]",
       "priority": 10,
-      "status": "in-progress",
+      "status": "paused",
       "estimatedComplexity": "medium"
     },
     {
