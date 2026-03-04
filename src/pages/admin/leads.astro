@@ -235,31 +235,31 @@ const hasLeads = directoryData.leads.length > 0;
                     Εμφανίζονται <strong data-visible-count>{directoryData.leads.length}</strong> από <strong>{directoryData.leads.length}</strong> leads.
                   </p>
                   <div class="flex items-center gap-2">
-                    <button type="button" data-export-csv class="inline-flex min-h-9 items-center rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Εξαγωγή CSV</button>
+                    <button type="button" data-export-csv aria-label="Εξαγωγή όλων των φιλτραρισμένων leads σε CSV" class="inline-flex min-h-9 items-center rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Εξαγωγή CSV</button>
                     <div data-results-loading class="hidden items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700" role="status" aria-live="polite" aria-atomic="true">
                       <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-200 border-t-sky-700"></span>
-                      Ενημέρωση αποτελεσμάτων
+                      Ενημέρωση αποτελεσμάτων. Οι αλλαγές εφαρμόζονται με ασφάλεια.
                     </div>
                   </div>
                 </div>
                 <div class="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-3">
                   <p data-pagination-summary class="text-xs text-slate-600">Σελίδα 1 από 1</p>
                   <div class="flex items-center gap-2">
-                    <button type="button" data-page-prev class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Προηγούμενη</button>
-                    <button type="button" data-page-next class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επόμενη</button>
+                    <button type="button" data-page-prev aria-label="Μετάβαση στην προηγούμενη σελίδα αποτελεσμάτων" aria-controls="leads-list-region" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Προηγούμενη</button>
+                    <button type="button" data-page-next aria-label="Μετάβαση στην επόμενη σελίδα αποτελεσμάτων" aria-controls="leads-list-region" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επόμενη</button>
                   </div>
                 </div>
                 <div class="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Bulk row actions">
-                  <button type="button" data-select-visible class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επιλογή ορατών</button>
-                  <button type="button" data-clear-selection class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός</button>
-                  <button type="button" data-bulk-contacted="true" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Bulk: Επικοινωνήθηκε</button>
-                  <button type="button" data-bulk-contacted="false" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Bulk: Χωρίς επαφή</button>
-                  <button type="button" data-bulk-segment="hot" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Bulk: Hot</button>
-                  <button type="button" data-bulk-segment="warm" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-2.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Bulk: Warm</button>
-                  <button type="button" data-bulk-segment="cold" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Bulk: Cold</button>
-                  <input type="datetime-local" data-bulk-followup-at class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
-                  <button type="button" data-bulk-followup-set class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Bulk: Follow-up date</button>
-                  <p data-selection-summary class="text-xs font-medium text-slate-600">0 επιλεγμένα</p>
+                  <button type="button" data-select-visible aria-label="Επιλογή όλων των ορατών leads σε αυτή τη σελίδα" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επιλογή ορατών</button>
+                  <button type="button" data-clear-selection aria-label="Καθαρισμός τρέχουσας επιλογής leads" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός</button>
+                  <button type="button" data-bulk-contacted="true" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Bulk: Επικοινωνήθηκε</button>
+                  <button type="button" data-bulk-contacted="false" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Bulk: Χωρίς επαφή</button>
+                  <button type="button" data-bulk-segment="hot" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Bulk: Hot</button>
+                  <button type="button" data-bulk-segment="warm" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-2.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Bulk: Warm</button>
+                  <button type="button" data-bulk-segment="cold" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Bulk: Cold</button>
+                  <input type="datetime-local" data-bulk-followup-at aria-label="Ορισμός ημερομηνίας και ώρας follow-up για επιλεγμένα leads" class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
+                  <button type="button" data-bulk-followup-set aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Bulk: Follow-up date</button>
+                  <p id="leads-selection-summary" data-selection-summary class="text-xs font-medium text-slate-600" role="status" aria-live="polite" aria-atomic="true">0 επιλεγμένα</p>
                 </div>
                 <div class="mt-3 grid gap-2 border-t border-slate-200 pt-3 sm:grid-cols-3" data-filter-analytics>
                   <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Contacted: <strong data-analytics-contacted>0</strong></p>
@@ -279,16 +279,17 @@ const hasLeads = directoryData.leads.length > 0;
                   <button type="button" data-sort-col="status" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Κατάσταση</button>
                 </div>
                 <p data-live-region class="sr-only" aria-live="polite" aria-atomic="true"></p>
+                <p data-state-live-region class="sr-only" aria-live="assertive" aria-atomic="true"></p>
               </div>
 
-              <section data-loading-skeleton class="mt-4 hidden space-y-3" aria-hidden="true">
-                <div class="rounded-xl border border-sky-200 bg-sky-50 p-3 text-xs font-semibold text-sky-800">Φόρτωση και εφαρμογή φίλτρων...</div>
+              <section data-loading-skeleton class="mt-4 hidden space-y-3" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+                <div class="rounded-xl border border-sky-200 bg-sky-50 p-3 text-xs font-semibold text-sky-800">Εφαρμόζονται φίλτρα και ταξινόμηση. Τα αποτελέσματα θα εμφανιστούν άμεσα.</div>
                 <div class="h-24 animate-pulse rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100"></div>
                 <div class="h-24 animate-pulse rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100"></div>
                 <div class="h-24 animate-pulse rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100"></div>
               </section>
 
-              <section class="mt-4 space-y-3" data-leads-list>
+              <section id="leads-list-region" class="mt-4 space-y-3" data-leads-list>
                 {directoryData.leads.map((lead) => (
                   <article
                     data-lead-card
@@ -344,6 +345,9 @@ const hasLeads = directoryData.leads.length > 0;
                     </div>
 
                     <p data-last-contacted-display class="mt-2 text-xs font-medium text-slate-600">Τελευταία επικοινωνία: Ποτέ</p>
+                    <p data-next-best-action-hint class="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700">
+                      Next best action: Ξεκινήστε με πρώτη επαφή (κλήση ή email).
+                    </p>
 
                     <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
                       <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Activity timeline</p>
@@ -393,33 +397,42 @@ const hasLeads = directoryData.leads.length > 0;
                 <p class="mt-2 text-sm">Όταν προστεθούν νέα αρχεία στο `data/leads`, θα εμφανιστούν εδώ.</p>
               </section>
 
-              <section data-empty-state="filtered" class="mt-4 hidden rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-700" role="status" aria-live="polite">
-                <h2 class="text-lg font-bold text-slate-900">Δεν βρέθηκαν αποτελέσματα</h2>
-                <p class="mt-2 text-sm">Δεν υπάρχει lead που να ταιριάζει με τα τρέχοντα φίλτρα.</p>
-                <p class="mt-1 text-xs text-slate-500">Tip: Ξεκινήστε με μόνο κατηγορία και προσθέστε σταδιακά τα υπόλοιπα φίλτρα.</p>
-                <button type="button" data-empty-reset class="mt-4 inline-flex min-h-10 items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">Καθαρισμός φίλτρων</button>
+              <section data-empty-state="filtered" class="mt-4 hidden rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-700" role="status" aria-live="polite" aria-atomic="true">
+                <h2 class="text-lg font-bold text-slate-900">Δεν βρέθηκαν leads με αυτά τα φίλτρα</h2>
+                <p class="mt-2 text-sm">Δεν υπάρχει απώλεια δεδομένων. Απλώς δεν ταιριάζει κανένα lead στα τρέχοντα κριτήρια.</p>
+                <p class="mt-1 text-xs text-slate-500">Προτεινόμενο βήμα: καθαρίστε τα φίλτρα και ξεκινήστε με κατηγορία + πόλη για πιο σταδιακό narrowing.</p>
+                <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+                  <button type="button" data-empty-reset aria-label="Καθαρισμός όλων των φίλτρων και επιστροφή σε πλήρη λίστα leads" class="inline-flex min-h-10 items-center rounded-lg bg-sky-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">Καθαρισμός φίλτρων</button>
+                  <button type="button" data-empty-clear-search aria-label="Αφαίρεση μόνο του όρου αναζήτησης" class="inline-flex min-h-10 items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">Αφαίρεση αναζήτησης</button>
+                </div>
               </section>
 
               <section data-runtime-error class="mt-4 hidden rounded-2xl border border-rose-200 bg-rose-50 p-6 text-rose-900" role="alert" aria-live="assertive">
                 <h2 class="text-lg font-bold">Σφάλμα φίλτρων</h2>
-                <p class="mt-2 text-sm" data-runtime-error-message>Παρουσιάστηκε απρόβλεπτο σφάλμα κατά την εφαρμογή φίλτρων.</p>
-                <button type="button" data-runtime-reset class="mt-4 inline-flex min-h-10 items-center rounded-lg bg-rose-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rose-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">
-                  Επαναφορά φίλτρων
-                </button>
+                <p class="mt-2 text-sm" data-runtime-error-message>Παρουσιάστηκε απρόβλεπτο σφάλμα κατά την εφαρμογή φίλτρων. Τα δεδομένα σας δεν χάθηκαν.</p>
+                <p class="mt-1 text-xs text-rose-700">Προτεινόμενο βήμα: επαναφέρετε φίλτρα για άμεση ανάκτηση ή φορτώστε ξανά τη σελίδα.</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <button type="button" data-runtime-reset aria-label="Επαναφορά φίλτρων για ανάκτηση προβολής" class="inline-flex min-h-10 items-center rounded-lg bg-rose-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rose-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">
+                    Επαναφορά φίλτρων
+                  </button>
+                  <button type="button" data-runtime-reload aria-label="Πλήρης ανανέωση σελίδας leads" class="inline-flex min-h-10 items-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-800 transition hover:bg-rose-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">
+                    Ανανέωση σελίδας
+                  </button>
+                </div>
               </section>
 
               <section data-selection-dock class="pointer-events-none fixed inset-x-0 bottom-3 z-30 hidden px-4">
                 <div class="pointer-events-auto mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur">
                   <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
                   <div class="flex flex-wrap items-center gap-2">
-                    <button type="button" data-selection-dock-contacted="true" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Επικοινωνήθηκε</button>
-                    <button type="button" data-selection-dock-contacted="false" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-3 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Χωρίς επαφή</button>
-                    <button type="button" data-selection-dock-segment="hot" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-3 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Hot</button>
-                    <button type="button" data-selection-dock-segment="warm" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-3 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Warm</button>
-                    <button type="button" data-selection-dock-segment="cold" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-3 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Cold</button>
-                    <input type="datetime-local" data-selection-dock-followup-at class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
-                    <button type="button" data-selection-dock-followup-set class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-3 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Follow-up date</button>
-                    <button type="button" data-selection-dock-clear class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός επιλογής</button>
+                    <button type="button" data-selection-dock-contacted="true" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Επικοινωνήθηκε</button>
+                    <button type="button" data-selection-dock-contacted="false" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-3 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Χωρίς επαφή</button>
+                    <button type="button" data-selection-dock-segment="hot" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-3 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Hot</button>
+                    <button type="button" data-selection-dock-segment="warm" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-3 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Warm</button>
+                    <button type="button" data-selection-dock-segment="cold" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-3 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Cold</button>
+                    <input type="datetime-local" data-selection-dock-followup-at aria-label="Ορισμός ημερομηνίας και ώρας follow-up για επιλεγμένα leads" class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
+                    <button type="button" data-selection-dock-followup-set aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-3 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Follow-up date</button>
+                    <button type="button" data-selection-dock-clear aria-label="Καθαρισμός επιλογής από το dock" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός επιλογής</button>
                   </div>
                 </div>
               </section>
@@ -500,6 +513,7 @@ const hasLeads = directoryData.leads.length > 0;
         const resultsLoading = root.querySelector('[data-results-loading]');
         const loadingSkeleton = root.querySelector('[data-loading-skeleton]');
         const liveRegion = root.querySelector('[data-live-region]');
+        const stateLiveRegion = root.querySelector('[data-state-live-region]');
         const activeFilters = root.querySelector('[data-active-filters]');
         const noActiveFilters = root.querySelector('[data-no-active-filters]');
         const clearUrlFiltersButton = root.querySelector('[data-clear-url-filters]');
@@ -534,10 +548,12 @@ const hasLeads = directoryData.leads.length > 0;
         const noDataState = root.querySelector('[data-empty-state="no-data"]');
         const filteredEmptyState = root.querySelector('[data-empty-state="filtered"]');
         const emptyReset = root.querySelector('[data-empty-reset]');
+        const emptyClearSearch = root.querySelector('[data-empty-clear-search]');
         const categoryContext = root.querySelector('[data-category-context]');
         const runtimeError = root.querySelector('[data-runtime-error]');
         const runtimeErrorMessage = root.querySelector('[data-runtime-error-message]');
         const runtimeReset = root.querySelector('[data-runtime-reset]');
+        const runtimeReload = root.querySelector('[data-runtime-reload]');
         const detailPanel = root.querySelector('[data-detail-panel]');
         const detailOverlay = root.querySelector('[data-detail-overlay]');
         const detailClose = root.querySelector('[data-detail-close]');
@@ -569,6 +585,21 @@ const hasLeads = directoryData.leads.length > 0;
           all: 'Όλα',
           contacted: 'Επικοινωνήθηκαν',
           'not-contacted': 'Χωρίς επαφή'
+        };
+        const NEXT_ACTION_KIND_LABELS = {
+          call: 'κλήση',
+          email: 'email',
+          followup: 'follow-up',
+          meeting: 'συνάντηση'
+        };
+
+        const announcePolite = (message) => {
+          if (liveRegion instanceof HTMLElement) liveRegion.textContent = message;
+        };
+
+        const announceState = (message) => {
+          if (stateLiveRegion instanceof HTMLElement) stateLiveRegion.textContent = message;
+          else announcePolite(message);
         };
 
         const toMaybeTimestamp = (value) => {
@@ -746,6 +777,8 @@ const hasLeads = directoryData.leads.length > 0;
         let lastFiltered = [];
         let lastTotalPages = 1;
         let activeDetailLeadId = '';
+        let previousSelectionCount = null;
+        let previousRenderedViewState = '';
         const PRESET_STORAGE_KEY = 'admin-leads-presets-v1';
 
         const readPresets = () => {
@@ -868,6 +901,44 @@ const hasLeads = directoryData.leads.length > 0;
           });
           if (clearSelectionButton instanceof HTMLButtonElement) clearSelectionButton.disabled = count === 0;
           if (selectionDockClear instanceof HTMLButtonElement) selectionDockClear.disabled = count === 0;
+
+           bulkStatusButtons.forEach((button) => {
+            if (!(button instanceof HTMLButtonElement)) return;
+            const action = button.dataset.bulkContacted === 'true'
+              ? 'Μαζική επισήμανση ως επικοινωνημένα'
+              : 'Μαζική επισήμανση ως χωρίς επαφή';
+            button.setAttribute('aria-label', `${action} για ${count} επιλεγμένα leads`);
+          });
+          bulkSegmentButtons.forEach((button) => {
+            if (!(button instanceof HTMLButtonElement)) return;
+            const segment = button.dataset.bulkSegment || 'untagged';
+            button.setAttribute('aria-label', `Μαζική ενημέρωση segment σε ${segment} για ${count} επιλεγμένα leads`);
+          });
+          selectionDockButtons.forEach((button) => {
+            if (!(button instanceof HTMLButtonElement)) return;
+            const action = button.dataset.selectionDockContacted === 'true'
+              ? 'Μαζική επισήμανση ως επικοινωνημένα'
+              : 'Μαζική επισήμανση ως χωρίς επαφή';
+            button.setAttribute('aria-label', `${action} από το dock για ${count} επιλεγμένα leads`);
+          });
+          selectionDockSegmentButtons.forEach((button) => {
+            if (!(button instanceof HTMLButtonElement)) return;
+            const segment = button.dataset.selectionDockSegment || 'untagged';
+            button.setAttribute('aria-label', `Μαζική ενημέρωση segment σε ${segment} από το dock για ${count} επιλεγμένα leads`);
+          });
+          if (bulkFollowupSet instanceof HTMLButtonElement) {
+            bulkFollowupSet.setAttribute('aria-label', `Ορισμός follow-up ημερομηνίας για ${count} επιλεγμένα leads`);
+          }
+          if (selectionDockFollowupSet instanceof HTMLButtonElement) {
+            selectionDockFollowupSet.setAttribute('aria-label', `Ορισμός follow-up ημερομηνίας από το dock για ${count} επιλεγμένα leads`);
+          }
+
+          if (previousSelectionCount !== null && previousSelectionCount !== count) {
+            announcePolite(count > 0
+              ? `Επιλέχθηκαν ${count} leads για μαζικές ενέργειες.`
+              : 'Η τρέχουσα επιλογή καθαρίστηκε.');
+          }
+          previousSelectionCount = count;
         };
 
         const renderStatusChip = (entry) => {
@@ -935,6 +1006,74 @@ const hasLeads = directoryData.leads.length > 0;
           if (noteInput instanceof HTMLInputElement && noteInput.value !== entry.note) noteInput.value = entry.note || '';
         };
 
+        const resolveNextBestActionHint = (entry) => {
+          const scheduledAt = toMaybeTimestamp(entry.nextAction?.at);
+          const followupClass = classifyFollowup(entry.nextAction?.at);
+          const actionKind = NEXT_ACTION_KIND_LABELS[entry.nextAction?.kind] || 'follow-up';
+          const hasPhone = Boolean(entry.phone);
+          const hasEmail = Boolean(entry.email);
+
+          if (Number.isFinite(scheduledAt)) {
+            if (followupClass === 'overdue') {
+              return {
+                tone: 'critical',
+                text: `Επόμενη καλύτερη ενέργεια: Η προγραμματισμένη ${actionKind} έχει λήξει. Εκτελέστε την άμεσα.`
+              };
+            }
+            if (followupClass === 'today') {
+              return {
+                tone: 'due-soon',
+                text: `Επόμενη καλύτερη ενέργεια: ${actionKind} σήμερα στις ${new Date(scheduledAt).toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' })}.`
+              };
+            }
+            return {
+              tone: 'scheduled',
+              text: `Επόμενη καλύτερη ενέργεια: ${actionKind} στις ${new Date(scheduledAt).toLocaleString('el-GR')}.`
+            };
+          }
+
+          if (!entry.isContacted) {
+            if (hasPhone && hasEmail) {
+              return { tone: 'priority', text: 'Επόμενη καλύτερη ενέργεια: Ξεκινήστε πρώτη επαφή με κλήση ή email.' };
+            }
+            if (hasPhone) {
+              return { tone: 'priority', text: 'Επόμενη καλύτερη ενέργεια: Ξεκινήστε πρώτη επαφή με κλήση.' };
+            }
+            if (hasEmail) {
+              return { tone: 'priority', text: 'Επόμενη καλύτερη ενέργεια: Ξεκινήστε πρώτη επαφή με email.' };
+            }
+            return { tone: 'info', text: 'Επόμενη καλύτερη ενέργεια: Προσθέστε τηλέφωνο ή email πριν το outreach.' };
+          }
+
+          if (entry.status === 'qualified') {
+            return { tone: 'progress', text: 'Επόμενη καλύτερη ενέργεια: Κλείστε συνάντηση ή follow-up για μετατροπή.' };
+          }
+
+          return { tone: 'info', text: 'Επόμενη καλύτερη ενέργεια: Ορίστε follow-up για να διατηρηθεί το momentum.' };
+        };
+
+        const renderNextBestActionHint = (entry) => {
+          const hintElement = entry.card.querySelector('[data-next-best-action-hint]');
+          if (!(hintElement instanceof HTMLElement)) return;
+          const hint = resolveNextBestActionHint(entry);
+          hintElement.textContent = hint.text;
+          hintElement.className = 'mt-2 rounded-lg border px-3 py-2 text-xs font-semibold';
+
+          if (hint.tone === 'critical') {
+            hintElement.classList.add('border-rose-200', 'bg-rose-50', 'text-rose-800');
+          } else if (hint.tone === 'due-soon') {
+            hintElement.classList.add('border-amber-200', 'bg-amber-50', 'text-amber-900');
+          } else if (hint.tone === 'scheduled') {
+            hintElement.classList.add('border-indigo-200', 'bg-indigo-50', 'text-indigo-900');
+          } else if (hint.tone === 'priority') {
+            hintElement.classList.add('border-sky-200', 'bg-sky-50', 'text-sky-900');
+          } else if (hint.tone === 'progress') {
+            hintElement.classList.add('border-emerald-200', 'bg-emerald-50', 'text-emerald-900');
+          } else {
+            hintElement.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
+          }
+        };
+
         const renderCardOutreach = (entry) => {
           const badge = entry.card.querySelector('[data-outreach-badge]');
           const lastContacted = entry.card.querySelector('[data-last-contacted-display]');
@@ -975,6 +1114,7 @@ const hasLeads = directoryData.leads.length > 0;
 
           renderStatusChip(entry);
           renderSegmentBadge(entry);
+          renderNextBestActionHint(entry);
           renderActivityTimeline(entry);
         };
 
@@ -1101,13 +1241,22 @@ const hasLeads = directoryData.leads.length > 0;
             clearSearchButton.classList.toggle('hidden', !state.search.trim());
             clearSearchButton.classList.toggle('inline-flex', Boolean(state.search.trim()));
           }
+          if (emptyClearSearch instanceof HTMLButtonElement) {
+            emptyClearSearch.disabled = !state.search.trim();
+            emptyClearSearch.classList.toggle('opacity-60', !state.search.trim());
+            emptyClearSearch.classList.toggle('cursor-not-allowed', !state.search.trim());
+          }
         };
 
         const setBusy = (isBusy) => {
           if (resultsRegion instanceof HTMLElement) resultsRegion.setAttribute('aria-busy', isBusy ? 'true' : 'false');
           if (resultsLoading instanceof HTMLElement) resultsLoading.classList.toggle('hidden', !isBusy);
           if (resultsLoading instanceof HTMLElement) resultsLoading.classList.toggle('inline-flex', isBusy);
-          if (loadingSkeleton instanceof HTMLElement) loadingSkeleton.classList.toggle('hidden', !isBusy || !hasAnyData);
+          if (loadingSkeleton instanceof HTMLElement) {
+            const showLoading = Boolean(isBusy && hasAnyData);
+            loadingSkeleton.classList.toggle('hidden', !showLoading);
+            loadingSkeleton.setAttribute('aria-hidden', showLoading ? 'false' : 'true');
+          }
         };
 
         const matchesLead = (lead, criteria = state) => {
