@@ -1,5 +1,5 @@
 {
-  "lastManagerRun": "2026-03-04T16:37:35Z",
+  "lastManagerRun": "2026-03-04T16:40:00Z",
   "activeAgents": {
     "research": {
       "status": "running",
@@ -20,6 +20,16 @@
       "status": "running",
       "task": "Continue broad lead acquisition across high-demand trades and cities with deduped additions in data/leads/.",
       "startedAt": "2026-03-04T16:29:00Z"
+    },
+    "developer-2": {
+      "status": "running",
+      "task": "Booking MVP: booking request detail/status page + premium UI consistency in src/.",
+      "startedAt": "2026-03-04T16:40:00Z"
+    },
+    "developer-3": {
+      "status": "running",
+      "task": "Messaging MVP: thread list unread/preview polish + empty/error UX states in src/.",
+      "startedAt": "2026-03-04T16:40:00Z"
     }
   },
   "stats": {
@@ -27,6 +37,6 @@
     "jobsResearched": 110,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Processed founder directive: added roadmap item for leads directory page with category and related filters; kept active agents running per scope.",
+  "lastDecision": "Kept currently active agents running; dispatched developer-2 to booking status page slice and developer-3 to messaging thread-list UX polish.",
   "blockers": []
 }
