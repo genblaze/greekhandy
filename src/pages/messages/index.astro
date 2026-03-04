@@ -699,6 +699,7 @@ const inboxReadinessHint = listLoadError
         </div>
       )}
     </section>
+    <p id="messages-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
 
     {listLoadError && (
       <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900" role="alert" aria-live="assertive">
@@ -1211,7 +1212,14 @@ const inboxReadinessHint = listLoadError
                 </a>
 
                 {thread.unreadCount > 0 && (
-                  <form action="/api/messages/read" method="POST" class="js-pending-form">
+                  <form
+                    action="/api/messages/read"
+                    method="POST"
+                    class="js-pending-form"
+                    data-pending-live-label="Η κατάσταση ανάγνωσης ενημερώνεται."
+                    data-pending-timeout-label="Η ενημέρωση ανάγνωσης καθυστέρησε. Δοκιμάστε ξανά."
+                    data-pending-timeout-ms="15000"
+                  >
                     <input type="hidden" name="threadId" value={thread.threadId} />
                     <input type="hidden" name="viewerEmail" value={viewerEmail} />
                     <input type="hidden" name="returnTo" value={listReturnTo} />
@@ -1663,6 +1671,18 @@ const inboxReadinessHint = listLoadError
       }
 
       const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
+      const submitLiveRegion = document.querySelector('#messages-submit-live');
+      const pendingTimeouts = new WeakMap();
+      const clearPendingTimeout = (form) => {
+        const timer = pendingTimeouts.get(form);
+        if (typeof timer === 'number') {
+          window.clearTimeout(timer);
+        }
+        pendingTimeouts.delete(form);
+      };
+      const announceSubmitState = (message) => {
+        if (submitLiveRegion instanceof HTMLElement) submitLiveRegion.textContent = message;
+      };
       const setFormPending = (form, isPending) => {
         const submitButton = form.querySelector('button[type="submit"]');
         if (!(submitButton instanceof HTMLButtonElement)) return;
@@ -1670,11 +1690,13 @@ const inboxReadinessHint = listLoadError
           !(control instanceof HTMLInputElement && control.type === 'hidden')
         ));
         const parentCard = form.closest('.thread-card');
+        clearPendingTimeout(form);
 
         form.setAttribute('aria-busy', isPending ? 'true' : 'false');
         form.classList.toggle('opacity-80', isPending);
         if (parentCard instanceof HTMLElement) {
           parentCard.classList.toggle('thread-card--pending', isPending);
+          parentCard.setAttribute('aria-busy', isPending ? 'true' : 'false');
         }
 
         if (isPending) {
@@ -1688,6 +1710,15 @@ const inboxReadinessHint = listLoadError
           form.setAttribute('data-submit-label', defaultLabel);
           submitButton.textContent = pendingLabel;
           submitButton.setAttribute('aria-busy', 'true');
+          const timeoutMs = Number(form.getAttribute('data-pending-timeout-ms') || '15000');
+          if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+            const timeoutId = window.setTimeout(() => {
+              if (form.getAttribute('aria-busy') !== 'true') return;
+              setFormPending(form, false);
+              announceSubmitState(form.getAttribute('data-pending-timeout-label') || 'Η ενέργεια καθυστέρησε. Δοκιμάστε ξανά.');
+            }, timeoutMs);
+            pendingTimeouts.set(form, timeoutId);
+          }
           return;
         }
 
@@ -1707,9 +1738,16 @@ const inboxReadinessHint = listLoadError
         form.addEventListener('submit', (event) => {
           if (form.getAttribute('aria-busy') === 'true') {
             event.preventDefault();
+            announceSubmitState('Η ενημέρωση βρίσκεται ήδη σε εξέλιξη.');
             return;
           }
-          if (!form.checkValidity()) return;
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            form.reportValidity();
+            announceSubmitState('Ελέγξτε τα στοιχεία και δοκιμάστε ξανά.');
+            return;
+          }
+          announceSubmitState(form.getAttribute('data-pending-live-label') || 'Η ενημέρωση εκτελείται.');
           setFormPending(form, true);
         });
       }
@@ -1718,6 +1756,7 @@ const inboxReadinessHint = listLoadError
         for (const form of pendingForms) {
           setFormPending(form, false);
         }
+        announceSubmitState('');
       });
     })();
   </script>

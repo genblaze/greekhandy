@@ -550,6 +550,7 @@ for (const message of threadMessages) {
         </div>
       )}
     </section>
+    <p id="thread-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
 
     {hasMissingParams && (
       <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-missing-params-title" aria-describedby="thread-missing-params-description">
@@ -934,7 +935,15 @@ for (const message of threadMessages) {
                     {!hidden && !own && (
                       <details class="thread-report mt-3 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50/80 to-white p-3" aria-labelledby={reportSummaryId}>
                         <summary id={reportSummaryId} class="cursor-pointer text-xs font-semibold text-amber-900">Αναφορά μηνύματος στη διαχείριση</summary>
-                        <form action="/api/messages/report" method="POST" class="js-pending-form mt-3 space-y-2">
+                        <form
+                          action="/api/messages/report"
+                          method="POST"
+                          class="js-pending-form mt-3 space-y-2"
+                          data-pending-live-label="Η αναφορά υποβάλλεται."
+                          data-pending-timeout-label="Η υποβολή αναφοράς καθυστέρησε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
+                          data-pending-timeout-ms="16000"
+                          aria-describedby={`${reportHintId} thread-submit-live`}
+                        >
                           <input type="hidden" name="threadId" value={threadId} />
                           <input type="hidden" name="messageId" value={message.id} />
                           <input type="hidden" name="senderEmail" value={viewerEmail} />
@@ -942,7 +951,7 @@ for (const message of threadMessages) {
 
                           <label class="block text-xs font-medium text-amber-900">
                             Αιτία αναφοράς
-                            <select id={reasonId} name="reason" class="mt-1 w-full rounded-lg border border-amber-300 bg-white px-2.5 py-2 text-xs text-slate-800">
+                            <select id={reasonId} name="reason" required class="mt-1 w-full rounded-lg border border-amber-300 bg-white px-2.5 py-2 text-xs text-slate-800">
                               <option value="spam">Spam</option>
                               <option value="abuse">Κακοποίηση</option>
                               <option value="harassment">Παρενόχληση</option>
@@ -1022,8 +1031,11 @@ for (const message of threadMessages) {
               class="js-pending-form js-composer-form mt-4 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_16px_42px_-30px_rgba(14,116,144,0.45)]"
               data-composer-state={composerInitialState}
               data-focus-composer={messageStatus === 'invalid' || messageStatus === 'error' ? 'true' : 'false'}
+              data-pending-live-label="Η αποστολή μηνύματος εκτελείται."
+              data-pending-timeout-label="Η αποστολή καθυστέρησε. Ελέγξτε το δίκτυο και δοκιμάστε ξανά."
+              data-pending-timeout-ms="18000"
               aria-labelledby="thread-composer-title"
-              aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live"
+              aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live composer-submit-live"
             >
               <div class="flex flex-wrap items-start justify-between gap-2">
                 <div>
@@ -1054,11 +1066,12 @@ for (const message of threadMessages) {
                 required
                 maxlength="2000"
                 minlength="1"
-                aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live"
+                aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live composer-submit-live"
                 aria-keyshortcuts="Control+Enter Meta+Enter"
                 aria-invalid="false"
                 class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm leading-6 text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-100"
                 placeholder="Γράψτε το μήνυμά σας"
+                spellcheck="true"
               ></textarea>
               <p id="composer-shortcuts" class="mt-2 text-xs text-slate-500">Συντόμευση πληκτρολογίου: <span class="font-semibold text-slate-700">Ctrl+Enter</span> (ή <span class="font-semibold text-slate-700">Cmd+Enter</span> σε Mac) για αποστολή.</p>
               <div class="mt-2 flex items-center justify-between text-xs">
@@ -1066,6 +1079,7 @@ for (const message of threadMessages) {
                 <p id="composer-count" class="text-slate-500">0 / 2000</p>
               </div>
               <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite"></p>
+              <p id="composer-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
               <button type="submit" data-default-label="Αποστολή" data-pending-label="Αποστολή..." disabled class="mt-3 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-65">Αποστολή</button>
             </form>
           )}
@@ -1517,12 +1531,27 @@ for (const message of threadMessages) {
       window.addEventListener('hashchange', highlightMessageFromHash);
 
       const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
+      const globalSubmitLive = document.querySelector('#thread-submit-live');
+      const pendingTimeouts = new WeakMap();
+      const clearPendingTimeout = (form) => {
+        const timer = pendingTimeouts.get(form);
+        if (typeof timer === 'number') {
+          window.clearTimeout(timer);
+        }
+        pendingTimeouts.delete(form);
+      };
+      const announcePendingState = (form, message) => {
+        const scopedLiveRegion = form.querySelector('#composer-submit-live');
+        if (scopedLiveRegion instanceof HTMLElement) scopedLiveRegion.textContent = message;
+        if (globalSubmitLive instanceof HTMLElement) globalSubmitLive.textContent = message;
+      };
       const setFormPending = (form, isPending) => {
         const submitButton = form.querySelector('button[type="submit"]');
         if (!(submitButton instanceof HTMLButtonElement)) return;
         const controls = Array.from(form.querySelectorAll('button, input, select, textarea')).filter((control) => (
           !(control instanceof HTMLInputElement && control.type === 'hidden')
         ));
+        clearPendingTimeout(form);
 
         form.setAttribute('aria-busy', isPending ? 'true' : 'false');
         form.classList.toggle('opacity-80', isPending);
@@ -1538,6 +1567,24 @@ for (const message of threadMessages) {
           form.setAttribute('data-submit-label', defaultLabel);
           submitButton.textContent = pendingLabel;
           submitButton.setAttribute('aria-busy', 'true');
+          const timeoutMs = Number(form.getAttribute('data-pending-timeout-ms') || '15000');
+          if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+            const timeoutId = window.setTimeout(() => {
+              if (form.getAttribute('aria-busy') !== 'true') return;
+              setFormPending(form, false);
+              announcePendingState(form, form.getAttribute('data-pending-timeout-label') || 'Η υποβολή καθυστέρησε. Δοκιμάστε ξανά.');
+              if (form.classList.contains('js-composer-form')) {
+                const composerState = form.querySelector('#composer-state');
+                if (composerState instanceof HTMLElement) {
+                  composerState.className = 'inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold border-rose-300 bg-rose-100 text-rose-900';
+                  composerState.textContent = 'Η αποστολή έληξε χρονικά. Δοκιμάστε ξανά.';
+                }
+                const composerLive = form.querySelector('#composer-live');
+                if (composerLive instanceof HTMLElement) composerLive.textContent = 'Η αποστολή έληξε χρονικά. Δοκιμάστε ξανά.';
+              }
+            }, timeoutMs);
+            pendingTimeouts.set(form, timeoutId);
+          }
           return;
         }
 
@@ -1585,6 +1632,7 @@ for (const message of threadMessages) {
           const length = textarea.value.trim().length;
           const remaining = maxLength - length;
           const isBusy = form.getAttribute('aria-busy') === 'true';
+          textarea.setCustomValidity(length === 0 ? 'Συμπληρώστε μήνυμα.' : '');
           submitButton.disabled = length === 0 || isBusy;
           submitButton.setAttribute('aria-disabled', submitButton.disabled ? 'true' : 'false');
           if (counter) {
@@ -1634,6 +1682,8 @@ for (const message of threadMessages) {
               submitButton.disabled = true;
               textarea.setAttribute('aria-invalid', 'true');
               setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
+              announcePendingState(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.');
+              textarea.reportValidity();
               textarea.focus();
               return;
             }
@@ -1648,15 +1698,23 @@ for (const message of threadMessages) {
         form.addEventListener('submit', (event) => {
           if (form.getAttribute('aria-busy') === 'true') {
             event.preventDefault();
+            announcePendingState(form, 'Η υποβολή βρίσκεται ήδη σε εξέλιξη.');
             return;
           }
-          if (!form.checkValidity()) return;
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            form.reportValidity();
+            announcePendingState(form, 'Ελέγξτε τα πεδία και προσπαθήστε ξανά.');
+            return;
+          }
           if (textarea instanceof HTMLTextAreaElement && textarea.value.trim().length === 0) {
             event.preventDefault();
             if (error) error.classList.remove('hidden');
             if (live) live.textContent = 'Πληκτρολογήστε μήνυμα πριν την αποστολή.';
             textarea.setAttribute('aria-invalid', 'true');
             setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
+            announcePendingState(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.');
+            textarea.reportValidity();
             textarea.focus();
             return;
           }
@@ -1664,6 +1722,7 @@ for (const message of threadMessages) {
             setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
             if (live) live.textContent = 'Αποστολή μηνύματος...';
           }
+          announcePendingState(form, form.getAttribute('data-pending-live-label') || 'Η υποβολή εκτελείται.');
           setFormPending(form, true);
         });
       }
@@ -1672,6 +1731,7 @@ for (const message of threadMessages) {
         for (const form of pendingForms) {
           setFormPending(form, false);
         }
+        if (globalSubmitLive instanceof HTMLElement) globalSubmitLive.textContent = '';
         const composerTextarea = document.querySelector('#composer-message');
         if (composerTextarea instanceof HTMLTextAreaElement) {
           composerTextarea.dispatchEvent(new Event('input', { bubbles: true }));
