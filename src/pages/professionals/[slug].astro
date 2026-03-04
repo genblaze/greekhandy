@@ -890,12 +890,13 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
         };
 
-        const updateMessageFieldValidity = (form) => {
+        const updateMessageFieldValidity = (form, forceInvalidState = false) => {
           const messageField = form.querySelector('textarea[name="message"]');
           if (!(messageField instanceof HTMLTextAreaElement)) return;
           const isValid = messageField.value.trim().length > 0;
+          const touched = forceInvalidState || form.getAttribute('data-message-touched') === 'true';
           messageField.setCustomValidity(isValid ? '' : 'Συμπληρώστε μήνυμα.');
-          messageField.setAttribute('aria-invalid', isValid ? 'false' : 'true');
+          messageField.setAttribute('aria-invalid', (!isValid && touched) ? 'true' : 'false');
         };
 
         for (const form of document.querySelectorAll('[data-pending-form]')) {
@@ -906,6 +907,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
             form.addEventListener('input', (event) => {
               if (!(event.target instanceof HTMLElement)) return;
               if (event.target.getAttribute('name') !== 'message') return;
+              form.setAttribute('data-message-touched', 'true');
               updateMessageFieldValidity(form);
             });
           }
@@ -917,7 +919,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
             }
 
             if (form.hasAttribute('data-message-form')) {
-              updateMessageFieldValidity(form);
+              updateMessageFieldValidity(form, true);
             }
 
             if (!form.checkValidity()) {
