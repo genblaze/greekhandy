@@ -21,7 +21,10 @@ const isValidSlug = (value: string) => /^[a-z0-9](?:[a-z0-9-]{0,119})$/.test(val
 const isValidThreadId = (value: string) => /^[a-z0-9|@._-]{1,220}$/.test(value);
 
 const toSafeLogMessage = (error: unknown) => {
-  if (error instanceof Error) return error.message;
+  if (error instanceof Error) {
+    const normalized = error.message.replace(/^TypeError:\s*/i, '').trim();
+    return normalized || 'unknown-error';
+  }
   return 'unknown-error';
 };
 
