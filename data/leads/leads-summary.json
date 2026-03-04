@@ -1,12 +1,13 @@
 {
-  "totalLeads": 250,
+  "totalLeads": 300,
   "byCategory": {
     "ilektrologoi": 40,
     "ydravlikoi": 40,
     "elaiokhrwmatistes": 20,
     "katharismoi": 50,
     "techniki-klimatismou": 50,
-    "kleidarades": 50
+    "kleidarades": 50,
+    "ksyloyrgoi": 50
   },
-  "lastUpdated": "2026-03-04T16:15:45Z"
+  "lastUpdated": "2026-03-04T16:17:43Z"
 }
