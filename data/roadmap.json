@@ -3,7 +3,7 @@
     {
       "id": "qa-critical-fixes-wave-1",
       "name": "QA Critical Fixes (Wave 1)",
-      "description": "Fix broken professional images with validation gates, remove public-facing failure diagnostics, ship complete OG/Twitter metadata, and deploy robust SEO-safe custom 404 UX.",
+      "description": "Fix critical trust/UX/SEO issues from QA: broken professional images with robust fallbacks + publish validation gates, remove public-facing failure diagnostics and defer validation errors until user interaction, ensure complete OG/Twitter metadata, ship SEO-safe custom 404 UX, and improve homepage language consistency + information architecture (less endless-scroll fatigue).",
       "priority": 1,
       "status": "in-progress",
       "estimatedComplexity": "high"
