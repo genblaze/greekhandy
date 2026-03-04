@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Professional pages are shipping broken image URLs (Unsplash 404s), e.g. /professionals/giannis-kosta-klimatismos and /professionals/maria-georgiou-ydravlikos. Replace dead image sources immediately and add image URL validation in build so no profile card can publish with a broken hero/avatar.",
+      "addedAt": "2026-03-04T20:27:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional profile UX is unacceptable: pages show failure-state copy to users (e.g. 'Αξιοπιστία: προσωρινά χαμηλή λόγω αποτυχίας φόρτωσης', 'Σφάλμα φόρτωσης κριτικών'). Hide internal failure diagnostics from public UI, implement graceful fallback for reviews, and show a clean empty-state instead of panic messaging.",
+      "addedAt": "2026-03-04T20:27:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Homepage and key landing pages are missing social preview essentials (no og:image, no twitter:card). Add complete Open Graph + Twitter metadata with a real branded image so links don’t look broken/cheap when shared.",
+      "addedAt": "2026-03-04T20:27:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "The 404 experience is broken for SEO and trust: typo URLs like /profissionals return a page without title/description. Ship a proper custom 404 with meaningful <title>, meta description, clear navigation back to categories/home, and index control.",
+      "addedAt": "2026-03-04T20:27:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "City service pages are near-clones (e.g. /episkevi-klimatistikou-athina vs /episkevi-klimatistikou-thessaloniki are ~96% identical text). Rewrite with real local differentiation (neighborhood coverage, local pricing realities, local proof/reviews) or you’re creating doorway-style thin pages that look programmatic and low-trust.",
+      "addedAt": "2026-03-04T20:27:39Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
