@@ -98,15 +98,15 @@ const threadModerationLabel = threadModerationTone === 'blocked'
         : 'Ενεργή συνομιλία';
 
 const threadModerationDescription = threadModerationTone === 'blocked'
-  ? 'Η αποστολή νέων μηνυμάτων είναι απενεργοποιημένη από moderation.'
+  ? 'Η συνομιλία έχει μπλοκαριστεί από moderation. Μπορείτε να διαβάζετε το ιστορικό, αλλά δεν επιτρέπεται νέα αποστολή.'
   : threadModerationTone === 'hidden'
     ? threadMutedByModeration
       ? 'Όλα τα μηνύματα είναι κρυφά από moderation. Η απάντηση είναι προσωρινά απενεργοποιημένη.'
       : `Μέρος της συνομιλίας έχει κρυφτεί από moderation (κρυφά: ${hiddenMessagesCount}/${threadMessages.length}).`
     : threadModerationTone === 'reported'
-      ? 'Η συνομιλία βρίσκεται σε επανεξέταση από την ομάδα moderation.'
+      ? 'Η συνομιλία έχει αναφερθεί και βρίσκεται σε ενεργό έλεγχο moderation.'
       : threadModerationTone === 'rejected'
-        ? 'Η τελευταία αναφορά έκλεισε χωρίς πρόσθετο περιορισμό.'
+        ? 'Η τελευταία αναφορά έκλεισε χωρίς πρόσθετο περιορισμό. Το thread παραμένει ενεργό.'
         : 'Δεν υπάρχει ενεργός περιορισμός moderation.';
 
 const threadModerationBannerClass = threadModerationTone === 'blocked'
@@ -129,6 +129,13 @@ const moderationSeverityLabel = threadModerationTone === 'blocked'
         : 'Κανονική λειτουργία';
 
 const canReply = threadMessages.length > 0 && isParticipant && !threadBlockedByModeration && !threadMutedByModeration;
+const showReportedConversationBanner = !threadBlockedByModeration && (threadReviewedByModeration || threadRejectedByModeration);
+const reportedConversationBannerTitle = threadReviewedByModeration
+  ? 'Αναφερόμενη συνομιλία σε έλεγχο'
+  : 'Αναφερόμενη συνομιλία με ολοκληρωμένο έλεγχο';
+const reportedConversationBannerDescription = threadReviewedByModeration
+  ? 'Η ομάδα moderation αξιολογεί το thread. Η αποστολή παραμένει διαθέσιμη μέχρι να επιβληθεί διαφορετικός περιορισμός.'
+  : 'Η αναφορά εξετάστηκε και έκλεισε χωρίς μπλοκάρισμα ή νέα απόκρυψη περιεχομένου.';
 const moderationReplyGuidance = canReply
   ? 'Μπορείτε να συνεχίσετε με απάντηση σε αυτό το thread.'
   : threadBlockedByModeration
@@ -235,6 +242,20 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
             <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700"></span>
             Φόρτωση συνομιλίας...
           </p>
+        )}
+
+        {threadBlockedByModeration && (
+          <div class="mt-5 rounded-xl border border-rose-300 bg-gradient-to-br from-rose-50 via-white to-rose-50/70 px-4 py-4 text-rose-900">
+            <p class="text-sm font-semibold uppercase tracking-[0.08em]">Μπλοκαρισμένη συνομιλία</p>
+            <p class="mt-1 text-sm font-medium">Η αποστολή νέων μηνυμάτων είναι απενεργοποιημένη από moderation.</p>
+            <p class="mt-1 text-xs">Μπορείτε να διαβάσετε το ιστορικό και τις αναφορές, αλλά το composer παραμένει κλειδωμένο μέχρι να αρθεί ο περιορισμός.</p>
+          </div>
+        )}
+        {showReportedConversationBanner && (
+          <div class={`mt-5 rounded-xl border px-4 py-4 ${threadReviewedByModeration ? 'border-sky-300 bg-gradient-to-br from-sky-50 via-white to-sky-50/70 text-sky-900' : 'border-amber-300 bg-gradient-to-br from-amber-50 via-white to-amber-50/70 text-amber-900'}`}>
+            <p class="text-sm font-semibold uppercase tracking-[0.08em]">{reportedConversationBannerTitle}</p>
+            <p class="mt-1 text-sm">{reportedConversationBannerDescription}</p>
+          </div>
         )}
 
         <div class={`mt-5 rounded-xl border px-4 py-4 ${threadModerationBannerClass}`}>

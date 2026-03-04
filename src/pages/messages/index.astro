@@ -16,11 +16,13 @@ const viewerEmail = (url.searchParams.get('viewerEmail') ?? '').trim().toLowerCa
 const status = (url.searchParams.get('status') ?? '').trim();
 const searchQueryRaw = (url.searchParams.get('q') ?? '').trim();
 const searchQuery = searchQueryRaw.toLowerCase();
+const sortMode = (url.searchParams.get('sort') ?? '').trim() === 'unread' ? 'unread' : 'recent';
+const showUnreadFirst = sortMode === 'unread';
 const showUnreadOnly = (url.searchParams.get('unread') ?? '') === '1';
 const showBlockedOnly = (url.searchParams.get('blocked') ?? '') === '1';
 const showReportedOnly = (url.searchParams.get('reported') ?? '') === '1';
 const activeFilterCount = Number(showUnreadOnly) + Number(showBlockedOnly) + Number(showReportedOnly);
-const hasListFilters = Boolean(searchQueryRaw) || activeFilterCount > 0;
+const hasListFilters = Boolean(searchQueryRaw) || activeFilterCount > 0 || showUnreadFirst;
 const knownListStatuses = new Set(['', 'loading', 'invalid', 'forbidden', 'error']);
 const showLoadingState = status === 'loading';
 const hasUnknownStatus = status !== '' && !knownListStatuses.has(status);
@@ -41,6 +43,26 @@ const safeReadNdjson = async <T,>(path: string, label: string): Promise<T[]> => 
     if (!listLoadError) listLoadError = `Δεν ήταν δυνατή η φόρτωση δεδομένων (${label}).`;
     return [];
   }
+};
+
+type ListHrefOptions = {
+  q?: string;
+  unread?: boolean;
+  blocked?: boolean;
+  reported?: boolean;
+  sort?: 'recent' | 'unread';
+};
+
+const buildListHref = (options: ListHrefOptions = {}) => {
+  const params = new URLSearchParams();
+  if (viewerEmail) params.set('viewerEmail', viewerEmail);
+  if (options.q?.trim()) params.set('q', options.q.trim());
+  if (options.unread) params.set('unread', '1');
+  if (options.blocked) params.set('blocked', '1');
+  if (options.reported) params.set('reported', '1');
+  if (options.sort === 'unread') params.set('sort', 'unread');
+  const query = params.toString();
+  return query ? `/messages?${query}` : '/messages';
 };
 
 const allMessages = await safeReadNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH, 'μηνύματα');
@@ -74,17 +96,21 @@ const threads = Array.from(threadMap.entries())
     const ordered = [...messages].sort((a, b) => a.submittedAt.localeCompare(b.submittedAt));
     const lastMessage = ordered.at(-1)!;
     const lastReadAt = readStateByThread.get(threadId) || '';
-    const unreadCount = ordered.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail && (!lastReadAt || message.submittedAt > lastReadAt)).length;
-    const hasUnread = unreadCount > 0;
     const isLastFromViewer = lastMessage.senderEmail.toLowerCase() === viewerEmail;
     const senderLabel = isLastFromViewer ? 'Εσείς' : (lastMessage.senderName || 'Συνεργάτης');
     const participantEmails = new Set<string>();
+    let unreadCount = 0;
+    let hiddenMessagesCount = 0;
     for (const msg of ordered) {
-      participantEmails.add(msg.senderEmail.toLowerCase());
-      participantEmails.add(msg.recipientEmail.toLowerCase());
+      const senderEmail = msg.senderEmail.toLowerCase();
+      const recipientEmail = msg.recipientEmail.toLowerCase();
+      participantEmails.add(senderEmail);
+      participantEmails.add(recipientEmail);
+      if (senderEmail !== viewerEmail && (!lastReadAt || msg.submittedAt > lastReadAt)) unreadCount += 1;
+      if (hiddenMessageIds.has(msg.id)) hiddenMessagesCount += 1;
     }
+    const hasUnread = unreadCount > 0;
     const counterpartEmail = [...participantEmails].find((email) => email !== viewerEmail) || '';
-    const hiddenMessagesCount = ordered.filter((message) => hiddenMessageIds.has(message.id)).length;
     const lastMessageHidden = hiddenMessageIds.has(lastMessage.id);
     const threadAction = latestTriageActionByThread.get(threadId) || '';
     const isBlocked = threadAction === 'block';
@@ -105,22 +131,22 @@ const threads = Array.from(threadMap.entries())
             ? 'Αναφορά χωρίς περιορισμό'
             : 'Ενεργή';
     const moderationHint = isBlocked
-      ? 'Η αποστολή νέων μηνυμάτων είναι απενεργοποιημένη.'
+      ? 'Το thread έχει μπλοκαριστεί από moderation και δεν δέχεται νέες απαντήσεις.'
       : isAdminHidden
         ? hiddenMessagesCount === ordered.length
           ? 'Όλα τα μηνύματα έχουν αποκρυφτεί από τη διαχείριση.'
           : `Κρυφά μηνύματα: ${hiddenMessagesCount} από ${ordered.length}.`
         : threadAction === 'review'
-          ? 'Υπάρχει ενεργή αναφορά προς εξέταση.'
+          ? 'Η συνομιλία είναι σε ενεργή αναφορά και αξιολογείται από moderation.'
           : threadAction === 'reject'
             ? 'Η τελευταία αναφορά ολοκληρώθηκε χωρίς περιορισμό.'
             : 'Δεν υπάρχει ενεργός περιορισμός moderation.';
     const moderationBannerTitle = isBlocked
-      ? 'Ισχυρός περιορισμός thread'
+      ? 'Μπλοκαρισμένη συνομιλία'
       : isAdminHidden
         ? 'Περιορισμένη ορατότητα περιεχομένου'
         : threadAction === 'review'
-          ? 'Ανοιχτή αναφορά σε moderation'
+          ? 'Αναφερόμενη συνομιλία'
           : threadAction === 'reject'
             ? 'Αναφορά καταχωρήθηκε'
             : '';
@@ -136,6 +162,15 @@ const threads = Array.from(threadMap.entries())
     const lastPreview = lastMessageHidden
       ? 'Το τελευταίο μήνυμα έχει αποκρυφτεί από moderation.'
       : truncatePreview(lastMessage.message);
+    const searchIndex = [
+      lastMessage.professionalSlug,
+      threadId,
+      counterpartEmail,
+      senderLabel,
+      lastPreview
+    ]
+      .join(' ')
+      .toLowerCase();
 
     return {
       threadId,
@@ -161,10 +196,10 @@ const threads = Array.from(threadMap.entries())
       moderationHint,
       moderationBannerTitle,
       moderationBannerClass,
-      threadAction
+      threadAction,
+      searchIndex
     };
-  })
-  .sort((a, b) => b.lastMessageAt.localeCompare(a.lastMessageAt));
+  });
 
 const totalUnread = threads.reduce((sum, thread) => sum + thread.unreadCount, 0);
 const totalThreads = threads.length;
@@ -175,32 +210,70 @@ const totalReported = threads.filter((thread) => thread.isReported).length;
 const totalModerated = threads.filter((thread) => thread.isModerated).length;
 const totalActive = threads.filter((thread) => thread.stateTone === 'active').length;
 const totalUnreadLabel = totalUnread > 0 ? formatUnreadCount(totalUnread) : 'Χωρίς μη αναγνωσμένα';
-const filteredThreads = threads.filter((thread) => {
-  if (showUnreadOnly && !thread.hasUnread) return false;
-  if (showBlockedOnly && !thread.isBlocked) return false;
-  if (showReportedOnly && !thread.isReported) return false;
-  if (!searchQuery) return true;
-  const searchableText = [
-    thread.professionalSlug,
-    thread.threadId,
-    thread.counterpartEmail,
-    thread.senderLabel,
-    thread.lastPreview
-  ]
-    .join(' ')
-    .toLowerCase();
-  return searchableText.includes(searchQuery);
-});
+const filteredThreads = threads
+  .filter((thread) => {
+    if (showUnreadOnly && !thread.hasUnread) return false;
+    if (showBlockedOnly && !thread.isBlocked) return false;
+    if (showReportedOnly && !thread.isReported) return false;
+    if (!searchQuery) return true;
+    return thread.searchIndex.includes(searchQuery);
+  })
+  .sort((a, b) => {
+    if (showUnreadFirst) {
+      if (a.hasUnread !== b.hasUnread) return Number(b.hasUnread) - Number(a.hasUnread);
+      if (a.unreadCount !== b.unreadCount) return b.unreadCount - a.unreadCount;
+    }
+    return b.lastMessageAt.localeCompare(a.lastMessageAt);
+  });
 const filteredThreadsCount = filteredThreads.length;
 const hasFilteredResults = filteredThreadsCount > 0;
-const clearFiltersHref = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
-const listReturnParams = new URLSearchParams();
-if (viewerEmail) listReturnParams.set('viewerEmail', viewerEmail);
-if (searchQueryRaw) listReturnParams.set('q', searchQueryRaw);
-if (showUnreadOnly) listReturnParams.set('unread', '1');
-if (showBlockedOnly) listReturnParams.set('blocked', '1');
-if (showReportedOnly) listReturnParams.set('reported', '1');
-const listReturnTo = `/messages?${listReturnParams.toString()}`;
+const clearFiltersHref = buildListHref();
+const listReturnTo = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: showReportedOnly,
+  sort: sortMode
+});
+const unreadChipHref = buildListHref({
+  q: searchQueryRaw,
+  unread: !showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: showReportedOnly,
+  sort: sortMode
+});
+const blockedChipHref = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: !showBlockedOnly,
+  reported: showReportedOnly,
+  sort: sortMode
+});
+const reportedChipHref = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: !showReportedOnly,
+  sort: sortMode
+});
+const recentSortHref = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: showReportedOnly,
+  sort: 'recent'
+});
+const unreadFirstSortHref = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: showReportedOnly,
+  sort: 'unread'
+});
+const activeFilterChips: Array<{ label: string; href: string; tone: 'sky' | 'rose' | 'amber' }> = [];
+if (showUnreadOnly) activeFilterChips.push({ label: 'Μόνο μη αναγνωσμένα', href: unreadChipHref, tone: 'sky' });
+if (showBlockedOnly) activeFilterChips.push({ label: 'Μόνο μπλοκαρισμένα', href: blockedChipHref, tone: 'rose' });
+if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμενα', href: reportedChipHref, tone: 'amber' });
 ---
 
 <Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με καθαρή ιεραρχία, moderation badges και βασικές ενέργειες.">
@@ -277,52 +350,108 @@ const listReturnTo = `/messages?${listReturnParams.toString()}`;
 
     {viewerEmail && (
       <section class="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <form method="GET" action="/messages" class="space-y-4" aria-label="Αναζήτηση και φίλτρα συνομιλιών">
+        <form method="GET" action="/messages" class="space-y-3" aria-label="Αναζήτηση συνομιλιών">
           <input type="hidden" name="viewerEmail" value={viewerEmail} />
+          {showUnreadOnly && <input type="hidden" name="unread" value="1" />}
+          {showBlockedOnly && <input type="hidden" name="blocked" value="1" />}
+          {showReportedOnly && <input type="hidden" name="reported" value="1" />}
+          {showUnreadFirst && <input type="hidden" name="sort" value="unread" />}
           <div>
             <label for="thread-search" class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Αναζήτηση thread</label>
-            <input
-              id="thread-search"
-              type="search"
-              name="q"
-              value={searchQueryRaw}
-              placeholder="slug, email, preview, thread id"
-              class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
-            />
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Γρήγορα φίλτρα</p>
-            <div class="mt-2 flex flex-wrap gap-2">
-              <label class={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showUnreadOnly ? 'border-sky-400 bg-sky-100 text-sky-900' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}>
-                <input type="checkbox" name="unread" value="1" checked={showUnreadOnly} class="h-3.5 w-3.5 accent-sky-600" />
-                Μη αναγνωσμένα ({totalUnread})
-              </label>
-              <label class={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showBlockedOnly ? 'border-rose-400 bg-rose-100 text-rose-900' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}>
-                <input type="checkbox" name="blocked" value="1" checked={showBlockedOnly} class="h-3.5 w-3.5 accent-rose-600" />
-                Μπλοκαρισμένα ({totalBlocked})
-              </label>
-              <label class={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showReportedOnly ? 'border-sky-400 bg-sky-100 text-sky-900' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}>
-                <input type="checkbox" name="reported" value="1" checked={showReportedOnly} class="h-3.5 w-3.5 accent-sky-600" />
-                Αναφερόμενα ({totalReported})
-              </label>
+            <div class="mt-1 flex flex-wrap items-center gap-2">
+              <input
+                id="thread-search"
+                type="search"
+                name="q"
+                value={searchQueryRaw}
+                placeholder="slug, email, preview, thread id"
+                class="min-w-[220px] flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+              />
+              <button type="submit" class="rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700">Αναζήτηση</button>
+              {hasListFilters && (
+                <a href={clearFiltersHref} class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                  Καθαρισμός όλων
+                </a>
+              )}
             </div>
           </div>
-
-          <p class="text-xs text-slate-500">Tip: Χρησιμοποιήστε πολλαπλά φίλτρα για πιο στοχευμένη λίστα συνομιλιών.</p>
-
-          <div class="flex flex-wrap items-center gap-2.5">
-            <button type="submit" class="rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700">Εφαρμογή</button>
-            {hasListFilters && (
-              <a href={clearFiltersHref} class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
-                Καθαρισμός φίλτρων
-              </a>
-            )}
-            <p class="text-xs text-slate-500">
-              Εμφάνιση: <span class="font-semibold text-slate-700">{filteredThreadsCount}</span> από <span class="font-semibold text-slate-700">{totalThreads}</span> threads
-            </p>
-          </div>
         </form>
+
+        <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Ταξινόμηση λίστας</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <a
+              href={recentSortHref}
+              aria-pressed={!showUnreadFirst}
+              class={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold transition ${!showUnreadFirst ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}
+            >
+              Πιο πρόσφατα πρώτα
+            </a>
+            <a
+              href={unreadFirstSortHref}
+              aria-pressed={showUnreadFirst}
+              class={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showUnreadFirst ? 'border-sky-500 bg-sky-600 text-white' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}
+            >
+              Μη αναγνωσμένα πρώτα
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Γρήγορα φίλτρα</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <a
+              href={unreadChipHref}
+              aria-pressed={showUnreadOnly}
+              class={`inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showUnreadOnly ? 'border-sky-500 bg-sky-600 text-white' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}
+            >
+              Μη αναγνωσμένα ({totalUnread})
+            </a>
+            <a
+              href={blockedChipHref}
+              aria-pressed={showBlockedOnly}
+              class={`inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showBlockedOnly ? 'border-rose-500 bg-rose-600 text-white' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}
+            >
+              Μπλοκαρισμένα ({totalBlocked})
+            </a>
+            <a
+              href={reportedChipHref}
+              aria-pressed={showReportedOnly}
+              class={`inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${showReportedOnly ? 'border-amber-500 bg-amber-500 text-white' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'}`}
+            >
+              Αναφερόμενα ({totalReported})
+            </a>
+          </div>
+        </div>
+
+        {activeFilterChips.length > 0 && (
+          <div class="mt-4 rounded-xl border border-slate-200 bg-white px-3 py-3">
+            <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Ενεργά φίλτρα</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              {activeFilterChips.map((chip) => (
+                <a
+                  href={chip.href}
+                  class={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold transition ${
+                    chip.tone === 'sky'
+                      ? 'border-sky-200 bg-sky-50 text-sky-800 hover:border-sky-300'
+                      : chip.tone === 'rose'
+                        ? 'border-rose-200 bg-rose-50 text-rose-800 hover:border-rose-300'
+                        : 'border-amber-200 bg-amber-50 text-amber-800 hover:border-amber-300'
+                  }`}
+                  aria-label={`Αφαίρεση φίλτρου ${chip.label}`}
+                >
+                  Αφαίρεση: {chip.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <p class="mt-4 text-xs text-slate-500">Tip: Ενεργοποιήστε τη σειρά «Μη αναγνωσμένα πρώτα» για να προηγούνται τα threads που χρειάζονται απάντηση.</p>
+        <p class="mt-2 text-xs text-slate-500">
+          Εμφάνιση: <span class="font-semibold text-slate-700">{filteredThreadsCount}</span> από <span class="font-semibold text-slate-700">{totalThreads}</span> threads
+          <span class="ml-1">· Ταξινόμηση: <span class="font-semibold text-slate-700">{showUnreadFirst ? 'Μη αναγνωσμένα πρώτα' : 'Πιο πρόσφατα πρώτα'}</span></span>
+        </p>
       </section>
     )}
 
@@ -412,6 +541,9 @@ const listReturnTo = `/messages?${listReturnParams.toString()}`;
               <span>Κατάσταση moderation: <strong class="font-semibold text-slate-700">{thread.moderationLabel}</strong></span>
             </div>
             <div class={`mt-3 rounded-lg border px-3 py-2 text-xs ${thread.isModerated ? thread.moderationBannerClass : 'border-slate-200 bg-slate-50 text-slate-600'}`}>
+              {thread.isBlocked && <p class="font-semibold uppercase tracking-[0.08em]">Αποστολή κλειδωμένη</p>}
+              {!thread.isBlocked && thread.threadAction === 'review' && <p class="font-semibold uppercase tracking-[0.08em]">Αναφορά σε εξέλιξη</p>}
+              {!thread.isBlocked && thread.threadAction === 'reject' && <p class="font-semibold uppercase tracking-[0.08em]">Αναφορά ολοκληρωμένη</p>}
               {thread.isModerated && <p class="font-semibold">{thread.moderationBannerTitle}</p>}
               <p class={thread.isModerated ? 'mt-0.5' : ''}>{thread.moderationHint}</p>
             </div>
