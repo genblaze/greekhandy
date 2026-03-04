@@ -209,7 +209,7 @@ const faqSchema = category.faq?.length ? {
           {enableAdvancedCategoryUX && subJobs.length > 0 && (
             <div class="mt-4 rounded-xl border border-slate-200 bg-white p-4">
               <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Φίλτρα κατηγορίας</p>
-              <div class="mt-3 grid gap-3 sm:grid-cols-3">
+              <div class="mt-3 grid gap-3 sm:grid-cols-4">
                 <select data-filter-urgency class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
                   <option value="all">Όλες οι προτεραιότητες</option>
                   <option value="urgent">Επείγον</option>
@@ -231,12 +231,34 @@ const faqSchema = category.faq?.length ? {
                   <option value="medium">Μεσαίο</option>
                   <option value="high">Αυξημένο</option>
                 </select>
+                <button type="button" data-filter-reset class="rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-white">Καθαρισμός</button>
               </div>
             </div>
           )}
 
           {subJobs.length > 0 ? (
             <>
+              <div class="mt-4 hidden rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-900" data-subjobs-loading role="status" aria-live="polite">
+                <p class="font-semibold">Ενημέρωση λίστας υπηρεσιών...</p>
+                <p class="mt-1 text-xs">Εφαρμόζουμε φίλτρα προτεραιότητας, πόλης και budget.</p>
+              </div>
+              <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-subjobs-empty role="status" aria-live="polite">
+                <p class="font-semibold text-orange-900">Δεν βρέθηκαν υπηρεσίες με αυτά τα φίλτρα.</p>
+                <p class="mt-1">Καθαρίστε τα φίλτρα ή συνεχίστε από σχετικές υπηρεσίες για να μη χαθεί η ροή ανάθεσης.</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <button type="button" data-reset-subjob-filters class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Καθαρισμός φίλτρων</button>
+                  <a href="#contact" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Ζητήστε προσφορά</a>
+                  <a href="/" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Αρχική</a>
+                </div>
+              </div>
+              <div class="mt-4 hidden rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800" data-subjobs-error role="alert" aria-live="assertive">
+                <p class="font-semibold text-rose-900">Η κατηγοριοποίηση υπηρεσιών δεν ενημερώθηκε.</p>
+                <p class="mt-1">Κάντε επανάληψη για νέα απόπειρα ή συνεχίστε κατευθείαν στην επικοινωνία.</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <button type="button" data-subjobs-retry class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Επανάληψη</button>
+                  <a href="#contact" class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Επικοινωνία</a>
+                </div>
+              </div>
               <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-subjobs-grid>
                 {subJobs.map((job: any, index: number) => (
                   <a
@@ -261,7 +283,7 @@ const faqSchema = category.faq?.length ? {
 
               {subJobs.length > initialVisibleSubJobs && (
                 <div class="mt-4 flex items-center justify-between gap-3">
-                  <p class="text-sm text-slate-600" data-subjobs-count>Εμφανίζονται {initialVisibleSubJobs} από {subJobs.length} υπηρεσίες.</p>
+                  <p class="text-sm text-slate-600" data-subjobs-count aria-live="polite">Εμφανίζονται {initialVisibleSubJobs} από {subJobs.length} υπηρεσίες.</p>
                   <button type="button" data-load-more-subjobs class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
                 </div>
               )}
@@ -287,59 +309,121 @@ const faqSchema = category.faq?.length ? {
         const cards = Array.from(document.querySelectorAll('[data-subjob-card]'));
         if (!cards.length) return;
 
+        const subJobsGrid = document.querySelector('[data-subjobs-grid]');
         const urgency = document.querySelector('[data-filter-urgency]');
         const city = document.querySelector('[data-filter-city]');
         const budget = document.querySelector('[data-filter-budget]');
+        const resetFilters = document.querySelector('[data-filter-reset]');
+        const resetFromEmpty = document.querySelector('[data-reset-subjob-filters]');
         const loadMore = document.querySelector('[data-load-more-subjobs]');
         const counter = document.querySelector('[data-subjobs-count]');
-        let visibleLimit = cards.filter((c) => c.getAttribute('data-visible-initial') === '1').length || 12;
+        const loadingState = document.querySelector('[data-subjobs-loading]');
+        const emptyState = document.querySelector('[data-subjobs-empty]');
+        const errorState = document.querySelector('[data-subjobs-error]');
+        const retryState = document.querySelector('[data-subjobs-retry]');
+        const initialLimit = cards.filter((card) => card.getAttribute('data-visible-initial') === '1').length || 12;
+        let visibleLimit = initialLimit;
+        let filterTimer = null;
+
+        const setBusyState = (isBusy) => {
+          if (subJobsGrid instanceof HTMLElement) {
+            subJobsGrid.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+          }
+          if (loadingState instanceof HTMLElement) {
+            loadingState.classList.toggle('hidden', !isBusy);
+          }
+        };
+
+        const hideErrorState = () => {
+          if (errorState instanceof HTMLElement) errorState.classList.add('hidden');
+        };
 
         const applyFilters = () => {
-          const urgencyValue = urgency instanceof HTMLSelectElement ? urgency.value : 'all';
-          const cityValue = city instanceof HTMLSelectElement ? city.value : 'all';
-          const budgetValue = budget instanceof HTMLSelectElement ? budget.value : 'all';
+          try {
+            hideErrorState();
+            const urgencyValue = urgency instanceof HTMLSelectElement ? urgency.value : 'all';
+            const cityValue = city instanceof HTMLSelectElement ? city.value : 'all';
+            const budgetValue = budget instanceof HTMLSelectElement ? budget.value : 'all';
+            const hasActiveFilters = urgencyValue !== 'all' || cityValue !== 'all' || budgetValue !== 'all';
 
-          let matched = 0;
-          cards.forEach((card) => {
-            const matches = (urgencyValue === 'all' || card.getAttribute('data-urgency') === urgencyValue)
-              && (cityValue === 'all' || card.getAttribute('data-city') === cityValue)
-              && (budgetValue === 'all' || card.getAttribute('data-budget') === budgetValue);
+            let matched = 0;
+            cards.forEach((card) => {
+              const matches = (urgencyValue === 'all' || card.getAttribute('data-urgency') === urgencyValue)
+                && (cityValue === 'all' || card.getAttribute('data-city') === cityValue)
+                && (budgetValue === 'all' || card.getAttribute('data-budget') === budgetValue);
 
-            if (!matches) {
-              card.classList.add('hidden');
-              return;
+              if (!matches) {
+                card.classList.add('hidden');
+                return;
+              }
+
+              matched += 1;
+              const shouldShow = matched <= visibleLimit;
+              card.classList.toggle('hidden', !shouldShow);
+            });
+
+            if (counter instanceof HTMLElement) {
+              counter.textContent = matched === 0
+                ? 'Δεν υπάρχουν υπηρεσίες με αυτά τα φίλτρα.'
+                : `Εμφανίζονται ${Math.min(matched, visibleLimit)} από ${matched} υπηρεσίες.`;
             }
-
-            matched += 1;
-            const shouldShow = matched <= visibleLimit;
-            card.classList.toggle('hidden', !shouldShow);
-          });
-
-          if (counter instanceof HTMLElement) {
-            counter.textContent = `Εμφανίζονται ${Math.min(matched, visibleLimit)} από ${matched} υπηρεσίες.`;
+            if (loadMore instanceof HTMLButtonElement) {
+              loadMore.classList.toggle('hidden', matched <= visibleLimit || matched === 0);
+            }
+            if (emptyState instanceof HTMLElement) {
+              emptyState.classList.toggle('hidden', matched > 0 || !hasActiveFilters);
+            }
+          } catch {
+            if (errorState instanceof HTMLElement) errorState.classList.remove('hidden');
+          } finally {
+            setBusyState(false);
           }
-          if (loadMore instanceof HTMLButtonElement) {
-            loadMore.classList.toggle('hidden', matched <= visibleLimit);
-          }
+        };
+
+        const runFilters = () => {
+          setBusyState(true);
+          if (filterTimer) window.clearTimeout(filterTimer);
+          filterTimer = window.setTimeout(applyFilters, 90);
+        };
+
+        const resetAllFilters = () => {
+          if (urgency instanceof HTMLSelectElement) urgency.value = 'all';
+          if (city instanceof HTMLSelectElement) city.value = 'all';
+          if (budget instanceof HTMLSelectElement) budget.value = 'all';
+          visibleLimit = initialLimit;
+          runFilters();
         };
 
         [urgency, city, budget].forEach((el) => {
           if (el instanceof HTMLSelectElement) {
             el.addEventListener('change', () => {
-              visibleLimit = 12;
-              applyFilters();
+              visibleLimit = initialLimit;
+              runFilters();
             });
+          }
+        });
+
+        [resetFilters, resetFromEmpty].forEach((el) => {
+          if (el instanceof HTMLButtonElement) {
+            el.addEventListener('click', resetAllFilters);
           }
         });
 
         if (loadMore instanceof HTMLButtonElement) {
           loadMore.addEventListener('click', () => {
-            visibleLimit += 12;
-            applyFilters();
+            visibleLimit += initialLimit;
+            runFilters();
           });
         }
 
-        applyFilters();
+        if (retryState instanceof HTMLButtonElement) {
+          retryState.addEventListener('click', () => {
+            visibleLimit = initialLimit;
+            runFilters();
+          });
+        }
+
+        runFilters();
       })();
     </script>
 
@@ -412,7 +496,7 @@ const faqSchema = category.faq?.length ? {
             <p class="font-semibold">Ευχαριστούμε!</p>
             <p class="mt-1 text-sm">Το αίτημά σας καταχωρήθηκε. Θα επικοινωνήσουμε σύντομα.</p>
           </div>
-          <div id="form-error" class="hidden rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800"></div>
+          <div id="form-error" class="hidden rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800" role="alert" aria-live="assertive"></div>
 
           <div id="form-fields" class="mt-5 grid gap-4">
             <div>
@@ -451,41 +535,75 @@ const faqSchema = category.faq?.length ? {
             'sb_publishable_tkTy4XLRcY6AP6T-PPIVNg_HDI7Z0J5'
           );
           const form = document.getElementById('contact-form');
+          const submitButton = document.getElementById('form-submit');
+          const loadingState = document.getElementById('form-loading');
+          const successState = document.getElementById('form-success');
+          const errorState = document.getElementById('form-error');
+          const fieldsState = document.getElementById('form-fields');
+          const REQUEST_TIMEOUT_MS = 12000;
+          let isSubmitting = false;
+
+          const setErrorState = (message) => {
+            if (!(errorState instanceof HTMLElement)) return;
+            errorState.textContent = message;
+            errorState.classList.remove('hidden');
+          };
+
           form?.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const fd = new FormData(form as HTMLFormElement);
+            if (
+              !(form instanceof HTMLFormElement)
+              || !(submitButton instanceof HTMLButtonElement)
+            ) return;
+
+            if (isSubmitting) return;
+            const fd = new FormData(form);
             // Honeypot check
             if (fd.get('website')) return;
-            const btn = document.getElementById('form-submit') as HTMLButtonElement;
-            const loadingState = document.getElementById('form-loading');
-            const errorState = document.getElementById('form-error');
-            btn.disabled = true;
-            btn.setAttribute('aria-busy', 'true');
-            btn.textContent = 'Αποστολή...';
-            loadingState?.classList.remove('hidden');
-            errorState?.classList.add('hidden');
 
-            const { error } = await supabase.from('contact_requests').insert({
-              name: fd.get('name'),
-              phone: fd.get('phone'),
-              email: fd.get('email'),
-              description: fd.get('description'),
+            if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+              setErrorState('Δεν υπάρχει σύνδεση στο διαδίκτυο. Ελέγξτε το δίκτυο και δοκιμάστε ξανά.');
+              return;
+            }
+
+            isSubmitting = true;
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-busy', 'true');
+            submitButton.textContent = 'Αποστολή...';
+            if (loadingState instanceof HTMLElement) loadingState.classList.remove('hidden');
+            if (errorState instanceof HTMLElement) errorState.classList.add('hidden');
+
+            const payload = {
+              name: String(fd.get('name') || '').trim(),
+              phone: String(fd.get('phone') || '').trim(),
+              email: String(fd.get('email') || '').trim(),
+              description: String(fd.get('description') || '').trim(),
               service_slug: fd.get('serviceSlug'),
               service_name: fd.get('serviceName'),
               page_url: fd.get('pageUrl'),
-            });
-            if (error) {
-              loadingState?.classList.add('hidden');
-              document.getElementById('form-error')!.textContent = 'Κάτι πήγε στραβά. Δοκιμάστε ξανά.';
-              document.getElementById('form-error')!.classList.remove('hidden');
-              btn.disabled = false;
-              btn.removeAttribute('aria-busy');
-              btn.textContent = 'Αποστολή Αιτήματος';
-            } else {
-              loadingState?.classList.add('hidden');
-              document.getElementById('form-fields')!.classList.add('hidden');
-              btn.classList.add('hidden');
-              document.getElementById('form-success')!.classList.remove('hidden');
+            };
+
+            try {
+              const timeoutPromise = new Promise((_, reject) => {
+                window.setTimeout(() => reject(new Error('request-timeout')), REQUEST_TIMEOUT_MS);
+              });
+              const requestPromise = supabase.from('contact_requests').insert(payload);
+              const { error } = await Promise.race([requestPromise, timeoutPromise]);
+
+              if (error) throw error;
+
+              if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
+              if (fieldsState instanceof HTMLElement) fieldsState.classList.add('hidden');
+              submitButton.classList.add('hidden');
+              if (successState instanceof HTMLElement) successState.classList.remove('hidden');
+            } catch {
+              if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
+              setErrorState('Η υποβολή δεν ολοκληρώθηκε αυτή τη στιγμή. Δοκιμάστε ξανά ή στείλτε στο info@greekhandy.gr.');
+              submitButton.disabled = false;
+              submitButton.removeAttribute('aria-busy');
+              submitButton.textContent = 'Αποστολή Αιτήματος';
+            } finally {
+              isSubmitting = false;
             }
           });
         </script>
