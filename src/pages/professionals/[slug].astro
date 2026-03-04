@@ -161,10 +161,25 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
   <main class="mx-auto max-w-4xl px-4 py-14">
     <a href="/professionals" class="text-sm font-semibold text-blue-700 hover:underline">&larr; Όλοι οι επαγγελματίες</a>
 
-    <section class="mt-4 rounded-3xl border border-slate-200 bg-white p-7 shadow-sm md:p-10">
+    <section class="mt-4 overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-indigo-50/50 p-7 shadow-sm md:p-10">
       <p class="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">{profile.profession}</p>
       <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">{profile.name}</h1>
       <p class="mt-2 text-slate-600">{profile.city} • {profile.experienceYears} χρόνια εμπειρίας</p>
+
+      <div class="mt-4 grid gap-2 sm:grid-cols-3">
+        <div class="rounded-xl border border-blue-200 bg-white px-3 py-2">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-blue-700">Εμπιστοσύνη</p>
+          <p class="text-sm font-semibold text-slate-900">{reviewsCount} {reviewsLabel}</p>
+        </div>
+        <div class="rounded-xl border border-amber-200 bg-white px-3 py-2">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700">Βαθμολογία</p>
+          <p class="text-sm font-semibold text-slate-900">{averageRating ? `${averageRating}/5` : 'Χωρίς βαθμολογία ακόμα'}</p>
+        </div>
+        <div class="rounded-xl border border-emerald-200 bg-white px-3 py-2">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Κατάσταση</p>
+          <p class="text-sm font-semibold text-slate-900">{verifiedReviewsCount > 0 ? `${verifiedReviewsCount} επιβεβαιωμένες` : 'Επαληθευμένο προφίλ'}</p>
+        </div>
+      </div>
 
       <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 aspect-[16/9]">
         <img
@@ -215,9 +230,15 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
         </div>
       </div>
 
+      <div class="mt-10 flex items-center gap-3">
+        <span class="h-px flex-1 bg-slate-200"></span>
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Εμπειρία & Κριτικές</p>
+        <span class="h-px flex-1 bg-slate-200"></span>
+      </div>
+
       <section
         id="reviews"
-        class="mt-8 rounded-2xl border border-slate-200 bg-gradient-to-b from-white via-slate-50/60 to-white p-5 md:p-6"
+        class="mt-4 rounded-2xl border border-slate-200 bg-gradient-to-b from-white via-slate-50/60 to-white p-5 md:p-6"
         data-review-list-root
         data-review-list-initial-state={initialReviewListState}
       >
@@ -419,7 +440,13 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
         </form>
       </section>
 
-      <section class="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-5">
+      <div class="mt-10 flex items-center gap-3">
+        <span class="h-px flex-1 bg-slate-200"></span>
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Κράτηση Υπηρεσίας</p>
+        <span class="h-px flex-1 bg-slate-200"></span>
+      </div>
+
+      <section class="mt-4 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5">
         <h2 class="text-lg font-bold text-gray-900">Αίτημα Κράτησης</h2>
         <p class="mt-1 text-sm text-gray-600">Στείλτε αίτημα και θα επικοινωνήσουμε μαζί σας για επιβεβαίωση.</p>
         <p class="mt-2 rounded-lg border border-blue-200 bg-white px-3 py-2 text-xs text-blue-800">Lifecycle αιτήματος: <strong>pending</strong> (σε έλεγχο) → <strong>approved</strong> ή <strong>rejected</strong>. Μετά την υποβολή θα λάβετε σελίδα παρακολούθησης κατάστασης.</p>
