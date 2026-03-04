@@ -18,6 +18,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
   const action = clean(formData.get('action'));
   const reviewId = clean(formData.get('reviewId'));
+  const verified = clean(formData.get('verified')) === 'true';
   const returnUrl = `/professionals/reviews-moderation?key=${encodeURIComponent(moderationKey)}`;
 
   if (!reviewId || !action) {
@@ -48,7 +49,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
           reviewerName: review.reviewerName || 'Ανώνυμος Πελάτης',
           rating: Math.max(1, Math.min(5, Number(review.rating) || 1)),
           comment: review.comment,
-          verified: false,
+          verified,
           status: 'approved',
           submittedAt: review.submittedAt,
           approvedAt: new Date().toISOString()
