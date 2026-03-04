@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Mobile homepage hero is still unreadable: light cyan/white text on a pale background fails contrast and looks visually broken. Redesign the hero color system (background, heading, subtext, CTAs) to pass WCAG AA on real devices, not just desktop mocks.",
+      "addedAt": "2026-03-04T23:03:10Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "/professionals and /professionals/giannis-kosta-klimatismos are still shipping broken profile media (blank image block with alt text). This kills trust instantly. Fix media URLs, add hard fallback images, and block publishing any professional profile that fails image fetch validation.",
+      "addedAt": "2026-03-04T23:03:10Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "A floating accessibility widget is still sitting on top of core content across listing/category/profile pages. Reposition it to a non-blocking docked trigger (or auto-hide) so it never covers copy, buttons, or forms.",
+      "addedAt": "2026-03-04T23:03:10Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Category pages (/ydravlikoi, /ilektrologoi) still dump a huge repetitive card wall with weak differentiation and no practical filtering. Add real decision controls (city, urgency, budget, availability) and reduce initial card load so users can find a service without endless scrolling.",
+      "addedAt": "2026-03-04T23:03:10Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional profile UX is confused and bloated: users are hit with multiple competing forms in one page (quick contact, booking request, direct message), which creates friction and distrust. Consolidate into one primary conversion flow with a clear CTA hierarchy and move secondary contact options behind toggles.",
+      "addedAt": "2026-03-04T23:03:10Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
