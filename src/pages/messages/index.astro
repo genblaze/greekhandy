@@ -71,6 +71,12 @@ const threads = Array.from(threadMap.entries())
     const hasUnread = unreadCount > 0;
     const isLastFromViewer = lastMessage.senderEmail.toLowerCase() === viewerEmail;
     const senderLabel = isLastFromViewer ? 'Εσείς' : (lastMessage.senderName || 'Συνεργάτης');
+    const participantEmails = new Set<string>();
+    for (const msg of ordered) {
+      participantEmails.add(msg.senderEmail.toLowerCase());
+      participantEmails.add(msg.recipientEmail.toLowerCase());
+    }
+    const counterpartEmail = [...participantEmails].find((email) => email !== viewerEmail) || '';
     const hiddenMessagesCount = ordered.filter((message) => hiddenMessageIds.has(message.id)).length;
     const lastMessageHidden = hiddenMessageIds.has(lastMessage.id);
     const threadAction = latestTriageActionByThread.get(threadId) || '';
@@ -115,6 +121,7 @@ const threads = Array.from(threadMap.entries())
       unreadLabel,
       lastPreview,
       senderLabel,
+      counterpartEmail,
       messagesCount: ordered.length,
       isLastFromViewer,
       hiddenMessagesCount,
@@ -264,7 +271,7 @@ const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
                 <h2 class={`mt-1 text-lg ${thread.unreadCount > 0 ? 'font-bold text-slate-950' : 'font-semibold text-slate-900'}`}>/{thread.professionalSlug}</h2>
                 <div class="mt-2 flex flex-wrap items-center gap-2">
                   <span class={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${thread.hasUnread ? 'border-sky-300 bg-sky-100 text-sky-900' : 'border-slate-300 bg-slate-100 text-slate-700'}`}>
-                    {thread.hasUnread && <span class="h-1.5 w-1.5 rounded-full bg-sky-600"></span>}
+                    {thread.hasUnread && <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky-600"></span>}
                     {thread.unreadLabel}
                   </span>
                   {thread.isBlocked && <span class="rounded-full border border-rose-300 bg-rose-100 px-2.5 py-1 text-[11px] font-semibold text-rose-900">Μπλοκαρισμένο</span>}
@@ -277,6 +284,7 @@ const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
                 <p class={`mt-2 text-xs font-medium ${thread.hasUnread ? 'text-sky-700' : 'text-slate-500'}`}>
                   {thread.hasUnread ? 'Υπάρχουν νέα εισερχόμενα μηνύματα.' : 'Δεν υπάρχουν νέα εισερχόμενα μηνύματα.'}
                 </p>
+                <p class="mt-1 text-xs text-slate-500">Συμμετέχων: <span class="font-medium text-slate-700">{thread.counterpartEmail || 'Μη διαθέσιμος'}</span></p>
               </div>
 
               <p class="text-xs font-medium text-slate-500">{formatDateTime(thread.lastMessageAt)}</p>
