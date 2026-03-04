@@ -704,7 +704,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                   <input type="hidden" name="threadId" value={thread.threadId} />
                   <input type="hidden" name="viewerEmail" value={viewerEmail} />
                   <input type="hidden" name="returnTo" value={listReturnTo} />
-                  <button type="submit" data-default-label="Σήμανση ως διαβασμένο" class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-65" aria-label={`Σήμανση ως διαβασμένο για ${thread.professionalSlug}`}>
+                  <button type="submit" data-default-label="Σήμανση ως διαβασμένο" data-pending-label="Ενημέρωση..." class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-65" aria-label={`Σήμανση ως διαβασμένο για ${thread.professionalSlug}`}>
                     Σήμανση ως διαβασμένο
                   </button>
                 </form>
@@ -748,6 +748,12 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
         radial-gradient(circle at 92% 16%, rgba(251, 191, 36, 0.14) 0, transparent 52%);
       z-index: -1;
       pointer-events: none;
+    }
+
+    .messages-shell :where(a, button, input, select, textarea):focus-visible {
+      outline: 3px solid rgba(14, 116, 144, 0.4);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(14, 116, 144, 0.12);
     }
 
     .loading-thread-card {
@@ -804,7 +810,9 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
 
     .thread-card:focus-within {
       border-color: rgb(56 189 248);
-      box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.14);
+      box-shadow:
+        0 0 0 3px rgba(14, 116, 144, 0.14),
+        0 24px 50px -34px rgba(15, 23, 42, 0.58);
     }
 
     .thread-preview {
@@ -891,7 +899,8 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
         if (!form.checkValidity()) return;
         submitButton.disabled = true;
         const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent || 'Υποβολή';
-        submitButton.textContent = 'Επεξεργασία...';
+        const pendingLabel = submitButton.dataset.pendingLabel || 'Επεξεργασία...';
+        submitButton.textContent = pendingLabel;
         submitButton.setAttribute('aria-busy', 'true');
         submitButton.setAttribute('aria-disabled', 'true');
         form.classList.add('opacity-80');

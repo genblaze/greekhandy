@@ -157,6 +157,16 @@ const recipientForReply = latest
 const professionalSlug = latest?.professionalSlug ?? '';
 const hasMissingParams = !threadId || !viewerEmail;
 const hasAccessIssue = !hasMissingParams && !isParticipant && !threadLoadError;
+const composerInitialState = messageStatus === 'submitted'
+  ? 'success'
+  : messageStatus === 'invalid' || messageStatus === 'error' || messageStatus === 'blocked'
+    ? 'error'
+    : 'idle';
+const composerInitialStateLabel = composerInitialState === 'success'
+  ? 'Το τελευταίο μήνυμα στάλθηκε επιτυχώς.'
+  : composerInitialState === 'error'
+    ? 'Η τελευταία αποστολή απέτυχε. Ελέγξτε το κείμενο και δοκιμάστε ξανά.'
+    : 'Το composer είναι έτοιμο για αποστολή.';
 
 const participants = new Set<string>();
 for (const message of threadMessages) {
@@ -272,6 +282,20 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
           </p>
         )}
 
+        <nav class="mt-5 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm" aria-label="Γρήγορη πλοήγηση συνομιλίας">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Γρήγορη πλοήγηση</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <a href="#thread-history" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+              Ιστορικό μηνυμάτων
+            </a>
+            {canReply && (
+              <a href="#thread-composer" class="inline-flex items-center rounded-full border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                Μετάβαση στο composer
+              </a>
+            )}
+          </div>
+        </nav>
+
         {threadBlockedByModeration && (
           <div class="mt-5 rounded-2xl border border-rose-300 bg-gradient-to-r from-rose-50/95 via-white to-rose-50/80 px-4 py-4 text-rose-900 shadow-sm">
             <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-800">Περιορισμός αποστολής</p>
@@ -355,90 +379,105 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
           </div>
         </section>
 
-        <section class="mt-5 space-y-3" role="list" aria-label="Μηνύματα thread">
-          {showLoadingState && [1, 2, 3].map((item) => (
-            <article class="animate-pulse rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" aria-hidden="true" role="listitem">
-              <div class="h-3 w-24 rounded bg-slate-200"></div>
-              <div class="mt-3 h-3 w-full rounded bg-slate-100"></div>
-              <div class="mt-2 h-3 w-5/6 rounded bg-slate-100"></div>
-            </article>
-          ))}
-
-          {!showLoadingState && threadMessages.length === 0 && (
-            <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-6 shadow-sm">
-              <p class="text-lg font-semibold text-slate-900">Δεν υπάρχουν μηνύματα ακόμη.</p>
-              <p class="mt-1 text-sm text-slate-600">Στείλτε το πρώτο μήνυμα για να ξεκινήσει η συνομιλία.</p>
-              <p class="mt-2 text-xs text-slate-500">Οι καταστάσεις αναφοράς, μπλοκαρίσματος και απόκρυψης εμφανίζονται αυτόματα όταν υπάρξει activity.</p>
+        <section id="thread-history" class="mt-5 rounded-2xl border border-slate-200 bg-white/70 px-4 py-4 shadow-sm md:px-5" aria-labelledby="thread-history-title">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h2 id="thread-history-title" class="text-lg font-semibold text-slate-900">Ιστορικό μηνυμάτων</h2>
+              <p id="thread-history-description" class="mt-1 text-sm text-slate-600">Προβολή όλων των μηνυμάτων του thread με άμεσες ενέργειες αναφοράς στα εισερχόμενα.</p>
             </div>
-          )}
+            <div class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-right">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Ροή</p>
+              <p class="mt-1 text-xs font-semibold text-slate-700">{threadMessages.length} μηνύματα</p>
+            </div>
+          </div>
 
-          {!showLoadingState && threadMessages.map((message) => {
-            const own = message.senderEmail.toLowerCase() === viewerEmail;
-            const hidden = hiddenMessageIds.has(message.id);
-            const messageIdToken = toDomId(message.id, `message-${message.submittedAt}`);
-            const reasonId = `report-reason-${messageIdToken}`;
-            const detailsId = `report-details-${messageIdToken}`;
-            const reportHintId = `report-hint-${messageIdToken}`;
-            return (
-              <div class={`flex ${own ? 'justify-end' : 'justify-start'}`} role="listitem">
-                <article class={`thread-message w-full max-w-3xl ${
-                  hidden
-                    ? 'thread-message--hidden'
-                    : own
-                      ? 'thread-message--own'
-                      : 'thread-message--incoming'
-                }`}>
-                  <div class="flex flex-wrap items-start justify-between gap-2">
-                    <div>
-                      <p class="text-xs font-semibold text-slate-700">{own ? 'Εσείς' : (message.senderName || 'Συνεργάτης')}</p>
-                      <p class="mt-0.5 text-xs text-slate-500">{formatDateTime(message.submittedAt)}</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5">
-                      {own && <span class="rounded-full border border-sky-300 bg-sky-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-sky-900">Εξερχόμενο</span>}
-                      {!own && <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-700">Εισερχόμενο</span>}
-                      {hidden && <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-orange-900">Κρυφό περιεχόμενο</span>}
-                    </div>
-                  </div>
+          <div class="mt-4 space-y-3" role="list" aria-describedby="thread-history-description">
+            {showLoadingState && [1, 2, 3].map((item) => (
+              <article class="animate-pulse rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" aria-hidden="true" role="listitem">
+                <div class="h-3 w-24 rounded bg-slate-200"></div>
+                <div class="mt-3 h-3 w-full rounded bg-slate-100"></div>
+                <div class="mt-2 h-3 w-5/6 rounded bg-slate-100"></div>
+              </article>
+            ))}
 
-                  <p class={`mt-2 text-sm leading-7 ${hidden ? 'font-medium text-orange-900' : 'whitespace-pre-wrap text-slate-800'}`}>
-                    {hidden ? 'Το μήνυμα έχει αποκρυφτεί από moderation.' : message.message}
-                  </p>
-
-                  {hidden && <p class="mt-2 text-xs font-semibold text-orange-900">Η προβολή του περιεχομένου είναι περιορισμένη από την ομάδα moderation.</p>}
-
-                  {!hidden && !own && (
-                    <details class="mt-3 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50/80 to-white p-3">
-                      <summary class="cursor-pointer text-xs font-semibold text-amber-900">Αναφορά μηνύματος στη διαχείριση</summary>
-                      <form action="/api/messages/report" method="POST" class="js-pending-form mt-3 space-y-2">
-                        <input type="hidden" name="threadId" value={threadId} />
-                        <input type="hidden" name="messageId" value={message.id} />
-                        <input type="hidden" name="senderEmail" value={viewerEmail} />
-                        <input type="hidden" name="returnTo" value={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} />
-
-                        <label class="block text-xs font-medium text-amber-900">
-                          Αιτία αναφοράς
-                          <select id={reasonId} name="reason" class="mt-1 w-full rounded-lg border border-amber-300 bg-white px-2.5 py-2 text-xs text-slate-800">
-                            <option value="spam">Spam</option>
-                            <option value="abuse">Κακοποίηση</option>
-                            <option value="harassment">Παρενόχληση</option>
-                            <option value="other" selected>Άλλο</option>
-                          </select>
-                        </label>
-
-                        <label class="block text-xs font-medium text-amber-900">
-                          Σχόλιο (προαιρετικό)
-                          <input id={detailsId} type="text" name="details" maxlength="400" class="mt-1 w-full rounded-lg border border-amber-300 bg-white px-2.5 py-2 text-xs text-slate-800" placeholder="Περιγράψτε σύντομα το θέμα" aria-describedby={reportHintId} />
-                        </label>
-
-                        <p id={reportHintId} class="text-[11px] text-amber-900">Η αναφορά αποστέλλεται στη διαχείριση χωρίς να αλλάζει άμεσα η ροή της συνομιλίας.</p>
-                        <button type="submit" data-default-label="Υποβολή αναφοράς" data-pending-label="Υποβολή..." class="rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100 disabled:cursor-not-allowed disabled:opacity-65">Υποβολή αναφοράς</button>
-                      </form>
-                    </details>
-                  )}
-                </article>
+            {!showLoadingState && threadMessages.length === 0 && (
+              <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-6 shadow-sm">
+                <p class="text-lg font-semibold text-slate-900">Δεν υπάρχουν μηνύματα ακόμη.</p>
+                <p class="mt-1 text-sm text-slate-600">Στείλτε το πρώτο μήνυμα για να ξεκινήσει η συνομιλία.</p>
+                <p class="mt-2 text-xs text-slate-500">Οι καταστάσεις αναφοράς, μπλοκαρίσματος και απόκρυψης εμφανίζονται αυτόματα όταν υπάρξει activity.</p>
               </div>
-            );
-          })}
+            )}
+
+            {!showLoadingState && threadMessages.map((message) => {
+              const own = message.senderEmail.toLowerCase() === viewerEmail;
+              const hidden = hiddenMessageIds.has(message.id);
+              const messageIdToken = toDomId(message.id, `message-${message.submittedAt}`);
+              const reasonId = `report-reason-${messageIdToken}`;
+              const detailsId = `report-details-${messageIdToken}`;
+              const reportHintId = `report-hint-${messageIdToken}`;
+              return (
+                <div class={`flex ${own ? 'justify-end' : 'justify-start'}`} role="listitem">
+                  <article class={`thread-message w-full max-w-3xl ${
+                    hidden
+                      ? 'thread-message--hidden'
+                      : own
+                        ? 'thread-message--own'
+                        : 'thread-message--incoming'
+                  }`}>
+                    <div class="flex flex-wrap items-start justify-between gap-2">
+                      <div>
+                        <p class="text-xs font-semibold text-slate-700">{own ? 'Εσείς' : (message.senderName || 'Συνεργάτης')}</p>
+                        <p class="mt-0.5 text-xs text-slate-500">{formatDateTime(message.submittedAt)}</p>
+                      </div>
+                      <div class="flex flex-wrap gap-1.5">
+                        {own && <span class="rounded-full border border-sky-300 bg-sky-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-sky-900">Εξερχόμενο</span>}
+                        {!own && <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-700">Εισερχόμενο</span>}
+                        {hidden && <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-orange-900">Κρυφό περιεχόμενο</span>}
+                      </div>
+                    </div>
+
+                    <p class={`mt-2 text-sm leading-7 ${hidden ? 'font-medium text-orange-900' : 'whitespace-pre-wrap text-slate-800'}`}>
+                      {hidden ? 'Το μήνυμα έχει αποκρυφτεί από moderation.' : message.message}
+                    </p>
+
+                    {hidden && <p class="mt-2 text-xs font-semibold text-orange-900">Η προβολή του περιεχομένου είναι περιορισμένη από την ομάδα moderation.</p>}
+
+                    {!hidden && !own && (
+                      <details class="thread-report mt-3 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50/80 to-white p-3">
+                        <summary class="cursor-pointer text-xs font-semibold text-amber-900">Αναφορά μηνύματος στη διαχείριση</summary>
+                        <form action="/api/messages/report" method="POST" class="js-pending-form mt-3 space-y-2">
+                          <input type="hidden" name="threadId" value={threadId} />
+                          <input type="hidden" name="messageId" value={message.id} />
+                          <input type="hidden" name="senderEmail" value={viewerEmail} />
+                          <input type="hidden" name="returnTo" value={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} />
+
+                          <label class="block text-xs font-medium text-amber-900">
+                            Αιτία αναφοράς
+                            <select id={reasonId} name="reason" class="mt-1 w-full rounded-lg border border-amber-300 bg-white px-2.5 py-2 text-xs text-slate-800">
+                              <option value="spam">Spam</option>
+                              <option value="abuse">Κακοποίηση</option>
+                              <option value="harassment">Παρενόχληση</option>
+                              <option value="other" selected>Άλλο</option>
+                            </select>
+                          </label>
+
+                          <label class="block text-xs font-medium text-amber-900">
+                            Σχόλιο (προαιρετικό)
+                            <input id={detailsId} type="text" name="details" maxlength="400" class="mt-1 w-full rounded-lg border border-amber-300 bg-white px-2.5 py-2 text-xs text-slate-800" placeholder="Περιγράψτε σύντομα το θέμα" aria-describedby={reportHintId} />
+                          </label>
+
+                          <p id={reportHintId} class="text-[11px] text-amber-900">Η αναφορά αποστέλλεται στη διαχείριση χωρίς να αλλάζει άμεσα η ροή της συνομιλίας.</p>
+                          <button type="submit" data-default-label="Υποβολή αναφοράς" data-pending-label="Υποβολή..." class="rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100 disabled:cursor-not-allowed disabled:opacity-65">
+                            Υποβολή αναφοράς
+                          </button>
+                        </form>
+                      </details>
+                    )}
+                  </article>
+                </div>
+              );
+            })}
+          </div>
         </section>
 
         {!canReply && threadBlockedByModeration && (
@@ -463,9 +502,30 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
         )}
 
         {canReply && (
-          <form action="/api/messages/submit" method="POST" class="js-pending-form js-composer-form mt-6 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_16px_42px_-30px_rgba(14,116,144,0.45)]">
-            <h2 class="text-lg font-semibold text-slate-900">Νέο μήνυμα</h2>
-            <p class="mt-1 text-sm text-slate-600">Απάντηση μέσα στο ίδιο thread με αυτόματη ενημέρωση στη λίστα συνομιλιών.</p>
+          <form
+            id="thread-composer"
+            action="/api/messages/submit"
+            method="POST"
+            class="js-pending-form js-composer-form mt-6 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_16px_42px_-30px_rgba(14,116,144,0.45)]"
+            data-composer-state={composerInitialState}
+            aria-labelledby="thread-composer-title"
+            aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live"
+          >
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h2 id="thread-composer-title" class="text-lg font-semibold text-slate-900">Composer απάντησης</h2>
+                <p id="thread-composer-description" class="mt-1 text-sm text-slate-600">Απάντηση μέσα στο ίδιο thread με αυτόματη ενημέρωση στη λίστα συνομιλιών.</p>
+              </div>
+              <span id="composer-state" class={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold ${
+                composerInitialState === 'success'
+                  ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
+                  : composerInitialState === 'error'
+                    ? 'border-rose-300 bg-rose-100 text-rose-900'
+                    : 'border-sky-300 bg-sky-100 text-sky-900'
+              }`} role="status" aria-live="polite">
+                {composerInitialStateLabel}
+              </span>
+            </div>
             <input type="hidden" name="professionalSlug" value={professionalSlug} />
             <input type="hidden" name="threadId" value={threadId} />
             <input type="hidden" name="senderName" value="Participant" />
@@ -480,7 +540,7 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
               required
               maxlength="2000"
               minlength="1"
-              aria-describedby="composer-shortcuts composer-error composer-count composer-live"
+              aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live"
               aria-keyshortcuts="Control+Enter Meta+Enter"
               aria-invalid="false"
               class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm leading-6 text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-100"
@@ -488,7 +548,7 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
             ></textarea>
             <p id="composer-shortcuts" class="mt-2 text-xs text-slate-500">Συντόμευση πληκτρολογίου: <span class="font-semibold text-slate-700">Ctrl+Enter</span> (ή <span class="font-semibold text-slate-700">Cmd+Enter</span> σε Mac) για αποστολή.</p>
             <div class="mt-2 flex items-center justify-between text-xs">
-              <p id="composer-error" class="hidden font-medium text-rose-700">Το μήνυμα δεν μπορεί να είναι κενό.</p>
+              <p id="composer-error" class="hidden font-medium text-rose-700" role="alert">Το μήνυμα δεν μπορεί να είναι κενό.</p>
               <p id="composer-count" class="text-slate-500">0 / 2000</p>
             </div>
             <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite"></p>
@@ -515,6 +575,12 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
         radial-gradient(circle at 88% 18%, rgba(245, 158, 11, 0.14) 0, transparent 52%);
       z-index: -1;
       pointer-events: none;
+    }
+
+    .thread-shell :where(a, button, input, select, textarea, summary):focus-visible {
+      outline: 3px solid rgba(14, 116, 144, 0.4);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(14, 116, 144, 0.12);
     }
 
     .thread-alert {
@@ -563,6 +629,14 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       background: white;
       padding: 1rem;
       box-shadow: 0 14px 32px -28px rgba(15, 23, 42, 0.5);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .thread-message:focus-within {
+      border-color: rgb(125 211 252);
+      box-shadow:
+        0 0 0 3px rgba(14, 116, 144, 0.14),
+        0 14px 32px -28px rgba(15, 23, 42, 0.5);
     }
 
     .thread-message--incoming {
@@ -578,6 +652,36 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       border-color: rgb(253 186 116);
       background: linear-gradient(145deg, rgba(255, 247, 237, 0.95), rgba(255, 255, 255, 0.95));
     }
+
+    .thread-report[open] {
+      border-color: rgb(252 211 77);
+      box-shadow: 0 10px 30px -24px rgba(180, 83, 9, 0.55);
+    }
+
+    .js-composer-form[data-composer-state='error'] {
+      border-color: rgb(253 164 175);
+      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12);
+    }
+
+    .js-composer-form[data-composer-state='success'] {
+      border-color: rgb(110 231 183);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.14);
+    }
+
+    .js-composer-form[data-composer-state='submitting'] {
+      border-color: rgb(125 211 252);
+      box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.16);
+    }
+
+    .composer-count--warning {
+      color: rgb(161 98 7);
+      font-weight: 600;
+    }
+
+    .composer-count--limit {
+      color: rgb(190 24 93);
+      font-weight: 700;
+    }
   </style>
 
   <script is:inline>
@@ -590,19 +694,59 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       const counter = isComposerForm ? form.querySelector('#composer-count') : null;
       const error = isComposerForm ? form.querySelector('#composer-error') : null;
       const live = isComposerForm ? form.querySelector('#composer-live') : null;
+      const composerState = isComposerForm ? form.querySelector('#composer-state') : null;
       const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent || 'Υποβολή';
       const pendingLabel = submitButton.dataset.pendingLabel || 'Υποβολή...';
+      const maxLength = textarea instanceof HTMLTextAreaElement && textarea.maxLength > 0 ? textarea.maxLength : 2000;
+      const warningThreshold = Math.max(0, maxLength - 200);
+      let preserveInitialComposerFeedback = isComposerForm && ['success', 'error'].includes(form.getAttribute('data-composer-state') || '');
+
+      const setComposerState = (state, message) => {
+        if (!(composerState instanceof HTMLElement)) return;
+        const toneClass = state === 'success'
+          ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
+          : state === 'error'
+            ? 'border-rose-300 bg-rose-100 text-rose-900'
+            : state === 'submitting'
+              ? 'border-slate-300 bg-slate-200 text-slate-800'
+              : 'border-sky-300 bg-sky-100 text-sky-900';
+        composerState.className = `inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold ${toneClass}`;
+        composerState.textContent = message;
+        form.setAttribute('data-composer-state', state);
+      };
 
       const syncComposer = () => {
         if (!(textarea instanceof HTMLTextAreaElement)) return;
         const length = textarea.value.trim().length;
+        const remaining = maxLength - length;
         const isBusy = submitButton.getAttribute('aria-busy') === 'true';
         submitButton.disabled = length === 0 || isBusy;
-        if (counter) counter.textContent = `${length} / 2000`;
+        if (counter) {
+          counter.textContent = `${length} / ${maxLength}`;
+          counter.classList.toggle('composer-count--warning', length > 0 && remaining <= 200 && remaining > 0);
+          counter.classList.toggle('composer-count--limit', remaining <= 0);
+        }
         if (error) error.classList.toggle('hidden', length > 0);
         textarea.setAttribute('aria-invalid', length === 0 ? 'true' : 'false');
-        if (live && length > 0 && live.textContent === 'Πληκτρολογήστε μήνυμα πριν την αποστολή.') {
-          live.textContent = '';
+
+        if (!isBusy) {
+          if (length > 0) {
+            preserveInitialComposerFeedback = false;
+            setComposerState('idle', 'Το composer είναι έτοιμο για αποστολή.');
+          } else if (!preserveInitialComposerFeedback) {
+            setComposerState('idle', 'Το composer είναι έτοιμο για αποστολή.');
+          }
+        }
+
+        if (live) {
+          if (length === 0 && live.textContent === 'Πληκτρολογήστε μήνυμα πριν την αποστολή.') return;
+          if (remaining <= 200 && length > 0) {
+            live.textContent = remaining === 0 ? 'Φτάσατε το όριο χαρακτήρων.' : `Απομένουν ${remaining} χαρακτήρες.`;
+            return;
+          }
+          if (live.textContent.startsWith('Απομένουν') || live.textContent === 'Φτάσατε το όριο χαρακτήρων.') {
+            live.textContent = '';
+          }
         }
       };
 
@@ -622,10 +766,12 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
             if (live) live.textContent = 'Πληκτρολογήστε μήνυμα πριν την αποστολή.';
             submitButton.disabled = true;
             textarea.setAttribute('aria-invalid', 'true');
+            setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
             textarea.focus();
             return;
           }
           if (submitButton.getAttribute('aria-busy') === 'true') return;
+          setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
           if (live) live.textContent = 'Αποστολή μηνύματος...';
           form.requestSubmit(submitButton);
         });
@@ -644,10 +790,12 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
           if (live) live.textContent = 'Πληκτρολογήστε μήνυμα πριν την αποστολή.';
           submitButton.disabled = true;
           textarea.setAttribute('aria-invalid', 'true');
+          setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
           textarea.focus();
           return;
         }
         submitButton.disabled = true;
+        setComposerState(isComposerForm ? 'submitting' : 'idle', isComposerForm ? 'Αποστολή μηνύματος σε εξέλιξη...' : 'Επεξεργασία σε εξέλιξη...');
         if (live) live.textContent = 'Αποστολή μηνύματος...';
         submitButton.textContent = pendingLabel;
         submitButton.setAttribute('aria-busy', 'true');
@@ -674,12 +822,28 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       const submitButton = composerForm.querySelector('button[type="submit"]');
       const counter = composerForm.querySelector('#composer-count');
       const error = composerForm.querySelector('#composer-error');
+      const live = composerForm.querySelector('#composer-live');
+      const composerState = composerForm.querySelector('#composer-state');
       if (!(textarea instanceof HTMLTextAreaElement) || !(submitButton instanceof HTMLButtonElement)) return;
       const length = textarea.value.trim().length;
       submitButton.disabled = length === 0;
-      if (counter) counter.textContent = `${length} / 2000`;
+      const maxLength = textarea.maxLength > 0 ? textarea.maxLength : 2000;
+      const remaining = maxLength - length;
+      if (counter) {
+        counter.textContent = `${length} / ${maxLength}`;
+        counter.classList.toggle('composer-count--warning', length > 0 && remaining <= 200 && remaining > 0);
+        counter.classList.toggle('composer-count--limit', remaining <= 0);
+      }
       if (error) error.classList.toggle('hidden', length > 0);
       textarea.setAttribute('aria-invalid', length === 0 ? 'true' : 'false');
+      if (live && (live.textContent.startsWith('Απομένουν') || live.textContent === 'Φτάσατε το όριο χαρακτήρων.')) {
+        live.textContent = '';
+      }
+      if (composerState instanceof HTMLElement && length > 0) {
+        composerState.className = 'inline-flex rounded-full border border-sky-300 bg-sky-100 px-2.5 py-1 text-[11px] font-semibold text-sky-900';
+        composerState.textContent = 'Το composer είναι έτοιμο για αποστολή.';
+        composerForm.setAttribute('data-composer-state', 'idle');
+      }
     });
   </script>
 </Layout>
