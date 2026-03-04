@@ -1,20 +1,20 @@
 {
-  "lastManagerRun": "2026-03-04T14:26:00Z",
+  "lastManagerRun": "2026-03-04T14:31:37Z",
   "activeAgents": {
     "research": {
       "status": "running",
-      "task": "Define verified review badges MVP scope and trust policy",
-      "startedAt": "2026-03-04T14:26:00Z"
+      "task": "Define smallest shippable Booking System MVP scope and acceptance criteria",
+      "startedAt": "2026-03-04T14:31:37Z"
     },
     "builder": {
       "status": "running",
-      "task": "Prepare verified badge copy/content assets for public and moderation views",
-      "startedAt": "2026-03-04T14:26:00Z"
+      "task": "Prepare booking flow copy/content assets for public and moderation contexts",
+      "startedAt": "2026-03-04T14:31:37Z"
     },
     "developer": {
       "status": "running",
-      "task": "Implement verified review badges MVP in reviews flow",
-      "startedAt": "2026-03-04T14:26:00Z"
+      "task": "Implement minimal booking request MVP flow in app",
+      "startedAt": "2026-03-04T14:31:37Z"
     },
     "leads": {
       "status": "idle",
@@ -27,6 +27,6 @@
     "jobsResearched": 107,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Started verified review badges as the next Reviews & Ratings slice and dispatched research, builder, and developer in parallel.",
+  "lastDecision": "Closed verified-review-badges cycle and started Booking System MVP by dispatching research, builder, and developer in parallel.",
   "blockers": []
 }
