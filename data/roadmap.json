@@ -1,18 +1,26 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-1",
+      "name": "QA Critical Fixes (Wave 1)",
+      "description": "Fix broken professional images with validation gates, remove public-facing failure diagnostics, ship complete OG/Twitter metadata, and deploy robust SEO-safe custom 404 UX.",
+      "priority": 1,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "leads-directory-page",
       "name": "Leads Directory Page",
       "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",
-      "priority": 1,
-      "status": "planned",
+      "priority": 2,
+      "status": "in-progress",
       "estimatedComplexity": "medium"
     },
     {
       "id": "search-browse",
       "name": "Search & Browse",
       "description": "Search bar on homepage, category grid with icons, city filter dropdown. Users can find services by keyword or browse categories.",
-      "priority": 2,
+      "priority": 3,
       "status": "complete",
       "estimatedComplexity": "medium"
     },
@@ -20,7 +28,7 @@
       "id": "contact-forms",
       "name": "Contact Forms",
       "description": "Per-service lead capture form with name, phone, email, description fields. Email notification to admin (SMTP-configured). Thank-you page after submission.",
-      "priority": 3,
+      "priority": 4,
       "status": "complete",
       "estimatedComplexity": "medium"
     },
@@ -28,7 +36,7 @@
       "id": "professional-profiles",
       "name": "Professional Profiles",
       "description": "MVP slices complete: basic professional listing + profile pages + professional registration form submission + homepage search results include approved/published profiles + basic moderation workflow (pending queue with approve/reject and draft profile creation) + photos/portfolio display on profiles.",
-      "priority": 4,
+      "priority": 5,
       "status": "complete",
       "estimatedComplexity": "high"
     },
@@ -36,7 +44,7 @@
       "id": "premium-sitewide-design-system",
       "name": "Premium Sitewide Experience",
       "description": "Airbnb-level premium visual and UX system across every surface: homepage, category pages, service pages, profile pages, booking flow, messaging threads, moderation/admin pages, and all states (empty/loading/error).",
-      "priority": 5,
+      "priority": 6,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -44,7 +52,7 @@
       "id": "worker-lead-engine",
       "name": "Worker Lead Engine",
       "description": "Continuous worker/pro lead acquisition via subagents with extensive coverage by trade × city, deduplication/scoring, and daily high-priority outreach-ready lists.",
-      "priority": 6,
+      "priority": 7,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -52,7 +60,7 @@
       "id": "seo-sitewide-optimization",
       "name": "Sitewide SEO Optimization",
       "description": "Continuous technical + on-page SEO improvements across homepage, category pages, service pages, profiles, schema metadata, internal linking, and performance signals to maximize rankings in Greece.",
-      "priority": 7,
+      "priority": 8,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -60,7 +68,7 @@
       "id": "reviews-ratings",
       "name": "Reviews & Ratings",
       "description": "MVP slices complete: review submission form (1-5 rating + comment), pending moderation workflow, approved review display on professional profiles with average rating, and verified review badge shown only for published reviews tied to verified leads.",
-      "priority": 8,
+      "priority": 9,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -68,7 +76,7 @@
       "id": "booking-system",
       "name": "Booking System",
       "description": "Μικρότερο shippable MVP: end-to-end booking request flow από profile page (submit -> pending) με internal moderation queue και αποφάσεις approve/reject που αφαιρούν το request από τα pending.",
-      "priority": 9,
+      "priority": 10,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -76,7 +84,7 @@
       "id": "messaging",
       "name": "Messaging",
       "description": "Smallest shippable Messaging MVP: one-to-one inquiry thread per lead (customer ↔ professional), plain-text messages, thread list with unread + last preview, and minimal moderation hooks (report message, block participant, admin hide message). Scope/acceptance: data/messaging-mvp.json.",
-      "priority": 10,
+      "priority": 11,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -84,7 +92,7 @@
       "id": "admin-dashboard",
       "name": "Admin Dashboard",
       "description": "MVP slice scoped for immediate post-messaging launch: protected /admin shell + queue count overview + unified moderation queue for pending profiles, reviews, bookings, and reported messages. Single-item moderation actions only. Spec: data/admin-dashboard-mvp.json. [Founder directive 2026-03-04: paused/stopped.]",
-      "priority": 11,
+      "priority": 12,
       "status": "paused",
       "estimatedComplexity": "medium"
     },
@@ -92,7 +100,7 @@
       "id": "payment",
       "name": "Payment System",
       "description": "Booking deposits via Stripe. Professional subscription plans. Invoice generation. Payment history.",
-      "priority": 12,
+      "priority": 13,
       "status": "planned",
       "estimatedComplexity": "high"
     }
