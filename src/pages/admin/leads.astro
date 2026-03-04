@@ -436,6 +436,29 @@ const hasLeads = directoryData.leads.length > 0;
                     <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Preview σημειώσεων</p>
                     <p data-detail-notes class="mt-2 text-sm text-slate-700">—</p>
                   </div>
+                  <div class="mt-4 rounded-xl border border-slate-200 bg-white p-3">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Πλήρες ιστορικό επικοινωνίας</p>
+                    <ul data-detail-history class="mt-2 space-y-1 text-xs text-slate-700">
+                      <li class="text-slate-500">Δεν υπάρχουν events.</li>
+                    </ul>
+                  </div>
+                  <div class="mt-4 rounded-xl border border-slate-200 bg-white p-3">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Quick next-action scheduler</p>
+                    <div class="mt-2 grid gap-2">
+                      <select data-detail-next-action-kind class="rounded-md border border-slate-300 px-2 py-1.5 text-xs text-slate-800">
+                        <option value="call">Κλήση</option>
+                        <option value="email">Email</option>
+                        <option value="followup">Follow-up</option>
+                        <option value="meeting">Συνάντηση</option>
+                      </select>
+                      <input type="datetime-local" data-detail-next-action-at class="rounded-md border border-slate-300 px-2 py-1.5 text-xs text-slate-800" />
+                      <div class="flex gap-2">
+                        <button type="button" data-detail-next-action-save class="inline-flex min-h-8 items-center rounded-md border border-indigo-300 bg-indigo-50 px-2.5 text-xs font-semibold text-indigo-800">Αποθήκευση</button>
+                        <button type="button" data-detail-next-action-clear class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700">Καθαρισμός</button>
+                      </div>
+                      <p data-detail-next-action-preview class="text-xs text-slate-600">Δεν υπάρχει προγραμματισμένη ενέργεια.</p>
+                    </div>
+                  </div>
                 </aside>
               </section>
             </section>
@@ -511,12 +534,19 @@ const hasLeads = directoryData.leads.length > 0;
         const detailOutreach = root.querySelector('[data-detail-outreach]');
         const detailLastContacted = root.querySelector('[data-detail-last-contacted]');
         const detailNotes = root.querySelector('[data-detail-notes]');
+        const detailHistory = root.querySelector('[data-detail-history]');
+        const detailNextActionKind = root.querySelector('[data-detail-next-action-kind]');
+        const detailNextActionAt = root.querySelector('[data-detail-next-action-at]');
+        const detailNextActionSave = root.querySelector('[data-detail-next-action-save]');
+        const detailNextActionClear = root.querySelector('[data-detail-next-action-clear]');
+        const detailNextActionPreview = root.querySelector('[data-detail-next-action-preview]');
         const resultsRegion = root.querySelector('[data-results-region]');
 
         const OUTREACH_STORAGE_KEY = 'admin-leads-outreach-v1';
         const ACTIVITY_STORAGE_KEY = 'admin-leads-activity-v1';
         const SEGMENT_STORAGE_KEY = 'admin-leads-segment-v1';
         const NOTES_STORAGE_KEY = 'admin-leads-notes-v1';
+        const NEXT_ACTION_STORAGE_KEY = 'admin-leads-next-action-v1';
         const CONTACTED_FILTER_VALUES = ['all', 'contacted', 'not-contacted'];
         const CONTACTED_FILTER_LABELS = {
           all: 'Όλα',
@@ -590,6 +620,7 @@ const hasLeads = directoryData.leads.length > 0;
 
         let segmentState = readMapState(SEGMENT_STORAGE_KEY);
         let notesState = readMapState(NOTES_STORAGE_KEY);
+        let nextActionState = readMapState(NEXT_ACTION_STORAGE_KEY);
         const selectedLeadIds = new Set();
 
         const parsedCards = cards
@@ -614,6 +645,7 @@ const hasLeads = directoryData.leads.length > 0;
             const lastContactedTs = toMaybeTimestamp(storedOutreach?.lastContactedAt) ?? toMaybeTimestamp(card.dataset.lastContacted);
             const segment = typeof segmentState[id] === 'string' ? segmentState[id] : 'untagged';
             const note = typeof notesState[id] === 'string' ? notesState[id] : '';
+            const nextAction = nextActionState[id] && typeof nextActionState[id] === 'object' ? nextActionState[id] : null;
             const searchableText = [
               name,
               phone,
@@ -645,7 +677,8 @@ const hasLeads = directoryData.leads.length > 0;
               lastContactedTs,
               activity: storedActivity,
               segment,
-              note
+              note,
+              nextAction
             };
           });
 
@@ -895,6 +928,37 @@ const hasLeads = directoryData.leads.length > 0;
           }
           if (detailLastContacted instanceof HTMLElement) {
             detailLastContacted.textContent = formatLastContacted(entry.lastContactedTs);
+          }
+        };
+
+        const renderDetailHistory = (entry) => {
+          if (!(detailHistory instanceof HTMLElement)) return;
+          detailHistory.innerHTML = '';
+          const events = Array.isArray(entry.activity) ? entry.activity : [];
+          if (events.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'text-slate-500';
+            li.textContent = 'Δεν υπάρχουν events.';
+            detailHistory.appendChild(li);
+            return;
+          }
+          events.forEach((eventItem) => {
+            const ts = toMaybeTimestamp(eventItem?.at);
+            const li = document.createElement('li');
+            li.className = 'flex items-center justify-between gap-2';
+            li.innerHTML = `<span>${eventItem?.label || 'Ενέργεια'}</span><span class="text-slate-500">${Number.isFinite(ts) ? new Date(ts).toLocaleString('el-GR') : ''}</span>`;
+            detailHistory.appendChild(li);
+          });
+        };
+
+        const renderDetailNextAction = (entry) => {
+          const next = entry?.nextAction;
+          if (detailNextActionKind instanceof HTMLSelectElement) detailNextActionKind.value = next?.kind || 'call';
+          if (detailNextActionAt instanceof HTMLInputElement) detailNextActionAt.value = next?.at || '';
+          if (detailNextActionPreview instanceof HTMLElement) {
+            detailNextActionPreview.textContent = next?.at
+              ? `Επόμενο βήμα: ${next.kind || 'followup'} στις ${new Date(next.at).toLocaleString('el-GR')}`
+              : 'Δεν υπάρχει προγραμματισμένη ενέργεια.';
           }
         };
 
@@ -1429,6 +1493,13 @@ const hasLeads = directoryData.leads.length > 0;
           activeDetailLeadId = '';
         };
 
+        const syncActiveDetail = (entry) => {
+          if (!activeDetailLeadId || activeDetailLeadId !== entry.id) return;
+          renderDetailOutreach(entry);
+          renderDetailHistory(entry);
+          renderDetailNextAction(entry);
+        };
+
         const openDetailPanel = (entry) => {
           if (!(detailPanel instanceof HTMLElement)) return;
           activeDetailLeadId = entry.id;
@@ -1440,10 +1511,14 @@ const hasLeads = directoryData.leads.length > 0;
           if (detailPhone instanceof HTMLElement) detailPhone.textContent = entry.card.dataset.phone || '—';
           if (detailEmail instanceof HTMLElement) detailEmail.textContent = entry.card.dataset.email || '—';
           renderDetailOutreach(entry);
+          renderDetailHistory(entry);
+          renderDetailNextAction(entry);
           if (detailNotes instanceof HTMLElement) detailNotes.textContent = entry.card.dataset.notes || 'Δεν υπάρχουν σημειώσεις.';
           detailPanel.classList.remove('hidden');
           detailPanel.classList.remove('pointer-events-none');
         };
+
+        const getActiveDetailEntry = () => parsedCards.find((entry) => entry.id === activeDetailLeadId);
 
         pagePrevButton?.addEventListener('click', () => {
           state.page = Math.max(1, state.page - 1);
@@ -1499,6 +1574,7 @@ const hasLeads = directoryData.leads.length > 0;
             appendActivity(entry, targetContacted ? 'Bulk: σημειώθηκε ως επικοινωνημένο' : 'Bulk: σημειώθηκε ως χωρίς επαφή');
             syncOutreachRecord(entry);
             renderCardOutreach(entry);
+            syncActiveDetail(entry);
             changed += 1;
           });
           if (liveRegion instanceof HTMLElement) {
@@ -1523,6 +1599,7 @@ const hasLeads = directoryData.leads.length > 0;
             entry.searchableText = [entry.name, entry.phone, entry.email, entry.categoryLabel, entry.city, entry.statusLabel, `score:${entry.score}`, entry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', entry.segment, entry.note].join(' ').toLowerCase();
             appendActivity(entry, `Bulk segment: ${segmentValue}`);
             renderCardOutreach(entry);
+            syncActiveDetail(entry);
             changed += 1;
           });
           writeMapState(SEGMENT_STORAGE_KEY, segmentState);
@@ -1569,6 +1646,31 @@ const hasLeads = directoryData.leads.length > 0;
         detailOverlay?.addEventListener('click', closeDetailPanel);
         detailClose?.addEventListener('click', closeDetailPanel);
 
+        detailNextActionSave?.addEventListener('click', () => {
+          const entry = getActiveDetailEntry();
+          if (!entry) return;
+          const kind = detailNextActionKind instanceof HTMLSelectElement ? detailNextActionKind.value : 'followup';
+          const at = detailNextActionAt instanceof HTMLInputElement ? detailNextActionAt.value : '';
+          entry.nextAction = at ? { kind, at } : null;
+          nextActionState = { ...nextActionState, [entry.id]: entry.nextAction };
+          writeMapState(NEXT_ACTION_STORAGE_KEY, nextActionState);
+          appendActivity(entry, at ? `Προγραμματίστηκε ${kind}` : 'Καθαρίστηκε next-action');
+          renderDetailNextAction(entry);
+          renderCardOutreach(entry);
+          if (liveRegion instanceof HTMLElement) liveRegion.textContent = at ? 'Αποθηκεύτηκε next action.' : 'Αφαιρέθηκε next action.';
+        });
+
+        detailNextActionClear?.addEventListener('click', () => {
+          const entry = getActiveDetailEntry();
+          if (!entry) return;
+          entry.nextAction = null;
+          nextActionState = { ...nextActionState, [entry.id]: null };
+          writeMapState(NEXT_ACTION_STORAGE_KEY, nextActionState);
+          appendActivity(entry, 'Καθαρίστηκε next-action');
+          renderDetailNextAction(entry);
+          renderDetailHistory(entry);
+        });
+
         window.addEventListener('keydown', (event) => {
           if (!(event instanceof KeyboardEvent)) return;
           if (event.key === 'Escape') closeDetailPanel();
@@ -1599,6 +1701,51 @@ const hasLeads = directoryData.leads.length > 0;
             const btn = root.querySelector('[data-bulk-segment="cold"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
+
+          const activeEntry = getActiveDetailEntry();
+          const inTextInput = document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement;
+          if (activeEntry && !inTextInput) {
+            const key = event.key.toLowerCase();
+            if (key === 'c') {
+              event.preventDefault();
+              activeEntry.isContacted = true;
+              activeEntry.lastContactedTs = Date.now();
+              activeEntry.searchableText = [activeEntry.name, activeEntry.phone, activeEntry.email, activeEntry.categoryLabel, activeEntry.city, activeEntry.statusLabel, `score:${activeEntry.score}`, 'επικοινωνηθηκε', activeEntry.segment, activeEntry.note].join(' ').toLowerCase();
+              appendActivity(activeEntry, 'Shortcut: σημειώθηκε ως επικοινωνημένο');
+              syncOutreachRecord(activeEntry);
+              renderCardOutreach(activeEntry);
+              syncActiveDetail(activeEntry);
+              scheduleRun();
+            }
+            if (key === 'n') {
+              event.preventDefault();
+              activeEntry.isContacted = false;
+              activeEntry.lastContactedTs = null;
+              activeEntry.searchableText = [activeEntry.name, activeEntry.phone, activeEntry.email, activeEntry.categoryLabel, activeEntry.city, activeEntry.statusLabel, `score:${activeEntry.score}`, 'χωρις επαφη', activeEntry.segment, activeEntry.note].join(' ').toLowerCase();
+              appendActivity(activeEntry, 'Shortcut: σημειώθηκε ως χωρίς επαφή');
+              syncOutreachRecord(activeEntry);
+              renderCardOutreach(activeEntry);
+              syncActiveDetail(activeEntry);
+              scheduleRun();
+            }
+            if (['h', 'w', 'l'].includes(key)) {
+              event.preventDefault();
+              const segment = key === 'h' ? 'hot' : key === 'w' ? 'warm' : 'cold';
+              activeEntry.segment = segment;
+              segmentState = { ...segmentState, [activeEntry.id]: segment };
+              writeMapState(SEGMENT_STORAGE_KEY, segmentState);
+              activeEntry.searchableText = [activeEntry.name, activeEntry.phone, activeEntry.email, activeEntry.categoryLabel, activeEntry.city, activeEntry.statusLabel, `score:${activeEntry.score}`, activeEntry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', activeEntry.segment, activeEntry.note].join(' ').toLowerCase();
+              appendActivity(activeEntry, `Shortcut segment: ${segment}`);
+              renderCardOutreach(activeEntry);
+              syncActiveDetail(activeEntry);
+              scheduleRun();
+            }
+            if (key === 's' && detailNextActionAt instanceof HTMLInputElement) {
+              event.preventDefault();
+              detailNextActionAt.focus();
+            }
+          }
+
           if (event.key.toLowerCase() === 'j' || event.key.toLowerCase() === 'k') {
             const visibleCards = parsedCards.filter((entry) => !entry.card.hidden).map((entry) => entry.card);
             const activeIndex = visibleCards.findIndex((card) => card === document.activeElement);
@@ -1685,7 +1832,7 @@ const hasLeads = directoryData.leads.length > 0;
             appendActivity(entry, nextValue ? 'Σημειώθηκε ως επικοινωνημένο' : 'Σημειώθηκε ως χωρίς επαφή');
             syncOutreachRecord(entry);
             renderCardOutreach(entry);
-            if (activeDetailLeadId && activeDetailLeadId === entry.id) renderDetailOutreach(entry);
+            syncActiveDetail(entry);
             if (liveRegion instanceof HTMLElement) {
               liveRegion.textContent = nextValue
                 ? `Το lead ${entry.name} σημειώθηκε ως επικοινωνημένο.`
@@ -1703,6 +1850,7 @@ const hasLeads = directoryData.leads.length > 0;
             entry.searchableText = [entry.name, entry.phone, entry.email, entry.categoryLabel, entry.city, entry.statusLabel, `score:${entry.score}`, entry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', entry.segment, entry.note].join(' ').toLowerCase();
             appendActivity(entry, `Segment: ${value}`);
             renderCardOutreach(entry);
+            syncActiveDetail(entry);
             if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Το lead ${entry.name} σημειώθηκε ως ${value}.`;
             scheduleRun();
             return;
@@ -1717,6 +1865,7 @@ const hasLeads = directoryData.leads.length > 0;
             entry.searchableText = [entry.name, entry.phone, entry.email, entry.categoryLabel, entry.city, entry.statusLabel, `score:${entry.score}`, entry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', entry.segment, entry.note].join(' ').toLowerCase();
             appendActivity(entry, value ? 'Αποθηκεύτηκε σημείωση' : 'Καθαρίστηκε σημείωση');
             renderCardOutreach(entry);
+            syncActiveDetail(entry);
             if (liveRegion instanceof HTMLElement) liveRegion.textContent = value ? 'Η σημείωση αποθηκεύτηκε.' : 'Η σημείωση αφαιρέθηκε.';
             scheduleRun();
             return;
