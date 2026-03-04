@@ -1,0 +1,20 @@
+{
+  "id": "garden-pest-treatment-service-kilkis",
+  "slug": "apentomosi-kipou-kilkis",
+  "nameGr": "Απεντόμωση Κήπου στο Κιλκίς",
+  "nameEn": "Garden Pest Treatment Service in Κιλκίς",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Απεντόμωση κήπου στο Κιλκίς για έντομα που επηρεάζουν φυτά και εξωτερικούς χώρους με στοχευμένες εφαρμογές. SEO intent: καλύπτει τοπικά commercial queries «απεντόμωση κήπου Κιλκίς».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "απεντόμωση κήπου Κιλκίς",
+    "έντομα φυτών αντιμετώπιση Κιλκίς",
+    "ψεκασμός κήπου έντομα",
+    "κηπουρός φυτοπροστασία",
+    "προστασία φυτών από έντομα"
+  ],
+  "status": "researched"
+}

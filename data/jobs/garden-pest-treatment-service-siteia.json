@@ -1,0 +1,20 @@
+{
+  "id": "garden-pest-treatment-service-siteia",
+  "slug": "apentomosi-kipou-siteia",
+  "nameGr": "Απεντόμωση Κήπου στη Σητεία",
+  "nameEn": "Garden Pest Treatment Service in Σητεία",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Απεντόμωση κήπου στη Σητεία για έντομα που επηρεάζουν φυτά και εξωτερικούς χώρους με στοχευμένες εφαρμογές. SEO intent: καλύπτει τοπικά commercial queries «απεντόμωση κήπου Σητεία».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "απεντόμωση κήπου Σητεία",
+    "έντομα φυτών αντιμετώπιση Σητεία",
+    "ψεκασμός κήπου έντομα",
+    "κηπουρός φυτοπροστασία",
+    "προστασία φυτών από έντομα"
+  ],
+  "status": "researched"
+}
