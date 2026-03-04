@@ -1,10 +1,10 @@
 {
-  "lastManagerRun": "2026-03-04T13:52:00Z",
+  "lastManagerRun": "2026-03-04T13:58:00Z",
   "activeAgents": {
     "research": {
-      "status": "in-progress",
-      "task": "Added next 5 categories (locksmith, carpenter, tiler, gardener, mover) and seeded long-tail jobs",
-      "startedAt": "2026-03-04T13:52:00Z"
+      "status": "completed",
+      "task": "Expanded with 3 new categories (appliance repair, pest control, aluminum frames), added 12 long-tail jobs, and linked category content pages.",
+      "startedAt": "2026-03-04T13:58:00Z"
     },
     "builder": {
       "status": "idle",
@@ -18,10 +18,10 @@
     }
   },
   "stats": {
-    "categoriesResearched": 10,
-    "jobsResearched": 77,
-    "contentPagesBuilt": 87
+    "categoriesResearched": 13,
+    "jobsResearched": 89,
+    "contentPagesBuilt": 90
   },
-  "lastDecision": "Generated missing content pages for the newly researched categories and jobs and synchronized content page totals.",
+  "lastDecision": "Added next high-value categories now because current mix over-indexed on core trades; expansion improves intent coverage (urgent repair, hygiene/compliance, and renovation/energy-upgrade demand) with 3 categories and 12 long-tail jobs.",
   "blockers": []
 }

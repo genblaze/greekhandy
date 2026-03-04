@@ -1,0 +1,12 @@
+{
+  "id": "roller-shutter-repair",
+  "slug": "episkevi-rolou-alouminiou",
+  "nameGr": "Επισκευή ρολού αλουμινίου",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επισκευή ιμάντα, μοτέρ και οδηγών σε οικιακά ή επαγγελματικά ρολά.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-260€",
+  "demand": "high",
+  "notes": "Συχνές κλήσεις λόγω βλαβών σε παλαιούς μηχανισμούς."
+}

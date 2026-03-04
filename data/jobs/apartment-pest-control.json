@@ -1,0 +1,12 @@
+{
+  "id": "apartment-pest-control",
+  "slug": "apentomosi-diamerismatos",
+  "nameGr": "Απεντόμωση διαμερίσματος",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Στοχευμένη εφαρμογή για κοινά έντομα σε κατοικίες με ασφαλή πρωτόκολλα.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "50-140€",
+  "demand": "high",
+  "notes": "Εποχικότητα άνοιξη-φθινόπωρο με σταθερή αστική ζήτηση."
+}

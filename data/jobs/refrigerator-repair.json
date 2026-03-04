@@ -1,0 +1,12 @@
+{
+  "id": "refrigerator-repair",
+  "slug": "episkevi-psygeiou",
+  "nameGr": "Επισκευή ψυγείου",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Έλεγχος ψύξης, θερμοστάτη, μοτέρ/συμπιεστή και αποκατάσταση λειτουργίας ψυγείου.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "45-180€",
+  "demand": "high",
+  "notes": "Υψηλή πρόθεση άμεσης ανάθεσης όταν υπάρχει απώλεια ψύξης."
+}

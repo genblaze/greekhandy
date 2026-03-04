@@ -214,5 +214,71 @@
       "office-relocation",
       "packing-unpacking-service"
     ]
+  },
+  {
+    "id": "appliance-technicians",
+    "slug": "techniki-oikiakon-syskevon",
+    "nameGr": "Τεχνικοί Οικιακών Συσκευών",
+    "nameEn": "Appliance Repair Technicians",
+    "description": "Επισκευές πλυντηρίων, ψυγείων, κουζινών και λοιπών λευκών συσκευών με διάγνωση βλάβης κατ’ οίκον.",
+    "icon": "🛠️",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa",
+      "volos"
+    ],
+    "priority": 11,
+    "seedJobs": [
+      "washing-machine-repair",
+      "refrigerator-repair",
+      "oven-stove-repair"
+    ]
+  },
+  {
+    "id": "pest-control",
+    "slug": "apentomoseis-myoktonies",
+    "nameGr": "Απεντομώσεις & Μυοκτονίες",
+    "nameEn": "Pest Control",
+    "description": "Απεντόμωση, μυοκτονία και εξειδικευμένες εφαρμογές για κατοικίες, πολυκατοικίες και επαγγελματικούς χώρους.",
+    "icon": "🐜",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa",
+      "ioannina"
+    ],
+    "priority": 12,
+    "seedJobs": [
+      "apartment-pest-control",
+      "cockroach-treatment",
+      "rodent-control"
+    ]
+  },
+  {
+    "id": "aluminum-frames",
+    "slug": "koufomata-alouminiou",
+    "nameGr": "Κουφώματα Αλουμινίου",
+    "nameEn": "Aluminum Frames",
+    "description": "Τοποθέτηση και επισκευή κουφωμάτων αλουμινίου, σιτών και ρολών για κατοικίες και επαγγελματικούς χώρους.",
+    "icon": "🪟",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "larisa",
+      "volos",
+      "irakleio"
+    ],
+    "priority": 13,
+    "seedJobs": [
+      "aluminum-frame-installation",
+      "screen-installation-repair",
+      "roller-shutter-repair"
+    ]
   }
 ]

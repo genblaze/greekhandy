@@ -1,0 +1,12 @@
+{
+  "id": "dishwasher-repair",
+  "slug": "episkevi-pluntiriou-piaton",
+  "nameGr": "Επισκευή πλυντηρίου πιάτων",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Αποκατάσταση διαρροών, βλαβών αντλίας και προβλημάτων αποστράγγισης σε πλυντήριο πιάτων.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "40-150€",
+  "demand": "medium",
+  "notes": "Συμπληρωματική εργασία με ανοδική ζήτηση σε αστικά κέντρα."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "cockroach-treatment",
+  "slug": "katapolemisi-katsaridas",
+  "nameGr": "Καταπολέμηση κατσαρίδας",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Εξειδικευμένη αντιμετώπιση κατσαρίδας σε κουζίνα, μπάνιο και κοινόχρηστους χώρους.",
+  "typicalDuration": "45-90 λεπτά",
+  "priceRangeEUR": "45-130€",
+  "demand": "high",
+  "notes": "Long-tail με υψηλό intent και συχνά επαναλαμβανόμενες εφαρμογές."
+}

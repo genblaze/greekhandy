@@ -1,0 +1,12 @@
+{
+  "id": "oven-stove-repair",
+  "slug": "episkevi-kouzinas-fourno",
+  "nameGr": "Επισκευή κουζίνας/φούρνου",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευές σε αντιστάσεις, θερμοστάτες, πλακέτες και βλάβες εστιών ή φούρνου.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "40-160€",
+  "demand": "medium",
+  "notes": "Συχνή ανάγκη σε παλαιότερες ηλεκτρικές κουζίνες."
+}

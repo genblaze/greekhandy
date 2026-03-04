@@ -1,0 +1,12 @@
+{
+  "id": "rodent-control",
+  "slug": "myoktonia",
+  "nameGr": "Μυοκτονία",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Τοποθέτηση δολωμάτων/παγίδων και σχέδιο παρακολούθησης για ποντίκια και αρουραίους.",
+  "typicalDuration": "1-2 ώρες + επανέλεγχος",
+  "priceRangeEUR": "70-220€",
+  "demand": "medium",
+  "notes": "Συχνή ανάγκη σε ισόγεια, αποθήκες και επαγγελματικούς χώρους."
+}

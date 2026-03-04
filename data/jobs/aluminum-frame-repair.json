@@ -1,0 +1,12 @@
+{
+  "id": "aluminum-frame-repair",
+  "slug": "episkevi-koufomaton-alouminiou",
+  "nameGr": "Επισκευή κουφωμάτων αλουμινίου",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Ρυθμίσεις, αλλαγές εξαρτημάτων και στεγανοποίηση σε υφιστάμενα κουφώματα αλουμινίου.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "40-260€",
+  "demand": "medium",
+  "notes": "Συμπληρωματική υπηρεσία με καλή μετατροπή από οργανική αναζήτηση."
+}

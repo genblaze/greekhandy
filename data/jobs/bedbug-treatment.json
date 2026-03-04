@@ -1,0 +1,12 @@
+{
+  "id": "bedbug-treatment",
+  "slug": "katapolemisi-korion",
+  "nameGr": "Καταπολέμηση κοριών",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Εξειδικευμένη εφαρμογή για κοριούς με πρωτόκολλο επανάληψης όπου απαιτείται.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "90-300€",
+  "demand": "medium",
+  "notes": "Υψηλής αξίας εργασία με αυξανόμενο ενδιαφέρον σε βραχυχρόνιες μισθώσεις."
+}

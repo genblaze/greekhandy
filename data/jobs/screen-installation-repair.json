@@ -1,0 +1,12 @@
+{
+  "id": "screen-installation-repair",
+  "slug": "topothetisi-episkevi-siton",
+  "nameGr": "Τοποθέτηση/επισκευή σιτών",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Κατασκευή ή αντικατάσταση σίτας σε παράθυρα/μπαλκονόπορτες, με επισκευή μηχανισμών.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "30-220€",
+  "demand": "high",
+  "notes": "Ισχυρή εποχική ζήτηση και συχνά μικρές, άμεσες εργασίες."
+}
