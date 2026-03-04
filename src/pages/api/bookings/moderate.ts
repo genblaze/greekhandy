@@ -24,6 +24,11 @@ const toTargetState = (inputAction: string, inputTargetState: string): BookingMo
   return null;
 };
 
+const isAllowedTransition = (from: BookingModerationState, to: BookingModerationState) => {
+  if (from === to) return true;
+  return from === 'pending' && ['approved', 'rejected', 'cancelled'].includes(to);
+};
+
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
   const moderationKey = clean(formData.get('moderationKey'));
@@ -55,8 +60,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       return redirect(`${returnUrl}&status=stale&bookingId=${short(bookingId)}&expected=${short(expectedState)}&actual=${short(currentState)}`, 303);
     }
 
-    if (targetState === 'cancelled' && currentState !== 'pending') {
-      return redirect(`${returnUrl}&status=guardrail&bookingId=${short(bookingId)}&expected=${short('pending')}&actual=${short(currentState)}&reason=${short('cancel-only-from-pending')}`, 303);
+    if (!isAllowedTransition(currentState, targetState)) {
+      return redirect(`${returnUrl}&status=guardrail&bookingId=${short(bookingId)}&expected=${short('pending-only-transition')}&actual=${short(currentState)}&reason=${short('invalid-transition')}`, 303);
     }
 
     if (currentState === targetState) {

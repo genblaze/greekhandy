@@ -24,7 +24,12 @@ const statusTo = (url.searchParams.get('to') ?? '').trim();
 const statusExpected = (url.searchParams.get('expected') ?? '').trim();
 const statusActual = (url.searchParams.get('actual') ?? '').trim();
 const statusReason = (url.searchParams.get('reason') ?? '').trim();
-const isCancellationGuardrail = statusReason === 'cancel-only-from-pending';
+const isInvalidTransitionGuardrail = statusReason === 'invalid-transition';
+
+const isAllowedTransition = (from: BookingModerationState, to: BookingModerationState) => {
+  if (from === to) return true;
+  return from === 'pending' && ['approved', 'rejected', 'cancelled'].includes(to);
+};
 
 const formatDateTime = (value: string | undefined) => {
   const timestamp = Date.parse(value ?? '');
@@ -123,7 +128,7 @@ const hasAnyBookings = bookings.length > 0;
         )}
         {status === 'guardrail' && (
           <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
-            Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isCancellationGuardrail ? 'Η ακύρωση επιτρέπεται μόνο από κατάσταση pending.' : 'Ελέγξτε τους κανόνες μετάβασης.'}
+            Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isInvalidTransitionGuardrail ? 'Επιτρέπονται μόνο μεταβάσεις από pending προς approved, rejected ή cancelled.' : 'Ελέγξτε τους κανόνες μετάβασης.'}
           </p>
         )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
@@ -160,7 +165,7 @@ const hasAnyBookings = bookings.length > 0;
         {!hasAnyBookings && (
           <div class="mt-6 rounded-2xl border border-dashed border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 text-blue-900">
             <p class="font-semibold">Δεν υπάρχουν ακόμη καταχωρημένα αιτήματα κράτησης.</p>
-            <p class="mt-1 text-sm text-blue-800">Μόλις υποβληθεί το πρώτο αίτημα, θα εμφανιστεί εδώ με πλήρες lifecycle (pending/approved/rejected).</p>
+            <p class="mt-1 text-sm text-blue-800">Μόλις υποβληθεί το πρώτο αίτημα, θα εμφανιστεί εδώ με πλήρες lifecycle (pending/approved/rejected/cancelled).</p>
           </div>
         )}
 
@@ -216,11 +221,7 @@ const hasAnyBookings = bookings.length > 0;
                   <span class="text-xs font-medium text-slate-500">Τρέχουσα κατάσταση: {resolution.state}</span>
 
                   {transitionTargets
-                    .filter((target) => {
-                      if (target.state === resolution.state) return false;
-                      if (target.state === 'cancelled' && resolution.state !== 'pending') return false;
-                      return true;
-                    })
+                    .filter((target) => target.state !== resolution.state && isAllowedTransition(resolution.state, target.state))
                     .map((target) => (
                       <form action="/api/bookings/moderate" method="POST" data-moderation-form>
                         <input type="hidden" name="moderationKey" value={moderationKey} />
