@@ -1,0 +1,147 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+
+const SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
+const ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
+
+const url = new URL(Astro.request.url);
+const moderationKey = url.searchParams.get('key') ?? '';
+const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
+const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
+const status = url.searchParams.get('status');
+
+interface MessageSubmission {
+  id?: string;
+  threadId?: string;
+  professionalSlug: string;
+  senderName: string;
+  senderEmail: string;
+  senderPhone?: string;
+  message: string;
+  status: 'pending';
+  submittedAt: string;
+}
+
+interface ActionLog {
+  threadId: string;
+  action: string;
+  actedAt: string;
+}
+
+const readNdjson = async <T,>(path: string): Promise<T[]> => {
+  try {
+    const raw = await readFile(path, 'utf-8');
+    return raw
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => JSON.parse(line) as T);
+  } catch {
+    return [];
+  }
+};
+
+const submissions = await readNdjson<MessageSubmission>(SUBMISSIONS_FILE_PATH);
+const actions = await readNdjson<ActionLog>(ACTIONS_FILE_PATH);
+
+const latestActionByThread = new Map<string, ActionLog>();
+for (const action of actions) latestActionByThread.set(action.threadId, action);
+
+const submissionsByThread = new Map<string, MessageSubmission[]>();
+for (const submission of submissions) {
+  const fallbackThreadId = `${submission.professionalSlug}|${submission.senderEmail}|${submission.submittedAt}`;
+  const threadId = submission.threadId || fallbackThreadId;
+  const list = submissionsByThread.get(threadId) || [];
+  list.push(submission);
+  submissionsByThread.set(threadId, list);
+}
+
+const pendingThreads = Array.from(submissionsByThread.entries())
+  .map(([threadId, threadSubmissions]) => {
+    const ordered = [...threadSubmissions].sort((a, b) => a.submittedAt.localeCompare(b.submittedAt));
+    const latestMessage = ordered.at(-1);
+    return {
+      threadId,
+      latestMessage,
+      firstMessage: ordered[0],
+      messageCount: ordered.length,
+      latestAction: latestActionByThread.get(threadId)
+    };
+  })
+  .filter((thread) => thread.latestMessage && !thread.latestAction)
+  .sort((a, b) => b.latestMessage.submittedAt.localeCompare(a.latestMessage.submittedAt));
+---
+
+<Layout title="Moderation Μηνυμάτων | GreekHandy" description="Internal triage workflow for message request threads.">
+  <main class="mx-auto max-w-5xl px-4 py-14">
+    <h1 class="text-3xl font-bold text-gray-900">Moderation Message Threads</h1>
+    <p class="mt-2 text-gray-700">Εσωτερική ουρά για αρχικά αιτήματα μηνυμάτων ανά thread.</p>
+
+    {!isAuthorized && (
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
+        Μη εξουσιοδοτημένη πρόσβαση. Προσθέστε <code>?key=...</code> και ορίστε env <code>PROFESSIONAL_MODERATION_KEY</code>.
+      </div>
+    )}
+
+    {isAuthorized && (
+      <>
+        {status === 'ok' && <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">Η ενέργεια ολοκληρώθηκε.</p>}
+        {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
+        {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα.</p>}
+
+        <section class="mt-8 space-y-4">
+          <h2 class="text-xl font-bold text-gray-900">Εκκρεμή Threads ({pendingThreads.length})</h2>
+
+          {pendingThreads.length === 0 && (
+            <p class="rounded-xl border border-gray-200 bg-white p-4 text-gray-700">Δεν υπάρχουν εκκρεμή message threads.</p>
+          )}
+
+          {pendingThreads.map(({ threadId, firstMessage, latestMessage, messageCount }) => (
+            <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p class="text-sm font-semibold text-blue-700">/{latestMessage.professionalSlug}</p>
+                  <h3 class="text-lg font-bold text-gray-900">{latestMessage.senderName}</h3>
+                  <p class="mt-1 text-sm text-gray-600">{latestMessage.senderEmail}{latestMessage.senderPhone ? ` • ${latestMessage.senderPhone}` : ''}</p>
+                  <p class="mt-1 text-xs text-gray-500">Thread: {threadId}</p>
+                  <p class="mt-1 text-xs text-gray-500">Μηνύματα thread: {messageCount}</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs text-gray-500">Πρώτο: {new Date(firstMessage.submittedAt).toLocaleString('el-GR')}</p>
+                  <p class="text-xs text-gray-500">Τελευταίο: {new Date(latestMessage.submittedAt).toLocaleString('el-GR')}</p>
+                </div>
+              </div>
+
+              <p class="mt-3 text-sm text-gray-700"><strong>Latest:</strong> {latestMessage.message}</p>
+
+              <div class="mt-4 flex flex-wrap gap-3">
+                <form action="/api/messages/triage" method="POST">
+                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="action" value="review" />
+                  <input type="hidden" name="threadId" value={threadId} />
+                  <button type="submit" class="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-800">Mark Reviewed</button>
+                </form>
+
+                <form action="/api/messages/triage" method="POST">
+                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="action" value="reject" />
+                  <input type="hidden" name="threadId" value={threadId} />
+                  <button type="submit" class="rounded-lg bg-gray-700 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">Reject</button>
+                </form>
+
+                <form action="/api/messages/triage" method="POST">
+                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="action" value="block" />
+                  <input type="hidden" name="threadId" value={threadId} />
+                  <button type="submit" class="rounded-lg bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800">Block</button>
+                </form>
+              </div>
+            </article>
+          ))}
+        </section>
+      </>
+    )}
+  </main>
+</Layout>
