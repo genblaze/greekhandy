@@ -489,6 +489,13 @@ for (const message of threadMessages) {
       </div>
     </section>
 
+    {hasViewerParamIssue && (
+      <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
+        <p class="font-semibold">Η φόρτωση thread χρειάζεται έγκυρα `threadId` και `viewerEmail`.</p>
+        <p class="mt-1">Παράδειγμα: <code>/messages/thread?threadId=...&viewerEmail=name@example.com</code>.</p>
+      </div>
+    )}
+
     <section class="thread-toast-stack" aria-label="Καταστάσεις συνομιλίας">
       {messageStatus === 'submitted' && (
         <div class="thread-toast thread-toast--emerald js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true" data-autohide-ms="5600">

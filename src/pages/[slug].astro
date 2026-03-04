@@ -306,9 +306,9 @@ const faqSchema = category.faq?.length ? {
                   <p class="text-sm text-slate-600" data-subjobs-count aria-live="polite">Εμφανίζονται {initialVisibleSubJobs} από {subJobs.length} υπηρεσίες.</p>
                   <p class="sr-only" data-subjobs-a11y-summary aria-live="polite" aria-atomic="true"></p>
                   <div class="flex items-center gap-2">
-                    <button type="button" data-page-prev aria-label="Προβολή προηγούμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Προηγούμενα</button>
-                    <button type="button" data-page-next aria-label="Προβολή επόμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Επόμενα</button>
-                    <button type="button" data-load-more-subjobs class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
+                    <button type="button" data-page-prev aria-controls="subjobs-grid" aria-label="Προβολή προηγούμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Προηγούμενα</button>
+                    <button type="button" data-page-next aria-controls="subjobs-grid" aria-label="Προβολή επόμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Επόμενα</button>
+                    <button type="button" data-load-more-subjobs aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
                   </div>
                 </div>
                 <noscript>

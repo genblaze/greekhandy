@@ -678,6 +678,13 @@ const inboxReadinessHint = listLoadError
       )}
     </section>
 
+    {!canLoadThreads && (
+      <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
+        <p class="font-semibold">Η προβολή inbox χρειάζεται έγκυρο `viewerEmail`.</p>
+        <p class="mt-1">Χρησιμοποιήστε URL όπως <code>/messages?viewerEmail=name@example.com</code> για να ενεργοποιηθεί η λίστα thread.</p>
+      </div>
+    )}
+
     {canLoadThreads && (
       <nav class="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm" aria-label="Γρήγορη πλοήγηση inbox">
         <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Γρήγορη πλοήγηση</p>
