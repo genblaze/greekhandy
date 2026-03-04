@@ -49,10 +49,11 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     await mkdir(dirname(BOOKING_SUBMISSIONS_FILE_PATH), { recursive: true });
     await appendFile(BOOKING_SUBMISSIONS_FILE_PATH, `${JSON.stringify(submission)}\n`, 'utf-8');
 
-    const query = new URLSearchParams({ status: 'submitted' });
-    if (returnTo.startsWith('/') && !returnTo.startsWith('//')) query.set('returnTo', returnTo);
+    const statusUrl = new URL(getBookingStatusPath(submission.id), 'https://greekhandy.local');
+    statusUrl.searchParams.set('status', 'submitted');
+    if (returnTo.startsWith('/') && !returnTo.startsWith('//')) statusUrl.searchParams.set('returnTo', returnTo);
 
-    return redirect(`${getBookingStatusPath(submission.id)}?${query.toString()}`, 303);
+    return redirect(`${statusUrl.pathname}?${statusUrl.searchParams.toString()}`, 303);
   } catch (error) {
     console.error('[booking-submit] failed', error);
     return redirect(`${returnTo}?booking=error`, 303);

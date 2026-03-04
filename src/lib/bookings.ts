@@ -24,6 +24,7 @@ export interface BookingAction {
 }
 
 export type BookingModerationState = 'pending' | 'approved' | 'rejected';
+export const BOOKING_STATUS_PAGE_PATH = '/bookings/request';
 
 export const readNdjson = async <T>(path: string): Promise<T[]> => {
   try {
@@ -47,4 +48,5 @@ export const getBookingModerationState = (action?: string): BookingModerationSta
   return 'pending';
 };
 
-export const getBookingStatusPath = (bookingId: string) => `/bookings/${encodeURIComponent(bookingId)}`;
+export const getBookingStatusPath = (bookingId: string) =>
+  `${BOOKING_STATUS_PAGE_PATH}?bookingId=${encodeURIComponent(bookingId)}`;
