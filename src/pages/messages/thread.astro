@@ -574,6 +574,10 @@ for (const message of threadMessages) {
       )}
     </section>
     <p id="thread-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
+    <div id="thread-offline-alert" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
+      <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
+      <p class="mt-1 text-xs">Οι αποστολές μηνυμάτων/αναφορών θα μπλοκάρονται προσωρινά μέχρι να επανέλθει το δίκτυο.</p>
+    </div>
 
     {hasMissingParams && (
       <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-missing-params-title" aria-describedby="thread-missing-params-description">
@@ -1014,7 +1018,7 @@ for (const message of threadMessages) {
           <div class="flex flex-wrap items-start justify-between gap-3">
             <div>
               <h2 id="thread-interaction-title" class="text-lg font-semibold text-slate-900">Ενέργειες thread</h2>
-              <p class="mt-1 text-sm text-slate-600">Composer αποστολής και ασφαλή pending states για αποφυγή διπλής υποβολής.</p>
+              <p class="mt-1 text-sm text-slate-600">Composer αποστολής με ασφαλή pending states και έλεγχο σύνδεσης για αποφυγή άσκοπων retries.</p>
             </div>
             <span class={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${canReply ? 'border-emerald-300 bg-emerald-100 text-emerald-900' : 'border-amber-300 bg-amber-100 text-amber-900'}`}>
               {canReply ? 'Composer ενεργό' : 'Composer ανενεργό'}
@@ -1067,7 +1071,7 @@ for (const message of threadMessages) {
               data-pending-timeout-label="Η αποστολή καθυστέρησε. Ελέγξτε το δίκτυο και δοκιμάστε ξανά."
               data-pending-timeout-ms="18000"
               aria-labelledby="thread-composer-title"
-              aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live composer-submit-live"
+              aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live composer-submit-live thread-offline-alert"
             >
               <div class="flex flex-wrap items-start justify-between gap-2">
                 <div>
@@ -1564,7 +1568,9 @@ for (const message of threadMessages) {
 
       const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
       const globalSubmitLive = document.querySelector('#thread-submit-live');
+      const offlineAlert = document.querySelector('#thread-offline-alert');
       const pendingTimeouts = new WeakMap();
+      const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
       const clearPendingTimeout = (form) => {
         const timer = pendingTimeouts.get(form);
         if (typeof timer === 'number') {
@@ -1576,6 +1582,20 @@ for (const message of threadMessages) {
         const scopedLiveRegion = form.querySelector('#composer-submit-live');
         if (scopedLiveRegion instanceof HTMLElement) scopedLiveRegion.textContent = message;
         if (globalSubmitLive instanceof HTMLElement) globalSubmitLive.textContent = message;
+      };
+      const syncOfflineAlert = () => {
+        if (!(offlineAlert instanceof HTMLElement)) return;
+        const offline = isOffline();
+        offlineAlert.classList.toggle('hidden', !offline);
+        if (!offline) {
+          if (
+            globalSubmitLive instanceof HTMLElement
+            && typeof globalSubmitLive.textContent === 'string'
+            && globalSubmitLive.textContent.includes('Δεν υπάρχει σύνδεση')
+          ) globalSubmitLive.textContent = '';
+          return;
+        }
+        for (const form of pendingForms) announcePendingState(form, 'Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.');
       };
       const setFormPending = (form, isPending) => {
         const submitButton = form.querySelector('button[type="submit"]');
@@ -1728,6 +1748,16 @@ for (const message of threadMessages) {
         }
 
         form.addEventListener('submit', (event) => {
+          if (isOffline()) {
+            event.preventDefault();
+            announcePendingState(form, 'Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.');
+            if (isComposerForm) {
+              setComposerState('error', 'Δεν υπάρχει σύνδεση για αποστολή.');
+              if (live) live.textContent = 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου.';
+            }
+            syncOfflineAlert();
+            return;
+          }
           if (form.getAttribute('aria-busy') === 'true') {
             event.preventDefault();
             announcePendingState(form, 'Η υποβολή βρίσκεται ήδη σε εξέλιξη.');
@@ -1768,7 +1798,11 @@ for (const message of threadMessages) {
         if (composerTextarea instanceof HTMLTextAreaElement) {
           composerTextarea.dispatchEvent(new Event('input', { bubbles: true }));
         }
+        syncOfflineAlert();
       });
+      window.addEventListener('online', syncOfflineAlert);
+      window.addEventListener('offline', syncOfflineAlert);
+      syncOfflineAlert();
 
       if (!(focusToast instanceof HTMLElement)) {
         const composerForm = document.querySelector('.js-composer-form');

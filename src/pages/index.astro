@@ -451,7 +451,22 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           <a href="/professionals" class="inline-flex rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Δείτε όλα τα προφίλ</a>
         </div>
 
-        <form class="mt-7 grid grid-cols-1 gap-4 md:grid-cols-12" role="search" aria-label="Αναζήτηση υπηρεσιών, κατηγοριών και επαγγελματιών">
+        <div class="mt-5 grid gap-2.5 sm:grid-cols-3" role="status" aria-live="polite" aria-atomic="true">
+          <div class="rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2 text-xs text-slate-700">
+            <p class="font-semibold uppercase tracking-[0.12em] text-slate-500">Υπηρεσίες</p>
+            <p class="mt-1 text-sm font-semibold text-slate-900">{totalServices} καταχωρήσεις</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2 text-xs text-slate-700">
+            <p class="font-semibold uppercase tracking-[0.12em] text-slate-500">Κατηγορίες</p>
+            <p class="mt-1 text-sm font-semibold text-slate-900">{categoriesWithJobs.length} ενεργές ενότητες</p>
+          </div>
+          <div class="rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2 text-xs text-slate-700">
+            <p class="font-semibold uppercase tracking-[0.12em] text-slate-500">Προφίλ</p>
+            <p class="mt-1 text-sm font-semibold text-slate-900">{totalProfessionals} διαθέσιμοι επαγγελματίες</p>
+          </div>
+        </div>
+
+        <form class="mt-7 grid grid-cols-1 gap-4 md:grid-cols-12" role="search" aria-label="Αναζήτηση υπηρεσιών, κατηγοριών και επαγγελματιών" aria-describedby="search-browse-guidance search-results-count search-results-state">
           <div class="md:col-span-6">
             <label for="search-keyword" class="mb-2 block text-sm font-semibold text-gray-800">Λέξη-κλειδί</label>
             <input
@@ -461,6 +476,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
               placeholder="π.χ. επισκευή διαρροής, εγκατάσταση κλιματιστικού"
               autocomplete="off"
               aria-controls="search-results-list"
+              aria-describedby="search-browse-guidance search-results-state search-results-count"
               class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100"
               data-search-input
             />
@@ -472,6 +488,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
               id="search-city"
               name="search-city"
               aria-controls="search-results-list"
+              aria-describedby="search-browse-guidance search-results-state search-results-count"
               class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100"
               data-city-filter
             >
@@ -504,17 +521,17 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           </nav>
         )}
 
-        <p id="search-results-count" class="mt-4 text-sm text-slate-700" data-results-count role="status" aria-live="polite" aria-atomic="true"></p>
-        <p class="mt-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2 text-xs text-slate-600" data-search-state role="status" aria-live="polite" aria-atomic="true">
-          Προετοιμασία αναζήτησης...
+        <p id="search-results-count" class="mt-4 text-sm text-slate-700" data-results-count role="status" aria-live="polite" aria-atomic="true">{homepageSearchItems.length > 0 ? `Εμφανίζονται ${homepageSearchItems.length} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.` : 'Προσωρινά δεν υπάρχει διαθέσιμο δείγμα αναζήτησης. Συνεχίστε από τις κατηγορίες παρακάτω.'}</p>
+        <p id="search-results-state" class="mt-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2 text-xs text-slate-600" data-search-state role="status" aria-live="polite" aria-atomic="true">
+          Η αναζήτηση είναι έτοιμη.
         </p>
 
-        <p class="mt-1 text-xs text-slate-500">Προβάλλεται αντιπροσωπευτικό δείγμα για ταχύτερη φόρτωση. Δείτε πλήρη πλοήγηση μέσα από τις κατηγορίες και τα προφίλ.</p>
+        <p id="search-browse-guidance" class="mt-1 text-xs text-slate-500">Προβάλλεται αντιπροσωπευτικό δείγμα για ταχύτερη φόρτωση. Δείτε πλήρη πλοήγηση μέσα από τις κατηγορίες και τα προφίλ.</p>
         <noscript>
           <p class="mt-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">Η ζωντανή αναζήτηση χρειάζεται JavaScript. Μπορείτε να συνεχίσετε από τις κατηγορίες και τα προφίλ.</p>
         </noscript>
 
-        <div class="mt-5 hidden rounded-2xl border border-cyan-200 bg-cyan-50/70 p-4 text-cyan-900" data-search-loading>
+        <div class="mt-5 hidden rounded-2xl border border-cyan-200 bg-cyan-50/70 p-4 text-cyan-900" data-search-loading role="status" aria-live="polite" aria-atomic="true">
           <p class="text-sm font-semibold">Φόρτωση αποτελεσμάτων...</p>
           <p class="mt-1 text-xs text-cyan-800">Συνδυάζουμε υπηρεσίες, κατηγορίες και επαγγελματίες.</p>
         </div>
@@ -529,7 +546,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           </div>
         </div>
 
-        <ul id="search-results-list" class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false" aria-describedby="search-results-count">
+        <ul id="search-results-list" class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false" aria-describedby="search-results-count search-results-state search-browse-guidance">
           {homepageSearchItems.map(item => (
             <li
               data-search-item
@@ -851,6 +868,22 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       const emptyResetButton = document.querySelector('[data-empty-reset]');
       const resultsList = document.querySelector('[data-results-list]');
       const searchState = document.querySelector('[data-search-state]');
+      const applySetupFallbackState = () => {
+        if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
+        if (errorState instanceof HTMLElement) {
+          if (errorStateTitle instanceof HTMLElement) {
+            errorStateTitle.textContent = 'Η αναζήτηση δεν ξεκίνησε σωστά.';
+          }
+          if (errorStateDescription instanceof HTMLElement) {
+            errorStateDescription.textContent = 'Χρησιμοποιήστε τις κατηγορίες ή τα προφίλ μέχρι να ολοκληρωθεί νέα φόρτωση.';
+          }
+          errorState.classList.remove('hidden');
+        }
+        if (searchState instanceof HTMLElement) {
+          searchState.dataset.state = 'error';
+          searchState.textContent = 'Η ζωντανή αναζήτηση δεν ενεργοποιήθηκε. Συνεχίστε από κατηγορίες ή προφίλ.';
+        }
+      };
 
       if (
         !(searchInput instanceof HTMLInputElement)
@@ -859,7 +892,10 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
         || !(resultsCount instanceof HTMLElement)
         || !(emptyState instanceof HTMLElement)
         || !(resultsList instanceof HTMLElement)
-      ) return;
+      ) {
+        applySetupFallbackState();
+        return;
+      }
 
       const parsedCards = resultCards.map(card => ({
         card,
@@ -879,6 +915,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
         resultsList.setAttribute('aria-busy', active ? 'true' : 'false');
         if (loadingState instanceof HTMLElement) loadingState.classList.toggle('hidden', !active);
         if (active) emptyState.classList.add('hidden');
+        if (active && errorState instanceof HTMLElement) errorState.classList.add('hidden');
         if (active && searchState instanceof HTMLElement) {
           searchState.dataset.state = 'loading';
           searchState.textContent = 'Η αναζήτηση συγχρονίζεται...';

@@ -135,7 +135,7 @@ const threads = Array.from(threadMap.entries())
     const isReported = threadAction === 'review' || threadAction === 'reject';
     const isAdminHidden = hiddenMessagesCount > 0;
     const isModerated = isBlocked || isReported || isAdminHidden;
-    const isMuted = !isBlocked && lastMessageHidden;
+    const isMuted = !isBlocked && ordered.length > 0 && hiddenMessagesCount === ordered.length;
     const moderationState = isBlocked ? 'blocked' : isAdminHidden ? 'admin-hidden' : isReported ? 'reported' : 'active';
     const stateTone = isBlocked ? 'blocked' : isMuted ? 'muted' : moderationState === 'admin-hidden' ? 'admin-hidden' : moderationState === 'reported' ? 'reported' : 'active';
     const unreadLabel = hasUnread ? formatUnreadCount(unreadCount) : 'Χωρίς μη αναγνωσμένα';
@@ -744,6 +744,10 @@ const inboxReadinessHint = listLoadError
       )}
     </section>
     <p id="messages-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
+    <div id="messages-offline-alert" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
+      <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
+      <p class="mt-1 text-xs">Οι υποβολές ενημέρωσης θα μπλοκάρονται προσωρινά μέχρι να επανέλθει το δίκτυο.</p>
+    </div>
 
     {listLoadError && (
       <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900" role="alert" aria-live="assertive">
@@ -771,7 +775,7 @@ const inboxReadinessHint = listLoadError
           <span class="rounded-full border border-sky-300 bg-sky-100 px-2 py-0.5 font-semibold text-sky-900">Αναφορά σε έλεγχο</span>
           <span class="rounded-full border border-rose-300 bg-rose-100 px-2 py-0.5 font-semibold text-rose-900">Μπλοκαρισμένη</span>
           <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 font-semibold text-orange-900">Κρυφό περιεχόμενο</span>
-          <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 font-semibold text-orange-900">Σε σίγαση</span>
+          <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 font-semibold text-orange-900">Σε σίγαση (πλήρης απόκρυψη)</span>
           <span class="rounded-full border border-amber-300 bg-amber-100 px-2 py-0.5 font-semibold text-amber-900">Αναφορά χωρίς περιορισμό</span>
         </div>
       </div>
@@ -1725,7 +1729,9 @@ const inboxReadinessHint = listLoadError
 
       const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
       const submitLiveRegion = document.querySelector('#messages-submit-live');
+      const offlineAlert = document.querySelector('#messages-offline-alert');
       const pendingTimeouts = new WeakMap();
+      const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
       const clearPendingTimeout = (form) => {
         const timer = pendingTimeouts.get(form);
         if (typeof timer === 'number') {
@@ -1735,6 +1741,20 @@ const inboxReadinessHint = listLoadError
       };
       const announceSubmitState = (message) => {
         if (submitLiveRegion instanceof HTMLElement) submitLiveRegion.textContent = message;
+      };
+      const syncOfflineAlert = () => {
+        if (!(offlineAlert instanceof HTMLElement)) return;
+        const offline = isOffline();
+        offlineAlert.classList.toggle('hidden', !offline);
+        if (!offline) {
+          if (
+            submitLiveRegion instanceof HTMLElement
+            && typeof submitLiveRegion.textContent === 'string'
+            && submitLiveRegion.textContent.includes('Δεν υπάρχει σύνδεση')
+          ) submitLiveRegion.textContent = '';
+          return;
+        }
+        announceSubmitState('Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.');
       };
       const setFormPending = (form, isPending) => {
         const submitButton = form.querySelector('button[type="submit"]');
@@ -1789,6 +1809,12 @@ const inboxReadinessHint = listLoadError
 
       for (const form of pendingForms) {
         form.addEventListener('submit', (event) => {
+          if (isOffline()) {
+            event.preventDefault();
+            announceSubmitState('Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.');
+            syncOfflineAlert();
+            return;
+          }
           if (form.getAttribute('aria-busy') === 'true') {
             event.preventDefault();
             announceSubmitState('Η ενημέρωση βρίσκεται ήδη σε εξέλιξη.');
@@ -1810,7 +1836,11 @@ const inboxReadinessHint = listLoadError
           setFormPending(form, false);
         }
         announceSubmitState('');
+        syncOfflineAlert();
       });
+      window.addEventListener('online', syncOfflineAlert);
+      window.addEventListener('offline', syncOfflineAlert);
+      syncOfflineAlert();
     })();
   </script>
 </Layout>
