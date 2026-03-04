@@ -423,7 +423,10 @@ const hasLeads = directoryData.leads.length > 0;
 
               <section data-selection-dock class="pointer-events-none fixed inset-x-0 bottom-3 z-30 hidden px-4">
                 <div class="pointer-events-auto mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur">
-                  <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
+                  <div>
+                    <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
+                    <p data-selection-next-hint class="mt-1 text-xs text-slate-600">Επόμενο βήμα: επιλέξτε μαζική ενέργεια για τα επιλεγμένα leads.</p>
+                  </div>
                   <div class="flex flex-wrap items-center gap-2">
                     <button type="button" data-selection-dock-contacted="true" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Επικοινωνήθηκε</button>
                     <button type="button" data-selection-dock-contacted="false" aria-describedby="leads-selection-summary" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-3 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Χωρίς επαφή</button>
@@ -534,6 +537,7 @@ const hasLeads = directoryData.leads.length > 0;
         const selectionSummary = root.querySelector('[data-selection-summary]');
         const selectionDock = root.querySelector('[data-selection-dock]');
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
+        const selectionNextHint = root.querySelector('[data-selection-next-hint]');
         const selectionDockButtons = Array.from(root.querySelectorAll('[data-selection-dock-contacted]'));
         const selectionDockSegmentButtons = Array.from(root.querySelectorAll('[data-selection-dock-segment]'));
         const selectionDockFollowupAt = root.querySelector('[data-selection-dock-followup-at]');
@@ -881,6 +885,22 @@ const hasLeads = directoryData.leads.length > 0;
           if (selectionSummary instanceof HTMLElement) selectionSummary.textContent = `${count} επιλεγμένα`;
           if (selectionDockCount instanceof HTMLElement) selectionDockCount.textContent = String(count);
           if (selectionDock instanceof HTMLElement) selectionDock.classList.toggle('hidden', count === 0);
+
+          const selectedEntries = parsedCards.filter((entry) => selectedLeadIds.has(entry.id));
+          const withoutContact = selectedEntries.filter((entry) => !entry.isContacted).length;
+          const overdueFollowups = selectedEntries.filter((entry) => classifyFollowup(entry.nextAction?.at) === 'overdue').length;
+          if (selectionNextHint instanceof HTMLElement) {
+            if (count === 0) {
+              selectionNextHint.textContent = 'Επόμενο βήμα: επιλέξτε μαζική ενέργεια για τα επιλεγμένα leads.';
+            } else if (withoutContact > 0) {
+              selectionNextHint.textContent = `Επόμενο βήμα: ${withoutContact} lead(s) χωρίς επαφή — ξεκινήστε με bulk "Επικοινωνήθηκε".`;
+            } else if (overdueFollowups > 0) {
+              selectionNextHint.textContent = `Επόμενο βήμα: ${overdueFollowups} lead(s) με ληγμένο follow-up — ορίστε νέα ημερομηνία.`;
+            } else {
+              selectionNextHint.textContent = 'Επόμενο βήμα: ενημερώστε segment ή follow-up για προώθηση pipeline.';
+            }
+          }
+
           parsedCards.forEach((entry) => {
             const checkbox = entry.card.querySelector('[data-row-select]');
             if (checkbox instanceof HTMLInputElement) checkbox.checked = selectedLeadIds.has(entry.id);
