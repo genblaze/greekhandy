@@ -347,21 +347,21 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
   </Fragment>
 
   <main class="home-root overflow-x-clip bg-[#f4f6fb] pb-24 text-slate-900">
-    <section class="gh-hero relative overflow-hidden px-4 pb-20 pt-14 text-white md:px-6 md:pb-24 md:pt-18">
+    <section class="gh-hero relative overflow-hidden px-4 pb-16 pt-12 text-white md:px-6 md:pb-20 md:pt-14">
       <div class="absolute inset-0 -z-20 bg-[#020916]"></div>
-      <div class="absolute inset-0 -z-10 bg-[linear-gradient(160deg,#020916_0%,#082344_52%,#0f3a6b_100%)]"></div>
-      <div class="absolute inset-0 -z-10 bg-black/20"></div>
+      <div class="gh-hero-bg absolute inset-0 -z-10"></div>
+      <div class="gh-hero-overlay absolute inset-0 -z-10"></div>
 
       <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
         <div>
           <p class="inline-flex items-center rounded-full border border-white/45 bg-slate-900/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
             GreekHandy Signature Network
           </p>
-          <h1 class="gh-display mt-6 max-w-3xl text-4xl leading-[1.16] tracking-tight text-white md:text-6xl">
+          <h1 class="gh-display mt-5 max-w-3xl text-4xl leading-[1.14] tracking-tight text-white md:text-6xl">
             Η ποιοτική επιλογή επαγγελματία,
             <span class="block text-cyan-100">με σαφήνεια από το πρώτο λεπτό.</span>
           </h1>
-          <p class="mt-6 max-w-2xl text-base leading-relaxed text-slate-100 md:text-xl">
+          <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-100 md:text-xl">
             Το GreekHandy μετατρέπει την αναζήτηση τεχνικού σε στρατηγική απόφαση: ορατές επιλογές,
             καθαρή πληροφορία και ουσιαστική σύγκριση για να κλείνετε σωστό συνεργάτη χωρίς χάσιμο χρόνου.
           </p>
@@ -1039,6 +1039,25 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       letter-spacing: -0.01em;
     }
 
+    .home-root .gh-hero-bg {
+      background: linear-gradient(160deg, var(--gh-hero-bg-start) 0%, var(--gh-hero-bg-mid) 52%, var(--gh-hero-bg-end) 100%);
+    }
+
+    .home-root .gh-hero-overlay {
+      background: var(--gh-hero-overlay);
+    }
+
+    .home-root .gh-hero {
+      color: var(--gh-hero-text);
+    }
+
+    .home-root .gh-hero p {
+      color: var(--gh-hero-subtext);
+    }
+
+    .home-root .gh-hero :is(nav a, p.inline-flex) {
+      background-color: var(--gh-hero-chip-bg);
+    }
 
     .home-root .section-wave {
       background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.03), rgba(8, 145, 178, 0.06));
@@ -1049,16 +1068,6 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       overflow: hidden;
     }
 
-    .home-root .evidence-grid > article::after {
-      content: '';
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      top: -70px;
-      right: -70px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.14), rgba(6, 182, 212, 0));
-    }
 
     .home-root [data-search-state][data-state='loading'] {
       border-color: rgb(186 230 253);
@@ -1081,31 +1090,46 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
 
     @media (max-width: 1024px) {
       .home-root .gh-hero {
-        padding-top: 1.75rem;
-        padding-bottom: 4.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 4rem;
       }
 
       .home-root .gh-hero h1 {
         font-size: clamp(2rem, 7vw, 3.2rem);
-        line-height: 1.18;
+        line-height: 1.16;
       }
 
       .home-root .gh-hero p {
-        line-height: 1.65;
+        line-height: 1.62;
       }
     }
 
     @media (max-width: 768px) {
       .home-root .gh-display {
-        line-height: 1.22;
+        line-height: 1.2;
       }
 
       .home-root .gh-hero {
-        padding-top: 1rem;
+        padding-top: 0.85rem;
+      }
+
+      .home-root .gh-hero h1 {
+        font-size: clamp(1.85rem, 8.5vw, 2.3rem);
       }
 
       .home-root .gh-hero nav a {
         min-height: 2.5rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .home-root .gh-hero {
+        padding-top: 0.65rem;
+        padding-bottom: 3rem;
+      }
+
+      .home-root .gh-hero p {
+        font-size: 0.98rem;
       }
     }
   </style>

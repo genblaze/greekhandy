@@ -2,6 +2,13 @@
 
 :root {
   --gh-accessibility-toolbar-safe-area: 0px;
+  --gh-hero-bg-start: #020817;
+  --gh-hero-bg-mid: #0b2a4a;
+  --gh-hero-bg-end: #15406f;
+  --gh-hero-overlay: rgba(2, 6, 23, 0.22);
+  --gh-hero-text: #ffffff;
+  --gh-hero-subtext: #e6eef8;
+  --gh-hero-chip-bg: rgba(2, 6, 23, 0.44);
 }
 
 body {
