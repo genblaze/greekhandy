@@ -218,6 +218,37 @@ const searchItems = [...pageSearchItems, ...professionalSearchItems]
   .sort((a, b) => a.nameGr.localeCompare(b.nameGr, 'el'));
 
 const availableCityValues = new Set(searchItems.flatMap(item => item.cities));
+
+const siteUrl = new URL('/', Astro.site).toString();
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}#organization`,
+  name: 'GreekHandy',
+  url: siteUrl,
+  logo: new URL('/favicon.svg', Astro.site).toString(),
+  areaServed: {
+    '@type': 'Country',
+    name: 'Greece'
+  }
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}#website`,
+  url: siteUrl,
+  name: 'GreekHandy',
+  inLanguage: 'el-GR',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}?q={search_term_string}`,
+    'query-input': 'required name=search_term_string'
+  },
+  publisher: {
+    '@id': `${siteUrl}#organization`
+  }
+};
 const cityOptions = majorCities.filter(city => availableCityValues.has(city.value));
 
 const totalServices = jobPages.length;
@@ -296,6 +327,11 @@ const socialProofItems = [
   title="GreekHandy - Βρείτε Αξιόπιστους Επαγγελματίες | Ελλάδα"
   description="Βρείτε τον κατάλληλο επαγγελματία για κάθε εργασία στην Ελλάδα. Ηλεκτρολόγοι, υδραυλικοί, ελαιοχρωματιστές και πολλοί ακόμα. Δωρεάν προσφορές."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  </Fragment>
+
   <main class="home-root overflow-x-clip bg-[#f4f6fb] pb-24 text-slate-900">
     <section class="gh-hero relative overflow-hidden px-4 pb-20 pt-14 text-white md:px-6 md:pb-24 md:pt-18">
       <div class="absolute inset-0 -z-20 bg-[#020916]"></div>

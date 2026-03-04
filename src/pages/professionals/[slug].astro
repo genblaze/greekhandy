@@ -152,12 +152,58 @@ const averageRatingSummary = averageRatingValue === null
 const formatReviewDate = (dateValue: string) =>
   new Date(dateValue).toLocaleDateString('el-GR', { day: '2-digit', month: 'long', year: 'numeric' });
 const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+const profileUrl = new URL(`/professionals/${profile.slug}`, Astro.site).toString();
+const siteUrl = new URL('/', Astro.site).toString();
+
+const professionalServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['ProfessionalService', 'LocalBusiness'],
+  '@id': `${profileUrl}#business`,
+  name: profile.name,
+  description: profile.bio,
+  url: profileUrl,
+  image: resolveProfessionalImageSrc(profile.profilePhotoUrl),
+  telephone: profile.phone || undefined,
+  email: profile.email ? `mailto:${profile.email}` : undefined,
+  areaServed: (profile.areasServed?.length ? profile.areasServed : [profile.city]).filter(Boolean).map((area) => ({
+    '@type': 'City',
+    name: area
+  })),
+  address: profile.city
+    ? {
+        '@type': 'PostalAddress',
+        addressLocality: profile.city,
+        addressCountry: 'GR'
+      }
+    : undefined,
+  provider: {
+    '@type': 'Organization',
+    '@id': `${siteUrl}#organization`,
+    name: 'GreekHandy',
+    url: siteUrl
+  },
+  aggregateRating: averageRatingValue !== null
+    ? {
+        '@type': 'AggregateRating',
+        ratingValue: Number(averageRatingValue.toFixed(1)),
+        reviewCount: reviewsCount,
+        bestRating: 5,
+        worstRating: 1
+      }
+    : undefined
+};
 ---
 
 <Layout
   title={`${profile.name} | ${profile.profession} | GreekHandy`}
   description={`Δείτε το προφίλ του/της ${profile.name}, ${profile.profession} στη ${profile.city}.`}
+  canonicalUrl={profileUrl}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(professionalServiceSchema)} />
+  </Fragment>
+
   <main class="mx-auto max-w-4xl px-4 py-14">
     <a href="/professionals" class="text-sm font-semibold text-blue-700 hover:underline">&larr; Όλοι οι επαγγελματίες</a>
 

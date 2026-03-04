@@ -69,19 +69,59 @@ const relatedCategories = (category.relatedCategories || []).map((slug: string) 
 })).filter((r: any) => allContent[r.slug]);
 
 // JSON-LD schemas
+const siteUrl = new URL('/', Astro.site).toString();
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${canonicalUrl}#service`,
   name: category.nameGr,
   url: canonicalUrl,
   description: category.metaDescription,
   areaServed: { '@type': 'Country', name: 'Greece' },
   provider: {
     '@type': 'Organization',
+    '@id': `${siteUrl}#organization`,
     name: 'GreekHandy',
-    url: new URL('/', Astro.site).toString()
+    url: siteUrl
   }
 };
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Αρχική',
+      item: siteUrl
+    },
+    ...(isJobPage && parentCategory
+      ? [{ '@type': 'ListItem', position: 2, name: parentCategory.nameGr, item: new URL(`/${parentCategory.slug}`, Astro.site).toString() }]
+      : []),
+    {
+      '@type': 'ListItem',
+      position: isJobPage && parentCategory ? 3 : 2,
+      name: category.nameGr,
+      item: canonicalUrl
+    }
+  ]
+};
+
+const itemListSchema = !isJobPage && subJobs.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: `Υπηρεσίες κατηγορίας ${category.nameGr}`,
+      itemListElement: subJobs.slice(0, 40).map((job: any, index: number) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: new URL(`/${job.slug}`, Astro.site).toString(),
+        name: job.nameGr
+      }))
+    }
+  : null;
 
 const faqSchema = category.faq?.length ? {
   '@context': 'https://schema.org',
@@ -98,6 +138,8 @@ const faqSchema = category.faq?.length ? {
   <Fragment slot="head">
     <BaseHead title={category.metaTitle} description={category.metaDescription} canonicalUrl={canonicalUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    {itemListSchema && <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />}
     {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   </Fragment>
 
