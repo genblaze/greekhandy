@@ -1,0 +1,20 @@
+{
+  "id": "pool-winterization-athina",
+  "slug": "xeimerini-syntirisi-pisinas-athina",
+  "nameGr": "Χειμερινή Συντήρηση Πισίνας στην Αθήνα",
+  "nameEn": "Pool Winterization in Athens",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Χειμερινή συντήρηση πισίνας στην Αθήνα με σωστή κάλυψη, εξισορρόπηση νερού και προστασία εξοπλισμού από φθορές. Υπηρεσία με ισχυρή πρόθεση για ιδιοκτήτες που θέλουν να μειώσουν κόστος και ζημιές εκτός σεζόν.",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "120-360€",
+  "demand": "medium",
+  "keywords": [
+    "χειμερινή συντήρηση πισίνας Αθήνα",
+    "κλείσιμο πισίνας χειμώνα",
+    "προστασία πισίνας τον χειμώνα",
+    "κάλυμμα πισίνας τοποθέτηση",
+    "τεχνικός πισίνας Αθήνα"
+  ],
+  "status": "researched"
+}

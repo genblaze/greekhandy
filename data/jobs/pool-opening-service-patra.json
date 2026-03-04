@@ -1,0 +1,20 @@
+{
+  "id": "pool-opening-service-patra",
+  "slug": "proetoimasia-pisinas-gia-kalokairi-patra",
+  "nameGr": "Προετοιμασία Πισίνας για Καλοκαίρι στην Πάτρα",
+  "nameEn": "Pool Opening Service in Patras",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Άνοιγμα και προετοιμασία πισίνας στην Πάτρα με τεχνικό έλεγχο, ρύθμιση νερού και καθαρισμό για ασφαλή χρήση. Εξυπηρετεί πελάτες με υψηλή αγοραστική πρόθεση πριν την καλοκαιρινή περίοδο.",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "120-380€",
+  "demand": "high",
+  "keywords": [
+    "άνοιγμα πισίνας Πάτρα",
+    "συντήρηση πισίνας Πάτρα",
+    "καθαρισμός πισίνας",
+    "έλεγχος φίλτρου πισίνας",
+    "τεχνικός πισίνας Πάτρα"
+  ],
+  "status": "researched"
+}

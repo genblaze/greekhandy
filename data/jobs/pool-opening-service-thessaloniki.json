@@ -1,0 +1,20 @@
+{
+  "id": "pool-opening-service-thessaloniki",
+  "slug": "proetoimasia-pisinas-gia-kalokairi-thessaloniki",
+  "nameGr": "Προετοιμασία Πισίνας για Καλοκαίρι στη Θεσσαλονίκη",
+  "nameEn": "Pool Opening Service in Thessaloniki",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Υπηρεσία ανοίγματος πισίνας στη Θεσσαλονίκη με καθαρισμό, χλωρίωση και έλεγχο αντλίας/φίλτρων πριν τη θερινή χρήση. Ιδανικό για αναζητήσεις άμεσης εξυπηρέτησης με σαφή πρόθεση κράτησης.",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "130-400€",
+  "demand": "high",
+  "keywords": [
+    "άνοιγμα πισίνας Θεσσαλονίκη",
+    "προετοιμασία πισίνας",
+    "συντήρηση πισίνας Θεσσαλονίκη",
+    "καθαρισμός πισίνας πριν το καλοκαίρι",
+    "τεχνικός πισίνας"
+  ],
+  "status": "researched"
+}

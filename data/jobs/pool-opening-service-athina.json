@@ -1,0 +1,20 @@
+{
+  "id": "pool-opening-service-athina",
+  "slug": "proetoimasia-pisinas-gia-kalokairi-athina",
+  "nameGr": "Προετοιμασία Πισίνας για Καλοκαίρι στην Αθήνα",
+  "nameEn": "Pool Opening Service in Athens",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Πλήρης προετοιμασία πισίνας στην Αθήνα για την έναρξη της σεζόν, με καθαρισμό, ρύθμιση χημικών και έλεγχο εξοπλισμού. Υπηρεσία υψηλής πρόθεσης για ιδιοκτήτες που θέλουν έτοιμη και ασφαλή πισίνα άμεσα.",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "140-420€",
+  "demand": "high",
+  "keywords": [
+    "προετοιμασία πισίνας Αθήνα",
+    "άνοιγμα πισίνας σεζόν",
+    "συντήρηση πισίνας καλοκαίρι",
+    "ρύθμιση χημικών πισίνας",
+    "τεχνικός πισίνας Αθήνα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "cctv-home-installation-athina",
+  "slug": "egkatastasi-kameron-spitiou-athina",
+  "nameGr": "Εγκατάσταση Καμερών Σπιτιού στην Αθήνα",
+  "nameEn": "Home CCTV Installation in Athens",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εγκατάσταση καμερών ασφαλείας κατοικίας στην Αθήνα με πλήρη κάλυψη εισόδων, απομακρυσμένη πρόσβαση από κινητό και σωστή ρύθμιση καταγραφής. Υπηρεσία υψηλής πρόθεσης για ιδιοκτήτες που ζητούν άμεση αναβάθμιση ασφάλειας.",
+  "typicalDuration": "4-8 ώρες",
+  "priceRangeEUR": "280-1200€",
+  "demand": "high",
+  "keywords": [
+    "εγκατάσταση καμερών Αθήνα",
+    "κάμερες ασφαλείας σπιτιού",
+    "cctv κατοικίας Αθήνα",
+    "σύστημα καταγραφής κάμερας",
+    "τεχνικός καμερών ασφαλείας"
+  ],
+  "status": "researched"
+}

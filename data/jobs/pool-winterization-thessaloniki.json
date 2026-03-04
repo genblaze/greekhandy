@@ -1,0 +1,20 @@
+{
+  "id": "pool-winterization-thessaloniki",
+  "slug": "xeimerini-syntirisi-pisinas-thessaloniki",
+  "nameGr": "Χειμερινή Συντήρηση Πισίνας στη Θεσσαλονίκη",
+  "nameEn": "Pool Winterization in Thessaloniki",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Επαγγελματικό κλείσιμο πισίνας στη Θεσσαλονίκη με ρύθμιση νερού, έλεγχο συστημάτων και εφαρμογή μέτρων προστασίας για τον χειμώνα. Κατάλληλο για χρήστες που αναζητούν προληπτική τεχνική φροντίδα.",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "115-340€",
+  "demand": "medium",
+  "keywords": [
+    "κλείσιμο πισίνας Θεσσαλονίκη",
+    "χειμερινή συντήρηση πισίνας",
+    "συντήρηση πισίνας χειμώνα",
+    "προστασία εξοπλισμού πισίνας",
+    "τεχνικός πισίνας Θεσσαλονίκη"
+  ],
+  "status": "researched"
+}

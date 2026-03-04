@@ -1,0 +1,20 @@
+{
+  "id": "pool-winterization-patra",
+  "slug": "xeimerini-syntirisi-pisinas-patra",
+  "nameGr": "Χειμερινή Συντήρηση Πισίνας στην Πάτρα",
+  "nameEn": "Pool Winterization in Patras",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Υπηρεσία χειμερινής συντήρησης πισίνας στην Πάτρα για αποφυγή φθορών και ασφαλή επανεκκίνηση την επόμενη σεζόν. Περιλαμβάνει βασικό έλεγχο εγκατάστασης και προσαρμογή χημικών τιμών.",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "110-320€",
+  "demand": "medium",
+  "keywords": [
+    "χειμερινή συντήρηση πισίνας Πάτρα",
+    "κλείσιμο πισίνας Πάτρα",
+    "συντήρηση εκτός σεζόν",
+    "προστασία πισίνας χειμώνα",
+    "τεχνικός συντήρησης πισίνας"
+  ],
+  "status": "researched"
+}
