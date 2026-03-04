@@ -171,7 +171,7 @@ const hasAnyBookings = bookings.length > 0;
         <div id="booking-lifecycle-guardrails" class="mt-6 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700" role="note" aria-live="polite">
           <p class="font-semibold text-slate-900">Flow μεταβάσεων</p>
           <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Από <strong>approved</strong> επιτρέπεται αίτημα αλλαγής (<strong>reschedule_requested</strong>), που κλείνει με <strong>approved</strong> ή <strong>reschedule_rejected</strong>.</p>
-          <p class="mt-2 text-xs text-slate-600">Κανόνας ασφαλείας: αν εντοπιστεί ασυμφωνία expectedState/actualState, η ενέργεια ακυρώνεται και απαιτείται ανανέωση.</p>
+          <p id="booking-expected-actual-guardrail" class="mt-2 text-xs text-slate-600">Κανόνας ασφαλείας: αν εντοπιστεί ασυμφωνία expectedState/actualState, η ενέργεια ακυρώνεται και απαιτείται ανανέωση.</p>
         </div>
 
         <section class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -241,7 +241,7 @@ const hasAnyBookings = bookings.length > 0;
                     Προβολή σελίδας κατάστασης πελάτη
                   </a>
                   <span class="text-xs font-medium text-slate-500">Τρέχουσα κατάσταση: {resolution.state}</span>
-                  <span class="text-xs text-slate-500">Επιτρεπτές ενέργειες: {resolution.state === 'pending' ? 'approved, rejected, cancelled' : resolution.state === 'approved' ? 'reschedule_requested' : resolution.state === 'reschedule_requested' ? 'approved, reschedule_rejected, cancelled' : 'καμία άμεση μετάβαση'}</span>
+                  <span class="text-xs text-slate-500" aria-describedby="booking-expected-actual-guardrail">Επιτρεπτές ενέργειες: {resolution.state === 'pending' ? 'approved, rejected, cancelled' : resolution.state === 'approved' ? 'reschedule_requested' : resolution.state === 'reschedule_requested' ? 'approved, reschedule_rejected, cancelled' : 'καμία άμεση μετάβαση'}</span>
 
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state && isAllowedTransition(resolution.state, target.state))

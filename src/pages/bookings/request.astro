@@ -241,9 +241,9 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
           })}
         </div>
 
-        <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4" role="region" aria-label="Χρονοδιάγραμμα κατάστασης αιτήματος">
+        <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4" role="region" aria-label="Χρονοδιάγραμμα κατάστασης αιτήματος" aria-describedby="booking-timeline-guardrail-help">
           <p class="text-xs font-semibold uppercase tracking-wide text-slate-600">Timeline αιτήματος</p>
-          <p class="mt-1 text-xs text-slate-600">Guardrail: οι μεταβάσεις ακολουθούν αυστηρούς κανόνες για αποφυγή αντικρουόμενων ενημερώσεων.</p>
+          <p id="booking-timeline-guardrail-help" class="mt-1 text-xs text-slate-600">Guardrail: οι μεταβάσεις ακολουθούν αυστηρούς κανόνες για αποφυγή αντικρουόμενων ενημερώσεων.</p>
           <ol class="mt-2 space-y-2">
             {timelineSteps.map((step) => {
               const isCurrent = moderationState === step.key;
@@ -274,7 +274,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
         )}
 
         {moderationState === 'reschedule_requested' && (
-          <div class="mt-4 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-sm text-violet-900" role="status" aria-live="polite">
+          <div class="mt-4 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-sm text-violet-900" role="status" aria-live="polite" aria-atomic="true">
             Το αίτημα αλλαγής είναι σε έλεγχο. Δεν χρειάζεται νέα ενέργεια μέχρι να ολοκληρωθεί η απόφαση moderation.
           </div>
         )}
