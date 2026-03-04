@@ -1,17 +1,13 @@
-import { spawn } from 'node:child_process';
+import { access, readdir, readFile } from 'node:fs/promises';
+import { constants as fsConstants } from 'node:fs';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { NAV_ALIAS_REDIRECTS, NAV_PLACEHOLDER_TEXT, NAV_TARGETS, TOP_NAV_LINKS } from '../src/config/navigation.js';
 
-const host = '127.0.0.1';
-const port = 4329;
-const baseUrl = `http://${host}:${port}`;
+const distClientDir = resolve(process.cwd(), 'dist', 'client');
+const distServerDir = resolve(process.cwd(), 'dist', 'server');
 
-const normalizePath = (value) => {
-  const parsed = value.startsWith('http://') || value.startsWith('https://') ? new URL(value).pathname : value;
-  if (parsed !== '/' && parsed.endsWith('/')) return parsed.slice(0, -1);
-  return parsed;
-};
-
-const required200Routes = [
+const requiredStaticRoutes = [
   '/',
   NAV_TARGETS.guides,
   NAV_TARGETS.professionals,
@@ -21,11 +17,6 @@ const required200Routes = [
   '/katharismoi',
   '/techniki-klimatismou'
 ];
-
-const aliasRouteMap = {
-  '/thermansi': '/techniki-klimatismou',
-  ...NAV_ALIAS_REDIRECTS
-};
 
 const routeContentChecks = [
   {
@@ -38,115 +29,131 @@ const routeContentChecks = [
   }
 ];
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const normalizePath = (value) => {
+  if (!value) return '';
+  const parsed = value.startsWith('http://') || value.startsWith('https://') ? new URL(value).pathname : value;
+  if (parsed !== '/' && parsed.endsWith('/')) return parsed.slice(0, -1);
+  return parsed;
+};
 
-const server = spawn('node', ['dist/server/entry.mjs'], {
-  env: { ...process.env, HOST: host, PORT: String(port) },
-  stdio: ['ignore', 'pipe', 'pipe']
-});
+const routeToClientHtml = (route) => {
+  const normalized = normalizePath(route);
+  if (normalized === '/') return resolve(distClientDir, 'index.html');
+  return resolve(distClientDir, normalized.slice(1), 'index.html');
+};
 
-let serverReady = false;
-server.stdout.on('data', (chunk) => {
-  const text = chunk.toString();
-  if (text.toLowerCase().includes('listening') || text.includes(`:${port}`)) {
-    serverReady = true;
+const fileExists = async (path) => {
+  try {
+    await access(path, fsConstants.R_OK);
+    return true;
+  } catch {
+    return false;
   }
-});
+};
 
-server.stderr.on('data', () => {
-  // keep quiet; failures are surfaced via checks below
-});
+const issues = [];
 
-try {
-  for (let i = 0; i < 30 && !serverReady; i += 1) {
-    await sleep(200);
-    try {
-      const probe = await fetch(`${baseUrl}/`, { redirect: 'manual' });
-      if (probe.status > 0) {
-        serverReady = true;
-        break;
-      }
-    } catch {
-      // retry until timeout
-    }
+for (const route of new Set(requiredStaticRoutes)) {
+  const filePath = routeToClientHtml(route);
+  if (!(await fileExists(filePath))) {
+    issues.push(`${route} -> missing built HTML file: ${filePath}`);
   }
-
-  if (!serverReady) {
-    throw new Error('Preview server did not start for nav health check.');
-  }
-
-  const issues = [];
-
-  for (const route of new Set(required200Routes)) {
-    const res = await fetch(`${baseUrl}${route}`, { redirect: 'manual' });
-    if (res.status !== 200) {
-      issues.push(`${route} -> expected 200, got ${res.status}`);
-    }
-  }
-
-  for (const [route, expectedTarget] of Object.entries(aliasRouteMap)) {
-    const res = await fetch(`${baseUrl}${route}`, { redirect: 'manual' });
-    if (res.status === 200) {
-      continue;
-    }
-    if (![301, 302, 307, 308].includes(res.status)) {
-      issues.push(`${route} -> expected alias redirect/200, got ${res.status}`);
-      continue;
-    }
-    const locationHeader = res.headers.get('location');
-    if (!locationHeader) {
-      issues.push(`${route} -> redirect missing Location header`);
-      continue;
-    }
-    const resolvedPath = normalizePath(new URL(locationHeader, baseUrl).toString());
-    const expectedPath = normalizePath(expectedTarget);
-    if (resolvedPath !== expectedPath) {
-      issues.push(`${route} -> expected redirect to ${expectedPath}, got ${resolvedPath}`);
-    }
-  }
-
-  const homeRes = await fetch(`${baseUrl}/`, { redirect: 'manual' });
-  if (homeRes.status === 200) {
-    const homeHtml = await homeRes.text();
-    const headerHtml = homeHtml.match(/<header[\s\S]*?<\/header>/iu)?.[0];
-    if (!headerHtml) {
-      issues.push('/ -> top header block not found');
-    } else {
-      for (const navLink of TOP_NAV_LINKS) {
-        if (!headerHtml.includes(`href="${navLink.href}"`)) {
-          issues.push(`/ -> missing top-nav href ${navLink.href}`);
-        }
-        if (!headerHtml.includes(navLink.label)) {
-          issues.push(`/ -> missing top-nav label "${navLink.label}"`);
-        }
-      }
-    }
-  }
-
-  for (const contentCheck of routeContentChecks) {
-    const res = await fetch(`${baseUrl}${contentCheck.route}`, { redirect: 'manual' });
-    if (res.status !== 200) continue;
-    const html = await res.text();
-    const htmlLower = html.toLowerCase();
-    for (const requiredSnippet of contentCheck.requiredSnippets) {
-      if (!html.includes(requiredSnippet)) {
-        issues.push(`${contentCheck.route} -> missing expected content snippet: ${requiredSnippet}`);
-      }
-    }
-    for (const placeholderText of NAV_PLACEHOLDER_TEXT) {
-      if (htmlLower.includes(placeholderText.toLowerCase())) {
-        issues.push(`${contentCheck.route} -> contains placeholder marker: "${placeholderText}"`);
-      }
-    }
-  }
-
-  if (issues.length) {
-    console.error('Nav-link health test failed:');
-    for (const issue of issues) console.error(`- ${issue}`);
-    process.exit(1);
-  }
-
-  console.log('Nav-link health test passed. Top-nav and promoted category routes are healthy.');
-} finally {
-  server.kill('SIGTERM');
 }
+
+const homeHtmlPath = routeToClientHtml('/');
+if (await fileExists(homeHtmlPath)) {
+  const homeHtml = await readFile(homeHtmlPath, 'utf-8');
+  const headerHtml = homeHtml.match(/<header[\s\S]*?<\/header>/iu)?.[0];
+  if (!headerHtml) {
+    issues.push('/ -> top header block not found');
+  } else {
+    for (const navLink of TOP_NAV_LINKS) {
+      if (!headerHtml.includes(`href="${navLink.href}"`)) {
+        issues.push(`/ -> missing top-nav href ${navLink.href}`);
+      }
+      if (!headerHtml.includes(navLink.label)) {
+        issues.push(`/ -> missing top-nav label "${navLink.label}"`);
+      }
+    }
+  }
+}
+
+for (const contentCheck of routeContentChecks) {
+  const filePath = routeToClientHtml(contentCheck.route);
+  if (!(await fileExists(filePath))) continue;
+  const html = await readFile(filePath, 'utf-8');
+  const htmlLower = html.toLowerCase();
+
+  for (const requiredSnippet of contentCheck.requiredSnippets) {
+    if (!html.includes(requiredSnippet)) {
+      issues.push(`${contentCheck.route} -> missing expected content snippet: ${requiredSnippet}`);
+    }
+  }
+
+  for (const placeholderText of NAV_PLACEHOLDER_TEXT) {
+    if (htmlLower.includes(placeholderText.toLowerCase())) {
+      issues.push(`${contentCheck.route} -> contains placeholder marker: "${placeholderText}"`);
+    }
+  }
+}
+
+const manifestFileName = (await readdir(distServerDir)).find((fileName) => fileName.startsWith('manifest_') && fileName.endsWith('.mjs'));
+if (!manifestFileName) {
+  issues.push('dist/server -> manifest_*.mjs not found, cannot verify redirect guardrails');
+} else {
+  const manifestPath = resolve(distServerDir, manifestFileName);
+  const manifestModule = await import(pathToFileURL(manifestPath).href);
+  const manifest = manifestModule.manifest;
+
+  if (!manifest || !Array.isArray(manifest.routes)) {
+    issues.push('dist/server manifest is missing route definitions');
+  } else {
+    const manifestRoutes = new Map();
+    const redirectRoutes = new Map();
+
+    for (const route of manifest.routes) {
+      const routeData = route?.routeData;
+      if (!routeData || typeof routeData.route !== 'string') continue;
+      const routePath = normalizePath(routeData.route);
+      manifestRoutes.set(routePath, routeData.type);
+
+      if (routeData.type === 'redirect') {
+        const redirectValue = typeof routeData.redirect === 'string'
+          ? routeData.redirect
+          : routeData.redirect?.destination;
+        redirectRoutes.set(routePath, normalizePath(redirectValue ?? ''));
+      }
+    }
+
+    for (const canonicalRoute of [NAV_TARGETS.guides, NAV_TARGETS.professionals]) {
+      const routeType = manifestRoutes.get(normalizePath(canonicalRoute));
+      if (routeType !== 'page') {
+        issues.push(`${canonicalRoute} -> expected page route in manifest, got ${routeType ?? 'missing'}`);
+      }
+    }
+
+    for (const [aliasRoute, expectedTarget] of Object.entries(NAV_ALIAS_REDIRECTS)) {
+      const routePath = normalizePath(aliasRoute);
+      const expectedPath = normalizePath(expectedTarget);
+      const actualPath = redirectRoutes.get(routePath);
+      if (!actualPath) {
+        issues.push(`${aliasRoute} -> missing redirect route in build manifest`);
+      } else if (actualPath !== expectedPath) {
+        issues.push(`${aliasRoute} -> expected redirect to ${expectedPath}, got ${actualPath}`);
+      }
+    }
+
+    const thermansiTarget = redirectRoutes.get('/thermansi');
+    if (thermansiTarget !== '/techniki-klimatismou') {
+      issues.push(`/thermansi -> expected redirect to /techniki-klimatismou, got ${thermansiTarget ?? 'missing'}`);
+    }
+  }
+}
+
+if (issues.length) {
+  console.error('Nav-link health test failed:');
+  for (const issue of issues) console.error(`- ${issue}`);
+  process.exit(1);
+}
+
+console.log('Nav-link health test passed. Top-nav and promoted routes are healthy in built artifacts.');
