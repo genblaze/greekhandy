@@ -5,6 +5,32 @@ import { getAdminAuth } from '../../../lib/admin-auth';
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
 
+const hasVerifiedLeadMatch = async (reviewerEmail: string, serviceSlug: string) => {
+  if (!reviewerEmail || !serviceSlug) return false;
+
+  const normalizedEmail = reviewerEmail.toLowerCase();
+
+  const { data: bookingLead } = await supabaseServer
+    .from('bookings')
+    .select('id')
+    .eq('customer_email', normalizedEmail)
+    .eq('service_slug', serviceSlug)
+    .in('status', ['confirmed', 'completed'])
+    .limit(1);
+
+  if (bookingLead && bookingLead.length > 0) return true;
+
+  const { data: contactLead } = await supabaseServer
+    .from('contact_requests')
+    .select('id')
+    .eq('email', normalizedEmail)
+    .eq('service_slug', serviceSlug)
+    .in('status', ['contacted', 'converted', 'closed'])
+    .limit(1);
+
+  return Boolean(contactLead && contactLead.length > 0);
+};
+
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const formData = await request.formData();
   const moderationKey = clean(formData.get('moderationKey'));
@@ -24,7 +50,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
   const { data: current, error: currentError } = await supabaseServer
     .from('reviews')
-    .select('id, status, verified')
+    .select('id, status, verified, reviewer_email, service_slug, rating')
     .eq('id', reviewId)
     .maybeSingle();
 
@@ -37,8 +63,14 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   if (current.status !== 'pending') return redirect(`${returnUrl}&status=already-processed`, 303);
 
   const nextStatus = action === 'approve' ? 'approved' : 'rejected';
+  const verifiedLeadMatched = action === 'approve'
+    ? await hasVerifiedLeadMatch(current.reviewer_email || '', current.service_slug || '')
+    : false;
+
+  const finalVerified = action === 'approve' ? (verified && verifiedLeadMatched) : false;
+
   const updatePayload: Record<string, unknown> = { status: nextStatus };
-  if (action === 'approve') updatePayload.verified = verified;
+  if (action === 'approve') updatePayload.verified = finalVerified;
   if (action === 'reject') updatePayload.verified = false;
 
   const { data: updatedRows, error: updateError } = await supabaseServer
@@ -69,6 +101,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
       previousStatus: current.status,
       nextStatus,
       verifiedRequested: verified,
+      verifiedLeadMatched,
+      verifiedApplied: finalVerified,
+      reviewerEmail: current.reviewer_email || null,
+      serviceSlug: current.service_slug || null,
       actorSource: 'reviews-moderation-ui'
     },
     acted_at: new Date().toISOString()
