@@ -5,6 +5,7 @@ import {
   MESSAGE_SUBMISSIONS_FILE_PATH,
   MESSAGE_VISIBILITY_FILE_PATH,
   clean,
+  getMessageThreadId,
   readNdjson,
   writeNdjson,
   type MessageReadState,
@@ -21,7 +22,7 @@ const visibilityActions = await readNdjson<{ messageId?: string; action?: string
 const hiddenMessageIds = new Set(visibilityActions.filter((entry) => entry.action === 'hide' && entry.messageId).map((entry) => entry.messageId as string));
 
 const threadMessages = allMessages
-  .filter((message) => message.threadId === threadId)
+  .filter((message) => getMessageThreadId(message) === threadId)
   .sort((a, b) => a.submittedAt.localeCompare(b.submittedAt));
 
 const isParticipant = threadMessages.some(
@@ -31,7 +32,8 @@ const isParticipant = threadMessages.some(
 if (threadId && viewerEmail && isParticipant) {
   const states = await readNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH);
   const next = states.filter((entry) => !(entry.threadId === threadId && entry.viewerEmail === viewerEmail));
-  next.push({ threadId, viewerEmail, lastReadAt: new Date().toISOString() });
+  const lastReadAt = threadMessages.at(-1)?.submittedAt || new Date().toISOString();
+  next.push({ threadId, viewerEmail, lastReadAt });
   await writeNdjson(MESSAGE_READ_STATE_FILE_PATH, next);
 }
 

@@ -5,11 +5,13 @@ import {
   max,
   MESSAGE_REPORTS_FILE_PATH,
   MESSAGE_SUBMISSIONS_FILE_PATH,
+  getMessageThreadId,
   readNdjson,
   type MessageSubmission
 } from '../../../lib/messaging';
 
 const withStatus = (returnTo: string, status: string) => `${returnTo}${returnTo.includes('?') ? '&' : '?'}status=${status}`;
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
@@ -21,17 +23,17 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const details = max(clean(formData.get('details')), 500);
   const returnTo = clean(formData.get('returnTo')) || '/messages/thread';
 
-  if (!threadId || !messageId || !reporterEmail || !['spam', 'abuse', 'harassment', 'other'].includes(reason)) {
+  if (!threadId || !messageId || !reporterEmail || !isValidEmail(reporterEmail) || !['spam', 'abuse', 'harassment', 'other'].includes(reason)) {
     return redirect(withStatus(returnTo, 'report-invalid'), 303);
   }
 
-  const threadMessages = (await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH)).filter((entry) => entry.threadId === threadId);
+  const threadMessages = (await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH)).filter((entry) => getMessageThreadId(entry) === threadId);
   const targetMessage = threadMessages.find((entry) => entry.id === messageId);
   const isParticipant = threadMessages.some(
     (entry) => entry.senderEmail.toLowerCase() === reporterEmail || entry.recipientEmail.toLowerCase() === reporterEmail
   );
 
-  if (!targetMessage || !isParticipant) {
+  if (!targetMessage || !isParticipant || targetMessage.senderEmail.toLowerCase() === reporterEmail) {
     return redirect(withStatus(returnTo, 'report-forbidden'), 303);
   }
 

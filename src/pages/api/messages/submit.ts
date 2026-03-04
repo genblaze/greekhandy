@@ -6,7 +6,7 @@ import {
   max,
   MESSAGE_SUBMISSIONS_FILE_PATH,
   MESSAGE_TRIAGE_ACTIONS_FILE_PATH,
-  normalizeThreadId,
+  normalizeConversationId,
   readNdjson,
   type MessageSubmission
 } from '../../../lib/messaging';
@@ -38,7 +38,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const recipientEmail = max(clean(formData.get('recipientEmail')).toLowerCase(), 160);
   const incomingThreadId = max(clean(formData.get('threadId')), 220);
 
-  const threadId = incomingThreadId || normalizeThreadId(professionalSlug, senderEmail);
+  const canonicalThreadId = normalizeConversationId(professionalSlug, senderEmail, recipientEmail);
+  const threadId = canonicalThreadId;
   const messageBody = max(clean(formData.get('message')), 2000);
 
   if (
@@ -53,6 +54,10 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     (senderPhone && !isValidPhone(senderPhone)) ||
     hasHtmlLikeTags(messageBody)
   ) {
+    return redirect(`${returnTo}?message=invalid`, 303);
+  }
+
+  if (incomingThreadId && incomingThreadId !== canonicalThreadId) {
     return redirect(`${returnTo}?message=invalid`, 303);
   }
 

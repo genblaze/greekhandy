@@ -9,8 +9,8 @@ const REVIEW_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-subm
 const REVIEW_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-moderation-actions.ndjson');
 const BOOKING_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-submissions.ndjson');
 const BOOKING_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-moderation-actions.ndjson');
-const MESSAGE_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
-const MESSAGE_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
+const MESSAGE_REPORTS_FILE_PATH = resolve(process.cwd(), 'data', 'message-reports.ndjson');
+const MESSAGE_REPORT_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-report-actions.ndjson');
 
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
@@ -45,15 +45,13 @@ interface BookingAction {
   bookingId: string;
 }
 
-interface MessageSubmission {
-  threadId?: string;
-  professionalSlug: string;
-  senderEmail: string;
-  submittedAt: string;
+interface MessageReport {
+  id: string;
+  status: 'open';
 }
 
-interface MessageAction {
-  threadId: string;
+interface MessageReportAction {
+  reportId: string;
 }
 
 const readNdjson = async <T,>(path: string): Promise<T[]> => {
@@ -99,18 +97,11 @@ if (isAuthorized) {
     return !bookingActionIds.has(bookingId);
   }).length;
 
-  const messageSubmissions = await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH);
-  const messageActions = await readNdjson<MessageAction>(MESSAGE_ACTIONS_FILE_PATH);
-  const messageActionIds = new Set(messageActions.map((action) => action.threadId));
-  const threadIds = new Set<string>();
+  const messageReports = await readNdjson<MessageReport>(MESSAGE_REPORTS_FILE_PATH);
+  const messageReportActions = await readNdjson<MessageReportAction>(MESSAGE_REPORT_ACTIONS_FILE_PATH);
+  const handledReportIds = new Set(messageReportActions.map((action) => action.reportId));
 
-  for (const submission of messageSubmissions) {
-    const fallbackThreadId = `${submission.professionalSlug}|${submission.senderEmail}|${submission.submittedAt}`;
-    const threadId = submission.threadId || fallbackThreadId;
-    threadIds.add(threadId);
-  }
-
-  pendingMessageThreads = Array.from(threadIds).filter((threadId) => !messageActionIds.has(threadId)).length;
+  pendingMessageThreads = messageReports.filter((report) => report.status === 'open' && !handledReportIds.has(report.id)).length;
 }
 
 const queues = [
@@ -133,10 +124,10 @@ const queues = [
     helper: 'Νέα αιτήματα κράτησης προς έλεγχο.'
   },
   {
-    label: 'Message Threads',
+    label: 'Αναφορές Μηνυμάτων',
     count: pendingMessageThreads,
     href: buildQueueHref('/professionals/messages-moderation'),
-    helper: 'Νέα threads επικοινωνίας προς triage.'
+    helper: 'Ανοιχτές αναφορές μηνυμάτων για moderation actions.'
   }
 ];
 

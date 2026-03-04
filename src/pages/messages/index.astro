@@ -4,6 +4,7 @@ import {
   MESSAGE_READ_STATE_FILE_PATH,
   MESSAGE_SUBMISSIONS_FILE_PATH,
   MESSAGE_VISIBILITY_FILE_PATH,
+  getMessageThreadId,
   readNdjson,
   type MessageReadState,
   type MessageSubmission
@@ -25,9 +26,10 @@ for (const state of readStates) {
 const threadMap = new Map<string, MessageSubmission[]>();
 for (const message of allMessages) {
   if (message.senderEmail.toLowerCase() !== viewerEmail && message.recipientEmail.toLowerCase() !== viewerEmail) continue;
-  const list = threadMap.get(message.threadId) || [];
+  const messageThreadId = getMessageThreadId(message);
+  const list = threadMap.get(messageThreadId) || [];
   list.push(message);
-  threadMap.set(message.threadId, list);
+  threadMap.set(messageThreadId, list);
 }
 
 const threads = Array.from(threadMap.entries())

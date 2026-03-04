@@ -6,6 +6,7 @@ export const MESSAGE_TRIAGE_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', '
 export const MESSAGE_REPORTS_FILE_PATH = resolve(process.cwd(), 'data', 'message-reports.ndjson');
 export const MESSAGE_READ_STATE_FILE_PATH = resolve(process.cwd(), 'data', 'message-read-state.ndjson');
 export const MESSAGE_VISIBILITY_FILE_PATH = resolve(process.cwd(), 'data', 'message-visibility-actions.ndjson');
+export const MESSAGE_REPORT_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-report-actions.ndjson');
 
 export interface MessageSubmission {
   id: string;
@@ -24,6 +25,25 @@ export interface MessageReadState {
   threadId: string;
   viewerEmail: string;
   lastReadAt: string;
+}
+
+export interface MessageReport {
+  id: string;
+  threadId: string;
+  messageId: string;
+  reporterEmail: string;
+  reason: 'spam' | 'abuse' | 'harassment' | 'other';
+  details: string;
+  status: 'open';
+  reportedAt: string;
+}
+
+export interface MessageReportAction {
+  reportId: string;
+  action: 'hide_message' | 'dismiss_report';
+  messageId: string;
+  threadId: string;
+  actedAt: string;
 }
 
 export const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
@@ -55,6 +75,14 @@ export const appendNdjson = async (path: string, value: unknown) => {
 
 export const normalizeThreadId = (professionalSlug: string, customerEmail: string) =>
   `${professionalSlug}|${customerEmail.toLowerCase()}`;
+
+export const normalizeConversationId = (professionalSlug: string, aEmail: string, bEmail: string) => {
+  const [a, b] = [aEmail.toLowerCase(), bEmail.toLowerCase()].sort();
+  return `${professionalSlug}|${a}|${b}`;
+};
+
+export const getMessageThreadId = (message: MessageSubmission) =>
+  message.threadId || normalizeConversationId(message.professionalSlug, message.senderEmail, message.recipientEmail);
 
 export const getParticipantSet = (messages: MessageSubmission[]) => {
   const participants = new Set<string>();

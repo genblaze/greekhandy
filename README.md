@@ -50,11 +50,12 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Thread list view at `/messages?viewerEmail=...` with latest preview + unread count
   - Thread view at `/messages/thread?threadId=...&viewerEmail=...` with chronological history and report action
   - Read-state endpoint at `POST /api/messages/read` (participant-only)
-  - Thread triage queue at `/professionals/messages-moderation?key=...`
+  - Thread triage queue + open report actions at `/professionals/messages-moderation?key=...`
   - Triage endpoint at `POST /api/messages/triage` (`review`/`reject`/`block` actions logged)
-  - Message report endpoint at `POST /api/messages/report` (participant-only)
+  - Message report endpoint at `POST /api/messages/report` (strict participant-only)
+  - Admin report actions endpoint at `POST /api/messages/reports-action` (`hide_message`/`dismiss_report`)
   - Admin hide endpoint at `POST /api/messages/hide`
-  - Persistence files: `data/message-submissions.ndjson`, `data/message-triage-actions.ndjson`, `data/message-read-state.ndjson`, `data/message-reports.ndjson`, `data/message-visibility-actions.ndjson`
+  - Persistence files: `data/message-submissions.ndjson`, `data/message-triage-actions.ndjson`, `data/message-read-state.ndjson`, `data/message-reports.ndjson`, `data/message-report-actions.ndjson`, `data/message-visibility-actions.ndjson`
 - **Admin Dashboard MVP shell:**
   - Protected overview at `/admin?key=...`
   - Queue cards for pending profiles, reviews, bookings, and message threads

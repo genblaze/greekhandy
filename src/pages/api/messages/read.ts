@@ -3,6 +3,7 @@ import {
   clean,
   MESSAGE_READ_STATE_FILE_PATH,
   MESSAGE_SUBMISSIONS_FILE_PATH,
+  getMessageThreadId,
   readNdjson,
   writeNdjson,
   type MessageReadState,
@@ -18,7 +19,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   if (!threadId || !viewerEmail) return redirect(`${returnTo}${returnTo.includes('?') ? '&' : '?'}status=invalid`, 303);
 
   try {
-    const threadMessages = (await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH)).filter((message) => message.threadId === threadId);
+    const threadMessages = (await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH)).filter((message) => getMessageThreadId(message) === threadId);
     const isParticipant = threadMessages.some(
       (message) => message.senderEmail.toLowerCase() === viewerEmail || message.recipientEmail.toLowerCase() === viewerEmail
     );
@@ -27,7 +28,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
     const states = await readNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH);
     const next = states.filter((entry) => !(entry.threadId === threadId && entry.viewerEmail === viewerEmail));
-    next.push({ threadId, viewerEmail, lastReadAt: new Date().toISOString() });
+    const lastReadAt = threadMessages.at(-1)?.submittedAt || new Date().toISOString();
+    next.push({ threadId, viewerEmail, lastReadAt });
     await writeNdjson(MESSAGE_READ_STATE_FILE_PATH, next);
     return redirect(returnTo, 303);
   } catch (error) {
