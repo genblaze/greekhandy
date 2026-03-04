@@ -33,6 +33,14 @@
       "estimatedComplexity": "high"
     },
     {
+      "id": "qa-critical-fixes-wave-5",
+      "name": "QA Critical Fixes (Wave 5)",
+      "description": "Wave 5 QA directives: remove production HTML debug/source-location leakage and aggressively cut homepage DOM/link bloat; restore missing <title> and meta description on homepage/profile templates; enforce UTF-8 end-to-end and add build/deploy mis-encoding guardrail for Greek copy; fix broken profile contact flow by wiring /api/bookings/submit and /api/messages/submit to real handlers (or correct form actions) with successful submission UX; re-fix professional image reliability on list/profile with publish-time media validation.",
+      "priority": 1,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "leads-directory-page",
       "name": "Leads Directory Page",
       "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",

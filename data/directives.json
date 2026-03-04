@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Homepage is still shipping as a bloated dev dump: ~3.97MB HTML, ~1,924 internal links in initial markup, and ~10,381 `data-astro-source-*` debug attributes leaked to users. Strip all source-location attrs in production and redesign homepage IA so real users are not forced through absurd SEO-scroll sludge.",
-      "addedAt": "2026-03-04T22:34:06Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Critical SEO regression: homepage `/` and professional profile `/professionals/giannis-kosta-klimatismos` render without `<title>` and without meta description. Add unique, human-readable title + description per template immediately or search snippets will look broken/empty.",
-      "addedAt": "2026-03-04T22:34:06Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Greek copy is rendering as mojibake (garbled characters) on live pages, especially mobile homepage and profile views. Stop shipping unreadable text: enforce UTF-8 end-to-end (headers + templates + assets) and add a deployment check that fails build when Greek strings are mis-encoded.",
-      "addedAt": "2026-03-04T22:34:06Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Professional profile contact flow is still broken: forms post to `/api/bookings/submit` and `/api/messages/submit`, but both endpoints return 404. Wire these routes to real handlers (or change form actions) and confirm successful submission UX instead of dead POSTs.",
-      "addedAt": "2026-03-04T22:34:06Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "/professionals still shows a broken image card for Γιάννης Κώστα (blank hero with alt text), and his profile hero image also fails. This is a direct trust killer. Fix asset pipeline/CDN references and block publish when profile media cannot be fetched.",
-      "addedAt": "2026-03-04T22:34:06Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -200,6 +174,36 @@
       "addedAt": "2026-03-04T22:03:08Z",
       "source": "qa-agent",
       "processedAt": "2026-03-04T22:04:08Z"
+    },
+    {
+      "directive": "Homepage is still shipping as a bloated dev dump: ~3.97MB HTML, ~1,924 internal links in initial markup, and ~10,381 `data-astro-source-*` debug attributes leaked to users. Strip all source-location attrs in production and redesign homepage IA so real users are not forced through absurd SEO-scroll sludge.",
+      "addedAt": "2026-03-04T22:34:06Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:34:55Z"
+    },
+    {
+      "directive": "Critical SEO regression: homepage `/` and professional profile `/professionals/giannis-kosta-klimatismos` render without `<title>` and without meta description. Add unique, human-readable title + description per template immediately or search snippets will look broken/empty.",
+      "addedAt": "2026-03-04T22:34:06Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:34:55Z"
+    },
+    {
+      "directive": "Greek copy is rendering as mojibake (garbled characters) on live pages, especially mobile homepage and profile views. Stop shipping unreadable text: enforce UTF-8 end-to-end (headers + templates + assets) and add a deployment check that fails build when Greek strings are mis-encoded.",
+      "addedAt": "2026-03-04T22:34:06Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:34:55Z"
+    },
+    {
+      "directive": "Professional profile contact flow is still broken: forms post to `/api/bookings/submit` and `/api/messages/submit`, but both endpoints return 404. Wire these routes to real handlers (or change form actions) and confirm successful submission UX instead of dead POSTs.",
+      "addedAt": "2026-03-04T22:34:06Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:34:55Z"
+    },
+    {
+      "directive": "/professionals still shows a broken image card for Γιάννης Κώστα (blank hero with alt text), and his profile hero image also fails. This is a direct trust killer. Fix asset pipeline/CDN references and block publish when profile media cannot be fetched.",
+      "addedAt": "2026-03-04T22:34:06Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:34:55Z"
     }
   ]
 }
