@@ -297,6 +297,10 @@ const faqSchema = category.faq?.length ? {
                     <p class="mt-2 text-xs font-medium text-slate-600">
                       Διαθεσιμότητα: {classifyAvailability(job) === 'asap' ? 'Άμεσα' : classifyAvailability(job) === 'this-week' ? 'Μέσα στην εβδομάδα' : 'Ευέλικτο ραντεβού'}
                     </p>
+                    <div class="mt-2 flex flex-wrap gap-1.5" aria-label="Σήματα εμπιστοσύνης καταχώρισης">
+                      <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-800">Επαληθευμένη καταχώριση</span>
+                      <span class="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-semibold text-slate-700">Πηγή: GreekHandy</span>
+                    </div>
                   </a>
                 ))}
               </div>
@@ -602,13 +606,13 @@ const faqSchema = category.faq?.length ? {
           <h3 class="text-xl font-bold text-gray-900">{category.cta?.buttonText || 'Ζητήστε Προσφορά'}</h3>
           <p class="mt-1 text-sm text-gray-600">Συμπληρώστε τα στοιχεία σας και θα σας καλέσουμε σύντομα.</p>
 
-          <div id="form-loading" class="hidden rounded-lg border border-blue-200 bg-blue-50 p-4 text-blue-800">
+          <div id="form-loading" class="hidden rounded-lg border border-blue-200 bg-blue-50 p-4 text-blue-800" role="status" aria-live="polite" aria-atomic="true">
             <p class="font-semibold">Επεξεργασία αιτήματος...</p>
-            <p class="mt-1 text-sm">Ελέγχουμε τα στοιχεία σας και αποθηκεύουμε το αίτημα.</p>
+            <p class="mt-1 text-sm">Ελέγχουμε τα στοιχεία σας και αποθηκεύουμε το αίτημα. Συνήθως ολοκληρώνεται σε λιγότερο από 10 δευτερόλεπτα.</p>
           </div>
-          <div id="form-success" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-green-800">
+          <div id="form-success" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-green-800" role="status" aria-live="polite" aria-atomic="true">
             <p class="font-semibold">Ευχαριστούμε!</p>
-            <p class="mt-1 text-sm">Το αίτημά σας καταχωρήθηκε. Θα επικοινωνήσουμε σύντομα.</p>
+            <p class="mt-1 text-sm">Το αίτημά σας καταχωρήθηκε με επιτυχία. Συνήθως λαμβάνετε πρώτη ενημέρωση εντός 1–2 εργάσιμων ωρών.</p>
           </div>
           <div id="form-error" class="hidden rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800" role="alert" aria-live="assertive"></div>
 
@@ -636,10 +640,17 @@ const faqSchema = category.faq?.length ? {
             </div>
           </div>
 
+          <div class="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-3">
+            <label for="lead-consent" class="flex items-start gap-2 text-sm text-slate-700">
+              <input id="lead-consent" name="consent" type="checkbox" required class="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700 focus:ring-blue-500" />
+              <span>Συμφωνώ με την επεξεργασία των στοιχείων μου για επικοινωνία σχετικά με το αίτημα. Διαβάστε την <a href="/politiki-aporritou" class="font-semibold text-blue-700 underline underline-offset-2">Πολιτική Απορρήτου</a>.</span>
+            </label>
+          </div>
+
           <button id="form-submit" type="submit" class="mt-5 w-full rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">
             Αποστολή Αιτήματος
           </button>
-          <p class="mt-2 text-xs text-gray-500">Με την αποστολή αποδέχεστε να επικοινωνήσουμε μαζί σας για το συγκεκριμένο αίτημα.</p>
+          <p class="mt-2 text-xs text-gray-500">Με την αποστολή και τη συγκατάθεση, η ομάδα GreekHandy επικοινωνεί μόνο για το συγκεκριμένο αίτημα.</p>
         </form>
 
         <script>
@@ -674,6 +685,12 @@ const faqSchema = category.faq?.length ? {
             const fd = new FormData(form);
             // Honeypot check
             if (fd.get('website')) return;
+
+            const consentGiven = fd.get('consent') === 'on';
+            if (!consentGiven) {
+              setErrorState('Απαιτείται συγκατάθεση για να συνεχίσουμε με το αίτημά σας. Διαβάστε την Πολιτική Απορρήτου και δοκιμάστε ξανά.');
+              return;
+            }
 
             if (typeof navigator !== 'undefined' && navigator.onLine === false) {
               setErrorState('Δεν υπάρχει σύνδεση στο διαδίκτυο. Ελέγξτε το δίκτυο και δοκιμάστε ξανά.');
@@ -712,7 +729,7 @@ const faqSchema = category.faq?.length ? {
               if (successState instanceof HTMLElement) successState.classList.remove('hidden');
             } catch {
               if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
-              setErrorState('Η υποβολή δεν ολοκληρώθηκε αυτή τη στιγμή. Δοκιμάστε ξανά ή στείλτε στο info@greekhandy.gr.');
+              setErrorState('Η υποβολή δεν ολοκληρώθηκε αυτή τη στιγμή. Δοκιμάστε ξανά σε 1-2 λεπτά ή στείλτε στο info@greekhandy.gr.');
               submitButton.disabled = false;
               submitButton.removeAttribute('aria-busy');
               submitButton.textContent = 'Αποστολή Αιτήματος';
