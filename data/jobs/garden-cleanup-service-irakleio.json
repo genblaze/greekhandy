@@ -1,0 +1,20 @@
+{
+  "id": "garden-cleanup-service-irakleio",
+  "slug": "katharismos-kipou-irakleio",
+  "nameGr": "Καθαρισμός Κήπου στο Ηράκλειο",
+  "nameEn": "Garden Cleanup Service in Ηράκλειο",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Καθαρισμός κήπου στο Ηράκλειο με απομάκρυνση κλαδιών, φύλλων και χόρτων, προετοιμασία για εποχική συντήρηση. SEO intent: καλύπτει τοπικά queries υψηλής πρόθεσης όπως «καθαρισμός κήπου Ηράκλειο» και «κηπουρός άμεσα».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "65-300€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός κήπου Ηράκλειο",
+    "κηπουρός Ηράκλειο",
+    "απομάκρυνση κλαδιών",
+    "συντήρηση αυλής",
+    "κοπή χόρτων κήπου"
+  ],
+  "status": "researched"
+}

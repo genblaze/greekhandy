@@ -1,0 +1,20 @@
+{
+  "id": "garden-cleanup-service-ioannina",
+  "slug": "katharismos-kipou-ioannina",
+  "nameGr": "Καθαρισμός Κήπου στα Ιωάννινα",
+  "nameEn": "Garden Cleanup Service in Ιωάννινα",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Καθαρισμός κήπου στα Ιωάννινα με απομάκρυνση κλαδιών, φύλλων και χόρτων, προετοιμασία για εποχική συντήρηση. SEO intent: καλύπτει τοπικά queries υψηλής πρόθεσης όπως «καθαρισμός κήπου Ιωάννινα» και «κηπουρός άμεσα».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "65-300€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός κήπου Ιωάννινα",
+    "κηπουρός Ιωάννινα",
+    "απομάκρυνση κλαδιών",
+    "συντήρηση αυλής",
+    "κοπή χόρτων κήπου"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "furniture-disassembly-assembly-volos",
+  "slug": "aposynarmologisi-synarmologisi-epiplon-volos",
+  "nameGr": "Αποσυναρμολόγηση & Συναρμολόγηση Επίπλων στον Βόλο",
+  "nameEn": "Furniture Disassembly & Assembly in Βόλος",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Αποσυναρμολόγηση και επανασυναρμολόγηση επίπλων στον Βόλο για ασφαλή μετακόμιση ή αναδιάταξη χώρου. SEO intent: στοχεύει αναζητήσεις άμεσης πρόθεσης όπως «συναρμολόγηση επίπλων Βόλος» και «μετακόμιση με λύσιμο επίπλων».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "70-320€",
+  "demand": "high",
+  "keywords": [
+    "συναρμολόγηση επίπλων Βόλος",
+    "λύσιμο επίπλων Βόλος",
+    "μετακόμιση έπιπλα",
+    "συναρμολόγηση ντουλάπας",
+    "τεχνικός επίπλων άμεσα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "garden-cleanup-service-volos",
+  "slug": "katharismos-kipou-volos",
+  "nameGr": "Καθαρισμός Κήπου στον Βόλο",
+  "nameEn": "Garden Cleanup Service in Βόλος",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Καθαρισμός κήπου στον Βόλο με απομάκρυνση κλαδιών, φύλλων και χόρτων, προετοιμασία για εποχική συντήρηση. SEO intent: καλύπτει τοπικά queries υψηλής πρόθεσης όπως «καθαρισμός κήπου Βόλος» και «κηπουρός άμεσα».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "65-300€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός κήπου Βόλος",
+    "κηπουρός Βόλος",
+    "απομάκρυνση κλαδιών",
+    "συντήρηση αυλής",
+    "κοπή χόρτων κήπου"
+  ],
+  "status": "researched"
+}
