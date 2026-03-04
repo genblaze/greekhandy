@@ -4,6 +4,20 @@ import { getAdminAuth } from '../../../lib/admin-auth';
 
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
+const buildReviewsModerationUrl = (params: Record<string, string | null | undefined>) => {
+  const search = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (!value) continue;
+    search.set(key, value);
+  }
+  return `/professionals/reviews-moderation?${search.toString()}`;
+};
+const resultFromStatus = (status?: string | null) => {
+  if (status === 'approved') return 'approved';
+  if (status === 'rejected') return 'rejected';
+  return 'pending';
+};
+const summaryImpactFromResult = (result: string) => (result === 'approved' ? 'included' : 'excluded');
 
 const hasVerifiedLeadMatch = async (reviewerEmail: string, serviceSlug: string) => {
   if (!reviewerEmail || !serviceSlug) return false;
@@ -42,10 +56,19 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const reviewId = clean(formData.get('reviewId'));
   const verified = clean(formData.get('verified')) === 'true';
   const actorIdentifier = max(clean(formData.get('actorIdentifier')) || 'admin', 120);
-  const returnUrl = `/professionals/reviews-moderation?actor=${encodeURIComponent(actorIdentifier)}`;
+  const baseReturnParams = {
+    actor: actorIdentifier,
+    key: moderationKey || null
+  };
+  const returnUrl = (status: string, extraParams: Record<string, string | null | undefined> = {}) =>
+    buildReviewsModerationUrl({
+      ...baseReturnParams,
+      status,
+      ...extraParams
+    });
 
   if (!reviewId || !['approve', 'reject'].includes(action)) {
-    return redirect(`${returnUrl}&status=invalid`, 303);
+    return redirect(returnUrl('invalid'), 303);
   }
 
   const { data: current, error: currentError } = await supabaseServer
@@ -56,11 +79,20 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
   if (currentError) {
     console.error('[review-moderation] lookup failed', currentError);
-    return redirect(`${returnUrl}&status=error`, 303);
+    return redirect(returnUrl('error'), 303);
   }
 
-  if (!current) return redirect(`${returnUrl}&status=not-found`, 303);
-  if (current.status !== 'pending') return redirect(`${returnUrl}&status=already-processed`, 303);
+  if (!current) return redirect(returnUrl('not-found'), 303);
+  if (current.status !== 'pending') {
+    const currentResult = resultFromStatus(current.status);
+    return redirect(
+      returnUrl('already-processed', {
+        result: currentResult,
+        summary: summaryImpactFromResult(currentResult)
+      }),
+      303
+    );
+  }
 
   const nextStatus = action === 'approve' ? 'approved' : 'rejected';
   const verifiedLeadMatched = action === 'approve'
@@ -83,12 +115,34 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
   if (updateError) {
     console.error('[review-moderation] update failed', updateError);
-    return redirect(`${returnUrl}&status=error`, 303);
+    return redirect(returnUrl('error'), 303);
   }
 
   if (!updatedRows || updatedRows.length === 0) {
-    return redirect(`${returnUrl}&status=already-processed`, 303);
+    const { data: latestReview } = await supabaseServer
+      .from('reviews')
+      .select('status')
+      .eq('id', reviewId)
+      .maybeSingle();
+    const latestResult = resultFromStatus(latestReview?.status);
+    return redirect(
+      returnUrl('already-processed', {
+        result: latestResult,
+        summary: summaryImpactFromResult(latestResult)
+      }),
+      303
+    );
   }
+
+  const result = resultFromStatus(nextStatus);
+  const verification = action === 'approve'
+    ? (finalVerified ? 'verified' : (verified ? 'requested-no-match' : 'not-requested'))
+    : 'not-applicable';
+  const outcomeParams = {
+    result,
+    summary: summaryImpactFromResult(result),
+    verification
+  };
 
   const { error: auditError } = await supabaseServer.from('review_moderation_actions').insert({
     review_id: reviewId,
@@ -112,8 +166,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
   if (auditError) {
     console.error('[review-moderation] audit insert failed', auditError);
-    return redirect(`${returnUrl}&status=audit-error`, 303);
+    return redirect(returnUrl('audit-error', outcomeParams), 303);
   }
 
-  return redirect(`${returnUrl}&status=ok`, 303);
+  return redirect(returnUrl('ok', outcomeParams), 303);
 };
