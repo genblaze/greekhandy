@@ -1,0 +1,20 @@
+{
+  "id": "small-hotel-boiler-maintenance-plan-farsala",
+  "slug": "plano-syntirisis-levita-mikrou-xenodoxeiou-farsala",
+  "nameGr": "Πλάνο Συντήρησης Λέβητα Μικρού Ξενοδοχείου στα Φάρσαλα",
+  "nameEn": "Small Hotel Boiler Maintenance Plan in Φάρσαλα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Συντήρηση λέβητα μικρού ξενοδοχείου στα Φάρσαλα με check-list ασφαλείας και απόδοσης πριν την τουριστική περίοδο. SEO intent: στοχεύει B2B αναζητήσεις «συντήρηση λέβητα ξενοδοχείου Φάρσαλα».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "140-680€",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση λέβητα ξενοδοχείου Φάρσαλα",
+    "service καυστήρα μικρού ξενοδοχείου",
+    "τεχνικός θέρμανσης τουριστικού καταλύματος",
+    "προληπτική συντήρηση λεβητοστασίου",
+    "boiler maintenance hotel"
+  ],
+  "status": "researched"
+}

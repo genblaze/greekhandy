@@ -1,0 +1,20 @@
+{
+  "id": "cistern-pump-automatic-switch-repair-lixouri",
+  "slug": "episkevi-aftomatou-diakopti-antlias-dexamennis-lixouri",
+  "nameGr": "Επισκευή Αυτόματου Διακόπτη Αντλίας Δεξαμενής στο Ληξούρι",
+  "nameEn": "Cistern Pump Automatic Switch Repair in Ληξούρι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επισκευή αυτόματου διακόπτη αντλίας δεξαμενής στο Ληξούρι για αξιόπιστη παροχή νερού χωρίς χειροκίνητες παρεμβάσεις. SEO intent: στοχεύει αναζητήσεις «αντλία δεξαμενής δεν ανοίγει Ληξούρι».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "αντλία δεξαμενής δεν ανοίγει Ληξούρι",
+    "επισκευή πιεστικού δεξαμενής Ληξούρι",
+    "αυτόματος διακόπτης αντλίας βλάβη",
+    "υδραυλικός αντλία νερού",
+    "service δεξαμενής κατοικίας"
+  ],
+  "status": "researched"
+}

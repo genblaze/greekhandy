@@ -1,0 +1,20 @@
+{
+  "id": "small-hotel-boiler-maintenance-plan-lixouri",
+  "slug": "plano-syntirisis-levita-mikrou-xenodoxeiou-lixouri",
+  "nameGr": "Πλάνο Συντήρησης Λέβητα Μικρού Ξενοδοχείου στο Ληξούρι",
+  "nameEn": "Small Hotel Boiler Maintenance Plan in Ληξούρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Συντήρηση λέβητα μικρού ξενοδοχείου στο Ληξούρι με check-list ασφαλείας και απόδοσης πριν την τουριστική περίοδο. SEO intent: στοχεύει B2B αναζητήσεις «συντήρηση λέβητα ξενοδοχείου Ληξούρι».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "140-680€",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση λέβητα ξενοδοχείου Ληξούρι",
+    "service καυστήρα μικρού ξενοδοχείου",
+    "τεχνικός θέρμανσης τουριστικού καταλύματος",
+    "προληπτική συντήρηση λεβητοστασίου",
+    "boiler maintenance hotel"
+  ],
+  "status": "researched"
+}
