@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-panel-hotspot-check-kymi",
+  "slug": "epigousos-elegxos-yperthermansis-ilektrologikou-pinaka-kymi",
+  "nameGr": "Επείγων Έλεγχος Υπερθέρμανσης Ηλεκτρολογικού Πίνακα στην Κύμη",
+  "nameEn": "Emergency Electrical Panel Hotspot Check in Κύμη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος υπερθέρμανσης ηλεκτρολογικού πίνακα στην Κύμη για πρόληψη πυρκαγιάς και ασφαλή αποκατάσταση. SEO intent: καλύπτει conversion αναζητήσεις «πίνακας ζεσταίνεται Κύμη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πίνακας ζεσταίνεται Κύμη",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "μυρωδιά καμένου πίνακα",
+    "ασφάλεια ηλεκτρικού πίνακα",
+    "θερμοκρασία ασφάλειες υψηλή"
+  ],
+  "status": "researched"
+}

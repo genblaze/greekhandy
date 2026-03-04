@@ -1,0 +1,20 @@
+{
+  "id": "rental-turnover-appliance-function-check-kymi",
+  "slug": "elegxos-leitourgias-syskevon-meta-turnover-kymi",
+  "nameGr": "Έλεγχος Λειτουργίας Συσκευών μετά Turnover στην Κύμη",
+  "nameEn": "Rental Turnover Appliance Function Check in Κύμη",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Έλεγχος λειτουργίας βασικών συσκευών στην Κύμη μετά από turnover καταλύματος για αποφυγή ακυρώσεων και αρνητικών αξιολογήσεων. SEO intent: στοχεύει «έλεγχος συσκευών Airbnb Κύμη».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-220€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος συσκευών Airbnb Κύμη",
+    "turnover appliance check",
+    "τεχνικός καταλύματος συσκευές",
+    "πρόληψη βλάβης πριν checkin",
+    "service εξοπλισμού διαμερίσματος"
+  ],
+  "status": "researched"
+}

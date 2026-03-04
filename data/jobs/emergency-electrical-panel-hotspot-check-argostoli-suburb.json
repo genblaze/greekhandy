@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-panel-hotspot-check-argostoli-suburb",
+  "slug": "epigousos-elegxos-yperthermansis-ilektrologikou-pinaka-argostoli-suburb",
+  "nameGr": "Επείγων Έλεγχος Υπερθέρμανσης Ηλεκτρολογικού Πίνακα στα περίχωρα Αργοστολίου",
+  "nameEn": "Emergency Electrical Panel Hotspot Check in Αργοστόλι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος υπερθέρμανσης ηλεκτρολογικού πίνακα στα περίχωρα Αργοστολίου για πρόληψη πυρκαγιάς και ασφαλή αποκατάσταση. SEO intent: καλύπτει conversion αναζητήσεις «πίνακας ζεσταίνεται Αργοστόλι».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πίνακας ζεσταίνεται Αργοστόλι",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "μυρωδιά καμένου πίνακα",
+    "ασφάλεια ηλεκτρικού πίνακα",
+    "θερμοκρασία ασφάλειες υψηλή"
+  ],
+  "status": "researched"
+}
