@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { supabaseServer } from '../../../lib/supabase-server';
 
-const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
+const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -11,37 +11,126 @@ const toRating = (value: string) => {
   return Math.max(1, Math.min(5, parsed));
 };
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+const wantsJson = (request: Request) => {
+  const accept = request.headers.get('accept') || '';
+  const contentType = request.headers.get('content-type') || '';
+  const format = new URL(request.url).searchParams.get('format');
+  return format === 'json' || accept.includes('application/json') || contentType.includes('application/json');
+};
+
+const jsonError = (status: number, code: string, message: string, fieldErrors?: Record<string, string>) =>
+  new Response(JSON.stringify({ ok: false, error: { code, message, fieldErrors: fieldErrors || null } }), {
+    status,
+    headers: { 'content-type': 'application/json; charset=utf-8' }
+  });
+
+type ReviewInput = {
+  professionalSlug: string;
+  returnTo: string;
+  honeypot: string;
+  reviewerName: string;
+  reviewerEmail: string;
+  rating: number;
+  comment: string;
+};
+
+const extractInput = async (request: Request): Promise<ReviewInput> => {
+  const contentType = request.headers.get('content-type') || '';
+
+  if (contentType.includes('application/json')) {
+    const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
+    const professionalSlug = max(clean(body.professionalSlug), 120);
+    return {
+      professionalSlug,
+      returnTo: clean(body.returnTo) || `/professionals/${professionalSlug}`,
+      honeypot: clean(body.website),
+      reviewerName: max(clean(body.reviewerName), 80) || 'Ανώνυμος Πελάτης',
+      reviewerEmail: max(clean(body.reviewerEmail).toLowerCase(), 160),
+      rating: toRating(clean(body.rating)),
+      comment: max(clean(body.comment), 1200)
+    };
+  }
+
+  if (contentType.includes('application/x-www-form-urlencoded')) {
+    const params = new URLSearchParams(await request.text());
+    const professionalSlug = max(clean(params.get('professionalSlug')), 120);
+    return {
+      professionalSlug,
+      returnTo: clean(params.get('returnTo')) || `/professionals/${professionalSlug}`,
+      honeypot: clean(params.get('website')),
+      reviewerName: max(clean(params.get('reviewerName')), 80) || 'Ανώνυμος Πελάτης',
+      reviewerEmail: max(clean(params.get('reviewerEmail')).toLowerCase(), 160),
+      rating: toRating(clean(params.get('rating'))),
+      comment: max(clean(params.get('comment')), 1200)
+    };
+  }
+
   const formData = await request.formData();
-
   const professionalSlug = max(clean(formData.get('professionalSlug')), 120);
-  const returnTo = clean(formData.get('returnTo')) || `/professionals/${professionalSlug}`;
+  return {
+    professionalSlug,
+    returnTo: clean(formData.get('returnTo')) || `/professionals/${professionalSlug}`,
+    honeypot: clean(formData.get('website')),
+    reviewerName: max(clean(formData.get('reviewerName')), 80) || 'Ανώνυμος Πελάτης',
+    reviewerEmail: max(clean(formData.get('reviewerEmail')).toLowerCase(), 160),
+    rating: toRating(clean(formData.get('rating'))),
+    comment: max(clean(formData.get('comment')), 1200)
+  };
+};
 
-  if (clean(formData.get('website'))) return redirect(`${returnTo}?review=invalid`, 303);
+const validateInput = (input: ReviewInput) => {
+  const fieldErrors: Record<string, string> = {};
+  if (!input.professionalSlug) fieldErrors.professionalSlug = 'Το professionalSlug είναι υποχρεωτικό.';
+  if (!input.rating) fieldErrors.rating = 'Η βαθμολογία είναι υποχρεωτική (1-5).';
+  if (!input.comment) fieldErrors.comment = 'Το σχόλιο είναι υποχρεωτικό.';
+  if (input.reviewerEmail && !isValidEmail(input.reviewerEmail)) fieldErrors.reviewerEmail = 'Το email δεν είναι έγκυρο.';
+  return fieldErrors;
+};
 
-  const reviewerName = max(clean(formData.get('reviewerName')), 80) || 'Ανώνυμος Πελάτης';
-  const reviewerEmail = max(clean(formData.get('reviewerEmail')).toLowerCase(), 160);
-  const rating = toRating(clean(formData.get('rating')));
-  const comment = max(clean(formData.get('comment')), 1200);
+export const POST: APIRoute = async ({ request, redirect }) => {
+  const asJson = wantsJson(request);
 
-  if (!professionalSlug || !rating || !comment || (reviewerEmail && !isValidEmail(reviewerEmail))) {
-    return redirect(`${returnTo}?review=invalid`, 303);
+  let input: ReviewInput;
+  try {
+    input = await extractInput(request);
+  } catch {
+    return asJson
+      ? jsonError(400, 'INVALID_BODY', 'Το σώμα του αιτήματος δεν είναι έγκυρο.')
+      : redirect('/professionals?review=invalid', 303);
+  }
+
+  if (input.honeypot) {
+    return asJson
+      ? jsonError(422, 'VALIDATION_ERROR', 'Το αίτημα απορρίφθηκε ως μη έγκυρο.', { website: 'Μη επιτρεπτό πεδίο.' })
+      : redirect(`${input.returnTo}?review=invalid`, 303);
+  }
+
+  const fieldErrors = validateInput(input);
+  if (Object.keys(fieldErrors).length > 0) {
+    return asJson
+      ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
+      : redirect(`${input.returnTo}?review=invalid`, 303);
   }
 
   const { error } = await supabaseServer.from('reviews').insert({
     professional_id: null,
-    reviewer_name: reviewerName,
-    reviewer_email: reviewerEmail || null,
-    rating,
-    comment,
-    service_slug: professionalSlug,
+    reviewer_name: input.reviewerName,
+    reviewer_email: input.reviewerEmail || null,
+    rating: input.rating,
+    comment: input.comment,
+    service_slug: input.professionalSlug,
     status: 'pending'
   });
 
   if (error) {
-    console.error('[review-submit] failed', error);
-    return redirect(`${returnTo}?review=error`, 303);
+    const message = error instanceof Error ? error.message : 'supabase-error';
+    console.error(`[review-submit] failed: ${message}`);
+    return asJson
+      ? jsonError(500, 'REVIEW_SUBMIT_FAILED', 'Αδυναμία υποβολής κριτικής αυτή τη στιγμή.')
+      : redirect(`${input.returnTo}?review=error`, 303);
   }
 
-  return redirect(`${returnTo}?review=submitted`, 303);
+  return asJson
+    ? new Response(JSON.stringify({ ok: true, status: 'pending' }), { status: 201, headers: { 'content-type': 'application/json; charset=utf-8' } })
+    : redirect(`${input.returnTo}?review=submitted`, 303);
 };
