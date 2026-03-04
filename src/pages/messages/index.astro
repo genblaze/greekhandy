@@ -63,12 +63,23 @@ const threads = Array.from(threadMap.entries())
     };
   })
   .sort((a, b) => b.lastMessageAt.localeCompare(a.lastMessageAt));
+
+const totalUnread = threads.reduce((sum, thread) => sum + thread.unreadCount, 0);
 ---
 
 <Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με προεπισκόπηση και μη αναγνωσμένα μηνύματα.">
   <main class="mx-auto max-w-4xl px-4 py-14">
-    <h1 class="text-3xl font-bold text-gray-900">Συνομιλίες</h1>
-    <p class="mt-2 text-sm text-gray-600">MVP inbox με ένδειξη μη αναγνωσμένων και καθαρή προεπισκόπηση τελευταίου μηνύματος.</p>
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Συνομιλίες</h1>
+        <p class="mt-2 text-sm text-gray-600">MVP inbox με ένδειξη μη αναγνωσμένων και καθαρή προεπισκόπηση τελευταίου μηνύματος.</p>
+      </div>
+      {viewerEmail && (
+        <div class="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-800">
+          {totalUnread > 0 ? `${totalUnread} νέα μηνύματα` : 'Όλα αναγνωσμένα'}
+        </div>
+      )}
+    </div>
 
     {status === 'invalid' && (
       <p class="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">Δεν ήταν δυνατή η ενημέρωση ως αναγνωσμένη (μη έγκυρα στοιχεία).</p>
