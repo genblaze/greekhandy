@@ -507,6 +507,16 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           <p class="mt-1 text-xs text-cyan-800">Συνδυάζουμε υπηρεσίες, κατηγορίες και επαγγελματίες.</p>
         </div>
 
+        <div class="mt-4 hidden rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800" data-search-error role="alert" aria-live="assertive">
+          <p class="font-semibold text-rose-900" data-search-error-title>Η αναζήτηση προσωρινά δεν συγχρονίστηκε σωστά.</p>
+          <p class="mt-1" data-search-error-description>Δοκιμάστε ξανά ή συνεχίστε από τις κατηγορίες και τα προφίλ.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <button type="button" data-search-retry class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Επανάληψη</button>
+            <a href="#services" class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Κατηγορίες</a>
+            <a href="/professionals" class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Προφίλ</a>
+          </div>
+        </div>
+
         <ul class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false">
           {homepageSearchItems.map(item => (
             <li
@@ -535,6 +545,10 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
         <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-empty-state>
           <p class="font-semibold text-orange-900">Δεν βρέθηκαν αποτελέσματα με αυτά τα φίλτρα.</p>
           <p class="mt-1">Δοκιμάστε άλλη λέξη ή πόλη για περισσότερες επιλογές.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <a href="#services" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Εξερεύνηση κατηγοριών</a>
+            <a href="/professionals" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Δείτε επαγγελματίες</a>
+          </div>
         </div>
       </div>
     </section>
@@ -803,63 +817,120 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       const resultsCount = document.querySelector('[data-results-count]');
       const emptyState = document.querySelector('[data-empty-state]');
       const loadingState = document.querySelector('[data-search-loading]');
+      const errorState = document.querySelector('[data-search-error]');
+      const errorStateTitle = document.querySelector('[data-search-error-title]');
+      const errorStateDescription = document.querySelector('[data-search-error-description]');
+      const retryButton = document.querySelector('[data-search-retry]');
       const resultsList = document.querySelector('[data-results-list]');
 
-      if (!searchInput || !cityFilter || !resetButton || !resultsCount || !emptyState || !resultsList) return;
+      if (
+        !(searchInput instanceof HTMLInputElement)
+        || !(cityFilter instanceof HTMLSelectElement)
+        || !(resetButton instanceof HTMLButtonElement)
+        || !(resultsCount instanceof HTMLElement)
+        || !(emptyState instanceof HTMLElement)
+        || !(resultsList instanceof HTMLElement)
+      ) return;
+
+      const parsedCards = resultCards.map(card => ({
+        card,
+        searchText: card.dataset.searchText || '',
+        cities: (card.dataset.cities || '').split('|').filter(Boolean)
+      }));
+      const totalItems = parsedCards.length;
+      const SEARCH_DEBOUNCE_MS = 110;
+      let updateTimer = null;
 
       const getCityLabel = () => {
         const selectedOption = cityFilter.options[cityFilter.selectedIndex];
         return selectedOption ? selectedOption.textContent : '';
       };
 
-      const updateResults = () => {
-        const keyword = normalizeText(searchInput.value);
-        const selectedCity = cityFilter.value;
-
-        if (loadingState) loadingState.classList.add('hidden');
-        resultsList.setAttribute('aria-busy', 'true');
-
-        let visibleItems = 0;
-
-        resultCards.forEach(card => {
-          const searchText = card.dataset.searchText || '';
-          const cities = (card.dataset.cities || '').split('|').filter(Boolean);
-
-          const keywordMatch = !keyword || searchText.includes(keyword);
-          const cityMatch = !selectedCity || cities.includes(selectedCity);
-          const isVisible = keywordMatch && cityMatch;
-
-          card.classList.toggle('hidden', !isVisible);
-          if (isVisible) visibleItems += 1;
-        });
-
-        const cityLabel = selectedCity ? getCityLabel() : '';
-        if (!keyword && !selectedCity) {
-          resultsCount.textContent = `Εμφανίζονται ${visibleItems} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.`;
-        } else if (cityLabel && keyword) {
-          resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}» στην ${cityLabel}.`;
-        } else if (cityLabel) {
-          resultsCount.textContent = `${visibleItems} αποτελέσματα στην ${cityLabel}.`;
-        } else {
-          resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}».`;
-        }
-
-        emptyState.classList.toggle('hidden', visibleItems > 0);
-        resultsList.setAttribute('aria-busy', 'false');
+      const setLoadingState = (active) => {
+        resultsList.setAttribute('aria-busy', active ? 'true' : 'false');
+        if (loadingState instanceof HTMLElement) loadingState.classList.toggle('hidden', !active);
       };
 
-      if (loadingState) loadingState.classList.remove('hidden');
+      const hideErrorState = () => {
+        if (errorState instanceof HTMLElement) errorState.classList.add('hidden');
+      };
 
-      searchInput.addEventListener('input', updateResults);
-      cityFilter.addEventListener('change', updateResults);
+      const showErrorState = (descriptionText) => {
+        if (errorState instanceof HTMLElement) {
+          if (errorStateTitle instanceof HTMLElement) {
+            errorStateTitle.textContent = 'Η αναζήτηση προσωρινά δεν συγχρονίστηκε σωστά.';
+          }
+          if (errorStateDescription instanceof HTMLElement) {
+            errorStateDescription.textContent = descriptionText;
+          }
+          errorState.classList.remove('hidden');
+        }
+      };
+
+      const applyResults = () => {
+        try {
+          hideErrorState();
+
+          const keyword = normalizeText(searchInput.value);
+          const selectedCity = cityFilter.value;
+          let visibleItems = 0;
+
+          for (const item of parsedCards) {
+            const keywordMatch = !keyword || item.searchText.includes(keyword);
+            const cityMatch = !selectedCity || item.cities.includes(selectedCity);
+            const isVisible = keywordMatch && cityMatch;
+
+            item.card.classList.toggle('hidden', !isVisible);
+            if (isVisible) visibleItems += 1;
+          }
+
+          const cityLabel = selectedCity ? getCityLabel() : '';
+          if (!keyword && !selectedCity) {
+            resultsCount.textContent = `Εμφανίζονται ${visibleItems} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.`;
+          } else if (cityLabel && keyword) {
+            resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}» στην ${cityLabel}.`;
+          } else if (cityLabel) {
+            resultsCount.textContent = `${visibleItems} αποτελέσματα στην ${cityLabel}.`;
+          } else {
+            resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}».`;
+          }
+
+          if (!totalItems) {
+            resultsCount.textContent = 'Προσωρινά δεν υπάρχει διαθέσιμο δείγμα αναζήτησης. Συνεχίστε από τις κατηγορίες παρακάτω.';
+          }
+
+          emptyState.classList.toggle('hidden', visibleItems > 0 && totalItems > 0);
+        } catch {
+          showErrorState('Κάντε επανάληψη ή χρησιμοποιήστε την πλοήγηση κατηγοριών για να συνεχίσετε χωρίς καθυστέρηση.');
+        } finally {
+          setLoadingState(false);
+        }
+      };
+
+      const scheduleUpdate = () => {
+        setLoadingState(true);
+        if (updateTimer) window.clearTimeout(updateTimer);
+        updateTimer = window.setTimeout(applyResults, SEARCH_DEBOUNCE_MS);
+      };
+
+      setLoadingState(true);
+
+      searchInput.addEventListener('input', scheduleUpdate);
+      cityFilter.addEventListener('change', scheduleUpdate);
       resetButton.addEventListener('click', () => {
         searchInput.value = '';
         cityFilter.value = '';
-        updateResults();
+        scheduleUpdate();
         searchInput.focus();
       });
+      if (retryButton instanceof HTMLButtonElement) {
+        retryButton.addEventListener('click', () => {
+          scheduleUpdate();
+          searchInput.focus();
+        });
+      }
 
-      updateResults();
+      scheduleUpdate();
     })();
   </script>
 
