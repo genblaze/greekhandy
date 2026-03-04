@@ -1,0 +1,20 @@
+{
+  "id": "pool-water-quality-automation-edessa",
+  "slug": "aftomatopoiisi-poiotitas-nerou-pisinas-edessa",
+  "nameGr": "Αυτοματισμός Ποιότητας Νερού Πισίνας στην Έδεσσα",
+  "nameEn": "Pool Water Quality Automation in Έδεσσα",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εγκατάσταση αυτοματισμού ποιότητας νερού πισίνας στην Έδεσσα με αισθητήρες και δοσομετρικές αντλίες για σταθερά επίπεδα. SEO intent: καλύπτει premium αναζητήσεις «αυτοματισμός πισίνας Έδεσσα» και «ρύθμιση χλωρίου αυτόματα».",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "650-3200€",
+  "demand": "high",
+  "keywords": [
+    "αυτοματισμός πισίνας Έδεσσα",
+    "δοσομετρική αντλία πισίνας Έδεσσα",
+    "έλεγχος ποιότητας νερού πισίνας",
+    "ρύθμιση χλωρίου αυτόματα",
+    "smart pool system"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "salt-damage-exterior-painting-messolonghi",
+  "slug": "vapsimo-eksoterikou-se-almyri-perioxi-messolonghi",
+  "nameGr": "Βάψιμο Εξωτερικών για Παραθαλάσσια Φθορά στο Μεσολόγγι",
+  "nameEn": "Salt-Damage Exterior Painting in Μεσολόγγι",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Βάψιμο εξωτερικών επιφανειών στο Μεσολόγγι με αντιδιαβρωτικά υλικά για προστασία από αλάτι και υγρασία. SEO intent: στοχεύει αναζητήσεις «βάψιμο εξωτερικών Μεσολόγγι» και «αντιδιαβρωτική βαφή παραθαλάσσιας κατοικίας».",
+  "typicalDuration": "2-6 ημέρες",
+  "priceRangeEUR": "500-3600€",
+  "demand": "high",
+  "keywords": [
+    "βάψιμο εξωτερικών Μεσολόγγι",
+    "αντιδιαβρωτική βαφή Μεσολόγγι",
+    "παραθαλάσσια κατοικία συντήρηση",
+    "ελαιοχρωματιστής εξωτερικών χώρων",
+    "προστασία τοίχων από αλάτι"
+  ],
+  "status": "researched"
+}

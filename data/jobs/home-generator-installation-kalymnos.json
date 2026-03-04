@@ -1,0 +1,20 @@
+{
+  "id": "home-generator-installation-kalymnos",
+  "slug": "egkatastasi-ilektrogennitrias-spitiou-kalymnos",
+  "nameGr": "Εγκατάσταση Ηλεκτρογεννήτριας Κατοικίας στην Κάλυμνο",
+  "nameEn": "Home Generator Installation in Κάλυμνος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση οικιακής ηλεκτρογεννήτριας στην Κάλυμνο με ασφαλή διασύνδεση πίνακα και σύστημα αυτόματης μεταγωγής. SEO intent: καλύπτει high-intent queries «ηλεκτρογεννήτρια σπίτι Κάλυμνος» και «εγκατάσταση γεννήτριας ρεύματος».",
+  "typicalDuration": "3-8 ώρες",
+  "priceRangeEUR": "420-2200€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρογεννήτρια σπίτι Κάλυμνος",
+    "εγκατάσταση γεννήτριας Κάλυμνος",
+    "ηλεκτρολόγος γεννήτρια",
+    "backup ρεύματος κατοικίας",
+    "αυτόματη μεταγωγή ATS"
+  ],
+  "status": "researched"
+}

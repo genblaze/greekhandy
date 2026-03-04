@@ -1,0 +1,20 @@
+{
+  "id": "basement-flood-water-pumping-edessa",
+  "slug": "antlisi-neron-ypogeiou-plimmyra-edessa",
+  "nameGr": "Άντληση Νερών Υπογείου από Πλημμύρα στην Έδεσσα",
+  "nameEn": "Basement Flood Water Pumping in Έδεσσα",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Άμεση άντληση νερών υπογείου στην Έδεσσα μετά από πλημμύρα με απομάκρυνση υδάτων και πρώτη αποκατάσταση χώρου. SEO intent: στοχεύει επείγουσες αναζητήσεις υψηλής πρόθεσης όπως «άντληση νερών Έδεσσα» και «πλημμύρα υπόγειο βοήθεια».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "90-380€",
+  "demand": "high",
+  "keywords": [
+    "άντληση νερών Έδεσσα",
+    "πλημμύρα υπόγειο Έδεσσα",
+    "συνεργείο άντλησης υδάτων",
+    "αποκατάσταση μετά πλημμύρα",
+    "καθαρισμός υπογείου νερά"
+  ],
+  "status": "researched"
+}

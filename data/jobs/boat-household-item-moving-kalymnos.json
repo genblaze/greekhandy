@@ -1,0 +1,20 @@
+{
+  "id": "boat-household-item-moving-kalymnos",
+  "slug": "metafora-skafous-kai-oikiakon-ogkodon-kalymnos",
+  "nameGr": "Μεταφορά Σκάφους/Ογκωδών Αντικειμένων στην Κάλυμνο",
+  "nameEn": "Boat & Heavy Item Moving in Κάλυμνος",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Εξειδικευμένη μεταφορά μικρού σκάφους και ογκωδών αντικειμένων στην Κάλυμνο με κατάλληλο εξοπλισμό και ασφάλιση φορτίου. SEO intent: καλύπτει niche αλλά εμπορικά ισχυρές αναζητήσεις όπως «μεταφορά σκάφους Κάλυμνος».",
+  "typicalDuration": "3-10 ώρες",
+  "priceRangeEUR": "260-1800€",
+  "demand": "high",
+  "keywords": [
+    "μεταφορά σκάφους Κάλυμνος",
+    "μεταφορά ογκωδών αντικειμένων Κάλυμνος",
+    "ειδική μεταφορά φορτίου",
+    "μεταφορική με ειδικό εξοπλισμό",
+    "ασφαλής μεταφορά boat"
+  ],
+  "status": "researched"
+}

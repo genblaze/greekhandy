@@ -1,0 +1,20 @@
+{
+  "id": "boat-household-item-moving-edessa",
+  "slug": "metafora-skafous-kai-oikiakon-ogkodon-edessa",
+  "nameGr": "Μεταφορά Σκάφους/Ογκωδών Αντικειμένων στην Έδεσσα",
+  "nameEn": "Boat & Heavy Item Moving in Έδεσσα",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Εξειδικευμένη μεταφορά μικρού σκάφους και ογκωδών αντικειμένων στην Έδεσσα με κατάλληλο εξοπλισμό και ασφάλιση φορτίου. SEO intent: καλύπτει niche αλλά εμπορικά ισχυρές αναζητήσεις όπως «μεταφορά σκάφους Έδεσσα».",
+  "typicalDuration": "3-10 ώρες",
+  "priceRangeEUR": "260-1800€",
+  "demand": "high",
+  "keywords": [
+    "μεταφορά σκάφους Έδεσσα",
+    "μεταφορά ογκωδών αντικειμένων Έδεσσα",
+    "ειδική μεταφορά φορτίου",
+    "μεταφορική με ειδικό εξοπλισμό",
+    "ασφαλής μεταφορά boat"
+  ],
+  "status": "researched"
+}

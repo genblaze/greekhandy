@@ -1,0 +1,20 @@
+{
+  "id": "pool-water-quality-automation-messolonghi",
+  "slug": "aftomatopoiisi-poiotitas-nerou-pisinas-messolonghi",
+  "nameGr": "Αυτοματισμός Ποιότητας Νερού Πισίνας στο Μεσολόγγι",
+  "nameEn": "Pool Water Quality Automation in Μεσολόγγι",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εγκατάσταση αυτοματισμού ποιότητας νερού πισίνας στο Μεσολόγγι με αισθητήρες και δοσομετρικές αντλίες για σταθερά επίπεδα. SEO intent: καλύπτει premium αναζητήσεις «αυτοματισμός πισίνας Μεσολόγγι» και «ρύθμιση χλωρίου αυτόματα».",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "650-3200€",
+  "demand": "high",
+  "keywords": [
+    "αυτοματισμός πισίνας Μεσολόγγι",
+    "δοσομετρική αντλία πισίνας Μεσολόγγι",
+    "έλεγχος ποιότητας νερού πισίνας",
+    "ρύθμιση χλωρίου αυτόματα",
+    "smart pool system"
+  ],
+  "status": "researched"
+}
