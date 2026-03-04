@@ -65,10 +65,19 @@
     "needsInfo": "Χρειάζονται στοιχεία",
     "approved": "Εγκρίθηκε",
     "rejected": "Απορρίφθηκε",
-    "blocked": "Μπλοκαρίστηκε",
+    "blocked": "Αποκλείστηκε",
+    "reported": "Αναφέρθηκε",
     "escalated": "Κλιμακώθηκε",
     "done": "Ολοκληρώθηκε",
     "expired": "Έληξε"
+  },
+  "messageModeration": {
+    "itemType": "Αναφορά μηνύματος",
+    "actions": {
+      "hideMessage": "Απόκρυψη μηνύματος",
+      "dismissReport": "Κλείσιμο αναφοράς",
+      "blockSender": "Αποκλεισμός αποστολέα"
+    }
   },
   "emptyStates": {
     "queue": {

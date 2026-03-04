@@ -9,9 +9,9 @@
   "filters": {
     "all": "Όλα",
     "pending": "Σε εκκρεμότητα",
-    "approved": "Εγκρίθηκαν",
-    "rejected": "Απορρίφθηκαν",
-    "highRisk": "Υψηλού ρίσκου",
+    "approved": "Εγκεκριμένα",
+    "rejected": "Απορριφθέντα",
+    "highRisk": "Υψηλού κινδύνου",
     "searchPlaceholder": "Αναζήτηση με όνομα ή ID"
   },
   "itemLabels": {
@@ -27,7 +27,10 @@
     "approve": "Έγκριση",
     "reject": "Απόρριψη",
     "escalate": "Κλιμάκωση",
-    "restore": "Επαναφορά"
+    "restore": "Επαναφορά",
+    "hideMessage": "Απόκρυψη μηνύματος",
+    "dismissReport": "Κλείσιμο αναφοράς",
+    "blockSender": "Αποκλεισμός αποστολέα"
   },
   "states": {
     "empty": {

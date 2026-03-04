@@ -57,10 +57,26 @@
       "estimatedComplexity": "medium"
     },
     {
+      "id": "premium-sitewide-design-system",
+      "name": "Premium Sitewide Experience",
+      "description": "Airbnb-level premium visual and UX system across every surface: homepage, category pages, service pages, profile pages, booking flow, messaging threads, moderation/admin pages, and all states (empty/loading/error).",
+      "priority": 8,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "worker-lead-engine",
+      "name": "Worker Lead Engine",
+      "description": "Continuous worker/pro lead acquisition via subagents with extensive coverage by trade × city, deduplication/scoring, and daily high-priority outreach-ready lists.",
+      "priority": 9,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "payment",
       "name": "Payment System",
       "description": "Booking deposits via Stripe. Professional subscription plans. Invoice generation. Payment history.",
-      "priority": 8,
+      "priority": 10,
       "status": "planned",
       "estimatedComplexity": "high"
     }
@@ -77,8 +93,18 @@
       "status": "complete"
     },
     {
+      "name": "Premium Experience Rollout",
+      "target": "Entire site (public + internal) upgraded to premium Airbnb-level look/feel with consistent design system and conversion-first UX",
+      "status": "in-progress"
+    },
+    {
+      "name": "Extensive Lead Coverage",
+      "target": "Always-on lead subagents across major trades and cities, with broad coverage, scoring, and daily prioritized lead outputs",
+      "status": "in-progress"
+    },
+    {
       "name": "Marketplace v1",
-      "target": "Reviews, booking, messaging live",
+      "target": "Reviews, booking, messaging live + premium UX baseline + lead engine operational",
       "status": "planned"
     }
   ]
