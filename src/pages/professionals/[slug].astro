@@ -228,6 +228,7 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 
         <form action="/api/messages/submit" method="POST" class="mt-4">
           <input type="hidden" name="professionalSlug" value={profile.slug} />
+          <input type="hidden" name="recipientEmail" value={profile.email} />
           <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 

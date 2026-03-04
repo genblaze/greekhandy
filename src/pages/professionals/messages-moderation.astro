@@ -158,6 +158,13 @@ const pendingThreads = Array.from(submissionsByThread.entries())
                   <input type="hidden" name="returnTo" value={`/professionals/messages-moderation?key=${encodeURIComponent(moderationKey)}`} />
                   <button type="submit" class="rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-900 hover:bg-amber-100">Report</button>
                 </form>
+
+                <form action="/api/messages/hide" method="POST">
+                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="threadId" value={threadId} />
+                  <input type="hidden" name="messageId" value={latestMessage.id || `${threadId}|latest`} />
+                  <button type="submit" class="rounded-lg border border-purple-300 bg-purple-50 px-4 py-2 text-sm font-semibold text-purple-900 hover:bg-purple-100">Hide latest message</button>
+                </form>
               </div>
             </article>
           ))}

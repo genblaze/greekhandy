@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {
+  MESSAGE_READ_STATE_FILE_PATH,
+  MESSAGE_SUBMISSIONS_FILE_PATH,
+  MESSAGE_VISIBILITY_FILE_PATH,
+  readNdjson,
+  type MessageReadState,
+  type MessageSubmission
+} from '../../lib/messaging';
+
+const url = new URL(Astro.request.url);
+const viewerEmail = (url.searchParams.get('viewerEmail') ?? '').trim().toLowerCase();
+
+const allMessages = await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH);
+const readStates = await readNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH);
+const visibilityActions = await readNdjson<{ messageId?: string; action?: string }>(MESSAGE_VISIBILITY_FILE_PATH);
+const hiddenMessageIds = new Set(visibilityActions.filter((entry) => entry.action === 'hide' && entry.messageId).map((entry) => entry.messageId as string));
+
+const readStateByThread = new Map<string, string>();
+for (const state of readStates) {
+  if (state.viewerEmail === viewerEmail) readStateByThread.set(state.threadId, state.lastReadAt);
+}
+
+const threadMap = new Map<string, MessageSubmission[]>();
+for (const message of allMessages) {
+  if (message.senderEmail.toLowerCase() !== viewerEmail && message.recipientEmail.toLowerCase() !== viewerEmail) continue;
+  const list = threadMap.get(message.threadId) || [];
+  list.push(message);
+  threadMap.set(message.threadId, list);
+}
+
+const threads = Array.from(threadMap.entries())
+  .map(([threadId, messages]) => {
+    const ordered = [...messages].sort((a, b) => a.submittedAt.localeCompare(b.submittedAt));
+    const lastMessage = ordered.at(-1)!;
+    const lastReadAt = readStateByThread.get(threadId) || '';
+    const unreadCount = ordered.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail && (!lastReadAt || message.submittedAt > lastReadAt)).length;
+    const lastPreview = hiddenMessageIds.has(lastMessage.id) ? 'Το μήνυμα έχει κρυφτεί από moderation.' : lastMessage.message;
+    return {
+      threadId,
+      professionalSlug: lastMessage.professionalSlug,
+      lastMessageAt: lastMessage.submittedAt,
+      unreadCount,
+      lastPreview,
+      messagesCount: ordered.length
+    };
+  })
+  .sort((a, b) => b.lastMessageAt.localeCompare(a.lastMessageAt));
+---
+
+<Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με προεπισκόπηση και μη αναγνωσμένα μηνύματα.">
+  <main class="mx-auto max-w-4xl px-4 py-14">
+    <h1 class="text-3xl font-bold text-gray-900">Συνομιλίες</h1>
+    <p class="mt-2 text-sm text-gray-600">MVP inbox με προεπισκόπηση τελευταίου μηνύματος και πλήθος μη αναγνωσμένων.</p>
+
+    {!viewerEmail && (
+      <p class="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">Λείπει παράμετρος <code>viewerEmail</code>.</p>
+    )}
+
+    {viewerEmail && (
+      <section class="mt-6 space-y-3">
+        {threads.length === 0 && <p class="rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-700">Δεν υπάρχουν συνομιλίες ακόμη.</p>}
+        {threads.map((thread) => (
+          <a href={`/messages/thread?threadId=${encodeURIComponent(thread.threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="block rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:border-blue-300">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h2 class="font-semibold text-gray-900">/{thread.professionalSlug}</h2>
+              <p class="text-xs text-gray-500">{new Date(thread.lastMessageAt).toLocaleString('el-GR')}</p>
+            </div>
+            <p class="mt-2 text-sm text-gray-700">{thread.lastPreview}</p>
+            <div class="mt-2 flex items-center justify-between">
+              <p class="text-xs text-gray-500">Μηνύματα: {thread.messagesCount}</p>
+              {thread.unreadCount > 0 && <span class="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-semibold text-indigo-800">{thread.unreadCount} μη αναγνωσμένα</span>}
+            </div>
+          </a>
+        ))}
+      </section>
+    )}
+  </main>
+</Layout>
