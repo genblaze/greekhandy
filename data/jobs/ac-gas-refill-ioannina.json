@@ -1,0 +1,20 @@
+{
+  "id": "ac-gas-refill-ioannina",
+  "slug": "symplirwsi-freon-klimatistikou-ioannina",
+  "nameGr": "Συμπλήρωση Φρέον Κλιματιστικού στα Ιωάννινα",
+  "nameEn": "AC Gas Refill in Ιωάννινα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Έλεγχος διαρροής και συμπλήρωση ψυκτικού υγρού (φρέον) σε κλιματιστικό στα Ιωάννινα για άμεση αποκατάσταση ψύξης. SEO intent: καλύπτει συναλλακτικές αναζητήσεις «φρέον κλιματιστικό Ιωάννινα» και «κλιματιστικό δεν παγώνει λύση».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "50-150€",
+  "demand": "high",
+  "keywords": [
+    "συμπλήρωση φρέον Ιωάννινα",
+    "ψυκτικό υγρό κλιματιστικού Ιωάννινα",
+    "ac δεν ψύχει",
+    "τεχνικός φρέον air condition",
+    "έλεγχος διαρροής κλιματιστικού"
+  ],
+  "status": "researched"
+}

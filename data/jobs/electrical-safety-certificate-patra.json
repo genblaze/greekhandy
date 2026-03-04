@@ -1,0 +1,20 @@
+{
+  "id": "electrical-safety-certificate-patra",
+  "slug": "pistopoiitiko-ilektrologou-yde-patra",
+  "nameGr": "Πιστοποιητικό Ηλεκτρολόγου (ΥΔΕ) στην Πάτρα",
+  "nameEn": "Electrical Safety Certificate (YDE) in Πάτρα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Έκδοση πιστοποιητικού ηλεκτρολόγου (ΥΔΕ) στην Πάτρα για νέα σύνδεση, επανασύνδεση ρεύματος ή μεταβίβαση ακινήτου. SEO intent: στοχεύει συναλλακτικές αναζητήσεις υψηλής πρόθεσης όπως «πιστοποιητικό ΔΕΔΔΗΕ Πάτρα» και «ΥΔΕ ηλεκτρολόγος Πάτρα».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "60-180€",
+  "demand": "high",
+  "keywords": [
+    "πιστοποιητικό ηλεκτρολόγου Πάτρα",
+    "ΥΔΕ Πάτρα",
+    "πιστοποιητικό ΔΕΔΔΗΕ",
+    "ηλεκτρολόγος για επανασύνδεση",
+    "βεβαίωση ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

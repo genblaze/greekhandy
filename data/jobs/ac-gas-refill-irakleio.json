@@ -1,0 +1,20 @@
+{
+  "id": "ac-gas-refill-irakleio",
+  "slug": "symplirwsi-freon-klimatistikou-irakleio",
+  "nameGr": "Συμπλήρωση Φρέον Κλιματιστικού στο Ηράκλειο",
+  "nameEn": "AC Gas Refill in Ηράκλειο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Έλεγχος διαρροής και συμπλήρωση ψυκτικού υγρού (φρέον) σε κλιματιστικό στο Ηράκλειο για άμεση αποκατάσταση ψύξης. SEO intent: καλύπτει συναλλακτικές αναζητήσεις «φρέον κλιματιστικό Ηράκλειο» και «κλιματιστικό δεν παγώνει λύση».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "50-150€",
+  "demand": "high",
+  "keywords": [
+    "συμπλήρωση φρέον Ηράκλειο",
+    "ψυκτικό υγρό κλιματιστικού Ηράκλειο",
+    "ac δεν ψύχει",
+    "τεχνικός φρέον air condition",
+    "έλεγχος διαρροής κλιματιστικού"
+  ],
+  "status": "researched"
+}

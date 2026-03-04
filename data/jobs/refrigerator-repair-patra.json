@@ -1,0 +1,20 @@
+{
+  "id": "refrigerator-repair-patra",
+  "slug": "episkevi-psygeiou-patra",
+  "nameGr": "Επισκευή Ψυγείου στην Πάτρα",
+  "nameEn": "Refrigerator Repair in Πάτρα",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Διάγνωση και επισκευή ψυγείου στην Πάτρα για προβλήματα ψύξης, διαρροής νερού ή υπερβολικού θορύβου. SEO intent: στοχεύει επείγουσες αναζητήσεις υψηλής πρόθεσης όπως «τεχνικός ψυγείων Πάτρα» και «ψυγείο δεν ψύχει».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή ψυγείου Πάτρα",
+    "τεχνικός ψυγείων Πάτρα",
+    "ψυγείο δεν ψύχει",
+    "service ψυγείου άμεσα",
+    "βλάβη ψυγείου σπίτι"
+  ],
+  "status": "researched"
+}

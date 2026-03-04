@@ -1,0 +1,20 @@
+{
+  "id": "ac-gas-refill-patra",
+  "slug": "symplirwsi-freon-klimatistikou-patra",
+  "nameGr": "Συμπλήρωση Φρέον Κλιματιστικού στην Πάτρα",
+  "nameEn": "AC Gas Refill in Πάτρα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Έλεγχος διαρροής και συμπλήρωση ψυκτικού υγρού (φρέον) σε κλιματιστικό στην Πάτρα για άμεση αποκατάσταση ψύξης. SEO intent: καλύπτει συναλλακτικές αναζητήσεις «φρέον κλιματιστικό Πάτρα» και «κλιματιστικό δεν παγώνει λύση».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "50-150€",
+  "demand": "high",
+  "keywords": [
+    "συμπλήρωση φρέον Πάτρα",
+    "ψυκτικό υγρό κλιματιστικού Πάτρα",
+    "ac δεν ψύχει",
+    "τεχνικός φρέον air condition",
+    "έλεγχος διαρροής κλιματιστικού"
+  ],
+  "status": "researched"
+}

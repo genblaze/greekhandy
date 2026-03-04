@@ -1,0 +1,20 @@
+{
+  "id": "ac-service-ioannina",
+  "slug": "syntirisi-klimatistikou-ioannina",
+  "nameGr": "Συντήρηση Κλιματιστικού στα Ιωάννινα",
+  "nameEn": "AC Service in Ιωάννινα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Πλήρης συντήρηση κλιματιστικού στα Ιωάννινα με καθαρισμό φίλτρων, έλεγχο απόδοσης και απολύμανση μονάδας. SEO intent: στοχεύει high-intent αναζητήσεις «service air condition Ιωάννινα» και «συντήρηση κλιματιστικού τιμή».",
+  "typicalDuration": "45-90 λεπτά",
+  "priceRangeEUR": "30-90€",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση κλιματιστικού Ιωάννινα",
+    "service ac Ιωάννινα",
+    "καθαρισμός air condition",
+    "απολύμανση κλιματιστικού",
+    "τεχνικός κλιματισμού άμεσα"
+  ],
+  "status": "researched"
+}

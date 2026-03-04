@@ -1,0 +1,20 @@
+{
+  "id": "ac-service-irakleio",
+  "slug": "syntirisi-klimatistikou-irakleio",
+  "nameGr": "Συντήρηση Κλιματιστικού στο Ηράκλειο",
+  "nameEn": "AC Service in Ηράκλειο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Πλήρης συντήρηση κλιματιστικού στο Ηράκλειο με καθαρισμό φίλτρων, έλεγχο απόδοσης και απολύμανση μονάδας. SEO intent: στοχεύει high-intent αναζητήσεις «service air condition Ηράκλειο» και «συντήρηση κλιματιστικού τιμή».",
+  "typicalDuration": "45-90 λεπτά",
+  "priceRangeEUR": "30-90€",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση κλιματιστικού Ηράκλειο",
+    "service ac Ηράκλειο",
+    "καθαρισμός air condition",
+    "απολύμανση κλιματιστικού",
+    "τεχνικός κλιματισμού άμεσα"
+  ],
+  "status": "researched"
+}

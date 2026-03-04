@@ -1,0 +1,20 @@
+{
+  "id": "dishwasher-repair-irakleio",
+  "slug": "episkevi-plyntiriou-piaton-irakleio",
+  "nameGr": "Επισκευή Πλυντηρίου Πιάτων στο Ηράκλειο",
+  "nameEn": "Dishwasher Repair in Ηράκλειο",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευή πλυντηρίου πιάτων στο Ηράκλειο για βλάβες αποστράγγισης, θέρμανσης νερού ή εκκίνησης προγράμματος. SEO intent: απαντά σε συναλλακτικά queries όπως «service πλυντήριο πιάτων Ηράκλειο» και «τεχνικός πλυντηρίου πιάτων άμεσα».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "40-140€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή πλυντηρίου πιάτων Ηράκλειο",
+    "τεχνικός πλυντηρίου πιάτων Ηράκλειο",
+    "πλυντήριο πιάτων δεν στραγγίζει",
+    "service dishwasher",
+    "βλάβη πλυντήριο πιάτων"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "electrical-safety-certificate-irakleio",
+  "slug": "pistopoiitiko-ilektrologou-yde-irakleio",
+  "nameGr": "Πιστοποιητικό Ηλεκτρολόγου (ΥΔΕ) στο Ηράκλειο",
+  "nameEn": "Electrical Safety Certificate (YDE) in Ηράκλειο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Έκδοση πιστοποιητικού ηλεκτρολόγου (ΥΔΕ) στο Ηράκλειο για νέα σύνδεση, επανασύνδεση ρεύματος ή μεταβίβαση ακινήτου. SEO intent: στοχεύει συναλλακτικές αναζητήσεις υψηλής πρόθεσης όπως «πιστοποιητικό ΔΕΔΔΗΕ Ηράκλειο» και «ΥΔΕ ηλεκτρολόγος Ηράκλειο».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "60-180€",
+  "demand": "high",
+  "keywords": [
+    "πιστοποιητικό ηλεκτρολόγου Ηράκλειο",
+    "ΥΔΕ Ηράκλειο",
+    "πιστοποιητικό ΔΕΔΔΗΕ",
+    "ηλεκτρολόγος για επανασύνδεση",
+    "βεβαίωση ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}
