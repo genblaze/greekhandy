@@ -434,7 +434,7 @@ const hasLeads = directoryData.leads.length > 0;
                 <div class="pointer-events-auto mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur">
                   <div>
                     <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
-                    <p data-selection-next-hint id="leads-selection-next-hint" class="mt-1 text-xs text-slate-600" aria-live="polite">Επόμενο βήμα: επιλέξτε μαζική ενέργεια για τα επιλεγμένα leads (Alt+Shift+H/W/C segment selection, Alt+Z undo, Shift+? βοήθεια).</p>
+                    <p data-selection-next-hint id="leads-selection-next-hint" class="mt-1 text-xs text-slate-600" aria-live="polite">Επόμενο βήμα: επιλέξτε μαζική ενέργεια για τα επιλεγμένα leads (Alt+Shift+H/W/C segment selection, Alt+Z undo, Alt+U focus undo, Shift+? βοήθεια).</p>
                     <p data-selection-last-action class="mt-1 text-[11px] text-slate-500" aria-live="polite">Τελευταία ενέργεια: —</p>
                   </div>
                   <div class="flex flex-wrap items-center gap-2">
@@ -622,6 +622,13 @@ const hasLeads = directoryData.leads.length > 0;
         const announceState = (message) => {
           if (stateLiveRegion instanceof HTMLElement) stateLiveRegion.textContent = message;
           else announcePolite(message);
+        };
+
+        const BULK_UNDO_WINDOW_MS = 5 * 60 * 1000;
+
+        const isUndoAvailable = () => {
+          if (!lastBulkOutreachSnapshot?.createdAt) return false;
+          return Date.now() - lastBulkOutreachSnapshot.createdAt <= BULK_UNDO_WINDOW_MS;
         };
 
         const setLastActionNote = (message) => {
@@ -946,8 +953,9 @@ const hasLeads = directoryData.leads.length > 0;
           });
           if (clearSelectionButton instanceof HTMLButtonElement) clearSelectionButton.disabled = count === 0;
           if (selectionDockClear instanceof HTMLButtonElement) selectionDockClear.disabled = count === 0;
-          if (bulkOutreachUndo instanceof HTMLButtonElement) bulkOutreachUndo.disabled = !lastBulkOutreachSnapshot;
-          if (selectionDockOutreachUndo instanceof HTMLButtonElement) selectionDockOutreachUndo.disabled = !lastBulkOutreachSnapshot;
+          const undoAvailable = isUndoAvailable();
+          if (bulkOutreachUndo instanceof HTMLButtonElement) bulkOutreachUndo.disabled = !undoAvailable;
+          if (selectionDockOutreachUndo instanceof HTMLButtonElement) selectionDockOutreachUndo.disabled = !undoAvailable;
 
           bulkStatusButtons.forEach((button) => {
             if (!(button instanceof HTMLButtonElement)) return;
@@ -980,14 +988,18 @@ const hasLeads = directoryData.leads.length > 0;
             selectionDockFollowupSet.setAttribute('aria-label', `Ορισμός follow-up ημερομηνίας από το dock για ${count} επιλεγμένα leads`);
           }
           if (bulkOutreachUndo instanceof HTMLButtonElement) {
-            bulkOutreachUndo.setAttribute('aria-label', lastBulkOutreachSnapshot
+            bulkOutreachUndo.setAttribute('aria-label', isUndoAvailable()
               ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας (${lastBulkOutreachSnapshot.changed} leads)`
-              : 'Δεν υπάρχει πρόσφατη μαζική outreach ενέργεια για αναίρεση');
+              : 'Δεν υπάρχει διαθέσιμη πρόσφατη μαζική outreach ενέργεια για αναίρεση');
           }
           if (selectionDockOutreachUndo instanceof HTMLButtonElement) {
-            selectionDockOutreachUndo.setAttribute('aria-label', lastBulkOutreachSnapshot
+            selectionDockOutreachUndo.setAttribute('aria-label', isUndoAvailable()
               ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας από το dock (${lastBulkOutreachSnapshot.changed} leads)`
-              : 'Δεν υπάρχει πρόσφατη μαζική outreach ενέργεια για αναίρεση');
+              : 'Δεν υπάρχει διαθέσιμη πρόσφατη μαζική outreach ενέργεια για αναίρεση');
+          }
+
+          if (selectionLastAction instanceof HTMLElement && lastBulkOutreachSnapshot && !isUndoAvailable()) {
+            selectionLastAction.textContent = 'Τελευταία ενέργεια: Το παράθυρο αναίρεσης outreach έληξε.';
           }
 
           if (previousSelectionCount !== null && previousSelectionCount !== count) {
@@ -1914,7 +1926,7 @@ const hasLeads = directoryData.leads.length > 0;
             changed += 1;
           });
 
-          lastBulkOutreachSnapshot = changed > 0 ? { entries: snapshot, changed, targetContacted } : null;
+          lastBulkOutreachSnapshot = changed > 0 ? { entries: snapshot, changed, targetContacted, createdAt: Date.now() } : null;
 
           if (liveRegion instanceof HTMLElement) {
             liveRegion.textContent = changed > 0
@@ -1928,6 +1940,12 @@ const hasLeads = directoryData.leads.length > 0;
 
         const undoBulkOutreach = () => {
           if (!lastBulkOutreachSnapshot?.entries?.length) return;
+          if (!isUndoAvailable()) {
+            setLastActionNote('Το παράθυρο αναίρεσης outreach έχει λήξει.');
+            announcePolite('Δεν είναι διαθέσιμη αναίρεση: έχει λήξει το χρονικό παράθυρο.');
+            renderSelectionState();
+            return;
+          }
           const ok = window.confirm(`Αναίρεση τελευταίας bulk outreach ενέργειας για ${lastBulkOutreachSnapshot.changed} leads;`);
           if (!ok) return;
 
@@ -2135,6 +2153,11 @@ const hasLeads = directoryData.leads.length > 0;
             event.preventDefault();
             undoBulkOutreach();
           }
+          if (event.altKey && event.key.toLowerCase() === 'u') {
+            event.preventDefault();
+            if (selectionDockOutreachUndo instanceof HTMLButtonElement && !selectionDockOutreachUndo.disabled) selectionDockOutreachUndo.focus();
+            else if (bulkOutreachUndo instanceof HTMLButtonElement && !bulkOutreachUndo.disabled) bulkOutreachUndo.focus();
+          }
           if (event.altKey && event.key === 'Backspace') {
             event.preventDefault();
             selectedLeadIds.clear();
@@ -2143,7 +2166,7 @@ const hasLeads = directoryData.leads.length > 0;
           }
           if (event.shiftKey && event.key === '?') {
             event.preventDefault();
-            window.alert('Leads shortcuts:\n/ αναζήτηση\nShift+A επιλογή ορατών\nShift+U καθαρισμός επιλογής\nAlt+Backspace καθαρισμός επιλογής\nAlt+1/2/3 bulk segment\nAlt+Shift+H/W/C επιλογή ορατών ανά segment\nAlt+D focus follow-up date\nAlt+Z undo τελευταίου bulk outreach\nJ/K πλοήγηση καρτών\nC/N/H/W/L/S triage στο detail drawer');
+            window.alert('Leads shortcuts:\n/ αναζήτηση\nShift+A επιλογή ορατών\nShift+U καθαρισμός επιλογής\nAlt+Backspace καθαρισμός επιλογής\nAlt+1/2/3 bulk segment\nAlt+Shift+H/W/C επιλογή ορατών ανά segment\nAlt+D focus follow-up date\nAlt+Z undo τελευταίου bulk outreach (εντός 5 λεπτών)\nAlt+U focus κουμπιού undo\nJ/K πλοήγηση καρτών\nC/N/H/W/L/S triage στο detail drawer');
           }
 
           const activeEntry = getActiveDetailEntry();
