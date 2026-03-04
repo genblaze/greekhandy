@@ -18,6 +18,12 @@ const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 const isValidPhone = (phone: string) => /^[0-9+()\-\s]{7,20}$/.test(phone);
 const hasHtmlLikeTags = (value: string) => /<[^>]+>/.test(value);
 const isValidSlug = (value: string) => /^[a-z0-9](?:[a-z0-9-]{0,119})$/.test(value);
+const isValidThreadId = (value: string) => /^[a-z0-9|@._-]{1,220}$/.test(value);
+
+const toSafeLogMessage = (error: unknown) => {
+  if (error instanceof Error) return error.message;
+  return 'unknown-error';
+};
 
 const wantsJson = (request: Request) => {
   const accept = request.headers.get('accept') || '';
@@ -140,6 +146,9 @@ const validateInput = (input: MessageInput) => {
   if (input.senderEmail && input.recipientEmail && input.senderEmail === input.recipientEmail) {
     fieldErrors.senderEmail = 'Ο αποστολέας και ο παραλήπτης δεν μπορεί να είναι ίδιοι.';
   }
+  if (input.incomingThreadId && (!isValidThreadId(input.incomingThreadId) || hasHtmlLikeTags(input.incomingThreadId))) {
+    fieldErrors.threadId = 'Μη έγκυρο thread identifier.';
+  }
 
   return fieldErrors;
 };
@@ -153,7 +162,7 @@ const isThreadBlocked = async (threadId: string, senderEmail: string) => {
     }
     if (latestActionByThread.get(threadId) === 'block') return true;
   } catch (error) {
-    console.warn('[message-submit] local triage read failed', error instanceof Error ? error.message : 'unknown-error');
+    console.warn('[message-submit] local triage read failed', toSafeLogMessage(error));
   }
 
   try {
@@ -178,7 +187,7 @@ const isThreadBlocked = async (threadId: string, senderEmail: string) => {
       }
     }
   } catch (error) {
-    console.warn('[message-submit] moderation lookup crashed', error instanceof Error ? error.message : 'unknown-error');
+    console.warn('[message-submit] moderation lookup crashed', toSafeLogMessage(error));
   }
 
   return false;
@@ -256,8 +265,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       })
       : redirect(withMessageStatus(input.returnTo, 'submitted'), 303);
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'unknown-error';
-    console.error(`[message-submit] failed: ${message}`);
+    console.error(`[message-submit] failed: ${toSafeLogMessage(error)}`);
 
     return asJson
       ? jsonError(500, 'MESSAGE_SUBMIT_FAILED', 'Αδυναμία υποβολής μηνύματος αυτή τη στιγμή.')
