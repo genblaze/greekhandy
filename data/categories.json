@@ -124,7 +124,7 @@
     "nameEn": "House Cleaning",
     "nameGr": "Καθαρισμός Σπιτιού",
     "slug": "katharismos-spitiou",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "regular",
       "deep-clean",
@@ -136,7 +136,7 @@
     "nameEn": "Carpet Cleaning",
     "nameGr": "Καθαρισμός Χαλιών",
     "slug": "katharismos-xalion",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "residential",
       "commercial",
@@ -148,7 +148,7 @@
     "nameEn": "Pest Control",
     "nameGr": "Απεντόμωση",
     "slug": "apentomosi",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "insects",
       "rodents",
@@ -160,7 +160,7 @@
     "nameEn": "Drain Cleaning",
     "nameGr": "Αποφράξεις",
     "slug": "apofraxeis",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "residential",
       "commercial",
@@ -172,7 +172,7 @@
     "nameEn": "Housekeeper",
     "nameGr": "Οικιακή Βοηθός",
     "slug": "oikiaki-voithos",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "daily",
       "live-in",
@@ -184,7 +184,7 @@
     "nameEn": "Renovation",
     "nameGr": "Ανακαίνιση",
     "slug": "anakenisi",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "bathroom",
       "kitchen",
@@ -196,7 +196,7 @@
     "nameEn": "Architect",
     "nameGr": "Αρχιτέκτονας",
     "slug": "arxitektonas",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "residential",
       "commercial",
@@ -208,7 +208,7 @@
     "nameEn": "Civil Engineer",
     "nameGr": "Πολιτικός Μηχανικός",
     "slug": "politikos-mixanikos",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "structural",
       "permits",
@@ -220,7 +220,7 @@
     "nameEn": "Moving Services",
     "nameGr": "Μεταφορές",
     "slug": "metafores",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "local",
       "long-distance",
@@ -232,7 +232,7 @@
     "nameEn": "Demolition",
     "nameGr": "Κατεδαφίσεις",
     "slug": "katedafiseis",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "interior",
       "exterior",
@@ -244,7 +244,7 @@
     "nameEn": "Computer Technician",
     "nameGr": "Τεχνικός Υπολογιστών",
     "slug": "texnikos-ypologiston",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "repair",
       "networking",
@@ -256,7 +256,7 @@
     "nameEn": "AC Installation",
     "nameGr": "Εγκατάσταση Κλιματιστικών",
     "slug": "egkatastasi-klimatistikon",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "split",
       "central",
@@ -268,7 +268,7 @@
     "nameEn": "Alarms & CCTV",
     "nameGr": "Συναγερμοί & Κάμερες",
     "slug": "synagermi-kameres",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "home",
       "business",
@@ -280,7 +280,7 @@
     "nameEn": "Gardener",
     "nameGr": "Κηπουρός",
     "slug": "kipouros",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "maintenance",
       "design",
@@ -292,7 +292,7 @@
     "nameEn": "Tree Pruning",
     "nameGr": "Κλάδεμα Δέντρων",
     "slug": "kladema-dentron",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "pruning",
       "removal",
@@ -304,7 +304,7 @@
     "nameEn": "Pool Maintenance",
     "nameGr": "Πισίνες",
     "slug": "pisines",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "cleaning",
       "repair",
@@ -316,7 +316,7 @@
     "nameEn": "Auto Mechanic",
     "nameGr": "Μηχανικός Αυτοκινήτων",
     "slug": "mixanikos-aftokinton",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "service",
       "repair",
@@ -328,7 +328,7 @@
     "nameEn": "Body Shop",
     "nameGr": "Φανοποιός",
     "slug": "fanopoios",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "paint",
       "dent-repair",
@@ -340,7 +340,7 @@
     "nameEn": "Photographer",
     "nameGr": "Φωτογράφος",
     "slug": "fotografos",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "wedding",
       "event",
@@ -352,7 +352,7 @@
     "nameEn": "Private Tutoring",
     "nameGr": "Ιδιαίτερα Μαθήματα",
     "slug": "idiaitera-mathimata",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "school",
       "university",
