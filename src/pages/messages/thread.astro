@@ -45,6 +45,8 @@ const recipientForReply = latest
     : latest.senderEmail
   : '';
 const professionalSlug = latest?.professionalSlug ?? '';
+const hasMissingParams = !threadId || !viewerEmail;
+const hasAccessIssue = !hasMissingParams && !isParticipant;
 ---
 
 <Layout title="Thread μηνυμάτων | GreekHandy" description="Προβολή συνομιλίας με χρονική σειρά μηνυμάτων.">
@@ -53,8 +55,18 @@ const professionalSlug = latest?.professionalSlug ?? '';
 
     <h1 class="mt-3 text-2xl font-bold text-gray-900">Συνομιλία</h1>
 
-    {(!threadId || !viewerEmail || !isParticipant) && (
-      <p class="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">Η συνομιλία δεν βρέθηκε ή δεν έχετε πρόσβαση.</p>
+    {hasMissingParams && (
+      <div class="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
+        <p class="font-semibold">Δεν μπορέσαμε να ανοίξουμε τη συνομιλία.</p>
+        <p class="mt-1 text-sm">Λείπουν τα απαραίτητα στοιχεία threadId ή viewerEmail.</p>
+      </div>
+    )}
+
+    {hasAccessIssue && (
+      <div class="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">
+        <p class="font-semibold">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
+        <p class="mt-1 text-sm">Επιστρέψτε στη λίστα συνομιλιών και ανοίξτε ένα thread όπου συμμετέχετε.</p>
+      </div>
     )}
 
     {threadId && viewerEmail && isParticipant && (
@@ -65,7 +77,12 @@ const professionalSlug = latest?.professionalSlug ?? '';
         {status === 'report-forbidden' && <p class="mt-4 rounded-lg bg-red-50 px-4 py-3 text-red-800">Δεν έχετε πρόσβαση για αναφορά αυτού του μηνύματος.</p>}
 
         <section class="mt-6 space-y-3">
-          {threadMessages.length === 0 && <p class="rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-700">Δεν υπάρχουν μηνύματα ακόμη.</p>}
+          {threadMessages.length === 0 && (
+            <div class="rounded-lg border border-gray-200 bg-white px-4 py-4 text-gray-700">
+              <p class="font-semibold text-gray-900">Δεν υπάρχουν μηνύματα ακόμη.</p>
+              <p class="mt-1 text-sm text-gray-600">Στείλτε το πρώτο μήνυμα για να ξεκινήσει η συνομιλία.</p>
+            </div>
+          )}
 
           {threadMessages.map((message) => {
             const own = message.senderEmail.toLowerCase() === viewerEmail;
