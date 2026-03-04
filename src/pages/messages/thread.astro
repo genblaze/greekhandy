@@ -110,14 +110,14 @@ const threadModerationDescription = threadModerationTone === 'blocked'
         : 'Δεν υπάρχει ενεργός περιορισμός moderation.';
 
 const threadModerationBannerClass = threadModerationTone === 'blocked'
-  ? 'border-rose-300 bg-gradient-to-br from-rose-50 to-white text-rose-900'
+  ? 'border-rose-300 bg-gradient-to-r from-rose-50/95 via-white to-rose-50/80 text-rose-900'
   : threadModerationTone === 'hidden'
-    ? 'border-orange-300 bg-gradient-to-br from-orange-50 to-white text-orange-900'
+    ? 'border-orange-300 bg-gradient-to-r from-orange-50/95 via-white to-amber-50/80 text-orange-900'
     : threadModerationTone === 'reported'
-      ? 'border-sky-300 bg-gradient-to-br from-sky-50 to-white text-sky-900'
+      ? 'border-sky-300 bg-gradient-to-r from-sky-50/95 via-white to-sky-50/80 text-sky-900'
       : threadModerationTone === 'rejected'
-        ? 'border-amber-300 bg-gradient-to-br from-amber-50 to-white text-amber-900'
-        : 'border-emerald-300 bg-gradient-to-br from-emerald-50 to-white text-emerald-900';
+        ? 'border-amber-300 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/80 text-amber-900'
+        : 'border-emerald-300 bg-gradient-to-r from-emerald-50/95 via-white to-emerald-50/80 text-emerald-900';
 const moderationSeverityLabel = threadModerationTone === 'blocked'
   ? 'Κρίσιμος περιορισμός'
   : threadModerationTone === 'hidden'
@@ -162,27 +162,50 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
 ---
 
 <Layout title="Συνομιλία μηνυμάτων | GreekHandy" description="Αναλυτική προβολή thread με moderation badges, reporting εργαλεία και κατάσταση απάντησης.">
-  <main class="mx-auto max-w-5xl px-4 py-12 md:py-14">
+  <main class="thread-shell mx-auto max-w-6xl px-4 py-10 md:py-14">
     <a
       href={`/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`}
-      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
     >
       <span aria-hidden="true">←</span>
       Επιστροφή στις συνομιλίες
     </a>
 
-    <section class="mt-4 rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-sky-50 p-6 shadow-sm md:p-8">
+    <section class="mt-4 overflow-hidden rounded-[2rem] border border-slate-200/80 bg-gradient-to-br from-[#f8fbff] via-white to-[#f3f7fc] p-6 shadow-[0_14px_42px_-28px_rgba(15,23,42,0.42)] md:p-8">
       <div class="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Thread</p>
-          <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Συνομιλία</h1>
-          <p class="mt-2 text-sm leading-6 text-slate-600">Αναλυτική προβολή μηνυμάτων με σαφή κατάσταση moderation και καθαρή επισήμανση ορατότητας.</p>
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">GreekHandy Thread View</p>
+          <h1 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">Συνομιλία</h1>
+          <p class="mt-3 text-sm leading-6 text-slate-600">Πλήρες ιστορικό μηνυμάτων με ενισχυμένη ανάγνωση context και εμφανή moderation κατάσταση.</p>
         </div>
 
-        <div class="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-right shadow-sm">
-          <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Προβολή ως</p>
-          <p class="mt-1 text-sm font-semibold text-slate-900">{viewerEmail || 'Άγνωστος χρήστης'}</p>
+        <div class="rounded-2xl border border-sky-200/70 bg-white/90 px-4 py-3 text-right shadow-[0_12px_34px_-24px_rgba(2,132,199,0.5)]">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-sky-700">Προβολή ως</p>
+          <p class="mt-1 break-all text-sm font-semibold text-slate-900">{viewerEmail || 'Άγνωστος χρήστης'}</p>
         </div>
+      </div>
+
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Μηνύματα</p>
+          <p class="mt-1 text-xl font-bold text-slate-900">{threadMessages.length}</p>
+          <p class="text-xs text-slate-500">στο ίδιο thread</p>
+        </article>
+        <article class="rounded-2xl border border-emerald-300 bg-emerald-50/75 px-4 py-3">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-800">Ορατά</p>
+          <p class="mt-1 text-xl font-bold text-emerald-900">{visibleMessagesCount}</p>
+          <p class="text-xs text-emerald-800">άμεσα διαθέσιμα</p>
+        </article>
+        <article class="rounded-2xl border border-orange-300 bg-orange-50/80 px-4 py-3">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-orange-800">Κρυφά</p>
+          <p class="mt-1 text-xl font-bold text-orange-900">{hiddenMessagesCount}</p>
+          <p class="text-xs text-orange-800">από moderation</p>
+        </article>
+        <article class={`rounded-2xl border px-4 py-3 ${threadUnderModeration ? 'border-amber-300 bg-amber-50/80' : 'border-sky-300 bg-sky-50/80'}`}>
+          <p class={`text-[11px] font-semibold uppercase tracking-[0.12em] ${threadUnderModeration ? 'text-amber-800' : 'text-sky-800'}`}>Κατάσταση</p>
+          <p class={`mt-1 text-xl font-bold ${threadUnderModeration ? 'text-amber-900' : 'text-sky-900'}`}>{threadModerationLabel}</p>
+          <p class={`text-xs ${threadUnderModeration ? 'text-amber-800' : 'text-sky-800'}`}>{moderationSeverityLabel}</p>
+        </article>
       </div>
 
       {threadId && (
@@ -190,24 +213,24 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
           Κωδικός thread: <span class="font-mono text-slate-800">{threadId}</span>
         </p>
       )}
-      <p class="mt-3 text-xs text-slate-500">Με το άνοιγμα του thread, τα τρέχοντα μηνύματα σημειώνονται ως διαβασμένα για τον χρήστη προβολής.</p>
+      <p class="mt-2 text-xs text-slate-500">Με το άνοιγμα του thread, τα τρέχοντα μηνύματα σημειώνονται ως διαβασμένα για τον χρήστη προβολής.</p>
     </section>
 
     {hasMissingParams && (
-      <div class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-950">
+      <div class="thread-alert thread-alert--amber mt-5">
         <p class="font-semibold">Δεν μπορέσαμε να ανοίξουμε τη συνομιλία.</p>
         <p class="mt-1 text-sm">Λείπουν τα απαραίτητα στοιχεία <code>threadId</code> ή <code>viewerEmail</code>.</p>
       </div>
     )}
 
     {hasAccessIssue && (
-      <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900">
+      <div class="thread-alert thread-alert--rose mt-5">
         <p class="font-semibold">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
         <p class="mt-1 text-sm">Επιστρέψτε στη λίστα συνομιλιών και επιλέξτε thread όπου συμμετέχετε.</p>
       </div>
     )}
     {threadLoadError && (
-      <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900">
+      <div class="thread-alert thread-alert--rose mt-5">
         <p class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της συνομιλίας.</p>
         <p class="mt-1 text-sm">{threadLoadError}</p>
       </div>
@@ -215,63 +238,64 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
 
     {threadId && viewerEmail && isParticipant && (
       <>
-        {messageStatus === 'submitted' && <p class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-900">Το μήνυμα στάλθηκε επιτυχώς.</p>}
-        {messageStatus === 'invalid' && <p class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-900">Μη έγκυρα στοιχεία μηνύματος. Ελέγξτε το περιεχόμενο και προσπαθήστε ξανά.</p>}
-        {messageStatus === 'error' && <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900">Δεν ήταν δυνατή η αποστολή μηνύματος. Προσπαθήστε ξανά σε λίγο.</p>}
-        {messageStatus === 'blocked' && <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900">Η αποστολή σε αυτό το thread έχει μπλοκαριστεί από moderation.</p>}
+        {messageStatus === 'submitted' && <p class="thread-alert thread-alert--emerald mt-5">Το μήνυμα στάλθηκε επιτυχώς.</p>}
+        {messageStatus === 'invalid' && <p class="thread-alert thread-alert--amber mt-5">Μη έγκυρα στοιχεία μηνύματος. Ελέγξτε το περιεχόμενο και προσπαθήστε ξανά.</p>}
+        {messageStatus === 'error' && <p class="thread-alert thread-alert--rose mt-5">Δεν ήταν δυνατή η αποστολή μηνύματος. Προσπαθήστε ξανά σε λίγο.</p>}
+        {messageStatus === 'blocked' && <p class="thread-alert thread-alert--rose mt-5">Η αποστολή σε αυτό το thread έχει μπλοκαριστεί από moderation.</p>}
 
-        {status === 'reported' && <p class="mt-5 rounded-xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white px-4 py-3 text-sm font-medium text-sky-900">Η αναφορά καταχωρήθηκε και θα εξεταστεί από την ομάδα moderation.</p>}
-        {status === 'report-error' && <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900">Δεν ήταν δυνατή η αποστολή της αναφοράς.</p>}
-        {status === 'report-invalid' && <p class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-900">Μη έγκυρα στοιχεία αναφοράς.</p>}
-        {status === 'report-forbidden' && <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900">Δεν έχετε πρόσβαση για αναφορά αυτού του μηνύματος.</p>}
+        {status === 'reported' && <p class="thread-alert thread-alert--sky mt-5">Η αναφορά καταχωρήθηκε και θα εξεταστεί από την ομάδα moderation.</p>}
+        {status === 'report-error' && <p class="thread-alert thread-alert--rose mt-5">Δεν ήταν δυνατή η αποστολή της αναφοράς.</p>}
+        {status === 'report-invalid' && <p class="thread-alert thread-alert--amber mt-5">Μη έγκυρα στοιχεία αναφοράς.</p>}
+        {status === 'report-forbidden' && <p class="thread-alert thread-alert--rose mt-5">Δεν έχετε πρόσβαση για αναφορά αυτού του μηνύματος.</p>}
         {hasUnknownStatus && (
-          <p class="mt-5 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+          <p class="thread-alert mt-5 border-slate-300 bg-slate-50 text-slate-700">
             Ελήφθη άγνωστη κατάσταση thread: <code>{status}</code>.
           </p>
         )}
         {hasUnknownMessageStatus && (
-          <p class="mt-5 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+          <p class="thread-alert mt-5 border-slate-300 bg-slate-50 text-slate-700">
             Ελήφθη άγνωστη κατάσταση μηνύματος: <code>{messageStatus}</code>.
           </p>
         )}
         {readStateWriteError && (
-          <p class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-900">{readStateWriteError}</p>
+          <p class="thread-alert thread-alert--amber mt-5">{readStateWriteError}</p>
         )}
         {showLoadingState && (
-          <p class="mt-5 flex items-center gap-2 rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm font-medium text-sky-900">
+          <p class="thread-alert thread-alert--sky mt-5 flex items-center gap-2">
             <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700"></span>
             Φόρτωση συνομιλίας...
           </p>
         )}
 
         {threadBlockedByModeration && (
-          <div class="mt-5 rounded-xl border border-rose-300 bg-gradient-to-br from-rose-50 via-white to-rose-50/70 px-4 py-4 text-rose-900">
-            <p class="text-sm font-semibold uppercase tracking-[0.08em]">Μπλοκαρισμένη συνομιλία</p>
-            <p class="mt-1 text-sm font-medium">Η αποστολή νέων μηνυμάτων είναι απενεργοποιημένη από moderation.</p>
+          <div class="mt-5 rounded-2xl border border-rose-300 bg-gradient-to-r from-rose-50/95 via-white to-rose-50/80 px-4 py-4 text-rose-900 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-800">Περιορισμός αποστολής</p>
+            <p class="mt-1 text-sm font-semibold">Μπλοκαρισμένη συνομιλία</p>
+            <p class="mt-1 text-sm">Η αποστολή νέων μηνυμάτων είναι απενεργοποιημένη από moderation.</p>
             <p class="mt-1 text-xs">Μπορείτε να διαβάσετε το ιστορικό και τις αναφορές, αλλά το composer παραμένει κλειδωμένο μέχρι να αρθεί ο περιορισμός.</p>
           </div>
         )}
         {showReportedConversationBanner && (
-          <div class={`mt-5 rounded-xl border px-4 py-4 ${threadReviewedByModeration ? 'border-sky-300 bg-gradient-to-br from-sky-50 via-white to-sky-50/70 text-sky-900' : 'border-amber-300 bg-gradient-to-br from-amber-50 via-white to-amber-50/70 text-amber-900'}`}>
-            <p class="text-sm font-semibold uppercase tracking-[0.08em]">{reportedConversationBannerTitle}</p>
+          <div class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadReviewedByModeration ? 'border-sky-300 bg-gradient-to-r from-sky-50/95 via-white to-sky-50/80 text-sky-900' : 'border-amber-300 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/80 text-amber-900'}`}>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em]">{reportedConversationBannerTitle}</p>
             <p class="mt-1 text-sm">{reportedConversationBannerDescription}</p>
           </div>
         )}
 
-        <div class={`mt-5 rounded-xl border px-4 py-4 ${threadModerationBannerClass}`}>
+        <div class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadModerationBannerClass}`}>
           <div class="flex flex-wrap items-start justify-between gap-2">
             <p class="font-semibold">Κατάσταση thread: {threadModerationLabel}</p>
-            <span class="rounded-full border border-current/20 bg-white/70 px-2.5 py-1 text-[11px] font-semibold">{moderationSeverityLabel}</span>
+            <span class="rounded-full border border-current/20 bg-white/80 px-2.5 py-1 text-[11px] font-semibold">{moderationSeverityLabel}</span>
           </div>
           <p class="mt-1 text-sm">{threadModerationDescription}</p>
-          <p class="mt-2 rounded-lg border border-current/20 bg-white/65 px-3 py-2 text-xs font-medium">{moderationReplyGuidance}</p>
+          <p class="mt-2 rounded-lg border border-current/20 bg-white/75 px-3 py-2 text-xs font-medium">{moderationReplyGuidance}</p>
         </div>
 
-        <section class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+        <section class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_16px_42px_-30px_rgba(15,23,42,0.5)] md:p-6">
           <div class="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <h2 class="text-lg font-semibold text-slate-900">Λεπτομέρειες συνομιλίας</h2>
-              <p class="mt-1 text-sm text-slate-600">Συμμετέχων: <span class="font-medium text-slate-900">{counterpartEmail || 'Μη διαθέσιμος'}</span></p>
+              <h2 class="text-lg font-semibold text-slate-900">Κάρτα συνομιλίας</h2>
+              <p class="mt-1 text-sm text-slate-600">Γρήγορη εικόνα για συμμετέχοντα, ορατότητα και moderation context.</p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
@@ -284,13 +308,26 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
             </div>
           </div>
 
-          <div class="mt-4 flex flex-wrap gap-2 text-xs">
-            <span class="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 font-semibold text-slate-700">Μηνύματα: {threadMessages.length}</span>
-            <span class="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 font-semibold text-slate-700">Ορατά: {visibleMessagesCount}</span>
-            <span class="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 font-semibold text-slate-700">Κρυφά: {hiddenMessagesCount}</span>
-            <span class="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 font-semibold text-slate-700">Κατάσταση: {threadModerationLabel}</span>
-            {threadReviewedByModeration && <span class="rounded-full border border-sky-300 bg-sky-100 px-3 py-1 font-semibold text-sky-900">Επανεξέταση ενεργή</span>}
-            {threadRejectedByModeration && <span class="rounded-full border border-amber-300 bg-amber-100 px-3 py-1 font-semibold text-amber-900">Αναφορά ολοκληρωμένη</span>}
+          <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <article class="rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-3">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Συμμετέχων</p>
+              <p class="mt-1 break-all text-sm font-semibold text-slate-900">{counterpartEmail || 'Μη διαθέσιμος'}</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-3">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Κατάσταση</p>
+              <p class="mt-1 text-sm font-semibold text-slate-900">{threadModerationLabel}</p>
+              <p class="mt-0.5 text-xs text-slate-600">{moderationSeverityLabel}</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-3">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Ορατότητα</p>
+              <p class="mt-1 text-sm font-semibold text-slate-900">Ορατά {visibleMessagesCount} / Κρυφά {hiddenMessagesCount}</p>
+              <p class="mt-0.5 text-xs text-slate-600">Σύνολο μηνυμάτων: {threadMessages.length}</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-3">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Τελευταία δραστηριότητα</p>
+              <p class="mt-1 text-sm font-semibold text-slate-900">{latest ? formatDateTime(latest.submittedAt) : 'Δεν υπάρχει activity'}</p>
+              <p class="mt-0.5 text-xs text-slate-600">Παραλήπτης απάντησης: {recipientForReply || 'Μη διαθέσιμος'}</p>
+            </article>
           </div>
 
           <div class="mt-3 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2 text-xs text-slate-600">
@@ -320,12 +357,12 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
             const hidden = hiddenMessageIds.has(message.id);
             return (
               <div class={`flex ${own ? 'justify-end' : 'justify-start'}`}>
-                <article class={`w-full max-w-3xl rounded-2xl border p-4 shadow-sm md:p-5 ${
+                <article class={`thread-message w-full max-w-3xl ${
                   hidden
-                    ? 'border-orange-300 bg-gradient-to-br from-orange-50 via-white to-amber-50/50'
+                    ? 'thread-message--hidden'
                     : own
-                      ? 'border-sky-200 bg-gradient-to-br from-sky-50 to-white'
-                      : 'border-slate-200 bg-white'
+                      ? 'thread-message--own'
+                      : 'thread-message--incoming'
                 }`}>
                   <div class="flex flex-wrap items-start justify-between gap-2">
                     <div>
@@ -380,28 +417,28 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
         </section>
 
         {!canReply && threadBlockedByModeration && (
-          <div class="mt-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900">
+          <div class="thread-alert thread-alert--rose mt-6">
             <p class="font-semibold">Το thread είναι περιορισμένο.</p>
             <p class="mt-1 text-sm">Η αποστολή νέων μηνυμάτων έχει απενεργοποιηθεί από την ομάδα moderation.</p>
           </div>
         )}
 
         {!threadBlockedByModeration && threadMutedByModeration && (
-          <div class="mt-6 rounded-xl border border-orange-200 bg-orange-50 px-4 py-4 text-orange-900">
+          <div class="thread-alert thread-alert--orange mt-6">
             <p class="font-semibold">Η συνομιλία βρίσκεται σε κατάσταση σίγασης.</p>
             <p class="mt-1 text-sm">Τα μηνύματα είναι κρυφά από moderation. Δεν μπορείτε να στείλετε νέο μήνυμα όσο ισχύει ο περιορισμός.</p>
           </div>
         )}
 
         {!canReply && !threadBlockedByModeration && !threadMutedByModeration && (
-          <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-900">
+          <div class="thread-alert thread-alert--amber mt-6">
             <p class="font-semibold">Δεν είναι διαθέσιμο το composer.</p>
             <p class="mt-1 text-sm">Ελέγξτε ότι υπάρχει έγκυρος παραλήπτης και ότι το thread είναι ενεργό.</p>
           </div>
         )}
 
         {canReply && (
-          <form action="/api/messages/submit" method="POST" class="js-pending-form js-composer-form mt-6 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-sm">
+          <form action="/api/messages/submit" method="POST" class="js-pending-form js-composer-form mt-6 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_16px_42px_-30px_rgba(14,116,144,0.45)]">
             <h2 class="text-lg font-semibold text-slate-900">Νέο μήνυμα</h2>
             <p class="mt-1 text-sm text-slate-600">Απάντηση μέσα στο ίδιο thread με αυτόματη ενημέρωση στη λίστα συνομιλιών.</p>
             <input type="hidden" name="professionalSlug" value={professionalSlug} />
@@ -418,7 +455,7 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
               maxlength="2000"
               aria-describedby="composer-shortcuts composer-error composer-count composer-live"
               aria-keyshortcuts="Control+Enter Meta+Enter"
-              class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm leading-6 text-slate-900"
+              class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm leading-6 text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-100"
               placeholder="Γράψτε το μήνυμά σας"
             ></textarea>
             <p id="composer-shortcuts" class="mt-2 text-xs text-slate-500">Συντόμευση πληκτρολογίου: <span class="font-semibold text-slate-700">Ctrl+Enter</span> (ή <span class="font-semibold text-slate-700">Cmd+Enter</span> σε Mac) για αποστολή.</p>
@@ -433,6 +470,87 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       </>
     )}
   </main>
+
+  <style>
+    .thread-shell {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .thread-shell::before {
+      content: '';
+      position: absolute;
+      inset: 2rem -1rem auto -1rem;
+      height: 12rem;
+      background:
+        radial-gradient(circle at 12% 28%, rgba(14, 116, 144, 0.13) 0, transparent 56%),
+        radial-gradient(circle at 88% 18%, rgba(245, 158, 11, 0.14) 0, transparent 52%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .thread-alert {
+      border-radius: 0.85rem;
+      border: 1px solid rgb(203 213 225);
+      background: rgb(248 250 252);
+      padding: 0.75rem 1rem;
+      color: rgb(51 65 85);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .thread-alert--sky {
+      border-color: rgb(186 230 253);
+      background: rgb(240 249 255);
+      color: rgb(12 74 110);
+    }
+
+    .thread-alert--emerald {
+      border-color: rgb(167 243 208);
+      background: rgb(236 253 245);
+      color: rgb(6 95 70);
+    }
+
+    .thread-alert--amber {
+      border-color: rgb(253 230 138);
+      background: rgb(255 251 235);
+      color: rgb(146 64 14);
+    }
+
+    .thread-alert--orange {
+      border-color: rgb(254 215 170);
+      background: rgb(255 247 237);
+      color: rgb(154 52 18);
+    }
+
+    .thread-alert--rose {
+      border-color: rgb(254 205 211);
+      background: rgb(255 241 242);
+      color: rgb(136 19 55);
+    }
+
+    .thread-message {
+      border-radius: 1rem;
+      border: 1px solid rgb(226 232 240);
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 14px 32px -28px rgba(15, 23, 42, 0.5);
+    }
+
+    .thread-message--incoming {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+    }
+
+    .thread-message--own {
+      border-color: rgb(186 230 253);
+      background: linear-gradient(145deg, rgba(240, 249, 255, 0.95), rgba(255, 255, 255, 0.95));
+    }
+
+    .thread-message--hidden {
+      border-color: rgb(253 186 116);
+      background: linear-gradient(145deg, rgba(255, 247, 237, 0.95), rgba(255, 255, 255, 0.95));
+    }
+  </style>
 
   <script is:inline>
     for (const form of document.querySelectorAll('.js-pending-form')) {
