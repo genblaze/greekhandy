@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fuse-box-arc-noise-check-poros",
+  "slug": "epigousos-elegxos-thoryvou-toksou-pinaka-asfaleion-poros",
+  "nameGr": "Επείγων Έλεγχος Θορύβου Τόξου Πίνακα Ασφαλειών στον Πόρο",
+  "nameEn": "Emergency Fuse Box Arc-Noise Check in Πόρος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος πίνακα ασφαλειών στον Πόρο σε θόρυβο τόξου/σπινθηρισμούς για πρόληψη κινδύνου πυρκαγιάς. SEO intent: «σπινθηρισμός πίνακα Πόρος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "σπινθηρισμός πίνακα Πόρος",
+    "πίνακας κάνει θόρυβο ρεύμα",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "arc fault διάγνωση",
+    "ασφάλεια ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

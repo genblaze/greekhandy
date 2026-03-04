@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fuse-box-arc-noise-check-istiaia",
+  "slug": "epigousos-elegxos-thoryvou-toksou-pinaka-asfaleion-istiaia",
+  "nameGr": "Επείγων Έλεγχος Θορύβου Τόξου Πίνακα Ασφαλειών στην Ιστιαία",
+  "nameEn": "Emergency Fuse Box Arc-Noise Check in Ιστιαία",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος πίνακα ασφαλειών στην Ιστιαία σε θόρυβο τόξου/σπινθηρισμούς για πρόληψη κινδύνου πυρκαγιάς. SEO intent: «σπινθηρισμός πίνακα Ιστιαία».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "σπινθηρισμός πίνακα Ιστιαία",
+    "πίνακας κάνει θόρυβο ρεύμα",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "arc fault διάγνωση",
+    "ασφάλεια ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

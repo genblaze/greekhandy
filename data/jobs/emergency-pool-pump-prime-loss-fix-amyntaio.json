@@ -1,0 +1,20 @@
+{
+  "id": "emergency-pool-pump-prime-loss-fix-amyntaio",
+  "slug": "epigousa-episkevi-apoleias-primaris-antlias-pisinas-amyntaio",
+  "nameGr": "Επείγουσα Επισκευή Απώλειας Prime Αντλίας Πισίνας στο Αμύνταιο",
+  "nameEn": "Emergency Pool Pump Prime-Loss Fix in Αμύνταιο",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Επείγουσα αποκατάσταση απώλειας prime αντλίας πισίνας στο Αμύνταιο για άμεση επαναφορά κυκλοφορίας νερού. SEO intent: «αντλία πισίνας δεν τραβάει Αμύνταιο».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "80-300€",
+  "demand": "high",
+  "keywords": [
+    "αντλία πισίνας δεν τραβάει Αμύνταιο",
+    "prime αντλίας πισίνας χάθηκε",
+    "τεχνικός πισίνας επείγον αντλία",
+    "κυκλοφορία νερού πισίνας πρόβλημα",
+    "service αντλίας πισίνας"
+  ],
+  "status": "researched"
+}

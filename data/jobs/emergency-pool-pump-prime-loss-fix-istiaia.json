@@ -1,0 +1,20 @@
+{
+  "id": "emergency-pool-pump-prime-loss-fix-istiaia",
+  "slug": "epigousa-episkevi-apoleias-primaris-antlias-pisinas-istiaia",
+  "nameGr": "Επείγουσα Επισκευή Απώλειας Prime Αντλίας Πισίνας στην Ιστιαία",
+  "nameEn": "Emergency Pool Pump Prime-Loss Fix in Ιστιαία",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Επείγουσα αποκατάσταση απώλειας prime αντλίας πισίνας στην Ιστιαία για άμεση επαναφορά κυκλοφορίας νερού. SEO intent: «αντλία πισίνας δεν τραβάει Ιστιαία».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "80-300€",
+  "demand": "high",
+  "keywords": [
+    "αντλία πισίνας δεν τραβάει Ιστιαία",
+    "prime αντλίας πισίνας χάθηκε",
+    "τεχνικός πισίνας επείγον αντλία",
+    "κυκλοφορία νερού πισίνας πρόβλημα",
+    "service αντλίας πισίνας"
+  ],
+  "status": "researched"
+}

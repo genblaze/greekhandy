@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fuse-box-arc-noise-check-amyntaio",
+  "slug": "epigousos-elegxos-thoryvou-toksou-pinaka-asfaleion-amyntaio",
+  "nameGr": "Επείγων Έλεγχος Θορύβου Τόξου Πίνακα Ασφαλειών στο Αμύνταιο",
+  "nameEn": "Emergency Fuse Box Arc-Noise Check in Αμύνταιο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος πίνακα ασφαλειών στο Αμύνταιο σε θόρυβο τόξου/σπινθηρισμούς για πρόληψη κινδύνου πυρκαγιάς. SEO intent: «σπινθηρισμός πίνακα Αμύνταιο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "σπινθηρισμός πίνακα Αμύνταιο",
+    "πίνακας κάνει θόρυβο ρεύμα",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "arc fault διάγνωση",
+    "ασφάλεια ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

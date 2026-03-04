@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-fan-motor-noise-repair-amyntaio",
+  "slug": "epigousa-episkevi-thoryvou-moter-anemistira-ac-amyntaio",
+  "nameGr": "Επείγουσα Επισκευή Θορύβου Μοτέρ Ανεμιστήρα AC στο Αμύνταιο",
+  "nameEn": "Emergency AC Fan Motor Noise Repair in Αμύνταιο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή θορύβου μοτέρ ανεμιστήρα AC στο Αμύνταιο για αποφυγή βλάβης και άμεση αποκατάσταση λειτουργίας. SEO intent: «ac κάνει δυνατό θόρυβο Αμύνταιο».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "ac κάνει δυνατό θόρυβο Αμύνταιο",
+    "μοτέρ ανεμιστήρα ac βλάβη",
+    "τεχνικός κλιματισμού επείγον",
+    "service ac θόρυβος",
+    "επισκευή κλιματιστικού άμεσα"
+  ],
+  "status": "researched"
+}

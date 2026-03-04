@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-fan-motor-noise-repair-poros",
+  "slug": "epigousa-episkevi-thoryvou-moter-anemistira-ac-poros",
+  "nameGr": "Επείγουσα Επισκευή Θορύβου Μοτέρ Ανεμιστήρα AC στον Πόρο",
+  "nameEn": "Emergency AC Fan Motor Noise Repair in Πόρος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή θορύβου μοτέρ ανεμιστήρα AC στον Πόρο για αποφυγή βλάβης και άμεση αποκατάσταση λειτουργίας. SEO intent: «ac κάνει δυνατό θόρυβο Πόρος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "ac κάνει δυνατό θόρυβο Πόρος",
+    "μοτέρ ανεμιστήρα ac βλάβη",
+    "τεχνικός κλιματισμού επείγον",
+    "service ac θόρυβος",
+    "επισκευή κλιματιστικού άμεσα"
+  ],
+  "status": "researched"
+}
