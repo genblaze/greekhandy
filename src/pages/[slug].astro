@@ -86,8 +86,8 @@ const faqSchema = category.faq?.length ? {
 
   <main>
     <!-- Breadcrumbs -->
-    <nav class="bg-gray-50 px-4 py-3 text-sm">
-      <div class="mx-auto max-w-5xl flex items-center gap-2 text-gray-500">
+    <nav class="bg-slate-50 px-4 py-3 text-sm">
+      <div class="mx-auto flex max-w-5xl items-center gap-2 text-slate-500">
         <a href="/" class="hover:text-blue-700">Αρχική</a>
         <span>&rsaquo;</span>
         {isJobPage && parentCategory ? (
@@ -103,9 +103,9 @@ const faqSchema = category.faq?.length ? {
     </nav>
 
     <!-- Hero -->
-    <section class="bg-gradient-to-b from-blue-700 to-blue-600 text-white px-4 py-16 md:py-20">
+    <section class="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-600 px-4 py-16 text-white md:py-20">
       <div class="mx-auto max-w-5xl">
-        <h1 class="text-3xl font-bold leading-tight md:text-5xl">{category.h1}</h1>
+        <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-5xl">{category.h1}</h1>
         <p class="mt-6 max-w-4xl text-lg leading-relaxed text-blue-100">{category.heroText}</p>
         {category.summary && (
           <div class="mt-6 flex flex-wrap gap-4 text-sm">
@@ -113,70 +113,87 @@ const faqSchema = category.faq?.length ? {
             {category.summary.typicalDuration && <span class="bg-blue-800 px-3 py-1 rounded-full">Διάρκεια: {category.summary.typicalDuration}</span>}
           </div>
         )}
-        <a href="#contact" class="mt-8 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-blue-700 transition hover:bg-blue-50">
+        <a href="#contact" class="mt-8 inline-flex rounded-full bg-white px-6 py-3 font-semibold text-blue-700 shadow-sm transition hover:bg-blue-50">
           {category.cta?.buttonText || 'Ζητήστε Προσφορά'}
         </a>
       </div>
     </section>
 
     <!-- Content Sections -->
-    {category.sections?.length > 0 && (
-      <section class="px-4 py-12 md:py-16">
-        <div class="mx-auto max-w-5xl space-y-6">
-          {category.sections.map((section: any) => (
-            <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
-              <h2 class="text-2xl font-bold text-gray-900">{section.heading}</h2>
-              <p class="mt-4 leading-relaxed text-gray-700">{section.content}</p>
+    <section class="px-4 py-12 md:py-16">
+      <div class="mx-auto max-w-5xl space-y-6">
+        {category.sections?.length > 0 ? (
+          category.sections.map((section: any) => (
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+              <h2 class="text-2xl font-bold text-slate-900">{section.heading}</h2>
+              <p class="mt-4 leading-relaxed text-slate-700">{section.content}</p>
               {section.priceRange && (
-                <p class="mt-4 font-medium text-gray-900">
+                <p class="mt-4 font-medium text-slate-900">
                   Ενδεικτικό εύρος τιμής: <span class="text-blue-700">{section.priceRange}</span>
                 </p>
               )}
             </article>
-          ))}
-        </div>
-      </section>
-    )}
+          ))
+        ) : (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
+            <p class="font-semibold text-slate-900">Περισσότερες λεπτομέρειες σύντομα.</p>
+            <p class="mt-1 text-sm text-slate-600">Ετοιμάζουμε αναλυτικές ενότητες για την υπηρεσία αυτή.</p>
+          </div>
+        )}
+      </div>
+    </section>
 
     <!-- Sub-jobs list (for category pages) -->
-    {subJobs.length > 0 && (
-      <section class="bg-gray-50 px-4 py-12 md:py-16">
+    {!isJobPage && (
+      <section class="bg-slate-50 px-4 py-12 md:py-16">
         <div class="mx-auto max-w-5xl">
-          <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">Υπηρεσίες σε αυτή την κατηγορία</h2>
-          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {subJobs.map((job: any) => (
-              <a href={`/${job.slug}`} class="block rounded-lg border border-gray-200 bg-white p-4 hover:border-blue-300 hover:bg-blue-50 transition">
-                <h3 class="font-semibold text-gray-900">{job.nameGr}</h3>
-                {job.summary?.priceRangeEUR && (
-                  <p class="mt-1 text-sm text-blue-600">{job.summary.priceRangeEUR}</p>
-                )}
-                {job.summary?.typicalDuration && (
-                  <p class="mt-1 text-sm text-gray-500">{job.summary.typicalDuration}</p>
-                )}
-              </a>
-            ))}
-          </div>
+          <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Υπηρεσίες σε αυτή την κατηγορία</h2>
+          {subJobs.length > 0 ? (
+            <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {subJobs.map((job: any) => (
+                <a href={`/${job.slug}`} class="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md">
+                  <h3 class="font-semibold text-slate-900">{job.nameGr}</h3>
+                  {job.summary?.priceRangeEUR && (
+                    <p class="mt-1 text-sm text-blue-700">{job.summary.priceRangeEUR}</p>
+                  )}
+                  {job.summary?.typicalDuration && (
+                    <p class="mt-1 text-sm text-slate-500">{job.summary.typicalDuration}</p>
+                  )}
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 text-slate-700">
+              <p class="font-semibold text-slate-900">Δεν υπάρχουν ακόμα επιμέρους υπηρεσίες.</p>
+              <p class="mt-1 text-sm text-slate-600">Η κατηγορία θα εμπλουτιστεί σταδιακά με επιπλέον επιλογές.</p>
+            </div>
+          )}
         </div>
       </section>
     )}
 
     <!-- Related Categories -->
-    {relatedCategories.length > 0 && (
-      <section class="bg-gray-50 px-4 py-12 md:py-16">
-        <div class="mx-auto max-w-5xl">
-          <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">Σχετικές Υπηρεσίες</h2>
+    <section class="bg-slate-50 px-4 py-12 md:py-16">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Σχετικές Υπηρεσίες</h2>
+        {relatedCategories.length > 0 ? (
           <ul class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {relatedCategories.map((rel: any) => (
               <li>
-                <a href={`/${rel.slug}`} class="block rounded-lg border border-gray-200 bg-white px-5 py-4 font-medium text-blue-700 transition hover:border-blue-300 hover:bg-blue-50">
+                <a href={`/${rel.slug}`} class="block rounded-xl border border-slate-200 bg-white px-5 py-4 font-medium text-blue-700 shadow-sm transition hover:border-blue-300 hover:shadow-md">
                   {rel.nameGr}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-    )}
+        ) : (
+          <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 text-slate-700">
+            <p class="font-semibold text-slate-900">Δεν υπάρχουν σχετικές υπηρεσίες για την ώρα.</p>
+            <p class="mt-1 text-sm text-slate-600">Μπορείτε να συνεχίσετε από την αρχική σελίδα για περισσότερες επιλογές.</p>
+          </div>
+        )}
+      </div>
+    </section>
 
     <!-- FAQ -->
     {category.faq?.length > 0 && (

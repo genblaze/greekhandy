@@ -318,21 +318,35 @@ const totalServices = allPages.length;
     </div>
   </section>
 
-  <section id="services" class="mx-auto max-w-6xl px-4 py-12 md:px-6">
-    <h2 class="mb-12 text-center text-3xl font-semibold tracking-tight">Κατηγορίες Υπηρεσιών</h2>
+  <section id="services" class="mx-auto max-w-6xl px-4 py-14 md:px-6">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h2 class="text-3xl font-semibold tracking-tight text-slate-900">Κατηγορίες Υπηρεσιών</h2>
+        <p class="mt-2 text-sm text-slate-600">Δημοφιλείς κατηγορίες με συνεπή δομή και γρήγορη πρόσβαση.</p>
+      </div>
+      <a href="#search-browse" class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Προηγμένη αναζήτηση</a>
+    </div>
+
+    {categories.length === 0 && (
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
+        <p class="font-semibold text-slate-900">Δεν υπάρχουν διαθέσιμες κατηγορίες αυτή τη στιγμή.</p>
+        <p class="mt-1 text-sm text-slate-600">Δοκιμάστε ξανά σύντομα ή χρησιμοποιήστε την αναζήτηση για συγκεκριμένη υπηρεσία.</p>
+      </div>
+    )}
+
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {categories.map(cat => {
         const catJobs = jobsByCategory[cat.id] || [];
         const cityLabels = getCitiesForCategory(cat).map(city => cityLabelByValue[city]).filter(Boolean);
         return (
-          <a href={`/${cat.slug}`} class="block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
+          <a href={`/${cat.slug}`} class="group block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg">
             <span class="text-3xl" aria-hidden="true">{getCategoryIcon(cat)}</span>
-            <h3 class="mt-3 text-xl font-bold text-gray-900">{cat.nameGr}</h3>
-            <p class="mt-2 text-sm text-gray-600">{cat.description}</p>
+            <h3 class="mt-3 text-xl font-bold text-slate-900">{cat.nameGr}</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">{cat.description}</p>
             {cityLabels.length > 0 && (
               <p class="mt-3 text-xs uppercase tracking-wide text-gray-500">Πόλεις: {cityLabels.join(', ')}</p>
             )}
-            <p class="mt-3 text-sm font-medium text-blue-600">{catJobs.length} υπηρεσίες &rarr;</p>
+            <p class="mt-3 text-sm font-medium text-blue-700 transition group-hover:translate-x-0.5">{catJobs.length} υπηρεσίες &rarr;</p>
           </a>
         );
       })}
@@ -345,15 +359,17 @@ const totalServices = allPages.length;
 
     return (
       <section class="mx-auto max-w-6xl px-4 py-8">
-        <h2 class="mb-6 text-2xl font-bold text-gray-900">
+        <h2 class="mb-6 text-2xl font-bold text-slate-900">
           <a href={`/${cat.slug}`} class="hover:text-blue-700">{cat.nameGr}</a>
         </h2>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {catJobs.map(job => (
-            <a href={`/${job.slug}`} class="block rounded-lg border border-gray-200 bg-white p-4 transition hover:border-blue-300 hover:bg-blue-50">
-              <h3 class="font-semibold text-gray-900">{job.nameGr}</h3>
-              {job.summary?.priceRangeEUR && (
-                <p class="mt-1 text-sm text-blue-600">{job.summary.priceRangeEUR}</p>
+            <a href={`/${job.slug}`} class="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md">
+              <h3 class="font-semibold text-slate-900">{job.nameGr}</h3>
+              {job.summary?.priceRangeEUR ? (
+                <p class="mt-1 text-sm font-medium text-blue-700">{job.summary.priceRangeEUR}</p>
+              ) : (
+                <p class="mt-1 text-sm text-slate-500">Επικοινωνήστε για εκτίμηση κόστους.</p>
               )}
             </a>
           ))}
