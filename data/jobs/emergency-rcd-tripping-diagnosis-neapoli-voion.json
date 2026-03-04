@@ -1,0 +1,20 @@
+{
+  "id": "emergency-rcd-tripping-diagnosis-neapoli-voion",
+  "slug": "epigousa-diagnosi-diataktis-diarrois-rcd-neapoli-voion",
+  "nameGr": "Επείγουσα Διάγνωση Πτώσης Ρελέ Διαρροής (RCD) στη Νεάπολη Βοιών",
+  "nameEn": "Emergency RCD Tripping Diagnosis in Νεάπολη Βοιών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση συνεχούς πτώσης ρελέ διαρροής στη Νεάπολη Βοιών για ασφαλή αποκατάσταση ρεύματος. SEO intent: «πέφτει ρελέ διαρροής Νεάπολη Βοιών».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρελέ διαρροής Νεάπολη Βοιών",
+    "ηλεκτρολόγος rcd επείγον",
+    "χωρίς ρεύμα ρελέ πέφτει",
+    "διάγνωση διαρροής ρεύματος",
+    "ασφάλεια ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

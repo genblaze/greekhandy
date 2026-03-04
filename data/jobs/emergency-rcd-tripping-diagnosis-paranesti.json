@@ -1,0 +1,20 @@
+{
+  "id": "emergency-rcd-tripping-diagnosis-paranesti",
+  "slug": "epigousa-diagnosi-diataktis-diarrois-rcd-paranesti",
+  "nameGr": "Επείγουσα Διάγνωση Πτώσης Ρελέ Διαρροής (RCD) στο Παρανέστι",
+  "nameEn": "Emergency RCD Tripping Diagnosis in Παρανέστι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση συνεχούς πτώσης ρελέ διαρροής στο Παρανέστι για ασφαλή αποκατάσταση ρεύματος. SEO intent: «πέφτει ρελέ διαρροής Παρανέστι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρελέ διαρροής Παρανέστι",
+    "ηλεκτρολόγος rcd επείγον",
+    "χωρίς ρεύμα ρελέ πέφτει",
+    "διάγνωση διαρροής ρεύματος",
+    "ασφάλεια ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

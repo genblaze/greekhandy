@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fridge-compressor-start-fix-neapoli-voion",
+  "slug": "epigousa-episkevi-ekkinisis-sympiesti-psygeiou-neapoli-voion",
+  "nameGr": "Επείγουσα Επισκευή Εκκίνησης Συμπιεστή Ψυγείου στη Νεάπολη Βοιών",
+  "nameEn": "Emergency Fridge Compressor Start Fix in Νεάπολη Βοιών",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή εκκίνησης συμπιεστή ψυγείου στη Νεάπολη Βοιών για να επανέλθει άμεσα η ψύξη τροφίμων. SEO intent: «ψυγείο δεν ξεκινά Νεάπολη Βοιών».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "ψυγείο δεν ξεκινά Νεάπολη Βοιών",
+    "συμπιεστής ψυγείου βλάβη",
+    "τεχνικός ψυγείου επείγον",
+    "ψύξη σταμάτησε ξαφνικά",
+    "service compressor fridge"
+  ],
+  "status": "researched"
+}

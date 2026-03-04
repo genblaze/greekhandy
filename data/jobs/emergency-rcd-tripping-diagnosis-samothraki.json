@@ -1,0 +1,20 @@
+{
+  "id": "emergency-rcd-tripping-diagnosis-samothraki",
+  "slug": "epigousa-diagnosi-diataktis-diarrois-rcd-samothraki",
+  "nameGr": "Επείγουσα Διάγνωση Πτώσης Ρελέ Διαρροής (RCD) στη Σαμοθράκη",
+  "nameEn": "Emergency RCD Tripping Diagnosis in Σαμοθράκη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση συνεχούς πτώσης ρελέ διαρροής στη Σαμοθράκη για ασφαλή αποκατάσταση ρεύματος. SEO intent: «πέφτει ρελέ διαρροής Σαμοθράκη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρελέ διαρροής Σαμοθράκη",
+    "ηλεκτρολόγος rcd επείγον",
+    "χωρίς ρεύμα ρελέ πέφτει",
+    "διάγνωση διαρροής ρεύματος",
+    "ασφάλεια ηλεκτρικής εγκατάστασης"
+  ],
+  "status": "researched"
+}

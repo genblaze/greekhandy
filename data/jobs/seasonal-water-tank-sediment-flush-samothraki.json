@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-water-tank-sediment-flush-samothraki",
+  "slug": "epochiako-katharisma-izimatos-dexamennis-nerou-samothraki",
+  "nameGr": "Εποχικό Καθάρισμα Ιζήματος Δεξαμενής Νερού στη Σαμοθράκη",
+  "nameEn": "Seasonal Water Tank Sediment Flush in Σαμοθράκη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εποχικό καθάρισμα ιζήματος δεξαμενής νερού στη Σαμοθράκη για καλύτερη ποιότητα και αξιοπιστία παροχής. SEO intent: «καθάρισμα δεξαμενής νερού Σαμοθράκη».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "καθάρισμα δεξαμενής νερού Σαμοθράκη",
+    "ίζημα δεξαμενής λύση",
+    "υδραυλικός συντήρηση δεξαμενής",
+    "flush δεξαμενής κατοικίας",
+    "ποιότητα νερού σπίτι"
+  ],
+  "status": "researched"
+}
