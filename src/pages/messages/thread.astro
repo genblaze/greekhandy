@@ -24,6 +24,12 @@ const showLoadingState = status === 'loading' || messageStatus === 'loading';
 const hasUnknownStatus = status !== '' && !knownThreadStatuses.has(status);
 const hasUnknownMessageStatus = messageStatus !== '' && !knownMessageStatuses.has(messageStatus);
 const formatDateTime = (value: string) => new Date(value).toLocaleString('el-GR');
+const formatDayLabel = (value: string) => new Date(value).toLocaleDateString('el-GR', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
 const toDomId = (value: string, fallback: string) => {
   const normalized = value.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   const fallbackNormalized = fallback.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
@@ -113,6 +119,22 @@ const threadModerationDescription = threadModerationTone === 'blocked'
       : threadModerationTone === 'rejected'
         ? 'Η τελευταία αναφορά έκλεισε χωρίς πρόσθετο περιορισμό. Το thread παραμένει ενεργό.'
         : 'Δεν υπάρχει ενεργός περιορισμός moderation.';
+const threadModerationImpactLabel = threadModerationTone === 'blocked'
+  ? 'Αποστολή απενεργοποιημένη'
+  : threadModerationTone === 'hidden'
+    ? 'Περιορισμένη ορατότητα'
+    : threadModerationTone === 'reported'
+      ? 'Έλεγχος αναφοράς σε εξέλιξη'
+      : threadModerationTone === 'rejected'
+        ? 'Η αναφορά έχει κλείσει'
+        : 'Καμία επίπτωση';
+const threadModerationActionLabel = threadBlockedByModeration
+  ? 'Αναμονή για άρση περιορισμού'
+  : threadMutedByModeration
+    ? 'Αναμονή μέχρι επαναφορά ορατότητας'
+    : threadMessages.length > 0 && isParticipant && !threadBlockedByModeration && !threadMutedByModeration
+      ? 'Μπορείτε να απαντήσετε τώρα'
+      : 'Ελέγξτε τη διαμόρφωση thread';
 
 const threadModerationBannerClass = threadModerationTone === 'blocked'
   ? 'border-rose-300 bg-gradient-to-r from-rose-50/95 via-white to-rose-50/80 text-rose-900'
@@ -174,6 +196,21 @@ for (const message of threadMessages) {
   participants.add(message.recipientEmail.toLowerCase());
 }
 const counterpartEmail = [...participants].find((email) => email !== viewerEmail) || recipientForReply.toLowerCase();
+
+type ThreadHistoryEntry =
+  | { kind: 'day'; dayKey: string; dayLabel: string }
+  | { kind: 'message'; message: MessageSubmission };
+
+const threadHistory: ThreadHistoryEntry[] = [];
+let lastDayKey = '';
+for (const message of threadMessages) {
+  const dayKey = message.submittedAt.slice(0, 10);
+  if (dayKey !== lastDayKey) {
+    threadHistory.push({ kind: 'day', dayKey, dayLabel: formatDayLabel(message.submittedAt) });
+    lastDayKey = dayKey;
+  }
+  threadHistory.push({ kind: 'message', message });
+}
 ---
 
 <Layout title="Συνομιλία μηνυμάτων | GreekHandy" description="Αναλυτική προβολή thread με moderation badges, reporting εργαλεία και κατάσταση απάντησης.">
@@ -363,8 +400,14 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
             <p class="font-semibold">Κατάσταση thread: {threadModerationLabel}</p>
             <span class="rounded-full border border-current/20 bg-white/80 px-2.5 py-1 text-[11px] font-semibold">{moderationSeverityLabel}</span>
           </div>
+          <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.12em]">Επίδραση</p>
           <p class="mt-1 text-sm">{threadModerationDescription}</p>
-          <p class="mt-2 rounded-lg border border-current/20 bg-white/75 px-3 py-2 text-xs font-medium">{moderationReplyGuidance}</p>
+          <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.12em]">Τι μπορείτε να κάνετε τώρα</p>
+          <div class="mt-1 rounded-lg border border-current/20 bg-white/75 px-3 py-2 text-xs font-medium">
+            <p>{threadModerationActionLabel}</p>
+            <p class="mt-1">{moderationReplyGuidance}</p>
+            <p class="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] opacity-80">Σύνοψη impact: {threadModerationImpactLabel}</p>
+          </div>
         </div>
 
         <section class="mt-5 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 shadow-sm" aria-label="Ροή απόκρισης thread">
@@ -455,7 +498,16 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
               </div>
             )}
 
-            {!showLoadingState && threadMessages.map((message) => {
+            {!showLoadingState && threadHistory.map((entry) => {
+              if (entry.kind === 'day') {
+                return (
+                  <div class="thread-day-divider" role="separator" aria-label={`Ημερομηνία ${entry.dayLabel}`}>
+                    <span>{entry.dayLabel}</span>
+                  </div>
+                );
+              }
+
+              const message = entry.message;
               const own = message.senderEmail.toLowerCase() === viewerEmail;
               const hidden = hiddenMessageIds.has(message.id);
               const messageIdToken = toDomId(message.id, `message-${message.submittedAt}`);
@@ -483,7 +535,7 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
                       </div>
                     </div>
 
-                    <p class={`mt-2 text-sm leading-7 ${hidden ? 'font-medium text-orange-900' : 'whitespace-pre-wrap text-slate-800'}`}>
+                    <p class={`mt-2 text-sm leading-7 ${hidden ? 'font-medium text-orange-900' : 'whitespace-pre-wrap break-words text-slate-800'}`}>
                       {hidden ? 'Το μήνυμα έχει αποκρυφτεί από moderation.' : message.message}
                     </p>
 
@@ -765,6 +817,36 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       padding: 1rem;
       box-shadow: 0 14px 32px -28px rgba(15, 23, 42, 0.5);
       transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .thread-day-divider {
+      position: relative;
+      text-align: center;
+      margin: 0.35rem 0 0.1rem;
+    }
+
+    .thread-day-divider::before {
+      content: '';
+      position: absolute;
+      inset: 50% 0 auto;
+      border-top: 1px solid rgb(226 232 240);
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .thread-day-divider > span {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      border-radius: 9999px;
+      border: 1px solid rgb(203 213 225);
+      background: rgb(248 250 252);
+      padding: 0.25rem 0.65rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgb(71 85 105);
     }
 
     .thread-message:focus-within {

@@ -157,6 +157,46 @@ const threads = Array.from(threadMap.entries())
           : threadAction === 'reject'
             ? 'Αναφορά καταχωρήθηκε'
             : '';
+    const moderationImpactLabel = isBlocked
+      ? 'Αποστολή κλειδωμένη'
+      : isAdminHidden
+        ? 'Περιορισμένη ορατότητα'
+        : threadAction === 'review'
+          ? 'Αναφορά υπό αξιολόγηση'
+          : threadAction === 'reject'
+            ? 'Αναφορά ολοκληρωμένη'
+            : 'Χωρίς περιορισμό';
+    const moderationImpactHint = isBlocked
+      ? 'Δεν επιτρέπεται νέα αποστολή μέχρι να αρθεί το μπλοκάρισμα.'
+      : isAdminHidden
+        ? hiddenMessagesCount === ordered.length
+          ? 'Όλο το περιεχόμενο του thread παραμένει κρυφό.'
+          : `Περιορισμένη προβολή: ${hiddenMessagesCount}/${ordered.length} μηνύματα είναι κρυφά.`
+        : threadAction === 'review'
+          ? 'Η ροή παραμένει ενεργή όσο εξετάζεται η αναφορά.'
+          : threadAction === 'reject'
+            ? 'Ο έλεγχος ολοκληρώθηκε χωρίς νέο περιορισμό.'
+            : 'Το moderation δεν επηρεάζει τη ροή του thread.';
+    const moderationNextStepLabel = isBlocked
+      ? 'Αναμονή άρσης μπλοκαρίσματος'
+      : needsReply
+        ? 'Απάντηση στο εισερχόμενο'
+        : threadAction === 'review'
+          ? 'Παρακολούθηση ενεργής αναφοράς'
+          : hasUnread
+            ? 'Γρήγορη ανάγνωση unread'
+            : threadAction === 'reject'
+              ? 'Συνέχιση κανονικής ροής'
+              : 'Καμία άμεση ενέργεια';
+    const moderationNextStepHint = isBlocked
+      ? 'Ανοίξτε το thread μόνο για έλεγχο ιστορικού και κατάστασης moderation.'
+      : needsReply
+        ? 'Ανοίξτε τη συνομιλία και απαντήστε στον τελευταίο αποστολέα.'
+        : threadAction === 'review'
+          ? 'Παρακολουθήστε την κατάσταση μέχρι να κλείσει ο έλεγχος.'
+          : hasUnread
+            ? 'Διαβάστε τα μη αναγνωσμένα και ενημερώστε την κατάσταση.'
+            : 'Δεν απαιτείται triage ενέργεια τώρα.';
     const moderationBannerClass = isBlocked
       ? 'border-rose-300 bg-gradient-to-r from-rose-50/95 via-white to-rose-50/70 text-rose-950'
       : isAdminHidden
@@ -201,15 +241,15 @@ const threads = Array.from(threadMap.entries())
           ? 'border-sky-300 bg-sky-50 text-sky-900'
           : 'border-emerald-300 bg-emerald-50 text-emerald-900';
     const triageFocusLabel = isBlocked
-      ? 'Κλειδωμένη αποστολή'
+      ? 'Κλειδωμένο από moderation'
       : needsReply
-        ? 'Απάντηση χρήστη'
+        ? 'Απαιτείται απάντηση'
         : threadAction === 'review'
-          ? 'Παρακολούθηση αναφοράς'
+          ? 'Ενεργή αναφορά'
           : hasUnread
-            ? 'Γρήγορη ανάγνωση'
+            ? 'Unread σε εκκρεμότητα'
             : threadAction === 'reject'
-              ? 'Αρχείο αναφοράς'
+              ? 'Αναφορά ολοκληρώθηκε'
               : 'Καμία εκκρεμότητα';
     const lastPreview = lastMessageHidden
       ? 'Το τελευταίο μήνυμα έχει αποκρυφτεί από moderation.'
@@ -250,6 +290,10 @@ const threads = Array.from(threadMap.entries())
       moderationHint,
       moderationBannerTitle,
       moderationBannerClass,
+      moderationImpactLabel,
+      moderationImpactHint,
+      moderationNextStepLabel,
+      moderationNextStepHint,
       priorityTier,
       priorityLabel,
       priorityHint,
@@ -292,6 +336,9 @@ const filteredThreads = threads
 const filteredThreadsCount = filteredThreads.length;
 const hasFilteredResults = filteredThreadsCount > 0;
 const filteredNeedsAttention = filteredThreads.filter((thread) => thread.priorityTier !== 'normal').length;
+const filteredNeedsReplyCount = filteredThreads.filter((thread) => thread.needsReply).length;
+const filteredBlockedCount = filteredThreads.filter((thread) => thread.isBlocked).length;
+const filteredReportedCount = filteredThreads.filter((thread) => thread.isReported).length;
 const clearFiltersHref = buildListHref();
 const listReturnTo = buildListHref({
   q: searchQueryRaw,
@@ -506,16 +553,16 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
           <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Γρήγορη διαλογή λίστας</p>
           <div class="mt-2 flex flex-wrap gap-2">
             <a href={unreadQueueHref} class="inline-flex items-center gap-1 rounded-full border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
-              Εισερχόμενα για απάντηση
+              Εισερχόμενα για απάντηση ({totalNeedsReply})
             </a>
             <a href={blockedQueueHref} class="inline-flex items-center gap-1 rounded-full border border-rose-300 bg-rose-50 px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:border-rose-400 hover:bg-rose-100">
-              Κλειδωμένα threads
+              Κλειδωμένα threads ({totalBlocked})
             </a>
             <a href={reportedQueueHref} class="inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
-              Αναφορές moderation
+              Αναφορές moderation ({totalReported})
             </a>
           </div>
-          <p class="mt-2 text-[11px] text-slate-500">Τα shortcuts χρησιμοποιούν τα ίδια υπάρχοντα φίλτρα/queries χωρίς αλλαγή στα APIs.</p>
+          <p class="mt-2 text-[11px] text-slate-500">Τα shortcuts χρησιμοποιούν τα ίδια φίλτρα/query params και αλλάζουν μόνο την προτεραιοποίηση της λίστας.</p>
         </div>
 
         <div class="mt-4">
@@ -571,7 +618,9 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
         <p class="mt-4 text-xs text-slate-500">Συμβουλή: ενεργοποιήστε «Μη αναγνωσμένα πρώτα» για να προηγούνται τα threads που χρειάζονται απάντηση.</p>
         <p id="messages-results-summary" class="mt-2 text-xs text-slate-500" aria-live="polite">
           Εμφάνιση: <span class="font-semibold text-slate-700">{filteredThreadsCount}</span> από <span class="font-semibold text-slate-700">{totalThreads}</span> threads
-          <span class="ml-1">· Με μη αναγνωσμένα: <span class="font-semibold text-slate-700">{totalUnreadThreads}</span></span>
+          <span class="ml-1">· Για άμεση απάντηση: <span class="font-semibold text-slate-700">{filteredNeedsReplyCount}</span></span>
+          <span class="ml-1">· Μπλοκαρισμένα: <span class="font-semibold text-slate-700">{filteredBlockedCount}</span></span>
+          <span class="ml-1">· Αναφορές: <span class="font-semibold text-slate-700">{filteredReportedCount}</span></span>
           <span class="ml-1">· Με προτεραιότητα: <span class="font-semibold text-slate-700">{filteredNeedsAttention}</span></span>
           <span class="ml-1">· Ταξινόμηση: <span class="font-semibold text-slate-700">{showUnreadFirst ? 'Μη αναγνωσμένα πρώτα' : 'Πιο πρόσφατα πρώτα'}</span></span>
         </p>
@@ -685,7 +734,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
               </p>
             </div>
 
-            <div class="mt-3 grid gap-2 text-xs sm:grid-cols-3">
+            <div class="mt-3 grid gap-2 text-xs sm:grid-cols-2 xl:grid-cols-4">
               <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
                 Μηνύματα
                 <p class="mt-0.5 text-sm font-semibold text-slate-800">{thread.messagesCount}</p>
@@ -698,6 +747,10 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                 Ροή απάντησης
                 <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.responseFlowLabel}</p>
               </div>
+              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                Επόμενο βήμα
+                <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.moderationNextStepLabel}</p>
+              </div>
             </div>
 
             <div class={`mt-3 rounded-lg border px-3 py-2 text-xs ${thread.isModerated ? thread.moderationBannerClass : 'border-slate-200 bg-slate-50 text-slate-600'}`}>
@@ -709,6 +762,12 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
               </div>
               {thread.isModerated && <p class="mt-1 font-semibold">{thread.moderationBannerTitle}</p>}
               <p class={thread.isModerated ? 'mt-0.5' : 'mt-1'}>{thread.moderationHint}</p>
+              <div class="mt-2 rounded-md border border-current/20 bg-white/70 px-2.5 py-2">
+                <p class="font-semibold">Επίδραση: {thread.moderationImpactLabel}</p>
+                <p class="mt-0.5">{thread.moderationImpactHint}</p>
+                <p class="mt-2 font-semibold">Επόμενη κίνηση: {thread.moderationNextStepLabel}</p>
+                <p class="mt-0.5">{thread.moderationNextStepHint}</p>
+              </div>
             </div>
             <p class="mt-2 rounded-lg border border-slate-200 bg-white/75 px-3 py-2 text-xs text-slate-600">{thread.priorityHint}</p>
 
