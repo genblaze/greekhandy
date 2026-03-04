@@ -1,0 +1,229 @@
+{
+  "featureId": "reviews-ratings",
+  "version": "mvp-v2",
+  "goal": "Collect trustworthy post-service feedback to improve conversion without heavy ops overhead.",
+  "launchScope": {
+    "surfaces": [
+      "professional profile pages",
+      "service category pages (aggregate rating only)",
+      "post-inquiry follow-up page (review invite)"
+    ],
+    "outOfScope": [
+      "photo/video reviews",
+      "review replies from professionals",
+      "AI sentiment summarization",
+      "public reviewer profiles"
+    ]
+  },
+  "ratingModel": {
+    "scale": "1-5 stars",
+    "inputs": [
+      { "key": "overall", "type": "integer", "required": true, "min": 1, "max": 5 },
+      { "key": "comment", "type": "string", "required": true, "minLength": 20, "maxLength": 800 },
+      { "key": "jobType", "type": "string", "required": true },
+      { "key": "city", "type": "string", "required": false },
+      { "key": "wouldRecommend", "type": "boolean", "required": true }
+    ],
+    "computed": [
+      "professional.averageRating (1 decimal)",
+      "professional.totalReviews",
+      "professional.recommendationRate"
+    ],
+    "displayRules": {
+      "rounding": "nearest 0.1",
+      "minimumToShowAverage": 3,
+      "beforeThresholdLabel": "Νέα καταχώριση"
+    }
+  },
+  "moderationPolicy": {
+    "states": ["pending", "published", "rejected", "flagged"],
+    "stateLabels": {
+      "pending": "Σε έλεγχο",
+      "published": "Δημοσιευμένη",
+      "rejected": "Απορρίφθηκε",
+      "flagged": "Σημάνθηκε"
+    },
+    "defaultFlow": "pending -> published (auto) unless blocked by rules",
+    "autoRejectRules": [
+      "contains phone/email/url",
+      "contains profanity/hate list match",
+      "comment length < 20",
+      "duplicate text by same user within 30 days"
+    ],
+    "autoFlagRules": [
+      "rating=1 or 5 with very short comment (<40 chars)",
+      "high velocity: >3 reviews for same pro from same IP /24 in 24h",
+      "review submitted <2 minutes after lead creation"
+    ],
+    "manualSla": "flagged queue review within 48h",
+    "appeals": "professionals can request one re-check per rejected review"
+  },
+  "antiAbuseBasics": {
+    "eligibility": [
+      "review allowed only if linked to a lead/request id",
+      "one review per lead per customer",
+      "edit window: 24h, then locked"
+    ],
+    "controls": [
+      "rate limit: max 3 review submissions per user/day",
+      "captcha on submit",
+      "store hashed IP + user agent fingerprint",
+      "server-side profanity + PII filter"
+    ],
+    "integritySignals": [
+      "verifiedLead=true badge",
+      "suspicionScore (0-100)",
+      "audit log for state changes"
+    ]
+  },
+  "greekUxCopy": {
+    "writeReviewTitle": "Πώς ήταν η συνεργασία σου;",
+    "ratingLabel": "Η συνολική σου αξιολόγηση",
+    "commentPlaceholder": "Περιέγραψε τι πήγε καλά ή τι θα μπορούσε να είναι καλύτερο (τουλάχιστον 20 χαρακτήρες)",
+    "recommendLabel": "Θα τον/την πρότεινες;",
+    "submitButton": "Δημοσίευση αξιολόγησης",
+    "pendingMessage": "Ευχαριστούμε! Η αξιολόγησή σου ελέγχεται και θα δημοσιευτεί σύντομα.",
+    "rejectedMessage": "Η αξιολόγηση δεν δημοσιεύτηκε γιατί περιείχε στοιχεία επικοινωνίας ή παραβίαζε τους κανόνες κοινότητας.",
+    "flaggedMessage": "Η αξιολόγηση σημάνθηκε για επιπλέον έλεγχο και θα εξεταστεί από την ομάδα μας.",
+    "publishedMessage": "Η αξιολόγησή σου δημοσιεύτηκε. Ευχαριστούμε για τον χρόνο σου!",
+    "emptyState": "Δεν υπάρχουν αξιολογήσεις ακόμη. Γίνε ο πρώτος που θα μοιραστεί εμπειρία.",
+    "verifiedBadge": "Επιβεβαιωμένη αξιολόγηση",
+    "recommendYes": "Ναι, τον/την προτείνω",
+    "recommendNo": "Όχι, δεν έμεινα ικανοποιημένος/η",
+    "ratingsCountLabel": "αξιολογήσεις"
+  },
+  "displayTextAssets": {
+    "ratingLegend": {
+      "1": "Πολύ κακή εμπειρία",
+      "2": "Κάτω από το αναμενόμενο",
+      "3": "Ικανοποιητικά",
+      "4": "Πολύ καλή εμπειρία",
+      "5": "Άριστη εμπειρία"
+    },
+    "filters": {
+      "all": "Όλες",
+      "highest": "Υψηλότερη βαθμολογία",
+      "lowest": "Χαμηλότερη βαθμολογία",
+      "mostRecent": "Πιο πρόσφατες"
+    }
+  },
+  "seedExamples": [
+    {
+      "id": "rev_seed_001",
+      "leadId": "lead_10001",
+      "professionalSlug": "nikos-papadopoulos-elektr",
+      "overall": 5,
+      "comment": "Ήρθε στην ώρα του, εξήγησε καθαρά τι χρειαζόταν και ολοκλήρωσε την επισκευή χωρίς εκπλήξεις στο κόστος.",
+      "wouldRecommend": true,
+      "jobType": "Επισκευή Ηλεκτρολογικής Βλάβης",
+      "city": "Αθήνα",
+      "status": "published",
+      "verifiedLead": true,
+      "suspicionScore": 6,
+      "createdAt": "2026-03-01T11:20:00Z"
+    },
+    {
+      "id": "rev_seed_002",
+      "leadId": "lead_10002",
+      "professionalSlug": "maria-georgiou-ydravlikos",
+      "overall": 3,
+      "comment": "Η δουλειά έγινε σωστά, αλλά υπήρξε καθυστέρηση στο ραντεβού και χρειάστηκε δεύτερη επίσκεψη.",
+      "wouldRecommend": true,
+      "jobType": "Επισκευή Διαρροής Σωλήνων",
+      "city": "Θεσσαλονίκη",
+      "status": "pending",
+      "verifiedLead": true,
+      "suspicionScore": 14,
+      "createdAt": "2026-03-02T08:45:00Z"
+    },
+    {
+      "id": "rev_seed_003",
+      "leadId": "lead_10003",
+      "professionalSlug": "giannis-kosta-klimatismos",
+      "overall": 1,
+      "comment": "Χάλια",
+      "wouldRecommend": false,
+      "jobType": "Συντήρηση Κλιματιστικού",
+      "city": "Πάτρα",
+      "status": "flagged",
+      "verifiedLead": true,
+      "suspicionScore": 77,
+      "createdAt": "2026-03-02T09:01:00Z"
+    },
+    {
+      "id": "rev_seed_004",
+      "leadId": "lead_10004",
+      "professionalSlug": "nikos-papadopoulos-elektr",
+      "overall": 4,
+      "comment": "Καλέστε με στο 69xxxxxxx για λεπτομέρειες, πολύ καλός!",
+      "wouldRecommend": true,
+      "jobType": "Αναβάθμιση Ηλεκτρολογικού Πίνακα",
+      "city": "Αθήνα",
+      "status": "rejected",
+      "verifiedLead": true,
+      "suspicionScore": 88,
+      "createdAt": "2026-03-02T10:10:00Z"
+    }
+  ],
+  "structuredDataTemplates": {
+    "aggregateRating": {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "{{professional.name}}",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{professional.averageRating}}",
+        "reviewCount": "{{professional.totalReviews}}"
+      }
+    },
+    "reviewItem": {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "{{review.overall}}",
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      "reviewBody": "{{review.comment}}",
+      "datePublished": "{{review.createdAt}}",
+      "itemReviewed": {
+        "@type": "LocalBusiness",
+        "name": "{{professional.name}}"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Επαληθευμένος πελάτης"
+      }
+    }
+  },
+  "dataModelMinimal": {
+    "review": [
+      "id",
+      "leadId",
+      "professionalId",
+      "customerId (nullable for guest)",
+      "overall",
+      "comment",
+      "wouldRecommend",
+      "status",
+      "suspicionScore",
+      "verifiedLead",
+      "createdAt",
+      "updatedAt"
+    ],
+    "indexes": [
+      "professionalId,status,createdAt",
+      "leadId unique",
+      "status,createdAt"
+    ]
+  },
+  "acceptanceCriteria": [
+    "User can submit 1-5 star review tied to valid lead",
+    "Pending/published/rejected/flagged states work end-to-end",
+    "Average rating and review count update after publish",
+    "Auto-reject and auto-flag rules trigger correctly",
+    "Greek UX copy visible on submit, success, error, and empty states",
+    "JSON-LD aggregateRating and Review payloads can be generated from templates"
+  ]
+}

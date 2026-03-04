@@ -29,7 +29,7 @@
       "name": "Reviews & Ratings",
       "description": "User review submission with star ratings (1-5). Display reviews on professional profiles. Review moderation. Verified review badges.",
       "priority": 4,
-      "status": "planned",
+      "status": "in-progress",
       "estimatedComplexity": "high"
     },
     {

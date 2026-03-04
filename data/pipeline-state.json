@@ -1,20 +1,20 @@
 {
-  "lastManagerRun": "2026-03-04T14:10:02Z",
+  "lastManagerRun": "2026-03-04T14:22:00Z",
   "activeAgents": {
     "research": {
-      "status": "idle",
-      "task": null,
-      "startedAt": null
+      "status": "running",
+      "task": "Finalize Reviews & Ratings MVP scope and policy decisions",
+      "startedAt": "2026-03-04T14:22:00Z"
     },
     "builder": {
-      "status": "idle",
-      "task": null,
-      "startedAt": null
+      "status": "running",
+      "task": "Prepare Reviews & Ratings seed/display content assets",
+      "startedAt": "2026-03-04T14:22:00Z"
     },
     "developer": {
-      "status": "idle",
-      "task": null,
-      "startedAt": null
+      "status": "running",
+      "task": "Implement Reviews & Ratings MVP end-to-end",
+      "startedAt": "2026-03-04T14:22:00Z"
     }
   },
   "stats": {
@@ -22,6 +22,6 @@
     "jobsResearched": 107,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Manager reconciliation complete: pipeline stats synced to repository totals, roadmap aligned with delivered MVP slices, and stale research run closed.",
+  "lastDecision": "Started the next roadmap priority (Reviews & Ratings) and dispatched research, builder, and developer agents in parallel.",
   "blockers": []
 }
