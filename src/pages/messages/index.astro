@@ -13,6 +13,10 @@ import {
 
 const url = new URL(Astro.request.url);
 const viewerEmail = (url.searchParams.get('viewerEmail') ?? '').trim().toLowerCase();
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const hasViewerEmail = viewerEmail.length > 0;
+const hasValidViewerEmail = EMAIL_PATTERN.test(viewerEmail);
+const canLoadThreads = hasViewerEmail && hasValidViewerEmail;
 const status = (url.searchParams.get('status') ?? '').trim();
 const searchQueryRaw = (url.searchParams.get('q') ?? '').trim();
 const searchQuery = searchQueryRaw.toLowerCase();
@@ -61,7 +65,7 @@ type ListHrefOptions = {
 
 const buildListHref = (options: ListHrefOptions = {}) => {
   const params = new URLSearchParams();
-  if (viewerEmail) params.set('viewerEmail', viewerEmail);
+  if (hasValidViewerEmail) params.set('viewerEmail', viewerEmail);
   if (options.q?.trim()) params.set('q', options.q.trim());
   if (options.unread) params.set('unread', '1');
   if (options.blocked) params.set('blocked', '1');
@@ -71,10 +75,18 @@ const buildListHref = (options: ListHrefOptions = {}) => {
   return query ? `/messages?${query}` : '/messages';
 };
 
-const allMessages = await safeReadNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH, 'μηνύματα');
-const readStates = await safeReadNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH, 'κατάσταση ανάγνωσης');
-const visibilityActions = await safeReadNdjson<{ messageId?: string; action?: string }>(MESSAGE_VISIBILITY_FILE_PATH, 'ορατότητα');
-const triageActions = await safeReadNdjson<{ threadId?: string; action?: string }>(MESSAGE_TRIAGE_ACTIONS_FILE_PATH, 'moderation');
+const allMessages = canLoadThreads
+  ? await safeReadNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH, 'μηνύματα')
+  : [];
+const readStates = canLoadThreads
+  ? await safeReadNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH, 'κατάσταση ανάγνωσης')
+  : [];
+const visibilityActions = canLoadThreads
+  ? await safeReadNdjson<{ messageId?: string; action?: string }>(MESSAGE_VISIBILITY_FILE_PATH, 'ορατότητα')
+  : [];
+const triageActions = canLoadThreads
+  ? await safeReadNdjson<{ threadId?: string; action?: string }>(MESSAGE_TRIAGE_ACTIONS_FILE_PATH, 'moderation')
+  : [];
 
 const hiddenMessageIds = new Set(visibilityActions.filter((entry) => entry.action === 'hide' && entry.messageId).map((entry) => entry.messageId as string));
 
@@ -494,76 +506,101 @@ const triageMediumCount = triageOrderedThreads.filter((thread) => thread.priorit
 const triageNormalCount = triageOrderedThreads.filter((thread) => thread.priorityTier === 'normal').length;
 const triagePositionByThread = new Map(triageOrderedThreads.map((thread, index) => [thread.threadId, index + 1]));
 const hasPartialResults = Boolean(listLoadError) && filteredThreadsCount > 0;
-const listStateSummary = showLoadingState
-  ? 'Η λίστα συνομιλιών φορτώνει. Περιμένετε λίγα δευτερόλεπτα για πλήρη συγχρονισμό.'
-  : listLoadError
-    ? hasPartialResults
-      ? `Υπάρχει σφάλμα φόρτωσης αλλά προβάλλονται ${filteredThreadsCount} διαθέσιμα threads.`
-      : 'Υπάρχει σφάλμα φόρτωσης και δεν είναι διαθέσιμα αποτελέσματα.'
-    : threads.length === 0
-      ? 'Δεν υπάρχουν συνομιλίες ακόμα για αυτόν τον λογαριασμό.'
+const hasViewerParamIssue = !hasViewerEmail || !hasValidViewerEmail;
+const listStateSummary = !hasViewerEmail
+  ? 'Προσθέστε `viewerEmail` στο URL για να φορτωθούν οι συνομιλίες.'
+  : !hasValidViewerEmail
+    ? 'Το `viewerEmail` δεν είναι έγκυρο. Διορθώστε τη μορφή email για να εμφανιστεί το inbox.'
+    : showLoadingState
+      ? 'Η λίστα συνομιλιών φορτώνει. Περιμένετε λίγα δευτερόλεπτα για πλήρη συγχρονισμό.'
+      : listLoadError
+        ? hasPartialResults
+          ? `Υπάρχει σφάλμα φόρτωσης αλλά προβάλλονται ${filteredThreadsCount} διαθέσιμα threads.`
+          : 'Υπάρχει σφάλμα φόρτωσης και δεν είναι διαθέσιμα αποτελέσματα.'
+        : threads.length === 0
+          ? 'Δεν υπάρχουν συνομιλίες ακόμα για αυτόν τον λογαριασμό.'
+          : hasFilteredResults
+            ? `Προβάλλονται ${filteredThreadsCount} threads από ${totalThreads}.`
+            : 'Τα τρέχοντα φίλτρα δεν επιστρέφουν αποτελέσματα.';
+const listStateTitle = !hasViewerEmail
+  ? 'Απαιτείται viewerEmail'
+  : !hasValidViewerEmail
+    ? 'Μη έγκυρο viewerEmail'
+    : showLoadingState
+      ? 'Συγχρονισμός λίστας σε εξέλιξη'
+      : listLoadError
+        ? 'Η λίστα χρειάζεται επαναφόρτωση'
+        : threads.length === 0
+          ? 'Δεν έχει ξεκινήσει ακόμη συνομιλία'
+          : hasFilteredResults
+            ? 'Η λίστα είναι διαθέσιμη'
+            : 'Δεν υπάρχουν αντιστοιχίσεις με τα τρέχοντα φίλτρα';
+const listStateToneClass = hasViewerParamIssue
+  ? 'border-amber-200 bg-amber-50/80 text-amber-900'
+  : showLoadingState
+    ? 'border-sky-200 bg-sky-50/80 text-sky-900'
+    : listLoadError
+      ? 'border-rose-200 bg-rose-50/80 text-rose-900'
+      : !hasFilteredResults && threads.length > 0
+        ? 'border-amber-200 bg-amber-50/80 text-amber-900'
+        : 'border-emerald-200 bg-emerald-50/80 text-emerald-900';
+const listStateFocusLabel = !hasViewerEmail
+  ? 'Ρύθμιση URL'
+  : !hasValidViewerEmail
+    ? 'Διόρθωση email'
+    : showLoadingState
+      ? 'Συγχρονισμός ουράς'
+      : listLoadError
+        ? 'Ανάκτηση δεδομένων'
+        : !hasFilteredResults && threads.length > 0
+          ? 'Προσαρμογή φίλτρων'
+          : hasFilteredResults
+            ? 'Επόμενη triage ενέργεια'
+            : 'Έναρξη inbox';
+const listStateActionLabel = !hasViewerEmail || !hasValidViewerEmail
+  ? 'Καθαρισμός URL'
+  : showLoadingState
+    ? ''
+    : listLoadError
+      ? 'Επανάληψη φόρτωσης'
+      : threads.length === 0
+        ? 'Ανανέωση λίστας'
+        : hasFilteredResults
+          ? (nextTriageThread ? 'Άνοιγμα προτεινόμενου thread' : 'Μετάβαση στα φίλτρα')
+          : 'Καθαρισμός φίλτρων';
+const listStateActionHref = !hasViewerEmail || !hasValidViewerEmail
+  ? '/messages'
+  : showLoadingState
+    ? ''
+    : listLoadError
+      ? currentViewHref
+      : threads.length === 0
+        ? buildListHref({ sort: 'recent' })
+        : hasFilteredResults
+          ? (nextTriageHref || '#messages-controls')
+          : clearFiltersHref;
+const listStateSupportHint = !hasViewerEmail
+  ? 'Παράδειγμα: `/messages?viewerEmail=name@example.com`.'
+  : !hasValidViewerEmail
+    ? 'Χρησιμοποιήστε πλήρη διεύθυνση email (π.χ. name@example.com).'
+    : listLoadError
+      ? 'Ορισμένα badges moderation μπορεί να μην αποδίδονται μέχρι να ολοκληρωθεί η ανάκτηση.'
       : hasFilteredResults
-        ? `Προβάλλονται ${filteredThreadsCount} threads από ${totalThreads}.`
-        : 'Τα τρέχοντα φίλτρα δεν επιστρέφουν αποτελέσματα.';
-const listStateTitle = showLoadingState
-  ? 'Συγχρονισμός λίστας σε εξέλιξη'
-  : listLoadError
-    ? 'Η λίστα χρειάζεται επαναφόρτωση'
-    : threads.length === 0
-      ? 'Δεν έχει ξεκινήσει ακόμη συνομιλία'
-      : hasFilteredResults
-        ? 'Η λίστα είναι διαθέσιμη'
-        : 'Δεν υπάρχουν αντιστοιχίσεις με τα τρέχοντα φίλτρα';
-const listStateToneClass = showLoadingState
-  ? 'border-sky-200 bg-sky-50/80 text-sky-900'
-  : listLoadError
-    ? 'border-rose-200 bg-rose-50/80 text-rose-900'
-    : !hasFilteredResults && threads.length > 0
-      ? 'border-amber-200 bg-amber-50/80 text-amber-900'
-      : 'border-emerald-200 bg-emerald-50/80 text-emerald-900';
-const listStateFocusLabel = showLoadingState
-  ? 'Συγχρονισμός ουράς'
-  : listLoadError
-    ? 'Ανάκτηση δεδομένων'
-    : !hasFilteredResults && threads.length > 0
-      ? 'Προσαρμογή φίλτρων'
-      : hasFilteredResults
-        ? 'Επόμενη triage ενέργεια'
-        : 'Έναρξη inbox';
-const listStateActionLabel = showLoadingState
-  ? ''
-  : listLoadError
-    ? 'Επανάληψη φόρτωσης'
-    : threads.length === 0
-      ? 'Ανανέωση λίστας'
-      : hasFilteredResults
-        ? (nextTriageThread ? 'Άνοιγμα προτεινόμενου thread' : 'Μετάβαση στα φίλτρα')
-        : 'Καθαρισμός φίλτρων';
-const listStateActionHref = showLoadingState
-  ? ''
-  : listLoadError
-    ? currentViewHref
-    : threads.length === 0
-      ? buildListHref({ sort: 'recent' })
-      : hasFilteredResults
-        ? (nextTriageHref || '#messages-controls')
-        : clearFiltersHref;
-const listStateSupportHint = listLoadError
-  ? 'Ορισμένα badges moderation μπορεί να μην αποδίδονται μέχρι να ολοκληρωθεί η ανάκτηση.'
-  : hasFilteredResults
-    ? `Ενεργή προβολή: ${filteredNeedsReplyCount} για απάντηση, ${filteredBlockedCount} μπλοκαρισμένα, ${filteredHiddenCount} με περιορισμένη ορατότητα, ${filteredReportedCount} σε αναφορές.`
-    : threads.length === 0
-      ? 'Το πρώτο thread θα εμφανιστεί αυτόματα εδώ μόλις υπάρξει activity.'
-      : 'Δοκιμάστε διαφορετικά φίλτρα για να επανέλθουν αποτελέσματα.';
-const listStateRecoveryHint = showLoadingState
-  ? 'Αν η φόρτωση καθυστερεί ασυνήθιστα, ανανεώστε τη σελίδα για νέο συγχρονισμό.'
-  : listLoadError
-    ? 'Προβάλλονται όσα δεδομένα ανακτήθηκαν. Ελέγξτε ξανά τη λίστα μετά από επανάληψη φόρτωσης.'
-    : !hasFilteredResults && threads.length > 0
-      ? 'Η προσαρμογή φίλτρων μπορεί να αποκαταστήσει άμεσα τα αποτελέσματα.'
-      : 'Η τρέχουσα προβολή είναι σταθερή και έτοιμη για triage ενέργειες.';
-const listStateAriaRole = listLoadError && !hasPartialResults ? 'alert' : 'status';
-const listStateAriaLive = listLoadError && !hasPartialResults ? 'assertive' : 'polite';
+        ? `Ενεργή προβολή: ${filteredNeedsReplyCount} για απάντηση, ${filteredBlockedCount} μπλοκαρισμένα, ${filteredHiddenCount} με περιορισμένη ορατότητα, ${filteredReportedCount} σε αναφορές.`
+        : threads.length === 0
+          ? 'Το πρώτο thread θα εμφανιστεί αυτόματα εδώ μόλις υπάρξει activity.'
+          : 'Δοκιμάστε διαφορετικά φίλτρα για να επανέλθουν αποτελέσματα.';
+const listStateRecoveryHint = hasViewerParamIssue
+  ? 'Μόλις διορθωθεί το URL, η ανάκτηση inbox εκτελείται άμεσα χωρίς επιπλέον ρυθμίσεις.'
+  : showLoadingState
+    ? 'Αν η φόρτωση καθυστερεί ασυνήθιστα, ανανεώστε τη σελίδα για νέο συγχρονισμό.'
+    : listLoadError
+      ? 'Προβάλλονται όσα δεδομένα ανακτήθηκαν. Ελέγξτε ξανά τη λίστα μετά από επανάληψη φόρτωσης.'
+      : !hasFilteredResults && threads.length > 0
+        ? 'Η προσαρμογή φίλτρων μπορεί να αποκαταστήσει άμεσα τα αποτελέσματα.'
+        : 'Η τρέχουσα προβολή είναι σταθερή και έτοιμη για triage ενέργειες.';
+const listStateAriaRole = hasViewerParamIssue || (listLoadError && !hasPartialResults) ? 'alert' : 'status';
+const listStateAriaLive = hasViewerParamIssue || (listLoadError && !hasPartialResults) ? 'assertive' : 'polite';
 const activeFilterChips: Array<{ label: string; href: string; tone: 'sky' | 'rose' | 'amber' }> = [];
 if (showUnreadOnly) activeFilterChips.push({ label: 'Μόνο μη αναγνωσμένα', href: unreadChipHref, tone: 'sky' });
 if (showBlockedOnly) activeFilterChips.push({ label: 'Μόνο μπλοκαρισμένα', href: blockedChipHref, tone: 'rose' });
@@ -608,7 +645,7 @@ const inboxReadinessHint = listLoadError
           <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600">Οργανωμένη εικόνα όλων των threads με καθαρή ιεραρχία, unread προτεραιότητα και ορατές καταστάσεις moderation.</p>
         </div>
 
-        {viewerEmail && (
+        {canLoadThreads && (
           <div class="rounded-2xl border border-sky-200/70 bg-white/90 px-4 py-3 text-right shadow-[0_8px_28px_-20px_rgba(14,116,144,0.45)]">
             <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-sky-700">Προβολή λογαριασμού</p>
             <p class="mt-1 text-sm font-semibold text-slate-900">{viewerEmail}</p>
@@ -616,7 +653,7 @@ const inboxReadinessHint = listLoadError
         )}
       </div>
 
-      {viewerEmail && (
+      {canLoadThreads && (
         <div class="mt-6 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
           <div class="rounded-2xl border border-slate-200 bg-white/90 px-3 py-2.5 text-xs text-slate-600">
             <p class="font-semibold uppercase tracking-[0.12em] text-slate-500">Συνομιλίες</p>
@@ -641,7 +678,7 @@ const inboxReadinessHint = listLoadError
       )}
     </section>
 
-    {viewerEmail && (
+    {canLoadThreads && (
       <nav class="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm" aria-label="Γρήγορη πλοήγηση inbox">
         <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Γρήγορη πλοήγηση</p>
         <div class="mt-2 flex flex-wrap gap-2">
@@ -717,7 +754,7 @@ const inboxReadinessHint = listLoadError
       </div>
     )}
 
-    {viewerEmail && (
+    {canLoadThreads && (
       <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_10px_30px_-24px_rgba(15,23,42,0.4)]" aria-label="Υπόμνημα moderation">
         <div class="border-b border-slate-200/80 bg-gradient-to-r from-slate-50 via-white to-sky-50/80 px-4 py-3 text-xs text-slate-600">
           <span class="font-semibold text-slate-800">Υπόμνημα moderation:</span>
@@ -733,7 +770,7 @@ const inboxReadinessHint = listLoadError
       </div>
     )}
 
-    {viewerEmail && (
+    {canLoadThreads && (
       <section id="messages-controls" class="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.45)]">
         <form method="GET" action="/messages" class="space-y-3" aria-label="Αναζήτηση συνομιλιών" role="search" aria-describedby="messages-results-summary">
           <input type="hidden" name="viewerEmail" value={viewerEmail} />
@@ -863,7 +900,7 @@ const inboxReadinessHint = listLoadError
       </section>
     )}
 
-    {viewerEmail && (
+    {canLoadThreads && (
       <section id="messages-triage" class="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.45)]" aria-label="Triage σύνοψη inbox" aria-describedby="messages-triage-queue-summary">
         <div class="flex flex-wrap items-start justify-between gap-3">
           <div>
@@ -901,15 +938,24 @@ const inboxReadinessHint = listLoadError
       </section>
     )}
 
-    {!viewerEmail && (
+    {!hasViewerEmail && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-950">
         <p class="text-base font-semibold">Δεν ήταν δυνατή η φόρτωση των συνομιλιών.</p>
         <p class="mt-1 text-sm">Λείπει η παράμετρος <code>viewerEmail</code> από το URL.</p>
         <p class="mt-2 text-xs">Παράδειγμα: <code>/messages?viewerEmail=name@example.com</code></p>
+        <a href="/messages" class="mt-3 inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">Καθαρισμός URL</a>
       </div>
     )}
 
-    {viewerEmail && (
+    {hasViewerEmail && !hasValidViewerEmail && (
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-950">
+        <p class="text-base font-semibold">Το <code>viewerEmail</code> δεν είναι έγκυρο.</p>
+        <p class="mt-1 text-sm">Χρησιμοποιήστε πλήρη διεύθυνση email (π.χ. <code>name@example.com</code>) για να φορτωθεί το inbox.</p>
+        <a href="/messages" class="mt-3 inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">Καθαρισμός URL</a>
+      </div>
+    )}
+
+    {canLoadThreads && (
       <section id="messages-results" class="mt-6 space-y-4" aria-label="Αποτελέσματα συνομιλιών" tabindex="-1" aria-busy={showLoadingState ? 'true' : 'false'} aria-describedby="messages-results-state" aria-labelledby="messages-results-title">
         <p id="messages-results-state" class="sr-only" aria-live="polite" aria-atomic="true">{listStateSummary}</p>
         <div class="messages-results-header">

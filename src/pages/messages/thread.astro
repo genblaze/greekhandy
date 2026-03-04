@@ -16,6 +16,12 @@ import {
 const url = new URL(Astro.request.url);
 const threadId = clean(url.searchParams.get('threadId'));
 const viewerEmail = clean(url.searchParams.get('viewerEmail')).toLowerCase();
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const hasViewerEmail = viewerEmail.length > 0;
+const hasValidViewerEmail = EMAIL_PATTERN.test(viewerEmail);
+const hasInvalidViewerEmail = hasViewerEmail && !hasValidViewerEmail;
+const hasThreadId = threadId.length > 0;
+const canLoadThreadData = hasThreadId && hasValidViewerEmail;
 const status = clean(url.searchParams.get('status'));
 const messageStatus = clean(url.searchParams.get('message'));
 const knownThreadStatuses = new Set(['', 'reported', 'report-error', 'report-invalid', 'report-forbidden', 'loading']);
@@ -47,9 +53,15 @@ const safeReadNdjson = async <T,>(path: string, label: string): Promise<T[]> => 
   }
 };
 
-const allMessages = await safeReadNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH, 'μηνύματα');
-const visibilityActions = await safeReadNdjson<{ messageId?: string; action?: string }>(MESSAGE_VISIBILITY_FILE_PATH, 'ορατότητα');
-const triageActions = await safeReadNdjson<{ threadId?: string; action?: string }>(MESSAGE_TRIAGE_ACTIONS_FILE_PATH, 'moderation');
+const allMessages = canLoadThreadData
+  ? await safeReadNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH, 'μηνύματα')
+  : [];
+const visibilityActions = canLoadThreadData
+  ? await safeReadNdjson<{ messageId?: string; action?: string }>(MESSAGE_VISIBILITY_FILE_PATH, 'ορατότητα')
+  : [];
+const triageActions = canLoadThreadData
+  ? await safeReadNdjson<{ threadId?: string; action?: string }>(MESSAGE_TRIAGE_ACTIONS_FILE_PATH, 'moderation')
+  : [];
 
 const hiddenMessageIds = new Set(visibilityActions.filter((entry) => entry.action === 'hide' && entry.messageId).map((entry) => entry.messageId as string));
 
@@ -67,7 +79,7 @@ const isParticipant = threadMessages.some(
 );
 
 let readStateWriteError = '';
-if (threadId && viewerEmail && isParticipant && !showLoadingState) {
+if (canLoadThreadData && isParticipant && !showLoadingState) {
   try {
     const states = await readNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH);
     const next = states.filter((entry) => !(entry.threadId === threadId && entry.viewerEmail === viewerEmail));
@@ -178,8 +190,9 @@ const recipientForReply = latest
     : latest.senderEmail
   : '';
 const professionalSlug = latest?.professionalSlug ?? '';
-const hasMissingParams = !threadId || !viewerEmail;
-const hasAccessIssue = !hasMissingParams && !isParticipant && !threadLoadError;
+const hasMissingParams = !hasThreadId || !hasViewerEmail;
+const hasViewerParamIssue = hasMissingParams || hasInvalidViewerEmail;
+const hasAccessIssue = !hasViewerParamIssue && !isParticipant && !threadLoadError;
 const composerInitialState = messageStatus === 'submitted'
   ? 'success'
   : messageStatus === 'invalid' || messageStatus === 'error' || messageStatus === 'blocked'
@@ -197,7 +210,10 @@ for (const message of threadMessages) {
   participants.add(message.recipientEmail.toLowerCase());
 }
 const counterpartEmail = [...participants].find((email) => email !== viewerEmail) || recipientForReply.toLowerCase();
-const threadListHref = viewerEmail ? `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}` : '/messages';
+const threadListHref = hasValidViewerEmail ? `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}` : '/messages';
+const threadViewHref = canLoadThreadData
+  ? `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`
+  : '/messages/thread';
 const incomingMessagesCount = threadMessages.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail).length;
 const outgoingMessagesCount = Math.max(0, threadMessages.length - incomingMessagesCount);
 const reportableIncomingCount = threadMessages.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail && !hiddenMessageIds.has(message.id)).length;
@@ -289,7 +305,7 @@ const historyStateActionLabel = showLoadingState
 const historyStateActionHref = showLoadingState
   ? '#thread-history'
   : threadLoadError
-    ? `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`
+    ? threadViewHref
     : threadMessages.length === 0
       ? '#thread-interaction'
       : latestVisibleMessageHref;
@@ -314,19 +330,19 @@ const historyStateRecoveryHint = showLoadingState
       : 'Η ανάγνωση ιστορικού είναι σταθερή και έτοιμη για επόμενο triage βήμα.';
 const historyStateAriaRole = threadLoadError && !hasPartialThreadHistory ? 'alert' : 'status';
 const historyStateAriaLive = threadLoadError && !hasPartialThreadHistory ? 'assertive' : 'polite';
-const threadStatePrimaryActionLabel = hasMissingParams
+const threadStatePrimaryActionLabel = hasViewerParamIssue
   ? 'Επιστροφή στη λίστα'
   : hasAccessIssue
     ? 'Άνοιγμα προσβάσιμου thread'
     : threadLoadError
       ? 'Επανάληψη φόρτωσης'
       : '';
-const threadStatePrimaryActionHref = hasMissingParams
+const threadStatePrimaryActionHref = hasViewerParamIssue
   ? threadListHref
   : hasAccessIssue
     ? threadListHref
     : threadLoadError
-      ? `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`
+      ? threadViewHref
       : '';
 const moderationConsequences: string[] = [];
 if (threadBlockedByModeration) moderationConsequences.push('Δεν επιτρέπεται αποστολή νέου μηνύματος μέχρι να αρθεί το μπλοκάρισμα.');
@@ -564,6 +580,15 @@ for (const message of threadMessages) {
         )}
       </div>
     )}
+    {hasInvalidViewerEmail && (
+      <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-invalid-viewer-title" aria-describedby="thread-invalid-viewer-description">
+        <p id="thread-invalid-viewer-title" class="font-semibold">Το `viewerEmail` δεν είναι έγκυρο.</p>
+        <p id="thread-invalid-viewer-description" class="mt-1 text-sm">Χρησιμοποιήστε πλήρη διεύθυνση email (π.χ. <code>name@example.com</code>) και ανοίξτε ξανά το thread.</p>
+        <a href={threadListHref} class="mt-2 inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">
+          Επιστροφή στη λίστα
+        </a>
+      </div>
+    )}
 
     {hasAccessIssue && (
       <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-access-issue-title" aria-describedby="thread-access-issue-description">
@@ -580,7 +605,7 @@ for (const message of threadMessages) {
         <p id="thread-load-error-description" class="mt-1 text-sm">{threadLoadError}</p>
         <p class="mt-1 text-xs">Ενδέχεται να λείπουν moderation indicators ή ιστορικό μέχρι να αποκατασταθεί η φόρτωση. {hasPartialThreadHistory ? 'Εμφανίζονται διαθέσιμα μηνύματα με πιθανές ελλείψεις.' : 'Το thread δεν μπόρεσε να αποδοθεί.'}</p>
         <div class="mt-2 flex flex-wrap items-center gap-2">
-          <a href={threadStatePrimaryActionHref || `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+          <a href={threadStatePrimaryActionHref || threadViewHref} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
             {threadStatePrimaryActionLabel || 'Επανάληψη φόρτωσης'}
           </a>
           <a href={threadListHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
@@ -590,7 +615,7 @@ for (const message of threadMessages) {
       </div>
     )}
 
-    {threadId && viewerEmail && isParticipant && (
+    {canLoadThreadData && isParticipant && (
       <>
         <nav class="mt-5 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm" aria-label="Γρήγορη πλοήγηση συνομιλίας">
           <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Γρήγορη πλοήγηση</p>
@@ -787,7 +812,7 @@ for (const message of threadMessages) {
               <div class="rounded-xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-xs text-sky-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-loading-title" aria-describedby="thread-history-loading-description">
                 <p id="thread-history-loading-title" class="font-semibold">Το ιστορικό συγχρονίζεται αυτή τη στιγμή.</p>
                 <p id="thread-history-loading-description" class="mt-1">Αν η φόρτωση παραμείνει στάσιμη, επαναφορτώστε το thread για νέα απόπειρα ανάκτησης.</p>
-                <a href={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                <a href={threadViewHref} class="mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
                   Επαναφόρτωση thread
                 </a>
               </div>
@@ -811,7 +836,7 @@ for (const message of threadMessages) {
               <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-partial-title" aria-describedby="thread-history-partial-description">
                 <p id="thread-history-partial-title" class="font-semibold">Το ιστορικό φορτώθηκε μερικώς.</p>
                 <p id="thread-history-partial-description" class="mt-1 text-xs">Ορισμένα μηνύματα ή moderation στοιχεία μπορεί να λείπουν μέχρι να ολοκληρωθεί επιτυχής επανάκτηση.</p>
-                <a href={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+                <a href={threadViewHref} class="mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
                   Επανάληψη φόρτωσης ιστορικού
                 </a>
               </div>
@@ -840,7 +865,7 @@ for (const message of threadMessages) {
                 <p id="thread-history-error-title" class="text-lg font-semibold">Το ιστορικό δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
                 <p id="thread-history-error-description" class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση μηνυμάτων για το thread.</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
-                  <a href={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+                  <a href={threadViewHref} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
                     Επανάληψη φόρτωσης
                   </a>
                   <a href={threadListHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
@@ -947,7 +972,7 @@ for (const message of threadMessages) {
                           <input type="hidden" name="threadId" value={threadId} />
                           <input type="hidden" name="messageId" value={message.id} />
                           <input type="hidden" name="senderEmail" value={viewerEmail} />
-                          <input type="hidden" name="returnTo" value={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} />
+                          <input type="hidden" name="returnTo" value={threadViewHref} />
 
                           <label class="block text-xs font-medium text-amber-900">
                             Αιτία αναφοράς
@@ -1057,7 +1082,7 @@ for (const message of threadMessages) {
               <input type="hidden" name="senderName" value="Participant" />
               <input type="hidden" name="senderEmail" value={viewerEmail} />
               <input type="hidden" name="recipientEmail" value={recipientForReply} />
-              <input type="hidden" name="returnTo" value={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} />
+              <input type="hidden" name="returnTo" value={threadViewHref} />
               <label for="composer-message" class="mt-3 block text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Κείμενο απάντησης</label>
               <textarea
                 id="composer-message"

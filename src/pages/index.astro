@@ -258,6 +258,7 @@ const categoriesWithJobs = categories
     jobs: jobsByCategory[category.id] ?? []
   }))
   .filter(entry => entry.jobs.length > 0);
+const hasServiceCatalog = categoriesWithJobs.length > 0;
 
 const servicesWithPriceRange = jobPages.filter(job => Boolean(job.summary?.priceRangeEUR)).length;
 const totalProfessionals = professionalProfiles.length;
@@ -329,6 +330,8 @@ const socialProofItems = [
 const homepageSearchItems = searchItems.slice(0, INITIAL_SEARCH_RESULTS_COUNT);
 const primaryCatalogCategories = categoriesWithJobs.slice(0, INITIAL_CATALOG_CATEGORY_COUNT);
 const deferredCatalogCategories = categoriesWithJobs.slice(INITIAL_CATALOG_CATEGORY_COUNT);
+const featuredCategoryEntries = categoriesWithJobs.slice(0, INITIAL_CATEGORY_GRID_COUNT);
+const overflowCategoryEntries = categoriesWithJobs.slice(INITIAL_CATEGORY_GRID_COUNT);
 
 const homeMetaTitle = 'GreekHandy - Βρείτε Αξιόπιστους Επαγγελματίες στην Ελλάδα';
 const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά να βρείτε τον κατάλληλο επαγγελματία για κάθε εργασία: υδραυλικοί, ηλεκτρολόγοι, καθαρισμοί και περισσότερα, με ξεκάθαρη πληροφόρηση.';
@@ -498,9 +501,15 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           </nav>
         )}
 
-        <p class="mt-4 text-sm text-slate-700" data-results-count aria-live="polite"></p>
+        <p id="search-results-count" class="mt-4 text-sm text-slate-700" data-results-count role="status" aria-live="polite" aria-atomic="true"></p>
+        <p class="mt-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2 text-xs text-slate-600" data-search-state role="status" aria-live="polite" aria-atomic="true">
+          Προετοιμασία αναζήτησης...
+        </p>
 
         <p class="mt-1 text-xs text-slate-500">Προβάλλεται αντιπροσωπευτικό δείγμα για ταχύτερη φόρτωση. Δείτε πλήρη πλοήγηση μέσα από τις κατηγορίες και τα προφίλ.</p>
+        <noscript>
+          <p class="mt-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">Η ζωντανή αναζήτηση χρειάζεται JavaScript. Μπορείτε να συνεχίσετε από τις κατηγορίες και τα προφίλ.</p>
+        </noscript>
 
         <div class="mt-5 hidden rounded-2xl border border-cyan-200 bg-cyan-50/70 p-4 text-cyan-900" data-search-loading>
           <p class="text-sm font-semibold">Φόρτωση αποτελεσμάτων...</p>
@@ -517,7 +526,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           </div>
         </div>
 
-        <ul class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false">
+        <ul id="search-results-list" class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false" aria-describedby="search-results-count">
           {homepageSearchItems.map(item => (
             <li
               data-search-item
@@ -621,11 +630,14 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Service Taxonomy</p>
           <h2 class="gh-display mt-2 text-3xl text-slate-900 md:text-4xl">Κατηγορίες υπηρεσιών με ισχυρή πλοήγηση</h2>
           <p class="mt-2 text-sm text-slate-600">Κάθε κατηγορία έχει ξεκάθαρο scope, συγκεκριμένες υπηρεσίες και απευθείας μετάβαση στην πληροφορία που χρειάζεστε.</p>
+          {hasServiceCatalog && (
+            <p class="mt-2 text-xs text-slate-500">Προβάλλονται αρχικά {Math.min(INITIAL_CATEGORY_GRID_COUNT, categoriesWithJobs.length)} από {categoriesWithJobs.length} κατηγορίες με ενεργές υπηρεσίες για ισορροπία αναγνωσιμότητας και ταχύτητας.</p>
+          )}
         </div>
         <a href="#search-browse" class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Προηγμένη αναζήτηση</a>
       </div>
 
-      {categories.length === 0 && (
+      {!hasServiceCatalog && (
         <div class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
           <p class="font-semibold text-slate-900">Δεν υπάρχουν διαθέσιμες κατηγορίες αυτή τη στιγμή.</p>
           <p class="mt-1 text-sm text-slate-600">Δοκιμάστε ξανά σύντομα ή χρησιμοποιήστε την αναζήτηση για συγκεκριμένη υπηρεσία.</p>
@@ -633,8 +645,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       )}
 
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.slice(0, INITIAL_CATEGORY_GRID_COUNT).map(cat => {
-          const catJobs = jobsByCategory[cat.id] || [];
+        {featuredCategoryEntries.map(({ category: cat, jobs: catJobs }) => {
           const cityLabels = getCitiesForCategory(cat).map(city => cityLabelByValue[city]).filter(Boolean);
           return (
             <a href={`/${cat.slug}`} class="group block rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-lg">
@@ -650,13 +661,14 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
         })}
       </div>
 
-      {categories.length > INITIAL_CATEGORY_GRID_COUNT && (
+      {overflowCategoryEntries.length > 0 && (
         <details class="mt-6 rounded-2xl border border-slate-200 bg-white p-4">
-          <summary class="cursor-pointer text-sm font-semibold text-slate-700">Περισσότερες κατηγορίες</summary>
+          <summary class="cursor-pointer text-sm font-semibold text-slate-700">Περισσότερες κατηγορίες ({overflowCategoryEntries.length})</summary>
+          <p class="mt-2 text-xs text-slate-500">Εμφανίζονται μόνο κατηγορίες με ενεργές υπηρεσίες για καθαρή πλοήγηση χωρίς κενά αποτελέσματα.</p>
           <div class="mt-3 flex flex-wrap gap-2">
-            {categories.slice(INITIAL_CATEGORY_GRID_COUNT).map(cat => (
+            {overflowCategoryEntries.map(({ category: cat, jobs }) => (
               <a href={`/${cat.slug}`} class="rounded-full border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-white">
-                {cat.nameGr}
+                {cat.nameGr} ({jobs.length})
               </a>
             ))}
           </div>
@@ -833,6 +845,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       const errorStateDescription = document.querySelector('[data-search-error-description]');
       const retryButton = document.querySelector('[data-search-retry]');
       const resultsList = document.querySelector('[data-results-list]');
+      const searchState = document.querySelector('[data-search-state]');
 
       if (
         !(searchInput instanceof HTMLInputElement)
@@ -860,6 +873,17 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       const setLoadingState = (active) => {
         resultsList.setAttribute('aria-busy', active ? 'true' : 'false');
         if (loadingState instanceof HTMLElement) loadingState.classList.toggle('hidden', !active);
+        if (active) emptyState.classList.add('hidden');
+        if (active && searchState instanceof HTMLElement) {
+          searchState.dataset.state = 'loading';
+          searchState.textContent = 'Η αναζήτηση συγχρονίζεται...';
+        }
+      };
+
+      const setSearchState = (tone, message) => {
+        if (!(searchState instanceof HTMLElement)) return;
+        searchState.dataset.state = tone;
+        searchState.textContent = message;
       };
 
       const hideErrorState = () => {
@@ -876,6 +900,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           }
           errorState.classList.remove('hidden');
         }
+        setSearchState('error', 'Η αναζήτηση παρουσίασε προσωρινό σφάλμα. Συνεχίστε από κατηγορίες ή προφίλ.');
       };
 
       const applyResults = () => {
@@ -895,6 +920,13 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
             if (isVisible) visibleItems += 1;
           }
 
+          if (!totalItems) {
+            resultsCount.textContent = 'Προσωρινά δεν υπάρχει διαθέσιμο δείγμα αναζήτησης. Συνεχίστε από τις κατηγορίες παρακάτω.';
+            emptyState.classList.add('hidden');
+            setSearchState('empty-catalog', 'Δεν υπάρχει ακόμη διαθέσιμο δείγμα αναζήτησης. Χρησιμοποιήστε τις κατηγορίες ή τα προφίλ.');
+            return;
+          }
+
           const cityLabel = selectedCity ? getCityLabel() : '';
           if (!keyword && !selectedCity) {
             resultsCount.textContent = `Εμφανίζονται ${visibleItems} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.`;
@@ -906,11 +938,12 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
             resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}».`;
           }
 
-          if (!totalItems) {
-            resultsCount.textContent = 'Προσωρινά δεν υπάρχει διαθέσιμο δείγμα αναζήτησης. Συνεχίστε από τις κατηγορίες παρακάτω.';
+          emptyState.classList.toggle('hidden', visibleItems > 0);
+          if (visibleItems > 0) {
+            setSearchState('ready', `Η αναζήτηση είναι διαθέσιμη με ${visibleItems} ταιριαστά αποτελέσματα.`);
+          } else {
+            setSearchState('no-match', 'Δεν βρέθηκαν αποτελέσματα για τον τρέχοντα συνδυασμό φίλτρων.');
           }
-
-          emptyState.classList.toggle('hidden', visibleItems > 0 && totalItems > 0);
         } catch {
           showErrorState('Κάντε επανάληψη ή χρησιμοποιήστε την πλοήγηση κατηγοριών για να συνεχίσετε χωρίς καθυστέρηση.');
         } finally {
@@ -982,6 +1015,25 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       right: -70px;
       border-radius: 999px;
       background: radial-gradient(circle, rgba(6, 182, 212, 0.14), rgba(6, 182, 212, 0));
+    }
+
+    .home-root [data-search-state][data-state='loading'] {
+      border-color: rgb(186 230 253);
+      background: rgb(240 249 255 / 0.85);
+      color: rgb(12 74 110);
+    }
+
+    .home-root [data-search-state][data-state='error'] {
+      border-color: rgb(254 205 211);
+      background: rgb(255 241 242 / 0.9);
+      color: rgb(136 19 55);
+    }
+
+    .home-root [data-search-state][data-state='no-match'],
+    .home-root [data-search-state][data-state='empty-catalog'] {
+      border-color: rgb(254 215 170);
+      background: rgb(255 247 237 / 0.9);
+      color: rgb(154 52 18);
     }
 
     .home-root :is([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
