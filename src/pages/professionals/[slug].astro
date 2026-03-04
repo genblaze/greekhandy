@@ -50,7 +50,7 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 
 const { data: approvedRows } = await supabaseServer
   .from('reviews')
-  .select('id, reviewer_name, rating, comment, created_at')
+  .select('id, reviewer_name, rating, comment, verified, created_at')
   .eq('status', 'approved')
   .eq('service_slug', profile.slug)
   .order('created_at', { ascending: false });
@@ -60,7 +60,7 @@ const approvedReviews: ApprovedReview[] = (approvedRows || []).map((row: any) =>
   reviewerName: row.reviewer_name || 'Ανώνυμος Πελάτης',
   rating: Math.max(1, Math.min(5, Number(row.rating) || 1)),
   comment: row.comment || '',
-  verified: false,
+  verified: Boolean(row.verified),
   submittedAt: row.created_at
 }));
 

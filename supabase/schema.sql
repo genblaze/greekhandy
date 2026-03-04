@@ -48,9 +48,12 @@ create table if not exists reviews (
   rating int not null check (rating between 1 and 5),
   comment text,
   service_slug text,
+  verified boolean default false,
   status text default 'pending' check (status in ('pending', 'approved', 'rejected')),
   created_at timestamptz default now()
 );
+
+alter table reviews add column if not exists verified boolean default false;
 
 -- 4. Bookings
 create table if not exists bookings (

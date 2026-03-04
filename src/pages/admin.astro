@@ -78,12 +78,11 @@ if (isAuthorized) {
     (registration) => !registrationActionIds.has(`${registration.email}|${registration.submittedAt}`)
   ).length;
 
-  const reviews = await readNdjson<ReviewSubmission>(REVIEW_SUBMISSIONS_FILE_PATH);
-  const reviewActions = await readNdjson<ReviewAction>(REVIEW_ACTIONS_FILE_PATH);
-  const reviewActionIds = new Set(reviewActions.map((action) => action.reviewId));
-  pendingReviews = reviews.filter(
-    (review) => !reviewActionIds.has(`${review.professionalSlug}|${review.submittedAt}`)
-  ).length;
+  const { data: pendingReviewRows } = await supabaseServer
+    .from('reviews')
+    .select('id', { count: 'exact', head: false })
+    .eq('status', 'pending');
+  pendingReviews = pendingReviewRows?.length ?? 0;
 
   const bookings = await readNdjson<BookingSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
   const bookingActions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);

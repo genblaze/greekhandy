@@ -24,7 +24,9 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   }
 
   const nextStatus = action === 'approve' ? 'approved' : 'rejected';
-  const { error } = await supabaseServer.from('reviews').update({ status: nextStatus }).eq('id', reviewId);
+  const updatePayload: Record<string, unknown> = { status: nextStatus };
+  if (action === 'approve') updatePayload.verified = verified;
+  const { error } = await supabaseServer.from('reviews').update(updatePayload).eq('id', reviewId);
 
   if (error) {
     console.error('[review-moderation] failed', error);
