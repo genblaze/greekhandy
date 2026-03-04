@@ -21,47 +21,44 @@ const hasCustomHead = Astro.slots.has('head');
       <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} />
     )}
   </head>
-  <body class="font-sans text-gray-900 bg-white">
-    <!-- Header -->
-    <header class="bg-blue-600 text-white">
-      <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="/" class="text-2xl font-bold">GreekHandy</a>
-        <div class="flex gap-6">
-          <a href="/" class="hover:underline">Αρχική</a>
-          <a href="/#services" class="hover:underline">Υπηρεσίες</a>
-          <a href="/professionals" class="hover:underline">Επαγγελματίες</a>
-          <a href="/#contact" class="hover:underline">Επικοινωνία</a>
+  <body class="bg-slate-50 font-sans text-slate-900 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
+        <a href="/" class="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">GreekHandy</a>
+        <div class="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
+          <a href="/" class="transition hover:text-slate-900">Αρχική</a>
+          <a href="/#services" class="transition hover:text-slate-900">Υπηρεσίες</a>
+          <a href="/professionals" class="transition hover:text-slate-900">Επαγγελματίες</a>
+          <a href="/#contact" class="rounded-full border border-slate-300 px-4 py-2 transition hover:border-slate-400 hover:bg-slate-100">Επικοινωνία</a>
         </div>
       </nav>
     </header>
 
-    <!-- Main Content -->
     <slot />
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer class="mt-12 border-t border-slate-200 bg-white py-12 text-slate-600">
+      <div class="mx-auto max-w-6xl px-4 md:px-6">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h3 class="text-white font-bold text-lg mb-3">GreekHandy</h3>
-            <p class="text-sm">Βρείτε αξιόπιστους επαγγελματίες για κάθε εργασία στην Ελλάδα.</p>
+            <h3 class="mb-3 text-lg font-semibold text-slate-900">GreekHandy</h3>
+            <p class="text-sm leading-relaxed">Βρείτε αξιόπιστους επαγγελματίες για κάθε εργασία στην Ελλάδα.</p>
           </div>
           <div>
-            <h3 class="text-white font-bold text-lg mb-3">Δημοφιλείς Υπηρεσίες</h3>
+            <h3 class="mb-3 text-lg font-semibold text-slate-900">Δημοφιλείς Υπηρεσίες</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="/ilektrologoi" class="hover:text-white">Ηλεκτρολόγοι</a></li>
-              <li><a href="/ydravlikoi" class="hover:text-white">Υδραυλικοί</a></li>
-              <li><a href="/elaiokhrwmatistes" class="hover:text-white">Ελαιοχρωματιστές</a></li>
-              <li><a href="/katharismoi" class="hover:text-white">Καθαρισμοί</a></li>
-              <li><a href="/techniki-klimatismou" class="hover:text-white">Κλιματισμός</a></li>
+              <li><a href="/ilektrologoi" class="transition hover:text-slate-900">Ηλεκτρολόγοι</a></li>
+              <li><a href="/ydravlikoi" class="transition hover:text-slate-900">Υδραυλικοί</a></li>
+              <li><a href="/elaiokhrwmatistes" class="transition hover:text-slate-900">Ελαιοχρωματιστές</a></li>
+              <li><a href="/katharismoi" class="transition hover:text-slate-900">Καθαρισμοί</a></li>
+              <li><a href="/techniki-klimatismou" class="transition hover:text-slate-900">Κλιματισμός</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="text-white font-bold text-lg mb-3">Επικοινωνία</h3>
+            <h3 class="mb-3 text-lg font-semibold text-slate-900">Επικοινωνία</h3>
             <p class="text-sm">info@greekhandy.gr</p>
           </div>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+        <div class="mt-8 border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
           <p>&copy; {new Date().getFullYear()} GreekHandy. Με επιφύλαξη παντός δικαιώματος.</p>
         </div>
       </div>

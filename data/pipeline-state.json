@@ -1,20 +1,20 @@
 {
-  "lastManagerRun": "2026-03-04T14:52:00Z",
+  "lastManagerRun": "2026-03-04T14:56:00Z",
   "activeAgents": {
     "research": {
       "status": "running",
-      "task": "Define the smallest shippable Booking Request MVP scope and acceptance criteria for request submission + moderation flow",
-      "startedAt": "2026-03-04T14:52:00Z"
+      "task": "Define the smallest shippable Messaging MVP scope and acceptance criteria for customer-professional inquiry threads + moderation hooks",
+      "startedAt": "2026-03-04T14:56:00Z"
     },
     "builder": {
       "status": "running",
-      "task": "Prepare Greek copy/content assets for Booking Request UX (form labels, validation, statuses, moderation actions)",
-      "startedAt": "2026-03-04T14:52:00Z"
+      "task": "Prepare Greek copy/content assets for Messaging MVP (thread list, composer, statuses, moderation/report actions)",
+      "startedAt": "2026-03-04T14:56:00Z"
     },
     "developer": {
       "status": "running",
-      "task": "Implement minimal Booking Request MVP (submit endpoint + pending moderation flow + admin/moderation surface) using existing project patterns",
-      "startedAt": "2026-03-04T14:52:00Z"
+      "task": "Implement minimal Messaging MVP (message submit flow + thread surface + basic report/moderation path) using existing project patterns",
+      "startedAt": "2026-03-04T14:56:00Z"
     },
     "leads": {
       "status": "idle",
@@ -27,6 +27,6 @@
     "jobsResearched": 107,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Unified moderation queue cycle completed and merged; next highest-impact gap is booking requests, so I dispatched a focused booking MVP cycle (research + copy + implementation).",
+  "lastDecision": "Booking request MVP cycle was completed and merged; highest-impact remaining gap is Messaging, so I dispatched a focused messaging MVP cycle (research + copy + implementation).",
   "blockers": []
 }
