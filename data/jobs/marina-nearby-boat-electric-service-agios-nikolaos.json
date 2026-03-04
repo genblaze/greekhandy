@@ -1,0 +1,20 @@
+{
+  "id": "marina-nearby-boat-electric-service-agios-nikolaos",
+  "slug": "ilektrologiki-ypostiriksi-skafous-marina-agios-nikolaos",
+  "nameGr": "Ηλεκτρολογική Υποστήριξη Σκάφους σε Μαρίνα στον Άγιο Νικόλαο",
+  "nameEn": "Marina Boat Electrical Service in Άγιος Νικόλαος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Ηλεκτρολογική υποστήριξη σκάφους στον Άγιο Νικόλαο κοντά σε μαρίνα για βλάβες τροφοδοσίας, φορτιστών και συστημάτων φωτισμού. SEO intent: στοχεύει τοπικές αναζητήσεις «ηλεκτρολόγος σκάφους Άγιος Νικόλαος».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "120-780€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολόγος σκάφους Άγιος Νικόλαος",
+    "service ηλεκτρικών σκάφους Άγιος Νικόλαος",
+    "βλάβη ρεύματος σκάφος",
+    "τεχνικός μαρίνας",
+    "επισκευή φορτιστή σκάφους"
+  ],
+  "status": "researched"
+}

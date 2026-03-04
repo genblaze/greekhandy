@@ -1,0 +1,20 @@
+{
+  "id": "marina-nearby-boat-electric-service-komotini",
+  "slug": "ilektrologiki-ypostiriksi-skafous-marina-komotini",
+  "nameGr": "Ηλεκτρολογική Υποστήριξη Σκάφους σε Μαρίνα στην Κομοτηνή",
+  "nameEn": "Marina Boat Electrical Service in Κομοτηνή",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Ηλεκτρολογική υποστήριξη σκάφους στην Κομοτηνή κοντά σε μαρίνα για βλάβες τροφοδοσίας, φορτιστών και συστημάτων φωτισμού. SEO intent: στοχεύει τοπικές αναζητήσεις «ηλεκτρολόγος σκάφους Κομοτηνή».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "120-780€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολόγος σκάφους Κομοτηνή",
+    "service ηλεκτρικών σκάφους Κομοτηνή",
+    "βλάβη ρεύματος σκάφος",
+    "τεχνικός μαρίνας",
+    "επισκευή φορτιστή σκάφους"
+  ],
+  "status": "researched"
+}

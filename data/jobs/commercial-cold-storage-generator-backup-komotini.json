@@ -1,0 +1,20 @@
+{
+  "id": "commercial-cold-storage-generator-backup-komotini",
+  "slug": "backup-gennitria-psyktikou-thalamou-komotini",
+  "nameGr": "Backup Γεννήτρια Ψυκτικού Θαλάμου στην Κομοτηνή",
+  "nameEn": "Commercial Cold Storage Generator Backup in Κομοτηνή",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση backup γεννήτριας για ψυκτικό θάλαμο στην Κομοτηνή ώστε να αποφεύγονται απώλειες προϊόντων σε διακοπές ρεύματος. SEO intent: στοχεύει B2B queries «γεννήτρια ψυκτικού θαλάμου Κομοτηνή».",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "900-5200€",
+  "demand": "high",
+  "keywords": [
+    "γεννήτρια ψυκτικού θαλάμου Κομοτηνή",
+    "backup ρεύματος επιχείρηση τροφίμων",
+    "ηλεκτρολόγος b2b ψύξη",
+    "προστασία προϊόντων από διακοπή ρεύματος",
+    "επαγγελματική εφεδρική τροφοδοσία"
+  ],
+  "status": "researched"
+}

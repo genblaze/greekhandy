@@ -1,0 +1,20 @@
+{
+  "id": "smart-watering-weather-station-setup-paros",
+  "slug": "egkatastasi-meteorologikou-stathmou-gia-potisma-paros",
+  "nameGr": "Εγκατάσταση Μετεωρολογικού Σταθμού για Πότισμα στην Πάρο",
+  "nameEn": "Smart Watering Weather Station Setup in Πάρος",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Εγκατάσταση smart μετεωρολογικού σταθμού στην Πάρο για αυτόματο πότισμα βάσει καιρικών συνθηκών και εξοικονόμηση νερού. SEO intent: καλύπτει niche high-intent αναζητήσεις «smart πότισμα καιρού Πάρος».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "180-920€",
+  "demand": "high",
+  "keywords": [
+    "smart πότισμα καιρού Πάρος",
+    "μετεωρολογικός σταθμός κήπου Πάρος",
+    "αυτόματο πότισμα με αισθητήρες",
+    "τεχνικός άρδευσης smart",
+    "εξοικονόμηση νερού κήπου"
+  ],
+  "status": "researched"
+}

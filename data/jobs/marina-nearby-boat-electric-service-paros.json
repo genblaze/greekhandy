@@ -1,0 +1,20 @@
+{
+  "id": "marina-nearby-boat-electric-service-paros",
+  "slug": "ilektrologiki-ypostiriksi-skafous-marina-paros",
+  "nameGr": "Ηλεκτρολογική Υποστήριξη Σκάφους σε Μαρίνα στην Πάρο",
+  "nameEn": "Marina Boat Electrical Service in Πάρος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Ηλεκτρολογική υποστήριξη σκάφους στην Πάρο κοντά σε μαρίνα για βλάβες τροφοδοσίας, φορτιστών και συστημάτων φωτισμού. SEO intent: στοχεύει τοπικές αναζητήσεις «ηλεκτρολόγος σκάφους Πάρος».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "120-780€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολόγος σκάφους Πάρος",
+    "service ηλεκτρικών σκάφους Πάρος",
+    "βλάβη ρεύματος σκάφος",
+    "τεχνικός μαρίνας",
+    "επισκευή φορτιστή σκάφους"
+  ],
+  "status": "researched"
+}
