@@ -241,9 +241,10 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
           })}
         </div>
 
-        <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4" role="region" aria-label="Χρονοδιάγραμμα κατάστασης αιτήματος" aria-describedby="booking-timeline-guardrail-help">
+        <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4" role="region" aria-label="Χρονοδιάγραμμα κατάστασης αιτήματος" aria-describedby="booking-timeline-guardrail-help booking-next-step-help">
           <p class="text-xs font-semibold uppercase tracking-wide text-slate-600">Timeline αιτήματος</p>
           <p id="booking-timeline-guardrail-help" class="mt-1 text-xs text-slate-600">Guardrail: οι μεταβάσεις ακολουθούν αυστηρούς κανόνες για αποφυγή αντικρουόμενων ενημερώσεων.</p>
+          <p id="booking-next-step-help" class="mt-1 text-xs text-slate-600">Επόμενο βήμα: pending → αναμονή/ενημέρωση, reschedule_requested → περιμένετε απόφαση, cancelled → υποβολή νέου αιτήματος αν χρειάζεται.</p>
           <ol class="mt-2 space-y-2">
             {timelineSteps.map((step) => {
               const isCurrent = moderationState === step.key;

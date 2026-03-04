@@ -173,6 +173,7 @@ const hasAnyBookings = bookings.length > 0;
           <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Από <strong>approved</strong> επιτρέπεται αίτημα αλλαγής (<strong>reschedule_requested</strong>), που κλείνει με <strong>approved</strong> ή <strong>reschedule_rejected</strong>.</p>
           <p id="booking-expected-actual-guardrail" class="mt-2 text-xs text-slate-600">Κανόνας ασφαλείας: αν εντοπιστεί ασυμφωνία expectedState/actualState, η ενέργεια ακυρώνεται και απαιτείται ανανέωση.</p>
           <p class="mt-1 text-xs text-slate-600">Σε edge states (reschedule_requested / cancelled) εμφανίζονται μόνο συμβατές ενέργειες για αποφυγή λανθασμένων μεταβάσεων.</p>
+          <p class="mt-1 text-xs text-slate-600">Οδηγός next-step: pending → approve/reject/cancel, reschedule_requested → approve/reschedule_rejected/cancel, cancelled/rejected → καμία άμεση μετάβαση.</p>
         </div>
 
         <section class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -296,6 +297,12 @@ const hasAnyBookings = bookings.length > 0;
 
             if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel}\nΑίτημα: ${bookingId}\nΜετάβαση: ${fromState} → ${toState}${riskNote}\n\nΠατήστε OK μόνο αν η μετάβαση είναι σωστή.`)) {
               event.preventDefault();
+              if (loadingBanner instanceof HTMLElement) {
+                loadingBanner.classList.remove('hidden');
+                loadingBanner.setAttribute('role', 'status');
+                loadingBanner.setAttribute('aria-live', 'polite');
+                loadingBanner.textContent = 'Η ενέργεια ακυρώθηκε πριν την καταχώρηση. Δεν έγινε καμία αλλαγή.';
+              }
               return;
             }
 
