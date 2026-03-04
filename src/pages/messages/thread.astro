@@ -201,6 +201,10 @@ const incomingMessagesCount = threadMessages.filter((message) => message.senderE
 const outgoingMessagesCount = Math.max(0, threadMessages.length - incomingMessagesCount);
 const reportableIncomingCount = threadMessages.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail && !hiddenMessageIds.has(message.id)).length;
 const latestVisibleMessage = [...threadMessages].reverse().find((message) => !hiddenMessageIds.has(message.id)) || null;
+const latestVisibleMessageAnchor = latestVisibleMessage
+  ? `message-${toDomId(latestVisibleMessage.id, `message-${latestVisibleMessage.submittedAt}`)}`
+  : '';
+const latestVisibleMessageHref = latestVisibleMessageAnchor ? `#${latestVisibleMessageAnchor}` : '#thread-history';
 const moderationSendStateLabel = threadBlockedByModeration
   ? 'Κλειδωμένη αποστολή'
   : threadMutedByModeration
@@ -448,11 +452,16 @@ for (const message of threadMessages) {
               Ιστορικό μηνυμάτων
             </a>
             <a href="#thread-moderation-state" class="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
-              Moderation state
+              Moderation κατάσταση
             </a>
             <a href="#thread-interaction" class="inline-flex items-center rounded-full border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
               Ενέργειες thread
             </a>
+            {latestVisibleMessage && (
+              <a href={latestVisibleMessageHref} class="inline-flex items-center rounded-full border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
+                Τελευταίο ορατό μήνυμα
+              </a>
+            )}
           </div>
         </nav>
 
@@ -471,7 +480,7 @@ for (const message of threadMessages) {
           </div>
         )}
 
-        <div id="thread-moderation-state" class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadModerationBannerClass}`}>
+        <div id="thread-moderation-state" class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadModerationBannerClass}`} role="status" aria-live="polite" aria-atomic="true">
           <div class="flex flex-wrap items-start justify-between gap-2">
             <p class="font-semibold">Κατάσταση thread: {threadModerationLabel}</p>
             <span class="rounded-full border border-current/20 bg-white/80 px-2.5 py-1 text-[11px] font-semibold">{moderationSeverityLabel}</span>
@@ -570,6 +579,11 @@ for (const message of threadMessages) {
               <p class="mt-1 text-xs font-semibold text-slate-700">{threadMessages.length} μηνύματα</p>
               <p class="mt-1 text-[11px] text-slate-500">Εισερχόμενα: {incomingMessagesCount} · Εξερχόμενα: {outgoingMessagesCount}</p>
               <p class="mt-1 text-[11px] text-slate-500">Reportable: {reportableIncomingCount}</p>
+              {latestVisibleMessage && (
+                <a href={latestVisibleMessageHref} class="mt-2 inline-flex rounded-md border border-indigo-300 bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
+                  Μετάβαση στο τελευταίο ορατό
+                </a>
+              )}
             </div>
           </div>
 
@@ -615,39 +629,53 @@ for (const message of threadMessages) {
               const reasonId = `report-reason-${messageIdToken}`;
               const detailsId = `report-details-${messageIdToken}`;
               const reportHintId = `report-hint-${messageIdToken}`;
+              const messageAnchorId = `message-${messageIdToken}`;
+              const messageHeadingId = `message-heading-${messageIdToken}`;
+              const messageMetaId = `message-meta-${messageIdToken}`;
+              const messageStatusId = `message-status-${messageIdToken}`;
+              const messageBodyId = `message-body-${messageIdToken}`;
+              const reportSummaryId = `report-summary-${messageIdToken}`;
               return (
                 <div class={`flex ${own ? 'justify-end' : 'justify-start'}`} role="listitem">
-                  <article class={`thread-message w-full max-w-3xl ${
+                  <article
+                    id={messageAnchorId}
+                    aria-labelledby={messageHeadingId}
+                    aria-describedby={`${messageMetaId} ${messageStatusId} ${messageBodyId}`}
+                    class={`thread-message w-full max-w-3xl ${
                     hidden
                       ? 'thread-message--hidden'
                       : own
                         ? 'thread-message--own'
                         : 'thread-message--incoming'
-                  }`}>
+                  }`}
+                  >
                     <div class="flex flex-wrap items-start justify-between gap-2">
                       <div>
-                        <p class="text-xs font-semibold text-slate-700">{own ? 'Εσείς' : (message.senderName || 'Συνεργάτης')}</p>
-                        <p class="mt-0.5 text-xs text-slate-500">
+                        <h3 id={messageHeadingId} class="text-xs font-semibold text-slate-700">{own ? 'Εσείς' : (message.senderName || 'Συνεργάτης')}</h3>
+                        <p id={messageMetaId} class="mt-0.5 text-xs text-slate-500">
                           #{messageOrderById.get(message.id) ?? '–'} · {formatDateTime(message.submittedAt)}
                         </p>
-                        <p class="mt-0.5 text-[11px] text-slate-500">{hidden ? 'Περιορισμένη προβολή moderation' : 'Πλήρως ορατό μήνυμα'}</p>
+                        <p id={messageStatusId} class="mt-0.5 text-[11px] text-slate-500">{hidden ? 'Περιορισμένη προβολή moderation' : 'Πλήρως ορατό μήνυμα'}</p>
                       </div>
                       <div class="flex flex-wrap gap-1.5">
+                        <a href={`#${messageAnchorId}`} class="thread-message__anchor rounded-full border border-slate-300 bg-white px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-600 transition hover:border-slate-400 hover:bg-slate-50" aria-label={`Σύνδεσμος μηνύματος ${messageOrderById.get(message.id) ?? ''}`}>
+                          Σύνδεσμος
+                        </a>
                         {own && <span class="rounded-full border border-sky-300 bg-sky-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-sky-900">Εξερχόμενο</span>}
                         {!own && <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-700">Εισερχόμενο</span>}
                         {hidden && <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-orange-900">Κρυφό περιεχόμενο</span>}
                       </div>
                     </div>
 
-                    <p class={`mt-2 text-sm leading-7 ${hidden ? 'font-medium text-orange-900' : 'whitespace-pre-wrap break-words text-slate-800'}`}>
+                    <p id={messageBodyId} class={`mt-2 text-sm leading-7 ${hidden ? 'font-medium text-orange-900' : 'whitespace-pre-wrap break-words text-slate-800'}`}>
                       {hidden ? 'Το μήνυμα έχει αποκρυφτεί από moderation.' : message.message}
                     </p>
 
                     {hidden && <p class="mt-2 text-xs font-semibold text-orange-900">Η προβολή του περιεχομένου είναι περιορισμένη από την ομάδα moderation.</p>}
 
                     {!hidden && !own && (
-                      <details class="thread-report mt-3 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50/80 to-white p-3">
-                        <summary class="cursor-pointer text-xs font-semibold text-amber-900">Αναφορά μηνύματος στη διαχείριση</summary>
+                      <details class="thread-report mt-3 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50/80 to-white p-3" aria-labelledby={reportSummaryId}>
+                        <summary id={reportSummaryId} class="cursor-pointer text-xs font-semibold text-amber-900">Αναφορά μηνύματος στη διαχείριση</summary>
                         <form action="/api/messages/report" method="POST" class="js-pending-form mt-3 space-y-2">
                           <input type="hidden" name="threadId" value={threadId} />
                           <input type="hidden" name="messageId" value={message.id} />
@@ -919,8 +947,14 @@ for (const message of threadMessages) {
       border: 1px solid rgb(226 232 240);
       background: white;
       padding: 1rem;
+      scroll-margin-top: 6rem;
       box-shadow: 0 14px 32px -28px rgba(15, 23, 42, 0.5);
       transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .thread-message__anchor {
+      text-decoration: none;
+      line-height: 1.1;
     }
 
     .thread-day-divider {
@@ -979,6 +1013,27 @@ for (const message of threadMessages) {
       box-shadow: 0 10px 30px -24px rgba(180, 83, 9, 0.55);
     }
 
+    .thread-message--highlight {
+      border-color: rgb(56 189 248);
+      box-shadow:
+        0 0 0 3px rgba(14, 116, 144, 0.16),
+        0 14px 32px -28px rgba(15, 23, 42, 0.5);
+      animation: thread-message-highlight-fade 1.6s ease;
+    }
+
+    @keyframes thread-message-highlight-fade {
+      0% {
+        box-shadow:
+          0 0 0 5px rgba(14, 116, 144, 0.24),
+          0 14px 32px -28px rgba(15, 23, 42, 0.5);
+      }
+      100% {
+        box-shadow:
+          0 0 0 3px rgba(14, 116, 144, 0.12),
+          0 14px 32px -28px rgba(15, 23, 42, 0.5);
+      }
+    }
+
     .js-composer-form[data-composer-state='error'] {
       border-color: rgb(253 164 175);
       box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12);
@@ -1020,6 +1075,12 @@ for (const message of threadMessages) {
         width: auto;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .thread-message--highlight {
+        animation: none;
+      }
+    }
   </style>
 
   <script is:inline>
@@ -1051,6 +1112,20 @@ for (const message of threadMessages) {
       if (focusToast instanceof HTMLElement) {
         requestAnimationFrame(() => focusToast.focus());
       }
+
+      const highlightMessageFromHash = () => {
+        const hash = window.location.hash;
+        if (!hash || !hash.startsWith('#message-')) return;
+        const target = document.querySelector(hash);
+        if (!(target instanceof HTMLElement) || !target.classList.contains('thread-message')) return;
+        target.classList.remove('thread-message--highlight');
+        requestAnimationFrame(() => {
+          target.classList.add('thread-message--highlight');
+        });
+      };
+
+      highlightMessageFromHash();
+      window.addEventListener('hashchange', highlightMessageFromHash);
 
       const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
       const setFormPending = (form, isPending) => {

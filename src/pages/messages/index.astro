@@ -795,151 +795,165 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
           </div>
         )}
 
-        {!showLoadingState && filteredThreads.map((thread) => (
-          <article
-            class={`thread-card ${
-              thread.stateTone === 'blocked'
-                ? 'thread-card--blocked'
-                : thread.stateTone === 'admin-hidden' || thread.stateTone === 'muted'
-                  ? 'thread-card--hidden'
-                  : thread.stateTone === 'reported'
-                    ? 'thread-card--reported'
-                    : thread.unreadCount > 0
-                      ? 'thread-card--unread'
-                      : 'thread-card--active'
-            }`}
-            aria-label={`Συνομιλία ${thread.professionalSlug}, ${thread.unreadLabel}, ${thread.moderationLabel}`}
-            role="listitem"
-          >
-            <div class={`inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold ${thread.priorityClass}`}>
-              {thread.priorityLabel}
-            </div>
-            <div class="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Thread</p>
-                <h2 class={`mt-1 text-xl ${thread.unreadCount > 0 ? 'font-bold text-slate-950' : 'font-semibold text-slate-900'}`}>/{thread.professionalSlug}</h2>
-                <p class="mt-1 text-xs text-slate-500">Συμμετέχων: <span class="font-medium text-slate-700">{thread.counterpartEmail || 'Μη διαθέσιμος'}</span></p>
-                <p class="mt-1 text-[11px] text-slate-500">ID: <span class="font-mono text-slate-700">{thread.threadId}</span></p>
+        {!showLoadingState && filteredThreads.map((thread) => {
+          const threadDomId = toDomId(thread.threadId, thread.professionalSlug);
+          const threadHeadingId = `thread-heading-${threadDomId}`;
+          const threadPreviewId = `thread-preview-${threadDomId}`;
+          const threadStatusId = `thread-status-${threadDomId}`;
+          return (
+            <article
+              class={`thread-card ${
+                thread.stateTone === 'blocked'
+                  ? 'thread-card--blocked'
+                  : thread.stateTone === 'admin-hidden' || thread.stateTone === 'muted'
+                    ? 'thread-card--hidden'
+                    : thread.stateTone === 'reported'
+                      ? 'thread-card--reported'
+                      : thread.unreadCount > 0
+                        ? 'thread-card--unread'
+                        : 'thread-card--active'
+              }`}
+              aria-labelledby={threadHeadingId}
+              aria-describedby={`${threadPreviewId} ${threadStatusId}`}
+              data-priority={thread.priorityTier}
+              role="listitem"
+            >
+              <div class={`inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold ${thread.priorityClass}`}>
+                {thread.priorityLabel}
+              </div>
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Thread</p>
+                  <h2 id={threadHeadingId} class={`mt-1 text-xl ${thread.unreadCount > 0 ? 'font-bold text-slate-950' : 'font-semibold text-slate-900'}`}>/{thread.professionalSlug}</h2>
+                  <p class="mt-1 text-xs text-slate-500">Συμμετέχων: <span class="font-medium text-slate-700">{thread.counterpartEmail || 'Μη διαθέσιμος'}</span></p>
+                  <p class="mt-1 text-[11px] text-slate-500">ID: <span class="font-mono text-slate-700">{thread.threadId}</span></p>
+                </div>
+
+                <div class="rounded-xl border border-slate-200 bg-white/85 px-3 py-2 text-right">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Τελευταία κίνηση</p>
+                  <p class="mt-1 text-xs font-medium text-slate-700">{formatDateTime(thread.lastMessageAt)}</p>
+                </div>
               </div>
 
-              <div class="rounded-xl border border-slate-200 bg-white/85 px-3 py-2 text-right">
-                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Τελευταία κίνηση</p>
-                <p class="mt-1 text-xs font-medium text-slate-700">{formatDateTime(thread.lastMessageAt)}</p>
+              <div class="mt-3 flex flex-wrap items-center gap-2">
+                <span class={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${thread.hasUnread ? 'border-sky-300 bg-sky-100 text-sky-900' : 'border-slate-300 bg-slate-100 text-slate-700'}`}>
+                  {thread.hasUnread && (
+                    <>
+                      <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky-600" aria-hidden="true"></span>
+                      <span class="sr-only">Μη αναγνωσμένα μηνύματα</span>
+                    </>
+                  )}
+                  {thread.unreadLabel}
+                </span>
+                <span class="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700">Εστίαση: {thread.triageFocusLabel}</span>
+                {thread.needsReply && <span class="rounded-full border border-indigo-300 bg-indigo-100 px-2.5 py-1 text-[11px] font-semibold text-indigo-900">Χρειάζεται απάντηση</span>}
+                {thread.isBlocked && <span class="rounded-full border border-rose-300 bg-rose-100 px-2.5 py-1 text-[11px] font-semibold text-rose-900">Μπλοκαρισμένο</span>}
+                {!thread.isBlocked && thread.isAdminHidden && <span class="rounded-full border border-orange-300 bg-orange-100 px-2.5 py-1 text-[11px] font-semibold text-orange-900">Κρυφό περιεχόμενο</span>}
+                {!thread.isBlocked && !thread.isAdminHidden && thread.threadAction === 'review' && <span class="rounded-full border border-sky-300 bg-sky-100 px-2.5 py-1 text-[11px] font-semibold text-sky-900">Αναφορά σε έλεγχο</span>}
+                {!thread.isBlocked && !thread.isAdminHidden && thread.threadAction === 'reject' && <span class="rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 text-[11px] font-semibold text-amber-900">Αναφορά χωρίς περιορισμό</span>}
+                {!thread.isBlocked && thread.isMuted && <span class="rounded-full border border-orange-300 bg-orange-100 px-2.5 py-1 text-[11px] font-semibold text-orange-900">Σε σίγαση</span>}
+                {thread.stateTone === 'active' && <span class="rounded-full border border-emerald-300 bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-900">Ενεργή</span>}
               </div>
-            </div>
 
-            <div class="mt-3 flex flex-wrap items-center gap-2">
-              <span class={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${thread.hasUnread ? 'border-sky-300 bg-sky-100 text-sky-900' : 'border-slate-300 bg-slate-100 text-slate-700'}`}>
-                {thread.hasUnread && <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky-600"></span>}
-                {thread.unreadLabel}
-              </span>
-              <span class="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700">Εστίαση: {thread.triageFocusLabel}</span>
-              {thread.needsReply && <span class="rounded-full border border-indigo-300 bg-indigo-100 px-2.5 py-1 text-[11px] font-semibold text-indigo-900">Χρειάζεται απάντηση</span>}
-              {thread.isBlocked && <span class="rounded-full border border-rose-300 bg-rose-100 px-2.5 py-1 text-[11px] font-semibold text-rose-900">Μπλοκαρισμένο</span>}
-              {!thread.isBlocked && thread.isAdminHidden && <span class="rounded-full border border-orange-300 bg-orange-100 px-2.5 py-1 text-[11px] font-semibold text-orange-900">Κρυφό περιεχόμενο</span>}
-              {!thread.isBlocked && !thread.isAdminHidden && thread.threadAction === 'review' && <span class="rounded-full border border-sky-300 bg-sky-100 px-2.5 py-1 text-[11px] font-semibold text-sky-900">Αναφορά σε έλεγχο</span>}
-              {!thread.isBlocked && !thread.isAdminHidden && thread.threadAction === 'reject' && <span class="rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 text-[11px] font-semibold text-amber-900">Αναφορά χωρίς περιορισμό</span>}
-              {!thread.isBlocked && thread.isMuted && <span class="rounded-full border border-orange-300 bg-orange-100 px-2.5 py-1 text-[11px] font-semibold text-orange-900">Σε σίγαση</span>}
-              {thread.stateTone === 'active' && <span class="rounded-full border border-emerald-300 bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-900">Ενεργή</span>}
-            </div>
+              <div class="mt-3 grid gap-2 text-xs sm:grid-cols-3">
+                <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                  Triage focus
+                  <p class="mt-0.5 text-sm font-semibold text-slate-900">{thread.triageFocusLabel}</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                  Moderation impact
+                  <p class="mt-0.5 text-sm font-semibold text-slate-900">{thread.moderationImpactLabel}</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                  Επόμενη κίνηση
+                  <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-900'}`}>{thread.moderationNextStepLabel}</p>
+                </div>
+              </div>
 
-            <div class="mt-3 grid gap-2 text-xs sm:grid-cols-3">
-              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                Triage focus
-                <p class="mt-0.5 text-sm font-semibold text-slate-900">{thread.triageFocusLabel}</p>
+              <div class="mt-3 rounded-xl border border-slate-200/80 bg-white/70 px-3 py-3">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Τελευταίο μήνυμα</p>
+                <p id={threadPreviewId} class={`thread-preview mt-1 text-sm leading-6 ${thread.unreadCount > 0 ? 'text-slate-900' : 'text-slate-700'}`}>
+                  <span class={`font-semibold ${thread.isLastFromViewer ? 'text-slate-500' : 'text-slate-900'}`}>{thread.senderLabel}:</span>{' '}
+                  {thread.lastPreview}
+                </p>
               </div>
-              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                Moderation impact
-                <p class="mt-0.5 text-sm font-semibold text-slate-900">{thread.moderationImpactLabel}</p>
-              </div>
-              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                Επόμενη κίνηση
-                <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-900'}`}>{thread.moderationNextStepLabel}</p>
-              </div>
-            </div>
 
-            <div class="mt-3 rounded-xl border border-slate-200/80 bg-white/70 px-3 py-3">
-              <p class={`thread-preview text-sm leading-6 ${thread.unreadCount > 0 ? 'text-slate-900' : 'text-slate-700'}`}>
-                <span class={`font-semibold ${thread.isLastFromViewer ? 'text-slate-500' : 'text-slate-900'}`}>{thread.senderLabel}:</span>{' '}
-                {thread.lastPreview}
-              </p>
-            </div>
+              <div class="mt-3 grid gap-2 text-xs sm:grid-cols-2 xl:grid-cols-4">
+                <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                  Μηνύματα
+                  <p class="mt-0.5 text-sm font-semibold text-slate-800">{thread.messagesCount}</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                  Κρυφά
+                  <p class="mt-0.5 text-sm font-semibold text-slate-800">{thread.hiddenMessagesCount}</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                  Ροή απάντησης
+                  <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.responseFlowLabel}</p>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                  Επόμενο βήμα
+                  <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.moderationNextStepLabel}</p>
+                </div>
+              </div>
 
-            <div class="mt-3 grid gap-2 text-xs sm:grid-cols-2 xl:grid-cols-4">
-              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                Μηνύματα
-                <p class="mt-0.5 text-sm font-semibold text-slate-800">{thread.messagesCount}</p>
+              <div id={threadStatusId} class={`mt-3 rounded-lg border px-3 py-2 text-xs ${thread.isModerated ? thread.moderationBannerClass : 'border-slate-200 bg-slate-50 text-slate-600'}`}>
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <p class="font-semibold">Κατάσταση: {thread.moderationLabel}</p>
+                  {thread.isBlocked && <p class="font-semibold uppercase tracking-[0.08em] text-rose-900">Αποστολή κλειδωμένη</p>}
+                  {!thread.isBlocked && thread.threadAction === 'review' && <p class="font-semibold uppercase tracking-[0.08em] text-sky-900">Αναφορά σε εξέλιξη</p>}
+                  {!thread.isBlocked && thread.threadAction === 'reject' && <p class="font-semibold uppercase tracking-[0.08em] text-amber-900">Αναφορά ολοκληρωμένη</p>}
+                </div>
+                {thread.isModerated && <p class="mt-1 font-semibold">{thread.moderationBannerTitle}</p>}
+                <p class={thread.isModerated ? 'mt-0.5' : 'mt-1'}>{thread.moderationHint}</p>
+                <div class="mt-2 rounded-md border border-current/20 bg-white/70 px-2.5 py-2">
+                  <p class="font-semibold">Επίδραση: {thread.moderationImpactLabel}</p>
+                  <p class="mt-0.5">{thread.moderationImpactHint}</p>
+                  <p class="mt-2 font-semibold">Επόμενη κίνηση: {thread.moderationNextStepLabel}</p>
+                  <p class="mt-0.5">{thread.moderationNextStepHint}</p>
+                </div>
               </div>
-              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                Κρυφά
-                <p class="mt-0.5 text-sm font-semibold text-slate-800">{thread.hiddenMessagesCount}</p>
-              </div>
-              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                Ροή απάντησης
-                <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.responseFlowLabel}</p>
-              </div>
-              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
-                Επόμενο βήμα
-                <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-800'}`}>{thread.moderationNextStepLabel}</p>
-              </div>
-            </div>
+              <p class="mt-2 rounded-lg border border-slate-200 bg-white/75 px-3 py-2 text-xs text-slate-600">{thread.priorityHint}</p>
 
-            <div class={`mt-3 rounded-lg border px-3 py-2 text-xs ${thread.isModerated ? thread.moderationBannerClass : 'border-slate-200 bg-slate-50 text-slate-600'}`}>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <p class="font-semibold">Κατάσταση: {thread.moderationLabel}</p>
-                {thread.isBlocked && <p class="font-semibold uppercase tracking-[0.08em] text-rose-900">Αποστολή κλειδωμένη</p>}
-                {!thread.isBlocked && thread.threadAction === 'review' && <p class="font-semibold uppercase tracking-[0.08em] text-sky-900">Αναφορά σε εξέλιξη</p>}
-                {!thread.isBlocked && thread.threadAction === 'reject' && <p class="font-semibold uppercase tracking-[0.08em] text-amber-900">Αναφορά ολοκληρωμένη</p>}
-              </div>
-              {thread.isModerated && <p class="mt-1 font-semibold">{thread.moderationBannerTitle}</p>}
-              <p class={thread.isModerated ? 'mt-0.5' : 'mt-1'}>{thread.moderationHint}</p>
-              <div class="mt-2 rounded-md border border-current/20 bg-white/70 px-2.5 py-2">
-                <p class="font-semibold">Επίδραση: {thread.moderationImpactLabel}</p>
-                <p class="mt-0.5">{thread.moderationImpactHint}</p>
-                <p class="mt-2 font-semibold">Επόμενη κίνηση: {thread.moderationNextStepLabel}</p>
-                <p class="mt-0.5">{thread.moderationNextStepHint}</p>
-              </div>
-            </div>
-            <p class="mt-2 rounded-lg border border-slate-200 bg-white/75 px-3 py-2 text-xs text-slate-600">{thread.priorityHint}</p>
-
-            <div class="mt-4 flex flex-wrap items-center gap-2.5">
-              <a
-                href={`/messages/thread?threadId=${encodeURIComponent(thread.threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`}
-                class="inline-flex items-center rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
-                aria-label={`Άνοιγμα συνομιλίας ${thread.professionalSlug}`}
-              >
-                {thread.needsReply ? 'Απάντηση τώρα' : 'Άνοιγμα συνομιλίας'}
-              </a>
-
-              {thread.unreadCount > 0 && (
-                <form action="/api/messages/read" method="POST" class="js-pending-form">
-                  <input type="hidden" name="threadId" value={thread.threadId} />
-                  <input type="hidden" name="viewerEmail" value={viewerEmail} />
-                  <input type="hidden" name="returnTo" value={listReturnTo} />
-                  <button type="submit" data-default-label="Σήμανση ως διαβασμένο" data-pending-label="Ενημέρωση..." class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-65" aria-label={`Σήμανση ως διαβασμένο για ${thread.professionalSlug}`}>
-                    Σήμανση ως διαβασμένο
-                  </button>
-                </form>
-              )}
-
-              {thread.isBlocked && (
-                <a href={blockedQueueHref} class="rounded-lg border border-rose-300 bg-rose-50 px-3.5 py-2 text-xs font-semibold text-rose-900 transition hover:border-rose-400 hover:bg-rose-100">
-                  Ουρά μπλοκαρισμένων
+              <div class="mt-4 flex flex-wrap items-center gap-2.5">
+                <a
+                  href={`/messages/thread?threadId=${encodeURIComponent(thread.threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`}
+                  class="inline-flex items-center rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
+                  aria-label={`Άνοιγμα συνομιλίας ${thread.professionalSlug}`}
+                >
+                  {thread.needsReply ? 'Απάντηση τώρα' : 'Άνοιγμα συνομιλίας'}
                 </a>
-              )}
-              {!thread.isBlocked && thread.isReported && (
-                <a href={reportedQueueHref} class="rounded-lg border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
-                  Ουρά αναφορών
-                </a>
-              )}
-              {!thread.isBlocked && !thread.isReported && thread.hasUnread && (
-                <a href={unreadQueueHref} class="rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
-                  Ουρά μη αναγνωσμένων
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
+
+                {thread.unreadCount > 0 && (
+                  <form action="/api/messages/read" method="POST" class="js-pending-form">
+                    <input type="hidden" name="threadId" value={thread.threadId} />
+                    <input type="hidden" name="viewerEmail" value={viewerEmail} />
+                    <input type="hidden" name="returnTo" value={listReturnTo} />
+                    <button type="submit" data-default-label="Σήμανση ως διαβασμένο" data-pending-label="Ενημέρωση..." class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-65" aria-label={`Σήμανση ως διαβασμένο για ${thread.professionalSlug}`}>
+                      Σήμανση ως διαβασμένο
+                    </button>
+                  </form>
+                )}
+
+                {thread.isBlocked && (
+                  <a href={blockedQueueHref} class="rounded-lg border border-rose-300 bg-rose-50 px-3.5 py-2 text-xs font-semibold text-rose-900 transition hover:border-rose-400 hover:bg-rose-100">
+                    Ουρά μπλοκαρισμένων
+                  </a>
+                )}
+                {!thread.isBlocked && thread.isReported && (
+                  <a href={reportedQueueHref} class="rounded-lg border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+                    Ουρά αναφορών
+                  </a>
+                )}
+                {!thread.isBlocked && !thread.isReported && thread.hasUnread && (
+                  <a href={unreadQueueHref} class="rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                    Ουρά μη αναγνωσμένων
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </section>
     )}
   </main>
@@ -1199,8 +1213,14 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
       const dismissToast = (toast) => {
         if (!(toast instanceof HTMLElement) || toast.dataset.removed === 'true') return;
         toast.dataset.removed = 'true';
+        const focusFallback = toast.contains(document.activeElement)
+          ? (document.querySelector('#thread-search') || document.querySelector('#messages-results'))
+          : null;
         toast.classList.add('is-dismissing');
-        window.setTimeout(() => toast.remove(), 150);
+        window.setTimeout(() => {
+          toast.remove();
+          if (focusFallback instanceof HTMLElement) focusFallback.focus();
+        }, 150);
       };
 
       for (const toast of toasts) {
