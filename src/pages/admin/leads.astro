@@ -1,27 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { ADMIN_COOKIE, getAdminAuth, isAdminKeyValid } from '../../lib/admin-auth';
 import { loadAdminLeadsDirectoryData } from '../../lib/admin-leads';
 
-const url = new URL(Astro.request.url);
-const moderationKey = url.searchParams.get('key') ?? '';
+const isAuthorized = true;
+const expectedKey = '';
 
-if (isAdminKeyValid(moderationKey)) {
-  Astro.cookies.set(ADMIN_COOKIE, moderationKey, {
-    path: '/',
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: true,
-    maxAge: 60 * 60 * 8
-  });
-  return Astro.redirect('/admin/leads');
-}
-
-const { expectedKey, isAuthorized } = getAdminAuth(Astro, moderationKey);
-
-const directoryData = isAuthorized
-  ? await loadAdminLeadsDirectoryData()
-  : { leads: [], categories: [], cities: [], statuses: [], summary: null, totalLeads: 0 };
+const directoryData = await loadAdminLeadsDirectoryData();
 
 const statusLabel = (status: string) => {
   if (status === 'new') return 'Νέο';
