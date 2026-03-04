@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-main-shutoff-repair-megalopoli",
+  "slug": "epigousa-episkevi-kentrikou-diakopti-nerou-megalopoli",
+  "nameGr": "Επείγουσα Επισκευή Κεντρικού Διακόπτη Νερού στη Μεγαλόπολη",
+  "nameEn": "Emergency Water Main Shutoff Repair in Μεγαλόπολη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Άμεση επισκευή κεντρικού διακόπτη νερού στη Μεγαλόπολη για γρήγορο έλεγχο διαρροής και αποτροπή εκτεταμένων ζημιών. SEO intent: στοχεύει επείγουσες αναζητήσεις «διαρροή νερού τώρα Μεγαλόπολη» και «υδραυλικός άμεσα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή νερού τώρα Μεγαλόπολη",
+    "υδραυλικός άμεσα Μεγαλόπολη",
+    "κεντρικός διακόπτης νερού βλάβη",
+    "πλημμύρα σπίτι υδραυλικός",
+    "επείγουσα υδραυλική επέμβαση"
+  ],
+  "status": "researched"
+}

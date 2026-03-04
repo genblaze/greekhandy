@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-main-shutoff-repair-thasos",
+  "slug": "epigousa-episkevi-kentrikou-diakopti-nerou-thasos",
+  "nameGr": "Επείγουσα Επισκευή Κεντρικού Διακόπτη Νερού στη Θάσο",
+  "nameEn": "Emergency Water Main Shutoff Repair in Θάσος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Άμεση επισκευή κεντρικού διακόπτη νερού στη Θάσο για γρήγορο έλεγχο διαρροής και αποτροπή εκτεταμένων ζημιών. SEO intent: στοχεύει επείγουσες αναζητήσεις «διαρροή νερού τώρα Θάσος» και «υδραυλικός άμεσα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή νερού τώρα Θάσος",
+    "υδραυλικός άμεσα Θάσος",
+    "κεντρικός διακόπτης νερού βλάβη",
+    "πλημμύρα σπίτι υδραυλικός",
+    "επείγουσα υδραυλική επέμβαση"
+  ],
+  "status": "researched"
+}

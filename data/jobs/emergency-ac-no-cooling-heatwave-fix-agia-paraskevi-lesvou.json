@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-no-cooling-heatwave-fix-agia-paraskevi-lesvou",
+  "slug": "epigousa-episkevi-ac-den-psyxei-kafsonas-agia-paraskevi-lesvou",
+  "nameGr": "Επείγουσα Επισκευή AC που Δεν Ψύχει (Καύσωνας) στην Αγία Παρασκευή Λέσβου",
+  "nameEn": "Emergency AC No-Cooling Heatwave Fix in Αγία Παρασκευή Λέσβου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διάγνωση και επισκευή κλιματιστικού στην Αγία Παρασκευή Λέσβου όταν δεν ψύχει σε συνθήκες καύσωνα. SEO intent: καλύπτει high-intent queries «ac δεν ψύχει τώρα Αγία Παρασκευή Λέσβου».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "ac δεν ψύχει τώρα Αγία Παρασκευή Λέσβου",
+    "τεχνικός κλιματισμού επείγον Αγία Παρασκευή Λέσβου",
+    "επισκευή air condition καύσωνας",
+    "άμεσο service κλιματιστικού",
+    "κλιματιστικό ζεστός αέρας"
+  ],
+  "status": "researched"
+}

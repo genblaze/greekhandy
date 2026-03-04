@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-burning-smell-check-thasos",
+  "slug": "epigousas-elegxos-osmis-kafsimon-ilektrika-thasos",
+  "nameGr": "Επείγων Έλεγχος Οσμής Καμένου σε Ηλεκτρικά στη Θάσο",
+  "nameEn": "Emergency Electrical Burning Smell Check in Θάσος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος ηλεκτρικής εγκατάστασης στη Θάσο σε περίπτωση οσμής καμένου για πρόληψη πυρκαγιάς και άμεση αποκατάσταση. SEO intent: καλύπτει high-conversion queries «μυρίζει καμένο ρεύμα Θάσος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "μυρίζει καμένο ρεύμα Θάσος",
+    "ηλεκτρολόγος επείγον Θάσος",
+    "βλάβη πίνακα καμένη μυρωδιά",
+    "κίνδυνος πυρκαγιάς ηλεκτρικά",
+    "άμεσος ηλεκτρολογικός έλεγχος"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-smart-alarm-false-trigger-diagnostics-thasos",
+  "slug": "epigousa-diagnosi-psevdos-synagermou-smart-thasos",
+  "nameGr": "Επείγουσα Διάγνωση Ψευδοσυναγερμού Smart στη Θάσο",
+  "nameEn": "Emergency Smart Alarm False Trigger Diagnostics in Θάσος",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα διάγνωση ψευδοσυναγερμών smart συστήματος στη Θάσο για άμεση σταθεροποίηση και αποφυγή συνεχών ειδοποιήσεων. SEO intent: καλύπτει αναζητήσεις «συναγερμός χτυπάει χωρίς λόγο Θάσος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "συναγερμός χτυπάει χωρίς λόγο Θάσος",
+    "τεχνικός συναγερμού επείγον",
+    "ψευδοσυναγερμός smart home",
+    "ρύθμιση αισθητήρων συναγερμού",
+    "service alarm system τώρα"
+  ],
+  "status": "researched"
+}

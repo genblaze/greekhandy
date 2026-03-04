@@ -1,0 +1,20 @@
+{
+  "id": "emergency-pool-overflow-drain-fix-thasos",
+  "slug": "epigousa-episkevi-yperxeilisis-pisinas-thasos",
+  "nameGr": "Επείγουσα Επισκευή Υπερχείλισης Πισίνας στη Θάσο",
+  "nameEn": "Emergency Pool Overflow Drain Fix in Θάσος",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Επείγουσα επισκευή συστήματος υπερχείλισης πισίνας στη Θάσο για αποφυγή ζημιών σε μηχανοστάσιο και περιβάλλοντα χώρο. SEO intent: στοχεύει «πισίνα υπερχειλίζει Θάσος».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "100-380€",
+  "demand": "high",
+  "keywords": [
+    "πισίνα υπερχειλίζει Θάσος",
+    "τεχνικός πισίνας επείγον",
+    "βλάβη υπερχείλισης πισίνας",
+    "νερά μηχανοστάσιο πισίνας",
+    "άμεση αποκατάσταση πισίνας"
+  ],
+  "status": "researched"
+}

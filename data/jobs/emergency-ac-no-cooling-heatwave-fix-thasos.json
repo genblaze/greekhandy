@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-no-cooling-heatwave-fix-thasos",
+  "slug": "epigousa-episkevi-ac-den-psyxei-kafsonas-thasos",
+  "nameGr": "Επείγουσα Επισκευή AC που Δεν Ψύχει (Καύσωνας) στη Θάσο",
+  "nameEn": "Emergency AC No-Cooling Heatwave Fix in Θάσος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διάγνωση και επισκευή κλιματιστικού στη Θάσο όταν δεν ψύχει σε συνθήκες καύσωνα. SEO intent: καλύπτει high-intent queries «ac δεν ψύχει τώρα Θάσος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "ac δεν ψύχει τώρα Θάσος",
+    "τεχνικός κλιματισμού επείγον Θάσος",
+    "επισκευή air condition καύσωνας",
+    "άμεσο service κλιματιστικού",
+    "κλιματιστικό ζεστός αέρας"
+  ],
+  "status": "researched"
+}

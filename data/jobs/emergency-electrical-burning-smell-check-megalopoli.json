@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-burning-smell-check-megalopoli",
+  "slug": "epigousas-elegxos-osmis-kafsimon-ilektrika-megalopoli",
+  "nameGr": "Επείγων Έλεγχος Οσμής Καμένου σε Ηλεκτρικά στη Μεγαλόπολη",
+  "nameEn": "Emergency Electrical Burning Smell Check in Μεγαλόπολη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος ηλεκτρικής εγκατάστασης στη Μεγαλόπολη σε περίπτωση οσμής καμένου για πρόληψη πυρκαγιάς και άμεση αποκατάσταση. SEO intent: καλύπτει high-conversion queries «μυρίζει καμένο ρεύμα Μεγαλόπολη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "μυρίζει καμένο ρεύμα Μεγαλόπολη",
+    "ηλεκτρολόγος επείγον Μεγαλόπολη",
+    "βλάβη πίνακα καμένη μυρωδιά",
+    "κίνδυνος πυρκαγιάς ηλεκτρικά",
+    "άμεσος ηλεκτρολογικός έλεγχος"
+  ],
+  "status": "researched"
+}

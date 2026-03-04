@@ -1,0 +1,20 @@
+{
+  "id": "emergency-smart-alarm-false-trigger-diagnostics-megalopoli",
+  "slug": "epigousa-diagnosi-psevdos-synagermou-smart-megalopoli",
+  "nameGr": "Επείγουσα Διάγνωση Ψευδοσυναγερμού Smart στη Μεγαλόπολη",
+  "nameEn": "Emergency Smart Alarm False Trigger Diagnostics in Μεγαλόπολη",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα διάγνωση ψευδοσυναγερμών smart συστήματος στη Μεγαλόπολη για άμεση σταθεροποίηση και αποφυγή συνεχών ειδοποιήσεων. SEO intent: καλύπτει αναζητήσεις «συναγερμός χτυπάει χωρίς λόγο Μεγαλόπολη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "συναγερμός χτυπάει χωρίς λόγο Μεγαλόπολη",
+    "τεχνικός συναγερμού επείγον",
+    "ψευδοσυναγερμός smart home",
+    "ρύθμιση αισθητήρων συναγερμού",
+    "service alarm system τώρα"
+  ],
+  "status": "researched"
+}
