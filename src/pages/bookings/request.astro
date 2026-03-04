@@ -66,6 +66,8 @@ const statusView = statusStyles[moderationState];
 const submittedAt = booking ? toDateString(booking.submittedAt) : null;
 const reviewedAt = latestAction ? toDateString(latestAction.actedAt) : null;
 const justSubmitted = statusParam === 'submitted';
+const hasLookupError = statusParam === 'error';
+const hasInvalidLookup = statusParam === 'invalid';
 const contactDetails = booking
   ? [safeText(booking.email, ''), safeText(booking.phone, '')].filter(Boolean).join(' • ') || 'Δεν έχουν καταχωρηθεί'
   : '';
@@ -88,6 +90,18 @@ const statusPills: Array<{ key: BookingModerationState; label: string }> = [
     {justSubmitted && (
       <div class="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-900">
         Το αίτημά σας υποβλήθηκε επιτυχώς. Κρατήστε αυτό το link για να παρακολουθείτε την εξέλιξη.
+      </div>
+    )}
+
+    {hasInvalidLookup && (
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
+        Το αίτημα δεν περιέχει έγκυρα στοιχεία αναζήτησης. Ελέγξτε το link και δοκιμάστε ξανά.
+      </div>
+    )}
+
+    {hasLookupError && (
+      <div class="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-900">
+        Προέκυψε προσωρινό σφάλμα φόρτωσης της κατάστασης. Κάντε ανανέωση σε λίγα δευτερόλεπτα.
       </div>
     )}
 

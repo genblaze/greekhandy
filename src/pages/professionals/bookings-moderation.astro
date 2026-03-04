@@ -73,6 +73,7 @@ const groupedBookings: Record<BookingModerationState, typeof bookings> = {
 };
 
 const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejected'];
+const hasAnyBookings = bookings.length > 0;
 ---
 
 <Layout title="Lifecycle Moderation Κρατήσεων | GreekHandy" description="Εσωτερική σελίδα διαχείρισης και μεταβάσεων κατάστασης αιτημάτων κράτησης.">
@@ -97,6 +98,13 @@ const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejecte
         {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα.</p>}
         {status === 'unauthorized' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Μη εξουσιοδοτημένη ενέργεια moderation.</p>}
 
+        <div data-booking-moderation-loading class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite">
+          <span class="inline-flex items-center gap-2">
+            <span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-blue-300 border-t-blue-700"></span>
+            Καταχώρηση μετάβασης κατάστασης... ενημερώνουμε το lifecycle του αιτήματος.
+          </span>
+        </div>
+
         <section class="mt-8 grid gap-3 sm:grid-cols-3">
           {orderedStates.map((state) => (
             <div class={`rounded-xl border p-4 ${stateMeta[state].badge}`}>
@@ -107,8 +115,11 @@ const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejecte
           ))}
         </section>
 
-        {bookings.length === 0 && (
-          <p class="mt-6 rounded-xl border border-gray-200 bg-white p-4 text-gray-700">Δεν υπάρχουν καταχωρημένα αιτήματα κράτησης.</p>
+        {!hasAnyBookings && (
+          <div class="mt-6 rounded-2xl border border-dashed border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 text-blue-900">
+            <p class="font-semibold">Δεν υπάρχουν ακόμη καταχωρημένα αιτήματα κράτησης.</p>
+            <p class="mt-1 text-sm text-blue-800">Μόλις υποβληθεί το πρώτο αίτημα, θα εμφανιστεί εδώ με πλήρες lifecycle (pending/approved/rejected).</p>
+          </div>
         )}
 
         {orderedStates.map((state) => (
@@ -153,12 +164,12 @@ const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejecte
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state)
                     .map((target) => (
-                      <form action="/api/bookings/moderate" method="POST">
+                      <form action="/api/bookings/moderate" method="POST" data-moderation-form>
                         <input type="hidden" name="moderationKey" value={moderationKey} />
                         <input type="hidden" name="bookingId" value={bookingId} />
                         <input type="hidden" name="expectedState" value={resolution.state} />
                         <input type="hidden" name="targetState" value={target.state} />
-                        <button type="submit" class={`rounded-lg px-4 py-2 text-sm font-semibold ${target.buttonClass}`}>{target.label}</button>
+                        <button type="submit" data-default-label={target.label} class={`rounded-lg px-4 py-2 text-sm font-semibold ${target.buttonClass}`}>{target.label}</button>
                       </form>
                     ))}
                 </div>
@@ -168,5 +179,34 @@ const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejecte
         ))}
       </>
     )}
+    <script is:inline>
+      (() => {
+        const loadingBanner = document.querySelector('[data-booking-moderation-loading]');
+        const forms = document.querySelectorAll('[data-moderation-form]');
+
+        for (const form of forms) {
+          if (!(form instanceof HTMLFormElement)) continue;
+          form.addEventListener('submit', () => {
+            if (loadingBanner instanceof HTMLElement) {
+              loadingBanner.classList.remove('hidden');
+            }
+
+            const button = form.querySelector('button[type="submit"]');
+            if (button instanceof HTMLButtonElement) {
+              const defaultLabel = button.getAttribute('data-default-label') || button.textContent || 'Ενημέρωση';
+              button.disabled = true;
+              button.setAttribute('aria-busy', 'true');
+              button.textContent = 'Ενημέρωση...';
+
+              window.setTimeout(() => {
+                button.disabled = false;
+                button.removeAttribute('aria-busy');
+                button.textContent = defaultLabel;
+              }, 12000);
+            }
+          });
+        }
+      })();
+    </script>
   </main>
 </Layout>
