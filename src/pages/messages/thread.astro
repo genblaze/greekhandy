@@ -312,6 +312,8 @@ const historyStateRecoveryHint = showLoadingState
     : threadMessages.length === 0
       ? 'Το composer παραμένει διαθέσιμο για εκκίνηση της συνομιλίας όταν επιτρέπεται αποστολή.'
       : 'Η ανάγνωση ιστορικού είναι σταθερή και έτοιμη για επόμενο triage βήμα.';
+const historyStateAriaRole = threadLoadError && !hasPartialThreadHistory ? 'alert' : 'status';
+const historyStateAriaLive = threadLoadError && !hasPartialThreadHistory ? 'assertive' : 'polite';
 const threadStatePrimaryActionLabel = hasMissingParams
   ? 'Επιστροφή στη λίστα'
   : hasAccessIssue
@@ -333,6 +335,39 @@ if (!threadMutedByModeration && threadHasAdminHidden) moderationConsequences.pus
 if (threadReviewedByModeration) moderationConsequences.push('Υπάρχει ενεργή αναφορά και απαιτείται παρακολούθηση κατάστασης.');
 if (threadRejectedByModeration) moderationConsequences.push('Η αναφορά έχει κλείσει χωρίς επιπλέον περιορισμό.');
 if (moderationConsequences.length === 0) moderationConsequences.push('Δεν υπάρχει ενεργός περιορισμός στη ροή του thread.');
+const threadReadinessLabel = showLoadingState
+  ? 'Thread σε συγχρονισμό'
+  : threadBlockedByModeration
+    ? 'Thread με κλειδωμένη αποστολή'
+    : threadMutedByModeration
+      ? 'Thread με πλήρη περιορισμό ορατότητας'
+      : threadReviewedByModeration
+        ? 'Thread σε ενεργό moderation έλεγχο'
+        : canReply
+          ? 'Thread έτοιμο για απάντηση'
+          : 'Thread με περιορισμένη αλληλεπίδραση';
+const threadReadinessClass = showLoadingState
+  ? 'border-sky-300 bg-sky-100 text-sky-900'
+  : threadBlockedByModeration
+    ? 'border-rose-300 bg-rose-100 text-rose-900'
+    : threadMutedByModeration || threadHasAdminHidden
+      ? 'border-orange-300 bg-orange-100 text-orange-900'
+      : threadReviewedByModeration
+        ? 'border-indigo-300 bg-indigo-100 text-indigo-900'
+        : canReply
+          ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
+          : 'border-amber-300 bg-amber-100 text-amber-900';
+const threadReadinessHint = showLoadingState
+  ? 'Γίνεται ανάκτηση ιστορικού και κατάστασης moderation.'
+  : threadBlockedByModeration
+    ? 'Απαιτείται ανάγνωση ιστορικού μέχρι να αρθεί ο περιορισμός αποστολής.'
+    : threadMutedByModeration
+      ? 'Το περιεχόμενο είναι πλήρως κρυφό και το composer παραμένει ανενεργό.'
+      : threadReviewedByModeration
+        ? 'Η αναφορά είναι σε εξέλιξη, ενώ η αποστολή παραμένει διαθέσιμη.'
+        : canReply
+          ? 'Η συνομιλία είναι ενεργή και μπορείτε να απαντήσετε άμεσα.'
+          : 'Ελέγξτε παραλήπτη/παραμέτρους πριν τη συνέχεια.';
 const messageOrderById = new Map<string, number>();
 threadMessages.forEach((message, index) => {
   messageOrderById.set(message.id, index + 1);
