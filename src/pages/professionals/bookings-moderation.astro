@@ -168,7 +168,7 @@ const hasAnyBookings = bookings.length > 0;
           </span>
         </div>
 
-        <div class="mt-6 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+        <div id="booking-lifecycle-guardrails" class="mt-6 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700" role="note" aria-live="polite">
           <p class="font-semibold text-slate-900">Flow μεταβάσεων</p>
           <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Από <strong>approved</strong> επιτρέπεται αίτημα αλλαγής (<strong>reschedule_requested</strong>), που κλείνει με <strong>approved</strong> ή <strong>reschedule_rejected</strong>.</p>
         </div>
@@ -245,7 +245,7 @@ const hasAnyBookings = bookings.length > 0;
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state && isAllowedTransition(resolution.state, target.state))
                     .map((target) => (
-                      <form action="/api/bookings/moderate" method="POST" data-moderation-form data-booking-id={bookingId} data-from-state={resolution.state} data-to-state={target.state} aria-label={`Μετάβαση κράτησης ${bookingId} από ${resolution.state} σε ${target.state}`}>
+                      <form action="/api/bookings/moderate" method="POST" data-moderation-form data-booking-id={bookingId} data-from-state={resolution.state} data-to-state={target.state} aria-label={`Μετάβαση κράτησης ${bookingId} από ${resolution.state} σε ${target.state}`} aria-describedby="booking-lifecycle-guardrails">
                         <input type="hidden" name="moderationKey" value={moderationKey} />
                         <input type="hidden" name="bookingId" value={bookingId} />
                         <input type="hidden" name="expectedState" value={resolution.state} />
