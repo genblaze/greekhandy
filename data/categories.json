@@ -1,0 +1,242 @@
+[
+  {
+    "id": "electrician",
+    "nameEn": "Electrician",
+    "nameGr": "Ηλεκτρολόγος",
+    "slug": "ilektrologos",
+    "status": "researched",
+    "subCategories": ["residential", "commercial", "industrial"]
+  },
+  {
+    "id": "plumber",
+    "nameEn": "Plumber",
+    "nameGr": "Υδραυλικός",
+    "slug": "ydravlikos",
+    "status": "researched",
+    "subCategories": ["residential", "commercial", "emergency"]
+  },
+  {
+    "id": "painter",
+    "nameEn": "Painter",
+    "nameGr": "Ελαιοχρωματιστής",
+    "slug": "elaioxromatistis",
+    "status": "researched",
+    "subCategories": ["interior", "exterior", "decorative"]
+  },
+  {
+    "id": "locksmith",
+    "nameEn": "Locksmith",
+    "nameGr": "Κλειδαράς",
+    "slug": "kleidaras",
+    "status": "researched",
+    "subCategories": ["emergency", "installation", "automotive"]
+  },
+  {
+    "id": "carpenter",
+    "nameEn": "Carpenter",
+    "nameGr": "Ξυλουργός",
+    "slug": "xylourgos",
+    "status": "researched",
+    "subCategories": ["furniture", "doors-windows", "custom"]
+  },
+  {
+    "id": "aluminum-worker",
+    "nameEn": "Aluminum Worker",
+    "nameGr": "Αλουμινάς",
+    "slug": "alouminas",
+    "status": "researched",
+    "subCategories": ["windows", "doors", "frames"]
+  },
+  {
+    "id": "ironworker",
+    "nameEn": "Ironworker",
+    "nameGr": "Σιδεράς",
+    "slug": "sideras",
+    "status": "researched",
+    "subCategories": ["railings", "gates", "structures"]
+  },
+  {
+    "id": "plasterer",
+    "nameEn": "Plasterer",
+    "nameGr": "Γυψαδόρος",
+    "slug": "gypsadoros",
+    "status": "researched",
+    "subCategories": ["walls", "ceilings", "decorative"]
+  },
+  {
+    "id": "tiler",
+    "nameEn": "Tiler",
+    "nameGr": "Πλακάς",
+    "slug": "plakas",
+    "status": "researched",
+    "subCategories": ["bathroom", "kitchen", "floor"]
+  },
+  {
+    "id": "insulation-worker",
+    "nameEn": "Insulation Worker",
+    "nameGr": "Μονωτής",
+    "slug": "monotis",
+    "status": "researched",
+    "subCategories": ["thermal", "waterproof", "acoustic"]
+  },
+  {
+    "id": "house-cleaning",
+    "nameEn": "House Cleaning",
+    "nameGr": "Καθαρισμός Σπιτιού",
+    "slug": "katharismos-spitiou",
+    "status": "researched",
+    "subCategories": ["regular", "deep-clean", "move-in-out"]
+  },
+  {
+    "id": "carpet-cleaning",
+    "nameEn": "Carpet Cleaning",
+    "nameGr": "Καθαρισμός Χαλιών",
+    "slug": "katharismos-xalion",
+    "status": "researched",
+    "subCategories": ["residential", "commercial", "upholstery"]
+  },
+  {
+    "id": "pest-control",
+    "nameEn": "Pest Control",
+    "nameGr": "Απεντόμωση",
+    "slug": "apentomosi",
+    "status": "researched",
+    "subCategories": ["insects", "rodents", "disinfection"]
+  },
+  {
+    "id": "drain-cleaning",
+    "nameEn": "Drain Cleaning",
+    "nameGr": "Αποφράξεις",
+    "slug": "apofraxeis",
+    "status": "researched",
+    "subCategories": ["residential", "commercial", "emergency"]
+  },
+  {
+    "id": "housekeeper",
+    "nameEn": "Housekeeper",
+    "nameGr": "Οικιακή Βοηθός",
+    "slug": "oikiaki-voithos",
+    "status": "researched",
+    "subCategories": ["daily", "live-in", "elderly-care"]
+  },
+  {
+    "id": "renovation",
+    "nameEn": "Renovation",
+    "nameGr": "Ανακαίνιση",
+    "slug": "anakenisi",
+    "status": "researched",
+    "subCategories": ["bathroom", "kitchen", "full-home"]
+  },
+  {
+    "id": "architect",
+    "nameEn": "Architect",
+    "nameGr": "Αρχιτέκτονας",
+    "slug": "arxitektonas",
+    "status": "researched",
+    "subCategories": ["residential", "commercial", "interior"]
+  },
+  {
+    "id": "civil-engineer",
+    "nameEn": "Civil Engineer",
+    "nameGr": "Πολιτικός Μηχανικός",
+    "slug": "politikos-mixanikos",
+    "status": "researched",
+    "subCategories": ["structural", "permits", "inspections"]
+  },
+  {
+    "id": "moving-services",
+    "nameEn": "Moving Services",
+    "nameGr": "Μεταφορές",
+    "slug": "metafores",
+    "status": "researched",
+    "subCategories": ["local", "long-distance", "office"]
+  },
+  {
+    "id": "demolition",
+    "nameEn": "Demolition",
+    "nameGr": "Κατεδαφίσεις",
+    "slug": "katedafiseis",
+    "status": "researched",
+    "subCategories": ["interior", "exterior", "debris-removal"]
+  },
+  {
+    "id": "computer-technician",
+    "nameEn": "Computer Technician",
+    "nameGr": "Τεχνικός Υπολογιστών",
+    "slug": "texnikos-ypologiston",
+    "status": "researched",
+    "subCategories": ["repair", "networking", "data-recovery"]
+  },
+  {
+    "id": "ac-installation",
+    "nameEn": "AC Installation",
+    "nameGr": "Εγκατάσταση Κλιματιστικών",
+    "slug": "egkatastasi-klimatistikon",
+    "status": "researched",
+    "subCategories": ["split", "central", "maintenance"]
+  },
+  {
+    "id": "alarms-cctv",
+    "nameEn": "Alarms & CCTV",
+    "nameGr": "Συναγερμοί & Κάμερες",
+    "slug": "synagermi-kameres",
+    "status": "researched",
+    "subCategories": ["home", "business", "monitoring"]
+  },
+  {
+    "id": "gardener",
+    "nameEn": "Gardener",
+    "nameGr": "Κηπουρός",
+    "slug": "kipouros",
+    "status": "researched",
+    "subCategories": ["maintenance", "design", "landscaping"]
+  },
+  {
+    "id": "tree-pruning",
+    "nameEn": "Tree Pruning",
+    "nameGr": "Κλάδεμα Δέντρων",
+    "slug": "kladema-dentron",
+    "status": "researched",
+    "subCategories": ["pruning", "removal", "stump-grinding"]
+  },
+  {
+    "id": "pool-maintenance",
+    "nameEn": "Pool Maintenance",
+    "nameGr": "Πισίνες",
+    "slug": "pisines",
+    "status": "researched",
+    "subCategories": ["cleaning", "repair", "installation"]
+  },
+  {
+    "id": "auto-mechanic",
+    "nameEn": "Auto Mechanic",
+    "nameGr": "Μηχανικός Αυτοκινήτων",
+    "slug": "mixanikos-aftokinton",
+    "status": "researched",
+    "subCategories": ["service", "repair", "diagnostics"]
+  },
+  {
+    "id": "body-shop",
+    "nameEn": "Body Shop",
+    "nameGr": "Φανοποιός",
+    "slug": "fanopoios",
+    "status": "researched",
+    "subCategories": ["paint", "dent-repair", "collision"]
+  },
+  {
+    "id": "photographer",
+    "nameEn": "Photographer",
+    "nameGr": "Φωτογράφος",
+    "slug": "fotografos",
+    "status": "researched",
+    "subCategories": ["wedding", "event", "commercial"]
+  },
+  {
+    "id": "private-tutoring",
+    "nameEn": "Private Tutoring",
+    "nameGr": "Ιδιαίτερα Μαθήματα",
+    "slug": "idiaitera-mathimata",
+    "status": "researched",
+    "subCategories": ["school", "university", "languages"]
+  }
+]
