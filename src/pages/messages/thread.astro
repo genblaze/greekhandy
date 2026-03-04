@@ -576,6 +576,7 @@ for (const message of threadMessages) {
       )}
     </section>
     <p id="thread-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
+    <p id="thread-focus-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <p id="thread-draft-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <div id="thread-offline-alert" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
       <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
@@ -680,25 +681,26 @@ for (const message of threadMessages) {
             <p class="mt-1">{moderationReplyGuidance}</p>
             <p class="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] opacity-80">Σύνοψη impact: {threadModerationImpactLabel}</p>
           </div>
-          <ul class="mt-2 grid gap-1 text-xs md:grid-cols-2">
+          <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.12em]">Συνέπειες moderation</p>
+          <ul class="mt-1 grid gap-1 text-xs md:grid-cols-2" aria-label="Συνέπειες moderation για το thread">
             {moderationConsequences.map((item) => (
               <li class="rounded-md border border-current/20 bg-white/70 px-2.5 py-1.5">{item}</li>
             ))}
           </ul>
-          <div class="mt-2 grid gap-2 text-xs sm:grid-cols-3">
+          <dl class="mt-2 grid gap-2 text-xs sm:grid-cols-3" aria-label="Σύνοψη κατάστασης moderation">
             <div class="rounded-md border border-current/20 bg-white/75 px-2.5 py-2">
-              <p class="font-semibold uppercase tracking-[0.08em] opacity-80">Αποστολή</p>
-              <p class="mt-1 font-semibold">{moderationSendStateLabel}</p>
+              <dt class="font-semibold uppercase tracking-[0.08em] opacity-80">Αποστολή</dt>
+              <dd class="mt-1 font-semibold">{moderationSendStateLabel}</dd>
             </div>
             <div class="rounded-md border border-current/20 bg-white/75 px-2.5 py-2">
-              <p class="font-semibold uppercase tracking-[0.08em] opacity-80">Ορατότητα</p>
-              <p class="mt-1 font-semibold">{moderationVisibilityStateLabel}</p>
+              <dt class="font-semibold uppercase tracking-[0.08em] opacity-80">Ορατότητα</dt>
+              <dd class="mt-1 font-semibold">{moderationVisibilityStateLabel}</dd>
             </div>
             <div class="rounded-md border border-current/20 bg-white/75 px-2.5 py-2">
-              <p class="font-semibold uppercase tracking-[0.08em] opacity-80">Αναφορές</p>
-              <p class="mt-1 font-semibold">{moderationReviewStateLabel}</p>
+              <dt class="font-semibold uppercase tracking-[0.08em] opacity-80">Αναφορές</dt>
+              <dd class="mt-1 font-semibold">{moderationReviewStateLabel}</dd>
             </div>
-          </div>
+          </dl>
         </div>
 
         <section class="mt-5 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 shadow-sm" aria-label="Ροή απόκρισης thread">
@@ -912,6 +914,7 @@ for (const message of threadMessages) {
               const messageBodyId = `message-body-${messageIdToken}`;
               const messageDirectionId = `message-direction-${messageIdToken}`;
               const reportSummaryId = `report-summary-${messageIdToken}`;
+              const reportFeedbackId = `report-feedback-${messageIdToken}`;
               const isLatestMessage = latest?.id === message.id;
               const messageOrder = messageOrderById.get(message.id) ?? 0;
               const messageSenderLabel = own ? 'Εσείς' : (message.senderName || 'Συνεργάτης');
@@ -980,8 +983,10 @@ for (const message of threadMessages) {
                           class="js-pending-form mt-3 space-y-2"
                           data-pending-live-label="Η αναφορά υποβάλλεται."
                           data-pending-timeout-label="Η υποβολή αναφοράς καθυστέρησε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
+                          data-pending-idle-label="Έτοιμη αναφορά για υποβολή."
+                          data-pending-recovery-label="Η φόρμα αναφοράς επανήλθε. Μπορείτε να δοκιμάσετε ξανά."
                           data-pending-timeout-ms="16000"
-                          aria-describedby={`${reportHintId} thread-submit-live`}
+                          aria-describedby={`${reportHintId} ${reportFeedbackId} thread-submit-live`}
                         >
                           <input type="hidden" name="threadId" value={threadId} />
                           <input type="hidden" name="messageId" value={message.id} />
@@ -1007,6 +1012,7 @@ for (const message of threadMessages) {
                           <button type="submit" data-default-label="Υποβολή αναφοράς" data-pending-label="Υποβολή..." class="rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100 disabled:cursor-not-allowed disabled:opacity-65">
                             Υποβολή αναφοράς
                           </button>
+                          <p id={reportFeedbackId} data-form-feedback class="text-[11px] text-amber-900" role="status" aria-live="polite" aria-atomic="true">Έτοιμη αναφορά για υποβολή.</p>
                         </form>
                       </details>
                     )}
@@ -1032,20 +1038,20 @@ for (const message of threadMessages) {
             <p class="font-semibold">Ιεραρχία ενεργειών</p>
             <p class="mt-1">Primary CTA: αποστολή απάντησης από τον composer. Secondary CTA: έλεγχος ιστορικού/αναφορών πριν από νέα αποστολή.</p>
           </div>
-          <div class="thread-interaction-snapshot mt-3 grid gap-2 text-xs sm:grid-cols-3">
+          <dl class="thread-interaction-snapshot mt-3 grid gap-2 text-xs sm:grid-cols-3" aria-label="Τρέχουσα κατάσταση moderation για ενέργειες">
             <div class="rounded-lg border border-slate-200 bg-white px-3 py-2">
-              <p class="font-semibold uppercase tracking-[0.08em] text-slate-500">Αποστολή</p>
-              <p class="mt-1 font-semibold text-slate-900">{moderationSendStateLabel}</p>
+              <dt class="font-semibold uppercase tracking-[0.08em] text-slate-500">Αποστολή</dt>
+              <dd class="mt-1 font-semibold text-slate-900">{moderationSendStateLabel}</dd>
             </div>
             <div class="rounded-lg border border-slate-200 bg-white px-3 py-2">
-              <p class="font-semibold uppercase tracking-[0.08em] text-slate-500">Ορατότητα</p>
-              <p class="mt-1 font-semibold text-slate-900">{moderationVisibilityStateLabel}</p>
+              <dt class="font-semibold uppercase tracking-[0.08em] text-slate-500">Ορατότητα</dt>
+              <dd class="mt-1 font-semibold text-slate-900">{moderationVisibilityStateLabel}</dd>
             </div>
             <div class="rounded-lg border border-slate-200 bg-white px-3 py-2">
-              <p class="font-semibold uppercase tracking-[0.08em] text-slate-500">Αναφορές</p>
-              <p class="mt-1 font-semibold text-slate-900">{moderationReviewStateLabel}</p>
+              <dt class="font-semibold uppercase tracking-[0.08em] text-slate-500">Αναφορές</dt>
+              <dd class="mt-1 font-semibold text-slate-900">{moderationReviewStateLabel}</dd>
             </div>
-          </div>
+          </dl>
 
           {!canReply && threadBlockedByModeration && (
             <div class="thread-alert thread-alert--rose mt-4" role="alert">
@@ -1078,6 +1084,8 @@ for (const message of threadMessages) {
               data-clear-composer-draft-on-load={shouldClearComposerDraftOnLoad ? 'true' : 'false'}
               data-pending-live-label="Η αποστολή μηνύματος εκτελείται."
               data-pending-timeout-label="Η αποστολή καθυστέρησε. Ελέγξτε το δίκτυο και δοκιμάστε ξανά."
+              data-pending-idle-label="Το composer είναι έτοιμο για αποστολή."
+              data-pending-recovery-label="Η αποστολή επανήλθε. Ελέγξτε το μήνυμα και προσπαθήστε ξανά."
               data-pending-timeout-ms="18000"
               aria-labelledby="thread-composer-title"
               aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live composer-submit-live thread-offline-alert"
@@ -1123,7 +1131,7 @@ for (const message of threadMessages) {
                 <p id="composer-error" class="hidden font-medium text-rose-700" role="alert">Το μήνυμα δεν μπορεί να είναι κενό.</p>
                 <p id="composer-count" class="text-slate-500">0 / 2000</p>
               </div>
-              <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite"></p>
+              <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite" aria-atomic="true"></p>
               <p id="composer-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
               <button type="submit" data-default-label="Αποστολή" data-pending-label="Αποστολή..." disabled class="mt-3 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-65">Αποστολή</button>
             </form>
@@ -1527,6 +1535,28 @@ for (const message of threadMessages) {
   <script is:inline>
     (() => {
       const toasts = Array.from(document.querySelectorAll('.js-thread-toast'));
+      const focusLiveRegion = document.querySelector('#thread-focus-live');
+      const isCompactViewport = () => typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 640px)').matches;
+      const announceFocusState = (message) => {
+        if (focusLiveRegion instanceof HTMLElement) focusLiveRegion.textContent = message;
+      };
+      const focusElement = (element, options = {}) => {
+        if (!(element instanceof HTMLElement)) return;
+        const preventScroll = options.preventScroll === true;
+        if (typeof element.focus === 'function') {
+          try {
+            element.focus({ preventScroll });
+          } catch {
+            element.focus();
+          }
+        }
+        if (!preventScroll && isCompactViewport() && typeof element.scrollIntoView === 'function') {
+          element.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+        if (typeof options.announcement === 'string' && options.announcement) {
+          announceFocusState(options.announcement);
+        }
+      };
       const dismissToast = (toast) => {
         if (!(toast instanceof HTMLElement) || toast.dataset.removed === 'true') return;
         toast.dataset.removed = 'true';
@@ -1536,7 +1566,12 @@ for (const message of threadMessages) {
         toast.classList.add('is-dismissing');
         window.setTimeout(() => {
           toast.remove();
-          if (focusFallback instanceof HTMLElement) focusFallback.focus();
+          if (focusFallback instanceof HTMLElement) {
+            focusElement(focusFallback, {
+              preventScroll: isCompactViewport(),
+              announcement: 'Η εστίαση επέστρεψε στην κύρια ενότητα thread.'
+            });
+          }
         }, 150);
       };
 
@@ -1558,7 +1593,13 @@ for (const message of threadMessages) {
 
       const focusToast = document.querySelector('.js-thread-toast[data-focus-on-load="true"]');
       if (focusToast instanceof HTMLElement) {
-        requestAnimationFrame(() => focusToast.focus());
+        const shouldMoveFocus = focusToast.getAttribute('role') === 'alert' || !isCompactViewport();
+        if (shouldMoveFocus) {
+          requestAnimationFrame(() => focusElement(focusToast, {
+            preventScroll: isCompactViewport(),
+            announcement: 'Εστίαση στην τελευταία ειδοποίηση συνομιλίας.'
+          }));
+        }
       }
 
       const highlightMessageFromHash = () => {
@@ -1641,6 +1682,21 @@ for (const message of threadMessages) {
         if (scopedLiveRegion instanceof HTMLElement) scopedLiveRegion.textContent = message;
         if (globalSubmitLive instanceof HTMLElement) globalSubmitLive.textContent = message;
       };
+      const setFormFeedback = (form, message, tone = 'neutral') => {
+        const feedback = form.querySelector('[data-form-feedback]');
+        if (!(feedback instanceof HTMLElement)) return;
+        const toneClass = tone === 'error'
+          ? 'text-rose-700'
+          : tone === 'pending'
+            ? 'text-sky-700'
+            : 'text-amber-900';
+        feedback.className = `text-[11px] ${toneClass}`;
+        feedback.textContent = message;
+      };
+      const resetFormFeedback = (form) => {
+        const idleLabel = form.getAttribute('data-pending-idle-label') || 'Έτοιμο για υποβολή.';
+        setFormFeedback(form, idleLabel, 'neutral');
+      };
       const syncOfflineAlert = () => {
         if (!(offlineAlert instanceof HTMLElement)) return;
         const offline = isOffline();
@@ -1648,6 +1704,13 @@ for (const message of threadMessages) {
         syncOfflineSubmitAvailability();
         refreshComposerAvailability();
         if (!offline) {
+          for (const form of pendingForms) {
+            if (form.getAttribute('aria-busy') === 'true') continue;
+            const feedback = form.querySelector('[data-form-feedback]');
+            if (!(feedback instanceof HTMLElement)) continue;
+            if (typeof feedback.textContent !== 'string' || !feedback.textContent.includes('Δεν υπάρχει σύνδεση')) continue;
+            resetFormFeedback(form);
+          }
           if (
             globalSubmitLive instanceof HTMLElement
             && typeof globalSubmitLive.textContent === 'string'
@@ -1655,7 +1718,12 @@ for (const message of threadMessages) {
           ) globalSubmitLive.textContent = '';
           return;
         }
-        for (const form of pendingForms) announcePendingState(form, 'Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.');
+        for (const form of pendingForms) {
+          announcePendingState(form, 'Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.');
+          if (form.getAttribute('aria-busy') !== 'true') {
+            setFormFeedback(form, 'Δεν υπάρχει σύνδεση. Η φόρμα θα ενεργοποιηθεί όταν επανέλθει το δίκτυο.', 'error');
+          }
+        }
       };
       const setFormPending = (form, isPending) => {
         const submitButton = form.querySelector('button[type="submit"]');
@@ -1679,12 +1747,16 @@ for (const message of threadMessages) {
           form.setAttribute('data-submit-label', defaultLabel);
           submitButton.textContent = pendingLabel;
           submitButton.setAttribute('aria-busy', 'true');
+          setFormFeedback(form, form.getAttribute('data-pending-live-label') || 'Η υποβολή εκτελείται.', 'pending');
           const timeoutMs = Number(form.getAttribute('data-pending-timeout-ms') || '15000');
           if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
             const timeoutId = window.setTimeout(() => {
               if (form.getAttribute('aria-busy') !== 'true') return;
               setFormPending(form, false);
-              announcePendingState(form, form.getAttribute('data-pending-timeout-label') || 'Η υποβολή καθυστέρησε. Δοκιμάστε ξανά.');
+              const timeoutLabel = form.getAttribute('data-pending-timeout-label') || 'Η υποβολή καθυστέρησε. Δοκιμάστε ξανά.';
+              const recoveryLabel = form.getAttribute('data-pending-recovery-label') || 'Η φόρμα επανήλθε. Μπορείτε να δοκιμάσετε ξανά.';
+              announcePendingState(form, timeoutLabel);
+              setFormFeedback(form, `${timeoutLabel} ${recoveryLabel}`, 'error');
               if (form.classList.contains('js-composer-form')) {
                 const composerState = form.querySelector('#composer-state');
                 if (composerState instanceof HTMLElement) {
@@ -1693,6 +1765,18 @@ for (const message of threadMessages) {
                 }
                 const composerLive = form.querySelector('#composer-live');
                 if (composerLive instanceof HTMLElement) composerLive.textContent = 'Η αποστολή έληξε χρονικά. Δοκιμάστε ξανά.';
+                const composerTextarea = form.querySelector('textarea[name="message"]');
+                if (composerTextarea instanceof HTMLTextAreaElement) {
+                  focusElement(composerTextarea, {
+                    preventScroll: isCompactViewport(),
+                    announcement: 'Η αποστολή καθυστέρησε και η εστίαση επέστρεψε στο πεδίο μηνύματος.'
+                  });
+                }
+              } else {
+                focusElement(submitButton, {
+                  preventScroll: isCompactViewport(),
+                  announcement: 'Η φόρμα επανήλθε μετά από καθυστέρηση και είναι ξανά διαθέσιμη.'
+                });
               }
             }, timeoutMs);
             pendingTimeouts.set(form, timeoutId);
@@ -1812,8 +1896,12 @@ for (const message of threadMessages) {
               textarea.setAttribute('aria-invalid', 'true');
               setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
               announcePendingState(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.');
+              setFormFeedback(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.', 'error');
               textarea.reportValidity();
-              textarea.focus();
+              focusElement(textarea, {
+                preventScroll: isCompactViewport(),
+                announcement: 'Η εστίαση μεταφέρθηκε στο πεδίο μηνύματος.'
+              });
               return;
             }
             setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
@@ -1828,6 +1916,7 @@ for (const message of threadMessages) {
           if (isOffline()) {
             event.preventDefault();
             announcePendingState(form, 'Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.');
+            setFormFeedback(form, 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου και δοκιμάστε ξανά.', 'error');
             if (isComposerForm) {
               setComposerState('error', 'Δεν υπάρχει σύνδεση για αποστολή.');
               if (live) live.textContent = 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου.';
@@ -1838,12 +1927,21 @@ for (const message of threadMessages) {
           if (form.getAttribute('aria-busy') === 'true') {
             event.preventDefault();
             announcePendingState(form, 'Η υποβολή βρίσκεται ήδη σε εξέλιξη.');
+            setFormFeedback(form, 'Η υποβολή βρίσκεται ήδη σε εξέλιξη.', 'error');
             return;
           }
           if (!form.checkValidity()) {
             event.preventDefault();
+            const invalidField = form.querySelector(':invalid');
+            if (invalidField instanceof HTMLElement) {
+              focusElement(invalidField, {
+                preventScroll: isCompactViewport(),
+                announcement: 'Η εστίαση μεταφέρθηκε στο μη έγκυρο πεδίο.'
+              });
+            }
             form.reportValidity();
             announcePendingState(form, 'Ελέγξτε τα πεδία και προσπαθήστε ξανά.');
+            setFormFeedback(form, 'Ελέγξτε τα πεδία και δοκιμάστε ξανά.', 'error');
             return;
           }
           if (textarea instanceof HTMLTextAreaElement && textarea.value.trim().length === 0) {
@@ -1853,8 +1951,12 @@ for (const message of threadMessages) {
             textarea.setAttribute('aria-invalid', 'true');
             setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
             announcePendingState(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.');
+            setFormFeedback(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.', 'error');
             textarea.reportValidity();
-            textarea.focus();
+            focusElement(textarea, {
+              preventScroll: isCompactViewport(),
+              announcement: 'Η εστίαση μεταφέρθηκε στο πεδίο μηνύματος.'
+            });
             return;
           }
           if (isComposerForm) {
@@ -1862,6 +1964,7 @@ for (const message of threadMessages) {
             if (live) live.textContent = 'Αποστολή μηνύματος...';
           }
           announcePendingState(form, form.getAttribute('data-pending-live-label') || 'Η υποβολή εκτελείται.');
+          setFormFeedback(form, form.getAttribute('data-pending-live-label') || 'Η υποβολή εκτελείται.', 'pending');
           setFormPending(form, true);
         });
       }
@@ -1869,8 +1972,10 @@ for (const message of threadMessages) {
       window.addEventListener('pageshow', () => {
         for (const form of pendingForms) {
           setFormPending(form, false);
+          resetFormFeedback(form);
         }
         if (globalSubmitLive instanceof HTMLElement) globalSubmitLive.textContent = '';
+        announceFocusState('');
         const composerTextarea = document.querySelector('#composer-message');
         if (composerTextarea instanceof HTMLTextAreaElement) {
           composerTextarea.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1885,7 +1990,10 @@ for (const message of threadMessages) {
         const composerForm = document.querySelector('.js-composer-form');
         const composerInput = document.querySelector('#composer-message');
         if (composerForm instanceof HTMLFormElement && composerForm.dataset.focusComposer === 'true' && composerInput instanceof HTMLTextAreaElement) {
-          requestAnimationFrame(() => composerInput.focus());
+          requestAnimationFrame(() => focusElement(composerInput, {
+            preventScroll: isCompactViewport(),
+            announcement: 'Η εστίαση μεταφέρθηκε στο composer για νέα αποστολή.'
+          }));
         }
       }
     })();
