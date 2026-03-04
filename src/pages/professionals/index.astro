@@ -11,6 +11,8 @@ const profiles = ((profilesFile.default ?? profilesFile) as Array<{
   experienceYears: number;
   bio: string;
   services: string[];
+  profilePhotoUrl?: string;
+  portfolioPhotos?: string[];
   approved?: boolean;
   published?: boolean;
 }>).filter((profile) => profile.approved === true && profile.published === true);
@@ -30,6 +32,7 @@ const profiles = ((profilesFile.default ?? profilesFile) as Array<{
     <section class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
       {profiles.map(profile => (
         <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+          {profile.profilePhotoUrl && <img src={profile.profilePhotoUrl} alt={`Φωτογραφία ${profile.name}`} class="mb-4 h-44 w-full rounded-lg object-cover" loading="lazy" />}
           <p class="text-sm font-semibold text-blue-700">{profile.profession}</p>
           <h2 class="mt-1 text-xl font-bold text-gray-900">{profile.name}</h2>
           <p class="mt-1 text-sm text-gray-600">{profile.city} • {profile.experienceYears} χρόνια εμπειρίας</p>

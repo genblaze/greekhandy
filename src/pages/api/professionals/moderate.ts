@@ -74,6 +74,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         experienceYears: 0,
         bio: registration.bio,
         services: [],
+        profilePhotoUrl: '',
+        portfolioPhotos: [],
         phone: registration.phone,
         email: registration.email,
         createdFromRegistrationId: registrationId

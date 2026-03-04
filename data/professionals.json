@@ -4,41 +4,80 @@
     "name": "Νίκος Παπαδόπουλος",
     "profession": "Ηλεκτρολόγος Εγκαταστάτης",
     "city": "Αθήνα",
-    "areasServed": ["Αθήνα", "Πειραιάς", "Περιστέρι"],
+    "areasServed": [
+      "Αθήνα",
+      "Πειραιάς",
+      "Περιστέρι"
+    ],
     "approved": true,
     "published": true,
     "experienceYears": 14,
     "bio": "Αναλαμβάνω εγκαταστάσεις και επισκευές με έμφαση στην ασφάλεια και την καθαρή δουλειά. Εξειδίκευση σε ηλεκτρολογικούς πίνακες, φωτισμό και πιστοποιητικά.",
-    "services": ["Επισκευή Ηλεκτρολογικής Βλάβης", "Αναβάθμιση Ηλεκτρολογικού Πίνακα", "Εγκατάσταση Φωτισμού"],
+    "services": [
+      "Επισκευή Ηλεκτρολογικής Βλάβης",
+      "Αναβάθμιση Ηλεκτρολογικού Πίνακα",
+      "Εγκατάσταση Φωτισμού"
+    ],
     "phone": "2101234567",
-    "email": "nikos@example.com"
+    "email": "nikos@example.com",
+    "profilePhotoUrl": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=80",
+    "portfolioPhotos": [
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "slug": "maria-georgiou-ydravlikos",
     "name": "Μαρία Γεωργίου",
     "profession": "Υδραυλικός",
     "city": "Θεσσαλονίκη",
-    "areasServed": ["Θεσσαλονίκη", "Καλαμαριά", "Εύοσμος"],
+    "areasServed": [
+      "Θεσσαλονίκη",
+      "Καλαμαριά",
+      "Εύοσμος"
+    ],
     "approved": true,
     "published": true,
     "experienceYears": 10,
     "bio": "Προσφέρω άμεση διάγνωση και αξιόπιστες υδραυλικές λύσεις για κατοικίες και επαγγελματικούς χώρους.",
-    "services": ["Επισκευή Διαρροής Σωλήνων", "Εγκατάσταση Βρύσης", "Απόφραξη Αποχέτευσης"],
+    "services": [
+      "Επισκευή Διαρροής Σωλήνων",
+      "Εγκατάσταση Βρύσης",
+      "Απόφραξη Αποχέτευσης"
+    ],
     "phone": "2310123456",
-    "email": "maria@example.com"
+    "email": "maria@example.com",
+    "profilePhotoUrl": "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1200&q=80",
+    "portfolioPhotos": [
+      "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1620653713380-33785f95f4d1?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "slug": "giannis-kosta-klimatismos",
     "name": "Γιάννης Κώστα",
     "profession": "Τεχνικός Κλιματισμού",
     "city": "Πάτρα",
-    "areasServed": ["Πάτρα", "Ρίο", "Αγυιά"],
+    "areasServed": [
+      "Πάτρα",
+      "Ρίο",
+      "Αγυιά"
+    ],
     "approved": true,
     "published": true,
     "experienceYears": 8,
     "bio": "Εγκατάσταση, συντήρηση και επισκευή κλιματιστικών split και VRV/VRF με συνέπεια και τήρηση χρονοδιαγραμμάτων.",
-    "services": ["Εγκατάσταση Κλιματιστικού", "Συντήρηση Κλιματιστικού", "Συμπλήρωση Freon"],
+    "services": [
+      "Εγκατάσταση Κλιματιστικού",
+      "Συντήρηση Κλιματιστικού",
+      "Συμπλήρωση Freon"
+    ],
     "phone": "2610123456",
-    "email": "giannis@example.com"
+    "email": "giannis@example.com",
+    "profilePhotoUrl": "https://images.unsplash.com/photo-1631545806615-5a5b1fb46be3?auto=format&fit=crop&w=1200&q=80",
+    "portfolioPhotos": [
+      "https://images.unsplash.com/photo-1631545806615-5a5b1fb46be3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=1200&q=80"
+    ]
   }
 ]

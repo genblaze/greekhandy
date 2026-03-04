@@ -16,6 +16,7 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Professionals directory at `/professionals`
   - Individual profile pages at `/professionals/[slug]`
   - Profile includes bio, services, areas served, contact info
+  - Profile photos + portfolio gallery support
   - Professional registration page at `/professionals/register`
   - Registration endpoint at `POST /api/professionals/register`
   - Registration thank-you flow at `/professionals/thank-you`

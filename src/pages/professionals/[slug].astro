@@ -13,6 +13,8 @@ const profiles = (profilesFile.default ?? profilesFile) as Array<{
   experienceYears: number;
   bio: string;
   services: string[];
+  profilePhotoUrl?: string;
+  portfolioPhotos?: string[];
   phone: string;
   email: string;
   approved?: boolean;
@@ -46,7 +48,20 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
       <h1 class="mt-2 text-3xl font-bold text-gray-900">{profile.name}</h1>
       <p class="mt-2 text-gray-600">{profile.city} • {profile.experienceYears} χρόνια εμπειρίας</p>
 
+      {profile.profilePhotoUrl && <img src={profile.profilePhotoUrl} alt={`Φωτογραφία ${profile.name}`} class="mt-6 h-72 w-full rounded-xl object-cover" />}
+
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio}</p>
+
+      {profile.portfolioPhotos && profile.portfolioPhotos.length > 0 && (
+        <div class="mt-8">
+          <h2 class="text-lg font-bold text-gray-900">Portfolio</h2>
+          <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {profile.portfolioPhotos.map((photo, index) => (
+              <img src={photo} alt={`Portfolio ${profile.name} ${index + 1}`} class="h-48 w-full rounded-lg border border-gray-200 object-cover" loading="lazy" />
+            ))}
+          </div>
+        </div>
+      )}
 
       <div class="mt-8 grid gap-6 md:grid-cols-2">
         <div>
