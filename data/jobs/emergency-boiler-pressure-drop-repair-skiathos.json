@@ -1,0 +1,20 @@
+{
+  "id": "emergency-boiler-pressure-drop-repair-skiathos",
+  "slug": "epigousa-episkevi-ptosis-piesis-levita-skiathos",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Πίεσης Λέβητα στη Σκιάθο",
+  "nameEn": "Emergency Boiler Pressure Drop Repair in Σκιάθος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση πτώσης πίεσης λέβητα στη Σκιάθο για άμεση επαναφορά θέρμανσης και ζεστού νερού. SEO intent: στοχεύει «λέβητας χάνει πίεση Σκιάθος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "λέβητας χάνει πίεση Σκιάθος",
+    "τεχνικός θέρμανσης επείγον",
+    "βλάβη λέβητα πίεση χαμηλή",
+    "service καυστήρα άμεσα",
+    "χωρίς ζεστό νερό λύση"
+  ],
+  "status": "researched"
+}

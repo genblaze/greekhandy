@@ -1,0 +1,20 @@
+{
+  "id": "emergency-gate-motor-manual-release-fix-skiathos",
+  "slug": "epigousa-episkevi-manoual-apasfalisis-moter-ayloportas-skiathos",
+  "nameGr": "Επείγουσα Επισκευή Manual Απελευθέρωσης Μοτέρ Αυλόπορτας στη Σκιάθο",
+  "nameEn": "Emergency Gate Motor Manual Release Fix in Σκιάθος",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα επισκευή μηχανισμού manual απασφάλισης μοτέρ αυλόπορτας στη Σκιάθο για άμεση πρόσβαση σε blackout/βλάβη. SEO intent: στοχεύει «αυλόπορτα δεν ανοίγει Σκιάθος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-300€",
+  "demand": "high",
+  "keywords": [
+    "αυλόπορτα δεν ανοίγει Σκιάθος",
+    "μοτέρ αυλόπορτας βλάβη επείγον",
+    "manual release gate motor",
+    "τεχνικός αυλόπορτας άμεσα",
+    "επισκευή αυτοματισμού πόρτας"
+  ],
+  "status": "researched"
+}

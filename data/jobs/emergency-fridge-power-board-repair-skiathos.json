@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fridge-power-board-repair-skiathos",
+  "slug": "epigousa-episkevi-plaketas-psygeiou-skiathos",
+  "nameGr": "Επείγουσα Επισκευή Πλακέτας Ψυγείου στη Σκιάθο",
+  "nameEn": "Emergency Fridge Power Board Repair in Σκιάθος",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή πλακέτας ψυγείου στη Σκιάθο για αποφυγή απώλειας τροφίμων και επαναφορά ψύξης. SEO intent: καλύπτει «ψυγείο δεν ανάβει Σκιάθος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "ψυγείο δεν ανάβει Σκιάθος",
+    "επείγουσα επισκευή ψυγείου",
+    "πλακέτα ψυγείου βλάβη",
+    "τεχνικός ψυγείων άμεσα",
+    "service ψυγείου νύχτα"
+  ],
+  "status": "researched"
+}

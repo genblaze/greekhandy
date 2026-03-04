@@ -1,0 +1,20 @@
+{
+  "id": "emergency-gate-motor-manual-release-fix-kranidi",
+  "slug": "epigousa-episkevi-manoual-apasfalisis-moter-ayloportas-kranidi",
+  "nameGr": "Επείγουσα Επισκευή Manual Απελευθέρωσης Μοτέρ Αυλόπορτας στο Κρανίδι",
+  "nameEn": "Emergency Gate Motor Manual Release Fix in Κρανίδι",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα επισκευή μηχανισμού manual απασφάλισης μοτέρ αυλόπορτας στο Κρανίδι για άμεση πρόσβαση σε blackout/βλάβη. SEO intent: στοχεύει «αυλόπορτα δεν ανοίγει Κρανίδι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-300€",
+  "demand": "high",
+  "keywords": [
+    "αυλόπορτα δεν ανοίγει Κρανίδι",
+    "μοτέρ αυλόπορτας βλάβη επείγον",
+    "manual release gate motor",
+    "τεχνικός αυλόπορτας άμεσα",
+    "επισκευή αυτοματισμού πόρτας"
+  ],
+  "status": "researched"
+}

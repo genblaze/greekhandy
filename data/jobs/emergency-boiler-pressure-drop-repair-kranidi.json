@@ -1,0 +1,20 @@
+{
+  "id": "emergency-boiler-pressure-drop-repair-kranidi",
+  "slug": "epigousa-episkevi-ptosis-piesis-levita-kranidi",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Πίεσης Λέβητα στο Κρανίδι",
+  "nameEn": "Emergency Boiler Pressure Drop Repair in Κρανίδι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση πτώσης πίεσης λέβητα στο Κρανίδι για άμεση επαναφορά θέρμανσης και ζεστού νερού. SEO intent: στοχεύει «λέβητας χάνει πίεση Κρανίδι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "λέβητας χάνει πίεση Κρανίδι",
+    "τεχνικός θέρμανσης επείγον",
+    "βλάβη λέβητα πίεση χαμηλή",
+    "service καυστήρα άμεσα",
+    "χωρίς ζεστό νερό λύση"
+  ],
+  "status": "researched"
+}

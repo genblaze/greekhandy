@@ -1,0 +1,20 @@
+{
+  "id": "emergency-gate-motor-manual-release-fix-domokos",
+  "slug": "epigousa-episkevi-manoual-apasfalisis-moter-ayloportas-domokos",
+  "nameGr": "Επείγουσα Επισκευή Manual Απελευθέρωσης Μοτέρ Αυλόπορτας στον Δομοκό",
+  "nameEn": "Emergency Gate Motor Manual Release Fix in Δομοκός",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα επισκευή μηχανισμού manual απασφάλισης μοτέρ αυλόπορτας στον Δομοκό για άμεση πρόσβαση σε blackout/βλάβη. SEO intent: στοχεύει «αυλόπορτα δεν ανοίγει Δομοκός».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-300€",
+  "demand": "high",
+  "keywords": [
+    "αυλόπορτα δεν ανοίγει Δομοκός",
+    "μοτέρ αυλόπορτας βλάβη επείγον",
+    "manual release gate motor",
+    "τεχνικός αυλόπορτας άμεσα",
+    "επισκευή αυτοματισμού πόρτας"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fridge-power-board-repair-kranidi",
+  "slug": "epigousa-episkevi-plaketas-psygeiou-kranidi",
+  "nameGr": "Επείγουσα Επισκευή Πλακέτας Ψυγείου στο Κρανίδι",
+  "nameEn": "Emergency Fridge Power Board Repair in Κρανίδι",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή πλακέτας ψυγείου στο Κρανίδι για αποφυγή απώλειας τροφίμων και επαναφορά ψύξης. SEO intent: καλύπτει «ψυγείο δεν ανάβει Κρανίδι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "ψυγείο δεν ανάβει Κρανίδι",
+    "επείγουσα επισκευή ψυγείου",
+    "πλακέτα ψυγείου βλάβη",
+    "τεχνικός ψυγείων άμεσα",
+    "service ψυγείου νύχτα"
+  ],
+  "status": "researched"
+}

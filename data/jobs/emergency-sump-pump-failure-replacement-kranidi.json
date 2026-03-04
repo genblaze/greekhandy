@@ -1,0 +1,20 @@
+{
+  "id": "emergency-sump-pump-failure-replacement-kranidi",
+  "slug": "epigousa-antikatastasi-antlias-antlisiou-ypogeiou-kranidi",
+  "nameGr": "Επείγουσα Αντικατάσταση Αντλίας Υπογείου στο Κρανίδι",
+  "nameEn": "Emergency Sump Pump Failure Replacement in Κρανίδι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα αντικατάσταση αντλίας υπογείου στο Κρανίδι σε βλάβη για άμεση αποφυγή πλημμυρικών ζημιών. SEO intent: στοχεύει «αντλία υπογείου χάλασε Κρανίδι».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "140-520€",
+  "demand": "high",
+  "keywords": [
+    "αντλία υπογείου χάλασε Κρανίδι",
+    "υδραυλικός αντλία νερού επείγον",
+    "πλημμύρα υπόγειο αντλία",
+    "αντικατάσταση sump pump",
+    "έκτακτη άντληση νερών"
+  ],
+  "status": "researched"
+}

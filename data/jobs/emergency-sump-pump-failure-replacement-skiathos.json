@@ -1,0 +1,20 @@
+{
+  "id": "emergency-sump-pump-failure-replacement-skiathos",
+  "slug": "epigousa-antikatastasi-antlias-antlisiou-ypogeiou-skiathos",
+  "nameGr": "Επείγουσα Αντικατάσταση Αντλίας Υπογείου στη Σκιάθο",
+  "nameEn": "Emergency Sump Pump Failure Replacement in Σκιάθος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα αντικατάσταση αντλίας υπογείου στη Σκιάθο σε βλάβη για άμεση αποφυγή πλημμυρικών ζημιών. SEO intent: στοχεύει «αντλία υπογείου χάλασε Σκιάθος».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "140-520€",
+  "demand": "high",
+  "keywords": [
+    "αντλία υπογείου χάλασε Σκιάθος",
+    "υδραυλικός αντλία νερού επείγον",
+    "πλημμύρα υπόγειο αντλία",
+    "αντικατάσταση sump pump",
+    "έκτακτη άντληση νερών"
+  ],
+  "status": "researched"
+}

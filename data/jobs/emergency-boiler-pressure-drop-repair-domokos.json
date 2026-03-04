@@ -1,0 +1,20 @@
+{
+  "id": "emergency-boiler-pressure-drop-repair-domokos",
+  "slug": "epigousa-episkevi-ptosis-piesis-levita-domokos",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Πίεσης Λέβητα στον Δομοκό",
+  "nameEn": "Emergency Boiler Pressure Drop Repair in Δομοκός",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση πτώσης πίεσης λέβητα στον Δομοκό για άμεση επαναφορά θέρμανσης και ζεστού νερού. SEO intent: στοχεύει «λέβητας χάνει πίεση Δομοκός».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "λέβητας χάνει πίεση Δομοκός",
+    "τεχνικός θέρμανσης επείγον",
+    "βλάβη λέβητα πίεση χαμηλή",
+    "service καυστήρα άμεσα",
+    "χωρίς ζεστό νερό λύση"
+  ],
+  "status": "researched"
+}
