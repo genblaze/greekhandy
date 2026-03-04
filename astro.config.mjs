@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
+import { NAV_ALIAS_REDIRECTS } from './src/config/navigation.js';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -23,7 +24,8 @@ export default defineConfig({
     '/katharistries': '/katharismoi',
     '/klimatismos': '/techniki-klimatismou',
     '/klimatistika': '/techniki-klimatismou',
-    '/thermansi': '/techniki-klimatismou'
+    '/thermansi': '/techniki-klimatismou',
+    ...NAV_ALIAS_REDIRECTS
   },
   vite: {
     plugins: [tailwindcss()]

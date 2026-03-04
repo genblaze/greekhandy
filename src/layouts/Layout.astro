@@ -1,6 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import '../styles/global.css';
+import { NAV_TARGETS, TOP_NAV_LINKS } from '../config/navigation';
 
 interface Props {
   title: string;
@@ -12,7 +13,9 @@ interface Props {
 
 const { title, description, canonicalUrl, ogImage, twitterCard } = Astro.props;
 Astro.response.headers.set('Content-Type', 'text/html; charset=UTF-8');
-const currentPath = Astro.url.pathname;
+const normalizePath = (path: string) => (path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path);
+const currentPath = normalizePath(Astro.url.pathname);
+const isRouteActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 
 <!doctype html>
@@ -28,16 +31,23 @@ const currentPath = Astro.url.pathname;
         <div class="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
           <a href="/" class="transition hover:text-slate-900">Αρχική</a>
           <a href="/#services" class="transition hover:text-slate-900">Υπηρεσίες</a>
-          <a
-            href="/blog"
-            class={`transition hover:text-slate-900 ${currentPath === '/blog' ? 'text-slate-900 underline decoration-2 underline-offset-8' : ''}`}
-          >
-            Οδηγοί
-          </a>
-          <a href="/professionals" class="transition hover:text-slate-900">Επαγγελματίες</a>
+          {TOP_NAV_LINKS.map((navLink) => (
+            <a
+              href={navLink.href}
+              class={`transition hover:text-slate-900 ${isRouteActive(navLink.href) ? 'text-slate-900 underline decoration-2 underline-offset-8' : ''}`}
+            >
+              {navLink.label}
+            </a>
+          ))}
           <a href="/#contact" class="rounded-full border border-slate-300 px-4 py-2 transition hover:border-slate-400 hover:bg-slate-100">Επικοινωνία</a>
         </div>
       </nav>
+      <div class="border-t border-slate-200/80 md:hidden">
+        <nav class="mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto px-4 py-2 text-sm font-medium text-slate-700">
+          <a href={NAV_TARGETS.guides} class={`rounded-full px-3 py-1.5 transition hover:bg-slate-100 hover:text-slate-900 ${isRouteActive(NAV_TARGETS.guides) ? 'bg-slate-100 text-slate-900' : ''}`}>Οδηγοί</a>
+          <a href={NAV_TARGETS.professionals} class={`rounded-full px-3 py-1.5 transition hover:bg-slate-100 hover:text-slate-900 ${isRouteActive(NAV_TARGETS.professionals) ? 'bg-slate-100 text-slate-900' : ''}`}>Επαγγελματίες</a>
+        </nav>
+      </div>
     </header>
 
     <slot />
@@ -52,7 +62,7 @@ const currentPath = Astro.url.pathname;
           <div>
             <h3 class="mb-3 text-lg font-semibold text-slate-900">Δημοφιλείς Υπηρεσίες</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="/blog" class="transition hover:text-slate-900">Οδηγοί GreekHandy</a></li>
+              <li><a href={NAV_TARGETS.guides} class="transition hover:text-slate-900">Οδηγοί GreekHandy</a></li>
               <li><a href="/ilektrologoi" class="transition hover:text-slate-900">Ηλεκτρολόγοι</a></li>
               <li><a href="/ydravlikoi" class="transition hover:text-slate-900">Υδραυλικοί</a></li>
               <li><a href="/elaiokhrwmatistes" class="transition hover:text-slate-900">Ελαιοχρωματιστές</a></li>

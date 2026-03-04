@@ -1,0 +1,23 @@
+export const NAV_TARGETS = Object.freeze({
+  guides: '/blog',
+  professionals: '/professionals'
+});
+
+export const TOP_NAV_LINKS = Object.freeze([
+  { label: 'Οδηγοί', href: NAV_TARGETS.guides },
+  { label: 'Επαγγελματίες', href: NAV_TARGETS.professionals }
+]);
+
+export const NAV_ALIAS_REDIRECTS = Object.freeze({
+  '/odigoi': NAV_TARGETS.guides,
+  '/guides': NAV_TARGETS.guides,
+  '/epaggelmaties': NAV_TARGETS.professionals,
+  '/pros': NAV_TARGETS.professionals
+});
+
+export const NAV_PLACEHOLDER_TEXT = Object.freeze([
+  'coming soon',
+  'under construction',
+  'placeholder',
+  'υπό κατασκευή'
+]);
