@@ -1,0 +1,20 @@
+{
+  "id": "smart-leak-shutoff-valve-installation-limnos",
+  "slug": "egkatastasi-smart-valvidas-diakopis-nerou-limnos",
+  "nameGr": "Εγκατάσταση Smart Βαλβίδας Διακοπής Νερού στη Λήμνο",
+  "nameEn": "Smart Leak Shutoff Valve Installation in Λήμνος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εγκατάσταση smart βαλβίδας διακοπής νερού στη Λήμνο με αυτόματο κλείσιμο σε περίπτωση διαρροής και ειδοποιήσεις κινητού. SEO intent: στοχεύει εμπορικές αναζητήσεις «smart βαλβίδα νερού Λήμνος».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "180-760€",
+  "demand": "high",
+  "keywords": [
+    "smart βαλβίδα νερού Λήμνος",
+    "αυτόματη διακοπή νερού διαρροή",
+    "υδραυλικός smart leak system",
+    "προστασία κατοικίας από διαρροές",
+    "wifi valve εγκατάσταση"
+  ],
+  "status": "researched"
+}
