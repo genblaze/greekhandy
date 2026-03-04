@@ -218,13 +218,13 @@ const faqSchema = category.faq?.length ? {
               <p id="subjobs-filter-state" data-subjobs-state class="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600" role="status" aria-live="polite" aria-atomic="true">
                 Προετοιμασία κατάταξης υπηρεσιών...
               </p>
-              <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-                <select data-filter-urgency aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+              <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" role="group" aria-label="Φίλτρα υπηρεσιών κατηγορίας">
+                <select data-filter-urgency aria-label="Φίλτρο προτεραιότητας υπηρεσίας" aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
                   <option value="all">Όλες οι προτεραιότητες</option>
                   <option value="urgent">Επείγον</option>
                   <option value="standard">Προγραμματισμένο</option>
                 </select>
-                <select data-filter-city aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <select data-filter-city aria-label="Φίλτρο πόλης" aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
                   <option value="all">Όλες οι πόλεις</option>
                   <option value="athina">Αθήνα</option>
                   <option value="thessaloniki">Θεσσαλονίκη</option>
@@ -234,13 +234,13 @@ const faqSchema = category.faq?.length ? {
                   <option value="volos">Βόλος</option>
                   <option value="ioannina">Ιωάννινα</option>
                 </select>
-                <select data-filter-budget aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <select data-filter-budget aria-label="Φίλτρο budget" aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
                   <option value="all">Όλα τα budget</option>
                   <option value="low">Οικονομικό</option>
                   <option value="medium">Μεσαίο</option>
                   <option value="high">Αυξημένο</option>
                 </select>
-                <select data-filter-availability aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <select data-filter-availability aria-label="Φίλτρο διαθεσιμότητας" aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
                   <option value="all">Όλη η διαθεσιμότητα</option>
                   <option value="asap">Άμεσα διαθέσιμο</option>
                   <option value="this-week">Μέσα στην εβδομάδα</option>
@@ -308,7 +308,7 @@ const faqSchema = category.faq?.length ? {
                   <div class="flex items-center gap-2">
                     <button type="button" data-page-prev aria-controls="subjobs-grid" aria-label="Προβολή προηγούμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Προηγούμενα</button>
                     <button type="button" data-page-next aria-controls="subjobs-grid" aria-label="Προβολή επόμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Επόμενα</button>
-                    <button type="button" data-load-more-subjobs aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
+                    <button type="button" data-load-more-subjobs aria-controls="subjobs-grid" aria-label="Φόρτωση περισσότερων υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
                   </div>
                 </div>
                 <noscript>
