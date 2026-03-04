@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { supabaseServer } from '../../lib/supabase-server';
+import { getAdminAuth } from '../../lib/admin-auth';
 
 const SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
 const ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
@@ -10,8 +11,7 @@ const VISIBILITY_FILE_PATH = resolve(process.cwd(), 'data', 'message-visibility-
 
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
-const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
-const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
+const { expectedKey, token: authToken, isAuthorized } = getAdminAuth(Astro, moderationKey);
 const status = url.searchParams.get('status');
 const actor = (url.searchParams.get('actor') ?? 'admin').slice(0, 120);
 
@@ -170,21 +170,21 @@ const openReports = reports
               {report.details && <p class="mt-1 text-xs text-gray-600">Σχόλιο: {report.details}</p>}
               <div class="mt-3 flex flex-wrap gap-3">
                 <form action="/api/messages/reports-action" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="moderationKey" value={authToken} />
                   <input type="hidden" name="reportId" value={report.id} />
                   <input type="hidden" name="actorIdentifier" value={actor} />
                   <input type="hidden" name="action" value="hide_message" />
                   <button type="submit" class="rounded-lg border border-purple-300 bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-900 hover:bg-purple-200">Απόκρυψη μηνύματος</button>
                 </form>
                 <form action="/api/messages/reports-action" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="moderationKey" value={authToken} />
                   <input type="hidden" name="reportId" value={report.id} />
                   <input type="hidden" name="actorIdentifier" value={actor} />
                   <input type="hidden" name="action" value="block_sender" />
                   <button type="submit" class="rounded-lg border border-red-300 bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 hover:bg-red-200">Block sender</button>
                 </form>
                 <form action="/api/messages/reports-action" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="moderationKey" value={authToken} />
                   <input type="hidden" name="reportId" value={report.id} />
                   <input type="hidden" name="actorIdentifier" value={actor} />
                   <input type="hidden" name="action" value="dismiss_report" />
@@ -232,7 +232,7 @@ const openReports = reports
 
               <div class="mt-4 flex flex-wrap gap-3">
                 <form action="/api/messages/triage" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="moderationKey" value={authToken} />
                   <input type="hidden" name="action" value="review" />
                   <input type="hidden" name="threadId" value={threadId} />
                   <input type="hidden" name="actorIdentifier" value={actor} />
@@ -240,7 +240,7 @@ const openReports = reports
                 </form>
 
                 <form action="/api/messages/triage" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="moderationKey" value={authToken} />
                   <input type="hidden" name="action" value="reject" />
                   <input type="hidden" name="threadId" value={threadId} />
                   <input type="hidden" name="actorIdentifier" value={actor} />
@@ -248,7 +248,7 @@ const openReports = reports
                 </form>
 
                 <form action="/api/messages/triage" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="moderationKey" value={authToken} />
                   <input type="hidden" name="action" value="block" />
                   <input type="hidden" name="threadId" value={threadId} />
                   <input type="hidden" name="actorIdentifier" value={actor} />
@@ -257,7 +257,7 @@ const openReports = reports
 
 
                 <form action="/api/messages/hide" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="moderationKey" value={authToken} />
                   <input type="hidden" name="threadId" value={threadId} />
                   <input type="hidden" name="messageId" value={latestMessage.id || `${threadId}|latest`} />
                   <input type="hidden" name="actorIdentifier" value={actor} />

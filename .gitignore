@@ -22,3 +22,13 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# openclaw boot files (agents use separate workspaces)
+SOUL.md
+USER.md
+AGENTS.md
+HEARTBEAT.md
+IDENTITY.md
+TOOLS.md
+BOOTSTRAP.md
+.openclaw/

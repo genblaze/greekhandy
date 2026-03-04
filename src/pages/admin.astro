@@ -1,6 +1,4 @@
 ---
-export const prerender = false;
-
 import Layout from '../layouts/Layout.astro';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -173,7 +171,13 @@ const totalPending = pendingProfiles + pendingReviews + pendingBookings + pendin
 
     {!isAuthorized && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
-        Μη εξουσιοδοτημένη πρόσβαση. Προσθέστε <code>?key=...</code> και ορίστε env <code>PROFESSIONAL_MODERATION_KEY</code>.
+        <p class="font-semibold">Μη εξουσιοδοτημένη πρόσβαση.</p>
+        <p class="mt-1 text-sm">Συνδεθείτε με moderation key.</p>
+        <form method="GET" class="mt-3 flex flex-col gap-2 sm:flex-row">
+          <input name="key" type="password" required class="rounded-lg border border-amber-300 bg-white px-3 py-2 text-sm text-gray-900" placeholder="Moderation key" />
+          <button type="submit" class="rounded-lg bg-amber-700 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-800">Σύνδεση</button>
+        </form>
+        {!expectedKey && <p class="mt-2 text-xs">Missing env: <code>PROFESSIONAL_MODERATION_KEY</code></p>}
       </div>
     )}
 

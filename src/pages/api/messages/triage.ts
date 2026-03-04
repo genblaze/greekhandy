@@ -1,20 +1,21 @@
 import type { APIRoute } from 'astro';
 import { appendNdjson, clean, MESSAGE_TRIAGE_ACTIONS_FILE_PATH } from '../../../lib/messaging';
 import { supabaseServer } from '../../../lib/supabase-server';
+import { getAdminAuth } from '../../../lib/admin-auth';
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const formData = await request.formData();
   const moderationKey = clean(formData.get('moderationKey'));
-  const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY || '';
+  const { isAuthorized } = getAdminAuth({ request, cookies }, moderationKey);
 
-  if (!expectedKey || moderationKey !== expectedKey) {
-    return redirect('/professionals/messages-moderation?status=unauthorized', 303);
+  if (!isAuthorized) {
+    return redirect('/admin?status=unauthorized', 303);
   }
 
   const action = clean(formData.get('action'));
   const threadId = clean(formData.get('threadId'));
   const actorIdentifier = clean(formData.get('actorIdentifier')) || 'admin';
-  const returnUrl = `/professionals/messages-moderation?key=${encodeURIComponent(moderationKey)}&actor=${encodeURIComponent(actorIdentifier)}`;
+  const returnUrl = `/professionals/messages-moderation?actor=${encodeURIComponent(actorIdentifier)}`;
 
   if (!threadId || !['review', 'reject', 'block'].includes(action)) {
     return redirect(`${returnUrl}&status=invalid`, 303);
