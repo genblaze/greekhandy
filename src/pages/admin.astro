@@ -1,8 +1,11 @@
 ---
+export const prerender = false;
+
 import Layout from '../layouts/Layout.astro';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { supabaseServer } from '../lib/supabase-server';
+import { ADMIN_COOKIE, getAdminAuth, isAdminKeyValid } from '../lib/admin-auth';
 
 const PROFESSIONAL_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
 const PROFESSIONAL_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registration-actions.ndjson');
@@ -15,8 +18,19 @@ const MESSAGE_TRIAGE_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message
 
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
-const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
-const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
+
+if (isAdminKeyValid(moderationKey)) {
+  Astro.cookies.set(ADMIN_COOKIE, moderationKey, {
+    path: '/',
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: true,
+    maxAge: 60 * 60 * 8
+  });
+  return Astro.redirect('/admin');
+}
+
+const { expectedKey, isAuthorized } = getAdminAuth(Astro, moderationKey);
 
 interface RegistrationSubmission {
   email: string;
@@ -60,7 +74,7 @@ const readNdjson = async <T,>(path: string): Promise<T[]> => {
   }
 };
 
-const buildQueueHref = (pathname: string) => `${pathname}?key=${encodeURIComponent(moderationKey)}&actor=admin-dashboard`;
+const buildQueueHref = (pathname: string) => `${pathname}?actor=admin-dashboard`;
 
 let pendingProfiles = 0;
 let pendingReviews = 0;
