@@ -1,0 +1,23 @@
+{
+  "active": [
+    {
+      "agent": "greekhandy-research",
+      "task": "Audit Messaging MVP against acceptance criteria and produce a concise blocker list plus the single next highest-impact scope after messaging.",
+      "priority": "high",
+      "createdAt": "2026-03-04T15:04:00Z"
+    },
+    {
+      "agent": "greekhandy-builder",
+      "task": "Polish and finalize Greek UX copy for messaging thread states (empty, unread, reported, blocked) and admin moderation labels for immediate merge.",
+      "priority": "high",
+      "createdAt": "2026-03-04T15:04:00Z"
+    },
+    {
+      "agent": "greekhandy-developer",
+      "task": "Complete Messaging MVP validation pass, apply any fixes, run build, and commit only messaging-related changes with clear summary.",
+      "priority": "critical",
+      "createdAt": "2026-03-04T15:04:00Z"
+    }
+  ],
+  "history": []
+}
