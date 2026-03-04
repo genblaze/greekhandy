@@ -25,6 +25,14 @@
       "estimatedComplexity": "high"
     },
     {
+      "id": "qa-critical-fixes-wave-4",
+      "name": "QA Critical Fixes (Wave 4)",
+      "description": "Wave 4 QA directives: stop public 500/TypeError crashes on /api/professionals/register, /api/reviews/submit, /api/bookings/submit, /api/messages/submit with robust server-side validation + safe 4xx field errors; strip Astro debug source-location attributes from production HTML; enforce clean branded production error handling with no Vite/dev artifacts; add JSON-LD schema.org coverage (Organization + WebSite homepage, Service category pages, LocalBusiness/ProfessionalService + aggregateRating profile pages).",
+      "priority": 1,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "leads-directory-page",
       "name": "Leads Directory Page",
       "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",

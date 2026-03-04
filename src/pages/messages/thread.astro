@@ -264,6 +264,34 @@ const historyStateSummary = showLoadingState
     : threadMessages.length === 0
       ? 'Δεν υπάρχουν μηνύματα ακόμη σε αυτό το thread.'
       : `Το ιστορικό περιλαμβάνει ${threadMessages.length} μηνύματα.`;
+const historyStateTitle = showLoadingState
+  ? 'Συγχρονισμός ιστορικού σε εξέλιξη'
+  : threadLoadError
+    ? 'Αστοχία φόρτωσης ιστορικού'
+    : threadMessages.length === 0
+      ? 'Το thread δεν έχει ακόμη μηνύματα'
+      : 'Το ιστορικό είναι διαθέσιμο';
+const historyStateToneClass = showLoadingState
+  ? 'border-sky-200 bg-sky-50/80 text-sky-900'
+  : threadLoadError
+    ? 'border-rose-200 bg-rose-50/80 text-rose-900'
+    : threadMessages.length === 0
+      ? 'border-slate-200 bg-slate-50/80 text-slate-700'
+      : 'border-emerald-200 bg-emerald-50/80 text-emerald-900';
+const historyStateActionLabel = showLoadingState
+  ? 'Αναμονή συγχρονισμού'
+  : threadLoadError
+    ? 'Επανάληψη φόρτωσης'
+    : threadMessages.length === 0
+      ? 'Μετάβαση στις ενέργειες thread'
+      : 'Μετάβαση στο τελευταίο ορατό';
+const historyStateActionHref = showLoadingState
+  ? '#thread-history'
+  : threadLoadError
+    ? `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`
+    : threadMessages.length === 0
+      ? '#thread-interaction'
+      : latestVisibleMessageHref;
 const moderationConsequences: string[] = [];
 if (threadBlockedByModeration) moderationConsequences.push('Δεν επιτρέπεται αποστολή νέου μηνύματος μέχρι να αρθεί το μπλοκάρισμα.');
 if (threadMutedByModeration) moderationConsequences.push('Η ορατότητα του περιεχομένου είναι πλήρως περιορισμένη και το composer παραμένει κλειστό.');
@@ -452,16 +480,16 @@ for (const message of threadMessages) {
     </section>
 
     {hasMissingParams && (
-      <div class="thread-alert thread-alert--amber mt-5" role="alert">
-        <p class="font-semibold">Δεν μπορέσαμε να ανοίξουμε τη συνομιλία.</p>
+      <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-missing-params-title">
+        <p id="thread-missing-params-title" class="font-semibold">Δεν μπορέσαμε να ανοίξουμε τη συνομιλία.</p>
         <p class="mt-1 text-sm">Λείπουν τα απαραίτητα στοιχεία <code>threadId</code> ή <code>viewerEmail</code>.</p>
         <p class="mt-2 text-xs">Παράδειγμα: <code>/messages/thread?threadId=...&viewerEmail=name@example.com</code></p>
       </div>
     )}
 
     {hasAccessIssue && (
-      <div class="thread-alert thread-alert--rose mt-5" role="alert">
-        <p class="font-semibold">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
+      <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-access-issue-title">
+        <p id="thread-access-issue-title" class="font-semibold">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
         <p class="mt-1 text-sm">Επιστρέψτε στη λίστα συνομιλιών και επιλέξτε thread όπου συμμετέχετε.</p>
         <a href={threadListHref} class="mt-2 inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
           Επιστροφή στη λίστα
@@ -469,10 +497,10 @@ for (const message of threadMessages) {
       </div>
     )}
     {threadLoadError && (
-      <div class="thread-alert thread-alert--rose mt-5" role="alert">
-        <p class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της συνομιλίας.</p>
+      <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-load-error-title">
+        <p id="thread-load-error-title" class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της συνομιλίας.</p>
         <p class="mt-1 text-sm">{threadLoadError}</p>
-        <p class="mt-1 text-xs">Ενδέχεται να λείπουν moderation indicators ή ιστορικό μέχρι να αποκατασταθεί η φόρτωση.</p>
+        <p class="mt-1 text-xs">Ενδέχεται να λείπουν moderation indicators ή ιστορικό μέχρι να αποκατασταθεί η φόρτωση. {hasPartialThreadHistory ? 'Εμφανίζονται διαθέσιμα μηνύματα με πιθανές ελλείψεις.' : 'Το thread δεν μπόρεσε να αποδοθεί.'}</p>
         <div class="mt-2 flex flex-wrap items-center gap-2">
           <a href={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
             Επανάληψη φόρτωσης

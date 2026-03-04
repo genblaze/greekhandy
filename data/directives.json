@@ -1,26 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Public forms are functionally broken: POST to /api/professionals/register, /api/reviews/submit, /api/bookings/submit, and /api/messages/submit returns HTTP 500 with a TypeError page. Replace crash behavior with proper server-side validation + user-safe error responses (4xx with inline field errors), and prove each form can submit without exposing stack traces.",
-      "addedAt": "2026-03-04T22:03:08Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "You are shipping a development build to users. HTML includes thousands of `data-astro-source-file`/`data-astro-source-loc` attributes with absolute server paths (e.g. /home/weakwire/projects/greekhandy/src/...). Strip all debug/source-location attributes from production output immediately; this is unprofessional leakage and massive DOM bloat.",
-      "addedAt": "2026-03-04T22:03:08Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Error responses expose Vite dev artifacts (`/@vite/client` and raw `<title>TypeError</title>`). Configure production error handling so users get clean branded error pages, no dev scripts, no framework internals, no stack-style crash output.",
-      "addedAt": "2026-03-04T22:03:08Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Core SEO trust signal is missing: key pages (/, /professionals, /ydravlikoi, /professionals/giannis-kosta-klimatismos) have no JSON-LD structured data. Implement schema.org markup now (Organization + WebSite on homepage, Service on category pages, LocalBusiness/ProfessionalService + aggregateRating on profile pages) so search snippets don’t look empty and generic.",
-      "addedAt": "2026-03-04T22:03:08Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -171,6 +150,30 @@
       "addedAt": "2026-03-04T21:32:21Z",
       "source": "qa-agent",
       "processedAt": "2026-03-04T21:33:10Z"
+    },
+    {
+      "directive": "Public forms are functionally broken: POST to /api/professionals/register, /api/reviews/submit, /api/bookings/submit, and /api/messages/submit returns HTTP 500 with a TypeError page. Replace crash behavior with proper server-side validation + user-safe error responses (4xx with inline field errors), and prove each form can submit without exposing stack traces.",
+      "addedAt": "2026-03-04T22:03:08Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:04:08Z"
+    },
+    {
+      "directive": "You are shipping a development build to users. HTML includes thousands of `data-astro-source-file`/`data-astro-source-loc` attributes with absolute server paths (e.g. /home/weakwire/projects/greekhandy/src/...). Strip all debug/source-location attributes from production output immediately; this is unprofessional leakage and massive DOM bloat.",
+      "addedAt": "2026-03-04T22:03:08Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:04:08Z"
+    },
+    {
+      "directive": "Error responses expose Vite dev artifacts (`/@vite/client` and raw `<title>TypeError</title>`). Configure production error handling so users get clean branded error pages, no dev scripts, no framework internals, no stack-style crash output.",
+      "addedAt": "2026-03-04T22:03:08Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:04:08Z"
+    },
+    {
+      "directive": "Core SEO trust signal is missing: key pages (/, /professionals, /ydravlikoi, /professionals/giannis-kosta-klimatismos) have no JSON-LD structured data. Implement schema.org markup now (Organization + WebSite on homepage, Service on category pages, LocalBusiness/ProfessionalService + aggregateRating on profile pages) so search snippets don’t look empty and generic.",
+      "addedAt": "2026-03-04T22:03:08Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T22:04:08Z"
     }
   ]
 }

@@ -168,9 +168,29 @@ const threads = Array.from(threadMap.entries())
         ? 'Περιορισμένη ορατότητα'
         : threadAction === 'review'
           ? 'Αναφορά υπό αξιολόγηση'
+        : threadAction === 'reject'
+          ? 'Αναφορά ολοκληρωμένη'
+          : 'Χωρίς περιορισμό';
+    const moderationStateSummaryLabel = isBlocked
+      ? 'Μπλοκ αποστολής'
+      : isAdminHidden
+        ? hiddenMessagesCount === ordered.length
+          ? 'Πλήρης απόκρυψη περιεχομένου'
+          : 'Μερική απόκρυψη περιεχομένου'
+        : threadAction === 'review'
+          ? 'Αναφορά σε ενεργό έλεγχο'
           : threadAction === 'reject'
-            ? 'Αναφορά ολοκληρωμένη'
-            : 'Χωρίς περιορισμό';
+            ? 'Αναφορά ολοκληρώθηκε'
+            : 'Χωρίς ενεργό περιορισμό';
+    const moderationSummaryClass = isBlocked
+      ? 'border-rose-300 bg-rose-100 text-rose-900'
+      : isAdminHidden
+        ? 'border-orange-300 bg-orange-100 text-orange-900'
+        : threadAction === 'review'
+          ? 'border-sky-300 bg-sky-100 text-sky-900'
+          : threadAction === 'reject'
+            ? 'border-amber-300 bg-amber-100 text-amber-900'
+            : 'border-emerald-300 bg-emerald-100 text-emerald-900';
     const moderationImpactHint = isBlocked
       ? 'Δεν επιτρέπεται νέα αποστολή μέχρι να αρθεί το μπλοκάρισμα.'
       : isAdminHidden
@@ -295,6 +315,8 @@ const threads = Array.from(threadMap.entries())
       moderationHint,
       moderationBannerTitle,
       moderationBannerClass,
+      moderationStateSummaryLabel,
+      moderationSummaryClass,
       moderationImpactLabel,
       moderationImpactHint,
       moderationNextStepLabel,
@@ -461,6 +483,22 @@ const listStateSummary = showLoadingState
       : hasFilteredResults
         ? `Προβάλλονται ${filteredThreadsCount} threads από ${totalThreads}.`
         : 'Τα τρέχοντα φίλτρα δεν επιστρέφουν αποτελέσματα.';
+const listStateTitle = showLoadingState
+  ? 'Συγχρονισμός λίστας σε εξέλιξη'
+  : listLoadError
+    ? 'Η λίστα χρειάζεται επαναφόρτωση'
+    : threads.length === 0
+      ? 'Δεν έχει ξεκινήσει ακόμη συνομιλία'
+      : hasFilteredResults
+        ? 'Η λίστα είναι διαθέσιμη'
+        : 'Δεν υπάρχουν αντιστοιχίσεις με τα τρέχοντα φίλτρα';
+const listStateToneClass = showLoadingState
+  ? 'border-sky-200 bg-sky-50/80 text-sky-900'
+  : listLoadError
+    ? 'border-rose-200 bg-rose-50/80 text-rose-900'
+    : !hasFilteredResults && threads.length > 0
+      ? 'border-amber-200 bg-amber-50/80 text-amber-900'
+      : 'border-emerald-200 bg-emerald-50/80 text-emerald-900';
 const activeFilterChips: Array<{ label: string; href: string; tone: 'sky' | 'rose' | 'amber' }> = [];
 if (showUnreadOnly) activeFilterChips.push({ label: 'Μόνο μη αναγνωσμένα', href: unreadChipHref, tone: 'sky' });
 if (showBlockedOnly) activeFilterChips.push({ label: 'Μόνο μπλοκαρισμένα', href: blockedChipHref, tone: 'rose' });
@@ -779,6 +817,11 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
     {viewerEmail && (
       <section id="messages-results" class="mt-6 space-y-4" aria-label="Αποτελέσματα συνομιλιών" tabindex="-1" aria-busy={showLoadingState ? 'true' : 'false'} aria-describedby="messages-results-state">
         <p id="messages-results-state" class="sr-only" aria-live="polite" aria-atomic="true">{listStateSummary}</p>
+        <div class={`rounded-2xl border px-4 py-3 text-sm shadow-sm ${listStateToneClass}`} role="status" aria-live="polite" aria-atomic="true">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.12em] opacity-80">Κατάσταση λίστας</p>
+          <p class="mt-1 font-semibold">{listStateTitle}</p>
+          <p class="mt-1 text-xs">{listStateSummary}</p>
+        </div>
         {showLoadingState && (
           <div class="rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-sm text-sky-900" role="status" aria-live="polite" aria-atomic="true">
             Η λίστα συγχρονίζεται. Φορτώνουμε δείκτες προτεραιότητας, unread counts και moderation states ώστε να εμφανιστεί καθαρή ουρά triage.
@@ -789,19 +832,24 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
             Μερικά δεδομένα λείπουν λόγω σφάλματος φόρτωσης. Τα παρακάτω αποτελέσματα μπορεί να είναι ελλιπή.
           </div>
         )}
-        {showLoadingState && LOADING_SKELETON_ROWS.map((item) => (
-          <article class="loading-thread-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" aria-hidden="true">
-            <div class="loading-thread-card__bar h-4 w-52 rounded"></div>
-            <div class="loading-thread-card__bar mt-3 h-3 w-full rounded"></div>
-            <div class="loading-thread-card__bar mt-2 h-3 w-4/5 rounded"></div>
-            <div class="mt-4 flex items-center gap-2">
-              <div class="loading-thread-card__bar h-7 w-28 rounded-full"></div>
-              <div class="loading-thread-card__bar h-7 w-24 rounded-full"></div>
-              <div class="loading-thread-card__bar h-7 w-32 rounded-full"></div>
-            </div>
-            <p class="mt-3 text-[11px] text-slate-400">Φόρτωση κάρτας {item}...</p>
-          </article>
-        ))}
+        {showLoadingState && (
+          <div class="space-y-3" role="status" aria-live="polite" aria-atomic="true">
+            <p class="sr-only">Φορτώνονται προσωρινές κάρτες συνομιλιών.</p>
+            {LOADING_SKELETON_ROWS.map((item) => (
+              <article class="loading-thread-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" aria-hidden="true">
+                <div class="loading-thread-card__bar h-4 w-52 rounded"></div>
+                <div class="loading-thread-card__bar mt-3 h-3 w-full rounded"></div>
+                <div class="loading-thread-card__bar mt-2 h-3 w-4/5 rounded"></div>
+                <div class="mt-4 flex items-center gap-2">
+                  <div class="loading-thread-card__bar h-7 w-28 rounded-full"></div>
+                  <div class="loading-thread-card__bar h-7 w-24 rounded-full"></div>
+                  <div class="loading-thread-card__bar h-7 w-32 rounded-full"></div>
+                </div>
+                <p class="mt-3 text-[11px] text-slate-400">Φόρτωση κάρτας {item}...</p>
+              </article>
+            ))}
+          </div>
+        )}
 
         {!showLoadingState && !listLoadError && threads.length === 0 && (
           <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/60 to-sky-50/50 px-5 py-6 shadow-sm" role="status" aria-live="polite" aria-atomic="true">
@@ -829,30 +877,36 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
           </div>
         )}
 
-        {!showLoadingState && filteredThreads.map((thread) => {
-          const threadDomId = toDomId(thread.threadId, thread.professionalSlug);
-          const threadHeadingId = `thread-heading-${threadDomId}`;
-          const threadPreviewId = `thread-preview-${threadDomId}`;
-          const threadStatusId = `thread-status-${threadDomId}`;
-          const threadQueueId = `thread-queue-${threadDomId}`;
-          const threadQueuePosition = triagePositionByThread.get(thread.threadId) ?? null;
-          return (
-            <article
-              class={`thread-card ${
-                thread.stateTone === 'blocked'
-                  ? 'thread-card--blocked'
-                  : thread.stateTone === 'admin-hidden' || thread.stateTone === 'muted'
-                    ? 'thread-card--hidden'
-                    : thread.stateTone === 'reported'
-                      ? 'thread-card--reported'
-                      : thread.unreadCount > 0
-                        ? 'thread-card--unread'
-                        : 'thread-card--active'
-              }`}
-              aria-labelledby={threadHeadingId}
-              aria-describedby={`${threadPreviewId} ${threadStatusId} ${threadQueueId}`}
-              data-priority={thread.priorityTier}
-            >
+        {!showLoadingState && hasFilteredResults && (
+          <ol class="space-y-4" role="list" aria-label="Threads που ταιριάζουν στα τρέχοντα φίλτρα">
+            {filteredThreads.map((thread) => {
+              const threadDomId = toDomId(thread.threadId, thread.professionalSlug);
+              const threadHeadingId = `thread-heading-${threadDomId}`;
+              const threadPreviewId = `thread-preview-${threadDomId}`;
+              const threadStatusId = `thread-status-${threadDomId}`;
+              const threadQueueId = `thread-queue-${threadDomId}`;
+              const threadQueuePosition = triagePositionByThread.get(thread.threadId) ?? null;
+              const threadA11yLabel = `Thread ${thread.professionalSlug}. ${thread.unreadLabel}. Moderation: ${thread.moderationStateSummaryLabel}.`;
+              return (
+                <li>
+                  <article
+                    class={`thread-card ${
+                      thread.stateTone === 'blocked'
+                        ? 'thread-card--blocked'
+                        : thread.stateTone === 'admin-hidden' || thread.stateTone === 'muted'
+                          ? 'thread-card--hidden'
+                          : thread.stateTone === 'reported'
+                            ? 'thread-card--reported'
+                            : thread.unreadCount > 0
+                              ? 'thread-card--unread'
+                              : 'thread-card--active'
+                    }`}
+                    aria-labelledby={threadHeadingId}
+                    aria-describedby={`${threadPreviewId} ${threadStatusId} ${threadQueueId}`}
+                    aria-label={threadA11yLabel}
+                    data-priority={thread.priorityTier}
+                    role="group"
+                  >
               <div class="flex flex-wrap items-center gap-2">
                 <div class={`inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold ${thread.priorityClass}`}>
                   {thread.priorityLabel}
@@ -878,7 +932,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                 </div>
               </div>
 
-              <div class="mt-3 flex flex-wrap items-center gap-2">
+              <div class="mt-3 flex flex-wrap items-center gap-2" role="status" aria-live="polite" aria-atomic="true">
                 <span class={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${thread.hasUnread ? 'border-sky-300 bg-sky-100 text-sky-900' : 'border-slate-300 bg-slate-100 text-slate-700'}`}>
                   {thread.hasUnread && (
                     <>
@@ -887,6 +941,9 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                     </>
                   )}
                   {thread.unreadLabel}
+                </span>
+                <span class={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${thread.moderationSummaryClass}`}>
+                  Moderation: {thread.moderationStateSummaryLabel}
                 </span>
                 <span class="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700">Εστίαση: {thread.triageFocusLabel}</span>
                 {thread.needsReply && <span class="rounded-full border border-indigo-300 bg-indigo-100 px-2.5 py-1 text-[11px] font-semibold text-indigo-900">Χρειάζεται απάντηση</span>}
@@ -940,9 +997,9 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                 </div>
               </div>
 
-              <div id={threadStatusId} class={`mt-3 rounded-lg border px-3 py-2 text-xs ${thread.isModerated ? thread.moderationBannerClass : 'border-slate-200 bg-slate-50 text-slate-600'}`}>
+              <div id={threadStatusId} class={`mt-3 rounded-lg border px-3 py-2 text-xs ${thread.isModerated ? thread.moderationBannerClass : 'border-slate-200 bg-slate-50 text-slate-600'}`} role="status" aria-live="polite" aria-atomic="true">
                 <div class="flex flex-wrap items-center justify-between gap-2">
-                  <p class="font-semibold">Κατάσταση: {thread.moderationLabel}</p>
+                  <p class="font-semibold">Κατάσταση moderation: {thread.moderationLabel}</p>
                   {thread.isBlocked && <p class="font-semibold uppercase tracking-[0.08em] text-rose-900">Αποστολή κλειδωμένη</p>}
                   {!thread.isBlocked && thread.threadAction === 'review' && <p class="font-semibold uppercase tracking-[0.08em] text-sky-900">Αναφορά σε εξέλιξη</p>}
                   {!thread.isBlocked && thread.threadAction === 'reject' && <p class="font-semibold uppercase tracking-[0.08em] text-amber-900">Αναφορά ολοκληρωμένη</p>}
@@ -994,9 +1051,12 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                   </a>
                 )}
               </div>
-            </article>
-          );
-        })}
+                  </article>
+                </li>
+              );
+            })}
+          </ol>
+        )}
       </section>
     )}
   </main>
