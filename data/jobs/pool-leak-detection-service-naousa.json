@@ -1,0 +1,20 @@
+{
+  "id": "pool-leak-detection-service-naousa",
+  "slug": "entopismos-diarrois-pisinas-naousa",
+  "nameGr": "Εντοπισμός Διαρροής Πισίνας στη Νάουσα",
+  "nameEn": "Pool Leak Detection Service in Νάουσα",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εντοπισμός διαρροής πισίνας στη Νάουσα με διαγνωστικό έλεγχο σωληνώσεων και εξοπλισμού για άμεση αποκατάσταση. SEO intent: καλύπτει επείγουσες αναζητήσεις «διαρροή πισίνας Νάουσα».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "130-620€",
+  "demand": "high",
+  "keywords": [
+    "εντοπισμός διαρροής πισίνας Νάουσα",
+    "πισίνα χάνει νερό Νάουσα",
+    "τεχνικός πισίνας διαρροή",
+    "έλεγχος σωληνώσεων πισίνας",
+    "επισκευή διαρροής πισίνας"
+  ],
+  "status": "researched"
+}

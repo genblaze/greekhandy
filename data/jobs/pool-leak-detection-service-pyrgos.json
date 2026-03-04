@@ -1,0 +1,20 @@
+{
+  "id": "pool-leak-detection-service-pyrgos",
+  "slug": "entopismos-diarrois-pisinas-pyrgos",
+  "nameGr": "Εντοπισμός Διαρροής Πισίνας στον Πύργο",
+  "nameEn": "Pool Leak Detection Service in Πύργος",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εντοπισμός διαρροής πισίνας στον Πύργο με διαγνωστικό έλεγχο σωληνώσεων και εξοπλισμού για άμεση αποκατάσταση. SEO intent: καλύπτει επείγουσες αναζητήσεις «διαρροή πισίνας Πύργος».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "130-620€",
+  "demand": "high",
+  "keywords": [
+    "εντοπισμός διαρροής πισίνας Πύργος",
+    "πισίνα χάνει νερό Πύργος",
+    "τεχνικός πισίνας διαρροή",
+    "έλεγχος σωληνώσεων πισίνας",
+    "επισκευή διαρροής πισίνας"
+  ],
+  "status": "researched"
+}
