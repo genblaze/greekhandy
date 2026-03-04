@@ -41,6 +41,14 @@
       "estimatedComplexity": "high"
     },
     {
+      "id": "qa-critical-fixes-wave-6",
+      "name": "QA Critical Fixes (Wave 6)",
+      "description": "Wave 6 QA directives: redesign mobile homepage hero color/typography/CTA system to pass WCAG AA contrast on real devices; fix broken professional media on listing/profile with hard fallbacks plus publish-time image fetch validation gates; reposition/collapse accessibility widget into non-blocking docked trigger; add practical category decision controls (city, urgency, budget, availability) and reduce initial card load; consolidate profile conversion UX into one primary CTA flow with secondary actions behind progressive disclosure.",
+      "priority": 1,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "leads-directory-page",
       "name": "Leads Directory Page",
       "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",
