@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="GreekHandy - Βρείτε Αξιόπιστους Επαγγελματίες | Ελλάδα"
+  description="Βρείτε τον καλύτερο επαγγελματία για κάθε εργασία στην Ελλάδα. Ηλεκτρολόγοι, υδραυλικοί, ελαιοχρωματιστές και πολλοί ακόμα. Δωρεάν προσφορές."
+>
+  <!-- Hero -->
+  <section class="bg-blue-600 text-white py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Βρείτε τον Καλύτερο Επαγγελματία</h1>
+      <p class="text-xl opacity-90 mb-8">Αξιόπιστοι τεχνικοί και επαγγελματίες για κάθε εργασία στην Ελλάδα. Δωρεάν προσφορές, άμεση εξυπηρέτηση.</p>
+      <a href="#services" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+        Εξερευνήστε Υπηρεσίες
+      </a>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center mb-12">Δημοφιλείς Υπηρεσίες</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Category cards will be dynamically generated as pages are built -->
+      <p class="col-span-full text-center text-gray-500">Σύντομα θα βρείτε εδώ όλες τις υπηρεσίες μας.</p>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section class="bg-gray-50 py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-12">Πώς Λειτουργεί</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div class="text-4xl mb-4">1</div>
+          <h3 class="text-xl font-semibold mb-2">Επιλέξτε Υπηρεσία</h3>
+          <p class="text-gray-600">Βρείτε την υπηρεσία που χρειάζεστε από τον κατάλογό μας.</p>
+        </div>
+        <div>
+          <div class="text-4xl mb-4">2</div>
+          <h3 class="text-xl font-semibold mb-2">Ζητήστε Προσφορά</h3>
+          <p class="text-gray-600">Περιγράψτε τις ανάγκες σας και λάβετε προσφορές.</p>
+        </div>
+        <div>
+          <div class="text-4xl mb-4">3</div>
+          <h3 class="text-xl font-semibold mb-2">Επιλέξτε Επαγγελματία</h3>
+          <p class="text-gray-600">Συγκρίνετε και επιλέξτε τον κατάλληλο επαγγελματία.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
