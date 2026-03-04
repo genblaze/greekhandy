@@ -1,0 +1,20 @@
+{
+  "id": "wifi-network-home-setup-chios",
+  "slug": "egkatastasi-wifi-diktyou-spitiou-chios",
+  "nameGr": "Εγκατάσταση WiFi Δικτύου Κατοικίας στη Χίο",
+  "nameEn": "Home WiFi Network Setup in Χίος",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εγκατάσταση και βελτιστοποίηση WiFi δικτύου στη Χίο με access points και κάλυψη σε όλους τους χώρους. SEO intent: στοχεύει αναζητήσεις άμεσης πρόθεσης όπως «βελτίωση wifi Χίος» και «τεχνικός δικτύου σπίτι».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "90-420€",
+  "demand": "high",
+  "keywords": [
+    "βελτίωση wifi Χίος",
+    "εγκατάσταση access point Χίος",
+    "τεχνικός δικτύου κατοικίας",
+    "ασθενές wifi λύση",
+    "ρύθμιση internet σπιτιού"
+  ],
+  "status": "researched"
+}
