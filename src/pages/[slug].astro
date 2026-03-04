@@ -2,6 +2,8 @@
 import BaseHead from '../components/BaseHead.astro';
 import Layout from '../layouts/Layout.astro';
 
+export const prerender = true;
+
 // Load all content JSONs at build time (top-level only)
 const contentFiles = import.meta.glob('../../data/content/*.json', { eager: true });
 
@@ -193,14 +195,56 @@ const faqSchema = category.faq?.length ? {
       </section>
     )}
 
-    <!-- CTA -->
+    <!-- Contact Form MVP -->
     <section id="contact" class="bg-blue-700 px-4 py-12 text-white md:py-16">
-      <div class="mx-auto max-w-4xl text-center">
-        <h2 class="text-2xl font-bold md:text-3xl">{category.cta?.heading || 'Χρειάζεστε Επαγγελματία;'}</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-blue-100">{category.cta?.text || 'Στείλτε μας το αίτημά σας και λάβετε δωρεάν προσφορές.'}</p>
-        <a href={`mailto:info@greekhandy.gr?subject=${encodeURIComponent(category.nameGr)}`} class="mt-6 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-blue-700 transition hover:bg-blue-50">
-          {category.cta?.buttonText || 'Ζητήστε Προσφορά'}
-        </a>
+      <div class="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2 lg:items-start">
+        <div>
+          <h2 class="text-2xl font-bold md:text-3xl">{category.cta?.heading || 'Χρειάζεστε Επαγγελματία;'}</h2>
+          <p class="mt-4 max-w-2xl text-blue-100">{category.cta?.text || 'Στείλτε μας το αίτημά σας και λάβετε δωρεάν προσφορές.'}</p>
+          <ul class="mt-6 space-y-2 text-sm text-blue-100">
+            <li>✓ Δωρεάν αίτημα προσφοράς</li>
+            <li>✓ Επικοινωνία από την ομάδα GreekHandy</li>
+            <li>✓ Χωρίς δέσμευση</li>
+          </ul>
+        </div>
+
+        <form action="/api/contact" method="POST" class="rounded-2xl bg-white p-6 text-gray-900 shadow-xl md:p-8">
+          <input type="hidden" name="serviceSlug" value={category.slug} />
+          <input type="hidden" name="serviceName" value={category.nameGr} />
+          <input type="hidden" name="pageUrl" value={canonicalUrl} />
+
+          <h3 class="text-xl font-bold text-gray-900">{category.cta?.buttonText || 'Ζητήστε Προσφορά'}</h3>
+          <p class="mt-1 text-sm text-gray-600">Συμπληρώστε τα στοιχεία σας και θα σας καλέσουμε σύντομα.</p>
+
+          <div class="mt-5 grid gap-4">
+            <div>
+              <label for="lead-name" class="mb-1 block text-sm font-semibold text-gray-800">Όνομα *</label>
+              <input id="lead-name" name="name" type="text" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            </div>
+            <div>
+              <label for="lead-phone" class="mb-1 block text-sm font-semibold text-gray-800">Τηλέφωνο *</label>
+              <input id="lead-phone" name="phone" type="tel" required pattern="[0-9+()\-\s]{7,20}" title="Χρησιμοποιήστε έγκυρο αριθμό τηλεφώνου" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            </div>
+            <div>
+              <label for="lead-email" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>
+              <input id="lead-email" name="email" type="email" required autocomplete="email" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            </div>
+            <div>
+              <label for="lead-description" class="mb-1 block text-sm font-semibold text-gray-800">Περιγραφή εργασίας *</label>
+              <textarea id="lead-description" name="description" rows="4" minlength="15" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Περιγράψτε συνοπτικά τι χρειάζεστε..."></textarea>
+            </div>
+
+            <div class="hidden" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+          </div>
+
+          <button type="submit" class="mt-5 w-full rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">
+            Αποστολή Αιτήματος
+          </button>
+          <p class="mt-2 text-xs text-gray-500">Με την αποστολή αποδέχεστε να επικοινωνήσουμε μαζί σας για το συγκεκριμένο αίτημα.</p>
+        </form>
       </div>
     </section>
   </main>

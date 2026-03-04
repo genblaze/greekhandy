@@ -1,46 +1,41 @@
-# Astro Starter Kit: Basics
+# GreekHandy
 
-```sh
-npm create astro@latest -- --template basics
+Marketplace-style directory for home services in Greece, built with Astro + Tailwind.
+
+## Current MVP Features
+
+- Service/category SEO pages from JSON content
+- Homepage search + browse + city filters
+- **Contact Forms MVP (new):**
+  - Per-service lead form (`name`, `phone`, `email`, `description`)
+  - Server endpoint at `POST /api/contact`
+  - Thank-you flow at `/thank-you`
+  - Lead persistence to `data/contact-submissions.ndjson`
+  - Admin email notification via SMTP (when configured)
+
+## Local Development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Build
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```bash
+npm run build
+npm run preview
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Contact Form Environment Variables
 
-## 🧞 Commands
+Set these to enable admin email notifications:
 
-All commands are run from the root of the project, from a terminal:
+- `CONTACT_ADMIN_EMAIL` (default: `info@greekhandy.gr`)
+- `CONTACT_FROM_EMAIL` (optional; defaults to SMTP user)
+- `SMTP_HOST`
+- `SMTP_PORT` (default: `587`)
+- `SMTP_USER`
+- `SMTP_PASS`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+If SMTP is not configured, submissions are still saved to `data/contact-submissions.ndjson` and the app redirects users to the thank-you page.

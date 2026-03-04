@@ -11,9 +11,9 @@
     {
       "id": "contact-forms",
       "name": "Contact Forms",
-      "description": "Per-service lead capture form with name, phone, email, description fields. Email notification to admin. Thank-you page after submission.",
+      "description": "Per-service lead capture form with name, phone, email, description fields. Email notification to admin (SMTP-configured). Thank-you page after submission.",
       "priority": 2,
-      "status": "planned",
+      "status": "complete",
       "estimatedComplexity": "medium"
     },
     {
@@ -74,7 +74,7 @@
     {
       "name": "MVP Features",
       "target": "Search, contact forms, basic profiles working",
-      "status": "planned"
+      "status": "in-progress"
     },
     {
       "name": "Marketplace v1",

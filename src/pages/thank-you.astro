@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const status = Astro.url.searchParams.get('status') ?? 'ok';
+const isSuccess = status === 'ok';
+const isInvalid = status === 'invalid';
+---
+
+<Layout
+  title="Ευχαριστούμε | GreekHandy"
+  description="Λάβαμε το αίτημά σας. Θα επικοινωνήσουμε σύντομα."
+>
+  <main class="mx-auto max-w-3xl px-4 py-20">
+    <section class="rounded-2xl border bg-white p-8 shadow-sm md:p-12">
+      <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">GreekHandy</p>
+      {isSuccess && (
+        <>
+          <h1 class="mt-3 text-3xl font-bold text-gray-900">Ευχαριστούμε για το αίτημά σας!</h1>
+          <p class="mt-4 text-lg text-gray-700">Η ομάδα μας έλαβε τα στοιχεία σας και θα επικοινωνήσει μαζί σας το συντομότερο δυνατό.</p>
+        </>
+      )}
+
+      {isInvalid && (
+        <>
+          <h1 class="mt-3 text-3xl font-bold text-gray-900">Λείπουν στοιχεία από τη φόρμα</h1>
+          <p class="mt-4 text-lg text-gray-700">Παρακαλούμε συμπληρώστε όλα τα υποχρεωτικά πεδία και δοκιμάστε ξανά.</p>
+        </>
+      )}
+
+      {!isSuccess && !isInvalid && (
+        <>
+          <h1 class="mt-3 text-3xl font-bold text-gray-900">Κάτι πήγε στραβά</h1>
+          <p class="mt-4 text-lg text-gray-700">Δεν μπορέσαμε να αποθηκεύσουμε το αίτημά σας αυτή τη στιγμή. Δοκιμάστε ξανά σε λίγο.</p>
+        </>
+      )}
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/" class="inline-flex rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">Επιστροφή στην αρχική</a>
+        <a href="javascript:history.back()" class="inline-flex rounded-lg border border-gray-300 px-5 py-3 font-semibold text-gray-700 transition hover:bg-gray-50">Επιστροφή στη φόρμα</a>
+      </div>
+    </section>
+  </main>
+</Layout>

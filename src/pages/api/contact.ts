@@ -9,6 +9,9 @@ const LEADS_FILE_PATH = resolve(process.cwd(), 'data', 'contact-submissions.ndjs
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const isValidPhone = (phone: string) => /^[0-9+()\-\s]{7,20}$/.test(phone);
+
 const sendAdminEmail = async (lead: Record<string, string>) => {
   const host = process.env.SMTP_HOST;
   const port = Number(process.env.SMTP_PORT || '587');
@@ -48,6 +51,10 @@ const sendAdminEmail = async (lead: Record<string, string>) => {
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
 
+  if (clean(formData.get('website'))) {
+    return redirect('/thank-you?status=invalid', 303);
+  }
+
   const lead = {
     name: max(clean(formData.get('name')), 120),
     phone: max(clean(formData.get('phone')), 40),
@@ -59,7 +66,15 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     submittedAt: new Date().toISOString()
   };
 
-  if (!lead.name || !lead.phone || !lead.email || !lead.description || !lead.serviceSlug) {
+  if (
+    !lead.name ||
+    !lead.phone ||
+    !lead.email ||
+    !lead.description ||
+    !lead.serviceSlug ||
+    !isValidEmail(lead.email) ||
+    !isValidPhone(lead.phone)
+  ) {
     return redirect('/thank-you?status=invalid', 303);
   }
 
