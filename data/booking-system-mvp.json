@@ -1,150 +1,193 @@
 {
   "featureId": "booking-system",
   "version": "mvp-v1",
-  "goal": "Ship the smallest reliable booking request flow so customers can request a specific service slot and admins can safely moderate requests before handoff.",
+  "locale": "el-GR",
+  "goal": "Να κλείνει ο πελάτης ραντεβού γρήγορα και καθαρά, με ελάχιστα βήματα και με έλεγχο πριν τη δημόσια εμφάνιση.",
+  "voice": {
+    "tone": ["άμεσο", "καθησυχαστικό", "χωρίς υπερβολές"],
+    "styleRules": [
+      "σύντομα labels 2-5 λέξεις",
+      "ξεκάθαρα μηνύματα κατάστασης",
+      "όχι τεχνικοί όροι στη δημόσια ροή"
+    ]
+  },
   "launchScope": {
     "surfaces": [
-      "service/job detail pages",
-      "booking request form",
-      "admin moderation queue (basic list + approve/reject)",
-      "request confirmation screen"
-    ],
-    "inScope": [
-      "customer selects service",
-      "customer picks preferred date and time window",
-      "customer submits request with contact details",
-      "request stored as pending for moderation",
-      "admin can approve or reject",
-      "basic email notification on approved request"
+      "σελίδα επαγγελματία",
+      "φόρμα booking request",
+      "σελίδα επιβεβαίωσης αιτήματος",
+      "admin/moderation queue για έγκριση ή απόρριψη"
     ],
     "outOfScope": [
-      "live professional calendar sync",
-      "instant booking confirmation",
-      "reschedule/cancel self-service",
-      "in-app chat",
-      "payments/deposits"
+      "online πληρωμές",
+      "live calendar sync με Google/Outlook",
+      "reschedule από τον πελάτη χωρίς μεσολάβηση",
+      "in-app chat μέσα στο booking"
     ]
   },
-  "requestFlow": {
-    "steps": [
-      "service",
-      "dateTime",
-      "submit"
+  "flow": {
+    "public": [
+      "select_service",
+      "pick_date",
+      "pick_time_window",
+      "enter_contact_details",
+      "confirm_request",
+      "pending_review_notice"
     ],
-    "fields": {
-      "service": [
-        "jobSlug (required)",
-        "jobTitle (required, denormalized)"
-      ],
-      "dateTime": [
-        "preferredDate (required, local date)",
-        "preferredWindow (required enum: morning|afternoon|evening)",
-        "timezone (default Europe/Athens)"
-      ],
-      "submit": [
-        "fullName (required, 2-80 chars)",
-        "phone (required, E.164 or GR local normalized)",
-        "email (optional, valid format)",
-        "addressArea (required, 2-120 chars)",
-        "notes (optional, max 800 chars)",
-        "consentToContact (required=true)"
-      ]
-    },
-    "uiStates": [
-      "draft",
-      "submitting",
-      "submitted",
-      "validation-error",
-      "rate-limited"
-    ]
-  },
-  "constraints": {
-    "dateRules": [
-      "preferredDate must be >= tomorrow (no same-day for MVP)",
-      "preferredDate must be <= 45 days from today",
-      "block past dates"
-    ],
-    "timeWindowRules": [
-      "morning = 09:00-12:00",
-      "afternoon = 12:00-16:00",
-      "evening = 16:00-20:00"
-    ],
-    "submissionLimits": [
-      "max 3 booking requests per phone per 24h",
-      "max 5 booking requests per IP per 24h"
-    ],
-    "dedupe": "reject exact duplicates (same phone + jobSlug + preferredDate + preferredWindow) within 12h"
-  },
-  "moderationSafeguards": {
-    "states": [
+    "moderation": [
       "pending",
       "approved",
       "rejected",
-      "flagged"
+      "needs_info",
+      "expired"
     ],
-    "defaultFlow": "pending -> approved unless blocked by safeguards",
-    "autoRejectRules": [
-      "invalid phone after normalization",
-      "missing consentToContact",
-      "notes contain clear spam URL patterns",
-      "duplicate submission hit by dedupe rule"
-    ],
-    "autoFlagRules": [
-      "high velocity: >2 requests from same phone in 1h",
-      "notes include phone/email different from submitter contact",
-      "suspicious keyword match list (casino, crypto giveaway, adult spam)"
-    ],
-    "manualReviewSla": "flagged items reviewed within 24h",
-    "audit": [
-      "store moderationReason",
-      "store moderatorId for manual actions",
-      "append-only status history"
+    "professionalOutcome": [
+      "new_request_received",
+      "request_confirmed",
+      "request_declined",
+      "request_expired"
     ]
   },
-  "minimalDataModel": {
-    "bookingRequest": [
-      "id",
-      "jobSlug",
-      "jobTitle",
-      "preferredDate",
-      "preferredWindow",
-      "timezone",
-      "fullName",
-      "phoneNormalized",
-      "email",
-      "addressArea",
-      "notes",
-      "consentToContact",
-      "status",
-      "moderationReason",
-      "suspicionScore",
-      "createdAt",
-      "updatedAt"
+  "bookingModel": {
+    "inputs": [
+      { "key": "serviceSlug", "type": "string", "required": true },
+      { "key": "professionalSlug", "type": "string", "required": true },
+      { "key": "preferredDate", "type": "date", "required": true },
+      { "key": "timeWindow", "type": "string", "required": true },
+      { "key": "customerName", "type": "string", "required": true, "minLength": 2, "maxLength": 80 },
+      { "key": "customerPhone", "type": "string", "required": true },
+      { "key": "customerEmail", "type": "string", "required": false },
+      { "key": "addressArea", "type": "string", "required": true },
+      { "key": "notes", "type": "string", "required": false, "maxLength": 600 }
     ],
-    "indexes": [
-      "status,createdAt",
-      "jobSlug,preferredDate,status",
-      "phoneNormalized,createdAt"
+    "computed": [
+      "booking.status",
+      "booking.referenceCode",
+      "booking.createdAt",
+      "booking.updatedAt"
     ]
   },
-  "notifications": {
-    "approved": [
-      "email to customer (if email present)",
-      "email to ops/admin inbox"
-    ],
-    "rejected": [
-      "optional silent reject for obvious spam",
-      "generic error copy to user when immediate reject occurs"
-    ]
+  "statusLabels": {
+    "public": {
+      "pending": "Σε αναμονή επιβεβαίωσης",
+      "approved": "Επιβεβαιωμένο ραντεβού",
+      "rejected": "Δεν προχώρησε το αίτημα",
+      "needs_info": "Χρειάζονται διευκρινίσεις",
+      "expired": "Το αίτημα έληξε"
+    },
+    "admin": {
+      "pending": "Νέο αίτημα",
+      "approved": "Εγκρίθηκε",
+      "rejected": "Απορρίφθηκε",
+      "needs_info": "Αναμονή στοιχείων",
+      "expired": "Έληξε χωρίς ενέργεια"
+    }
+  },
+  "greekUxCopy": {
+    "publicFlow": {
+      "stepper": {
+        "service": "Υπηρεσία",
+        "schedule": "Ημέρα & ώρα",
+        "details": "Στοιχεία",
+        "confirm": "Επιβεβαίωση"
+      },
+      "title": "Κλείσε ραντεβού σε λίγα βήματα",
+      "subtitle": "Στέλνεις αίτημα τώρα και λαμβάνεις επιβεβαίωση μόλις ελεγχθεί η διαθεσιμότητα.",
+      "fields": {
+        "service": "Τι χρειάζεσαι;",
+        "date": "Ημερομηνία που σε εξυπηρετεί",
+        "timeWindow": "Ζώνη ώρας",
+        "name": "Ονοματεπώνυμο",
+        "phone": "Τηλέφωνο επικοινωνίας",
+        "email": "Email (προαιρετικά)",
+        "area": "Περιοχή",
+        "notes": "Λίγες λεπτομέρειες για τη δουλειά"
+      },
+      "timeWindows": {
+        "morning": "Πρωί (09:00-12:00)",
+        "noon": "Μεσημέρι (12:00-15:00)",
+        "afternoon": "Απόγευμα (15:00-18:00)",
+        "evening": "Βράδυ (18:00-21:00)"
+      },
+      "buttons": {
+        "back": "Πίσω",
+        "next": "Συνέχεια",
+        "submit": "Αποστολή αιτήματος",
+        "retry": "Δοκίμασε ξανά"
+      },
+      "validation": {
+        "required": "Συμπλήρωσε αυτό το πεδίο.",
+        "invalidPhone": "Βάλε έγκυρο κινητό ή σταθερό.",
+        "invalidEmail": "Το email δεν είναι σε σωστή μορφή.",
+        "pastDate": "Επίλεξε ημερομηνία από σήμερα και μετά.",
+        "notesTooLong": "Οι λεπτομέρειες πρέπει να είναι έως 600 χαρακτήρες."
+      },
+      "messages": {
+        "pending": "Το αίτημά σου καταχωρήθηκε και είναι σε αναμονή επιβεβαίωσης.",
+        "approved": "Το ραντεβού σου επιβεβαιώθηκε. Θα λάβεις και ενημέρωση στο κινητό σου.",
+        "rejected": "Το συγκεκριμένο slot δεν είναι διαθέσιμο. Διάλεξε άλλη ώρα για να συνεχίσουμε.",
+        "needsInfo": "Χρειαζόμαστε μια μικρή διευκρίνιση πριν οριστικοποιηθεί το ραντεβού.",
+        "expired": "Το αίτημα έληξε λόγω μη απάντησης. Μπορείς να στείλεις νέο σε λίγα δευτερόλεπτα.",
+        "genericError": "Κάτι πήγε στραβά. Το ξαναδοκιμάζουμε;"
+      },
+      "trust": {
+        "privacyHint": "Τα στοιχεία σου χρησιμοποιούνται μόνο για την ολοκλήρωση του ραντεβού.",
+        "noChargeHint": "Δεν υπάρχει χρέωση για την υποβολή αιτήματος.",
+        "responseSlaHint": "Συνήθως απαντάμε εντός 1 εργάσιμης ώρας."
+      }
+    },
+    "moderationAdmin": {
+      "queueTitle": "Αιτήματα booking",
+      "queueSubtitle": "Έλεγχος στοιχείων και διαθεσιμότητας πριν την τελική επιβεβαίωση.",
+      "columns": {
+        "reference": "Κωδικός",
+        "submittedAt": "Υποβλήθηκε",
+        "customer": "Πελάτης",
+        "service": "Υπηρεσία",
+        "requestedSlot": "Ζητούμενο slot",
+        "status": "Κατάσταση",
+        "risk": "Ρίσκο",
+        "actions": "Ενέργειες"
+      },
+      "actions": {
+        "approve": "Έγκριση",
+        "reject": "Απόρριψη",
+        "needsInfo": "Ζήτα διευκρίνιση",
+        "expire": "Σήμανση ως ληγμένο"
+      },
+      "quickReasons": {
+        "slot_unavailable": "Το συγκεκριμένο slot καλύφθηκε.",
+        "outside_service_area": "Η διεύθυνση είναι εκτός περιοχής εξυπηρέτησης.",
+        "duplicate_request": "Υπάρχει ήδη ενεργό ίδιο αίτημα.",
+        "insufficient_details": "Λείπουν βασικές πληροφορίες για σωστή εκτίμηση.",
+        "high_risk_pattern": "Μοτίβο υψηλού ρίσκου — απαιτείται δεύτερος έλεγχος."
+      },
+      "stateNotes": {
+        "approved": "Επιβεβαιώθηκε και προωθήθηκε σε επαγγελματία.",
+        "rejected": "Δεν προχώρησε. Ο πελάτης ενημερώθηκε με σαφή αιτία.",
+        "needs_info": "Στάλθηκε αίτημα για διευκρινίσεις στον πελάτη.",
+        "expired": "Έκλεισε αυτόματα χωρίς ανταπόκριση εντός SLA."
+      }
+    }
+  },
+  "notificationTemplates": {
+    "customer": {
+      "pendingSubject": "Λάβαμε το αίτημά σου στο Greek Handy",
+      "approvedSubject": "Το ραντεβού σου επιβεβαιώθηκε",
+      "rejectedSubject": "Ενημέρωση για το αίτημά σου",
+      "needsInfoSubject": "Χρειαζόμαστε μια διευκρίνιση για το ραντεβού"
+    },
+    "professional": {
+      "newRequestSubject": "Νέο αίτημα booking",
+      "approvedForYouSubject": "Νέο επιβεβαιωμένο ραντεβού",
+      "customerNeedsInfoSubject": "Εκκρεμεί διευκρίνιση από πελάτη"
+    }
   },
   "acceptanceCriteria": [
-    "User can complete service -> date/time -> submit flow in <= 3 screens",
-    "Server validates required fields and date/time constraints",
-    "Valid request is created with status=pending",
-    "Auto-reject and auto-flag safeguards trigger from configured rules",
-    "Admin can approve or reject pending/flagged requests with reason",
-    "Approved request triggers email notifications to customer/admin",
-    "Duplicate and rate-limited submissions are blocked with clear error copy",
-    "All status transitions are recorded in audit history"
+    "Ο χρήστης ολοκληρώνει αίτημα booking σε έως 4 βήματα",
+    "Οι δημόσιες καταστάσεις pending/approved/rejected/needs_info/expired εμφανίζονται με ελληνικό copy",
+    "Υπάρχει admin queue με labels, quick reasons και actions σε ελληνικά",
+    "Το σύστημα παράγει σαφή μηνύματα επιβεβαίωσης/απόρριψης χωρίς τεχνικό jargon",
+    "Τα validation μηνύματα είναι σύντομα και κατανοητά σε κινητό"
   ]
 }
