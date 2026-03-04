@@ -268,7 +268,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
         )}
 
         {(moderationState === 'rejected' || moderationState === 'cancelled' || moderationState === 'reschedule_rejected') && (
-          <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700" role="status" aria-live="polite">
+          <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700" role="status" aria-live="polite" aria-atomic="true">
             Η κατάσταση έχει οριστικοποιηθεί. Για νέα ενέργεια, υποβάλετε νέο αίτημα κράτησης από τη σελίδα επαγγελματία.
           </div>
         )}
@@ -327,6 +327,11 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
             <a href={supportMailTo} class="inline-flex rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50" aria-label="Αποστολή αιτήματος ενημέρωσης στο GreekHandy">
               Αίτημα ενημέρωσης
             </a>
+          )}
+          {moderationState === 'reschedule_requested' && (
+            <span class="inline-flex rounded-lg border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-800" role="status" aria-live="polite">
+              Εκκρεμεί απάντηση στο αίτημα αλλαγής ραντεβού
+            </span>
           )}
           {moderationState === 'approved' && booking && (
             <form action="/api/bookings/request-update" method="POST" class="inline-flex" aria-label={`Αίτημα αλλαγής ραντεβού για κράτηση ${bookingId}`} aria-describedby="booking-actions-guardrail-help">
