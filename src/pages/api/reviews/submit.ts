@@ -1,11 +1,9 @@
 import type { APIRoute } from 'astro';
-import { appendFile, mkdir } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-
-const SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-submissions.ndjson');
+import { supabaseServer } from '../../../lib/supabase-server';
 
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const toRating = (value: string) => {
   const parsed = Number.parseInt(value, 10);
@@ -19,25 +17,31 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const professionalSlug = max(clean(formData.get('professionalSlug')), 120);
   const returnTo = clean(formData.get('returnTo')) || `/professionals/${professionalSlug}`;
 
-  const submission = {
-    professionalSlug,
-    reviewerName: max(clean(formData.get('reviewerName')), 80),
-    rating: toRating(clean(formData.get('rating'))),
-    comment: max(clean(formData.get('comment')), 1200),
-    status: 'pending',
-    submittedAt: new Date().toISOString()
-  };
+  if (clean(formData.get('website'))) return redirect(`${returnTo}?review=invalid`, 303);
 
-  if (!submission.professionalSlug || !submission.rating || !submission.comment) {
+  const reviewerName = max(clean(formData.get('reviewerName')), 80) || 'Ανώνυμος Πελάτης';
+  const reviewerEmail = max(clean(formData.get('reviewerEmail')).toLowerCase(), 160);
+  const rating = toRating(clean(formData.get('rating')));
+  const comment = max(clean(formData.get('comment')), 1200);
+
+  if (!professionalSlug || !rating || !comment || (reviewerEmail && !isValidEmail(reviewerEmail))) {
     return redirect(`${returnTo}?review=invalid`, 303);
   }
 
-  try {
-    await mkdir(dirname(SUBMISSIONS_FILE_PATH), { recursive: true });
-    await appendFile(SUBMISSIONS_FILE_PATH, `${JSON.stringify(submission)}\n`, 'utf-8');
-    return redirect(`${returnTo}?review=submitted`, 303);
-  } catch (error) {
+  const { error } = await supabaseServer.from('reviews').insert({
+    professional_id: null,
+    reviewer_name: reviewerName,
+    reviewer_email: reviewerEmail || null,
+    rating,
+    comment,
+    service_slug: professionalSlug,
+    status: 'pending'
+  });
+
+  if (error) {
     console.error('[review-submit] failed', error);
     return redirect(`${returnTo}?review=error`, 303);
   }
+
+  return redirect(`${returnTo}?review=submitted`, 303);
 };
