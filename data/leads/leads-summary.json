@@ -1,8 +1,9 @@
 {
-  "totalLeads": 80,
+  "totalLeads": 100,
   "byCategory": {
     "ilektrologoi": 40,
-    "ydravlikoi": 40
+    "ydravlikoi": 40,
+    "elaiokhrwmatistes": 20
   },
-  "lastUpdated": "2026-03-04T15:41:54Z"
+  "lastUpdated": "2026-03-04T16:10:02Z"
 }
