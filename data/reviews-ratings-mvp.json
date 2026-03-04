@@ -119,7 +119,20 @@
     "verifiedBadge": "Επιβεβαιωμένη αξιολόγηση",
     "recommendYes": "Ναι, τον/την προτείνω",
     "recommendNo": "Όχι, δεν έμεινα ικανοποιημένος/η",
-    "ratingsCountLabel": "αξιολογήσεις"
+    "ratingsCountLabel": "αξιολογήσεις",
+    "verifiedBadgeTooltip": "Η αξιολόγηση συνδέεται με πραγματικό αίτημα υπηρεσίας μέσω Greek Handy.",
+    "verifiedBadgeDisclaimer": "Το σήμα επιβεβαιώνει τη συνεργασία, όχι απαραίτητα θετική εμπειρία.",
+    "unverifiedBadge": "Αξιολόγηση χωρίς επιβεβαίωση",
+    "verificationPendingBadge": "Σε έλεγχο επιβεβαίωσης"
+  },
+  "verifiedBadgeAssets": {
+    "source": "data/review-verified-badge-copy.json",
+    "contains": [
+      "public labels",
+      "moderation/admin labels",
+      "status descriptions",
+      "edge-case fallback copy"
+    ]
   },
   "displayTextAssets": {
     "ratingLegend": {
