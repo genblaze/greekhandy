@@ -18,6 +18,12 @@
       "addedAt": "2026-03-04T16:35:24Z",
       "source": "slack",
       "processedAt": "2026-03-04T16:37:35Z"
+    },
+    {
+      "directive": "Bump Leads Directory Page priority to top and implement immediately.",
+      "addedAt": "2026-03-04T16:43:07Z",
+      "source": "slack",
+      "processedAt": "2026-03-04T16:43:28Z"
     }
   ]
 }

@@ -1,10 +1,18 @@
 {
   "features": [
     {
+      "id": "leads-directory-page",
+      "name": "Leads Directory Page",
+      "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",
+      "priority": 1,
+      "status": "planned",
+      "estimatedComplexity": "medium"
+    },
+    {
       "id": "search-browse",
       "name": "Search & Browse",
       "description": "Search bar on homepage, category grid with icons, city filter dropdown. Users can find services by keyword or browse categories.",
-      "priority": 1,
+      "priority": 2,
       "status": "complete",
       "estimatedComplexity": "medium"
     },
@@ -12,7 +20,7 @@
       "id": "contact-forms",
       "name": "Contact Forms",
       "description": "Per-service lead capture form with name, phone, email, description fields. Email notification to admin (SMTP-configured). Thank-you page after submission.",
-      "priority": 2,
+      "priority": 3,
       "status": "complete",
       "estimatedComplexity": "medium"
     },
@@ -20,7 +28,7 @@
       "id": "professional-profiles",
       "name": "Professional Profiles",
       "description": "MVP slices complete: basic professional listing + profile pages + professional registration form submission + homepage search results include approved/published profiles + basic moderation workflow (pending queue with approve/reject and draft profile creation) + photos/portfolio display on profiles.",
-      "priority": 3,
+      "priority": 4,
       "status": "complete",
       "estimatedComplexity": "high"
     },
@@ -28,7 +36,7 @@
       "id": "premium-sitewide-design-system",
       "name": "Premium Sitewide Experience",
       "description": "Airbnb-level premium visual and UX system across every surface: homepage, category pages, service pages, profile pages, booking flow, messaging threads, moderation/admin pages, and all states (empty/loading/error).",
-      "priority": 4,
+      "priority": 5,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -36,17 +44,9 @@
       "id": "worker-lead-engine",
       "name": "Worker Lead Engine",
       "description": "Continuous worker/pro lead acquisition via subagents with extensive coverage by trade × city, deduplication/scoring, and daily high-priority outreach-ready lists.",
-      "priority": 5,
+      "priority": 6,
       "status": "in-progress",
       "estimatedComplexity": "high"
-    },
-    {
-      "id": "leads-directory-page",
-      "name": "Leads Directory Page",
-      "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",
-      "priority": 6,
-      "status": "planned",
-      "estimatedComplexity": "medium"
     },
     {
       "id": "seo-sitewide-optimization",
