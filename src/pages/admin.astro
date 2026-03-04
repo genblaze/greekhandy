@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { supabaseServer } from '../lib/supabase-server';
 
 const PROFESSIONAL_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
 const PROFESSIONAL_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registration-actions.ndjson');
@@ -9,8 +10,8 @@ const REVIEW_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-subm
 const REVIEW_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-moderation-actions.ndjson');
 const BOOKING_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-submissions.ndjson');
 const BOOKING_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-moderation-actions.ndjson');
-const MESSAGE_REPORTS_FILE_PATH = resolve(process.cwd(), 'data', 'message-reports.ndjson');
-const MESSAGE_REPORT_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-report-actions.ndjson');
+const MESSAGE_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
+const MESSAGE_TRIAGE_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
 
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
@@ -45,14 +46,6 @@ interface BookingAction {
   bookingId: string;
 }
 
-interface MessageReport {
-  id: string;
-  status: 'open';
-}
-
-interface MessageReportAction {
-  reportId: string;
-}
 
 const readNdjson = async <T,>(path: string): Promise<T[]> => {
   try {
@@ -67,12 +60,12 @@ const readNdjson = async <T,>(path: string): Promise<T[]> => {
   }
 };
 
-const buildQueueHref = (pathname: string) => `${pathname}?key=${encodeURIComponent(moderationKey)}`;
+const buildQueueHref = (pathname: string) => `${pathname}?key=${encodeURIComponent(moderationKey)}&actor=admin-dashboard`;
 
 let pendingProfiles = 0;
 let pendingReviews = 0;
 let pendingBookings = 0;
-let pendingMessageThreads = 0;
+let pendingUnifiedModeration = 0;
 
 if (isAuthorized) {
   const registrations = await readNdjson<RegistrationSubmission>(PROFESSIONAL_SUBMISSIONS_FILE_PATH);
@@ -97,11 +90,34 @@ if (isAuthorized) {
     return !bookingActionIds.has(bookingId);
   }).length;
 
-  const messageReports = await readNdjson<MessageReport>(MESSAGE_REPORTS_FILE_PATH);
-  const messageReportActions = await readNdjson<MessageReportAction>(MESSAGE_REPORT_ACTIONS_FILE_PATH);
-  const handledReportIds = new Set(messageReportActions.map((action) => action.reportId));
+  const messageSubmissions = await readNdjson<Array<{ threadId?: string; professionalSlug?: string; senderEmail?: string; recipientEmail?: string }>[number]>(MESSAGE_SUBMISSIONS_FILE_PATH);
+  const messageTriageActions = await readNdjson<Array<{ threadId?: string; action?: string }>[number]>(MESSAGE_TRIAGE_ACTIONS_FILE_PATH);
+  const latestActionByThread = new Map<string, string>();
+  for (const action of messageTriageActions) {
+    if (action.threadId && action.action) latestActionByThread.set(action.threadId, action.action);
+  }
 
-  pendingMessageThreads = messageReports.filter((report) => report.status === 'open' && !handledReportIds.has(report.id)).length;
+  const threadIds = new Set<string>();
+  for (const submission of messageSubmissions) {
+    const fallbackThreadId = submission.threadId || `${submission.professionalSlug}|${[submission.senderEmail?.toLowerCase() || '', submission.recipientEmail?.toLowerCase() || ''].sort().join('|')}`;
+    if (fallbackThreadId) threadIds.add(fallbackThreadId);
+  }
+  const pendingThreadCount = Array.from(threadIds).filter((threadId) => !latestActionByThread.has(threadId)).length;
+
+  const { data: reportsData } = await supabaseServer
+    .from('message_reports')
+    .select('id')
+    .eq('status', 'open');
+
+  const { data: reportActionsData } = await supabaseServer
+    .from('message_moderation_actions')
+    .select('report_id')
+    .not('report_id', 'is', null);
+
+  const handledReportIds = new Set((reportActionsData || []).map((entry: any) => entry.report_id).filter(Boolean));
+  const openReportCount = (reportsData || []).filter((row: any) => !handledReportIds.has(row.id)).length;
+
+  pendingUnifiedModeration = pendingThreadCount + openReportCount;
 }
 
 const queues = [
@@ -124,14 +140,14 @@ const queues = [
     helper: 'Νέα αιτήματα κράτησης προς έλεγχο.'
   },
   {
-    label: 'Αναφορές Μηνυμάτων',
-    count: pendingMessageThreads,
+    label: 'Unified Moderation Queue',
+    count: pendingUnifiedModeration,
     href: buildQueueHref('/professionals/messages-moderation'),
-    helper: 'Ανοιχτές αναφορές μηνυμάτων για moderation actions.'
+    helper: 'Ενοποιημένη ουρά για message threads + reported messages.'
   }
 ];
 
-const totalPending = pendingProfiles + pendingReviews + pendingBookings + pendingMessageThreads;
+const totalPending = pendingProfiles + pendingReviews + pendingBookings + pendingUnifiedModeration;
 ---
 
 <Layout title="Admin Dashboard | GreekHandy" description="Protected admin dashboard with moderation queue overview.">
