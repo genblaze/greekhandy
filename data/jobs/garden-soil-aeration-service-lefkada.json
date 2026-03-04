@@ -1,0 +1,20 @@
+{
+  "id": "garden-soil-aeration-service-lefkada",
+  "slug": "aerismos-edafous-kipou-lefkada",
+  "nameGr": "Αερισμός Εδάφους Κήπου στη Λευκάδα",
+  "nameEn": "Garden Soil Aeration Service in Λευκάδα",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Αερισμός εδάφους κήπου στη Λευκάδα για βελτίωση απορρόφησης νερού, υγεία γκαζόν και ανάπτυξη ριζών. SEO intent: καλύπτει seasonal high-intent queries «αερισμός γκαζόν Λευκάδα».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "70-300€",
+  "demand": "high",
+  "keywords": [
+    "αερισμός γκαζόν Λευκάδα",
+    "βελτίωση εδάφους κήπου Λευκάδα",
+    "κηπουρός γκαζόν service",
+    "αναζωογόνηση χλοοτάπητα",
+    "καθαρισμός θατς γκαζόν"
+  ],
+  "status": "researched"
+}
