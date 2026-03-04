@@ -1,0 +1,20 @@
+{
+  "id": "firewood-storage-shed-build-grevena",
+  "slug": "kataskevi-xylostegou-apothikefsis-kafsoxylon-grevena",
+  "nameGr": "Κατασκευή Ξυλόστεγου Αποθήκευσης Καυσόξυλων στα Γρεβενά",
+  "nameEn": "Firewood Storage Shed Build in Γρεβενά",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Κατασκευή ξυλόστεγου στα Γρεβενά για αποθήκευση καυσόξυλων με αερισμό και προστασία από υγρασία. SEO intent: καλύπτει high-intent queries «κατασκευή ξυλόστεγου Γρεβενά».",
+  "typicalDuration": "1-4 ημέρες",
+  "priceRangeEUR": "320-1800€",
+  "demand": "high",
+  "keywords": [
+    "κατασκευή ξυλόστεγου Γρεβενά",
+    "αποθήκη καυσόξυλων Γρεβενά",
+    "ξύλινο υπόστεγο καυσόξυλα",
+    "ξυλουργός εξωτερικής αποθήκης",
+    "προστασία ξύλων από βροχή"
+  ],
+  "status": "researched"
+}

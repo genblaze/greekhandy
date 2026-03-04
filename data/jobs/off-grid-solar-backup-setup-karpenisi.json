@@ -1,0 +1,20 @@
+{
+  "id": "off-grid-solar-backup-setup-karpenisi",
+  "slug": "egkatastasi-autonomou-iliakou-backup-karpenisi",
+  "nameGr": "Εγκατάσταση Αυτόνομου Ηλιακού Backup στο Καρπενήσι",
+  "nameEn": "Off-Grid Solar Backup Setup in Καρπενήσι",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Εγκατάσταση αυτόνομου ηλιακού backup στο Καρπενήσι με μπαταρία και inverter για διακοπές ρεύματος και ενεργειακή αυτονομία. SEO intent: στοχεύει high-value αναζητήσεις «αυτόνομο φωτοβολταϊκό Καρπενήσι».",
+  "typicalDuration": "1-4 ημέρες",
+  "priceRangeEUR": "1800-9200€",
+  "demand": "high",
+  "keywords": [
+    "αυτόνομο φωτοβολταϊκό Καρπενήσι",
+    "ηλιακό backup κατοικίας Καρπενήσι",
+    "μπαταρία inverter off grid",
+    "ενεργειακή αυτονομία σπίτι",
+    "σύστημα backup ρεύματος"
+  ],
+  "status": "researched"
+}

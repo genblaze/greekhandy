@@ -1,0 +1,20 @@
+{
+  "id": "off-grid-solar-backup-setup-grevena",
+  "slug": "egkatastasi-autonomou-iliakou-backup-grevena",
+  "nameGr": "Εγκατάσταση Αυτόνομου Ηλιακού Backup στα Γρεβενά",
+  "nameEn": "Off-Grid Solar Backup Setup in Γρεβενά",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Εγκατάσταση αυτόνομου ηλιακού backup στα Γρεβενά με μπαταρία και inverter για διακοπές ρεύματος και ενεργειακή αυτονομία. SEO intent: στοχεύει high-value αναζητήσεις «αυτόνομο φωτοβολταϊκό Γρεβενά».",
+  "typicalDuration": "1-4 ημέρες",
+  "priceRangeEUR": "1800-9200€",
+  "demand": "high",
+  "keywords": [
+    "αυτόνομο φωτοβολταϊκό Γρεβενά",
+    "ηλιακό backup κατοικίας Γρεβενά",
+    "μπαταρία inverter off grid",
+    "ενεργειακή αυτονομία σπίτι",
+    "σύστημα backup ρεύματος"
+  ],
+  "status": "researched"
+}
