@@ -361,7 +361,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
             Η ποιοτική επιλογή επαγγελματία,
             <span class="block text-cyan-100">με σαφήνεια από το πρώτο λεπτό.</span>
           </h1>
-          <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-100 md:text-xl">
+          <p class="mt-4 max-w-xl text-base leading-relaxed text-slate-100 md:max-w-2xl md:text-xl">
             Το GreekHandy μετατρέπει την αναζήτηση τεχνικού σε στρατηγική απόφαση: ορατές επιλογές,
             καθαρή πληροφορία και ουσιαστική σύγκριση για να κλείνετε σωστό συνεργάτη χωρίς χάσιμο χρόνου.
           </p>
@@ -1086,6 +1086,11 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       border-color: rgb(254 215 170);
       background: rgb(255 247 237 / 0.9);
       color: rgb(154 52 18);
+    }
+
+    .home-root .gh-hero a:focus-visible {
+      outline: 3px solid #bae6fd;
+      outline-offset: 2px;
     }
 
     @media (max-width: 1024px) {
