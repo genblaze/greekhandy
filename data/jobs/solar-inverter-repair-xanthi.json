@@ -1,0 +1,20 @@
+{
+  "id": "solar-inverter-repair-xanthi",
+  "slug": "episkevi-inverter-fotovoltaikou-xanthi",
+  "nameGr": "Επισκευή Inverter Φωτοβολταϊκού στην Ξάνθη",
+  "nameEn": "Solar Inverter Repair in Ξάνθη",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Διάγνωση και επισκευή inverter φωτοβολταϊκού στην Ξάνθη για σφάλματα παραγωγής και διακοπές λειτουργίας. SEO intent: καλύπτει high-intent αναζητήσεις «επισκευή inverter Ξάνθη» και «service φωτοβολταϊκού inverter».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "120-680€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή inverter Ξάνθη",
+    "service inverter φωτοβολταϊκού Ξάνθη",
+    "βλάβη inverter solar",
+    "δεν παράγει φωτοβολταϊκό",
+    "τεχνικός φωτοβολταϊκών άμεσα"
+  ],
+  "status": "researched"
+}

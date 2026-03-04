@@ -1,0 +1,20 @@
+{
+  "id": "solar-inverter-repair-lamia",
+  "slug": "episkevi-inverter-fotovoltaikou-lamia",
+  "nameGr": "Επισκευή Inverter Φωτοβολταϊκού στη Λαμία",
+  "nameEn": "Solar Inverter Repair in Λαμία",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Διάγνωση και επισκευή inverter φωτοβολταϊκού στη Λαμία για σφάλματα παραγωγής και διακοπές λειτουργίας. SEO intent: καλύπτει high-intent αναζητήσεις «επισκευή inverter Λαμία» και «service φωτοβολταϊκού inverter».",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "120-680€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή inverter Λαμία",
+    "service inverter φωτοβολταϊκού Λαμία",
+    "βλάβη inverter solar",
+    "δεν παράγει φωτοβολταϊκό",
+    "τεχνικός φωτοβολταϊκών άμεσα"
+  ],
+  "status": "researched"
+}
