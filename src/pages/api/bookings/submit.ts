@@ -23,10 +23,11 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const submission = {
     id: `${professionalSlug}|${Date.now()}`,
     professionalSlug,
+    service: max(clean(formData.get('service')), 160),
     customerName: max(clean(formData.get('customerName')), 120),
     phone: max(clean(formData.get('phone')), 40),
     email: max(clean(formData.get('email')), 160),
-    preferredDate: max(clean(formData.get('preferredDate')), 40),
+    preferredDate: max(clean(formData.get('preferredDate')), 80),
     message: max(clean(formData.get('message')), 2000),
     status: 'pending',
     submittedAt: new Date().toISOString()
@@ -34,6 +35,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
   if (
     !submission.professionalSlug ||
+    !submission.service ||
     !submission.customerName ||
     !submission.phone ||
     !submission.email ||

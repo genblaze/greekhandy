@@ -15,6 +15,7 @@ const status = url.searchParams.get('status');
 interface BookingSubmission {
   id?: string;
   professionalSlug: string;
+  service?: string;
   customerName: string;
   phone: string;
   email: string;
@@ -90,7 +91,8 @@ const pendingBookings = submissions
                   <p class="text-sm font-semibold text-blue-700">/{booking.professionalSlug}</p>
                   <h3 class="text-lg font-bold text-gray-900">{booking.customerName}</h3>
                   <p class="mt-1 text-sm text-gray-600">{booking.email} • {booking.phone}</p>
-                  {booking.preferredDate && <p class="mt-1 text-sm text-gray-700"><strong>Προτιμώμενη ημερομηνία:</strong> {booking.preferredDate}</p>}
+                  {booking.service && <p class="mt-1 text-sm text-gray-700"><strong>Υπηρεσία:</strong> {booking.service}</p>}
+                  {booking.preferredDate && <p class="mt-1 text-sm text-gray-700"><strong>Προτιμώμενο πρόγραμμα:</strong> {booking.preferredDate}</p>}
                 </div>
                 <p class="text-xs text-gray-500">{new Date(booking.submittedAt).toLocaleString('el-GR')}</p>
               </div>

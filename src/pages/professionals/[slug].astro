@@ -184,6 +184,13 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 
           <div class="grid gap-4 md:grid-cols-2">
             <div>
+              <label for="bookingService" class="mb-1 block text-sm font-semibold text-gray-800">Υπηρεσία *</label>
+              <select id="bookingService" name="service" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5">
+                <option value="">Επιλέξτε υπηρεσία</option>
+                {profile.services.map((service) => <option value={service}>{service}</option>)}
+              </select>
+            </div>
+            <div>
               <label for="customerName" class="mb-1 block text-sm font-semibold text-gray-800">Ονοματεπώνυμο *</label>
               <input id="customerName" name="customerName" required maxlength="120" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
             </div>
@@ -195,14 +202,14 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
               <label for="bookingEmail" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>
               <input id="bookingEmail" name="email" type="email" required maxlength="160" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
             </div>
-            <div>
-              <label for="preferredDate" class="mb-1 block text-sm font-semibold text-gray-800">Προτιμώμενη ημερομηνία/ώρα</label>
-              <input id="preferredDate" name="preferredDate" type="text" maxlength="40" placeholder="π.χ. 12/03 απόγευμα" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+            <div class="md:col-span-2">
+              <label for="preferredDate" class="mb-1 block text-sm font-semibold text-gray-800">Προτιμώμενο πρόγραμμα (ημερομηνία/ώρα)</label>
+              <input id="preferredDate" name="preferredDate" type="text" maxlength="80" placeholder="π.χ. 12/03 απόγευμα ή Σάββατο πρωί" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
             </div>
           </div>
 
           <div class="mt-4">
-            <label for="bookingMessage" class="mb-1 block text-sm font-semibold text-gray-800">Περιγραφή εργασίας *</label>
+            <label for="bookingMessage" class="mb-1 block text-sm font-semibold text-gray-800">Λεπτομέρειες αιτήματος *</label>
             <textarea id="bookingMessage" name="message" rows="4" required maxlength="2000" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
           </div>
 
