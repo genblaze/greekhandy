@@ -387,26 +387,48 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
       )}
     </section>
 
-    {status === 'invalid' && (
-      <p class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-900" role="alert">Δεν ήταν δυνατή η ενημέρωση ως αναγνωσμένη λόγω μη έγκυρων στοιχείων.</p>
-    )}
-    {status === 'forbidden' && (
-      <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900" role="alert">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
-    )}
-    {status === 'error' && (
-      <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900" role="alert">Προέκυψε σφάλμα κατά την ενημέρωση της κατάστασης. Δοκιμάστε ξανά.</p>
-    )}
-    {showLoadingState && (
-      <p class="mt-5 flex items-center gap-2 rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm font-medium text-sky-900" role="status" aria-live="polite">
-        <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700"></span>
-        Φόρτωση συνομιλιών...
-      </p>
-    )}
-    {hasUnknownStatus && (
-      <p class="mt-5 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
-        Ελήφθη άγνωστη κατάσταση ενημέρωσης: <code>{status}</code>. Επαναφορτώστε τη σελίδα.
-      </p>
-    )}
+    <section class="messages-toast-stack" aria-label="Καταστάσεις λίστας συνομιλιών">
+      {status === 'invalid' && (
+        <div class="messages-toast messages-toast--amber js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Δεν ήταν δυνατή η ενημέρωση ως αναγνωσμένη λόγω μη έγκυρων στοιχείων.</p>
+          <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {status === 'forbidden' && (
+        <div class="messages-toast messages-toast--rose js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
+          <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {status === 'error' && (
+        <div class="messages-toast messages-toast--rose js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Προέκυψε σφάλμα κατά την ενημέρωση της κατάστασης. Δοκιμάστε ξανά.</p>
+          <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {showLoadingState && (
+        <div class="messages-toast messages-toast--sky js-messages-toast" role="status" aria-live="polite" tabindex="-1" data-autohide-ms="0">
+          <p class="flex items-center gap-2 text-sm font-semibold">
+            <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700"></span>
+            Φόρτωση συνομιλιών...
+          </p>
+          <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {hasUnknownStatus && (
+        <div class="messages-toast messages-toast--slate js-messages-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Ελήφθη άγνωστη κατάσταση ενημέρωσης: <code>{status}</code>. Επαναφορτώστε τη σελίδα.</p>
+          <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {listLoadError && (
+        <div class="messages-toast messages-toast--rose js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της λίστας.</p>
+          <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+    </section>
+
     {listLoadError && (
       <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900">
         <p class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της λίστας.</p>
@@ -752,8 +774,78 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
 
     .messages-shell :where(a, button, input, select, textarea):focus-visible {
       outline: 3px solid rgba(14, 116, 144, 0.4);
-      outline-offset: 2px;
+      outline-offset: 3px;
       box-shadow: 0 0 0 4px rgba(14, 116, 144, 0.12);
+    }
+
+    .messages-toast-stack {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 70;
+      display: grid;
+      width: min(28rem, calc(100vw - 2rem));
+      gap: 0.6rem;
+      pointer-events: none;
+    }
+
+    .messages-toast {
+      pointer-events: auto;
+      border-radius: 0.95rem;
+      border: 1px solid rgb(203 213 225);
+      background: rgb(248 250 252);
+      padding: 0.75rem 0.85rem;
+      color: rgb(51 65 85);
+      box-shadow: 0 18px 36px -24px rgba(15, 23, 42, 0.6);
+      transition: opacity 140ms ease, transform 140ms ease;
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .messages-toast.is-dismissing {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+
+    .messages-toast--sky {
+      border-color: rgb(186 230 253);
+      background: rgb(240 249 255);
+      color: rgb(12 74 110);
+    }
+
+    .messages-toast--amber {
+      border-color: rgb(253 230 138);
+      background: rgb(255 251 235);
+      color: rgb(146 64 14);
+    }
+
+    .messages-toast--rose {
+      border-color: rgb(254 205 211);
+      background: rgb(255 241 242);
+      color: rgb(136 19 55);
+    }
+
+    .messages-toast--slate {
+      border-color: rgb(203 213 225);
+      background: rgb(248 250 252);
+      color: rgb(51 65 85);
+    }
+
+    .messages-toast__dismiss {
+      flex-shrink: 0;
+      border-radius: 0.6rem;
+      border: 1px solid currentColor;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 0.25rem 0.55rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .messages-toast__dismiss:hover {
+      background: rgba(255, 255, 255, 0.92);
     }
 
     .loading-thread-card {
@@ -875,6 +967,21 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
       opacity: 0.85;
     }
 
+    .thread-card--pending {
+      border-color: rgb(125 211 252);
+      box-shadow:
+        0 0 0 3px rgba(14, 116, 144, 0.16),
+        0 20px 40px -32px rgba(15, 23, 42, 0.5);
+    }
+
+    .js-pending-form[aria-busy='true'] {
+      opacity: 0.82;
+    }
+
+    .js-pending-form[aria-busy='true'] :where(input:not([type='hidden']), textarea, select, button) {
+      cursor: wait;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .loading-thread-card::after,
       .loading-thread-card__bar {
@@ -885,40 +992,100 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
         transition: none;
       }
     }
+
+    @media (max-width: 640px) {
+      .messages-toast-stack {
+        top: 0.75rem;
+        left: 0.75rem;
+        right: 0.75rem;
+        width: auto;
+      }
+    }
   </style>
 
   <script is:inline>
-    for (const form of document.querySelectorAll('.js-pending-form')) {
-      form.addEventListener('submit', (event) => {
+    (() => {
+      const toasts = Array.from(document.querySelectorAll('.js-messages-toast'));
+      const dismissToast = (toast) => {
+        if (!(toast instanceof HTMLElement) || toast.dataset.removed === 'true') return;
+        toast.dataset.removed = 'true';
+        toast.classList.add('is-dismissing');
+        window.setTimeout(() => toast.remove(), 150);
+      };
+
+      for (const toast of toasts) {
+        const dismissButton = toast.querySelector('[data-toast-dismiss]');
+        if (dismissButton instanceof HTMLButtonElement) {
+          dismissButton.addEventListener('click', () => dismissToast(toast));
+        }
+        const autoHideMs = Number(toast.getAttribute('data-autohide-ms') || '0');
+        if (Number.isFinite(autoHideMs) && autoHideMs > 0) {
+          window.setTimeout(() => dismissToast(toast), autoHideMs);
+        }
+      }
+
+      const focusToast = document.querySelector('.js-messages-toast[data-focus-on-load="true"]');
+      if (focusToast instanceof HTMLElement) {
+        requestAnimationFrame(() => focusToast.focus());
+      }
+
+      const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
+      const setFormPending = (form, isPending) => {
         const submitButton = form.querySelector('button[type="submit"]');
         if (!(submitButton instanceof HTMLButtonElement)) return;
-        if (submitButton.getAttribute('aria-busy') === 'true') {
-          event.preventDefault();
+        const controls = Array.from(form.querySelectorAll('button, input, select, textarea')).filter((control) => (
+          !(control instanceof HTMLInputElement && control.type === 'hidden')
+        ));
+        const parentCard = form.closest('.thread-card');
+
+        form.setAttribute('aria-busy', isPending ? 'true' : 'false');
+        form.classList.toggle('opacity-80', isPending);
+        if (parentCard instanceof HTMLElement) {
+          parentCard.classList.toggle('thread-card--pending', isPending);
+        }
+
+        if (isPending) {
+          for (const control of controls) {
+            control.setAttribute('data-pending-disabled', control.disabled ? 'true' : 'false');
+            control.disabled = true;
+            control.setAttribute('aria-disabled', 'true');
+          }
+          const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent || 'Υποβολή';
+          const pendingLabel = submitButton.dataset.pendingLabel || 'Επεξεργασία...';
+          form.setAttribute('data-submit-label', defaultLabel);
+          submitButton.textContent = pendingLabel;
+          submitButton.setAttribute('aria-busy', 'true');
           return;
         }
-        if (!form.checkValidity()) return;
-        submitButton.disabled = true;
-        const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent || 'Υποβολή';
-        const pendingLabel = submitButton.dataset.pendingLabel || 'Επεξεργασία...';
-        submitButton.textContent = pendingLabel;
-        submitButton.setAttribute('aria-busy', 'true');
-        submitButton.setAttribute('aria-disabled', 'true');
-        form.classList.add('opacity-80');
-        form.setAttribute('data-submit-label', defaultLabel);
-      });
-    }
 
-    window.addEventListener('pageshow', () => {
-      for (const form of document.querySelectorAll('.js-pending-form')) {
-        form.classList.remove('opacity-80');
-        const submitButton = form.querySelector('button[type="submit"]');
-        if (!(submitButton instanceof HTMLButtonElement)) continue;
+        for (const control of controls) {
+          const wasDisabled = control.getAttribute('data-pending-disabled') === 'true';
+          control.disabled = wasDisabled;
+          control.removeAttribute('data-pending-disabled');
+          if (!control.disabled) control.removeAttribute('aria-disabled');
+        }
         const defaultLabel = submitButton.dataset.defaultLabel || form.getAttribute('data-submit-label') || submitButton.textContent || 'Υποβολή';
-        submitButton.disabled = false;
         submitButton.textContent = defaultLabel;
         submitButton.removeAttribute('aria-busy');
-        submitButton.removeAttribute('aria-disabled');
+        if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
+      };
+
+      for (const form of pendingForms) {
+        form.addEventListener('submit', (event) => {
+          if (form.getAttribute('aria-busy') === 'true') {
+            event.preventDefault();
+            return;
+          }
+          if (!form.checkValidity()) return;
+          setFormPending(form, true);
+        });
       }
-    }
+
+      window.addEventListener('pageshow', () => {
+        for (const form of pendingForms) {
+          setFormPending(form, false);
+        }
+      });
+    })();
   </script>
 </Layout>
