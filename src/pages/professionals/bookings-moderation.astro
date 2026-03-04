@@ -161,7 +161,7 @@ const hasAnyBookings = bookings.length > 0;
         )}
         {status === 'unauthorized' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Μη εξουσιοδοτημένη ενέργεια moderation.</p>}
 
-        <div data-booking-moderation-loading class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite">
+        <div data-booking-moderation-loading class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status" aria-live="polite" aria-atomic="true">
           <span class="inline-flex items-center gap-2">
             <span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-blue-300 border-t-blue-700"></span>
             Καταχώρηση μετάβασης κατάστασης... ενημερώνουμε το lifecycle του αιτήματος.
@@ -171,6 +171,7 @@ const hasAnyBookings = bookings.length > 0;
         <div id="booking-lifecycle-guardrails" class="mt-6 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700" role="note" aria-live="polite">
           <p class="font-semibold text-slate-900">Flow μεταβάσεων</p>
           <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Από <strong>approved</strong> επιτρέπεται αίτημα αλλαγής (<strong>reschedule_requested</strong>), που κλείνει με <strong>approved</strong> ή <strong>reschedule_rejected</strong>.</p>
+          <p class="mt-2 text-xs text-slate-600">Κανόνας ασφαλείας: αν εντοπιστεί ασυμφωνία expectedState/actualState, η ενέργεια ακυρώνεται και απαιτείται ανανέωση.</p>
         </div>
 
         <section class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
