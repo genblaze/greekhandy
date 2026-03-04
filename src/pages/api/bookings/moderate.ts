@@ -6,10 +6,21 @@ import {
   findLatestBookingAction,
   readNdjson,
   resolveBookingModerationState,
-  type BookingAction
+  type BookingAction,
+  type BookingModerationState
 } from '../../../lib/bookings';
 
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
+
+const isState = (value: string): value is BookingModerationState => ['pending', 'approved', 'rejected'].includes(value);
+
+const toTargetState = (inputAction: string, inputTargetState: string): BookingModerationState | null => {
+  if (isState(inputTargetState)) return inputTargetState;
+  if (inputAction === 'approve') return 'approved';
+  if (inputAction === 'reject') return 'rejected';
+  if (inputAction === 'reset') return 'pending';
+  return null;
+};
 
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
@@ -21,10 +32,12 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   const action = clean(formData.get('action'));
+  const targetState = toTargetState(action, clean(formData.get('targetState')));
+  const expectedState = clean(formData.get('expectedState'));
   const bookingId = clean(formData.get('bookingId'));
   const returnUrl = `/professionals/bookings-moderation?key=${encodeURIComponent(moderationKey)}`;
 
-  if (!bookingId || !action || !['approve', 'reject'].includes(action)) {
+  if (!bookingId || !targetState || (expectedState && !isState(expectedState))) {
     return redirect(`${returnUrl}&status=invalid`, 303);
   }
 
@@ -35,18 +48,23 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const currentState = resolveBookingModerationState({
       action: latestAction?.action
     }).state;
-    if (currentState !== 'pending') {
-      return redirect(`${returnUrl}&status=already-processed`, 303);
+
+    if (expectedState && currentState !== expectedState) {
+      return redirect(`${returnUrl}&status=stale`, 303);
+    }
+
+    if (currentState === targetState) {
+      return redirect(`${returnUrl}&status=no-change`, 303);
     }
 
     await mkdir(dirname(BOOKING_ACTIONS_FILE_PATH), { recursive: true });
     await appendFile(
       BOOKING_ACTIONS_FILE_PATH,
-      `${JSON.stringify({ bookingId, action, actedAt: new Date().toISOString() })}\n`,
+      `${JSON.stringify({ bookingId, action: targetState, actedAt: new Date().toISOString() })}\n`,
       'utf-8'
     );
 
-    return redirect(`${returnUrl}&status=ok`, 303);
+    return redirect(`${returnUrl}&status=updated`, 303);
   } catch (error) {
     console.error('[booking-moderation] failed', error);
     return redirect(`${returnUrl}&status=error`, 303);

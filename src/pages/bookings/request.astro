@@ -76,6 +76,7 @@ const statusPills: Array<{ key: BookingModerationState; label: string }> = [
   { key: 'approved', label: 'Εγκρίθηκε' },
   { key: 'rejected', label: 'Απορρίφθηκε' }
 ];
+
 ---
 
 <Layout title="Κατάσταση Αιτήματος Κράτησης | GreekHandy" description="Δείτε την κατάσταση moderation και τα στοιχεία του αιτήματος κράτησης σας.">
@@ -129,8 +130,8 @@ const statusPills: Array<{ key: BookingModerationState; label: string }> = [
         <div class="mt-4 grid gap-2 sm:grid-cols-3">
           {statusPills.map((pill) => {
             const isActive = moderationState === pill.key;
-            const isCompletedPending = pill.key === 'pending' && moderationState !== 'pending';
-            const completedClasses = isCompletedPending ? 'border-emerald-200 bg-emerald-50 text-emerald-900' : '';
+            const isCompleted = pill.key === 'pending' && moderationState !== 'pending';
+            const completedClasses = isCompleted ? 'border-emerald-200 bg-emerald-50 text-emerald-900' : '';
             const activeClasses = isActive ? 'border-blue-200 bg-blue-50 text-blue-900' : '';
             return (
               <div class={`rounded-lg border px-3 py-2 text-sm font-semibold text-gray-500 ${activeClasses} ${completedClasses}`}>

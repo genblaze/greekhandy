@@ -9,6 +9,7 @@ import {
   readNdjson,
   resolveBookingModerationState,
   type BookingAction,
+  type BookingModerationState,
   type BookingSubmission
 } from '../../lib/bookings';
 
@@ -17,10 +18,12 @@ const moderationKey = url.searchParams.get('key') ?? '';
 const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
 const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
 const status = url.searchParams.get('status');
+
 const formatDateTime = (value: string | undefined) => {
   const timestamp = Date.parse(value ?? '');
   return Number.isNaN(timestamp) ? 'Μη διαθέσιμη ημερομηνία' : new Date(timestamp).toLocaleString('el-GR');
 };
+
 const safeText = (value: string | undefined, fallback = 'Δεν έχει καταχωρηθεί') => {
   const cleaned = (value ?? '').trim();
   return cleaned || fallback;
@@ -28,10 +31,30 @@ const safeText = (value: string | undefined, fallback = 'Δεν έχει κατ�
 
 const submissions = await readNdjson<BookingSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
 const actions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
-
 const latestActionById = getLatestBookingActionById(actions);
 
-const pendingBookings = submissions
+const stateMeta: Record<BookingModerationState, { label: string; badge: string }> = {
+  pending: {
+    label: 'Σε αναμονή',
+    badge: 'border-amber-200 bg-amber-50 text-amber-900'
+  },
+  approved: {
+    label: 'Εγκρίθηκε',
+    badge: 'border-emerald-200 bg-emerald-50 text-emerald-900'
+  },
+  rejected: {
+    label: 'Απορρίφθηκε',
+    badge: 'border-rose-200 bg-rose-50 text-rose-900'
+  }
+};
+
+const transitionTargets: Array<{ state: BookingModerationState; label: string; buttonClass: string }> = [
+  { state: 'approved', label: 'Μετάβαση σε Εγκρίθηκε', buttonClass: 'bg-emerald-700 hover:bg-emerald-800 text-white' },
+  { state: 'rejected', label: 'Μετάβαση σε Απορρίφθηκε', buttonClass: 'bg-rose-700 hover:bg-rose-800 text-white' },
+  { state: 'pending', label: 'Επαναφορά σε Αναμονή', buttonClass: 'border border-gray-300 text-gray-700 hover:bg-gray-50' }
+];
+
+const bookings = submissions
   .map((booking) => {
     const bookingId = getBookingId(booking);
     const latestAction = latestActionById.get(bookingId);
@@ -39,16 +62,23 @@ const pendingBookings = submissions
       action: latestAction?.action,
       submissionStatus: booking.status
     });
-    return { booking, bookingId, resolution };
+    return { booking, bookingId, latestAction, resolution };
   })
-  .filter((item) => item.resolution.state === 'pending')
-  .reverse();
+  .sort((a, b) => Date.parse(b.booking.submittedAt) - Date.parse(a.booking.submittedAt));
+
+const groupedBookings: Record<BookingModerationState, typeof bookings> = {
+  pending: bookings.filter((entry) => entry.resolution.state === 'pending'),
+  approved: bookings.filter((entry) => entry.resolution.state === 'approved'),
+  rejected: bookings.filter((entry) => entry.resolution.state === 'rejected')
+};
+
+const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejected'];
 ---
 
-<Layout title="Moderation Κρατήσεων | GreekHandy" description="Internal moderation workflow for booking requests.">
+<Layout title="Lifecycle Moderation Κρατήσεων | GreekHandy" description="Εσωτερική σελίδα διαχείρισης και μεταβάσεων κατάστασης αιτημάτων κράτησης.">
   <main class="mx-auto max-w-5xl px-4 py-14">
-    <h1 class="text-3xl font-bold text-gray-900">Moderation Αιτημάτων Κράτησης</h1>
-    <p class="mt-2 text-gray-700">Εσωτερική σελίδα διαχείρισης αιτημάτων κράτησης.</p>
+    <h1 class="text-3xl font-bold text-gray-900">Lifecycle Moderation Αιτημάτων Κράτησης</h1>
+    <p class="mt-2 text-gray-700">Ορατότητα σε όλα τα αιτήματα και έλεγχος μεταβάσεων κατάστασης (pending / approved / rejected).</p>
 
     {!isAuthorized && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
@@ -58,63 +88,84 @@ const pendingBookings = submissions
 
     {isAuthorized && (
       <>
-        {status === 'ok' && <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">Η απόφαση moderation καταχωρήθηκε.</p>}
-        {status === 'already-processed' && (
-          <p class="mt-5 rounded-lg bg-blue-50 px-4 py-3 text-blue-800">Το αίτημα έχει ήδη επεξεργαστεί και δεν απαιτεί νέα ενέργεια.</p>
+        {status === 'updated' && <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">Η μετάβαση κατάστασης ολοκληρώθηκε.</p>}
+        {status === 'no-change' && <p class="mt-5 rounded-lg bg-blue-50 px-4 py-3 text-blue-800">Δεν έγινε αλλαγή γιατί το αίτημα ήταν ήδη σε αυτή την κατάσταση.</p>}
+        {status === 'stale' && (
+          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Η κατάσταση άλλαξε από άλλη ενέργεια. Ανανεώστε τη σελίδα και δοκιμάστε ξανά.</p>
         )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
         {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα.</p>}
         {status === 'unauthorized' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Μη εξουσιοδοτημένη ενέργεια moderation.</p>}
 
-        <section class="mt-8 space-y-4">
-          <h2 class="text-xl font-bold text-gray-900">Εκκρεμή Αιτήματα ({pendingBookings.length})</h2>
-
-          {pendingBookings.length === 0 && (
-            <p class="rounded-xl border border-gray-200 bg-white p-4 text-gray-700">Δεν υπάρχουν εκκρεμή αιτήματα.</p>
-          )}
-
-          {pendingBookings.map(({ booking, bookingId, resolution }) => (
-            <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-              <div class="flex flex-wrap items-start justify-between gap-4">
-                <div>
-                  <p class="text-sm font-semibold text-blue-700">/{safeText(booking.professionalSlug)}</p>
-                  <h3 class="text-lg font-bold text-gray-900">{safeText(booking.customerName)}</h3>
-                  <p class="mt-1 text-sm text-gray-600">{safeText(booking.email, 'Χωρίς email')} • {safeText(booking.phone, 'Χωρίς τηλέφωνο')}</p>
-                  {booking.service && <p class="mt-1 text-sm text-gray-700"><strong>Υπηρεσία:</strong> {safeText(booking.service)}</p>}
-                  {booking.preferredDate && <p class="mt-1 text-sm text-gray-700"><strong>Προτιμώμενο πρόγραμμα:</strong> {safeText(booking.preferredDate)}</p>}
-                </div>
-                <p class="text-xs text-gray-500">{formatDateTime(booking.submittedAt)}</p>
-              </div>
-
-              <p class="mt-3 text-sm text-gray-700"><strong>Μήνυμα:</strong> {safeText(booking.message, 'Δεν υπάρχουν λεπτομέρειες αιτήματος.')}</p>
-              {resolution.hasUnknownData && (
-                <p class="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
-                  Εντοπίστηκαν μη αναγνωρίσιμα δεδομένα κατάστασης και το αίτημα εμφανίζεται ως εκκρεμές για ασφάλεια.
-                </p>
-              )}
-
-              <div class="mt-4 flex flex-wrap gap-3">
-                <a href={getBookingStatusPath(bookingId)} class="rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">
-                  Προβολή σελίδας κατάστασης πελάτη
-                </a>
-
-                <form action="/api/bookings/moderate" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
-                  <input type="hidden" name="action" value="approve" />
-                  <input type="hidden" name="bookingId" value={bookingId} />
-                  <button type="submit" class="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-800">Έγκριση</button>
-                </form>
-
-                <form action="/api/bookings/moderate" method="POST">
-                  <input type="hidden" name="moderationKey" value={moderationKey} />
-                  <input type="hidden" name="action" value="reject" />
-                  <input type="hidden" name="bookingId" value={bookingId} />
-                  <button type="submit" class="rounded-lg bg-gray-700 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">Απόρριψη</button>
-                </form>
-              </div>
-            </article>
+        <section class="mt-8 grid gap-3 sm:grid-cols-3">
+          {orderedStates.map((state) => (
+            <div class={`rounded-xl border p-4 ${stateMeta[state].badge}`}>
+              <p class="text-xs font-semibold uppercase tracking-wide opacity-80">{state}</p>
+              <p class="mt-1 text-lg font-bold">{stateMeta[state].label}</p>
+              <p class="mt-1 text-sm">{groupedBookings[state].length} αιτήματα</p>
+            </div>
           ))}
         </section>
+
+        {bookings.length === 0 && (
+          <p class="mt-6 rounded-xl border border-gray-200 bg-white p-4 text-gray-700">Δεν υπάρχουν καταχωρημένα αιτήματα κράτησης.</p>
+        )}
+
+        {orderedStates.map((state) => (
+          <section class="mt-8 space-y-4">
+            <h2 class="text-xl font-bold text-gray-900">{stateMeta[state].label} ({groupedBookings[state].length})</h2>
+
+            {groupedBookings[state].length === 0 && (
+              <p class="rounded-xl border border-gray-200 bg-white p-4 text-gray-700">Δεν υπάρχουν αιτήματα σε αυτή την κατάσταση.</p>
+            )}
+
+            {groupedBookings[state].map(({ booking, bookingId, latestAction, resolution }) => (
+              <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                <div class="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p class="text-sm font-semibold text-blue-700">/{safeText(booking.professionalSlug)}</p>
+                    <h3 class="text-lg font-bold text-gray-900">{safeText(booking.customerName)}</h3>
+                    <p class="mt-1 text-sm text-gray-600">{safeText(booking.email, 'Χωρίς email')} • {safeText(booking.phone, 'Χωρίς τηλέφωνο')}</p>
+                    {booking.service && <p class="mt-1 text-sm text-gray-700"><strong>Υπηρεσία:</strong> {safeText(booking.service)}</p>}
+                    {booking.preferredDate && <p class="mt-1 text-sm text-gray-700"><strong>Προτιμώμενο πρόγραμμα:</strong> {safeText(booking.preferredDate)}</p>}
+                  </div>
+                  <div class="text-right">
+                    <span class={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold ${stateMeta[resolution.state].badge}`}>
+                      {stateMeta[resolution.state].label}
+                    </span>
+                    <p class="mt-2 text-xs text-gray-500">Υποβολή: {formatDateTime(booking.submittedAt)}</p>
+                    {latestAction && <p class="text-xs text-gray-500">Τελευταία απόφαση: {formatDateTime(latestAction.actedAt)}</p>}
+                  </div>
+                </div>
+
+                <p class="mt-3 text-sm text-gray-700"><strong>Μήνυμα:</strong> {safeText(booking.message, 'Δεν υπάρχουν λεπτομέρειες αιτήματος.')}</p>
+                {resolution.hasUnknownData && (
+                  <p class="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+                    Εντοπίστηκαν μη αναγνωρίσιμα δεδομένα κατάστασης και το αίτημα εμφανίζεται ως εκκρεμές για ασφάλεια.
+                  </p>
+                )}
+
+                <div class="mt-4 flex flex-wrap gap-3">
+                  <a href={getBookingStatusPath(bookingId)} class="rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">
+                    Προβολή σελίδας κατάστασης πελάτη
+                  </a>
+
+                  {transitionTargets
+                    .filter((target) => target.state !== resolution.state)
+                    .map((target) => (
+                      <form action="/api/bookings/moderate" method="POST">
+                        <input type="hidden" name="moderationKey" value={moderationKey} />
+                        <input type="hidden" name="bookingId" value={bookingId} />
+                        <input type="hidden" name="expectedState" value={resolution.state} />
+                        <input type="hidden" name="targetState" value={target.state} />
+                        <button type="submit" class={`rounded-lg px-4 py-2 text-sm font-semibold ${target.buttonClass}`}>{target.label}</button>
+                      </form>
+                    ))}
+                </div>
+              </article>
+            ))}
+          </section>
+        ))}
       </>
     )}
   </main>
