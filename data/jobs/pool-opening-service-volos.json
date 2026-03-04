@@ -1,0 +1,20 @@
+{
+  "id": "pool-opening-service-volos",
+  "slug": "proetoimasia-pisinas-gia-kalokairi-volos",
+  "nameGr": "Προετοιμασία Πισίνας για Καλοκαίρι στον Βόλο",
+  "nameEn": "Pool Opening Service in Βόλος",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Προετοιμασία πισίνας στον Βόλο για θερινή λειτουργία με καθαρισμό, χημική εξισορρόπηση και έλεγχο εξοπλισμού. SEO intent: καλύπτει seasonal high-intent αναζητήσεις «άνοιγμα πισίνας Βόλος» και «τεχνικός πισίνας καλοκαίρι».",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "140-430€",
+  "demand": "high",
+  "keywords": [
+    "άνοιγμα πισίνας Βόλος",
+    "προετοιμασία πισίνας καλοκαίρι Βόλος",
+    "συντήρηση πισίνας σεζόν",
+    "ρύθμιση χημικών πισίνας",
+    "τεχνικός πισίνας Βόλος"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "roof-tile-repair-volos",
+  "slug": "episkevi-keramoskepsis-volos",
+  "nameGr": "Επισκευή Κεραμοσκεπής στον Βόλο",
+  "nameEn": "Roof Tile Repair in Βόλος",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Επισκευή κεραμοσκεπής στον Βόλο με αντικατάσταση σπασμένων κεραμιδιών και στεγανοποίηση σημείων διαρροής. SEO intent: καλύπτει transactional queries «επισκευή στέγης Βόλος» και «κεραμίδια διαρροή λύση».",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "450-2.700€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή κεραμοσκεπής Βόλος",
+    "τεχνίτης στέγης Βόλος",
+    "αλλαγή κεραμιδιών",
+    "διαρροή από σκεπή",
+    "στεγανοποίηση κεραμοσκεπής"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "net-metering-installation-volos",
+  "slug": "egkatastasi-net-metering-volos",
+  "nameGr": "Εγκατάσταση Net Metering στον Βόλο",
+  "nameEn": "Net Metering Installation in Βόλος",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Εγκατάσταση net metering στον Βόλο με διαστασιολόγηση φωτοβολταϊκού, inverter και υποστήριξη διαδικασιών σύνδεσης. SEO intent: στοχεύει high-intent queries «net metering Βόλος» και «φωτοβολταϊκό συμψηφισμός ρεύματος».",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "3.500-9.800€",
+  "demand": "high",
+  "keywords": [
+    "net metering Βόλος",
+    "εγκατάσταση φωτοβολταϊκών Βόλος",
+    "συμψηφισμός ενέργειας",
+    "inverter εγκατάσταση",
+    "μείωση λογαριασμού ρεύματος"
+  ],
+  "status": "researched"
+}
