@@ -1,0 +1,20 @@
+{
+  "id": "kitchen-cabinet-repair-larisa",
+  "slug": "episkevi-ntoulapion-kouzinas-larisa",
+  "nameGr": "Επισκευή Ντουλαπιών Κουζίνας στη Λάρισα",
+  "nameEn": "Kitchen Cabinet Repair in Λάρισα",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επισκευή ντουλαπιών κουζίνας στη Λάρισα για μεντεσέδες, πόρτες, μηχανισμούς soft-close και φθαρμένους πάγκους. SEO rationale: καλύπτει εμπορικά queries με υψηλή πρόθεση όπως «ξυλουργός κουζίνας Λάρισα» και «επισκευή ντουλαπιών άμεσα».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "70-320€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή ντουλαπιών κουζίνας Λάρισα",
+    "ξυλουργός κουζίνας Λάρισα",
+    "αλλαγή μεντεσέδων ντουλάπια",
+    "επισκευή πορτάκια κουζίνας",
+    "service κουζίνας ξυλουργός"
+  ],
+  "status": "researched"
+}

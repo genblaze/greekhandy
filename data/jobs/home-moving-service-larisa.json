@@ -1,0 +1,20 @@
+{
+  "id": "home-moving-service-larisa",
+  "slug": "metakomisi-spitiou-larisa",
+  "nameGr": "Μετακόμιση Σπιτιού στη Λάρισα",
+  "nameEn": "Home Moving Service in Λάρισα",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Οργανωμένη μετακόμιση κατοικίας στη Λάρισα με συσκευασία, μεταφορά και ανέβασμα επίπλων με ασφάλεια. SEO rationale: απαντά σε transactional αναζητήσεις όπως «μεταφορική Λάρισα» και «μετακόμιση σπίτι κόστος» με άμεση πρόθεση προσφοράς.",
+  "typicalDuration": "4-10 ώρες",
+  "priceRangeEUR": "160-980€",
+  "demand": "high",
+  "keywords": [
+    "μετακόμιση Λάρισα",
+    "μεταφορική εταιρεία Λάρισα",
+    "μετακόμιση σπιτιού τιμή",
+    "συσκευασία μετακόμισης",
+    "ανέβασμα επίπλων μετακόμιση"
+  ],
+  "status": "researched"
+}

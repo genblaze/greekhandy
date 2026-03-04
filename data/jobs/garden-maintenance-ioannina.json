@@ -1,0 +1,20 @@
+{
+  "id": "garden-maintenance-ioannina",
+  "slug": "syntirisi-kipou-ioannina",
+  "nameGr": "Συντήρηση Κήπου στα Ιωάννινα",
+  "nameEn": "Garden Maintenance in Ιωάννινα",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Τακτική συντήρηση κήπου στα Ιωάννινα με κλάδεμα, καθαρισμό, λίπανση και έλεγχο αυτόματου ποτίσματος. SEO rationale: καλύπτει υψηλής πρόθεσης τοπικές αναζητήσεις όπως «κηπουρός Ιωάννινα» και «συντήρηση κήπου μηνιαία».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "60-280€",
+  "demand": "high",
+  "keywords": [
+    "κηπουρός Ιωάννινα",
+    "συντήρηση κήπου Ιωάννινα",
+    "κλάδεμα και καθαρισμός κήπου",
+    "μηνιαία φροντίδα κήπου",
+    "τεχνικός ποτίσματος κήπου"
+  ],
+  "status": "researched"
+}

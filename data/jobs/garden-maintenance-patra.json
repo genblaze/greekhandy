@@ -1,0 +1,20 @@
+{
+  "id": "garden-maintenance-patra",
+  "slug": "syntirisi-kipou-patra",
+  "nameGr": "Συντήρηση Κήπου στην Πάτρα",
+  "nameEn": "Garden Maintenance in Πάτρα",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Τακτική συντήρηση κήπου στην Πάτρα με κλάδεμα, καθαρισμό, λίπανση και έλεγχο αυτόματου ποτίσματος. SEO rationale: καλύπτει υψηλής πρόθεσης τοπικές αναζητήσεις όπως «κηπουρός Πάτρα» και «συντήρηση κήπου μηνιαία».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "60-280€",
+  "demand": "high",
+  "keywords": [
+    "κηπουρός Πάτρα",
+    "συντήρηση κήπου Πάτρα",
+    "κλάδεμα και καθαρισμός κήπου",
+    "μηνιαία φροντίδα κήπου",
+    "τεχνικός ποτίσματος κήπου"
+  ],
+  "status": "researched"
+}

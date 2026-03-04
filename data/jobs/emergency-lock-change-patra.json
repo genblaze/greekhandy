@@ -1,0 +1,20 @@
+{
+  "id": "emergency-lock-change-patra",
+  "slug": "allagi-kleidarias-amesa-patra",
+  "nameGr": "Άμεση Αλλαγή Κλειδαριάς στην Πάτρα",
+  "nameEn": "Emergency Lock Change in Πάτρα",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Άμεση αλλαγή κλειδαριάς στην Πάτρα μετά από απώλεια κλειδιών, απόπειρα διάρρηξης ή μπλοκαρισμένο κύλινδρο. SEO rationale: στοχεύει υψηλής πρόθεσης αναζητήσεις τύπου «κλειδαράς τώρα» και «αλλαγή κλειδαριάς Πάτρα» που οδηγούν σε άμεση κράτηση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "55-180€",
+  "demand": "high",
+  "keywords": [
+    "αλλαγή κλειδαριάς Πάτρα",
+    "κλειδαράς άμεσα Πάτρα",
+    "κλειδαριά ασφαλείας αντικατάσταση",
+    "κλειδαράς 24ωρο",
+    "ξεκλείδωμα και αλλαγή κλειδαριάς"
+  ],
+  "status": "researched"
+}

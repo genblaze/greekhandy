@@ -1,0 +1,20 @@
+{
+  "id": "garden-maintenance-irakleio",
+  "slug": "syntirisi-kipou-irakleio",
+  "nameGr": "Συντήρηση Κήπου στο Ηράκλειο",
+  "nameEn": "Garden Maintenance in Ηράκλειο",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Τακτική συντήρηση κήπου στο Ηράκλειο με κλάδεμα, καθαρισμό, λίπανση και έλεγχο αυτόματου ποτίσματος. SEO rationale: καλύπτει υψηλής πρόθεσης τοπικές αναζητήσεις όπως «κηπουρός Ηράκλειο» και «συντήρηση κήπου μηνιαία».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "60-280€",
+  "demand": "high",
+  "keywords": [
+    "κηπουρός Ηράκλειο",
+    "συντήρηση κήπου Ηράκλειο",
+    "κλάδεμα και καθαρισμός κήπου",
+    "μηνιαία φροντίδα κήπου",
+    "τεχνικός ποτίσματος κήπου"
+  ],
+  "status": "researched"
+}

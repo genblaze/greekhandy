@@ -1,0 +1,20 @@
+{
+  "id": "emergency-lock-change-irakleio",
+  "slug": "allagi-kleidarias-amesa-irakleio",
+  "nameGr": "Άμεση Αλλαγή Κλειδαριάς στο Ηράκλειο",
+  "nameEn": "Emergency Lock Change in Ηράκλειο",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Άμεση αλλαγή κλειδαριάς στο Ηράκλειο μετά από απώλεια κλειδιών, απόπειρα διάρρηξης ή μπλοκαρισμένο κύλινδρο. SEO rationale: στοχεύει υψηλής πρόθεσης αναζητήσεις τύπου «κλειδαράς τώρα» και «αλλαγή κλειδαριάς Ηράκλειο» που οδηγούν σε άμεση κράτηση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "55-180€",
+  "demand": "high",
+  "keywords": [
+    "αλλαγή κλειδαριάς Ηράκλειο",
+    "κλειδαράς άμεσα Ηράκλειο",
+    "κλειδαριά ασφαλείας αντικατάσταση",
+    "κλειδαράς 24ωρο",
+    "ξεκλείδωμα και αλλαγή κλειδαριάς"
+  ],
+  "status": "researched"
+}

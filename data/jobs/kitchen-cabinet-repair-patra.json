@@ -1,0 +1,20 @@
+{
+  "id": "kitchen-cabinet-repair-patra",
+  "slug": "episkevi-ntoulapion-kouzinas-patra",
+  "nameGr": "Επισκευή Ντουλαπιών Κουζίνας στην Πάτρα",
+  "nameEn": "Kitchen Cabinet Repair in Πάτρα",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επισκευή ντουλαπιών κουζίνας στην Πάτρα για μεντεσέδες, πόρτες, μηχανισμούς soft-close και φθαρμένους πάγκους. SEO rationale: καλύπτει εμπορικά queries με υψηλή πρόθεση όπως «ξυλουργός κουζίνας Πάτρα» και «επισκευή ντουλαπιών άμεσα».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "70-320€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή ντουλαπιών κουζίνας Πάτρα",
+    "ξυλουργός κουζίνας Πάτρα",
+    "αλλαγή μεντεσέδων ντουλάπια",
+    "επισκευή πορτάκια κουζίνας",
+    "service κουζίνας ξυλουργός"
+  ],
+  "status": "researched"
+}

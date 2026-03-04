@@ -1,0 +1,20 @@
+{
+  "id": "emergency-lock-change-larisa",
+  "slug": "allagi-kleidarias-amesa-larisa",
+  "nameGr": "Άμεση Αλλαγή Κλειδαριάς στη Λάρισα",
+  "nameEn": "Emergency Lock Change in Λάρισα",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Άμεση αλλαγή κλειδαριάς στη Λάρισα μετά από απώλεια κλειδιών, απόπειρα διάρρηξης ή μπλοκαρισμένο κύλινδρο. SEO rationale: στοχεύει υψηλής πρόθεσης αναζητήσεις τύπου «κλειδαράς τώρα» και «αλλαγή κλειδαριάς Λάρισα» που οδηγούν σε άμεση κράτηση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "55-180€",
+  "demand": "high",
+  "keywords": [
+    "αλλαγή κλειδαριάς Λάρισα",
+    "κλειδαράς άμεσα Λάρισα",
+    "κλειδαριά ασφαλείας αντικατάσταση",
+    "κλειδαράς 24ωρο",
+    "ξεκλείδωμα και αλλαγή κλειδαριάς"
+  ],
+  "status": "researched"
+}

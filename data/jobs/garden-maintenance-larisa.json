@@ -1,0 +1,20 @@
+{
+  "id": "garden-maintenance-larisa",
+  "slug": "syntirisi-kipou-larisa",
+  "nameGr": "Συντήρηση Κήπου στη Λάρισα",
+  "nameEn": "Garden Maintenance in Λάρισα",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Τακτική συντήρηση κήπου στη Λάρισα με κλάδεμα, καθαρισμό, λίπανση και έλεγχο αυτόματου ποτίσματος. SEO rationale: καλύπτει υψηλής πρόθεσης τοπικές αναζητήσεις όπως «κηπουρός Λάρισα» και «συντήρηση κήπου μηνιαία».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "60-280€",
+  "demand": "high",
+  "keywords": [
+    "κηπουρός Λάρισα",
+    "συντήρηση κήπου Λάρισα",
+    "κλάδεμα και καθαρισμός κήπου",
+    "μηνιαία φροντίδα κήπου",
+    "τεχνικός ποτίσματος κήπου"
+  ],
+  "status": "researched"
+}

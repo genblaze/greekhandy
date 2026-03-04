@@ -1,0 +1,20 @@
+{
+  "id": "kitchen-cabinet-repair-irakleio",
+  "slug": "episkevi-ntoulapion-kouzinas-irakleio",
+  "nameGr": "Επισκευή Ντουλαπιών Κουζίνας στο Ηράκλειο",
+  "nameEn": "Kitchen Cabinet Repair in Ηράκλειο",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επισκευή ντουλαπιών κουζίνας στο Ηράκλειο για μεντεσέδες, πόρτες, μηχανισμούς soft-close και φθαρμένους πάγκους. SEO rationale: καλύπτει εμπορικά queries με υψηλή πρόθεση όπως «ξυλουργός κουζίνας Ηράκλειο» και «επισκευή ντουλαπιών άμεσα».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "70-320€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή ντουλαπιών κουζίνας Ηράκλειο",
+    "ξυλουργός κουζίνας Ηράκλειο",
+    "αλλαγή μεντεσέδων ντουλάπια",
+    "επισκευή πορτάκια κουζίνας",
+    "service κουζίνας ξυλουργός"
+  ],
+  "status": "researched"
+}

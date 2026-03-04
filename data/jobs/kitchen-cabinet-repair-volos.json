@@ -1,0 +1,20 @@
+{
+  "id": "kitchen-cabinet-repair-volos",
+  "slug": "episkevi-ntoulapion-kouzinas-volos",
+  "nameGr": "Επισκευή Ντουλαπιών Κουζίνας στον Βόλο",
+  "nameEn": "Kitchen Cabinet Repair in Βόλος",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επισκευή ντουλαπιών κουζίνας στον Βόλο για μεντεσέδες, πόρτες, μηχανισμούς soft-close και φθαρμένους πάγκους. SEO rationale: καλύπτει εμπορικά queries με υψηλή πρόθεση όπως «ξυλουργός κουζίνας Βόλος» και «επισκευή ντουλαπιών άμεσα».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "70-320€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή ντουλαπιών κουζίνας Βόλος",
+    "ξυλουργός κουζίνας Βόλος",
+    "αλλαγή μεντεσέδων ντουλάπια",
+    "επισκευή πορτάκια κουζίνας",
+    "service κουζίνας ξυλουργός"
+  ],
+  "status": "researched"
+}

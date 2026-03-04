@@ -1,0 +1,20 @@
+{
+  "id": "garden-maintenance-volos",
+  "slug": "syntirisi-kipou-volos",
+  "nameGr": "Συντήρηση Κήπου στον Βόλο",
+  "nameEn": "Garden Maintenance in Βόλος",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Τακτική συντήρηση κήπου στον Βόλο με κλάδεμα, καθαρισμό, λίπανση και έλεγχο αυτόματου ποτίσματος. SEO rationale: καλύπτει υψηλής πρόθεσης τοπικές αναζητήσεις όπως «κηπουρός Βόλος» και «συντήρηση κήπου μηνιαία».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "60-280€",
+  "demand": "high",
+  "keywords": [
+    "κηπουρός Βόλος",
+    "συντήρηση κήπου Βόλος",
+    "κλάδεμα και καθαρισμός κήπου",
+    "μηνιαία φροντίδα κήπου",
+    "τεχνικός ποτίσματος κήπου"
+  ],
+  "status": "researched"
+}
