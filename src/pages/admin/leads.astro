@@ -158,6 +158,15 @@ const hasLeads = directoryData.leads.length > 0;
                     </select>
                   </div>
 
+                  <fieldset class="sm:col-span-2 xl:col-span-1" aria-label="Φίλτρο επικοινωνίας">
+                    <legend class="text-sm font-semibold text-slate-700">Outreach</legend>
+                    <div class="mt-1 grid grid-cols-3 gap-1 rounded-lg border border-slate-300 bg-slate-50 p-1" role="group" aria-label="Κατάσταση επικοινωνίας">
+                      <button type="button" data-contacted-filter data-contacted-value="all" aria-pressed="true" class="min-h-9 rounded-md border border-sky-600 bg-sky-600 px-2 text-xs font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">Όλα</button>
+                      <button type="button" data-contacted-filter data-contacted-value="contacted" aria-pressed="false" class="min-h-9 rounded-md border border-transparent bg-transparent px-2 text-xs font-semibold text-slate-700 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">Επικοινωνήθηκαν</button>
+                      <button type="button" data-contacted-filter data-contacted-value="not-contacted" aria-pressed="false" class="min-h-9 rounded-md border border-transparent bg-transparent px-2 text-xs font-semibold text-slate-700 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">Χωρίς επαφή</button>
+                    </div>
+                  </fieldset>
+
                   <div class="sm:col-span-2 xl:col-span-1">
                     <label for="leads-score-filter" class="text-sm font-semibold text-slate-700">Ελάχιστο score</label>
                     <select id="leads-score-filter" data-score-filter class="mt-1 block min-h-10 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
@@ -258,6 +267,7 @@ const hasLeads = directoryData.leads.length > 0;
                 {directoryData.leads.map((lead) => (
                   <article
                     data-lead-card
+                    data-lead-id={lead.id}
                     data-category={lead.categorySlug}
                     data-category-label={lead.categoryLabel}
                     data-city={lead.city}
@@ -269,6 +279,7 @@ const hasLeads = directoryData.leads.length > 0;
                     data-score={lead.score ?? -1}
                     data-notes={lead.sourceUrl ? `Πηγή: ${lead.sourceUrl}` : 'Δεν υπάρχουν διαθέσιμες σημειώσεις για αυτό το lead.'}
                     data-newest={lead.newestTs}
+                    data-last-contacted=""
                     class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-slate-300 hover:shadow md:p-5"
                   >
                     <div class="flex flex-wrap items-start justify-between gap-3">
@@ -279,6 +290,7 @@ const hasLeads = directoryData.leads.length > 0;
                       <div class="flex flex-wrap items-center gap-2 text-xs">
                         <span class="rounded-full bg-slate-100 px-2 py-1 font-semibold text-slate-700">{statusLabel(lead.status)}</span>
                         <span class="rounded-full bg-sky-100 px-2 py-1 font-semibold text-sky-800">Score: {lead.score ?? 'N/A'}</span>
+                        <span data-outreach-badge class="rounded-full bg-amber-100 px-2 py-1 font-semibold text-amber-800">Χωρίς επικοινωνία</span>
                       </div>
                     </div>
 
@@ -296,6 +308,13 @@ const hasLeads = directoryData.leads.length > 0;
                     </div>
 
                     <div class="mt-4 flex flex-wrap gap-2">
+                      <button type="button" data-toggle-contacted="true" aria-pressed="false" class="inline-flex min-h-9 items-center rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Επικοινωνήθηκε</button>
+                      <button type="button" data-toggle-contacted="false" aria-pressed="false" class="inline-flex min-h-9 items-center rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Χωρίς επαφή</button>
+                    </div>
+
+                    <p data-last-contacted-display class="mt-2 text-xs font-medium text-slate-600">Τελευταία επικοινωνία: Ποτέ</p>
+
+                    <div class="mt-3 flex flex-wrap gap-2">
                       <button type="button" data-copy-phone class="inline-flex min-h-9 items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αντιγραφή τηλεφώνου</button>
                       <button type="button" data-copy-email class="inline-flex min-h-9 items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αντιγραφή email</button>
                       <button type="button" data-open-detail class="inline-flex min-h-9 items-center rounded-lg border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-800 transition hover:bg-indigo-100">Λεπτομέρειες</button>
@@ -351,6 +370,8 @@ const hasLeads = directoryData.leads.length > 0;
                     <p><strong>Score:</strong> <span data-detail-score>—</span></p>
                     <p><strong>Τηλέφωνο:</strong> <span data-detail-phone>—</span></p>
                     <p><strong>Email:</strong> <span data-detail-email>—</span></p>
+                    <p><strong>Outreach:</strong> <span data-detail-outreach>—</span></p>
+                    <p><strong>Τελευταία επικοινωνία:</strong> <span data-detail-last-contacted>—</span></p>
                   </div>
                   <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
                     <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Preview σημειώσεων</p>
@@ -373,6 +394,7 @@ const hasLeads = directoryData.leads.length > 0;
         const cards = Array.from(root.querySelectorAll('[data-lead-card]'));
         const list = root.querySelector('[data-leads-list]');
         const categoryTabs = Array.from(root.querySelectorAll('[data-category-tab]'));
+        const contactedFilterButtons = Array.from(root.querySelectorAll('[data-contacted-filter]'));
         const cityFilter = root.querySelector('[data-city-filter]');
         const statusFilter = root.querySelector('[data-status-filter]');
         const scoreFilter = root.querySelector('[data-score-filter]');
@@ -413,12 +435,51 @@ const hasLeads = directoryData.leads.length > 0;
         const detailScore = root.querySelector('[data-detail-score]');
         const detailPhone = root.querySelector('[data-detail-phone]');
         const detailEmail = root.querySelector('[data-detail-email]');
+        const detailOutreach = root.querySelector('[data-detail-outreach]');
+        const detailLastContacted = root.querySelector('[data-detail-last-contacted]');
         const detailNotes = root.querySelector('[data-detail-notes]');
         const resultsRegion = root.querySelector('[data-results-region]');
+
+        const OUTREACH_STORAGE_KEY = 'admin-leads-outreach-v1';
+        const CONTACTED_FILTER_VALUES = ['all', 'contacted', 'not-contacted'];
+        const CONTACTED_FILTER_LABELS = {
+          all: 'Όλα',
+          contacted: 'Επικοινωνήθηκαν',
+          'not-contacted': 'Χωρίς επαφή'
+        };
+
+        const toMaybeTimestamp = (value) => {
+          if (typeof value === 'number' && Number.isFinite(value)) return value;
+          if (typeof value === 'string') {
+            const parsed = Date.parse(value);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+          return null;
+        };
+
+        const readOutreachState = () => {
+          try {
+            const parsed = JSON.parse(localStorage.getItem(OUTREACH_STORAGE_KEY) || '{}');
+            return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+          } catch {
+            return {};
+          }
+        };
+
+        const writeOutreachState = (nextState) => {
+          try {
+            localStorage.setItem(OUTREACH_STORAGE_KEY, JSON.stringify(nextState));
+          } catch {
+            // Storage can fail in private sessions; keep runtime state in-memory.
+          }
+        };
+
+        let outreachState = readOutreachState();
 
         const parsedCards = cards
           .filter((card) => card instanceof HTMLElement)
           .map((card) => {
+            const id = card.dataset.leadId || '';
             const category = card.dataset.category || '';
             const categoryLabel = card.dataset.categoryLabel || category;
             const city = card.dataset.city || '';
@@ -430,9 +491,23 @@ const hasLeads = directoryData.leads.length > 0;
             const rawScore = Number(card.dataset.score || -1);
             const score = Number.isFinite(rawScore) ? rawScore : -1;
             const newest = Number(card.dataset.newest || 0);
-            const searchableText = [name, phone, email, categoryLabel, city, statusLabel, `score:${score}`].join(' ').toLowerCase();
+            const storedOutreach = id && outreachState[id] && typeof outreachState[id] === 'object' ? outreachState[id] : null;
+            const defaultContacted = status === 'contacted';
+            const storedContacted = storedOutreach && typeof storedOutreach.contacted === 'boolean' ? storedOutreach.contacted : defaultContacted;
+            const lastContactedTs = toMaybeTimestamp(storedOutreach?.lastContactedAt) ?? toMaybeTimestamp(card.dataset.lastContacted);
+            const searchableText = [
+              name,
+              phone,
+              email,
+              categoryLabel,
+              city,
+              statusLabel,
+              `score:${score}`,
+              storedContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη'
+            ].join(' ').toLowerCase();
 
             return {
+              id,
               card,
               category,
               categoryLabel,
@@ -440,9 +515,13 @@ const hasLeads = directoryData.leads.length > 0;
               status,
               statusLabel,
               name,
+              phone,
+              email,
               score,
               newest,
-              searchableText
+              searchableText,
+              isContacted: storedContacted,
+              lastContactedTs
             };
           });
 
@@ -479,6 +558,7 @@ const hasLeads = directoryData.leads.length > 0;
           category: 'all',
           city: 'all',
           status: 'all',
+          contacted: 'all',
           minScore: 'any',
           search: '',
           sort: 'newest',
@@ -491,6 +571,7 @@ const hasLeads = directoryData.leads.length > 0;
         let applyTimer = null;
         let lastFiltered = [];
         let lastTotalPages = 1;
+        let activeDetailLeadId = '';
         const PRESET_STORAGE_KEY = 'admin-leads-presets-v1';
 
         const readPresets = () => {
@@ -521,11 +602,81 @@ const hasLeads = directoryData.leads.length > 0;
           noPresets.classList.toggle('hidden', presets.length > 0);
         };
 
+        const formatLastContacted = (ts) => {
+          if (!Number.isFinite(ts) || ts <= 0) return 'Ποτέ';
+          return new Date(ts).toLocaleString('el-GR');
+        };
+
+        const syncOutreachRecord = (entry) => {
+          if (!entry.id) return;
+          outreachState = {
+            ...outreachState,
+            [entry.id]: {
+              contacted: Boolean(entry.isContacted),
+              lastContactedAt: Number.isFinite(entry.lastContactedTs) ? new Date(entry.lastContactedTs).toISOString() : null
+            }
+          };
+          writeOutreachState(outreachState);
+        };
+
+        const renderCardOutreach = (entry) => {
+          const badge = entry.card.querySelector('[data-outreach-badge]');
+          const lastContacted = entry.card.querySelector('[data-last-contacted-display]');
+          const markContactedButton = entry.card.querySelector('[data-toggle-contacted="true"]');
+          const markNotContactedButton = entry.card.querySelector('[data-toggle-contacted="false"]');
+
+          if (badge instanceof HTMLElement) {
+            badge.textContent = entry.isContacted ? 'Επικοινωνήθηκε' : 'Χωρίς επικοινωνία';
+            badge.classList.toggle('bg-emerald-100', entry.isContacted);
+            badge.classList.toggle('text-emerald-800', entry.isContacted);
+            badge.classList.toggle('bg-amber-100', !entry.isContacted);
+            badge.classList.toggle('text-amber-800', !entry.isContacted);
+          }
+
+          if (lastContacted instanceof HTMLElement) {
+            lastContacted.textContent = `Τελευταία επικοινωνία: ${formatLastContacted(entry.lastContactedTs)}`;
+          }
+
+          if (markContactedButton instanceof HTMLButtonElement) {
+            markContactedButton.setAttribute('aria-pressed', entry.isContacted ? 'true' : 'false');
+            markContactedButton.classList.toggle('bg-emerald-600', entry.isContacted);
+            markContactedButton.classList.toggle('border-emerald-600', entry.isContacted);
+            markContactedButton.classList.toggle('text-white', entry.isContacted);
+            markContactedButton.classList.toggle('bg-emerald-50', !entry.isContacted);
+            markContactedButton.classList.toggle('border-emerald-300', !entry.isContacted);
+            markContactedButton.classList.toggle('text-emerald-800', !entry.isContacted);
+          }
+
+          if (markNotContactedButton instanceof HTMLButtonElement) {
+            markNotContactedButton.setAttribute('aria-pressed', !entry.isContacted ? 'true' : 'false');
+            markNotContactedButton.classList.toggle('bg-amber-600', !entry.isContacted);
+            markNotContactedButton.classList.toggle('border-amber-600', !entry.isContacted);
+            markNotContactedButton.classList.toggle('text-white', !entry.isContacted);
+            markNotContactedButton.classList.toggle('bg-amber-50', entry.isContacted);
+            markNotContactedButton.classList.toggle('border-amber-300', entry.isContacted);
+            markNotContactedButton.classList.toggle('text-amber-800', entry.isContacted);
+          }
+        };
+
+        const renderDetailOutreach = (entry) => {
+          if (detailOutreach instanceof HTMLElement) {
+            detailOutreach.textContent = entry.isContacted ? 'Επικοινωνήθηκε' : 'Χωρίς επικοινωνία';
+          }
+          if (detailLastContacted instanceof HTMLElement) {
+            detailLastContacted.textContent = formatLastContacted(entry.lastContactedTs);
+          }
+        };
+
+        parsedCards.forEach((entry) => {
+          renderCardOutreach(entry);
+        });
+
         const parseFromUrl = () => {
           const params = new URLSearchParams(window.location.search);
           const category = params.get('category') || 'all';
           const city = params.get('city') || 'all';
           const status = params.get('status') || 'all';
+          const contacted = params.get('contacted') || 'all';
           const minScore = params.get('minScore') || 'any';
           const search = (params.get('q') || '').trim();
           const sort = params.get('sort') || 'newest';
@@ -535,6 +686,7 @@ const hasLeads = directoryData.leads.length > 0;
           state.category = validCategories.has(category) ? category : 'all';
           state.city = city === 'all' || validCities.has(city) ? city : 'all';
           state.status = status === 'all' || validStatuses.has(status) ? status : 'all';
+          state.contacted = CONTACTED_FILTER_VALUES.includes(contacted) ? contacted : 'all';
           state.minScore = ['any', '80', '60', '40'].includes(minScore) ? minScore : 'any';
           state.search = search;
           state.sort = ['newest', 'score', 'name', 'category', 'city', 'status'].includes(sort) ? sort : 'newest';
@@ -554,6 +706,18 @@ const hasLeads = directoryData.leads.length > 0;
             tab.classList.toggle('bg-white', !selected);
             tab.classList.toggle('border-slate-300', !selected);
             tab.classList.toggle('text-slate-700', !selected);
+          });
+
+          contactedFilterButtons.forEach((button) => {
+            if (!(button instanceof HTMLButtonElement)) return;
+            const selected = button.dataset.contactedValue === state.contacted;
+            button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+            button.classList.toggle('bg-sky-600', selected);
+            button.classList.toggle('border-sky-600', selected);
+            button.classList.toggle('text-white', selected);
+            button.classList.toggle('bg-transparent', !selected);
+            button.classList.toggle('border-transparent', !selected);
+            button.classList.toggle('text-slate-700', !selected);
           });
 
           if (cityFilter instanceof HTMLSelectElement) cityFilter.value = state.city;
@@ -608,9 +772,11 @@ const hasLeads = directoryData.leads.length > 0;
           const categoryMatch = criteria.category === 'all' || lead.category === criteria.category;
           const cityMatch = criteria.city === 'all' || lead.city === criteria.city;
           const statusMatch = criteria.status === 'all' || lead.status === criteria.status;
+          const contactedMatch = criteria.contacted === 'all'
+            || (criteria.contacted === 'contacted' ? lead.isContacted : !lead.isContacted);
           const scoreMatch = effectiveScoreThreshold <= -1 || lead.score >= effectiveScoreThreshold;
           const searchMatch = searchTokens.length === 0 || searchTokens.every((token) => lead.searchableText.includes(token));
-          return categoryMatch && cityMatch && statusMatch && scoreMatch && searchMatch;
+          return categoryMatch && cityMatch && statusMatch && contactedMatch && scoreMatch && searchMatch;
         };
 
         const updateOptionCounts = () => {
@@ -651,6 +817,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (state.category !== 'all') items.push({ key: 'category', label: `Κατηγορία: ${categoryLabelByValue.get(state.category) || state.category}` });
           if (state.city !== 'all') items.push({ key: 'city', label: `Πόλη: ${cityLabelByValue.get(state.city) || state.city}` });
           if (state.status !== 'all') items.push({ key: 'status', label: `Κατάσταση: ${statusLabelByValue.get(state.status) || state.status}` });
+          if (state.contacted !== 'all') items.push({ key: 'contacted', label: `Outreach: ${CONTACTED_FILTER_LABELS[state.contacted] || state.contacted}` });
           if (state.minScore !== 'any') items.push({ key: 'minScore', label: `Score: ${state.minScore}+` });
           if (state.search.trim()) items.push({ key: 'search', label: `Αναζήτηση: “${state.search.trim()}”` });
 
@@ -679,6 +846,7 @@ const hasLeads = directoryData.leads.length > 0;
           setParam('category', state.category);
           setParam('city', state.city);
           setParam('status', state.status);
+          setParam('contacted', state.contacted);
           setParam('minScore', state.minScore, 'any');
           setParam('sort', state.sort, 'newest');
           setParam('dir', state.sortDir, 'desc');
@@ -726,6 +894,7 @@ const hasLeads = directoryData.leads.length > 0;
           paged.forEach((entry) => {
             entry.card.hidden = false;
             list.appendChild(entry.card);
+            renderCardOutreach(entry);
           });
 
           const visible = paged.length;
@@ -792,6 +961,7 @@ const hasLeads = directoryData.leads.length > 0;
           state.category = 'all';
           state.city = 'all';
           state.status = 'all';
+          state.contacted = 'all';
           state.minScore = 'any';
           state.search = '';
           state.sort = 'newest';
@@ -849,6 +1019,18 @@ const hasLeads = directoryData.leads.length > 0;
           state.status = target.value;
           state.page = 1;
           scheduleRun();
+        });
+
+        contactedFilterButtons.forEach((button) => {
+          if (!(button instanceof HTMLButtonElement)) return;
+          button.addEventListener('click', () => {
+            const value = button.dataset.contactedValue || 'all';
+            if (!CONTACTED_FILTER_VALUES.includes(value)) return;
+            state.contacted = value;
+            state.page = 1;
+            syncControlsToState();
+            scheduleRun();
+          });
         });
 
         scoreFilter?.addEventListener('change', (event) => {
@@ -919,6 +1101,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (key === 'category') state.category = 'all';
           if (key === 'city') state.city = 'all';
           if (key === 'status') state.status = 'all';
+          if (key === 'contacted') state.contacted = 'all';
           if (key === 'minScore') state.minScore = 'any';
           if (key === 'search') state.search = '';
           state.page = 1;
@@ -942,6 +1125,7 @@ const hasLeads = directoryData.leads.length > 0;
               category: state.category,
               city: state.city,
               status: state.status,
+              contacted: state.contacted,
               minScore: state.minScore,
               search: state.search,
               sort: state.sort,
@@ -964,6 +1148,7 @@ const hasLeads = directoryData.leads.length > 0;
           state.category = preset.state.category || 'all';
           state.city = preset.state.city || 'all';
           state.status = preset.state.status || 'all';
+          state.contacted = CONTACTED_FILTER_VALUES.includes(preset.state.contacted) ? preset.state.contacted : 'all';
           state.minScore = preset.state.minScore || 'any';
           state.search = preset.state.search || '';
           state.sort = preset.state.sort || 'newest';
@@ -978,10 +1163,12 @@ const hasLeads = directoryData.leads.length > 0;
             detailPanel.classList.add('hidden');
             detailPanel.classList.add('pointer-events-none');
           }
+          activeDetailLeadId = '';
         };
 
         const openDetailPanel = (entry) => {
           if (!(detailPanel instanceof HTMLElement)) return;
+          activeDetailLeadId = entry.id;
           if (detailName instanceof HTMLElement) detailName.textContent = entry.name || '—';
           if (detailCategory instanceof HTMLElement) detailCategory.textContent = entry.categoryLabel || '—';
           if (detailCity instanceof HTMLElement) detailCity.textContent = entry.city || '—';
@@ -989,6 +1176,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (detailScore instanceof HTMLElement) detailScore.textContent = String(entry.score ?? '—');
           if (detailPhone instanceof HTMLElement) detailPhone.textContent = entry.card.dataset.phone || '—';
           if (detailEmail instanceof HTMLElement) detailEmail.textContent = entry.card.dataset.email || '—';
+          renderDetailOutreach(entry);
           if (detailNotes instanceof HTMLElement) detailNotes.textContent = entry.card.dataset.notes || 'Δεν υπάρχουν σημειώσεις.';
           detailPanel.classList.remove('hidden');
           detailPanel.classList.remove('pointer-events-none');
@@ -1027,6 +1215,33 @@ const hasLeads = directoryData.leads.length > 0;
           const copyPhone = target.closest('[data-copy-phone]');
           const copyEmail = target.closest('[data-copy-email]');
           const openDetail = target.closest('[data-open-detail]');
+          const outreachToggle = target.closest('[data-toggle-contacted]');
+
+          if (outreachToggle instanceof HTMLButtonElement) {
+            const nextValue = outreachToggle.dataset.toggleContacted === 'true';
+            entry.isContacted = nextValue;
+            entry.lastContactedTs = nextValue ? Date.now() : null;
+            entry.searchableText = [
+              entry.name,
+              entry.phone,
+              entry.email,
+              entry.categoryLabel,
+              entry.city,
+              entry.statusLabel,
+              `score:${entry.score}`,
+              nextValue ? 'επικοινωνηθηκε' : 'χωρις επαφη'
+            ].join(' ').toLowerCase();
+            syncOutreachRecord(entry);
+            renderCardOutreach(entry);
+            if (activeDetailLeadId && activeDetailLeadId === entry.id) renderDetailOutreach(entry);
+            if (liveRegion instanceof HTMLElement) {
+              liveRegion.textContent = nextValue
+                ? `Το lead ${entry.name} σημειώθηκε ως επικοινωνημένο.`
+                : `Το lead ${entry.name} σημειώθηκε ως χωρίς επικοινωνία.`;
+            }
+            scheduleRun();
+            return;
+          }
 
           if (copyPhone) {
             const value = card.dataset.phone || '';
