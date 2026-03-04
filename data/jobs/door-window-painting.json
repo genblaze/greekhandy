@@ -1,0 +1,12 @@
+{
+  "id": "door-window-painting",
+  "slug": "vapsimo-koufomaton",
+  "nameGr": "Βάψιμο κουφωμάτων",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Τρίψιμο, αστάρωμα και βαφή ξύλινων/μεταλλικών κουφωμάτων.",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "25-90€ ανά τεμάχιο",
+  "demand": "medium",
+  "notes": "Δημοφιλές σε παλαιότερα ακίνητα και εξοχικές κατοικίες."
+}

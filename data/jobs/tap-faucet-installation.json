@@ -1,0 +1,12 @@
+{
+  "id": "tap-faucet-installation",
+  "slug": "egkatastasi-kranis-mpaterias",
+  "nameGr": "Εγκατάσταση βρύσης/μπαταρίας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Αντικατάσταση ή εγκατάσταση νέας μπαταρίας κουζίνας/μπάνιου.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "35-110€",
+  "demand": "high",
+  "notes": "Συχνή ανάγκη σε κατοικίες και βραχυχρόνιες μισθώσεις."
+}

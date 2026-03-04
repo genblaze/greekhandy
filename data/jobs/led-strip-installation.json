@@ -1,0 +1,12 @@
+{
+  "id": "led-strip-installation",
+  "slug": "egkatastasi-led-tainias",
+  "nameGr": "Εγκατάσταση LED ταινιών και ατμοσφαιρικού φωτισμού",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Τοποθέτηση LED strips σε κουζίνες, ντουλάπες και χώρους προβολής με ασφαλείς τροφοδοσίες.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-220€",
+  "demand": "medium",
+  "notes": "Popular long-tail για αισθητικές αναβαθμίσεις χαμηλού κόστους."
+}

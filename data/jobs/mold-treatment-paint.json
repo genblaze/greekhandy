@@ -1,0 +1,12 @@
+{
+  "id": "mold-treatment-paint",
+  "slug": "antimouxliki-vafi",
+  "nameGr": "Αντιμουχλική βαφή και αντιμετώπιση υγρασίας",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Καθαρισμός μούχλας και εφαρμογή εξειδικευμένων υλικών αντιυγρασίας.",
+  "typicalDuration": "4-10 ώρες",
+  "priceRangeEUR": "90-320€",
+  "demand": "high",
+  "notes": "Υψηλή ζήτηση σε διαμερίσματα με περιορισμένο αερισμό."
+}

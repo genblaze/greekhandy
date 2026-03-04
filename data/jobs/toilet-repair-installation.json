@@ -1,0 +1,12 @@
+{
+  "id": "toilet-repair-installation",
+  "slug": "episkevi-egkatastasi-lekanis",
+  "nameGr": "Επισκευή/εγκατάσταση λεκάνης WC",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Αποκατάσταση διαρροών ή πλήρης αντικατάσταση λεκάνης και μηχανισμού καζανακίου.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "notes": "Πρακτική ανάγκη με σταθερό όγκο αναζητήσεων."
+}

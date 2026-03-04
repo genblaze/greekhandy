@@ -1,0 +1,12 @@
+{
+  "id": "move-in-move-out-cleaning",
+  "slug": "katharismos-metakomisis",
+  "nameGr": "Καθαρισμός πριν/μετά μετακόμιση",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Ολοκληρωμένος καθαρισμός ακινήτου κατά την παράδοση ή παραλαβή.",
+  "typicalDuration": "4-10 ώρες",
+  "priceRangeEUR": "100-380€",
+  "demand": "high",
+  "notes": "Συνεχής ζήτηση σε πόλεις με έντονη ενοικιαστική κινητικότητα."
+}

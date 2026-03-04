@@ -1,0 +1,12 @@
+{
+  "id": "decorative-painting",
+  "slug": "dekor-vafes",
+  "nameGr": "Διακοσμητικές βαφές",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Τεχνοτροπίες, πατίνες και ειδικά εφέ για αισθητική αναβάθμιση.",
+  "typicalDuration": "1-4 ημέρες",
+  "priceRangeEUR": "15-45€/τ.μ.",
+  "demand": "low",
+  "notes": "Niche υπηρεσία με υψηλότερο περιθώριο για εξειδικευμένους επαγγελματίες."
+}

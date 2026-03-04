@@ -1,0 +1,12 @@
+{
+  "id": "office-cleaning",
+  "slug": "katharismos-grafeiou",
+  "nameGr": "Καθαρισμός γραφείου",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Τακτικός ή περιοδικός καθαρισμός επαγγελματικών χώρων με πρόγραμμα συντήρησης.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "80-320€/μήνα μικρών χώρων",
+  "demand": "medium",
+  "notes": "Recurring contracts με υψηλή LTV για επαγγελματίες καθαρισμού."
+}

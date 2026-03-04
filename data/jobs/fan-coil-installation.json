@@ -1,0 +1,12 @@
+{
+  "id": "fan-coil-installation",
+  "slug": "egkatastasi-fan-coil",
+  "nameGr": "Εγκατάσταση fan coil",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Τοποθέτηση και ρύθμιση μονάδων fan coil σε οικιακά/επαγγελματικά συστήματα.",
+  "typicalDuration": "3-8 ώρες",
+  "priceRangeEUR": "180-600€",
+  "demand": "low",
+  "notes": "Long-tail τεχνική υπηρεσία, συχνά σε νέα έργα."
+}

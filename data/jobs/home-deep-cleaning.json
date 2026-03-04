@@ -1,0 +1,12 @@
+{
+  "id": "home-deep-cleaning",
+  "slug": "genikos-katharismos-spitiou",
+  "nameGr": "Γενικός καθαρισμός σπιτιού",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εντατικός καθαρισμός κουζίνας, μπάνιου, πατωμάτων και δύσκολων σημείων.",
+  "typicalDuration": "3-8 ώρες",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "notes": "Ισχυρή ζήτηση σε εποχικές αλλαγές, μετακομίσεις και πριν από φιλοξενία."
+}

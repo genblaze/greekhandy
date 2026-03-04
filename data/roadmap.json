@@ -1,0 +1,85 @@
+{
+  "features": [
+    {
+      "id": "search-browse",
+      "name": "Search & Browse",
+      "description": "Search bar on homepage, category grid with icons, city filter dropdown. Users can find services by keyword or browse categories.",
+      "priority": 1,
+      "status": "complete",
+      "estimatedComplexity": "medium"
+    },
+    {
+      "id": "contact-forms",
+      "name": "Contact Forms",
+      "description": "Per-service lead capture form with name, phone, email, description fields. Email notification to admin. Thank-you page after submission.",
+      "priority": 2,
+      "status": "planned",
+      "estimatedComplexity": "medium"
+    },
+    {
+      "id": "professional-profiles",
+      "name": "Professional Profiles",
+      "description": "Registration form for professionals. Profile pages with photo, bio, services offered, areas served, portfolio gallery. Listing in search results.",
+      "priority": 3,
+      "status": "planned",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "reviews-ratings",
+      "name": "Reviews & Ratings",
+      "description": "User review submission with star ratings (1-5). Display reviews on professional profiles. Review moderation. Verified review badges.",
+      "priority": 4,
+      "status": "planned",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "booking-system",
+      "name": "Booking System",
+      "description": "Availability calendar for professionals. Booking flow: select service → pick date/time → confirm. Email confirmations to both parties.",
+      "priority": 5,
+      "status": "planned",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "messaging",
+      "name": "Messaging",
+      "description": "Chat between users and professionals. Message threads per inquiry. Notification system. Chat history.",
+      "priority": 6,
+      "status": "planned",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "admin-dashboard",
+      "name": "Admin Dashboard",
+      "description": "Admin panel to manage listings, moderate reviews, view analytics, manage users. Protected routes with authentication.",
+      "priority": 7,
+      "status": "planned",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "payment",
+      "name": "Payment System",
+      "description": "Booking deposits via Stripe. Professional subscription plans. Invoice generation. Payment history.",
+      "priority": 8,
+      "status": "planned",
+      "estimatedComplexity": "high"
+    }
+  ],
+  "milestones": [
+    {
+      "name": "MVP Content",
+      "target": "5 categories researched, 50+ sub-job pages built",
+      "status": "in-progress"
+    },
+    {
+      "name": "MVP Features",
+      "target": "Search, contact forms, basic profiles working",
+      "status": "planned"
+    },
+    {
+      "name": "Marketplace v1",
+      "target": "Reviews, booking, messaging live",
+      "status": "planned"
+    }
+  ]
+}

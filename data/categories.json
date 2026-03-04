@@ -1,362 +1,57 @@
 [
   {
-    "id": "electrician",
-    "nameEn": "Electrician",
-    "nameGr": "Ηλεκτρολόγος",
-    "slug": "ilektrologos",
-    "status": "built",
-    "subCategories": [
-      "residential",
-      "commercial",
-      "industrial"
-    ]
+    "id": "electricians",
+    "slug": "ilektrologoi",
+    "nameGr": "Ηλεκτρολόγοι",
+    "nameEn": "Electricians",
+    "description": "Ηλεκτρολογικές εγκαταστάσεις, βλάβες, ανακαινίσεις πινάκων και πιστοποιητικά.",
+    "icon": "⚡",
+    "cities": ["athina", "thessaloniki", "patra", "irakleio", "larisa", "volos", "ioannina"],
+    "priority": 1,
+    "seedJobs": ["electrical-repair", "electrical-panel-upgrade", "lighting-installation"]
   },
   {
-    "id": "plumber",
-    "nameEn": "Plumber",
-    "nameGr": "Υδραυλικός",
-    "slug": "ydravlikos",
-    "status": "built",
-    "subCategories": [
-      "residential",
-      "commercial",
-      "emergency"
-    ]
+    "id": "plumbers",
+    "slug": "ydravlikoi",
+    "nameGr": "Υδραυλικοί",
+    "nameEn": "Plumbers",
+    "description": "Αποκατάσταση διαρροών, αποχετεύσεις, εγκατάσταση θερμοσίφωνα και ανακαινίσεις μπάνιου.",
+    "icon": "🚰",
+    "cities": ["athina", "thessaloniki", "patra", "larisa", "volos", "ioannina"],
+    "priority": 2,
+    "seedJobs": ["pipe-leak-repair", "water-heater-installation", "drain-cleaning"]
   },
   {
-    "id": "painter",
-    "nameEn": "Painter",
-    "nameGr": "Ελαιοχρωματιστής",
-    "slug": "elaioxromatistis",
-    "status": "built",
-    "subCategories": [
-      "interior",
-      "exterior",
-      "decorative"
-    ]
+    "id": "painters",
+    "slug": "elaiokhrwmatistes",
+    "nameGr": "Ελαιοχρωματιστές",
+    "nameEn": "Painters",
+    "description": "Βάψιμο εσωτερικών και εξωτερικών χώρων, σπατουλαρίσματα και μονώσεις χρωμάτων.",
+    "icon": "🎨",
+    "cities": ["athina", "thessaloniki", "patra", "irakleio", "larisa"],
+    "priority": 3,
+    "seedJobs": ["interior-painting", "exterior-painting", "wall-preparation"]
   },
   {
-    "id": "locksmith",
-    "nameEn": "Locksmith",
-    "nameGr": "Κλειδαράς",
-    "slug": "kleidaras",
-    "status": "built",
-    "subCategories": [
-      "emergency",
-      "installation",
-      "automotive"
-    ]
+    "id": "cleaning-services",
+    "slug": "katharismoi",
+    "nameGr": "Συνεργεία Καθαρισμού",
+    "nameEn": "Cleaning Services",
+    "description": "Γενικοί καθαρισμοί, καθαρισμοί μετά από ανακαίνιση και βιολογικός καθαρισμός χώρων.",
+    "icon": "🧽",
+    "cities": ["athina", "thessaloniki", "patra", "irakleio", "volos"],
+    "priority": 4,
+    "seedJobs": ["home-deep-cleaning", "post-renovation-cleaning", "office-cleaning"]
   },
   {
-    "id": "carpenter",
-    "nameEn": "Carpenter",
-    "nameGr": "Ξυλουργός",
-    "slug": "xylourgos",
-    "status": "built",
-    "subCategories": [
-      "furniture",
-      "doors-windows",
-      "custom"
-    ]
-  },
-  {
-    "id": "aluminum-worker",
-    "nameEn": "Aluminum Worker",
-    "nameGr": "Αλουμινάς",
-    "slug": "alouminas",
-    "status": "built",
-    "subCategories": [
-      "windows",
-      "doors",
-      "frames"
-    ]
-  },
-  {
-    "id": "ironworker",
-    "nameEn": "Ironworker",
-    "nameGr": "Σιδεράς",
-    "slug": "sideras",
-    "status": "built",
-    "subCategories": [
-      "railings",
-      "gates",
-      "structures"
-    ]
-  },
-  {
-    "id": "plasterer",
-    "nameEn": "Plasterer",
-    "nameGr": "Γυψαδόρος",
-    "slug": "gypsadoros",
-    "status": "built",
-    "subCategories": [
-      "walls",
-      "ceilings",
-      "decorative"
-    ]
-  },
-  {
-    "id": "tiler",
-    "nameEn": "Tiler",
-    "nameGr": "Πλακάς",
-    "slug": "plakas",
-    "status": "built",
-    "subCategories": [
-      "bathroom",
-      "kitchen",
-      "floor"
-    ]
-  },
-  {
-    "id": "insulation-worker",
-    "nameEn": "Insulation Worker",
-    "nameGr": "Μονωτής",
-    "slug": "monotis",
-    "status": "built",
-    "subCategories": [
-      "thermal",
-      "waterproof",
-      "acoustic"
-    ]
-  },
-  {
-    "id": "house-cleaning",
-    "nameEn": "House Cleaning",
-    "nameGr": "Καθαρισμός Σπιτιού",
-    "slug": "katharismos-spitiou",
-    "status": "built",
-    "subCategories": [
-      "regular",
-      "deep-clean",
-      "move-in-out"
-    ]
-  },
-  {
-    "id": "carpet-cleaning",
-    "nameEn": "Carpet Cleaning",
-    "nameGr": "Καθαρισμός Χαλιών",
-    "slug": "katharismos-xalion",
-    "status": "built",
-    "subCategories": [
-      "residential",
-      "commercial",
-      "upholstery"
-    ]
-  },
-  {
-    "id": "pest-control",
-    "nameEn": "Pest Control",
-    "nameGr": "Απεντόμωση",
-    "slug": "apentomosi",
-    "status": "built",
-    "subCategories": [
-      "insects",
-      "rodents",
-      "disinfection"
-    ]
-  },
-  {
-    "id": "drain-cleaning",
-    "nameEn": "Drain Cleaning",
-    "nameGr": "Αποφράξεις",
-    "slug": "apofraxeis",
-    "status": "built",
-    "subCategories": [
-      "residential",
-      "commercial",
-      "emergency"
-    ]
-  },
-  {
-    "id": "housekeeper",
-    "nameEn": "Housekeeper",
-    "nameGr": "Οικιακή Βοηθός",
-    "slug": "oikiaki-voithos",
-    "status": "built",
-    "subCategories": [
-      "daily",
-      "live-in",
-      "elderly-care"
-    ]
-  },
-  {
-    "id": "renovation",
-    "nameEn": "Renovation",
-    "nameGr": "Ανακαίνιση",
-    "slug": "anakenisi",
-    "status": "built",
-    "subCategories": [
-      "bathroom",
-      "kitchen",
-      "full-home"
-    ]
-  },
-  {
-    "id": "architect",
-    "nameEn": "Architect",
-    "nameGr": "Αρχιτέκτονας",
-    "slug": "arxitektonas",
-    "status": "built",
-    "subCategories": [
-      "residential",
-      "commercial",
-      "interior"
-    ]
-  },
-  {
-    "id": "civil-engineer",
-    "nameEn": "Civil Engineer",
-    "nameGr": "Πολιτικός Μηχανικός",
-    "slug": "politikos-mixanikos",
-    "status": "built",
-    "subCategories": [
-      "structural",
-      "permits",
-      "inspections"
-    ]
-  },
-  {
-    "id": "moving-services",
-    "nameEn": "Moving Services",
-    "nameGr": "Μεταφορές",
-    "slug": "metafores",
-    "status": "built",
-    "subCategories": [
-      "local",
-      "long-distance",
-      "office"
-    ]
-  },
-  {
-    "id": "demolition",
-    "nameEn": "Demolition",
-    "nameGr": "Κατεδαφίσεις",
-    "slug": "katedafiseis",
-    "status": "built",
-    "subCategories": [
-      "interior",
-      "exterior",
-      "debris-removal"
-    ]
-  },
-  {
-    "id": "computer-technician",
-    "nameEn": "Computer Technician",
-    "nameGr": "Τεχνικός Υπολογιστών",
-    "slug": "texnikos-ypologiston",
-    "status": "built",
-    "subCategories": [
-      "repair",
-      "networking",
-      "data-recovery"
-    ]
-  },
-  {
-    "id": "ac-installation",
-    "nameEn": "AC Installation",
-    "nameGr": "Εγκατάσταση Κλιματιστικών",
-    "slug": "egkatastasi-klimatistikon",
-    "status": "built",
-    "subCategories": [
-      "split",
-      "central",
-      "maintenance"
-    ]
-  },
-  {
-    "id": "alarms-cctv",
-    "nameEn": "Alarms & CCTV",
-    "nameGr": "Συναγερμοί & Κάμερες",
-    "slug": "synagermi-kameres",
-    "status": "built",
-    "subCategories": [
-      "home",
-      "business",
-      "monitoring"
-    ]
-  },
-  {
-    "id": "gardener",
-    "nameEn": "Gardener",
-    "nameGr": "Κηπουρός",
-    "slug": "kipouros",
-    "status": "built",
-    "subCategories": [
-      "maintenance",
-      "design",
-      "landscaping"
-    ]
-  },
-  {
-    "id": "tree-pruning",
-    "nameEn": "Tree Pruning",
-    "nameGr": "Κλάδεμα Δέντρων",
-    "slug": "kladema-dentron",
-    "status": "built",
-    "subCategories": [
-      "pruning",
-      "removal",
-      "stump-grinding"
-    ]
-  },
-  {
-    "id": "pool-maintenance",
-    "nameEn": "Pool Maintenance",
-    "nameGr": "Πισίνες",
-    "slug": "pisines",
-    "status": "built",
-    "subCategories": [
-      "cleaning",
-      "repair",
-      "installation"
-    ]
-  },
-  {
-    "id": "auto-mechanic",
-    "nameEn": "Auto Mechanic",
-    "nameGr": "Μηχανικός Αυτοκινήτων",
-    "slug": "mixanikos-aftokinton",
-    "status": "built",
-    "subCategories": [
-      "service",
-      "repair",
-      "diagnostics"
-    ]
-  },
-  {
-    "id": "body-shop",
-    "nameEn": "Body Shop",
-    "nameGr": "Φανοποιός",
-    "slug": "fanopoios",
-    "status": "built",
-    "subCategories": [
-      "paint",
-      "dent-repair",
-      "collision"
-    ]
-  },
-  {
-    "id": "photographer",
-    "nameEn": "Photographer",
-    "nameGr": "Φωτογράφος",
-    "slug": "fotografos",
-    "status": "built",
-    "subCategories": [
-      "wedding",
-      "event",
-      "commercial"
-    ]
-  },
-  {
-    "id": "private-tutoring",
-    "nameEn": "Private Tutoring",
-    "nameGr": "Ιδιαίτερα Μαθήματα",
-    "slug": "idiaitera-mathimata",
-    "status": "built",
-    "subCategories": [
-      "school",
-      "university",
-      "languages"
-    ]
+    "id": "hvac-technicians",
+    "slug": "techniki-klimatismou",
+    "nameGr": "Τεχνικοί Κλιματισμού",
+    "nameEn": "HVAC Technicians",
+    "description": "Συντήρηση, επισκευή και εγκατάσταση κλιματιστικών για οικίες και επαγγελματικούς χώρους.",
+    "icon": "❄️",
+    "cities": ["athina", "thessaloniki", "patra", "irakleio", "larisa", "ioannina"],
+    "priority": 5,
+    "seedJobs": ["ac-installation", "ac-service", "ac-repair"]
   }
 ]

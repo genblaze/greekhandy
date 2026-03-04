@@ -1,0 +1,12 @@
+{
+  "id": "exterior-painting",
+  "slug": "vapsimo-eksoterikon-khoron",
+  "nameGr": "Βάψιμο εξωτερικών χώρων",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Βαφή προσόψεων, μαντρότοιχων και εξωτερικών επιφανειών με ανθεκτικά χρώματα.",
+  "typicalDuration": "2-7 ημέρες",
+  "priceRangeEUR": "12-28€/τ.μ.",
+  "demand": "medium",
+  "notes": "Εποχική υπηρεσία με αυξημένη ζήτηση άνοιξη-φθινόπωρο."
+}

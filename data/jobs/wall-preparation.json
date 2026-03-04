@@ -1,0 +1,12 @@
+{
+  "id": "wall-preparation",
+  "slug": "proetoimasia-toixon",
+  "nameGr": "Προετοιμασία τοίχων",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Σπατουλάρισμα, στοκάρισμα και τρίψιμο επιφανειών πριν από τη βαφή.",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "4-10€/τ.μ.",
+  "demand": "medium",
+  "notes": "Συχνά συνδυάζεται με interior/exterior painting ως ξεχωριστή χρέωση."
+}

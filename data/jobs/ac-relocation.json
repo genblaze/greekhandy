@@ -1,0 +1,12 @@
+{
+  "id": "ac-relocation",
+  "slug": "metafora-klimatistikou",
+  "nameGr": "Απεγκατάσταση και μεταφορά κλιματιστικού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Ασφαλής αποσύνδεση, μεταφορά και επανεγκατάσταση μονάδας σε νέο χώρο.",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "120-320€",
+  "demand": "medium",
+  "notes": "Συχνό σε μετακομίσεις και αναδιαμόρφωση χώρων."
+}

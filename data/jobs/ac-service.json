@@ -1,0 +1,13 @@
+{
+  "id": "ac-service",
+  "slug": "syntirisi-klimatistikou",
+  "nameGr": "Συντήρηση κλιματιστικού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Καθαρισμός, απολύμανση και έλεγχος απόδοσης κλιματιστικού πριν από περίοδο έντονης χρήσης.",
+  "typicalDuration": "45-90 λεπτά",
+  "priceRangeEUR": "30-70€ ανά μονάδα",
+  "demand": "high",
+  "notes": "Ισχυρή εποχικότητα άνοιξη/αρχές καλοκαιριού με μεγάλο όγκο επαναλαμβανόμενων πελατών.",
+  "status": "researched"
+}

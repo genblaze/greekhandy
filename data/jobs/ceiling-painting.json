@@ -1,0 +1,12 @@
+{
+  "id": "ceiling-painting",
+  "slug": "vapsimo-orofis",
+  "nameGr": "Βάψιμο οροφής",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Ανανέωση οροφών με αντιμουχλικά και ανθεκτικά υλικά.",
+  "typicalDuration": "3-8 ώρες",
+  "priceRangeEUR": "5-12€/τ.μ.",
+  "demand": "medium",
+  "notes": "Συχνά ζητείται ως add-on σε γενικό βάψιμο."
+}

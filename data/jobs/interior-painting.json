@@ -1,0 +1,13 @@
+{
+  "id": "interior-painting",
+  "slug": "vapsimo-esoterikon-khoron",
+  "nameGr": "Βάψιμο εσωτερικών χώρων",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Προετοιμασία επιφανειών και βαφή τοίχων/οροφών σε σπίτια και επαγγελματικούς χώρους.",
+  "typicalDuration": "1-5 ημέρες",
+  "priceRangeEUR": "8-18€/τ.μ.",
+  "demand": "high",
+  "notes": "Δημοφιλής υπηρεσία σε μετακομίσεις, ανακαινίσεις και εποχικές ανανεώσεις ακινήτων.",
+  "status": "researched"
+}

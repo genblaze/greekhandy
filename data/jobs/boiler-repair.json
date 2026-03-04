@@ -1,0 +1,12 @@
+{
+  "id": "boiler-repair",
+  "slug": "episkevi-levita",
+  "nameGr": "Επισκευή λέβητα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επισκευή και ρύθμιση λέβητα νερού/θέρμανσης σε κατοικίες.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-240€",
+  "demand": "medium",
+  "notes": "Αυξημένη ζήτηση χειμώνα, ιδιαίτερα σε πολυκατοικίες."
+}

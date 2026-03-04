@@ -1,0 +1,13 @@
+{
+  "id": "water-heater-installation",
+  "slug": "egkatastasi-thermosifona",
+  "nameGr": "Εγκατάσταση θερμοσίφωνα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Τοποθέτηση νέου θερμοσίφωνα ή αντικατάσταση παλιού με ασφαλείς συνδέσεις.",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "120-350€ (εργασία)",
+  "demand": "medium",
+  "notes": "Εποχικό peak πριν χειμώνα και σε κατοικίες βραχυχρόνιας μίσθωσης.",
+  "status": "researched"
+}

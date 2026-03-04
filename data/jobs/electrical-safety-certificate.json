@@ -1,0 +1,12 @@
+{
+  "id": "electrical-safety-certificate",
+  "slug": "pistopoiitiko-ilektrologou",
+  "nameGr": "Πιστοποιητικό ηλεκτρολόγου (ΥΔΕ)",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Έλεγχος εγκατάστασης και έκδοση ΥΔΕ για κατοικίες/επαγγελματικούς χώρους.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-180€",
+  "demand": "high",
+  "notes": "Απαραίτητο σε αλλαγή παρόχου/επανασύνδεση, σταθερή οργανική ζήτηση."
+}

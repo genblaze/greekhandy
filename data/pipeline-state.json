@@ -1,0 +1,15 @@
+{
+  "lastManagerRun": "2026-03-04T13:49:00Z",
+  "activeAgents": {
+    "research": { "status": "idle", "task": null, "startedAt": null },
+    "builder": { "status": "idle", "task": null, "startedAt": null },
+    "developer": { "status": "idle", "task": null, "startedAt": null }
+  },
+  "stats": {
+    "categoriesResearched": 5,
+    "jobsResearched": 52,
+    "contentPagesBuilt": 57
+  },
+  "lastDecision": "Site code fixed: all 57 content pages now render via [slug].astro with breadcrumbs, sub-job cards, navigation. Homepage has search+filter, category grid, job listings. Next: research more categories (locksmith, carpenter, tiler, gardener, mover).",
+  "blockers": []
+}

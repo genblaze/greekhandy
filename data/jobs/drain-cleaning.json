@@ -1,0 +1,12 @@
+{
+  "id": "drain-cleaning",
+  "slug": "apofraxi-apoxeteusis",
+  "nameGr": "Απόφραξη αποχέτευσης",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Καθαρισμός και αποκατάσταση ροής σε νεροχύτες, μπάνια και κεντρικές αποχετεύσεις.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "60-160€",
+  "demand": "high",
+  "notes": "Υψηλή συχνότητα κλήσεων έκτακτης ανάγκης με καλή πρόθεση μετατροπής."
+}

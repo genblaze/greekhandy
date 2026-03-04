@@ -1,0 +1,13 @@
+{
+  "id": "electrical-panel-upgrade",
+  "slug": "anavathmisi-ilektrologikou-pinaka",
+  "nameGr": "Αναβάθμιση ηλεκτρολογικού πίνακα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Αντικατάσταση ή εκσυγχρονισμός πίνακα για ασφάλεια και κάλυψη νέων φορτίων.",
+  "typicalDuration": "4-8 ώρες",
+  "priceRangeEUR": "250-900€",
+  "demand": "medium",
+  "notes": "Συχνή εργασία σε ανακαινίσεις και σε κατοικίες που χρειάζονται πιστοποιήσεις.",
+  "status": "researched"
+}

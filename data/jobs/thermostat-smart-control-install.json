@@ -1,0 +1,12 @@
+{
+  "id": "thermostat-smart-control-install",
+  "slug": "egkatastasi-smart-thermostati-klimatismou",
+  "nameGr": "Εγκατάσταση smart θερμοστάτη κλιματισμού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εγκατάσταση και παραμετροποίηση έξυπνου θερμοστάτη για απομακρυσμένο έλεγχο και εξοικονόμηση.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "60-180€",
+  "demand": "medium",
+  "notes": "Συνδέεται με τάση smart home και ενεργειακή διαχείριση."
+}

@@ -1,52 +1,377 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+interface Category {
+  id: string;
+  slug: string;
+  nameGr: string;
+  description?: string;
+  priority?: number;
+  icon?: string;
+  cities?: string[];
+}
+
+interface ContentPage {
+  slug: string;
+  nameGr: string;
+  nameEn?: string;
+  h1?: string;
+  heroText?: string;
+  metaDescription?: string;
+  summary?: {
+    intent?: string;
+    priceRangeEUR?: string;
+  };
+  sections?: { heading?: string; content?: string }[];
+  categoryId?: string;
+  categorySlug?: string;
+  categoryNameGr?: string;
+}
+
+const majorCities = [
+  { value: 'athina', label: 'Αθήνα' },
+  { value: 'thessaloniki', label: 'Θεσσαλονίκη' },
+  { value: 'patra', label: 'Πάτρα' },
+  { value: 'irakleio', label: 'Ηράκλειο' },
+  { value: 'larisa', label: 'Λάρισα' },
+  { value: 'volos', label: 'Βόλος' },
+  { value: 'ioannina', label: 'Ιωάννινα' }
+];
+
+const cityLabelByValue = Object.fromEntries(majorCities.map(city => [city.value, city.label]));
+
+const fallbackIconsBySlug: Record<string, string> = {
+  ilektrologoi: '⚡',
+  ydravlikoi: '🚰',
+  elaiokhrwmatistes: '🎨',
+  katharismoi: '🧽',
+  'techniki-klimatismou': '❄️'
+};
+
+const normalizeText = (value = '') => value
+  .toLocaleLowerCase('el-GR')
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/ς/g, 'σ')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+const contentFiles = import.meta.glob('../../data/content/*.json', { eager: true });
+const allPages: ContentPage[] = [];
+for (const [, mod] of Object.entries(contentFiles)) {
+  const data = (mod as any).default ?? mod;
+  if (data?.slug) allPages.push(data as ContentPage);
+}
+
+let categories: Category[] = [];
+try {
+  const catFile = await import('../../data/categories.json');
+  categories = ((catFile.default ?? catFile) as Category[])
+    .slice()
+    .sort((a, b) => (a.priority ?? 999) - (b.priority ?? 999));
+} catch {}
+
+const categorySlugs = new Set(categories.map(cat => cat.slug));
+const categoryPages = allPages.filter(page => categorySlugs.has(page.slug));
+const jobPages = allPages.filter(page => !categorySlugs.has(page.slug));
+
+const categoriesById = new Map(categories.map(cat => [cat.id, cat]));
+const categoriesBySlug = new Map(categories.map(cat => [cat.slug, cat]));
+
+const getCategoryForPage = (page: ContentPage) => {
+  if (categorySlugs.has(page.slug)) return categoriesBySlug.get(page.slug);
+  return categoriesById.get(page.categoryId ?? '') ?? categoriesBySlug.get(page.categorySlug ?? '');
+};
+
+const getCategoryIcon = (category?: Category) => {
+  if (category?.icon) return category.icon;
+  if (category?.slug && fallbackIconsBySlug[category.slug]) return fallbackIconsBySlug[category.slug];
+  return '🛠️';
+};
+
+const getCitiesForCategory = (category?: Category) => {
+  const filteredCities = (category?.cities ?? []).filter(city => majorCities.some(option => option.value === city));
+  return filteredCities.length > 0 ? filteredCities : majorCities.map(city => city.value);
+};
+
+const jobsByCategory: Record<string, ContentPage[]> = {};
+for (const job of jobPages) {
+  const category = getCategoryForPage(job);
+  const categoryKey = category?.id ?? job.categoryId ?? job.categorySlug ?? 'other';
+  if (!jobsByCategory[categoryKey]) jobsByCategory[categoryKey] = [];
+  jobsByCategory[categoryKey].push(job);
+}
+
+for (const key of Object.keys(jobsByCategory)) {
+  jobsByCategory[key].sort((a, b) => a.nameGr.localeCompare(b.nameGr, 'el'));
+}
+
+const searchItems = [...categoryPages, ...jobPages]
+  .map(page => {
+    const category = getCategoryForPage(page);
+    const cityValues = getCitiesForCategory(category);
+
+    const searchableText = normalizeText([
+      page.nameGr,
+      page.nameEn,
+      page.h1,
+      page.metaDescription,
+      page.heroText,
+      page.summary?.intent,
+      page.categoryNameGr,
+      category?.nameGr,
+      page.sections?.map(section => `${section.heading ?? ''} ${section.content ?? ''}`).join(' ')
+    ].filter(Boolean).join(' '));
+
+    const isCategoryPage = categorySlugs.has(page.slug);
+    const typeLabel = isCategoryPage ? 'Κατηγορία' : 'Υπηρεσία';
+
+    return {
+      slug: page.slug,
+      nameGr: page.nameGr,
+      description: page.summary?.intent ?? page.metaDescription ?? category?.description ?? '',
+      priceRange: page.summary?.priceRangeEUR,
+      typeLabel,
+      categoryName: isCategoryPage ? '' : (page.categoryNameGr ?? category?.nameGr ?? ''),
+      cities: cityValues,
+      searchText: searchableText,
+      icon: getCategoryIcon(category)
+    };
+  })
+  .sort((a, b) => a.nameGr.localeCompare(b.nameGr, 'el'));
+
+const availableCityValues = new Set(searchItems.flatMap(item => item.cities));
+const cityOptions = majorCities.filter(city => availableCityValues.has(city.value));
+
+const totalServices = allPages.length;
 ---
 
 <Layout
   title="GreekHandy - Βρείτε Αξιόπιστους Επαγγελματίες | Ελλάδα"
   description="Βρείτε τον καλύτερο επαγγελματία για κάθε εργασία στην Ελλάδα. Ηλεκτρολόγοι, υδραυλικοί, ελαιοχρωματιστές και πολλοί ακόμα. Δωρεάν προσφορές."
 >
-  <!-- Hero -->
-  <section class="bg-blue-600 text-white py-20 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6">Βρείτε τον Καλύτερο Επαγγελματία</h1>
-      <p class="text-xl opacity-90 mb-8">Αξιόπιστοι τεχνικοί και επαγγελματίες για κάθε εργασία στην Ελλάδα. Δωρεάν προσφορές, άμεση εξυπηρέτηση.</p>
-      <a href="#services" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-        Εξερευνήστε Υπηρεσίες
+  <section class="bg-gradient-to-b from-blue-700 to-blue-600 px-4 py-20 text-white">
+    <div class="mx-auto max-w-4xl text-center">
+      <h1 class="mb-6 text-4xl font-bold md:text-5xl">Βρείτε τον Καλύτερο Επαγγελματία</h1>
+      <p class="mb-8 text-xl text-blue-100">Αξιόπιστοι τεχνικοί και επαγγελματίες για κάθε εργασία στην Ελλάδα. Δωρεάν προσφορές, άμεση εξυπηρέτηση.</p>
+      <a href="#search-browse" class="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-blue-700 transition hover:bg-blue-50">
+        Αναζήτηση Υπηρεσιών
       </a>
+      <p class="mt-4 text-sm text-blue-200">{totalServices} υπηρεσίες διαθέσιμες</p>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section id="services" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-12">Δημοφιλείς Υπηρεσίες</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Category cards will be dynamically generated as pages are built -->
-      <p class="col-span-full text-center text-gray-500">Σύντομα θα βρείτε εδώ όλες τις υπηρεσίες μας.</p>
+  <section id="search-browse" class="mx-auto max-w-6xl px-4 py-14">
+    <div class="rounded-2xl border border-blue-100 bg-blue-50/60 p-6 md:p-8">
+      <h2 class="text-3xl font-bold text-gray-900">Αναζήτηση με λέξη-κλειδί</h2>
+      <p class="mt-2 text-gray-700">Βρείτε γρήγορα υπηρεσίες ή κατηγορίες και φιλτράρετε ανά πόλη.</p>
+
+      <form class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-12" role="search" aria-label="Αναζήτηση υπηρεσιών">
+        <div class="md:col-span-6">
+          <label for="search-keyword" class="mb-2 block text-sm font-semibold text-gray-800">Λέξη-κλειδί</label>
+          <input
+            id="search-keyword"
+            name="search-keyword"
+            type="search"
+            placeholder="π.χ. επισκευή διαρροής, εγκατάσταση κλιματιστικού"
+            autocomplete="off"
+            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            data-search-input
+          />
+        </div>
+
+        <div class="md:col-span-4">
+          <label for="search-city" class="mb-2 block text-sm font-semibold text-gray-800">Πόλη</label>
+          <select
+            id="search-city"
+            name="search-city"
+            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            data-city-filter
+          >
+            <option value="">Όλες οι πόλεις</option>
+            {cityOptions.map(city => (
+              <option value={city.value}>{city.label}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="md:col-span-2 md:self-end">
+          <button
+            type="button"
+            class="w-full rounded-lg border border-blue-300 bg-white px-4 py-3 font-semibold text-blue-700 transition hover:bg-blue-100"
+            data-reset-filters
+          >
+            Καθαρισμός
+          </button>
+        </div>
+      </form>
+
+      <p class="mt-4 text-sm text-gray-700" data-results-count aria-live="polite"></p>
+
+      <ul class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list>
+        {searchItems.map(item => (
+          <li
+            data-search-item
+            data-search-text={item.searchText}
+            data-cities={item.cities.join('|')}
+            class="rounded-xl border border-gray-200 bg-white p-4"
+          >
+            <a href={`/${item.slug}`} class="block rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+              <div class="flex items-start gap-3">
+                <span class="text-2xl" aria-hidden="true">{item.icon}</span>
+                <div>
+                  <p class="font-semibold text-gray-900">{item.nameGr}</p>
+                  <p class="mt-1 text-xs font-medium uppercase tracking-wide text-blue-700">
+                    {item.typeLabel}{item.categoryName ? ` • ${item.categoryName}` : ''}
+                  </p>
+                  {item.description && <p class="mt-2 text-sm text-gray-600">{item.description}</p>}
+                  {item.priceRange && <p class="mt-2 text-sm font-medium text-blue-700">Ενδεικτικό κόστος: {item.priceRange}</p>}
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-4 hidden rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-empty-state>
+        Δεν βρέθηκαν αποτελέσματα με αυτά τα φίλτρα. Δοκιμάστε άλλη λέξη ή πόλη.
+      </p>
     </div>
   </section>
 
-  <!-- How it Works -->
-  <section class="bg-gray-50 py-16 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-12">Πώς Λειτουργεί</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <section id="services" class="mx-auto max-w-6xl px-4 py-10">
+    <h2 class="mb-12 text-center text-3xl font-bold">Κατηγορίες Υπηρεσιών</h2>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {categories.map(cat => {
+        const catJobs = jobsByCategory[cat.id] || [];
+        const cityLabels = getCitiesForCategory(cat).map(city => cityLabelByValue[city]).filter(Boolean);
+        return (
+          <a href={`/${cat.slug}`} class="block rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md">
+            <span class="text-3xl" aria-hidden="true">{getCategoryIcon(cat)}</span>
+            <h3 class="mt-3 text-xl font-bold text-gray-900">{cat.nameGr}</h3>
+            <p class="mt-2 text-sm text-gray-600">{cat.description}</p>
+            {cityLabels.length > 0 && (
+              <p class="mt-3 text-xs uppercase tracking-wide text-gray-500">Πόλεις: {cityLabels.join(', ')}</p>
+            )}
+            <p class="mt-3 text-sm font-medium text-blue-600">{catJobs.length} υπηρεσίες &rarr;</p>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  {categories.map(cat => {
+    const catJobs = jobsByCategory[cat.id] || [];
+    if (catJobs.length === 0) return null;
+
+    return (
+      <section class="mx-auto max-w-6xl px-4 py-8">
+        <h2 class="mb-6 text-2xl font-bold text-gray-900">
+          <a href={`/${cat.slug}`} class="hover:text-blue-700">{cat.nameGr}</a>
+        </h2>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {catJobs.map(job => (
+            <a href={`/${job.slug}`} class="block rounded-lg border border-gray-200 bg-white p-4 transition hover:border-blue-300 hover:bg-blue-50">
+              <h3 class="font-semibold text-gray-900">{job.nameGr}</h3>
+              {job.summary?.priceRangeEUR && (
+                <p class="mt-1 text-sm text-blue-600">{job.summary.priceRangeEUR}</p>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="mt-8 bg-gray-50 px-4 py-16">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="mb-12 text-3xl font-bold">Πώς Λειτουργεί</h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div>
-          <div class="text-4xl mb-4">1</div>
-          <h3 class="text-xl font-semibold mb-2">Επιλέξτε Υπηρεσία</h3>
+          <div class="mb-4 text-4xl font-bold text-blue-600">1</div>
+          <h3 class="mb-2 text-xl font-semibold">Επιλέξτε Υπηρεσία</h3>
           <p class="text-gray-600">Βρείτε την υπηρεσία που χρειάζεστε από τον κατάλογό μας.</p>
         </div>
         <div>
-          <div class="text-4xl mb-4">2</div>
-          <h3 class="text-xl font-semibold mb-2">Ζητήστε Προσφορά</h3>
+          <div class="mb-4 text-4xl font-bold text-blue-600">2</div>
+          <h3 class="mb-2 text-xl font-semibold">Ζητήστε Προσφορά</h3>
           <p class="text-gray-600">Περιγράψτε τις ανάγκες σας και λάβετε προσφορές.</p>
         </div>
         <div>
-          <div class="text-4xl mb-4">3</div>
-          <h3 class="text-xl font-semibold mb-2">Επιλέξτε Επαγγελματία</h3>
+          <div class="mb-4 text-4xl font-bold text-blue-600">3</div>
+          <h3 class="mb-2 text-xl font-semibold">Επιλέξτε Επαγγελματία</h3>
           <p class="text-gray-600">Συγκρίνετε και επιλέξτε τον κατάλληλο επαγγελματία.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      const normalizeText = (value = '') => value
+        .toLocaleLowerCase('el-GR')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/ς/g, 'σ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      const searchInput = document.querySelector('[data-search-input]');
+      const cityFilter = document.querySelector('[data-city-filter]');
+      const resetButton = document.querySelector('[data-reset-filters]');
+      const resultCards = Array.from(document.querySelectorAll('[data-search-item]'));
+      const resultsCount = document.querySelector('[data-results-count]');
+      const emptyState = document.querySelector('[data-empty-state]');
+
+      if (!searchInput || !cityFilter || !resetButton || !resultsCount || !emptyState) return;
+
+      const getCityLabel = () => {
+        const selectedOption = cityFilter.options[cityFilter.selectedIndex];
+        return selectedOption ? selectedOption.textContent : '';
+      };
+
+      const updateResults = () => {
+        const keyword = normalizeText(searchInput.value);
+        const selectedCity = cityFilter.value;
+
+        let visibleItems = 0;
+
+        resultCards.forEach(card => {
+          const searchText = card.dataset.searchText || '';
+          const cities = (card.dataset.cities || '').split('|').filter(Boolean);
+
+          const keywordMatch = !keyword || searchText.includes(keyword);
+          const cityMatch = !selectedCity || cities.includes(selectedCity);
+          const isVisible = keywordMatch && cityMatch;
+
+          card.classList.toggle('hidden', !isVisible);
+          if (isVisible) visibleItems += 1;
+        });
+
+        const cityLabel = selectedCity ? getCityLabel() : '';
+        if (!keyword && !selectedCity) {
+          resultsCount.textContent = `Εμφανίζονται ${visibleItems} διαθέσιμες υπηρεσίες και κατηγορίες.`;
+        } else if (cityLabel && keyword) {
+          resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}» στην ${cityLabel}.`;
+        } else if (cityLabel) {
+          resultsCount.textContent = `${visibleItems} αποτελέσματα στην ${cityLabel}.`;
+        } else {
+          resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}».`;
+        }
+
+        emptyState.classList.toggle('hidden', visibleItems > 0);
+      };
+
+      searchInput.addEventListener('input', updateResults);
+      cityFilter.addEventListener('change', updateResults);
+      resetButton.addEventListener('click', () => {
+        searchInput.value = '';
+        cityFilter.value = '';
+        updateResults();
+        searchInput.focus();
+      });
+
+      updateResults();
+    })();
+  </script>
 </Layout>

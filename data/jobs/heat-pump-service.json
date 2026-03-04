@@ -1,0 +1,12 @@
+{
+  "id": "heat-pump-service",
+  "slug": "syntirisi-antlias-thermotitas",
+  "nameGr": "Συντήρηση αντλίας θερμότητας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Έλεγχος και προληπτική συντήρηση αντλιών θερμότητας για αποδοτική λειτουργία.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "80-260€",
+  "demand": "medium",
+  "notes": "Αναπτυσσόμενη αγορά λόγω ενεργειακών αναβαθμίσεων."
+}

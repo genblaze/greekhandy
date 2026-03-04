@@ -1,0 +1,12 @@
+{
+  "id": "electrical-installation-new-home",
+  "slug": "nea-ilektrologiki-egkatastasi-katoikias",
+  "nameGr": "Νέα ηλεκτρολογική εγκατάσταση κατοικίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Πλήρης σχεδιασμός και εγκατάσταση ηλεκτρολογικού δικτύου σε νέο ή πλήρως ανακαινισμένο ακίνητο.",
+  "typicalDuration": "2-10 ημέρες",
+  "priceRangeEUR": "1200-6500€",
+  "demand": "medium",
+  "notes": "Υψηλής αξίας έργο που φέρνει πολλαπλές συμπληρωματικές εργασίες."
+}

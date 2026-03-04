@@ -1,0 +1,13 @@
+{
+  "id": "ac-installation",
+  "slug": "egkatastasi-klimatistikou",
+  "nameGr": "Εγκατάσταση κλιματιστικού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Τοποθέτηση νέας μονάδας με σωστή ψυκτική σύνδεση, δοκιμές και βασικές ρυθμίσεις.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "100-280€ (εργασία)",
+  "demand": "medium",
+  "notes": "Υψηλή πρόθεση αγοράς, συχνά συνδέεται με ανακαινίσεις ή αντικατάσταση παλιών μονάδων.",
+  "status": "researched"
+}

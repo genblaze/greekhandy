@@ -1,0 +1,12 @@
+{
+  "id": "window-cleaning",
+  "slug": "katharismos-tzamion",
+  "nameGr": "Καθαρισμός τζαμιών",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Καθαρισμός υαλοπινάκων, μπαλκονόπορτων και βιτρινών με επαγγελματικό εξοπλισμό.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "30-140€",
+  "demand": "medium",
+  "notes": "Συχνό επαναλαμβανόμενο request σε σπίτια και επιχειρήσεις."
+}

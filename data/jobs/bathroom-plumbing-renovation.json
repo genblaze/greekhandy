@@ -1,0 +1,12 @@
+{
+  "id": "bathroom-plumbing-renovation",
+  "slug": "ydravlikes-ergasies-baniou",
+  "nameGr": "Υδραυλικές εργασίες ανακαίνισης μπάνιου",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Ανακατασκευή δικτύων νερού/αποχέτευσης σε ανακαινίσεις μπάνιου.",
+  "typicalDuration": "2-6 ημέρες",
+  "priceRangeEUR": "450-1800€",
+  "demand": "medium",
+  "notes": "Υψηλότερη αξία έργου, συχνά με συνεργασία πλακά/ηλεκτρολόγου."
+}

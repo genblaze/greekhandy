@@ -1,0 +1,12 @@
+{
+  "id": "staircase-painting",
+  "slug": "vapsimo-klimakostasiou",
+  "nameGr": "Βάψιμο κλιμακοστασίου",
+  "categoryId": "painters",
+  "categorySlug": "elaiokhrwmatistes",
+  "intent": "Ανακαίνιση κλιμακοστασίων σε πολυκατοικίες με ανθεκτικά χρώματα υψηλής χρήσης.",
+  "typicalDuration": "2-7 ημέρες",
+  "priceRangeEUR": "600-2800€",
+  "demand": "medium",
+  "notes": "B2B/πολυκατοικίες έργο με καλό μέσο προϋπολογισμό."
+}

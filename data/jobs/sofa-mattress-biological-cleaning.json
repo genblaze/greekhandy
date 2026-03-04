@@ -1,0 +1,12 @@
+{
+  "id": "sofa-mattress-biological-cleaning",
+  "slug": "viologikos-katharismos-kanape-stromatos",
+  "nameGr": "Βιολογικός καθαρισμός καναπέ/στρώματος",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Βαθύς καθαρισμός υφασμάτινων επιφανειών με εξαγωγή ρύπων και απολύμανση.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "35-140€",
+  "demand": "high",
+  "notes": "Δημοφιλής υπηρεσία σε οικογένειες με παιδιά/κατοικίδια."
+}

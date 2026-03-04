@@ -1,0 +1,13 @@
+{
+  "id": "pipe-leak-repair",
+  "slug": "episkevi-diarrois-solinon",
+  "nameGr": "Επισκευή διαρροής σωληνώσεων",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εντοπισμός και επισκευή διαρροών σε ορατές ή κρυφές σωληνώσεις νερού.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "notes": "Η κατεπείγουσα φύση της ανάγκης αυξάνει τη συχνότητα αναζητήσεων και lead conversion.",
+  "status": "researched"
+}

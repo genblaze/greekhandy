@@ -1,0 +1,13 @@
+{
+  "id": "post-renovation-cleaning",
+  "slug": "katharismos-meta-anakainisi",
+  "nameGr": "Καθαρισμός μετά από ανακαίνιση",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εξειδικευμένος καθαρισμός σκόνης, υπολειμμάτων υλικών και επιφανειών μετά από τεχνικές εργασίες.",
+  "typicalDuration": "4-10 ώρες",
+  "priceRangeEUR": "120-450€",
+  "demand": "medium",
+  "notes": "Σχετίζεται άμεσα με ανάπτυξη ανακαινίσεων και παραδόσεις ακινήτων για ενοικίαση/πώληση.",
+  "status": "researched"
+}

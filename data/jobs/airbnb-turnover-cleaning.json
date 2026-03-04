@@ -1,0 +1,12 @@
+{
+  "id": "airbnb-turnover-cleaning",
+  "slug": "katharismos-airbnb-turnover",
+  "nameGr": "Καθαρισμός Airbnb μεταξύ κρατήσεων",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Γρήγορη εναλλαγή καθαρισμού και αναπλήρωσης βασικών ειδών για βραχυχρόνιες μισθώσεις.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "35-120€ ανά αλλαγή",
+  "demand": "high",
+  "notes": "Recurring εργασία με σταθερά εβδομαδιαία αιτήματα."
+}

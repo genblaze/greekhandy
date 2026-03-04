@@ -1,0 +1,12 @@
+{
+  "id": "solar-water-heater-service",
+  "slug": "syntirisi-iliakou-thermosifona",
+  "nameGr": "Συντήρηση ηλιακού θερμοσίφωνα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Έλεγχος, καθαρισμός και αντικατάσταση φθαρμένων εξαρτημάτων ηλιακού.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "60-180€",
+  "demand": "medium",
+  "notes": "Ελληνική αγορά με μεγάλη εγκατεστημένη βάση ηλιακών."
+}

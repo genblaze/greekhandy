@@ -1,0 +1,12 @@
+{
+  "id": "ev-charger-installation",
+  "slug": "egkatastasi-fortisti-ilektrikou-autokinitou",
+  "nameGr": "Εγκατάσταση φορτιστή ηλεκτρικού αυτοκινήτου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Μελέτη και εγκατάσταση wallbox με σωστή ασφάλιση και έλεγχο φορτίου.",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "250-700€ (εργασία)",
+  "demand": "medium",
+  "notes": "Αναδυόμενη υπηρεσία με ανοδική τάση λόγω αύξησης EV."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "carpet-cleaning",
+  "slug": "katharismos-xalion",
+  "nameGr": "Καθαρισμός χαλιών",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εξειδικευμένος καθαρισμός χαλιών με αφαίρεση λεκέδων και οσμών.",
+  "typicalDuration": "24-72 ώρες κύκλος παραλαβής/παράδοσης",
+  "priceRangeEUR": "8-20€/τ.μ.",
+  "demand": "medium",
+  "notes": "Εποχική υπηρεσία με αιχμή άνοιξη και φθινόπωρο."
+}

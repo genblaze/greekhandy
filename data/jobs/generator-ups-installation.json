@@ -1,0 +1,12 @@
+{
+  "id": "generator-ups-installation",
+  "slug": "egkatastasi-gennitrias-ups",
+  "nameGr": "Εγκατάσταση γεννήτριας/UPS",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Τοποθέτηση συστημάτων εφεδρικής τροφοδοσίας για κατοικίες και μικρές επιχειρήσεις.",
+  "typicalDuration": "4-12 ώρες",
+  "priceRangeEUR": "300-1400€ (εργασία)",
+  "demand": "low",
+  "notes": "Long-tail υπηρεσία με μεγαλύτερα ticket σε επαγγελματικούς χώρους."
+}

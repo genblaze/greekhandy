@@ -1,0 +1,12 @@
+{
+  "id": "radiator-installation",
+  "slug": "egkatastasi-kalorifer",
+  "nameGr": "Εγκατάσταση/αντικατάσταση καλοριφέρ",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Τοποθέτηση νέου σώματος καλοριφέρ και σωστή υδραυλική σύνδεση με το δίκτυο θέρμανσης.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "120-420€",
+  "demand": "medium",
+  "notes": "Συχνό σε ανακαινίσεις και αναβαθμίσεις συστημάτων θέρμανσης."
+}

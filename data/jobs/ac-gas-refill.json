@@ -1,0 +1,12 @@
+{
+  "id": "ac-gas-refill",
+  "slug": "symplirwsi-freon-klimatistikou",
+  "nameGr": "Συμπλήρωση ψυκτικού υγρού κλιματιστικού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Έλεγχος διαρροών και συμπλήρωση ψυκτικού για βελτιωμένη απόδοση.",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "60-180€",
+  "demand": "medium",
+  "notes": "Συχνό αίτημα όταν η ψύξη/θέρμανση έχει πέσει αισθητά."
+}

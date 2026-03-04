@@ -1,0 +1,12 @@
+{
+  "id": "vrv-vrf-maintenance",
+  "slug": "syntirisi-vrv-vrf",
+  "nameGr": "Συντήρηση συστημάτων VRV/VRF",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Προληπτική συντήρηση και έλεγχος πολυζωνικών επαγγελματικών συστημάτων.",
+  "typicalDuration": "4-12 ώρες",
+  "priceRangeEUR": "250-1200€",
+  "demand": "low",
+  "notes": "B2B υπηρεσία υψηλής αξίας σε ξενοδοχεία/γραφεία."
+}

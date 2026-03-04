@@ -1,0 +1,12 @@
+{
+  "id": "ac-repair",
+  "slug": "episkevi-klimatistikou",
+  "nameGr": "Επισκευή κλιματιστικού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Διάγνωση βλάβης και αποκατάσταση λειτουργίας σε split και multi-split μονάδες.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-220€",
+  "demand": "high",
+  "notes": "Υψηλή επείγουσα ανάγκη σε περιόδους καύσωνα και ψύχους."
+}

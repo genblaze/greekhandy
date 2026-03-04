@@ -1,0 +1,12 @@
+{
+  "id": "disinfection-service",
+  "slug": "ypiresia-apolymansis",
+  "nameGr": "Υπηρεσία απολύμανσης χώρου",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εξειδικευμένη απολύμανση κατοικιών και επαγγελματικών χώρων με εγκεκριμένα σκευάσματα.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "60-260€",
+  "demand": "medium",
+  "notes": "Σταθερή ανάγκη σε ιατρεία, γραφεία και βραχυχρόνιες μισθώσεις."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "water-pressure-booster-installation",
+  "slug": "egkatastasi-piestikou-nerou",
+  "nameGr": "Εγκατάσταση πιεστικού νερού",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Τοποθέτηση πιεστικού συγκροτήματος για βελτίωση πίεσης σε οικίες και μικρά κτίρια.",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "140-420€ (εργασία)",
+  "demand": "medium",
+  "notes": "Συχνό αίτημα σε ορόφους με χαμηλή πίεση ή εξοχικές κατοικίες."
+}

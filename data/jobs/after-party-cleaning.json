@@ -1,0 +1,12 @@
+{
+  "id": "after-party-cleaning",
+  "slug": "katharismos-meta-apo-ekdilosi",
+  "nameGr": "Καθαρισμός μετά από εκδήλωση",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Ταχεία αποκατάσταση καθαριότητας μετά από πάρτι ή εταιρική εκδήλωση.",
+  "typicalDuration": "2-8 ώρες",
+  "priceRangeEUR": "80-320€",
+  "demand": "low",
+  "notes": "Εποχικό long-tail με υψηλή ανάγκη διαθεσιμότητας τελευταίας στιγμής."
+}

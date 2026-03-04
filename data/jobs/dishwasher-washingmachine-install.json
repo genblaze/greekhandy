@@ -1,0 +1,12 @@
+{
+  "id": "dishwasher-washingmachine-install",
+  "slug": "sundesi-pluntiriou-piaton-rouxon",
+  "nameGr": "Σύνδεση πλυντηρίου πιάτων/ρούχων",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Ασφαλής σύνδεση συσκευών σε παροχή και αποχέτευση με έλεγχο διαρροών.",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "35-110€",
+  "demand": "high",
+  "notes": "Συχνό μικρό job με ευκαιρία για γρήγορο lead response."
+}

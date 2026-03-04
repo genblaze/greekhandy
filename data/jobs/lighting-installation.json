@@ -1,0 +1,12 @@
+{
+  "id": "lighting-installation",
+  "slug": "egkatastasi-fotismou",
+  "nameGr": "Εγκατάσταση φωτισμού",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Τοποθέτηση φωτιστικών, σποτ και έξυπνου φωτισμού σε κατοικίες και επαγγελματικούς χώρους.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "45-220€",
+  "demand": "high",
+  "notes": "Συχνή υπηρεσία σε ανακαινίσεις κουζίνας/σαλονιού και σε νέες μισθώσεις."
+}

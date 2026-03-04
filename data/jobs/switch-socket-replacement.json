@@ -1,0 +1,12 @@
+{
+  "id": "switch-socket-replacement",
+  "slug": "antikatastasi-prizas-diakopti",
+  "nameGr": "Αντικατάσταση πρίζας/διακόπτη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Ασφαλής αντικατάσταση φθαρμένων πριζών και διακοπτών.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "25-80€",
+  "demand": "high",
+  "notes": "Μικρές αλλά συχνές εργασίες με δυνατότητα upsell σε μεγαλύτερες επεμβάσεις."
+}

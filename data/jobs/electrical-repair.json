@@ -1,0 +1,13 @@
+{
+  "id": "electrical-repair",
+  "slug": "episkevi-ilektrologikis-vlavis",
+  "nameGr": "Επισκευή ηλεκτρολογικής βλάβης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση διάγνωση και αποκατάσταση προβλημάτων σε πρίζες, διακόπτες, ασφάλειες και κυκλώματα.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "40-120€",
+  "demand": "high",
+  "notes": "Υψηλή ζήτηση σε αστικά κέντρα λόγω παλαιών εγκαταστάσεων και επειγόντων βλαβών.",
+  "status": "researched"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "ac-duct-cleaning",
+  "slug": "katharismos-aeragogon-klimatismou",
+  "nameGr": "Καθαρισμός αεραγωγών κλιματισμού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Καθαρισμός αεραγωγών και φίλτρων για υγιεινή και βελτιωμένη ποιότητα αέρα.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "120-450€",
+  "demand": "low",
+  "notes": "Αναπτυσσόμενη υπηρεσία σε κλινικές, γραφεία και κατοικίες με κεντρικά συστήματα."
+}

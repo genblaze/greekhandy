@@ -1,0 +1,12 @@
+{
+  "id": "doorbell-intercom-installation",
+  "slug": "egkatastasi-thyrothlefwnou-thyrokourounas",
+  "nameGr": "Εγκατάσταση θυροτηλεφώνου/κουδουνιού",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση ή αντικατάσταση θυροτηλεφώνου, κουδουνιού και βασικών access συστημάτων.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "60-240€",
+  "demand": "medium",
+  "notes": "Συχνό αίτημα σε πολυκατοικίες και μονοκατοικίες."
+}

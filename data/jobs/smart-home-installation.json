@@ -1,0 +1,12 @@
+{
+  "id": "smart-home-installation",
+  "slug": "egkatastasi-smart-home",
+  "nameGr": "Εγκατάσταση smart home συστημάτων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Ρύθμιση έξυπνων διακοπτών, θερμοστατών και αυτοματισμών.",
+  "typicalDuration": "2-8 ώρες",
+  "priceRangeEUR": "120-600€",
+  "demand": "medium",
+  "notes": "Καλή υπηρεσία διαφοροποίησης για premium πελάτες."
+}
