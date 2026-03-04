@@ -1,0 +1,20 @@
+{
+  "id": "pool-salt-cell-cleaning-service-syros",
+  "slug": "katharismos-keliou-alatos-pisinas-syros",
+  "nameGr": "Καθαρισμός Κυψέλης Αλατιού Πισίνας στη Σύρο",
+  "nameEn": "Pool Salt Cell Cleaning Service in Σύρος",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Καθαρισμός κυψέλης αλατιού πισίνας στη Σύρο για σωστή χλωρίωση και σταθερή ποιότητα νερού. SEO intent: στοχεύει εμπορικές αναζητήσεις «καθαρισμός κυψέλης αλατιού Σύρος».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "70-220€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός κυψέλης αλατιού Σύρος",
+    "salt cell service πισίνας Σύρος",
+    "σύστημα αλατιού πισίνα βλάβη",
+    "τεχνικός πισίνας ηλεκτρόλυση",
+    "χαμηλό χλώριο πισίνας λύση"
+  ],
+  "status": "researched"
+}
