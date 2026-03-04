@@ -1,11 +1,27 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { loadAdminLeadsDirectoryData } from '../../lib/admin-leads';
+import { loadAdminLeadsDirectoryData, type AdminLeadsDirectoryData } from '../../lib/admin-leads';
 
 const isAuthorized = true;
 const expectedKey = '';
 
-const directoryData = await loadAdminLeadsDirectoryData();
+const fallbackDirectoryData: AdminLeadsDirectoryData = {
+  leads: [],
+  categories: [],
+  cities: [],
+  statuses: [],
+  summary: null,
+  totalLeads: 0
+};
+
+let directoryData: AdminLeadsDirectoryData = fallbackDirectoryData;
+let loadError: string | null = null;
+
+try {
+  directoryData = await loadAdminLeadsDirectoryData();
+} catch {
+  loadError = 'Αδυναμία φόρτωσης των leads. Ελέγξτε τα αρχεία στο data/leads και δοκιμάστε ξανά.';
+}
 
 const statusLabel = (status: string) => {
   if (status === 'new') return 'Νέο';
@@ -19,25 +35,28 @@ const statusLabel = (status: string) => {
     .join(' ');
 };
 
-const summaryUpdatedAt = directoryData.summary?.lastUpdated
-  ? new Date(directoryData.summary.lastUpdated).toLocaleString('el-GR')
+const summaryUpdatedAtRaw = directoryData.summary?.lastUpdated;
+const summaryUpdatedAt = summaryUpdatedAtRaw && Number.isFinite(Date.parse(summaryUpdatedAtRaw))
+  ? new Date(summaryUpdatedAtRaw).toLocaleString('el-GR')
   : null;
+
+const hasLeads = directoryData.leads.length > 0;
 ---
 
 <Layout title="Admin Leads Directory | GreekHandy" description="Admin leads directory with filters and sorting.">
-  <main class="mx-auto max-w-6xl px-4 py-14" data-leads-root>
+  <main class="mx-auto max-w-7xl px-4 py-10 md:py-14" data-leads-root>
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
-        <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">Κατάλογος Leads</h1>
-        <p class="mt-2 max-w-3xl text-gray-700">Εσωτερική λίστα με leads από αρχεία JSON. Περιλαμβάνει φίλτρα, αναζήτηση και ταξινόμηση.</p>
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Κατάλογος Leads</h1>
+        <p class="mt-2 max-w-3xl text-sm text-slate-700 md:text-base">Ενοποιημένη προβολή leads με προηγμένα φίλτρα, αναζήτηση και ταξινόμηση.</p>
       </div>
-      <a href="/admin" class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-100">
+      <a href="/admin" class="inline-flex min-h-10 items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
         Επιστροφή στο Admin
       </a>
     </div>
 
     {!isAuthorized && (
-      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900" role="alert" aria-live="assertive">
         <p class="font-semibold">Μη εξουσιοδοτημένη πρόσβαση.</p>
         <p class="mt-1 text-sm">Συνδεθείτε με moderation key.</p>
         <form method="GET" class="mt-3 flex flex-col gap-2 sm:flex-row">
@@ -50,289 +69,636 @@ const summaryUpdatedAt = directoryData.summary?.lastUpdated
 
     {isAuthorized && (
       <>
-        <section class="mt-8 grid gap-4 md:grid-cols-3">
-          <article class="rounded-xl border border-blue-200 bg-blue-50 p-5">
-            <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">Σύνολο Leads</p>
-            <p class="mt-1 text-3xl font-bold text-blue-900">{directoryData.totalLeads}</p>
+        <section class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-xl border border-sky-200 bg-gradient-to-br from-sky-50 to-blue-50 p-5">
+            <p class="text-xs font-semibold uppercase tracking-wide text-sky-700">Σύνολο Leads</p>
+            <p class="mt-2 text-3xl font-bold text-sky-950">{directoryData.totalLeads}</p>
           </article>
-          <article class="rounded-xl border border-gray-200 bg-white p-5">
-            <p class="text-sm font-semibold text-gray-500">Κατηγορίες</p>
-            <p class="mt-1 text-3xl font-bold text-gray-900">{directoryData.categories.length}</p>
+          <article class="rounded-xl border border-slate-200 bg-white p-5">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Ενεργές Κατηγορίες</p>
+            <p class="mt-2 text-3xl font-bold text-slate-900">{directoryData.categories.length}</p>
           </article>
-          <article class="rounded-xl border border-gray-200 bg-white p-5">
-            <p class="text-sm font-semibold text-gray-500">Τελευταία ενημέρωση</p>
-            <p class="mt-1 text-sm font-semibold text-gray-900">{summaryUpdatedAt || 'Δεν υπάρχει summary timestamp'}</p>
+          <article class="rounded-xl border border-slate-200 bg-white p-5">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Πόλεις</p>
+            <p class="mt-2 text-3xl font-bold text-slate-900">{directoryData.cities.length}</p>
+          </article>
+          <article class="rounded-xl border border-slate-200 bg-white p-5">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Τελευταία ενημέρωση</p>
+            <p class="mt-2 text-sm font-semibold text-slate-900">{summaryUpdatedAt || 'Δεν υπάρχει summary timestamp'}</p>
           </article>
         </section>
 
-        <section class="mt-6 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-          <p class="text-sm font-semibold text-gray-700">Κατηγορίες</p>
-          <div class="mt-3 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Φίλτρο κατηγορίας">
-            <button
-              type="button"
-              data-category-tab
-              data-category-value="all"
-              aria-selected="true"
-              class="rounded-full border border-blue-700 bg-blue-700 px-4 py-2 text-sm font-semibold whitespace-nowrap text-white"
-            >
-              Όλες ({directoryData.leads.length})
-            </button>
-            {directoryData.categories.map((category) => (
-              <button
-                type="button"
-                data-category-tab
-                data-category-value={category.slug}
-                aria-selected="false"
-                class="rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold whitespace-nowrap text-gray-700 hover:border-blue-300 hover:text-blue-700"
+        {loadError && (
+          <section class="mt-6 rounded-xl border border-rose-200 bg-rose-50 p-5 text-rose-900" role="alert" aria-live="assertive">
+            <h2 class="text-lg font-bold">Σφάλμα φόρτωσης</h2>
+            <p class="mt-2 text-sm">{loadError}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <a href="/admin/leads" class="inline-flex min-h-10 items-center rounded-lg bg-rose-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rose-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">Επανάληψη φόρτωσης</a>
+              <a href="/admin" class="inline-flex min-h-10 items-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-800 transition hover:bg-rose-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">Πίσω στο Admin</a>
+            </div>
+          </section>
+        )}
+
+        {!loadError && (
+          <div class="mt-6 grid gap-6 xl:grid-cols-[21rem_minmax(0,1fr)]">
+            <aside class="xl:sticky xl:top-24 xl:h-[calc(100vh-8.5rem)]">
+              <form data-filters-form class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-5" autocomplete="off">
+                <div class="flex items-center justify-between gap-2">
+                  <h2 class="text-lg font-bold text-slate-900">Φίλτρα</h2>
+                  <button type="button" data-reset-filters class="inline-flex min-h-9 items-center rounded-lg border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">Καθαρισμός</button>
+                </div>
+
+                <fieldset class="mt-4" aria-label="Φίλτρο κατηγορίας">
+                  <legend class="text-xs font-semibold uppercase tracking-wide text-slate-500">Κατηγορία</legend>
+                  <div class="mt-2 flex gap-2 overflow-x-auto pb-1 xl:flex-wrap xl:overflow-visible" role="group" aria-label="Επιλογή κατηγορίας">
+                    <button
+                      type="button"
+                      data-category-tab
+                      data-category-value="all"
+                      data-category-label="Όλες"
+                      aria-pressed="true"
+                      class="inline-flex min-h-10 items-center gap-2 rounded-full border border-sky-600 bg-sky-600 px-4 py-2 text-sm font-semibold whitespace-nowrap text-white shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                    >
+                      <span>Όλες</span>
+                      <span data-category-count class="rounded-full bg-white/20 px-2 py-0.5 text-xs">{directoryData.leads.length}</span>
+                    </button>
+                    {directoryData.categories.map((category) => (
+                      <button
+                        type="button"
+                        data-category-tab
+                        data-category-value={category.slug}
+                        data-category-label={category.label}
+                        aria-pressed="false"
+                        class="inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold whitespace-nowrap text-slate-700 transition hover:border-sky-300 hover:text-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                      >
+                        <span>{category.label}</span>
+                        <span data-category-count class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{category.count}</span>
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+
+                <div class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+                  <div>
+                    <label for="leads-city-filter" class="text-sm font-semibold text-slate-700">Πόλη</label>
+                    <select id="leads-city-filter" data-city-filter class="mt-1 block min-h-10 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                      <option value="all">Όλες</option>
+                      {directoryData.cities.map((city) => <option value={city}>{city}</option>)}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label for="leads-status-filter" class="text-sm font-semibold text-slate-700">Κατάσταση</label>
+                    <select id="leads-status-filter" data-status-filter class="mt-1 block min-h-10 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                      <option value="all">Όλες</option>
+                      {directoryData.statuses.map((status) => <option value={status}>{statusLabel(status)}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  <label for="leads-search" class="text-sm font-semibold text-slate-700">Αναζήτηση</label>
+                  <div class="relative mt-1">
+                    <input
+                      id="leads-search"
+                      type="search"
+                      data-search-input
+                      placeholder="Όνομα, τηλέφωνο, email"
+                      class="block min-h-10 w-full rounded-lg border border-slate-300 bg-white py-2 pr-10 pl-3 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                    />
+                    <button type="button" data-clear-search class="absolute inset-y-1 right-1 hidden min-h-8 items-center rounded-md px-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500" aria-label="Καθαρισμός αναζήτησης">Καθ.</button>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  <label for="leads-sort" class="text-sm font-semibold text-slate-700">Ταξινόμηση</label>
+                  <select id="leads-sort" data-sort-select class="mt-1 block min-h-10 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                    <option value="newest">Πιο πρόσφατα</option>
+                    <option value="score">Υψηλότερο score</option>
+                    <option value="name">Αλφαβητικά (Α-Ω)</option>
+                  </select>
+                </div>
+
+                <div class="mt-4 border-t border-slate-200 pt-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Ενεργά φίλτρα</p>
+                  <div data-active-filters class="mt-2 flex flex-wrap gap-2" aria-live="polite"></div>
+                  <p data-no-active-filters class="mt-2 text-xs text-slate-500">Δεν υπάρχουν ενεργά φίλτρα.</p>
+                </div>
+              </form>
+            </aside>
+
+            <section data-results-region aria-busy="false">
+              <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-5">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <p class="text-sm text-slate-700" data-results-summary>
+                    Εμφανίζονται <strong data-visible-count>{directoryData.leads.length}</strong> από <strong>{directoryData.leads.length}</strong> leads.
+                  </p>
+                  <div data-results-loading class="hidden items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700" role="status" aria-live="polite" aria-atomic="true">
+                    <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-200 border-t-sky-700"></span>
+                    Ενημέρωση αποτελεσμάτων
+                  </div>
+                </div>
+                <p data-live-region class="sr-only" aria-live="polite" aria-atomic="true"></p>
+              </div>
+
+              <section data-loading-skeleton class="mt-4 hidden space-y-3" aria-hidden="true">
+                <div class="h-24 animate-pulse rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100"></div>
+                <div class="h-24 animate-pulse rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100"></div>
+                <div class="h-24 animate-pulse rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100"></div>
+              </section>
+
+              <section class="mt-4 space-y-3" data-leads-list>
+                {directoryData.leads.map((lead) => (
+                  <article
+                    data-lead-card
+                    data-category={lead.categorySlug}
+                    data-category-label={lead.categoryLabel}
+                    data-city={lead.city}
+                    data-status={lead.status}
+                    data-status-label={statusLabel(lead.status)}
+                    data-name={lead.name}
+                    data-phone={lead.phone}
+                    data-email={lead.email}
+                    data-score={lead.score ?? -1}
+                    data-newest={lead.newestTs}
+                    class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-slate-300 hover:shadow md:p-5"
+                  >
+                    <div class="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <h2 class="text-lg font-bold text-slate-900">{lead.name}</h2>
+                        <p class="mt-1 text-sm text-slate-600">{lead.categoryLabel} • {lead.city}</p>
+                      </div>
+                      <div class="flex flex-wrap items-center gap-2 text-xs">
+                        <span class="rounded-full bg-slate-100 px-2 py-1 font-semibold text-slate-700">{statusLabel(lead.status)}</span>
+                        <span class="rounded-full bg-sky-100 px-2 py-1 font-semibold text-sky-800">Score: {lead.score ?? 'N/A'}</span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+                      <p>
+                        <strong>Τηλέφωνο:</strong>
+                        {' '}
+                        {lead.phone ? <a class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900" href={`tel:${lead.phone}`}>{lead.phone}</a> : '—'}
+                      </p>
+                      <p>
+                        <strong>Email:</strong>
+                        {' '}
+                        {lead.email ? <a class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900" href={`mailto:${lead.email}`}>{lead.email}</a> : '—'}
+                      </p>
+                    </div>
+
+                    {lead.sourceUrl && (
+                      <a href={lead.sourceUrl} target="_blank" rel="noreferrer" class="mt-4 inline-flex min-h-9 items-center rounded-lg border border-sky-300 bg-sky-50 px-3 py-1.5 text-sm font-semibold text-sky-800 transition hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                        Άνοιγμα πηγής
+                      </a>
+                    )}
+                  </article>
+                ))}
+              </section>
+
+              <section
+                data-empty-state="no-data"
+                class:list={[
+                  'mt-4 rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-700',
+                  hasLeads ? 'hidden' : ''
+                ]}
               >
-                {category.label} ({category.count})
-              </button>
-            ))}
+                <h2 class="text-lg font-bold text-slate-900">Δεν υπάρχουν διαθέσιμα leads</h2>
+                <p class="mt-2 text-sm">Όταν προστεθούν νέα αρχεία στο `data/leads`, θα εμφανιστούν εδώ.</p>
+              </section>
+
+              <section data-empty-state="filtered" class="mt-4 hidden rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-700">
+                <h2 class="text-lg font-bold text-slate-900">Δεν βρέθηκαν αποτελέσματα</h2>
+                <p class="mt-2 text-sm">Δοκιμάστε διαφορετικό συνδυασμό φίλτρων ή καθαρίστε την αναζήτηση.</p>
+              </section>
+
+              <section data-runtime-error class="mt-4 hidden rounded-2xl border border-rose-200 bg-rose-50 p-6 text-rose-900" role="alert" aria-live="assertive">
+                <h2 class="text-lg font-bold">Σφάλμα φίλτρων</h2>
+                <p class="mt-2 text-sm" data-runtime-error-message>Παρουσιάστηκε απρόβλεπτο σφάλμα κατά την εφαρμογή φίλτρων.</p>
+                <button type="button" data-runtime-reset class="mt-4 inline-flex min-h-10 items-center rounded-lg bg-rose-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rose-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">
+                  Επαναφορά φίλτρων
+                </button>
+              </section>
+            </section>
           </div>
-
-          <div class="mt-5 grid gap-3 md:grid-cols-4">
-            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700">
-              Πόλη
-              <select data-city-filter class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900">
-                <option value="all">Όλες</option>
-                {directoryData.cities.map((city) => <option value={city}>{city}</option>)}
-              </select>
-            </label>
-
-            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700">
-              Κατάσταση
-              <select data-status-filter class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900">
-                <option value="all">Όλες</option>
-                {directoryData.statuses.map((status) => <option value={status}>{statusLabel(status)}</option>)}
-              </select>
-            </label>
-
-            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700 md:col-span-2">
-              Αναζήτηση (όνομα, τηλέφωνο, email)
-              <input
-                type="search"
-                data-search-input
-                placeholder="π.χ. 210, info@, Όνομα"
-                class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900"
-              />
-            </label>
-
-            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700">
-              Ταξινόμηση
-              <select data-sort-select class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900">
-                <option value="newest">Πιο πρόσφατα</option>
-                <option value="score">Υψηλότερο score</option>
-              </select>
-            </label>
-
-            <div class="flex items-end">
-              <button type="button" data-reset-filters class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100">
-                Καθαρισμός φίλτρων
-              </button>
-            </div>
-
-            <div class="flex items-end md:col-span-2">
-              <p class="text-sm text-gray-700">Εμφανίζονται <strong data-visible-count>{directoryData.leads.length}</strong> leads.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="mt-6" data-leads-list>
-          {directoryData.leads.map((lead) => (
-            <article
-              data-lead-card
-              data-category={lead.categorySlug}
-              data-city={lead.city}
-              data-status={lead.status}
-              data-name={lead.name}
-              data-phone={lead.phone}
-              data-email={lead.email}
-              data-score={lead.score ?? -1}
-              data-newest={lead.newestTs}
-              class="mb-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm"
-            >
-              <div class="flex flex-wrap items-start justify-between gap-4">
-                <div>
-                  <h2 class="text-lg font-bold text-gray-900">{lead.name}</h2>
-                  <p class="mt-1 text-sm text-gray-600">{lead.categoryLabel} • {lead.city}</p>
-                </div>
-                <div class="flex flex-wrap items-center gap-2 text-xs">
-                  <span class="rounded-full bg-gray-100 px-2 py-1 font-semibold text-gray-700">{statusLabel(lead.status)}</span>
-                  <span class="rounded-full bg-blue-100 px-2 py-1 font-semibold text-blue-800">
-                    Score: {lead.score ?? 'N/A'}
-                  </span>
-                </div>
-              </div>
-
-              <div class="mt-3 grid gap-2 text-sm text-gray-700 sm:grid-cols-2">
-                <p><strong>Τηλέφωνο:</strong> {lead.phone || '—'}</p>
-                <p><strong>Email:</strong> {lead.email || '—'}</p>
-              </div>
-
-              {lead.sourceUrl && (
-                <a href={lead.sourceUrl} target="_blank" rel="noreferrer" class="mt-4 inline-flex text-sm font-semibold text-blue-700 hover:text-blue-900">
-                  Άνοιγμα πηγής
-                </a>
-              )}
-            </article>
-          ))}
-        </section>
-
-        <section id="leads-empty-state" class:list={['rounded-xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-700', directoryData.leads.length === 0 ? '' : 'hidden']}>
-          <h2 class="text-lg font-bold text-gray-900">Δεν βρέθηκαν leads</h2>
-          <p class="mt-2 text-sm">Δοκιμάστε διαφορετικά φίλτρα ή καθαρίστε την αναζήτηση.</p>
-        </section>
+        )}
       </>
     )}
   </main>
 
   <script>
     const root = document.querySelector('[data-leads-root]');
+
     if (root) {
-      const cards = Array.from(root.querySelectorAll('[data-lead-card]'));
-      const list = root.querySelector('[data-leads-list]');
-      const categoryTabs = Array.from(root.querySelectorAll('[data-category-tab]'));
-      const cityFilter = root.querySelector('[data-city-filter]');
-      const statusFilter = root.querySelector('[data-status-filter]');
-      const searchInput = root.querySelector('[data-search-input]');
-      const sortSelect = root.querySelector('[data-sort-select]');
-      const resetButton = root.querySelector('[data-reset-filters]');
-      const visibleCount = root.querySelector('[data-visible-count]');
-      const emptyState = root.querySelector('#leads-empty-state');
+      try {
+        const cards = Array.from(root.querySelectorAll('[data-lead-card]'));
+        const list = root.querySelector('[data-leads-list]');
+        const categoryTabs = Array.from(root.querySelectorAll('[data-category-tab]'));
+        const cityFilter = root.querySelector('[data-city-filter]');
+        const statusFilter = root.querySelector('[data-status-filter]');
+        const searchInput = root.querySelector('[data-search-input]');
+        const clearSearchButton = root.querySelector('[data-clear-search]');
+        const sortSelect = root.querySelector('[data-sort-select]');
+        const resetButton = root.querySelector('[data-reset-filters]');
+        const visibleCount = root.querySelector('[data-visible-count]');
+        const resultsSummary = root.querySelector('[data-results-summary]');
+        const resultsLoading = root.querySelector('[data-results-loading]');
+        const loadingSkeleton = root.querySelector('[data-loading-skeleton]');
+        const liveRegion = root.querySelector('[data-live-region]');
+        const activeFilters = root.querySelector('[data-active-filters]');
+        const noActiveFilters = root.querySelector('[data-no-active-filters]');
+        const noDataState = root.querySelector('[data-empty-state="no-data"]');
+        const filteredEmptyState = root.querySelector('[data-empty-state="filtered"]');
+        const runtimeError = root.querySelector('[data-runtime-error]');
+        const runtimeErrorMessage = root.querySelector('[data-runtime-error-message]');
+        const runtimeReset = root.querySelector('[data-runtime-reset]');
+        const resultsRegion = root.querySelector('[data-results-region]');
 
-      const state = {
-        category: 'all',
-        city: 'all',
-        status: 'all',
-        search: '',
-        sort: 'newest'
-      };
+        const parsedCards = cards
+          .filter((card) => card instanceof HTMLElement)
+          .map((card) => {
+            const category = card.dataset.category || '';
+            const categoryLabel = card.dataset.categoryLabel || category;
+            const city = card.dataset.city || '';
+            const status = card.dataset.status || '';
+            const statusLabel = card.dataset.statusLabel || status;
+            const name = card.dataset.name || '';
+            const phone = card.dataset.phone || '';
+            const email = card.dataset.email || '';
+            const score = Number(card.dataset.score || -1);
+            const newest = Number(card.dataset.newest || 0);
+            const searchableText = [name, phone, email, categoryLabel, city].join(' ').toLowerCase();
 
-      const syncCategoryTabs = () => {
+            return {
+              card,
+              category,
+              categoryLabel,
+              city,
+              status,
+              statusLabel,
+              name,
+              score,
+              newest,
+              searchableText
+            };
+          });
+
+        const categoryLabelByValue = new Map();
         categoryTabs.forEach((tab) => {
           if (!(tab instanceof HTMLButtonElement)) return;
-          const selected = tab.dataset.categoryValue === state.category;
-          tab.setAttribute('aria-selected', selected ? 'true' : 'false');
-          tab.classList.toggle('bg-blue-700', selected);
-          tab.classList.toggle('border-blue-700', selected);
-          tab.classList.toggle('text-white', selected);
-          tab.classList.toggle('bg-white', !selected);
-          tab.classList.toggle('border-gray-300', !selected);
-          tab.classList.toggle('text-gray-700', !selected);
-        });
-      };
-
-      const applyFilters = () => {
-        const normalizedSearch = state.search.trim().toLowerCase();
-        const filtered = cards.filter((card) => {
-          if (!(card instanceof HTMLElement)) return false;
-
-          const category = card.dataset.category || '';
-          const city = card.dataset.city || '';
-          const status = card.dataset.status || '';
-          const name = (card.dataset.name || '').toLowerCase();
-          const phone = (card.dataset.phone || '').toLowerCase();
-          const email = (card.dataset.email || '').toLowerCase();
-
-          const categoryMatch = state.category === 'all' || state.category === category;
-          const cityMatch = state.city === 'all' || state.city === city;
-          const statusMatch = state.status === 'all' || state.status === status;
-          const searchMatch =
-            !normalizedSearch ||
-            name.includes(normalizedSearch) ||
-            phone.includes(normalizedSearch) ||
-            email.includes(normalizedSearch);
-
-          return categoryMatch && cityMatch && statusMatch && searchMatch;
+          const value = tab.dataset.categoryValue || 'all';
+          const label = tab.dataset.categoryLabel || tab.textContent || value;
+          categoryLabelByValue.set(value, label.trim());
         });
 
-        filtered.sort((a, b) => {
-          if (!(a instanceof HTMLElement) || !(b instanceof HTMLElement)) return 0;
+        const cityLabelByValue = new Map();
+        const statusLabelByValue = new Map();
 
-          const aScore = Number(a.dataset.score || -1);
-          const bScore = Number(b.dataset.score || -1);
-          const aNewest = Number(a.dataset.newest || 0);
-          const bNewest = Number(b.dataset.newest || 0);
-
-          if (state.sort === 'score') {
-            return bScore - aScore || bNewest - aNewest;
-          }
-          return bNewest - aNewest || bScore - aScore;
-        });
-
-        cards.forEach((card) => {
-          if (card instanceof HTMLElement) card.hidden = true;
-        });
-
-        if (list) {
-          filtered.forEach((card) => {
-            if (!(card instanceof HTMLElement)) return;
-            card.hidden = false;
-            list.appendChild(card);
+        if (cityFilter instanceof HTMLSelectElement) {
+          Array.from(cityFilter.options).forEach((option) => {
+            option.dataset.baseLabel = option.textContent || option.value;
+            cityLabelByValue.set(option.value, option.textContent || option.value);
           });
         }
 
-        if (visibleCount) visibleCount.textContent = String(filtered.length);
-        if (emptyState instanceof HTMLElement) {
-          emptyState.classList.toggle('hidden', filtered.length > 0);
+        if (statusFilter instanceof HTMLSelectElement) {
+          Array.from(statusFilter.options).forEach((option) => {
+            option.dataset.baseLabel = option.textContent || option.value;
+            statusLabelByValue.set(option.value, option.textContent || option.value);
+          });
         }
-      };
 
-      categoryTabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
+        const validCategories = new Set(Array.from(categoryLabelByValue.keys()));
+        const validCities = new Set(parsedCards.map((entry) => entry.city));
+        const validStatuses = new Set(parsedCards.map((entry) => entry.status));
+
+        const state = {
+          category: 'all',
+          city: 'all',
+          status: 'all',
+          search: '',
+          sort: 'newest'
+        };
+
+        const hasAnyData = parsedCards.length > 0;
+        let applyTimer = null;
+
+        const parseFromUrl = () => {
+          const params = new URLSearchParams(window.location.search);
+          const category = params.get('category') || 'all';
+          const city = params.get('city') || 'all';
+          const status = params.get('status') || 'all';
+          const search = (params.get('q') || '').trim();
+          const sort = params.get('sort') || 'newest';
+
+          state.category = validCategories.has(category) ? category : 'all';
+          state.city = city === 'all' || validCities.has(city) ? city : 'all';
+          state.status = status === 'all' || validStatuses.has(status) ? status : 'all';
+          state.search = search;
+          state.sort = sort === 'score' || sort === 'name' ? sort : 'newest';
+        };
+
+        const syncControlsToState = () => {
+          categoryTabs.forEach((tab) => {
+            if (!(tab instanceof HTMLButtonElement)) return;
+            const selected = tab.dataset.categoryValue === state.category;
+            tab.setAttribute('aria-pressed', selected ? 'true' : 'false');
+            tab.classList.toggle('bg-sky-600', selected);
+            tab.classList.toggle('border-sky-600', selected);
+            tab.classList.toggle('text-white', selected);
+            tab.classList.toggle('shadow-sm', selected);
+            tab.classList.toggle('bg-white', !selected);
+            tab.classList.toggle('border-slate-300', !selected);
+            tab.classList.toggle('text-slate-700', !selected);
+          });
+
+          if (cityFilter instanceof HTMLSelectElement) cityFilter.value = state.city;
+          if (statusFilter instanceof HTMLSelectElement) statusFilter.value = state.status;
+          if (searchInput instanceof HTMLInputElement) searchInput.value = state.search;
+          if (sortSelect instanceof HTMLSelectElement) sortSelect.value = state.sort;
+
+          if (clearSearchButton instanceof HTMLButtonElement) {
+            clearSearchButton.classList.toggle('hidden', !state.search.trim());
+            clearSearchButton.classList.toggle('inline-flex', Boolean(state.search.trim()));
+          }
+        };
+
+        const setBusy = (isBusy) => {
+          if (resultsRegion instanceof HTMLElement) resultsRegion.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+          if (resultsLoading instanceof HTMLElement) resultsLoading.classList.toggle('hidden', !isBusy);
+          if (resultsLoading instanceof HTMLElement) resultsLoading.classList.toggle('inline-flex', isBusy);
+          if (loadingSkeleton instanceof HTMLElement) loadingSkeleton.classList.toggle('hidden', !isBusy || !hasAnyData);
+        };
+
+        const matchesLead = (lead, criteria = state) => {
+          const normalizedSearch = criteria.search.trim().toLowerCase();
+          const categoryMatch = criteria.category === 'all' || lead.category === criteria.category;
+          const cityMatch = criteria.city === 'all' || lead.city === criteria.city;
+          const statusMatch = criteria.status === 'all' || lead.status === criteria.status;
+          const searchMatch = !normalizedSearch || lead.searchableText.includes(normalizedSearch);
+          return categoryMatch && cityMatch && statusMatch && searchMatch;
+        };
+
+        const updateOptionCounts = () => {
+          categoryTabs.forEach((tab) => {
+            if (!(tab instanceof HTMLButtonElement)) return;
+            const value = tab.dataset.categoryValue || 'all';
+            const count = parsedCards.filter((lead) => matchesLead(lead, { ...state, category: value })).length;
+            const counter = tab.querySelector('[data-category-count]');
+            if (counter) counter.textContent = String(count);
+            tab.disabled = count === 0 && value !== state.category;
+            tab.classList.toggle('opacity-50', tab.disabled);
+            tab.classList.toggle('cursor-not-allowed', tab.disabled);
+          });
+
+          if (cityFilter instanceof HTMLSelectElement) {
+            Array.from(cityFilter.options).forEach((option) => {
+              const baseLabel = option.dataset.baseLabel || option.value;
+              const count = parsedCards.filter((lead) => matchesLead(lead, { ...state, city: option.value })).length;
+              option.textContent = option.value === 'all' ? `${baseLabel} (${count})` : `${baseLabel} (${count})`;
+              option.disabled = count === 0 && option.value !== state.city;
+            });
+          }
+
+          if (statusFilter instanceof HTMLSelectElement) {
+            Array.from(statusFilter.options).forEach((option) => {
+              const baseLabel = option.dataset.baseLabel || option.value;
+              const count = parsedCards.filter((lead) => matchesLead(lead, { ...state, status: option.value })).length;
+              option.textContent = option.value === 'all' ? `${baseLabel} (${count})` : `${baseLabel} (${count})`;
+              option.disabled = count === 0 && option.value !== state.status;
+            });
+          }
+        };
+
+        const updateActiveFilters = () => {
+          if (!(activeFilters instanceof HTMLElement) || !(noActiveFilters instanceof HTMLElement)) return;
+
+          const items = [];
+          if (state.category !== 'all') items.push({ key: 'category', label: `Κατηγορία: ${categoryLabelByValue.get(state.category) || state.category}` });
+          if (state.city !== 'all') items.push({ key: 'city', label: `Πόλη: ${cityLabelByValue.get(state.city) || state.city}` });
+          if (state.status !== 'all') items.push({ key: 'status', label: `Κατάσταση: ${statusLabelByValue.get(state.status) || state.status}` });
+          if (state.search.trim()) items.push({ key: 'search', label: `Αναζήτηση: “${state.search.trim()}”` });
+
+          activeFilters.innerHTML = '';
+
+          items.forEach((item) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.dataset.filterChip = item.key;
+            button.className = 'inline-flex min-h-8 items-center gap-1 rounded-full border border-sky-300 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-800 transition hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2';
+            button.setAttribute('aria-label', `Αφαίρεση φίλτρου ${item.label}`);
+            button.textContent = `${item.label} ×`;
+            activeFilters.appendChild(button);
+          });
+
+          noActiveFilters.classList.toggle('hidden', items.length > 0);
+        };
+
+        const syncUrl = () => {
+          const params = new URLSearchParams(window.location.search);
+          const setParam = (key, value, defaultValue = 'all') => {
+            if (!value || value === defaultValue) params.delete(key);
+            else params.set(key, value);
+          };
+
+          setParam('category', state.category);
+          setParam('city', state.city);
+          setParam('status', state.status);
+          setParam('sort', state.sort, 'newest');
+
+          if (state.search.trim()) params.set('q', state.search.trim());
+          else params.delete('q');
+
+          const query = params.toString();
+          const nextUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+          window.history.replaceState({}, '', nextUrl);
+        };
+
+        const render = () => {
+          if (!(list instanceof HTMLElement)) return;
+
+          const filtered = parsedCards.filter((lead) => matchesLead(lead));
+
+          filtered.sort((a, b) => {
+            if (state.sort === 'score') return b.score - a.score || b.newest - a.newest;
+            if (state.sort === 'name') return a.name.localeCompare(b.name, 'el') || b.newest - a.newest;
+            return b.newest - a.newest || b.score - a.score;
+          });
+
+          parsedCards.forEach((entry) => {
+            entry.card.hidden = true;
+          });
+
+          filtered.forEach((entry) => {
+            entry.card.hidden = false;
+            list.appendChild(entry.card);
+          });
+
+          const visible = filtered.length;
+          if (visibleCount instanceof HTMLElement) visibleCount.textContent = String(visible);
+
+          if (resultsSummary instanceof HTMLElement) {
+            resultsSummary.innerHTML = `Εμφανίζονται <strong>${visible}</strong> από <strong>${parsedCards.length}</strong> leads.`;
+          }
+
+          if (liveRegion instanceof HTMLElement) {
+            liveRegion.textContent = `Εμφανίζονται ${visible} από ${parsedCards.length} leads`;
+          }
+
+          if (noDataState instanceof HTMLElement) {
+            noDataState.classList.toggle('hidden', parsedCards.length > 0);
+          }
+
+          if (filteredEmptyState instanceof HTMLElement) {
+            const shouldShowFilteredEmpty = parsedCards.length > 0 && visible === 0;
+            filteredEmptyState.classList.toggle('hidden', !shouldShowFilteredEmpty);
+          }
+        };
+
+        const setRuntimeError = (message) => {
+          if (runtimeError instanceof HTMLElement) runtimeError.classList.remove('hidden');
+          if (runtimeErrorMessage instanceof HTMLElement) runtimeErrorMessage.textContent = message;
+          if (list instanceof HTMLElement) list.classList.add('hidden');
+          if (filteredEmptyState instanceof HTMLElement) filteredEmptyState.classList.add('hidden');
+          if (loadingSkeleton instanceof HTMLElement) loadingSkeleton.classList.add('hidden');
+        };
+
+        const runFilters = () => {
+          setBusy(true);
+          window.requestAnimationFrame(() => {
+            try {
+              updateOptionCounts();
+              updateActiveFilters();
+              render();
+              syncUrl();
+              if (runtimeError instanceof HTMLElement) runtimeError.classList.add('hidden');
+              if (list instanceof HTMLElement) list.classList.remove('hidden');
+            } catch {
+              setRuntimeError('Η εφαρμογή φίλτρων απέτυχε. Επιλέξτε επαναφορά φίλτρων για ανάκτηση.');
+            } finally {
+              setBusy(false);
+            }
+          });
+        };
+
+        const scheduleRun = (delay = 0) => {
+          if (applyTimer) window.clearTimeout(applyTimer);
+          applyTimer = window.setTimeout(runFilters, delay);
+        };
+
+        const resetFilters = () => {
+          state.category = 'all';
+          state.city = 'all';
+          state.status = 'all';
+          state.search = '';
+          state.sort = 'newest';
+          syncControlsToState();
+          scheduleRun();
+        };
+
+        parseFromUrl();
+        syncControlsToState();
+
+        categoryTabs.forEach((tab, index) => {
           if (!(tab instanceof HTMLButtonElement)) return;
-          state.category = tab.dataset.categoryValue || 'all';
-          syncCategoryTabs();
-          applyFilters();
+
+          tab.addEventListener('click', () => {
+            if (tab.disabled) return;
+            state.category = tab.dataset.categoryValue || 'all';
+            syncControlsToState();
+            scheduleRun();
+          });
+
+          tab.addEventListener('keydown', (event) => {
+            if (!(event instanceof KeyboardEvent)) return;
+            if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+            event.preventDefault();
+            const direction = event.key === 'ArrowRight' ? 1 : -1;
+
+            let nextIndex = index;
+            for (let i = 0; i < categoryTabs.length; i += 1) {
+              nextIndex = (nextIndex + direction + categoryTabs.length) % categoryTabs.length;
+              const candidate = categoryTabs[nextIndex];
+              if (candidate instanceof HTMLButtonElement && !candidate.disabled) {
+                candidate.focus();
+                candidate.click();
+                break;
+              }
+            }
+          });
         });
-      });
 
-      cityFilter?.addEventListener('change', (event) => {
-        const target = event.currentTarget;
-        if (!(target instanceof HTMLSelectElement)) return;
-        state.city = target.value;
-        applyFilters();
-      });
+        cityFilter?.addEventListener('change', (event) => {
+          const target = event.currentTarget;
+          if (!(target instanceof HTMLSelectElement)) return;
+          state.city = target.value;
+          scheduleRun();
+        });
 
-      statusFilter?.addEventListener('change', (event) => {
-        const target = event.currentTarget;
-        if (!(target instanceof HTMLSelectElement)) return;
-        state.status = target.value;
-        applyFilters();
-      });
+        statusFilter?.addEventListener('change', (event) => {
+          const target = event.currentTarget;
+          if (!(target instanceof HTMLSelectElement)) return;
+          state.status = target.value;
+          scheduleRun();
+        });
 
-      searchInput?.addEventListener('input', (event) => {
-        const target = event.currentTarget;
-        if (!(target instanceof HTMLInputElement)) return;
-        state.search = target.value;
-        applyFilters();
-      });
+        searchInput?.addEventListener('input', (event) => {
+          const target = event.currentTarget;
+          if (!(target instanceof HTMLInputElement)) return;
+          state.search = target.value;
+          syncControlsToState();
+          scheduleRun(180);
+        });
 
-      sortSelect?.addEventListener('change', (event) => {
-        const target = event.currentTarget;
-        if (!(target instanceof HTMLSelectElement)) return;
-        state.sort = target.value;
-        applyFilters();
-      });
+        clearSearchButton?.addEventListener('click', () => {
+          state.search = '';
+          syncControlsToState();
+          if (searchInput instanceof HTMLInputElement) searchInput.focus();
+          scheduleRun();
+        });
 
-      resetButton?.addEventListener('click', () => {
-        state.category = 'all';
-        state.city = 'all';
-        state.status = 'all';
-        state.search = '';
-        state.sort = 'newest';
+        sortSelect?.addEventListener('change', (event) => {
+          const target = event.currentTarget;
+          if (!(target instanceof HTMLSelectElement)) return;
+          state.sort = target.value;
+          scheduleRun();
+        });
 
-        if (cityFilter instanceof HTMLSelectElement) cityFilter.value = 'all';
-        if (statusFilter instanceof HTMLSelectElement) statusFilter.value = 'all';
-        if (searchInput instanceof HTMLInputElement) searchInput.value = '';
-        if (sortSelect instanceof HTMLSelectElement) sortSelect.value = 'newest';
+        resetButton?.addEventListener('click', () => {
+          resetFilters();
+        });
 
-        syncCategoryTabs();
-        applyFilters();
-      });
+        activeFilters?.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const chip = target.closest('[data-filter-chip]');
+          if (!(chip instanceof HTMLButtonElement)) return;
 
-      syncCategoryTabs();
-      applyFilters();
+          const key = chip.dataset.filterChip;
+          if (key === 'category') state.category = 'all';
+          if (key === 'city') state.city = 'all';
+          if (key === 'status') state.status = 'all';
+          if (key === 'search') state.search = '';
+
+          syncControlsToState();
+          scheduleRun();
+        });
+
+        runtimeReset?.addEventListener('click', () => {
+          resetFilters();
+          if (runtimeError instanceof HTMLElement) runtimeError.classList.add('hidden');
+          if (list instanceof HTMLElement) list.classList.remove('hidden');
+        });
+
+        runFilters();
+      } catch {
+        const runtimeError = root.querySelector('[data-runtime-error]');
+        const runtimeErrorMessage = root.querySelector('[data-runtime-error-message]');
+        if (runtimeError instanceof HTMLElement) runtimeError.classList.remove('hidden');
+        if (runtimeErrorMessage instanceof HTMLElement) {
+          runtimeErrorMessage.textContent = 'Η αρχικοποίηση του πίνακα φίλτρων απέτυχε. Κάντε ανανέωση σελίδας.';
+        }
+      }
     }
   </script>
 </Layout>
