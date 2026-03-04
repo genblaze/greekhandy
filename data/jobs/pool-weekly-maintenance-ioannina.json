@@ -1,0 +1,20 @@
+{
+  "id": "pool-weekly-maintenance-ioannina",
+  "slug": "evdomadiaia-syntirisi-pisinas-ioannina",
+  "nameGr": "Εβδομαδιαία Συντήρηση Πισίνας στα Ιωάννινα",
+  "nameEn": "Weekly Pool Maintenance in Ιωάννινα",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εβδομαδιαία συντήρηση πισίνας στα Ιωάννινα με μετρήσεις χημικών, καθαρισμό φίλτρων και εξισορρόπηση νερού. SEO intent: στοχεύει recurring high-intent αναζητήσεις «συντήρηση πισίνας Ιωάννινα» και «μηνιαίο συμβόλαιο πισίνας».",
+  "typicalDuration": "1-2 ώρες/επίσκεψη",
+  "priceRangeEUR": "80-260€/μήνα",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση πισίνας Ιωάννινα",
+    "καθαρισμός πισίνας Ιωάννινα",
+    "service πισίνας εβδομαδιαίο",
+    "ρύθμιση χημικών πισίνας",
+    "τεχνικός πισίνας"
+  ],
+  "status": "researched"
+}

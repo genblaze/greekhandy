@@ -1,0 +1,20 @@
+{
+  "id": "pool-weekly-maintenance-volos",
+  "slug": "evdomadiaia-syntirisi-pisinas-volos",
+  "nameGr": "Εβδομαδιαία Συντήρηση Πισίνας στον Βόλο",
+  "nameEn": "Weekly Pool Maintenance in Βόλος",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εβδομαδιαία συντήρηση πισίνας στον Βόλο με μετρήσεις χημικών, καθαρισμό φίλτρων και εξισορρόπηση νερού. SEO intent: στοχεύει recurring high-intent αναζητήσεις «συντήρηση πισίνας Βόλος» και «μηνιαίο συμβόλαιο πισίνας».",
+  "typicalDuration": "1-2 ώρες/επίσκεψη",
+  "priceRangeEUR": "80-260€/μήνα",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση πισίνας Βόλος",
+    "καθαρισμός πισίνας Βόλος",
+    "service πισίνας εβδομαδιαίο",
+    "ρύθμιση χημικών πισίνας",
+    "τεχνικός πισίνας"
+  ],
+  "status": "researched"
+}

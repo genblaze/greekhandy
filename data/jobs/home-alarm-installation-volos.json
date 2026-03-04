@@ -1,0 +1,20 @@
+{
+  "id": "home-alarm-installation-volos",
+  "slug": "egkatastasi-synagermou-spitiou-volos",
+  "nameGr": "Εγκατάσταση Συναγερμού Σπιτιού στον Βόλο",
+  "nameEn": "Home Alarm Installation in Βόλος",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Μελέτη και εγκατάσταση συναγερμού κατοικίας στον Βόλο με αισθητήρες, σειρήνα και απομακρυσμένο έλεγχο. SEO intent: στοχεύει ισχυρά τοπικά queries όπως «εγκατάσταση συναγερμού Βόλος» και «συναγερμός σπιτιού τιμή».",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "220-980€",
+  "demand": "high",
+  "keywords": [
+    "εγκατάσταση συναγερμού Βόλος",
+    "συναγερμός σπιτιού Βόλος",
+    "τεχνικός συστημάτων ασφαλείας",
+    "αισθητήρες κίνησης κατοικίας",
+    "προσφορά συναγερμού"
+  ],
+  "status": "researched"
+}

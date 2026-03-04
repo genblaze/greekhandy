@@ -1,0 +1,20 @@
+{
+  "id": "pool-pump-filter-repair-irakleio",
+  "slug": "episkevi-antlias-filtrou-pisinas-irakleio",
+  "nameGr": "Επισκευή Αντλίας & Φίλτρου Πισίνας στο Ηράκλειο",
+  "nameEn": "Pool Pump & Filter Repair in Ηράκλειο",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Διάγνωση και επισκευή αντλίας/φίλτρου πισίνας στο Ηράκλειο για θόρυβο, χαμηλή κυκλοφορία ή διαρροές. SEO intent: καλύπτει επείγοντα technical queries όπως «επισκευή αντλίας πισίνας Ηράκλειο» και «φίλτρο πισίνας βλάβη».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "90-340€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή αντλίας πισίνας Ηράκλειο",
+    "επισκευή φίλτρου πισίνας Ηράκλειο",
+    "service μηχανοστάσιο πισίνας",
+    "αντλία πισίνας δεν δουλεύει",
+    "τεχνικός πισίνας άμεσα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "pool-weekly-maintenance-irakleio",
+  "slug": "evdomadiaia-syntirisi-pisinas-irakleio",
+  "nameGr": "Εβδομαδιαία Συντήρηση Πισίνας στο Ηράκλειο",
+  "nameEn": "Weekly Pool Maintenance in Ηράκλειο",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εβδομαδιαία συντήρηση πισίνας στο Ηράκλειο με μετρήσεις χημικών, καθαρισμό φίλτρων και εξισορρόπηση νερού. SEO intent: στοχεύει recurring high-intent αναζητήσεις «συντήρηση πισίνας Ηράκλειο» και «μηνιαίο συμβόλαιο πισίνας».",
+  "typicalDuration": "1-2 ώρες/επίσκεψη",
+  "priceRangeEUR": "80-260€/μήνα",
+  "demand": "high",
+  "keywords": [
+    "συντήρηση πισίνας Ηράκλειο",
+    "καθαρισμός πισίνας Ηράκλειο",
+    "service πισίνας εβδομαδιαίο",
+    "ρύθμιση χημικών πισίνας",
+    "τεχνικός πισίνας"
+  ],
+  "status": "researched"
+}
