@@ -1,0 +1,20 @@
+{
+  "id": "wireless-alarm-maintenance-service-aigio",
+  "slug": "syntirisi-asyrmatou-synagermou-aigio",
+  "nameGr": "Συντήρηση Ασύρματου Συναγερμού στο Αίγιο",
+  "nameEn": "Wireless Alarm Maintenance Service in Αίγιο",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Συντήρηση ασύρματου συναγερμού στο Αίγιο με έλεγχο αισθητήρων, μπαταριών και αξιοπιστίας ειδοποιήσεων. SEO intent: στοχεύει high-intent αναζητήσεις «service συναγερμού Αίγιο».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "service συναγερμού Αίγιο",
+    "συντήρηση ασύρματου συναγερμού Αίγιο",
+    "αλλαγή μπαταριών αισθητήρων",
+    "τεχνικός συναγερμών",
+    "έλεγχος συστήματος ασφαλείας"
+  ],
+  "status": "researched"
+}

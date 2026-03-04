@@ -1,0 +1,20 @@
+{
+  "id": "airbnb-linen-laundry-turnover-zakynthos",
+  "slug": "diacheirisi-linen-laundry-airbnb-zakynthos",
+  "nameGr": "Διαχείριση Linen & Laundry Airbnb στη Ζάκυνθο",
+  "nameEn": "Airbnb Linen & Laundry Turnover in Ζάκυνθος",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Υπηρεσία linen/laundry για Airbnb στη Ζάκυνθο με αλλαγή, πλύσιμο και προετοιμασία λευκών ειδών μεταξύ κρατήσεων. SEO intent: στοχεύει conversion αναζητήσεις «laundry Airbnb Ζάκυνθος».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "55-220€",
+  "demand": "high",
+  "keywords": [
+    "laundry Airbnb Ζάκυνθος",
+    "αλλαγή λευκών ειδών Airbnb Ζάκυνθος",
+    "διαχείριση ιματισμού καταλύματος",
+    "καθαρισμός βραχυχρόνιας μίσθωσης",
+    "turnover linen service"
+  ],
+  "status": "researched"
+}

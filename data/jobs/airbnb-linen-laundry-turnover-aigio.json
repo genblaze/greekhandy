@@ -1,0 +1,20 @@
+{
+  "id": "airbnb-linen-laundry-turnover-aigio",
+  "slug": "diacheirisi-linen-laundry-airbnb-aigio",
+  "nameGr": "Διαχείριση Linen & Laundry Airbnb στο Αίγιο",
+  "nameEn": "Airbnb Linen & Laundry Turnover in Αίγιο",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Υπηρεσία linen/laundry για Airbnb στο Αίγιο με αλλαγή, πλύσιμο και προετοιμασία λευκών ειδών μεταξύ κρατήσεων. SEO intent: στοχεύει conversion αναζητήσεις «laundry Airbnb Αίγιο».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "55-220€",
+  "demand": "high",
+  "keywords": [
+    "laundry Airbnb Αίγιο",
+    "αλλαγή λευκών ειδών Airbnb Αίγιο",
+    "διαχείριση ιματισμού καταλύματος",
+    "καθαρισμός βραχυχρόνιας μίσθωσης",
+    "turnover linen service"
+  ],
+  "status": "researched"
+}

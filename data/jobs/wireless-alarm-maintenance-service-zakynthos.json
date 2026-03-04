@@ -1,0 +1,20 @@
+{
+  "id": "wireless-alarm-maintenance-service-zakynthos",
+  "slug": "syntirisi-asyrmatou-synagermou-zakynthos",
+  "nameGr": "Συντήρηση Ασύρματου Συναγερμού στη Ζάκυνθο",
+  "nameEn": "Wireless Alarm Maintenance Service in Ζάκυνθος",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Συντήρηση ασύρματου συναγερμού στη Ζάκυνθο με έλεγχο αισθητήρων, μπαταριών και αξιοπιστίας ειδοποιήσεων. SEO intent: στοχεύει high-intent αναζητήσεις «service συναγερμού Ζάκυνθος».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "service συναγερμού Ζάκυνθος",
+    "συντήρηση ασύρματου συναγερμού Ζάκυνθος",
+    "αλλαγή μπαταριών αισθητήρων",
+    "τεχνικός συναγερμών",
+    "έλεγχος συστήματος ασφαλείας"
+  ],
+  "status": "researched"
+}
