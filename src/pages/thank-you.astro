@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 
 const status = Astro.url.searchParams.get('status') ?? 'ok';
+const service = Astro.url.searchParams.get('service');
 const isSuccess = status === 'ok';
 const isInvalid = status === 'invalid';
+const safeServiceSlug = service?.match(/^[a-z0-9-]+$/) ? service : null;
 ---
 
 <Layout
@@ -36,6 +38,9 @@ const isInvalid = status === 'invalid';
 
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/" class="inline-flex rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">Επιστροφή στην αρχική</a>
+        {safeServiceSlug && (
+          <a href={`/${safeServiceSlug}`} class="inline-flex rounded-lg border border-gray-300 px-5 py-3 font-semibold text-gray-700 transition hover:bg-gray-50">Πίσω στην υπηρεσία</a>
+        )}
         <a href="javascript:history.back()" class="inline-flex rounded-lg border border-gray-300 px-5 py-3 font-semibold text-gray-700 transition hover:bg-gray-50">Επιστροφή στη φόρμα</a>
       </div>
     </section>

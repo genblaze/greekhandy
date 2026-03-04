@@ -1,0 +1,13 @@
+{
+  "id": "rodent-control-service",
+  "slug": "myoktonia-katoikias-epaggelmatikou-xorou",
+  "nameGr": "Μυοκτονία κατοικίας ή επαγγελματικού χώρου",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Εντοπισμός εστιών, δολωματικοί σταθμοί και πλάνο παρακολούθησης για τρωκτικά.",
+  "typicalDuration": "1-3 ώρες + επανέλεγχος",
+  "priceRangeEUR": "90-350€",
+  "demand": "medium",
+  "notes": "Υψηλή αξία σε επαγγελματικούς χώρους με απαιτήσεις υγειονομικού ελέγχου.",
+  "status": "researched"
+}

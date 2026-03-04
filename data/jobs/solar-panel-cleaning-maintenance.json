@@ -1,0 +1,13 @@
+{
+  "id": "solar-panel-cleaning-maintenance",
+  "slug": "katharismos-syntirisi-fotovoltaikon",
+  "nameGr": "Καθαρισμός και συντήρηση φωτοβολταϊκών",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Περιοδικός καθαρισμός πάνελ, θερμογραφικός έλεγχος και προληπτική συντήρηση.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "120-450€",
+  "demand": "high",
+  "notes": "Βελτιώνει την παραγωγή ειδικά σε περιοχές με σκόνη ή θαλάσσια άλατα.",
+  "status": "researched"
+}

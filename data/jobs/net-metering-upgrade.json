@@ -1,0 +1,13 @@
+{
+  "id": "net-metering-upgrade",
+  "slug": "anavathmisi-net-metering",
+  "nameGr": "Αναβάθμιση net metering",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Αναβάθμιση υφιστάμενου συστήματος για συμψηφισμό κατανάλωσης και καλύτερη απόδοση.",
+  "typicalDuration": "1-2 ημέρες",
+  "priceRangeEUR": "1.200-4.000€",
+  "demand": "medium",
+  "notes": "Συχνό αίτημα σε κατοικίες με παλαιότερα μικρά φωτοβολταϊκά.",
+  "status": "researched"
+}

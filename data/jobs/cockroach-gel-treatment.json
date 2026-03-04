@@ -1,0 +1,13 @@
+{
+  "id": "cockroach-gel-treatment",
+  "slug": "antimetopisi-katsaridas-gel",
+  "nameGr": "Αντιμετώπιση κατσαρίδας με gel",
+  "categoryId": "pest-control",
+  "categorySlug": "apentomoseis-myoktonies",
+  "intent": "Εφαρμογή ειδικού gel σε κρίσιμα σημεία για ασφαλή και αποτελεσματική εξόντωση.",
+  "typicalDuration": "45-90 λεπτά",
+  "priceRangeEUR": "45-130€",
+  "demand": "high",
+  "notes": "Προτιμάται σε κατοικίες με παιδιά/κατοικίδια λόγω χαμηλής οσμής.",
+  "status": "researched"
+}

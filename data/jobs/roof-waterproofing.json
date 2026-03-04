@@ -1,0 +1,13 @@
+{
+  "id": "roof-waterproofing",
+  "slug": "ygromonosi-taratsas",
+  "nameGr": "Υγρομόνωση ταράτσας",
+  "categoryId": "insulation-specialists",
+  "categorySlug": "monoseis-ygromonoseis",
+  "intent": "Στεγανοποίηση ταράτσας με ασφαλτόπανα ή επαλειφόμενα υλικά για αποφυγή διαρροών.",
+  "typicalDuration": "2-4 ημέρες",
+  "priceRangeEUR": "1.000-4.500€",
+  "demand": "high",
+  "notes": "Κρίσιμη εργασία πριν τον χειμώνα και σε παλαιές πολυκατοικίες.",
+  "status": "researched"
+}

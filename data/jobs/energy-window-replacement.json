@@ -1,0 +1,13 @@
+{
+  "id": "energy-window-replacement",
+  "slug": "antikatastasi-energeiakon-koufomaton",
+  "nameGr": "Αντικατάσταση ενεργειακών κουφωμάτων",
+  "categoryId": "aluminum-specialists",
+  "categorySlug": "alouminokataskeves-koufomata",
+  "intent": "Αποξήλωση παλιών κουφωμάτων και εγκατάσταση νέων ενεργειακών συστημάτων.",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "1.500-9.000€",
+  "demand": "high",
+  "notes": "Συνδέεται με προγράμματα “Εξοικονομώ” και αυξημένη ζήτηση.",
+  "status": "researched"
+}

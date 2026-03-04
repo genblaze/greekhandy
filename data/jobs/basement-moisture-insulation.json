@@ -1,0 +1,13 @@
+{
+  "id": "basement-moisture-insulation",
+  "slug": "monosi-ypogeiou-ygrias",
+  "nameGr": "Μόνωση υπογείου από υγρασία",
+  "categoryId": "insulation-specialists",
+  "categorySlug": "monoseis-ygromonoseis",
+  "intent": "Αντιμετώπιση ανερχόμενης υγρασίας και στεγανοποίηση υπογείων χώρων.",
+  "typicalDuration": "2-6 ημέρες",
+  "priceRangeEUR": "900-5.000€",
+  "demand": "medium",
+  "notes": "Συχνό πρόβλημα σε παλιά κτίρια και ισόγειους χώρους με κακή αποστράγγιση.",
+  "status": "researched"
+}

@@ -238,6 +238,28 @@
     ]
   },
   {
+    "id": "solar-technicians",
+    "slug": "fotovoltaika-systimata",
+    "nameGr": "Φωτοβολταϊκά Συστήματα",
+    "nameEn": "Solar Technicians",
+    "description": "Μελέτη, εγκατάσταση και συντήρηση φωτοβολταϊκών με net metering για κατοικίες και επιχειρήσεις.",
+    "icon": "☀️",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa",
+      "volos"
+    ],
+    "priority": 11,
+    "seedJobs": [
+      "photovoltaic-installation",
+      "net-metering-upgrade",
+      "solar-panel-cleaning-maintenance"
+    ]
+  },
+  {
     "id": "pest-control",
     "slug": "apentomoseis-myoktonies",
     "nameGr": "Απεντομώσεις & Μυοκτονίες",
@@ -260,6 +282,28 @@
     ]
   },
   {
+    "id": "insulation-specialists",
+    "slug": "monoseis-ygromonoseis",
+    "nameGr": "Μονώσεις & Υγρομονώσεις",
+    "nameEn": "Insulation Specialists",
+    "description": "Θερμοπροσόψεις, στεγανοποιήσεις ταράτσας και λύσεις υγρασίας για ενεργειακή αναβάθμιση ακινήτων.",
+    "icon": "🏠",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "volos",
+      "ioannina"
+    ],
+    "priority": 12,
+    "seedJobs": [
+      "roof-waterproofing",
+      "thermal-facade-insulation",
+      "basement-moisture-insulation"
+    ]
+  },
+  {
     "id": "aluminum-frames",
     "slug": "koufomata-alouminiou",
     "nameGr": "Κουφώματα Αλουμινίου",
@@ -278,6 +322,28 @@
     "seedJobs": [
       "aluminum-frame-installation",
       "screen-installation-repair",
+      "roller-shutter-repair"
+    ]
+  },
+  {
+    "id": "aluminum-specialists",
+    "slug": "alouminokataskeves-koufomata",
+    "nameGr": "Αλουμινοκατασκευές & Κουφώματα",
+    "nameEn": "Aluminum & Window Specialists",
+    "description": "Κατασκευή και αντικατάσταση κουφωμάτων, ενεργειακές αναβαθμίσεις και επισκευές ρολών.",
+    "icon": "🪟",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "larisa",
+      "volos",
+      "ioannina"
+    ],
+    "priority": 13,
+    "seedJobs": [
+      "aluminum-frame-installation",
+      "energy-window-replacement",
       "roller-shutter-repair"
     ]
   }

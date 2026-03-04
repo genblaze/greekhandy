@@ -1,0 +1,13 @@
+{
+  "id": "thermal-facade-insulation",
+  "slug": "thermoprosopsi-energeiaki-monosi",
+  "nameGr": "Θερμοπρόσοψη και ενεργειακή μόνωση",
+  "categoryId": "insulation-specialists",
+  "categorySlug": "monoseis-ygromonoseis",
+  "intent": "Εξωτερική θερμομόνωση κελύφους για μείωση απωλειών και ενεργειακή αναβάθμιση.",
+  "typicalDuration": "5-12 ημέρες",
+  "priceRangeEUR": "3.500-18.000€",
+  "demand": "high",
+  "notes": "Υψηλής αξίας εργασία με μεγάλη εξοικονόμηση στη θέρμανση/ψύξη.",
+  "status": "researched"
+}

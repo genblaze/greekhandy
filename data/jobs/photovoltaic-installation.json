@@ -1,0 +1,13 @@
+{
+  "id": "photovoltaic-installation",
+  "slug": "egkatastasi-fotovoltaikou-systimatos",
+  "nameGr": "Εγκατάσταση φωτοβολταϊκού συστήματος",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Μελέτη, αδειοδότηση και εγκατάσταση φωτοβολταϊκών με inverter και πίνακα προστασίας.",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "4.500-12.000€",
+  "demand": "high",
+  "notes": "Υψηλή ζήτηση λόγω ενεργειακού κόστους και προγραμμάτων επιδότησης.",
+  "status": "researched"
+}
