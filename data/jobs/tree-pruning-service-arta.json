@@ -1,0 +1,20 @@
+{
+  "id": "tree-pruning-service-arta",
+  "slug": "kladema-dentron-kipou-arta",
+  "nameGr": "Κλάδεμα Δέντρων Κήπου στην Άρτα",
+  "nameEn": "Tree Pruning Service in Άρτα",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Κλάδεμα δέντρων στην Άρτα με σωστές τεχνικές για ασφάλεια, υγεία φυτών και αισθητική του κήπου. SEO intent: στοχεύει αναζητήσεις άμεσης πρόθεσης «κλάδεμα δέντρων Άρτα» και «κηπουρός για ψηλά δέντρα».",
+  "typicalDuration": "2-7 ώρες",
+  "priceRangeEUR": "90-520€",
+  "demand": "high",
+  "keywords": [
+    "κλάδεμα δέντρων Άρτα",
+    "κηπουρός κλάδεμα Άρτα",
+    "κοπή κλαδιών επικίνδυνων",
+    "συντήρηση δέντρων αυλής",
+    "καθαρισμός δέντρων"
+  ],
+  "status": "researched"
+}

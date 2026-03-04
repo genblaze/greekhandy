@@ -1,0 +1,20 @@
+{
+  "id": "extractor-hood-repair-service-tripoli",
+  "slug": "episkevi-aporrofitira-kouzinas-tripoli",
+  "nameGr": "Επισκευή Απορροφητήρα Κουζίνας στην Τρίπολη",
+  "nameEn": "Extractor Hood Repair Service in Τρίπολη",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευή απορροφητήρα κουζίνας στην Τρίπολη για προβλήματα μοτέρ, φωτισμού ή χαμηλής απορρόφησης. SEO intent: καλύπτει commercial queries «επισκευή απορροφητήρα Τρίπολη» και «service απορροφητήρα κουζίνας».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "45-150€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή απορροφητήρα Τρίπολη",
+    "service απορροφητήρα κουζίνας Τρίπολη",
+    "μοτέρ απορροφητήρα βλάβη",
+    "απορροφητήρας δεν τραβάει",
+    "τεχνικός συσκευών κουζίνας"
+  ],
+  "status": "researched"
+}

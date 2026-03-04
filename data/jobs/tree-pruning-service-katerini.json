@@ -1,0 +1,20 @@
+{
+  "id": "tree-pruning-service-katerini",
+  "slug": "kladema-dentron-kipou-katerini",
+  "nameGr": "Κλάδεμα Δέντρων Κήπου στην Κατερίνη",
+  "nameEn": "Tree Pruning Service in Κατερίνη",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Κλάδεμα δέντρων στην Κατερίνη με σωστές τεχνικές για ασφάλεια, υγεία φυτών και αισθητική του κήπου. SEO intent: στοχεύει αναζητήσεις άμεσης πρόθεσης «κλάδεμα δέντρων Κατερίνη» και «κηπουρός για ψηλά δέντρα».",
+  "typicalDuration": "2-7 ώρες",
+  "priceRangeEUR": "90-520€",
+  "demand": "high",
+  "keywords": [
+    "κλάδεμα δέντρων Κατερίνη",
+    "κηπουρός κλάδεμα Κατερίνη",
+    "κοπή κλαδιών επικίνδυνων",
+    "συντήρηση δέντρων αυλής",
+    "καθαρισμός δέντρων"
+  ],
+  "status": "researched"
+}

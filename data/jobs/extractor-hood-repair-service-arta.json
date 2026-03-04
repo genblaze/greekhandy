@@ -1,0 +1,20 @@
+{
+  "id": "extractor-hood-repair-service-arta",
+  "slug": "episkevi-aporrofitira-kouzinas-arta",
+  "nameGr": "Επισκευή Απορροφητήρα Κουζίνας στην Άρτα",
+  "nameEn": "Extractor Hood Repair Service in Άρτα",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευή απορροφητήρα κουζίνας στην Άρτα για προβλήματα μοτέρ, φωτισμού ή χαμηλής απορρόφησης. SEO intent: καλύπτει commercial queries «επισκευή απορροφητήρα Άρτα» και «service απορροφητήρα κουζίνας».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "45-150€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή απορροφητήρα Άρτα",
+    "service απορροφητήρα κουζίνας Άρτα",
+    "μοτέρ απορροφητήρα βλάβη",
+    "απορροφητήρας δεν τραβάει",
+    "τεχνικός συσκευών κουζίνας"
+  ],
+  "status": "researched"
+}

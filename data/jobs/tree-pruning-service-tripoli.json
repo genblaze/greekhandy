@@ -1,0 +1,20 @@
+{
+  "id": "tree-pruning-service-tripoli",
+  "slug": "kladema-dentron-kipou-tripoli",
+  "nameGr": "Κλάδεμα Δέντρων Κήπου στην Τρίπολη",
+  "nameEn": "Tree Pruning Service in Τρίπολη",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Κλάδεμα δέντρων στην Τρίπολη με σωστές τεχνικές για ασφάλεια, υγεία φυτών και αισθητική του κήπου. SEO intent: στοχεύει αναζητήσεις άμεσης πρόθεσης «κλάδεμα δέντρων Τρίπολη» και «κηπουρός για ψηλά δέντρα».",
+  "typicalDuration": "2-7 ώρες",
+  "priceRangeEUR": "90-520€",
+  "demand": "high",
+  "keywords": [
+    "κλάδεμα δέντρων Τρίπολη",
+    "κηπουρός κλάδεμα Τρίπολη",
+    "κοπή κλαδιών επικίνδυνων",
+    "συντήρηση δέντρων αυλής",
+    "καθαρισμός δέντρων"
+  ],
+  "status": "researched"
+}

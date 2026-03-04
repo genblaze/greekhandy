@@ -1,0 +1,20 @@
+{
+  "id": "oven-repair-service-arta",
+  "slug": "episkevi-fournou-kouzinas-arta",
+  "nameGr": "Επισκευή Φούρνου Κουζίνας στην Άρτα",
+  "nameEn": "Oven Repair Service in Άρτα",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευή φούρνου κουζίνας στην Άρτα για βλάβες αντίστασης, θερμοστάτη ή ηλεκτρονικού πίνακα. SEO intent: στοχεύει άμεσες αναζητήσεις «επισκευή φούρνου Άρτα» και «τεχνικός κουζίνας άμεσα».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή φούρνου Άρτα",
+    "τεχνικός ηλεκτρικής κουζίνας Άρτα",
+    "φούρνος δεν ζεσταίνει",
+    "αλλαγή αντίστασης φούρνου",
+    "service κουζίνας"
+  ],
+  "status": "researched"
+}
