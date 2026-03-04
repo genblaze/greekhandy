@@ -8,10 +8,21 @@ interface Props {
 }
 
 const { title, description, canonicalUrl, ogImage, twitterCard } = Astro.props;
-const canonical = canonicalUrl || Astro.url.href;
-const siteOrigin = Astro.site?.origin || Astro.url.origin || 'https://greekhandy.gr';
-const defaultOgImage = new URL('/og-default.svg', siteOrigin).toString();
-const ogImageUrl = ogImage ? new URL(ogImage, siteOrigin).toString() : defaultOgImage;
+const CANONICAL_ORIGIN = 'https://greekhandy.gr';
+
+const toCanonicalUrl = (value?: string) => {
+  try {
+    const parsed = new URL(value || Astro.url.pathname, CANONICAL_ORIGIN);
+    const normalizedPath = parsed.pathname.replace(/\/+$/, '') || '/';
+    return new URL(normalizedPath, CANONICAL_ORIGIN).toString();
+  } catch {
+    return CANONICAL_ORIGIN;
+  }
+};
+
+const canonical = toCanonicalUrl(canonicalUrl);
+const defaultOgImage = new URL('/og-default.svg', CANONICAL_ORIGIN).toString();
+const ogImageUrl = ogImage ? new URL(ogImage, CANONICAL_ORIGIN).toString() : defaultOgImage;
 const cardType = twitterCard || 'summary_large_image';
 ---
 
