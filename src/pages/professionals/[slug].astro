@@ -251,7 +251,8 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           <a
             href="#primary-conversion"
             class="inline-flex items-center rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
-            aria-describedby="profile-primary-cta-hint"
+            aria-describedby="profile-primary-cta-hint profile-primary-cta-proof"
+            aria-label="Βήμα 1: Ζητήστε υπηρεσία"
           >
             1. Ζητήστε υπηρεσία
           </a>
@@ -263,6 +264,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </a>
         </div>
         <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά/ραντεβού προτιμήστε το βήμα 1. Τα βήματα 2-3 είναι βοηθητικές επιλογές όταν δεν θέλετε ακόμη πλήρες αίτημα.</p>
+        <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα εμφανίζει καθαρά status pending → approved/rejected για μεγαλύτερη διαφάνεια.</p>
       </div>
 
       <div class="mt-8">

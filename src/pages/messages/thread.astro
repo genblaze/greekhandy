@@ -576,6 +576,7 @@ for (const message of threadMessages) {
       )}
     </section>
     <p id="thread-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
+    <p id="thread-draft-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <div id="thread-offline-alert" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
       <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
       <p class="mt-1 text-xs">Οι αποστολές μηνυμάτων/αναφορών θα μπλοκάρονται προσωρινά μέχρι να επανέλθει το δίκτυο.</p>
@@ -1576,6 +1577,7 @@ for (const message of threadMessages) {
 
       const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
       const globalSubmitLive = document.querySelector('#thread-submit-live');
+      const draftLiveRegion = document.querySelector('#thread-draft-live');
       const offlineAlert = document.querySelector('#thread-offline-alert');
       const pendingTimeouts = new WeakMap();
       const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
@@ -1789,6 +1791,7 @@ for (const message of threadMessages) {
             const storedDraft = getDraftValue(draftKey);
             if (!textarea.value.trim() && storedDraft) {
               textarea.value = storedDraft;
+              if (draftLiveRegion instanceof HTMLElement) draftLiveRegion.textContent = 'Επαναφέρθηκε πρόχειρο μηνύματος.';
             }
           }
           textarea.addEventListener('input', syncComposer);
