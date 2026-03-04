@@ -1,0 +1,20 @@
+{
+  "id": "washing-machine-repair-irakleio",
+  "slug": "episkevi-plyntiriou-rouchon-irakleio",
+  "nameGr": "Επισκευή Πλυντηρίου Ρούχων στο Ηράκλειο",
+  "nameEn": "Washing Machine Repair in Ηράκλειο",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευή πλυντηρίου ρούχων στο Ηράκλειο για βλάβες στο στύψιμο, στην άντληση νερού ή στην εκκίνηση. Υπηρεσία υψηλής πρόθεσης για νοικοκυριά που χρειάζονται άμεση λειτουργία συσκευής.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "35-120€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή πλυντηρίου Ηράκλειο",
+    "τεχνικός πλυντηρίων Ηράκλειο",
+    "πλυντήριο δεν στύβει",
+    "πλυντήριο δεν παίρνει νερό",
+    "service πλυντηρίου άμεσα"
+  ],
+  "status": "researched"
+}

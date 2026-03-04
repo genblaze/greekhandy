@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrician-24h-larisa",
+  "slug": "ilektrologos-amesa-24ores-larisa",
+  "nameGr": "Ηλεκτρολόγος Άμεσα 24 Ώρες στη Λάρισα",
+  "nameEn": "24/7 Emergency Electrician in Λάρισα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση επίσκεψη ηλεκτρολόγου στη Λάρισα για βραχυκύκλωμα, πτώση ρεύματος ή επικίνδυνη ηλεκτρολογική βλάβη, όλο το 24ωρο. Υπηρεσία υψηλής πρόθεσης για επείγοντα περιστατικά σε κατοικίες και επαγγελματικούς χώρους.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-140€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολόγος 24ωρο Λάρισα",
+    "επείγων ηλεκτρολόγος Λάρισα",
+    "βραχυκύκλωμα άμεσα",
+    "πτώση ρεύματος σπίτι",
+    "ηλεκτρολογική βλάβη τώρα"
+  ],
+  "status": "researched"
+}

@@ -5,6 +5,13 @@ import { resolve } from 'node:path';
 import { supabaseServer } from '../lib/supabase-server';
 // Admin auth intentionally disabled per founder request.
 import { getAdminLeadsOverview } from '../lib/admin-leads';
+import {
+  getBookingId,
+  getLatestBookingActionById,
+  resolveBookingModerationState,
+  type BookingAction as BookingLifecycleAction,
+  type BookingSubmission as BookingLifecycleSubmission
+} from '../lib/bookings';
 
 const PROFESSIONAL_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
 const PROFESSIONAL_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registration-actions.ndjson');
@@ -26,16 +33,6 @@ interface RegistrationAction {
   registrationId: string;
 }
 
-
-interface BookingSubmission {
-  id?: string;
-  professionalSlug: string;
-  submittedAt: string;
-}
-
-interface BookingAction {
-  bookingId: string;
-}
 
 
 const readNdjson = async <T,>(path: string): Promise<T[]> => {
@@ -73,12 +70,16 @@ if (isAuthorized) {
     .eq('status', 'pending');
   pendingReviews = pendingReviewRows?.length ?? 0;
 
-  const bookings = await readNdjson<BookingSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
-  const bookingActions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
-  const bookingActionIds = new Set(bookingActions.map((action) => action.bookingId));
+  const bookings = await readNdjson<BookingLifecycleSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
+  const bookingActions = await readNdjson<BookingLifecycleAction>(BOOKING_ACTIONS_FILE_PATH);
+  const latestBookingActionById = getLatestBookingActionById(bookingActions);
   pendingBookings = bookings.filter((booking) => {
-    const bookingId = booking.id || `${booking.professionalSlug}|${booking.submittedAt}`;
-    return !bookingActionIds.has(bookingId);
+    const bookingId = getBookingId(booking);
+    const latestAction = latestBookingActionById.get(bookingId);
+    return resolveBookingModerationState({
+      action: latestAction?.action,
+      submissionStatus: booking.status
+    }).state === 'pending';
   }).length;
 
   const messageSubmissions = await readNdjson<Array<{ threadId?: string; professionalSlug?: string; senderEmail?: string; recipientEmail?: string }>[number]>(MESSAGE_SUBMISSIONS_FILE_PATH);

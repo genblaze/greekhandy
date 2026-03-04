@@ -1,0 +1,20 @@
+{
+  "id": "ac-repair-volos",
+  "slug": "episkevi-klimatistikou-volos",
+  "nameGr": "Επισκευή Κλιματιστικού στον Βόλο",
+  "nameEn": "AC Repair in Βόλος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Διάγνωση και επισκευή κλιματιστικού στον Βόλο για βλάβες ψύξης, θορύβου ή διαρροής. Υπηρεσία υψηλής πρόθεσης για άμεση αποκατάσταση άνεσης σε σπίτι ή γραφείο.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "40-140€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή κλιματιστικού Βόλος",
+    "τεχνικός κλιματισμού Βόλος",
+    "air condition βλάβη",
+    "κλιματιστικό δεν ψύχει",
+    "service ac άμεσα"
+  ],
+  "status": "researched"
+}

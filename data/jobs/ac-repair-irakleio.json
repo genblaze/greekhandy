@@ -1,0 +1,20 @@
+{
+  "id": "ac-repair-irakleio",
+  "slug": "episkevi-klimatistikou-irakleio",
+  "nameGr": "Επισκευή Κλιματιστικού στο Ηράκλειο",
+  "nameEn": "AC Repair in Ηράκλειο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Διάγνωση και επισκευή κλιματιστικού στο Ηράκλειο για βλάβες ψύξης, θορύβου ή διαρροής. Υπηρεσία υψηλής πρόθεσης για άμεση αποκατάσταση άνεσης σε σπίτι ή γραφείο.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "40-140€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή κλιματιστικού Ηράκλειο",
+    "τεχνικός κλιματισμού Ηράκλειο",
+    "air condition βλάβη",
+    "κλιματιστικό δεν ψύχει",
+    "service ac άμεσα"
+  ],
+  "status": "researched"
+}

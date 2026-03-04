@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrician-24h-volos",
+  "slug": "ilektrologos-amesa-24ores-volos",
+  "nameGr": "Ηλεκτρολόγος Άμεσα 24 Ώρες στον Βόλο",
+  "nameEn": "24/7 Emergency Electrician in Βόλος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Άμεση επίσκεψη ηλεκτρολόγου στον Βόλο για βραχυκύκλωμα, πτώση ρεύματος ή επικίνδυνη ηλεκτρολογική βλάβη, όλο το 24ωρο. Υπηρεσία υψηλής πρόθεσης για επείγοντα περιστατικά σε κατοικίες και επαγγελματικούς χώρους.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-140€",
+  "demand": "high",
+  "keywords": [
+    "ηλεκτρολόγος 24ωρο Βόλος",
+    "επείγων ηλεκτρολόγος Βόλος",
+    "βραχυκύκλωμα άμεσα",
+    "πτώση ρεύματος σπίτι",
+    "ηλεκτρολογική βλάβη τώρα"
+  ],
+  "status": "researched"
+}

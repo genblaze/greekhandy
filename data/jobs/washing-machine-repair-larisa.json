@@ -1,0 +1,20 @@
+{
+  "id": "washing-machine-repair-larisa",
+  "slug": "episkevi-plyntiriou-rouchon-larisa",
+  "nameGr": "Επισκευή Πλυντηρίου Ρούχων στη Λάρισα",
+  "nameEn": "Washing Machine Repair in Λάρισα",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευή πλυντηρίου ρούχων στη Λάρισα για βλάβες στο στύψιμο, στην άντληση νερού ή στην εκκίνηση. Υπηρεσία υψηλής πρόθεσης για νοικοκυριά που χρειάζονται άμεση λειτουργία συσκευής.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "35-120€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή πλυντηρίου Λάρισα",
+    "τεχνικός πλυντηρίων Λάρισα",
+    "πλυντήριο δεν στύβει",
+    "πλυντήριο δεν παίρνει νερό",
+    "service πλυντηρίου άμεσα"
+  ],
+  "status": "researched"
+}

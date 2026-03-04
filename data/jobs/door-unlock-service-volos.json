@@ -1,0 +1,20 @@
+{
+  "id": "door-unlock-service-volos",
+  "slug": "anoigma-portas-kleidaras-volos",
+  "nameGr": "Άνοιγμα Πόρτας από Κλειδαρά στον Βόλο",
+  "nameEn": "Door Unlock Service in Βόλος",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Άνοιγμα κλειδωμένης πόρτας χωρίς ζημιές και άμεση τεχνική υποστήριξη από κλειδαρά στον Βόλο. Υπηρεσία υψηλής πρόθεσης για περιστατικά αποκλεισμού από σπίτι ή επαγγελματικό χώρο.",
+  "typicalDuration": "20-50 λεπτά",
+  "priceRangeEUR": "30-100€",
+  "demand": "high",
+  "keywords": [
+    "άνοιγμα πόρτας Βόλος",
+    "κλειδαράς άμεσα Βόλος",
+    "κλειδώθηκα έξω",
+    "ξεκλείδωμα πόρτας",
+    "επείγων κλειδαράς"
+  ],
+  "status": "researched"
+}

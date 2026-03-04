@@ -1,0 +1,20 @@
+{
+  "id": "door-unlock-service-larisa",
+  "slug": "anoigma-portas-kleidaras-larisa",
+  "nameGr": "Άνοιγμα Πόρτας από Κλειδαρά στη Λάρισα",
+  "nameEn": "Door Unlock Service in Λάρισα",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Άνοιγμα κλειδωμένης πόρτας χωρίς ζημιές και άμεση τεχνική υποστήριξη από κλειδαρά στη Λάρισα. Υπηρεσία υψηλής πρόθεσης για περιστατικά αποκλεισμού από σπίτι ή επαγγελματικό χώρο.",
+  "typicalDuration": "20-50 λεπτά",
+  "priceRangeEUR": "30-100€",
+  "demand": "high",
+  "keywords": [
+    "άνοιγμα πόρτας Λάρισα",
+    "κλειδαράς άμεσα Λάρισα",
+    "κλειδώθηκα έξω",
+    "ξεκλείδωμα πόρτας",
+    "επείγων κλειδαράς"
+  ],
+  "status": "researched"
+}

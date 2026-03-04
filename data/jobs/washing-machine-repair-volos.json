@@ -1,0 +1,20 @@
+{
+  "id": "washing-machine-repair-volos",
+  "slug": "episkevi-plyntiriou-rouchon-volos",
+  "nameGr": "Επισκευή Πλυντηρίου Ρούχων στον Βόλο",
+  "nameEn": "Washing Machine Repair in Βόλος",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επισκευή πλυντηρίου ρούχων στον Βόλο για βλάβες στο στύψιμο, στην άντληση νερού ή στην εκκίνηση. Υπηρεσία υψηλής πρόθεσης για νοικοκυριά που χρειάζονται άμεση λειτουργία συσκευής.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "35-120€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή πλυντηρίου Βόλος",
+    "τεχνικός πλυντηρίων Βόλος",
+    "πλυντήριο δεν στύβει",
+    "πλυντήριο δεν παίρνει νερό",
+    "service πλυντηρίου άμεσα"
+  ],
+  "status": "researched"
+}
