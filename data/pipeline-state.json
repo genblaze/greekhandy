@@ -1,5 +1,5 @@
 {
-  "lastManagerRun": "2026-03-04T16:55:22Z",
+  "lastManagerRun": "2026-03-04T16:57:45Z",
   "activeAgents": {
     "research": {
       "status": "running",
@@ -37,6 +37,6 @@
     "jobsResearched": 110,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Assessed roadmap/directives/agent activity, pushed branch (already up to date), and kept assignments unchanged because all six agents remain actively running distinct in-scope tracks.",
+  "lastDecision": "Assessed roadmap/directives/lead stats, pushed branch (already up to date), and kept assignments unchanged because all six agents show active sessions in the last 30 minutes.",
   "blockers": []
 }
