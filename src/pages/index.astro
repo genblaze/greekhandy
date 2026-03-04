@@ -227,238 +227,448 @@ const categoriesWithJobs = categories
     jobs: jobsByCategory[category.id] ?? []
   }))
   .filter(entry => entry.jobs.length > 0);
+
+const servicesWithPriceRange = jobPages.filter(job => Boolean(job.summary?.priceRangeEUR)).length;
+const totalProfessionals = professionalProfiles.length;
+
+const heroHighlights = [
+  'Καθαρή επιλογή υπηρεσιών χωρίς θόρυβο',
+  'Προσανατολισμός σε πραγματικά κόστη και χρόνος απόκρισης',
+  'Συνέπεια σε κάθε βήμα από αίτημα μέχρι ανάθεση'
+];
+
+const evidenceCards = [
+  {
+    title: `${categoriesWithJobs.length} επιμελημένες κατηγορίες`,
+    description: 'Οργανωμένη αγορά με ξεκάθαρα μονοπάτια πλοήγησης για κάθε ανάγκη κατοικίας ή επαγγελματικού χώρου.',
+    tag: 'Δομή'
+  },
+  {
+    title: `${servicesWithPriceRange} υπηρεσίες με ενδεικτικό κόστος`,
+    description: 'Μετρήσιμες προσδοκίες πριν την επικοινωνία, ώστε να συγκρίνετε λύσεις με ουσία και όχι μόνο τιμή.',
+    tag: 'Διαφάνεια'
+  },
+  {
+    title: `${totalProfessionals} δημοσιευμένα προφίλ επαγγελματιών`,
+    description: 'Προφίλ με ειδικότητα, περιοχή και περιγραφή εργασιών για γρήγορο ταίριασμα με το έργο σας.',
+    tag: 'Κάλυψη'
+  }
+];
+
+const processSteps = [
+  {
+    heading: 'Ορίζετε την ανάγκη',
+    detail: 'Επιλέγετε υπηρεσία ή κατηγορία και καταγράφετε τι ακριβώς χρειάζεστε.'
+  },
+  {
+    heading: 'Λαμβάνετε στοχευμένες επιλογές',
+    detail: 'Βλέπετε επαγγελματίες και υπηρεσίες που ταιριάζουν στην πόλη και στις απαιτήσεις σας.'
+  },
+  {
+    heading: 'Κλείνετε με σιγουριά',
+    detail: 'Συγκρίνετε με βάση εύρος τιμής, εμπειρία και διαθεσιμότητα και προχωράτε άμεσα.'
+  }
+];
+
+const socialProofItems = [
+  {
+    title: 'Ανακαίνιση διαμερίσματος στην Αθήνα',
+    quote: 'Εντοπίσαμε συνεργείο για υδραυλικά και βαψίματα την ίδια ημέρα, με ξεκάθαρο πλαίσιο κόστους από την αρχή.',
+    outcome: 'Συνδυασμένη ανάθεση 2 ειδικοτήτων σε 48 ώρες'
+  },
+  {
+    title: 'Συντήρηση πολυκατοικίας στη Θεσσαλονίκη',
+    quote: 'Η δομή των κατηγοριών μας βοήθησε να κλείσουμε ηλεκτρολόγο χωρίς αλλεπάλληλα τηλεφωνήματα.',
+    outcome: 'Ολοκλήρωση πρώτης επίσκεψης σε λιγότερο από 24 ώρες'
+  },
+  {
+    title: 'Επαγγελματικός χώρος στο Ηράκλειο',
+    quote: 'Βρήκαμε τεχνικό κλιματισμού με εμπειρία σε εμπορικούς χώρους και ξεκάθαρο χρονοδιάγραμμα εργασιών.',
+    outcome: 'Επανεκκίνηση λειτουργίας χώρου μέσα στο Σαββατοκύριακο'
+  }
+];
 ---
 
 <Layout
   title="GreekHandy - Βρείτε Αξιόπιστους Επαγγελματίες | Ελλάδα"
-  description="Βρείτε τον καλύτερο επαγγελματία για κάθε εργασία στην Ελλάδα. Ηλεκτρολόγοι, υδραυλικοί, ελαιοχρωματιστές και πολλοί ακόμα. Δωρεάν προσφορές."
+  description="Βρείτε τον κατάλληλο επαγγελματία για κάθε εργασία στην Ελλάδα. Ηλεκτρολόγοι, υδραυλικοί, ελαιοχρωματιστές και πολλοί ακόμα. Δωρεάν προσφορές."
 >
-  <section class="relative overflow-hidden bg-slate-950 px-4 py-24 text-white">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.32),_transparent_58%)]"></div>
-    <div class="relative mx-auto max-w-5xl text-center">
-      <p class="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-medium uppercase tracking-[0.16em] text-slate-200">GreekHandy • Επιλεγμένη πλατφόρμα οικιακών υπηρεσιών</p>
-      <h1 class="mb-6 text-4xl font-semibold tracking-tight md:text-6xl">Βρείτε τον κατάλληλο επαγγελματία για κάθε εργασία</h1>
-      <p class="mx-auto mb-8 max-w-3xl text-lg text-slate-200 md:text-xl">Το GreekHandy σας συνδέει με αξιόπιστους τεχνικούς σε όλη την Ελλάδα, με γρήγορη εξυπηρέτηση και καθαρή διαδικασία προσφοράς.</p>
-      <a href="#search-browse" class="inline-flex items-center rounded-full bg-white px-8 py-3 font-semibold text-slate-900 transition hover:bg-slate-100">
-        Αναζήτηση Υπηρεσιών
-      </a>
-      <p class="mt-4 text-sm text-slate-300">{totalServices} υπηρεσίες σε {categoriesWithJobs.length} κατηγορίες</p>
-    </div>
-  </section>
+  <main class="home-root overflow-x-clip bg-[#f4f6fb] text-slate-900">
+    <section class="gh-hero relative overflow-hidden px-4 pb-24 pt-16 text-white md:px-6 md:pb-28 md:pt-20">
+      <div class="absolute inset-0 -z-20 bg-[#041128]"></div>
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_14%_20%,rgba(45,212,191,0.28),transparent_36%),radial-gradient(circle_at_88%_2%,rgba(96,165,250,0.34),transparent_42%),linear-gradient(160deg,#030b1d_0%,#06203f_48%,#0b3158_100%)]"></div>
+      <div class="gh-hero-glow absolute -left-20 top-12 -z-10 h-64 w-64 rounded-full bg-cyan-300/40"></div>
+      <div class="gh-hero-glow absolute -right-10 bottom-0 -z-10 h-72 w-72 rounded-full bg-blue-300/40"></div>
 
-  <section id="search-browse" class="mx-auto max-w-6xl px-4 py-16 md:px-6">
-    <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_-32px_rgba(15,23,42,0.35)] md:p-10">
-      <h2 class="text-3xl font-semibold tracking-tight text-slate-900">Αναζήτηση με λέξη-κλειδί</h2>
-      <p class="mt-2 text-slate-600">Βρείτε γρήγορα υπηρεσίες, κατηγορίες ή προφίλ επαγγελματιών και φιλτράρετε ανά πόλη.</p>
-
-      <form class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-12" role="search" aria-label="Αναζήτηση υπηρεσιών, κατηγοριών και επαγγελματιών">
-        <div class="md:col-span-6">
-          <label for="search-keyword" class="mb-2 block text-sm font-semibold text-gray-800">Λέξη-κλειδί</label>
-          <input
-            id="search-keyword"
-            name="search-keyword"
-            type="search"
-            placeholder="π.χ. επισκευή διαρροής, εγκατάσταση κλιματιστικού"
-            autocomplete="off"
-            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
-            data-search-input
-          />
-        </div>
-
-        <div class="md:col-span-4">
-          <label for="search-city" class="mb-2 block text-sm font-semibold text-gray-800">Πόλη</label>
-          <select
-            id="search-city"
-            name="search-city"
-            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
-            data-city-filter
-          >
-            <option value="">Όλες οι πόλεις</option>
-            {cityOptions.map(city => (
-              <option value={city.value}>{city.label}</option>
-            ))}
-          </select>
-        </div>
-
-        <div class="md:col-span-2 md:self-end">
-          <button
-            type="button"
-            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-100"
-            data-reset-filters
-          >
-            Καθαρισμός
-          </button>
-        </div>
-      </form>
-
-      <p class="mt-4 text-sm text-slate-700" data-results-count aria-live="polite"></p>
-
-      <div class="mt-5 hidden rounded-2xl border border-blue-200 bg-blue-50/70 p-4 text-blue-900" data-search-loading>
-        <p class="text-sm font-semibold">Φόρτωση αποτελεσμάτων...</p>
-        <p class="mt-1 text-xs text-blue-800">Συνδυάζουμε υπηρεσίες, κατηγορίες και επαγγελματίες.</p>
-      </div>
-
-      <ul class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false">
-        {searchItems.map(item => (
-          <li
-            data-search-item
-            data-search-text={item.searchText}
-            data-cities={item.cities.join('|')}
-            class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
-          >
-            <a href={item.href} class="block rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
-              <div class="flex items-start gap-3">
-                <span class="text-2xl" aria-hidden="true">{item.icon}</span>
-                <div>
-                  <p class="font-semibold text-gray-900">{item.nameGr}</p>
-                  <p class="mt-1 text-xs font-medium uppercase tracking-wide text-blue-700">
-                    {item.typeLabel}{item.categoryName ? ` • ${item.categoryName}` : ''}
-                  </p>
-                  {item.description && <p class="mt-2 text-sm text-gray-600">{item.description}</p>}
-                  {item.priceRange && <p class="mt-2 text-sm font-medium text-blue-700">Ενδεικτικό κόστος: {item.priceRange}</p>}
-                </div>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-empty-state>
-        <p class="font-semibold text-orange-900">Δεν βρέθηκαν αποτελέσματα με αυτά τα φίλτρα.</p>
-        <p class="mt-1">Δοκιμάστε άλλη λέξη ή πόλη για περισσότερες επιλογές.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="mx-auto max-w-6xl px-4 py-14 md:px-6">
-    <div class="mb-10 flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h2 class="text-3xl font-semibold tracking-tight text-slate-900">Κατηγορίες Υπηρεσιών</h2>
-        <p class="mt-2 text-sm text-slate-600">Δημοφιλείς κατηγορίες με συνεπή δομή, υψηλού επιπέδου παρουσίαση και γρήγορη πρόσβαση.</p>
-      </div>
-      <a href="#search-browse" class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Προηγμένη αναζήτηση</a>
-    </div>
-
-    {categories.length === 0 && (
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
-        <p class="font-semibold text-slate-900">Δεν υπάρχουν διαθέσιμες κατηγορίες αυτή τη στιγμή.</p>
-        <p class="mt-1 text-sm text-slate-600">Δοκιμάστε ξανά σύντομα ή χρησιμοποιήστε την αναζήτηση για συγκεκριμένη υπηρεσία.</p>
-      </div>
-    )}
-
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {categories.map(cat => {
-        const catJobs = jobsByCategory[cat.id] || [];
-        const cityLabels = getCitiesForCategory(cat).map(city => cityLabelByValue[city]).filter(Boolean);
-        return (
-          <a href={`/${cat.slug}`} class="group block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg">
-            <span class="text-3xl" aria-hidden="true">{getCategoryIcon(cat)}</span>
-            <h3 class="mt-3 text-xl font-bold text-slate-900">{cat.nameGr}</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">{cat.description}</p>
-            {cityLabels.length > 0 && (
-              <p class="mt-3 text-xs uppercase tracking-wide text-gray-500">Πόλεις: {cityLabels.join(', ')}</p>
-            )}
-            <p class="mt-3 text-sm font-medium text-blue-700 transition group-hover:translate-x-0.5">{catJobs.length} υπηρεσίες &rarr;</p>
-          </a>
-        );
-      })}
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-6xl px-4 py-8 md:px-6">
-    <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_46px_-28px_rgba(15,23,42,0.45)] md:p-8">
-      <div class="flex flex-wrap items-end justify-between gap-3">
+      <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
         <div>
-          <h2 class="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">Κατάλογος Υπηρεσιών</h2>
-          <p class="mt-2 text-sm text-slate-600">Ανοίξτε μόνο την κατηγορία που σας ενδιαφέρει και δείτε άμεσα τις σχετικές υπηρεσίες.</p>
+          <p class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
+            GreekHandy Signature Network
+          </p>
+          <h1 class="gh-display mt-6 text-4xl tracking-tight md:text-6xl">
+            Η ποιοτική επιλογή επαγγελματία,
+            <span class="block text-cyan-200">με σαφήνεια από το πρώτο λεπτό.</span>
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-100 md:text-xl">
+            Το GreekHandy μετατρέπει την αναζήτηση τεχνικού σε στρατηγική απόφαση: ορατές επιλογές,
+            καθαρή πληροφορία και ουσιαστική σύγκριση για να κλείνετε σωστό συνεργάτη χωρίς χάσιμο χρόνου.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#search-browse" class="inline-flex items-center rounded-full bg-white px-7 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-slate-100">
+              Ξεκινήστε Αναζήτηση
+            </a>
+            <a href="/professionals/register" class="inline-flex items-center rounded-full border border-white/40 bg-white/10 px-7 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/20">
+              Γίνετε Συνεργάτης
+            </a>
+          </div>
+
+          <ul class="mt-8 grid gap-2 text-sm text-slate-100 md:grid-cols-2">
+            {heroHighlights.map(item => (
+              <li class="rounded-xl border border-white/20 bg-white/10 px-4 py-3">{item}</li>
+            ))}
+          </ul>
         </div>
-        <p class="text-sm font-medium text-slate-500">{totalServices} υπηρεσίες συνολικά</p>
+
+        <aside class="rounded-[2rem] border border-white/20 bg-white/10 p-6 shadow-[0_30px_120px_-40px_rgba(15,23,42,0.85)] backdrop-blur-md md:p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Πίνακας Εμπιστοσύνης</p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-tight">Τι κερδίζετε άμεσα στο GreekHandy</h2>
+
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <div class="rounded-2xl border border-white/15 bg-black/15 p-4">
+              <p class="text-3xl font-semibold text-cyan-100">{totalServices}+</p>
+              <p class="mt-1 text-xs uppercase tracking-wide text-slate-200">Υπηρεσίες</p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-black/15 p-4">
+              <p class="text-3xl font-semibold text-cyan-100">{categoriesWithJobs.length}</p>
+              <p class="mt-1 text-xs uppercase tracking-wide text-slate-200">Κατηγορίες</p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-black/15 p-4">
+              <p class="text-3xl font-semibold text-cyan-100">{totalProfessionals}</p>
+              <p class="mt-1 text-xs uppercase tracking-wide text-slate-200">Προφίλ</p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-black/15 p-4">
+              <p class="text-3xl font-semibold text-cyan-100">7</p>
+              <p class="mt-1 text-xs uppercase tracking-wide text-slate-200">Μεγάλες Πόλεις</p>
+            </div>
+          </div>
+
+          <div class="mt-6 space-y-3 border-t border-white/20 pt-5 text-sm text-slate-100">
+            <p class="flex items-start gap-2"><span aria-hidden="true">01</span><span>Ενιαία αναζήτηση για υπηρεσίες, κατηγορίες και επαγγελματίες.</span></p>
+            <p class="flex items-start gap-2"><span aria-hidden="true">02</span><span>Φίλτρα πόλης ώστε να βλέπετε μόνο σχετικές επιλογές.</span></p>
+            <p class="flex items-start gap-2"><span aria-hidden="true">03</span><span>Γρήγορη μετάβαση από αξιολόγηση σε επικοινωνία.</span></p>
+          </div>
+        </aside>
       </div>
 
-      {categoriesWithJobs.length > 0 && (
-        <nav class="mt-6 flex flex-wrap gap-2" aria-label="Γρήγορη πλοήγηση κατηγοριών">
-          {categoriesWithJobs.map(({ category, jobs }) => (
-            <a
-              href={`#catalog-${category.slug}`}
-              class="inline-flex rounded-full border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-white"
+      <div class="mx-auto mt-10 max-w-6xl">
+        <div class="grid gap-4 rounded-3xl border border-white/25 bg-white/10 p-5 backdrop-blur-md md:grid-cols-3 md:p-7">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Value Proposition</p>
+            <p class="mt-2 text-sm leading-relaxed text-slate-100">Πλατφόρμα επιλογής τεχνικών με premium εμπειρία πλοήγησης και καθαρή ενημέρωση πριν από κάθε ανάθεση.</p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Για Ιδιώτες Και Επιχειρήσεις</p>
+            <p class="mt-2 text-sm leading-relaxed text-slate-100">Από μικροεπισκευές μέχρι απαιτητικές εγκαταστάσεις, με την ίδια δομημένη προσέγγιση.</p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Conversion Focus</p>
+            <p class="mt-2 text-sm leading-relaxed text-slate-100">Σαφή CTA, κοινωνική απόδειξη και ξεκάθαρα βήματα για να κλείνετε απόφαση γρηγορότερα.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="search-browse" class="relative z-20 mx-auto -mt-16 max-w-6xl px-4 md:px-6">
+      <div class="rounded-[2rem] border border-slate-200/80 bg-white p-6 shadow-[0_30px_100px_-52px_rgba(2,6,23,0.58)] md:p-10">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Ενιαία Αναζήτηση GreekHandy</p>
+            <h2 class="gh-display mt-2 text-3xl text-slate-900 md:text-4xl">Βρείτε ακριβώς αυτό που χρειάζεστε</h2>
+            <p class="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600 md:text-base">Συνδυάζουμε υπηρεσίες, κατηγορίες και επαγγελματίες σε μία ροή, ώστε να περνάτε από αναζήτηση σε ανάθεση χωρίς τριβή.</p>
+          </div>
+          <a href="/professionals" class="inline-flex rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Δείτε όλα τα προφίλ</a>
+        </div>
+
+        <form class="mt-7 grid grid-cols-1 gap-4 md:grid-cols-12" role="search" aria-label="Αναζήτηση υπηρεσιών, κατηγοριών και επαγγελματιών">
+          <div class="md:col-span-6">
+            <label for="search-keyword" class="mb-2 block text-sm font-semibold text-gray-800">Λέξη-κλειδί</label>
+            <input
+              id="search-keyword"
+              name="search-keyword"
+              type="search"
+              placeholder="π.χ. επισκευή διαρροής, εγκατάσταση κλιματιστικού"
+              autocomplete="off"
+              class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100"
+              data-search-input
+            />
+          </div>
+
+          <div class="md:col-span-4">
+            <label for="search-city" class="mb-2 block text-sm font-semibold text-gray-800">Πόλη</label>
+            <select
+              id="search-city"
+              name="search-city"
+              class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100"
+              data-city-filter
             >
-              {category.nameGr} ({jobs.length})
-            </a>
+              <option value="">Όλες οι πόλεις</option>
+              {cityOptions.map(city => (
+                <option value={city.value}>{city.label}</option>
+              ))}
+            </select>
+          </div>
+
+          <div class="md:col-span-2 md:self-end">
+            <button
+              type="button"
+              class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-100"
+              data-reset-filters
+            >
+              Καθαρισμός
+            </button>
+          </div>
+        </form>
+
+        {categoriesWithJobs.length > 0 && (
+          <nav class="mt-5 flex flex-wrap gap-2" aria-label="Γρήγορες κατηγορίες">
+            {categoriesWithJobs.slice(0, 6).map(({ category, jobs }) => (
+              <a href={`/${category.slug}`} class="rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1.5 text-xs font-semibold text-cyan-800 transition hover:border-cyan-200 hover:bg-cyan-100">
+                {getCategoryIcon(category)} {category.nameGr} ({jobs.length})
+              </a>
+            ))}
+          </nav>
+        )}
+
+        <p class="mt-4 text-sm text-slate-700" data-results-count aria-live="polite"></p>
+
+        <div class="mt-5 hidden rounded-2xl border border-cyan-200 bg-cyan-50/70 p-4 text-cyan-900" data-search-loading>
+          <p class="text-sm font-semibold">Φόρτωση αποτελεσμάτων...</p>
+          <p class="mt-1 text-xs text-cyan-800">Συνδυάζουμε υπηρεσίες, κατηγορίες και επαγγελματίες.</p>
+        </div>
+
+        <ul class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false">
+          {searchItems.map(item => (
+            <li
+              data-search-item
+              data-search-text={item.searchText}
+              data-cities={item.cities.join('|')}
+              class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-md"
+            >
+              <a href={item.href} class="block rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
+                <div class="flex items-start gap-3">
+                  <span class="text-2xl" aria-hidden="true">{item.icon}</span>
+                  <div>
+                    <p class="font-semibold text-gray-900">{item.nameGr}</p>
+                    <p class="mt-1 text-xs font-medium uppercase tracking-wide text-cyan-700">
+                      {item.typeLabel}{item.categoryName ? ` • ${item.categoryName}` : ''}
+                    </p>
+                    {item.description && <p class="mt-2 text-sm text-gray-600">{item.description}</p>}
+                    {item.priceRange && <p class="mt-2 text-sm font-medium text-cyan-700">Ενδεικτικό κόστος: {item.priceRange}</p>}
+                  </div>
+                </div>
+              </a>
+            </li>
           ))}
-        </nav>
+        </ul>
+
+        <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-empty-state>
+          <p class="font-semibold text-orange-900">Δεν βρέθηκαν αποτελέσματα με αυτά τα φίλτρα.</p>
+          <p class="mt-1">Δοκιμάστε άλλη λέξη ή πόλη για περισσότερες επιλογές.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-20 md:px-6">
+      <div class="mx-auto max-w-6xl">
+        <div class="max-w-3xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Trust Layer</p>
+          <h2 class="gh-display mt-3 text-3xl text-slate-900 md:text-5xl">Αξιοπιστία με μετρήσιμα δεδομένα και καθαρή διαδικασία.</h2>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">Χτίσαμε ροή που βοηθά τον επισκέπτη να καταλάβει αμέσως τι θα βρει, πώς θα συγκρίνει και γιατί θα προχωρήσει σε ενέργεια τώρα.</p>
+        </div>
+
+        <div class="evidence-grid mt-10 grid gap-5 md:grid-cols-3">
+          {evidenceCards.map(card => (
+            <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_22px_60px_-40px_rgba(15,23,42,0.45)]">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">{card.tag}</p>
+              <h3 class="mt-3 text-2xl font-semibold tracking-tight text-slate-900">{card.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">{card.description}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-8 rounded-3xl border border-slate-200 bg-gradient-to-r from-slate-900 via-slate-900 to-slate-800 p-6 text-white shadow-[0_34px_90px_-42px_rgba(2,6,23,0.8)] md:p-8">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Process Flow</p>
+              <h3 class="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">Πώς οδηγούμε τον χρήστη σε απόφαση</h3>
+            </div>
+            <a href="#search-browse" class="inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">Εκκίνηση τώρα</a>
+          </div>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-3">
+            {processSteps.map((step, index) => (
+              <article class="rounded-2xl border border-white/15 bg-white/10 p-5">
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">0{index + 1}</p>
+                <h4 class="mt-2 text-lg font-semibold">{step.heading}</h4>
+                <p class="mt-2 text-sm leading-relaxed text-slate-100">{step.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wave px-4 py-20 md:px-6">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-10 max-w-3xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Social Proof Style Modules</p>
+          <h2 class="gh-display mt-3 text-3xl text-slate-900 md:text-4xl">Παραδείγματα πραγματικής χρήσης της πλατφόρμας</h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          {socialProofItems.map(item => (
+            <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_54px_-36px_rgba(15,23,42,0.45)]">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Case</p>
+              <h3 class="mt-2 text-xl font-semibold tracking-tight text-slate-900">{item.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">“{item.quote}”</p>
+              <p class="mt-4 rounded-xl bg-cyan-50 px-3 py-2 text-sm font-semibold text-cyan-800">{item.outcome}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="mx-auto max-w-6xl px-4 py-14 md:px-6">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Service Taxonomy</p>
+          <h2 class="gh-display mt-2 text-3xl text-slate-900 md:text-4xl">Κατηγορίες υπηρεσιών με ισχυρή πλοήγηση</h2>
+          <p class="mt-2 text-sm text-slate-600">Κάθε κατηγορία έχει ξεκάθαρο scope, συγκεκριμένες υπηρεσίες και απευθείας μετάβαση στην πληροφορία που χρειάζεστε.</p>
+        </div>
+        <a href="#search-browse" class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Προηγμένη αναζήτηση</a>
+      </div>
+
+      {categories.length === 0 && (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
+          <p class="font-semibold text-slate-900">Δεν υπάρχουν διαθέσιμες κατηγορίες αυτή τη στιγμή.</p>
+          <p class="mt-1 text-sm text-slate-600">Δοκιμάστε ξανά σύντομα ή χρησιμοποιήστε την αναζήτηση για συγκεκριμένη υπηρεσία.</p>
+        </div>
       )}
 
-      <div class="mt-6 space-y-4">
-        {categoriesWithJobs.map(({ category, jobs }, index) => {
-          const defaultOpen = index === 0;
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {categories.map(cat => {
+          const catJobs = jobsByCategory[cat.id] || [];
+          const cityLabels = getCitiesForCategory(cat).map(city => cityLabelByValue[city]).filter(Boolean);
           return (
-            <details id={`catalog-${category.slug}`} class="group rounded-2xl border border-slate-200 bg-slate-50/50 p-5 transition open:border-slate-300 open:bg-white" open={defaultOpen}>
-              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
-                <div class="min-w-0">
-                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Κατηγορία</p>
-                  <h3 class="mt-1 text-xl font-semibold text-slate-900">
-                    <a href={`/${category.slug}`} class="rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">{category.nameGr}</a>
-                  </h3>
-                  {category.description && <p class="mt-2 text-sm leading-6 text-slate-600">{category.description}</p>}
-                </div>
-                <div class="shrink-0 text-right">
-                  <p class="text-sm font-semibold text-blue-700">{jobs.length} υπηρεσίες</p>
-                  <span class="mt-2 inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
-                    Προβολή
-                    <span class="ml-2 inline-block transition group-open:rotate-180" aria-hidden="true">⌄</span>
-                  </span>
-                </div>
-              </summary>
-
-              <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {jobs.map(job => (
-                  <a href={`/${job.slug}`} class="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md">
-                    <h4 class="font-semibold text-slate-900">{job.nameGr}</h4>
-                    {job.summary?.priceRangeEUR ? (
-                      <p class="mt-1 text-sm font-medium text-blue-700">{job.summary.priceRangeEUR}</p>
-                    ) : (
-                      <p class="mt-1 text-sm text-slate-500">Επικοινωνήστε για εκτίμηση κόστους.</p>
-                    )}
-                  </a>
-                ))}
-              </div>
-            </details>
+            <a href={`/${cat.slug}`} class="group block rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-lg">
+              <span class="text-3xl" aria-hidden="true">{getCategoryIcon(cat)}</span>
+              <h3 class="mt-3 text-xl font-bold text-slate-900">{cat.nameGr}</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">{cat.description}</p>
+              {cityLabels.length > 0 && (
+                <p class="mt-3 text-xs uppercase tracking-wide text-gray-500">Πόλεις: {cityLabels.join(', ')}</p>
+              )}
+              <p class="mt-3 text-sm font-medium text-cyan-700 transition group-hover:translate-x-0.5">{catJobs.length} υπηρεσίες &rarr;</p>
+            </a>
           );
         })}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="mx-auto max-w-6xl px-4 py-6 md:px-6">
-    <div class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white md:p-10">
-      <h2 class="text-2xl font-semibold md:text-3xl">Βασικά Προφίλ Επαγγελματιών</h2>
-      <p class="mt-3 max-w-3xl text-slate-200">Γνωρίστε διαθέσιμους επαγγελματίες με ειδικότητα, εμπειρία και περιοχές εξυπηρέτησης.</p>
-      <a href="/professionals" class="mt-5 inline-flex rounded-full bg-white px-5 py-3 font-semibold text-slate-900 transition hover:bg-slate-100">Δείτε προφίλ επαγγελματιών</a>
-    </div>
-  </section>
+    <section class="mx-auto max-w-6xl px-4 py-8 md:px-6">
+      <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.45)] md:p-8">
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Service Catalog</p>
+            <h2 class="gh-display mt-2 text-3xl text-slate-900 md:text-4xl">Κατάλογος υπηρεσιών ανά κατηγορία</h2>
+            <p class="mt-2 text-sm text-slate-600">Ανοίξτε την ενότητα που σας ενδιαφέρει, συγκρίνετε επιλογές και προχωρήστε στην αντίστοιχη σελίδα υπηρεσίας.</p>
+          </div>
+          <p class="text-sm font-medium text-slate-500">{totalServices} υπηρεσίες συνολικά</p>
+        </div>
 
-  <section class="mt-8 bg-white px-4 py-16">
-    <div class="mx-auto max-w-4xl text-center">
-      <h2 class="mb-12 text-3xl font-bold">Πώς Λειτουργεί</h2>
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-        <div>
-          <div class="mb-4 text-4xl font-bold text-blue-600">1</div>
-          <h3 class="mb-2 text-xl font-semibold">Επιλέξτε Υπηρεσία</h3>
-          <p class="text-gray-600">Βρείτε την υπηρεσία που χρειάζεστε από τον κατάλογό μας.</p>
-        </div>
-        <div>
-          <div class="mb-4 text-4xl font-bold text-blue-600">2</div>
-          <h3 class="mb-2 text-xl font-semibold">Ζητήστε Προσφορά</h3>
-          <p class="text-gray-600">Περιγράψτε τις ανάγκες σας και λάβετε προσφορές.</p>
-        </div>
-        <div>
-          <div class="mb-4 text-4xl font-bold text-blue-600">3</div>
-          <h3 class="mb-2 text-xl font-semibold">Επιλέξτε Επαγγελματία</h3>
-          <p class="text-gray-600">Συγκρίνετε και επιλέξτε τον κατάλληλο επαγγελματία.</p>
+        {categoriesWithJobs.length > 0 && (
+          <nav class="mt-6 flex flex-wrap gap-2" aria-label="Γρήγορη πλοήγηση κατηγοριών">
+            {categoriesWithJobs.map(({ category, jobs }) => (
+              <a
+                href={`#catalog-${category.slug}`}
+                class="inline-flex rounded-full border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-white"
+              >
+                {category.nameGr} ({jobs.length})
+              </a>
+            ))}
+          </nav>
+        )}
+
+        <div class="mt-6 space-y-4">
+          {categoriesWithJobs.map(({ category, jobs }, index) => {
+            const defaultOpen = index === 0;
+            return (
+              <details id={`catalog-${category.slug}`} class="group rounded-2xl border border-slate-200 bg-slate-50/50 p-5 transition open:border-slate-300 open:bg-white" open={defaultOpen}>
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                  <div class="min-w-0">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Κατηγορία</p>
+                    <h3 class="mt-1 text-xl font-semibold text-slate-900">
+                      <a href={`/${category.slug}`} class="rounded-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">{category.nameGr}</a>
+                    </h3>
+                    {category.description && <p class="mt-2 text-sm leading-6 text-slate-600">{category.description}</p>}
+                  </div>
+                  <div class="shrink-0 text-right">
+                    <p class="text-sm font-semibold text-cyan-700">{jobs.length} υπηρεσίες</p>
+                    <span class="mt-2 inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
+                      Προβολή
+                      <span class="ml-2 inline-block transition group-open:rotate-180" aria-hidden="true">⌄</span>
+                    </span>
+                  </div>
+                </summary>
+
+                <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {jobs.map(job => (
+                    <a href={`/${job.slug}`} class="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-cyan-200 hover:shadow-md">
+                      <h4 class="font-semibold text-slate-900">{job.nameGr}</h4>
+                      {job.summary?.priceRangeEUR ? (
+                        <p class="mt-1 text-sm font-medium text-cyan-700">{job.summary.priceRangeEUR}</p>
+                      ) : (
+                        <p class="mt-1 text-sm text-slate-500">Επικοινωνήστε για εκτίμηση κόστους.</p>
+                      )}
+                    </a>
+                  ))}
+                </div>
+              </details>
+            );
+          })}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 py-8 md:px-6">
+      <div class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white md:p-10">
+        <div class="flex flex-wrap items-center justify-between gap-5">
+          <div class="max-w-3xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Professional Growth</p>
+            <h2 class="mt-2 text-2xl font-semibold md:text-3xl">Βασικά προφίλ επαγγελματιών με ουσιαστική παρουσίαση</h2>
+            <p class="mt-3 text-slate-200">Αναδείξτε ειδικότητα, εμπειρία και περιοχές εξυπηρέτησης για να εμφανίζεστε σε αναζητήσεις που έχουν πραγματικό ενδιαφέρον.</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="/professionals" class="inline-flex rounded-full bg-white px-5 py-3 font-semibold text-slate-900 transition hover:bg-slate-100">Δείτε προφίλ επαγγελματιών</a>
+            <a href="/professionals/register" class="inline-flex rounded-full border border-white/40 bg-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/20">Εγγραφή επαγγελματία</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="px-4 pb-16 pt-12 md:px-6">
+      <div class="mx-auto max-w-6xl rounded-3xl border border-cyan-200 bg-cyan-50 p-6 md:p-9">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="max-w-3xl">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-800">Final Conversion Block</p>
+            <h2 class="gh-display mt-2 text-3xl text-slate-900 md:text-4xl">Έτοιμοι να κλείσετε τον κατάλληλο επαγγελματία;</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">Ξεκινήστε από την αναζήτηση ή στείλτε μας απευθείας ερώτημα στο <a href="mailto:info@greekhandy.gr" class="font-semibold text-cyan-900 underline decoration-cyan-700 underline-offset-2">info@greekhandy.gr</a>. Η ομάδα GreekHandy απαντά με σαφείς επόμενες κινήσεις.</p>
+          </div>
+          <a href="#search-browse" class="inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-slate-800">Ξεκινήστε τώρα</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script is:inline>
     (() => {
@@ -536,4 +746,50 @@ const categoriesWithJobs = categories
       updateResults();
     })();
   </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap');
+
+    .home-root {
+      font-family: 'Manrope', 'Segoe UI', sans-serif;
+    }
+
+    .home-root .gh-display {
+      font-family: 'Prata', Georgia, serif;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+    }
+
+    .home-root .gh-hero-glow {
+      filter: blur(72px);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .home-root .section-wave {
+      background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.03), rgba(8, 145, 178, 0.06));
+    }
+
+    .home-root .evidence-grid > article {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-root .evidence-grid > article::after {
+      content: '';
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      top: -70px;
+      right: -70px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.14), rgba(6, 182, 212, 0));
+    }
+
+    @media (max-width: 768px) {
+      .home-root .gh-display {
+        line-height: 1.18;
+      }
+    }
+  </style>
 </Layout>
