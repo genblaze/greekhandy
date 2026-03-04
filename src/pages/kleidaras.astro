@@ -1,0 +1,183 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Layout from '../layouts/Layout.astro';
+import locksmith from '../../data/content/locksmith.json';
+
+const canonicalUrl = new URL(`/${locksmith.slug}`, Astro.site).toString();
+const ogImage = new URL('/favicon.svg', Astro.site).toString();
+const locksmithAccusative = 'κλειδαρά';
+const locksmithGenitive = 'κλειδαρά';
+
+const categoryModules = import.meta.glob('../../data/content/*.json', { eager: true });
+const categoryNameBySlug: Record<string, string> = {};
+
+for (const moduleEntry of Object.values(categoryModules)) {
+  const category = (moduleEntry as { default?: any }).default ?? moduleEntry;
+  if (category?.slug && category?.nameGr) {
+    categoryNameBySlug[category.slug] = category.nameGr;
+  }
+}
+
+const relatedCategories = locksmith.relatedCategories.map((slug: string) => ({
+  slug,
+  nameGr: categoryNameBySlug[slug] ?? slug
+}));
+
+const grammarFixes: Array<[string, string]> = [
+  ['αξιόπιστο κλειδαράς', 'αξιόπιστο κλειδαρά'],
+  ['Πότε να καλέσετε κλειδαράς', 'Πότε να καλέσετε κλειδαρά'],
+  ['Είναι σημαντικό να καλέσετε κλειδαράς', 'Είναι σημαντικό να καλέσετε κλειδαρά'],
+  ['Τιμές κλειδαράς στην Ελλάδα', 'Τιμές κλειδαρά στην Ελλάδα'],
+  ['υπηρεσίες κλειδαράς', 'υπηρεσίες κλειδαρά'],
+  ['Πώς να επιλέξετε κλειδαράς', 'Πώς να επιλέξετε κλειδαρά'],
+  ['επιλέξετε σωστά κλειδαράς', 'επιλέξετε σωστά κλειδαρά'],
+  ['Πώς επιλέγω αξιόπιστο κλειδαράς;', 'Πώς επιλέγω αξιόπιστο κλειδαρά;'],
+  ['Χρειάζεστε κλειδαράς;', 'Χρειάζεστε κλειδαρά;'],
+  ['για κλειδαράς στην περιοχή σας', 'για κλειδαρά στην περιοχή σας'],
+  ['value for money', 'σχέση ποιότητας-τιμής']
+];
+
+const normalizeGreek = (text: string) =>
+  grammarFixes.reduce((output, [from, to]) => output.replaceAll(from, to), text);
+
+const heroText = normalizeGreek(locksmith.heroText);
+const sections = locksmith.sections.map((section) => ({
+  ...section,
+  heading: normalizeGreek(section.heading),
+  content: normalizeGreek(section.content),
+  priceRange: section.priceRange ? normalizeGreek(section.priceRange) : section.priceRange
+}));
+const faq = locksmith.faq.map((item) => ({
+  ...item,
+  question: normalizeGreek(item.question),
+  answer: normalizeGreek(item.answer)
+}));
+const cta = {
+  ...locksmith.cta,
+  heading: normalizeGreek(locksmith.cta.heading),
+  text: normalizeGreek(locksmith.cta.text)
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Υπηρεσίες ${locksmithGenitive}`,
+  url: canonicalUrl,
+  description: locksmith.metaDescription,
+  areaServed: ['Αθήνα', 'Θεσσαλονίκη', 'Πάτρα', 'Ηράκλειο', 'Λάρισα', 'Ελλάδα'],
+  serviceType: `Υπηρεσίες ${locksmithGenitive}`,
+  availableLanguage: ['el-GR'],
+  provider: {
+    '@type': 'Organization',
+    name: 'GreekHandy',
+    url: new URL('/', Astro.site).toString()
+  }
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer
+    }
+  }))
+};
+---
+
+<Layout title={locksmith.metaTitle} description={locksmith.metaDescription} canonicalUrl={canonicalUrl}>
+  <Fragment slot="head">
+    <BaseHead title={locksmith.metaTitle} description={locksmith.metaDescription} canonicalUrl={canonicalUrl} ogImage={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main>
+    <section class="bg-gradient-to-b from-emerald-700 to-teal-600 px-4 py-16 text-white md:py-20">
+      <div class="mx-auto max-w-5xl">
+        <h1 class="text-3xl font-bold leading-tight md:text-5xl">{locksmith.h1}</h1>
+        <p class="mt-6 max-w-4xl text-lg leading-relaxed text-teal-100">{heroText}</p>
+        <a
+          href="#contact"
+          class="mt-8 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-50"
+        >
+          {cta.buttonText}
+        </a>
+      </div>
+    </section>
+
+    <section id="services" class="px-4 py-12 md:py-16" aria-labelledby="services-heading">
+      <div class="mx-auto max-w-5xl space-y-6">
+        <h2 id="services-heading" class="sr-only">Υπηρεσίες Κλειδαρά</h2>
+        {sections.map((section) => (
+          <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+            <h2 class="text-2xl font-bold text-gray-900">{section.heading}</h2>
+            <p class="mt-4 leading-relaxed text-gray-700">{section.content}</p>
+            {section.priceRange && (
+              <p class="mt-4 font-medium text-gray-900">
+                Ενδεικτικό εύρος τιμής: <span class="text-emerald-700">{section.priceRange}</span>
+              </p>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-gray-50 px-4 py-12 md:py-16" aria-labelledby="related-categories-heading">
+      <div class="mx-auto max-w-5xl">
+        <h2 id="related-categories-heading" class="text-2xl font-bold text-gray-900 md:text-3xl">Σχετικές Κατηγορίες</h2>
+        <nav class="mt-6" aria-label="Σχετικές κατηγορίες επαγγελματιών">
+          <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {relatedCategories.map((category) => (
+              <li>
+                <a
+                  href={`/${category.slug}`}
+                  class="block rounded-lg border border-gray-200 bg-white px-5 py-4 font-medium text-emerald-700 transition hover:border-emerald-300 hover:bg-emerald-50"
+                >
+                  {category.nameGr}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section id="faq" itemscope itemtype="https://schema.org/FAQPage" class="px-4 py-12 md:py-16" aria-labelledby="faq-heading">
+      <div class="mx-auto max-w-5xl">
+        <h2 id="faq-heading" class="text-2xl font-bold text-gray-900 md:text-3xl">Συχνές Ερωτήσεις για {locksmithAccusative}</h2>
+        <div class="mt-6 space-y-4">
+          {faq.map((item) => (
+            <article
+              itemprop="mainEntity"
+              itemscope
+              itemtype="https://schema.org/Question"
+              class="rounded-xl border border-gray-200 bg-white p-6"
+            >
+              <h3 itemprop="name" class="text-lg font-semibold text-gray-900">{item.question}</h3>
+              <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text" class="mt-3 leading-relaxed text-gray-700">{item.answer}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-emerald-700 px-4 py-12 text-white md:py-16" aria-labelledby="contact-heading">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 id="contact-heading" class="text-2xl font-bold md:text-3xl">{cta.heading}</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-emerald-100">{cta.text}</p>
+        <a
+          href={`mailto:info@greekhandy.gr?subject=${encodeURIComponent(`Ζητώ προσφορά για ${locksmithAccusative}`)}`}
+          class="mt-6 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-50"
+        >
+          {cta.buttonText}
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
