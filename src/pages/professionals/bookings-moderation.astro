@@ -1,10 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { readFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
-
-const SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-submissions.ndjson');
-const ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-moderation-actions.ndjson');
+import {
+  BOOKING_ACTIONS_FILE_PATH,
+  BOOKING_SUBMISSIONS_FILE_PATH,
+  getBookingId,
+  getBookingStatusPath,
+  readNdjson,
+  type BookingAction,
+  type BookingSubmission
+} from '../../lib/bookings';
 
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
@@ -12,47 +16,15 @@ const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
 const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
 const status = url.searchParams.get('status');
 
-interface BookingSubmission {
-  id?: string;
-  professionalSlug: string;
-  service?: string;
-  customerName: string;
-  phone: string;
-  email: string;
-  preferredDate?: string;
-  message: string;
-  status: 'pending';
-  submittedAt: string;
-}
+const submissions = await readNdjson<BookingSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
+const actions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
 
-interface ActionLog {
-  bookingId: string;
-  action: string;
-  actedAt: string;
-}
-
-const readNdjson = async <T,>(path: string): Promise<T[]> => {
-  try {
-    const raw = await readFile(path, 'utf-8');
-    return raw
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .map((line) => JSON.parse(line) as T);
-  } catch {
-    return [];
-  }
-};
-
-const submissions = await readNdjson<BookingSubmission>(SUBMISSIONS_FILE_PATH);
-const actions = await readNdjson<ActionLog>(ACTIONS_FILE_PATH);
-
-const latestActionById = new Map<string, ActionLog>();
+const latestActionById = new Map<string, BookingAction>();
 for (const action of actions) latestActionById.set(action.bookingId, action);
 
 const pendingBookings = submissions
   .map((booking) => {
-    const bookingId = booking.id || `${booking.professionalSlug}|${booking.submittedAt}`;
+    const bookingId = getBookingId(booking);
     const latestAction = latestActionById.get(bookingId);
     return { booking, bookingId, latestAction };
   })
@@ -100,6 +72,10 @@ const pendingBookings = submissions
               <p class="mt-3 text-sm text-gray-700"><strong>Μήνυμα:</strong> {booking.message}</p>
 
               <div class="mt-4 flex flex-wrap gap-3">
+                <a href={getBookingStatusPath(bookingId)} class="rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">
+                  Προβολή customer status page
+                </a>
+
                 <form action="/api/bookings/moderate" method="POST">
                   <input type="hidden" name="moderationKey" value={moderationKey} />
                   <input type="hidden" name="action" value="approve" />

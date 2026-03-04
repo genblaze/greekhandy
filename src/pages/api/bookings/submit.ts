@@ -1,8 +1,7 @@
 import type { APIRoute } from 'astro';
 import { appendFile, mkdir } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-
-const SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-submissions.ndjson');
+import { dirname } from 'node:path';
+import { BOOKING_SUBMISSIONS_FILE_PATH, getBookingStatusPath } from '../../../lib/bookings';
 
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
@@ -47,9 +46,13 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   try {
-    await mkdir(dirname(SUBMISSIONS_FILE_PATH), { recursive: true });
-    await appendFile(SUBMISSIONS_FILE_PATH, `${JSON.stringify(submission)}\n`, 'utf-8');
-    return redirect(`${returnTo}?booking=submitted`, 303);
+    await mkdir(dirname(BOOKING_SUBMISSIONS_FILE_PATH), { recursive: true });
+    await appendFile(BOOKING_SUBMISSIONS_FILE_PATH, `${JSON.stringify(submission)}\n`, 'utf-8');
+
+    const query = new URLSearchParams({ status: 'submitted' });
+    if (returnTo.startsWith('/') && !returnTo.startsWith('//')) query.set('returnTo', returnTo);
+
+    return redirect(`${getBookingStatusPath(submission.id)}?${query.toString()}`, 303);
   } catch (error) {
     console.error('[booking-submit] failed', error);
     return redirect(`${returnTo}?booking=error`, 303);
