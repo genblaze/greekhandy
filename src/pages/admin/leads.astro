@@ -265,6 +265,7 @@ const hasLeads = directoryData.leads.length > 0;
                   <button type="button" data-shortcuts-help aria-label="Εμφάνιση λίστας συντομεύσεων πληκτρολογίου" aria-keyshortcuts="Shift+?" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Συντομεύσεις</button>
                   <p id="leads-selection-summary" data-selection-summary class="text-xs font-medium text-slate-600" role="status" aria-live="polite" aria-atomic="true">0 επιλεγμένα</p>
                   <p data-bulk-impact-preview class="text-[11px] text-slate-500" aria-live="polite">Impact preview: 0 για outreach/segment/follow-up.</p>
+                  <p data-bulk-action-preview class="text-[11px] text-slate-500" aria-live="polite">Προεπισκόπηση ενεργειών: outreach 0 • segment 0 • follow-up 0</p>
                   <p data-bulk-safety-note class="text-[11px] text-slate-500" aria-live="polite">Ασφάλεια bulk: οι αλλαγές εφαρμόζονται μόνο στα επιλεγμένα leads και η outreach αλλαγή υποστηρίζει αναίρεση.</p>
                 </div>
                 <p id="leads-bulk-prompt" class="mt-2 text-[11px] text-slate-600" aria-live="polite">Γρήγορη μετατροπή: πρώτα "Έγινε επαφή", μετά segment και follow-up. Η τελευταία μαζική αλλαγή outreach ανακαλείται για 5 λεπτά (κουμπί ή Alt+Z).</p>
@@ -561,6 +562,7 @@ const hasLeads = directoryData.leads.length > 0;
         const shortcutsHelpButton = root.querySelector('[data-shortcuts-help]');
         const selectionSummary = root.querySelector('[data-selection-summary]');
         const bulkImpactPreview = root.querySelector('[data-bulk-impact-preview]');
+        const bulkActionPreview = root.querySelector('[data-bulk-action-preview]');
         const bulkSafetyNote = root.querySelector('[data-bulk-safety-note]');
         const selectionDock = root.querySelector('[data-selection-dock]');
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
@@ -946,6 +948,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (selectionDock instanceof HTMLElement) selectionDock.classList.toggle('hidden', count === 0);
           if (bulkSafetyNote instanceof HTMLElement) {
             if (count === 0) bulkSafetyNote.textContent = 'Ασφάλεια bulk: επιλέξτε leads πριν από οποιαδήποτε μαζική ενέργεια.';
+            else if (count >= 25) bulkSafetyNote.textContent = `Ασφάλεια bulk: υψηλός όγκος (${count} leads) — θα ζητηθεί διπλή επιβεβαίωση σε μαζικές αλλαγές.`;
             else if (isUndoAvailable()) bulkSafetyNote.textContent = 'Ασφάλεια bulk: υπάρχει ενεργό παράθυρο αναίρεσης για το τελευταίο outreach (Alt+Z).';
             else bulkSafetyNote.textContent = `Ασφάλεια bulk: οι επόμενες ενέργειες θα εφαρμοστούν στα ${count} επιλεγμένα leads.`;
           }
@@ -959,13 +962,18 @@ const hasLeads = directoryData.leads.length > 0;
           const selectedUntagged = selectedEntries.length - selectedHot - selectedWarm - selectedCold;
           const outreachToContacted = selectedEntries.filter((entry) => !entry.isContacted).length;
           const outreachToNotContacted = selectedEntries.filter((entry) => entry.isContacted).length;
-          const segmentChanges = selectedEntries.filter((entry) => entry.segment !== 'hot').length;
+          const segmentToHot = selectedEntries.filter((entry) => entry.segment !== 'hot').length;
+          const segmentToWarm = selectedEntries.filter((entry) => entry.segment !== 'warm').length;
+          const segmentToCold = selectedEntries.filter((entry) => entry.segment !== 'cold').length;
           const followupPending = selectedEntries.filter((entry) => !entry.nextAction?.at).length;
           if (selectionSegmentBreakdown instanceof HTMLElement) {
             selectionSegmentBreakdown.textContent = `Επιλεγμένα ανά segment: hot ${selectedHot} • warm ${selectedWarm} • cold ${selectedCold} • untagged ${selectedUntagged}`;
           }
           if (bulkImpactPreview instanceof HTMLElement) {
-            bulkImpactPreview.textContent = `Impact preview: outreach(επικοινωνήθηκε ${outreachToContacted}, χωρίς επαφή ${outreachToNotContacted}) • segment(έως ${segmentChanges}) • follow-up(λείπει σε ${followupPending})`;
+            bulkImpactPreview.textContent = `Impact preview: outreach(επικοινωνήθηκε ${outreachToContacted}, χωρίς επαφή ${outreachToNotContacted}) • segment(hot ${segmentToHot}, warm ${segmentToWarm}, cold ${segmentToCold}) • follow-up(λείπει σε ${followupPending})`;
+          }
+          if (bulkActionPreview instanceof HTMLElement) {
+            bulkActionPreview.textContent = `Προεπισκόπηση ενεργειών: outreach ${Math.max(outreachToContacted, outreachToNotContacted)} • segment ${Math.max(segmentToHot, segmentToWarm, segmentToCold)} • follow-up ${followupPending}`;
           }
           if (selectionNextHint instanceof HTMLElement) {
             if (count === 0) {
@@ -1043,8 +1051,14 @@ const hasLeads = directoryData.leads.length > 0;
           if (bulkFollowupSet instanceof HTMLButtonElement) {
             bulkFollowupSet.setAttribute('aria-label', `Ορισμός follow-up ημερομηνίας για ${count} επιλεγμένα leads`);
           }
+          if (bulkFollowupQuick instanceof HTMLButtonElement) {
+            bulkFollowupQuick.setAttribute('aria-label', `Γρήγορο follow-up +24h για ${count} επιλεγμένα leads`);
+          }
           if (selectionDockFollowupSet instanceof HTMLButtonElement) {
             selectionDockFollowupSet.setAttribute('aria-label', `Ορισμός follow-up ημερομηνίας από το dock για ${count} επιλεγμένα leads`);
+          }
+          if (selectionDockFollowupQuick instanceof HTMLButtonElement) {
+            selectionDockFollowupQuick.setAttribute('aria-label', `Γρήγορο follow-up +24h από το dock για ${count} επιλεγμένα leads`);
           }
           if (bulkOutreachUndo instanceof HTMLButtonElement) {
             bulkOutreachUndo.setAttribute('aria-label', isUndoAvailable()
