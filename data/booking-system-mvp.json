@@ -2,9 +2,13 @@
   "featureId": "booking-system",
   "version": "mvp-v1",
   "locale": "el-GR",
-  "goal": "Να κλείνει ο πελάτης ραντεβού γρήγορα και καθαρά, με ελάχιστα βήματα και με έλεγχο πριν τη δημόσια εμφάνιση.",
+  "goal": "Να υποβάλλει ο πελάτης αίτημα κράτησης από το προφίλ επαγγελματία και η ομάδα να το εγκρίνει ή να το απορρίπτει από moderation queue.",
   "voice": {
-    "tone": ["άμεσο", "καθησυχαστικό", "χωρίς υπερβολές"],
+    "tone": [
+      "άμεσο",
+      "καθησυχαστικό",
+      "χωρίς υπερβολές"
+    ],
     "styleRules": [
       "σύντομα labels 2-5 λέξεις",
       "ξεκάθαρα μηνύματα κατάστασης",
@@ -13,181 +17,153 @@
   },
   "launchScope": {
     "surfaces": [
-      "σελίδα επαγγελματία",
-      "φόρμα booking request",
-      "σελίδα επιβεβαίωσης αιτήματος",
-      "admin/moderation queue για έγκριση ή απόρριψη"
+      "φόρμα booking request στη σελίδα επαγγελματία",
+      "μήνυμα επιτυχούς υποβολής (pending)",
+      "admin/moderation queue με approve ή reject"
     ],
     "outOfScope": [
+      "πολυβηματικό wizard υπηρεσίας/ημερολογίου",
       "online πληρωμές",
       "live calendar sync με Google/Outlook",
-      "reschedule από τον πελάτη χωρίς μεσολάβηση",
-      "in-app chat μέσα στο booking"
+      "needs_info ή expired moderation states",
+      "αυτόματη ειδοποίηση πελάτη μετά από moderation απόφαση"
     ]
   },
   "flow": {
     "public": [
-      "select_service",
-      "pick_date",
-      "pick_time_window",
-      "enter_contact_details",
-      "confirm_request",
-      "pending_review_notice"
+      "open_professional_profile",
+      "submit_booking_request",
+      "pending_notice"
     ],
     "moderation": [
       "pending",
       "approved",
-      "rejected",
-      "needs_info",
-      "expired"
+      "rejected"
     ],
     "professionalOutcome": [
       "new_request_received",
       "request_confirmed",
-      "request_declined",
-      "request_expired"
+      "request_declined"
     ]
   },
   "bookingModel": {
     "inputs": [
-      { "key": "serviceSlug", "type": "string", "required": true },
-      { "key": "professionalSlug", "type": "string", "required": true },
-      { "key": "preferredDate", "type": "date", "required": true },
-      { "key": "timeWindow", "type": "string", "required": true },
-      { "key": "customerName", "type": "string", "required": true, "minLength": 2, "maxLength": 80 },
-      { "key": "customerPhone", "type": "string", "required": true },
-      { "key": "customerEmail", "type": "string", "required": false },
-      { "key": "addressArea", "type": "string", "required": true },
-      { "key": "notes", "type": "string", "required": false, "maxLength": 600 }
+      {
+        "key": "professionalSlug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "customerName",
+        "type": "string",
+        "required": true,
+        "minLength": 2,
+        "maxLength": 120
+      },
+      {
+        "key": "phone",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "email",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "preferredDate",
+        "type": "string",
+        "required": false,
+        "maxLength": 40
+      },
+      {
+        "key": "message",
+        "type": "string",
+        "required": true,
+        "maxLength": 2000
+      }
     ],
     "computed": [
+      "booking.id",
       "booking.status",
-      "booking.referenceCode",
-      "booking.createdAt",
-      "booking.updatedAt"
+      "booking.submittedAt"
     ]
   },
   "statusLabels": {
     "public": {
       "pending": "Σε αναμονή επιβεβαίωσης",
       "approved": "Επιβεβαιωμένο ραντεβού",
-      "rejected": "Δεν προχώρησε το αίτημα",
-      "needs_info": "Χρειάζονται διευκρινίσεις",
-      "expired": "Το αίτημα έληξε"
+      "rejected": "Δεν προχώρησε το αίτημα"
     },
     "admin": {
       "pending": "Νέο αίτημα",
       "approved": "Εγκρίθηκε",
-      "rejected": "Απορρίφθηκε",
-      "needs_info": "Αναμονή στοιχείων",
-      "expired": "Έληξε χωρίς ενέργεια"
+      "rejected": "Απορρίφθηκε"
     }
   },
   "greekUxCopy": {
     "publicFlow": {
-      "stepper": {
-        "service": "Υπηρεσία",
-        "schedule": "Ημέρα & ώρα",
-        "details": "Στοιχεία",
-        "confirm": "Επιβεβαίωση"
-      },
-      "title": "Κλείσε ραντεβού σε λίγα βήματα",
-      "subtitle": "Στέλνεις αίτημα τώρα και λαμβάνεις επιβεβαίωση μόλις ελεγχθεί η διαθεσιμότητα.",
+      "title": "Στείλε αίτημα κράτησης",
+      "subtitle": "Συμπλήρωσε τα βασικά στοιχεία και η ομάδα θα επιβεβαιώσει διαθεσιμότητα.",
       "fields": {
-        "service": "Τι χρειάζεσαι;",
-        "date": "Ημερομηνία που σε εξυπηρετεί",
-        "timeWindow": "Ζώνη ώρας",
         "name": "Ονοματεπώνυμο",
         "phone": "Τηλέφωνο επικοινωνίας",
-        "email": "Email (προαιρετικά)",
-        "area": "Περιοχή",
-        "notes": "Λίγες λεπτομέρειες για τη δουλειά"
-      },
-      "timeWindows": {
-        "morning": "Πρωί (09:00-12:00)",
-        "noon": "Μεσημέρι (12:00-15:00)",
-        "afternoon": "Απόγευμα (15:00-18:00)",
-        "evening": "Βράδυ (18:00-21:00)"
+        "email": "Email",
+        "preferredDate": "Προτιμώμενη ημερομηνία/ώρα",
+        "message": "Περιγραφή εργασίας"
       },
       "buttons": {
-        "back": "Πίσω",
-        "next": "Συνέχεια",
         "submit": "Αποστολή αιτήματος",
         "retry": "Δοκίμασε ξανά"
       },
       "validation": {
         "required": "Συμπλήρωσε αυτό το πεδίο.",
         "invalidPhone": "Βάλε έγκυρο κινητό ή σταθερό.",
-        "invalidEmail": "Το email δεν είναι σε σωστή μορφή.",
-        "pastDate": "Επίλεξε ημερομηνία από σήμερα και μετά.",
-        "notesTooLong": "Οι λεπτομέρειες πρέπει να είναι έως 600 χαρακτήρες."
+        "invalidEmail": "Το email δεν είναι σε σωστή μορφή."
       },
       "messages": {
         "pending": "Το αίτημά σου καταχωρήθηκε και είναι σε αναμονή επιβεβαίωσης.",
-        "approved": "Το ραντεβού σου επιβεβαιώθηκε. Θα λάβεις και ενημέρωση στο κινητό σου.",
-        "rejected": "Το συγκεκριμένο slot δεν είναι διαθέσιμο. Διάλεξε άλλη ώρα για να συνεχίσουμε.",
-        "needsInfo": "Χρειαζόμαστε μια μικρή διευκρίνιση πριν οριστικοποιηθεί το ραντεβού.",
-        "expired": "Το αίτημα έληξε λόγω μη απάντησης. Μπορείς να στείλεις νέο σε λίγα δευτερόλεπτα.",
+        "approved": "Το ραντεβού σου επιβεβαιώθηκε.",
+        "rejected": "Το συγκεκριμένο αίτημα δεν προχώρησε. Στείλε νέο με άλλη διαθεσιμότητα.",
         "genericError": "Κάτι πήγε στραβά. Το ξαναδοκιμάζουμε;"
       },
       "trust": {
         "privacyHint": "Τα στοιχεία σου χρησιμοποιούνται μόνο για την ολοκλήρωση του ραντεβού.",
-        "noChargeHint": "Δεν υπάρχει χρέωση για την υποβολή αιτήματος.",
-        "responseSlaHint": "Συνήθως απαντάμε εντός 1 εργάσιμης ώρας."
+        "noChargeHint": "Δεν υπάρχει χρέωση για την υποβολή αιτήματος."
       }
     },
     "moderationAdmin": {
       "queueTitle": "Αιτήματα booking",
-      "queueSubtitle": "Έλεγχος στοιχείων και διαθεσιμότητας πριν την τελική επιβεβαίωση.",
+      "queueSubtitle": "Έλεγχος νέων αιτημάτων πριν την τελική επιβεβαίωση.",
       "columns": {
-        "reference": "Κωδικός",
         "submittedAt": "Υποβλήθηκε",
         "customer": "Πελάτης",
-        "service": "Υπηρεσία",
-        "requestedSlot": "Ζητούμενο slot",
-        "status": "Κατάσταση",
-        "risk": "Ρίσκο",
+        "requestedSlot": "Προτιμώμενη ημερομηνία",
         "actions": "Ενέργειες"
       },
       "actions": {
         "approve": "Έγκριση",
-        "reject": "Απόρριψη",
-        "needsInfo": "Ζήτα διευκρίνιση",
-        "expire": "Σήμανση ως ληγμένο"
-      },
-      "quickReasons": {
-        "slot_unavailable": "Το συγκεκριμένο slot καλύφθηκε.",
-        "outside_service_area": "Η διεύθυνση είναι εκτός περιοχής εξυπηρέτησης.",
-        "duplicate_request": "Υπάρχει ήδη ενεργό ίδιο αίτημα.",
-        "insufficient_details": "Λείπουν βασικές πληροφορίες για σωστή εκτίμηση.",
-        "high_risk_pattern": "Μοτίβο υψηλού ρίσκου — απαιτείται δεύτερος έλεγχος."
+        "reject": "Απόρριψη"
       },
       "stateNotes": {
-        "approved": "Επιβεβαιώθηκε και προωθήθηκε σε επαγγελματία.",
-        "rejected": "Δεν προχώρησε. Ο πελάτης ενημερώθηκε με σαφή αιτία.",
-        "needs_info": "Στάλθηκε αίτημα για διευκρινίσεις στον πελάτη.",
-        "expired": "Έκλεισε αυτόματα χωρίς ανταπόκριση εντός SLA."
+        "approved": "Επιβεβαιώθηκε.",
+        "rejected": "Δεν προχώρησε."
       }
     }
   },
   "notificationTemplates": {
     "customer": {
-      "pendingSubject": "Λάβαμε το αίτημά σου στο Greek Handy",
-      "approvedSubject": "Το ραντεβού σου επιβεβαιώθηκε",
-      "rejectedSubject": "Ενημέρωση για το αίτημά σου",
-      "needsInfoSubject": "Χρειαζόμαστε μια διευκρίνιση για το ραντεβού"
+      "pendingSubject": "Λάβαμε το αίτημά σου στο Greek Handy"
     },
     "professional": {
-      "newRequestSubject": "Νέο αίτημα booking",
-      "approvedForYouSubject": "Νέο επιβεβαιωμένο ραντεβού",
-      "customerNeedsInfoSubject": "Εκκρεμεί διευκρίνιση από πελάτη"
+      "newRequestSubject": "Νέο αίτημα booking"
     }
   },
   "acceptanceCriteria": [
-    "Ο χρήστης ολοκληρώνει αίτημα booking σε έως 4 βήματα",
-    "Οι δημόσιες καταστάσεις pending/approved/rejected/needs_info/expired εμφανίζονται με ελληνικό copy",
-    "Υπάρχει admin queue με labels, quick reasons και actions σε ελληνικά",
-    "Το σύστημα παράγει σαφή μηνύματα επιβεβαίωσης/απόρριψης χωρίς τεχνικό jargon",
-    "Τα validation μηνύματα είναι σύντομα και κατανοητά σε κινητό"
+    "Ο χρήστης υποβάλλει booking request από τη σελίδα επαγγελματία με: ονοματεπώνυμο, τηλέφωνο, email, περιγραφή (και προαιρετικά προτιμώμενη ημερομηνία).",
+    "Σε έγκυρη υποβολή αποθηκεύεται εγγραφή με status \"pending\" στο data/booking-submissions.ndjson και εμφανίζεται μήνυμα επιτυχίας.",
+    "Η σελίδα /professionals/bookings-moderation εμφανίζει μόνο εκκρεμή αιτήματα (χωρίς moderation action).",
+    "Ο moderator μπορεί να εκτελέσει μόνο approve ή reject και η ενέργεια καταγράφεται στο data/booking-moderation-actions.ndjson.",
+    "Μετά από moderation action, το αίτημα δεν εμφανίζεται πλέον ως εκκρεμές στο moderation queue."
   ]
 }

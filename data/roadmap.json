@@ -35,7 +35,7 @@
     {
       "id": "booking-system",
       "name": "Booking System",
-      "description": "MVP slice defined: booking request flow (service -> date/time window -> submit), server-side constraints, moderation safeguards (pending/approved/rejected/flagged), and acceptance criteria captured in data/booking-system-mvp.json.",
+      "description": "Μικρότερο shippable MVP: end-to-end booking request flow από profile page (submit -> pending) με internal moderation queue και αποφάσεις approve/reject που αφαιρούν το request από τα pending.",
       "priority": 5,
       "status": "in-progress",
       "estimatedComplexity": "high"
