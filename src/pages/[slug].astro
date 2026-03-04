@@ -45,6 +45,23 @@ const parentCategory = isJobPage ? categories.find((c: any) => c.id === category
 // Find sub-jobs for category pages
 const subJobs = !isJobPage ? Object.values(allContent).filter((p: any) => p.categoryId === category.id || p.categorySlug === category.slug) : [];
 
+const highVolumeFilterSlugs = new Set(['ydravlikoi']);
+const enableAdvancedCategoryUX = !isJobPage && (highVolumeFilterSlugs.has(category.slug) || subJobs.length >= 18);
+const cityTokens = ['athina', 'thessaloniki', 'patra', 'irakleio', 'larisa', 'volos', 'ioannina'];
+const urgencyKeywords = ['amesi', 'ektakti', 'epeigon'];
+const initialVisibleSubJobs = 12;
+
+const classifyBudget = (priceRange: string | undefined) => {
+  const value = (priceRange || '').toLocaleLowerCase('el-GR');
+  if (!value) return 'unknown';
+  if (value.includes('€200') || value.includes('€300') || value.includes('€400') || value.includes('€500') || value.includes('€1000')) return 'high';
+  if (value.includes('€80') || value.includes('€100') || value.includes('€120') || value.includes('€150')) return 'medium';
+  return 'low';
+};
+
+const getJobCity = (job: any) => cityTokens.find((token) => job.slug?.endsWith(`-${token}`)) || 'all';
+const isUrgentJob = (job: any) => urgencyKeywords.some((kw) => (job.slug || '').includes(kw) || (job.nameGr || '').toLocaleLowerCase('el-GR').includes(kw));
+
 // Resolve related category names
 const relatedCategories = (category.relatedCategories || []).map((slug: string) => ({
   slug,
@@ -148,20 +165,73 @@ const faqSchema = category.faq?.length ? {
       <section class="bg-slate-50 px-4 py-12 md:py-16">
         <div class="mx-auto max-w-5xl">
           <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Υπηρεσίες σε αυτή την κατηγορία</h2>
-          {subJobs.length > 0 ? (
-            <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {subJobs.map((job: any) => (
-                <a href={`/${job.slug}`} class="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md">
-                  <h3 class="font-semibold text-slate-900">{job.nameGr}</h3>
-                  {job.summary?.priceRangeEUR && (
-                    <p class="mt-1 text-sm text-blue-700">{job.summary.priceRangeEUR}</p>
-                  )}
-                  {job.summary?.typicalDuration && (
-                    <p class="mt-1 text-sm text-slate-500">{job.summary.typicalDuration}</p>
-                  )}
-                </a>
-              ))}
+
+          {enableAdvancedCategoryUX && subJobs.length > 0 && (
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Φίλτρα κατηγορίας</p>
+              <div class="mt-3 grid gap-3 sm:grid-cols-3">
+                <select data-filter-urgency class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                  <option value="all">Όλες οι προτεραιότητες</option>
+                  <option value="urgent">Επείγον</option>
+                  <option value="standard">Προγραμματισμένο</option>
+                </select>
+                <select data-filter-city class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                  <option value="all">Όλες οι πόλεις</option>
+                  <option value="athina">Αθήνα</option>
+                  <option value="thessaloniki">Θεσσαλονίκη</option>
+                  <option value="patra">Πάτρα</option>
+                  <option value="irakleio">Ηράκλειο</option>
+                  <option value="larisa">Λάρισα</option>
+                  <option value="volos">Βόλος</option>
+                  <option value="ioannina">Ιωάννινα</option>
+                </select>
+                <select data-filter-budget class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                  <option value="all">Όλα τα budget</option>
+                  <option value="low">Οικονομικό</option>
+                  <option value="medium">Μεσαίο</option>
+                  <option value="high">Αυξημένο</option>
+                </select>
+              </div>
             </div>
+          )}
+
+          {subJobs.length > 0 ? (
+            <>
+              <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-subjobs-grid>
+                {subJobs.map((job: any, index: number) => (
+                  <a
+                    href={`/${job.slug}`}
+                    data-subjob-card
+                    data-visible-initial={index < initialVisibleSubJobs ? '1' : '0'}
+                    data-urgency={isUrgentJob(job) ? 'urgent' : 'standard'}
+                    data-city={getJobCity(job)}
+                    data-budget={classifyBudget(job.summary?.priceRangeEUR)}
+                    class={`block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md ${index >= initialVisibleSubJobs ? 'hidden' : ''}`}
+                  >
+                    <h3 class="font-semibold text-slate-900">{job.nameGr}</h3>
+                    {job.summary?.priceRangeEUR && (
+                      <p class="mt-1 text-sm text-blue-700">{job.summary.priceRangeEUR}</p>
+                    )}
+                    {job.summary?.typicalDuration && (
+                      <p class="mt-1 text-sm text-slate-500">{job.summary.typicalDuration}</p>
+                    )}
+                  </a>
+                ))}
+              </div>
+
+              {subJobs.length > initialVisibleSubJobs && (
+                <div class="mt-4 flex items-center justify-between gap-3">
+                  <p class="text-sm text-slate-600" data-subjobs-count>Εμφανίζονται {initialVisibleSubJobs} από {subJobs.length} υπηρεσίες.</p>
+                  <button type="button" data-load-more-subjobs class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
+                </div>
+              )}
+
+              <nav class="sr-only" aria-label="Πλήρης κατάλογος υπηρεσιών για SEO crawlability">
+                <ul>
+                  {subJobs.map((job: any) => (<li><a href={`/${job.slug}`}>{job.nameGr}</a></li>))}
+                </ul>
+              </nav>
+            </>
           ) : (
             <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 text-slate-700">
               <p class="font-semibold text-slate-900">Δεν υπάρχουν ακόμα επιμέρους υπηρεσίες.</p>
@@ -171,6 +241,67 @@ const faqSchema = category.faq?.length ? {
         </div>
       </section>
     )}
+
+    <script is:inline>
+      (() => {
+        const cards = Array.from(document.querySelectorAll('[data-subjob-card]'));
+        if (!cards.length) return;
+
+        const urgency = document.querySelector('[data-filter-urgency]');
+        const city = document.querySelector('[data-filter-city]');
+        const budget = document.querySelector('[data-filter-budget]');
+        const loadMore = document.querySelector('[data-load-more-subjobs]');
+        const counter = document.querySelector('[data-subjobs-count]');
+        let visibleLimit = cards.filter((c) => c.getAttribute('data-visible-initial') === '1').length || 12;
+
+        const applyFilters = () => {
+          const urgencyValue = urgency instanceof HTMLSelectElement ? urgency.value : 'all';
+          const cityValue = city instanceof HTMLSelectElement ? city.value : 'all';
+          const budgetValue = budget instanceof HTMLSelectElement ? budget.value : 'all';
+
+          let matched = 0;
+          cards.forEach((card) => {
+            const matches = (urgencyValue === 'all' || card.getAttribute('data-urgency') === urgencyValue)
+              && (cityValue === 'all' || card.getAttribute('data-city') === cityValue)
+              && (budgetValue === 'all' || card.getAttribute('data-budget') === budgetValue);
+
+            if (!matches) {
+              card.classList.add('hidden');
+              return;
+            }
+
+            matched += 1;
+            const shouldShow = matched <= visibleLimit;
+            card.classList.toggle('hidden', !shouldShow);
+          });
+
+          if (counter instanceof HTMLElement) {
+            counter.textContent = `Εμφανίζονται ${Math.min(matched, visibleLimit)} από ${matched} υπηρεσίες.`;
+          }
+          if (loadMore instanceof HTMLButtonElement) {
+            loadMore.classList.toggle('hidden', matched <= visibleLimit);
+          }
+        };
+
+        [urgency, city, budget].forEach((el) => {
+          if (el instanceof HTMLSelectElement) {
+            el.addEventListener('change', () => {
+              visibleLimit = 12;
+              applyFilters();
+            });
+          }
+        });
+
+        if (loadMore instanceof HTMLButtonElement) {
+          loadMore.addEventListener('click', () => {
+            visibleLimit += 12;
+            applyFilters();
+          });
+        }
+
+        applyFilters();
+      })();
+    </script>
 
     <!-- Related Categories -->
     <section class="bg-slate-50 px-4 py-12 md:py-16">
