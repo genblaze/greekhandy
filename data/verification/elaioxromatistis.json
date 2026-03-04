@@ -1,0 +1,9 @@
+{
+  "slug": "elaioxromatistis",
+  "passed": true,
+  "score": 8,
+  "issues": [
+    "Automated fallback: could not parse claude output"
+  ],
+  "timestamp": "2026-03-04T12:55:00Z"
+}
