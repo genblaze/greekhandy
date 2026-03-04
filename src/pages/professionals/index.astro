@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { assertPublishedProfilesHaveValidImages, getProfessionalFallbackImage, resolveProfessionalImageSrc } from '../../lib/professional-images';
 
 const profilesFile = await import('../../../data/professionals.json');
 const profiles = ((profilesFile.default ?? profilesFile) as Array<{
@@ -16,6 +17,9 @@ const profiles = ((profilesFile.default ?? profilesFile) as Array<{
   approved?: boolean;
   published?: boolean;
 }>).filter((profile) => profile.approved === true && profile.published === true);
+
+await assertPublishedProfilesHaveValidImages(profiles);
+const fallbackProfileImage = getProfessionalFallbackImage();
 ---
 
 <Layout
@@ -32,7 +36,15 @@ const profiles = ((profilesFile.default ?? profilesFile) as Array<{
     <section class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
       {profiles.map(profile => (
         <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-          {profile.profilePhotoUrl && <img src={profile.profilePhotoUrl} alt={`Φωτογραφία ${profile.name}`} class="mb-4 h-44 w-full rounded-lg object-cover" loading="lazy" />}
+          <div class="mb-4 overflow-hidden rounded-lg border border-slate-200 bg-slate-100 aspect-[4/3]">
+            <img
+              src={resolveProfessionalImageSrc(profile.profilePhotoUrl)}
+              alt={`Φωτογραφία ${profile.name}`}
+              class="h-full w-full object-cover"
+              loading="lazy"
+              onerror={`this.onerror=null;this.src='${fallbackProfileImage}'`}
+            />
+          </div>
           <p class="text-sm font-semibold text-blue-700">{profile.profession}</p>
           <h2 class="mt-1 text-xl font-bold text-gray-900">{profile.name}</h2>
           <p class="mt-1 text-sm text-gray-600">{profile.city} • {profile.experienceYears} χρόνια εμπειρίας</p>

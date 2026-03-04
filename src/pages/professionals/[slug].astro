@@ -24,13 +24,16 @@ const profiles = (profilesFile.default ?? profilesFile) as Array<{
   published?: boolean;
 }>;
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
   const profilesFile = Object.values(import.meta.glob('../../../data/professionals.json', { eager: true }))[0] as any;
-  const profiles = (profilesFile.default ?? profilesFile) as Array<{ slug: string; approved?: boolean; published?: boolean }>;
+  const profiles = (profilesFile.default ?? profilesFile) as Array<{ slug: string; approved?: boolean; published?: boolean; profilePhotoUrl?: string }>;
 
-  return profiles
-    .filter((profile) => profile.approved === true && profile.published === true)
-    .map((profile) => ({
+  const publishedProfiles = profiles
+    .filter((profile) => profile.approved === true && profile.published === true);
+
+  await assertPublishedProfilesHaveValidImages(publishedProfiles);
+
+  return publishedProfiles.map((profile) => ({
     params: { slug: profile.slug },
     props: { profile }
   }));
@@ -46,6 +49,7 @@ interface ApprovedReview {
 }
 
 const { profile } = Astro.props as { profile: (typeof profiles)[number] };
+const fallbackProfileImage = getProfessionalFallbackImage();
 const reviewBadgeCopy = (reviewBadgeCopyFile.default ?? reviewBadgeCopyFile) as any;
 const verifiedBadgeLabel = reviewBadgeCopy?.publicBadge?.defaultLabel || 'Επιβεβαιωμένη αξιολόγηση';
 const verifiedBadgeTooltip = reviewBadgeCopy?.publicBadge?.tooltip || 'Η αξιολόγηση συνδέεται με πραγματικό αίτημα υπηρεσίας μέσω Greek Handy.';
@@ -162,7 +166,14 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
       <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">{profile.name}</h1>
       <p class="mt-2 text-slate-600">{profile.city} • {profile.experienceYears} χρόνια εμπειρίας</p>
 
-      {profile.profilePhotoUrl && <img src={profile.profilePhotoUrl} alt={`Φωτογραφία ${profile.name}`} class="mt-6 h-72 w-full rounded-xl object-cover" />}
+      <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 aspect-[16/9]">
+        <img
+          src={resolveProfessionalImageSrc(profile.profilePhotoUrl)}
+          alt={`Φωτογραφία ${profile.name}`}
+          class="h-full w-full object-cover"
+          onerror={`this.onerror=null;this.src='${fallbackProfileImage}'`}
+        />
+      </div>
 
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio}</p>
 
