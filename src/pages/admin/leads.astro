@@ -277,7 +277,7 @@ const hasLeads = directoryData.leads.length > 0;
                   <p class="rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-xs text-sky-900">Today: <strong data-followup-today>0</strong></p>
                   <p class="rounded-md border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-xs text-indigo-900">This week: <strong data-followup-week>0</strong></p>
                 </div>
-                <p class="mt-3 text-[11px] text-slate-500" aria-live="polite">Shortcuts: Shift+A επιλογή ορατών, Alt+1/2/3 bulk segment, Alt+Shift+H/W/C επιλογή ορατών segment, Alt+Z αναίρεση outreach.</p>
+                <p class="mt-3 text-[11px] text-slate-500" aria-live="polite">Shortcuts: Shift+A επιλογή ορατών, Alt+1/2/3 bulk segment, Alt+Shift+H/W/C επιλογή ορατών segment, Alt+D focus follow-up, Alt+Z αναίρεση outreach, Shift+? βοήθεια.</p>
                 <div class="mt-2 flex flex-wrap gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Sortable columns">
                   <button type="button" data-sort-col="name" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Όνομα</button>
                   <button type="button" data-sort-col="category" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Κατηγορία</button>
@@ -435,6 +435,7 @@ const hasLeads = directoryData.leads.length > 0;
                   <div>
                     <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
                     <p data-selection-next-hint id="leads-selection-next-hint" class="mt-1 text-xs text-slate-600" aria-live="polite">Επόμενο βήμα: επιλέξτε μαζική ενέργεια για τα επιλεγμένα leads (Alt+Shift+H/W/C segment selection, Alt+Z undo, Shift+? βοήθεια).</p>
+                    <p data-selection-last-action class="mt-1 text-[11px] text-slate-500" aria-live="polite">Τελευταία ενέργεια: —</p>
                   </div>
                   <div class="flex flex-wrap items-center gap-2">
                     <button type="button" data-selection-dock-contacted="true" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Επικοινωνήθηκε</button>
@@ -549,6 +550,7 @@ const hasLeads = directoryData.leads.length > 0;
         const selectionDock = root.querySelector('[data-selection-dock]');
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
         const selectionNextHint = root.querySelector('[data-selection-next-hint]');
+        const selectionLastAction = root.querySelector('[data-selection-last-action]');
         const selectionDockButtons = Array.from(root.querySelectorAll('[data-selection-dock-contacted]'));
         const selectionDockSegmentButtons = Array.from(root.querySelectorAll('[data-selection-dock-segment]'));
         const selectionDockFollowupAt = root.querySelector('[data-selection-dock-followup-at]');
@@ -620,6 +622,12 @@ const hasLeads = directoryData.leads.length > 0;
         const announceState = (message) => {
           if (stateLiveRegion instanceof HTMLElement) stateLiveRegion.textContent = message;
           else announcePolite(message);
+        };
+
+        const setLastActionNote = (message) => {
+          if (selectionLastAction instanceof HTMLElement) {
+            selectionLastAction.textContent = `Τελευταία ενέργεια: ${message}`;
+          }
         };
 
         const toMaybeTimestamp = (value) => {
@@ -1913,6 +1921,7 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ενημερώθηκαν ${changed} leads σε ${nextLabel}. Διαθέσιμη αναίρεση.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk ενέργεια.';
           }
+          if (changed > 0) setLastActionNote(`Bulk outreach → ${nextLabel} (${changed} leads)`);
           renderSelectionState();
           scheduleRun();
         };
@@ -1937,6 +1946,7 @@ const hasLeads = directoryData.leads.length > 0;
           const restoredCount = lastBulkOutreachSnapshot.changed;
           lastBulkOutreachSnapshot = null;
           if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Ολοκληρώθηκε αναίρεση outreach για ${restoredCount} leads.`;
+          setLastActionNote(`Undo bulk outreach (${restoredCount} leads)`);
           renderSelectionState();
           scheduleRun();
         };
@@ -1964,6 +1974,7 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ενημερώθηκε segment για ${changed} leads.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk segment.';
           }
+          if (changed > 0) setLastActionNote(`Bulk segment → ${segmentValue} (${changed} leads)`);
           scheduleRun();
         };
 
@@ -1989,6 +2000,7 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ορίστηκε follow-up για ${changed} leads.`
               : 'Δεν υπάρχει επιλεγμένο lead για follow-up.';
           }
+          if (changed > 0) setLastActionNote(`Bulk follow-up date (${changed} leads)`);
           scheduleRun();
         };
 
@@ -2123,9 +2135,15 @@ const hasLeads = directoryData.leads.length > 0;
             event.preventDefault();
             undoBulkOutreach();
           }
+          if (event.altKey && event.key === 'Backspace') {
+            event.preventDefault();
+            selectedLeadIds.clear();
+            renderSelectionState();
+            announcePolite('Καθαρίστηκε η επιλογή μέσω συντόμευσης πληκτρολογίου.');
+          }
           if (event.shiftKey && event.key === '?') {
             event.preventDefault();
-            window.alert('Leads shortcuts:\n/ αναζήτηση\nShift+A επιλογή ορατών\nShift+U καθαρισμός επιλογής\nAlt+1/2/3 bulk segment\nAlt+Shift+H/W/C επιλογή ορατών ανά segment\nAlt+D focus follow-up date\nAlt+Z undo τελευταίου bulk outreach\nJ/K πλοήγηση καρτών\nC/N/H/W/L/S triage στο detail drawer');
+            window.alert('Leads shortcuts:\n/ αναζήτηση\nShift+A επιλογή ορατών\nShift+U καθαρισμός επιλογής\nAlt+Backspace καθαρισμός επιλογής\nAlt+1/2/3 bulk segment\nAlt+Shift+H/W/C επιλογή ορατών ανά segment\nAlt+D focus follow-up date\nAlt+Z undo τελευταίου bulk outreach\nJ/K πλοήγηση καρτών\nC/N/H/W/L/S triage στο detail drawer');
           }
 
           const activeEntry = getActiveDetailEntry();
