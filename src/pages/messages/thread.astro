@@ -438,6 +438,11 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       if (textarea instanceof HTMLTextAreaElement) {
         textarea.addEventListener('input', syncComposer);
         textarea.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            if (error) error.classList.add('hidden');
+            if (live) live.textContent = '';
+            return;
+          }
           if (event.key !== 'Enter' || (!event.ctrlKey && !event.metaKey)) return;
           event.preventDefault();
           const length = textarea.value.trim().length;
@@ -452,6 +457,7 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
           if (live) live.textContent = 'Αποστολή μηνύματος...';
           form.requestSubmit(submitButton);
         });
+        textarea.addEventListener('blur', syncComposer);
         syncComposer();
       }
 
