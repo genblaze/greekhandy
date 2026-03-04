@@ -1,0 +1,20 @@
+{
+  "id": "emergency-power-outage-home-load-priority-neos-pyrgos",
+  "slug": "epigousa-rythmisi-proteraiotitas-fortion-se-diakopi-neos-pyrgos",
+  "nameGr": "Επείγουσα Ρύθμιση Προτεραιότητας Φορτίων σε Διακοπή στον Νέο Πύργο",
+  "nameEn": "Emergency Power-Outage Home Load Priority Setup in Νέος Πύργος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα ρύθμιση προτεραιότητας φορτίων στον Νέο Πύργο για ασφαλή λειτουργία κρίσιμων συσκευών σε διακοπή ρεύματος. SEO intent: καλύπτει «διακοπή ρεύματος backup σπίτι Νέος Πύργος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-320€",
+  "demand": "high",
+  "keywords": [
+    "διακοπή ρεύματος backup σπίτι Νέος Πύργος",
+    "προτεραιότητα φορτίων κατοικίας",
+    "ηλεκτρολόγος για backup κυκλώματα",
+    "ρύθμιση πίνακα σε blackout",
+    "ασφαλής τροφοδοσία κρίσιμων συσκευών"
+  ],
+  "status": "researched"
+}

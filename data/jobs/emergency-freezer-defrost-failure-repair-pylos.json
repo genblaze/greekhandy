@@ -1,0 +1,20 @@
+{
+  "id": "emergency-freezer-defrost-failure-repair-pylos",
+  "slug": "epigousa-episkevi-katapsykti-apopsyksi-vlavi-pylos",
+  "nameGr": "Επείγουσα Επισκευή Καταψύκτη (Βλάβη Απόψυξης) στην Πύλο",
+  "nameEn": "Emergency Freezer Defrost Failure Repair in Πύλος",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή καταψύκτη στην Πύλο όταν αποτυγχάνει η απόψυξη για αποφυγή αλλοίωσης τροφίμων. SEO intent: στοχεύει «καταψύκτης δεν παγώνει Πύλος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "καταψύκτης δεν παγώνει Πύλος",
+    "τεχνικός καταψύκτη επείγον",
+    "βλάβη απόψυξης καταψύκτη",
+    "service freezer άμεσα",
+    "διάσωση τροφίμων ψύξη"
+  ],
+  "status": "researched"
+}

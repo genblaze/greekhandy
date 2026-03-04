@@ -1,0 +1,20 @@
+{
+  "id": "emergency-freezer-defrost-failure-repair-neos-pyrgos",
+  "slug": "epigousa-episkevi-katapsykti-apopsyksi-vlavi-neos-pyrgos",
+  "nameGr": "Επείγουσα Επισκευή Καταψύκτη (Βλάβη Απόψυξης) στον Νέο Πύργο",
+  "nameEn": "Emergency Freezer Defrost Failure Repair in Νέος Πύργος",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή καταψύκτη στον Νέο Πύργο όταν αποτυγχάνει η απόψυξη για αποφυγή αλλοίωσης τροφίμων. SEO intent: στοχεύει «καταψύκτης δεν παγώνει Νέος Πύργος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "καταψύκτης δεν παγώνει Νέος Πύργος",
+    "τεχνικός καταψύκτη επείγον",
+    "βλάβη απόψυξης καταψύκτη",
+    "service freezer άμεσα",
+    "διάσωση τροφίμων ψύξη"
+  ],
+  "status": "researched"
+}

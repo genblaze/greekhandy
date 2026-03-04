@@ -1,0 +1,20 @@
+{
+  "id": "emergency-freezer-defrost-failure-repair-ioannina-suburb",
+  "slug": "epigousa-episkevi-katapsykti-apopsyksi-vlavi-ioannina-suburb",
+  "nameGr": "Επείγουσα Επισκευή Καταψύκτη (Βλάβη Απόψυξης) στα περίχωρα Ιωαννίνων",
+  "nameEn": "Emergency Freezer Defrost Failure Repair in Ιωάννινα",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή καταψύκτη στα περίχωρα Ιωαννίνων όταν αποτυγχάνει η απόψυξη για αποφυγή αλλοίωσης τροφίμων. SEO intent: στοχεύει «καταψύκτης δεν παγώνει Ιωάννινα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "καταψύκτης δεν παγώνει Ιωάννινα",
+    "τεχνικός καταψύκτη επείγον",
+    "βλάβη απόψυξης καταψύκτη",
+    "service freezer άμεσα",
+    "διάσωση τροφίμων ψύξη"
+  ],
+  "status": "researched"
+}

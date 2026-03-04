@@ -1,0 +1,20 @@
+{
+  "id": "emergency-sewage-backflow-response-ioannina-suburb",
+  "slug": "epigousa-antimetopisi-epistrofis-apoxeteusis-ioannina-suburb",
+  "nameGr": "Επείγουσα Αντιμετώπιση Επιστροφής Αποχέτευσης στα περίχωρα Ιωαννίνων",
+  "nameEn": "Emergency Sewage Backflow Response in Ιωάννινα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα αντιμετώπιση επιστροφής αποχέτευσης στα περίχωρα Ιωαννίνων με άμεση αποσυμφόρηση και υγειονομική αποκατάσταση. SEO intent: καλύπτει high-intent αναζητήσεις «επιστροφή λυμάτων Ιωάννινα».",
+  "typicalDuration": "20-120 λεπτά",
+  "priceRangeEUR": "70-280€",
+  "demand": "high",
+  "keywords": [
+    "επιστροφή λυμάτων Ιωάννινα",
+    "αποχέτευση γυρίζει νερά Ιωάννινα",
+    "υδραυλικός επείγον αποχέτευση",
+    "βούλωμα κεντρικής αποχέτευσης",
+    "έκτακτη απολύμανση αποχέτευσης"
+  ],
+  "status": "researched"
+}

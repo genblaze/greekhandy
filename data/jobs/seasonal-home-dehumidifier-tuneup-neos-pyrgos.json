@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-dehumidifier-tuneup-neos-pyrgos",
+  "slug": "epochiako-service-afygrantira-katoikias-neos-pyrgos",
+  "nameGr": "Εποχικό Service Αφυγραντήρα Κατοικίας στον Νέο Πύργο",
+  "nameEn": "Seasonal Home Dehumidifier Tune-up in Νέος Πύργος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό service αφυγραντήρα στον Νέο Πύργο με καθαρισμό, έλεγχο αισθητήρων και βελτιστοποίηση λειτουργίας. SEO intent: στοχεύει «service αφυγραντήρα Νέος Πύργος».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "service αφυγραντήρα Νέος Πύργος",
+    "αφυγραντήρας δεν δουλεύει σωστά",
+    "τεχνικός αφυγραντήρα σπίτι",
+    "συντήρηση υγρασίας κατοικίας",
+    "καθαρισμός φίλτρων αφυγραντήρα"
+  ],
+  "status": "researched"
+}

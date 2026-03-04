@@ -1,0 +1,20 @@
+{
+  "id": "emergency-power-outage-home-load-priority-pylos",
+  "slug": "epigousa-rythmisi-proteraiotitas-fortion-se-diakopi-pylos",
+  "nameGr": "Επείγουσα Ρύθμιση Προτεραιότητας Φορτίων σε Διακοπή στην Πύλο",
+  "nameEn": "Emergency Power-Outage Home Load Priority Setup in Πύλος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα ρύθμιση προτεραιότητας φορτίων στην Πύλο για ασφαλή λειτουργία κρίσιμων συσκευών σε διακοπή ρεύματος. SEO intent: καλύπτει «διακοπή ρεύματος backup σπίτι Πύλος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-320€",
+  "demand": "high",
+  "keywords": [
+    "διακοπή ρεύματος backup σπίτι Πύλος",
+    "προτεραιότητα φορτίων κατοικίας",
+    "ηλεκτρολόγος για backup κυκλώματα",
+    "ρύθμιση πίνακα σε blackout",
+    "ασφαλής τροφοδοσία κρίσιμων συσκευών"
+  ],
+  "status": "researched"
+}

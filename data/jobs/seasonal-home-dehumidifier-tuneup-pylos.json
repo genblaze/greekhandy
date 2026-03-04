@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-dehumidifier-tuneup-pylos",
+  "slug": "epochiako-service-afygrantira-katoikias-pylos",
+  "nameGr": "Εποχικό Service Αφυγραντήρα Κατοικίας στην Πύλο",
+  "nameEn": "Seasonal Home Dehumidifier Tune-up in Πύλος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό service αφυγραντήρα στην Πύλο με καθαρισμό, έλεγχο αισθητήρων και βελτιστοποίηση λειτουργίας. SEO intent: στοχεύει «service αφυγραντήρα Πύλος».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "service αφυγραντήρα Πύλος",
+    "αφυγραντήρας δεν δουλεύει σωστά",
+    "τεχνικός αφυγραντήρα σπίτι",
+    "συντήρηση υγρασίας κατοικίας",
+    "καθαρισμός φίλτρων αφυγραντήρα"
+  ],
+  "status": "researched"
+}
