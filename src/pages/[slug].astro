@@ -48,7 +48,7 @@ const highVolumeFilterSlugs = new Set(['ydravlikoi', 'ilektrologoi']);
 const enableAdvancedCategoryUX = !isJobPage && (highVolumeFilterSlugs.has(category.slug) || subJobs.length >= 18);
 const cityTokens = ['athina', 'thessaloniki', 'patra', 'irakleio', 'larisa', 'volos', 'ioannina'];
 const urgencyKeywords = ['amesi', 'ektakti', 'epeigon'];
-const initialVisibleSubJobs = 12;
+const initialVisibleSubJobs = enableAdvancedCategoryUX ? 9 : 12;
 
 const classifyBudget = (priceRange: string | undefined) => {
   const value = (priceRange || '').toLocaleLowerCase('el-GR');
@@ -248,6 +248,7 @@ const faqSchema = category.faq?.length ? {
                 </select>
                 <button type="button" data-filter-reset aria-controls="subjobs-grid" class="rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-white">Καθαρισμός</button>
               </div>
+              <p data-subjobs-active-summary class="mt-2 text-xs text-slate-500" aria-live="polite">Χωρίς ενεργά φίλτρα.</p>
             </div>
           )}
 
@@ -293,6 +294,9 @@ const faqSchema = category.faq?.length ? {
                     {job.summary?.typicalDuration && (
                       <p class="mt-1 text-sm text-slate-500">{job.summary.typicalDuration}</p>
                     )}
+                    <p class="mt-2 text-xs font-medium text-slate-600">
+                      Διαθεσιμότητα: {classifyAvailability(job) === 'asap' ? 'Άμεσα' : classifyAvailability(job) === 'this-week' ? 'Μέσα στην εβδομάδα' : 'Ευέλικτο ραντεβού'}
+                    </p>
                   </a>
                 ))}
               </div>
@@ -300,12 +304,16 @@ const faqSchema = category.faq?.length ? {
               {subJobs.length > initialVisibleSubJobs && (
                 <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
                   <p class="text-sm text-slate-600" data-subjobs-count aria-live="polite">Εμφανίζονται {initialVisibleSubJobs} από {subJobs.length} υπηρεσίες.</p>
+                  <p class="sr-only" data-subjobs-a11y-summary aria-live="polite" aria-atomic="true"></p>
                   <div class="flex items-center gap-2">
-                    <button type="button" data-page-prev class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Προηγούμενα</button>
-                    <button type="button" data-page-next class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Επόμενα</button>
+                    <button type="button" data-page-prev aria-label="Προβολή προηγούμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Προηγούμενα</button>
+                    <button type="button" data-page-next aria-label="Προβολή επόμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Επόμενα</button>
                     <button type="button" data-load-more-subjobs class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
                   </div>
                 </div>
+                <noscript>
+                  <p class="mt-2 text-sm text-slate-600">Για πλήρη εξερεύνηση όλων των υπηρεσιών χωρίς φίλτρα JavaScript, χρησιμοποιήστε τα links της σελίδας κατηγορίας και τις επιμέρους υπηρεσίες παρακάτω.</p>
+                </noscript>
               )}
 
               <nav class="sr-only" aria-label="Πλήρης κατάλογος υπηρεσιών για SEO crawlability">
@@ -340,7 +348,9 @@ const faqSchema = category.faq?.length ? {
         const pagePrev = document.querySelector('[data-page-prev]');
         const pageNext = document.querySelector('[data-page-next]');
         const counter = document.querySelector('[data-subjobs-count]');
+        const a11ySummary = document.querySelector('[data-subjobs-a11y-summary]');
         const filterState = document.querySelector('[data-subjobs-state]');
+        const activeFiltersSummary = document.querySelector('[data-subjobs-active-summary]');
         const loadingState = document.querySelector('[data-subjobs-loading]');
         const emptyState = document.querySelector('[data-subjobs-empty]');
         const errorState = document.querySelector('[data-subjobs-error]');
@@ -381,6 +391,23 @@ const faqSchema = category.faq?.length ? {
             const budgetValue = budget instanceof HTMLSelectElement ? budget.value : 'all';
             const availabilityValue = availability instanceof HTMLSelectElement ? availability.value : 'all';
             const hasActiveFilters = urgencyValue !== 'all' || cityValue !== 'all' || budgetValue !== 'all' || availabilityValue !== 'all';
+            const activeFilterLabels: string[] = [];
+            if (urgencyValue !== 'all') activeFilterLabels.push(`Προτεραιότητα: ${urgencyValue === 'urgent' ? 'Επείγον' : 'Προγραμματισμένο'}`);
+            if (cityValue !== 'all') activeFilterLabels.push(`Πόλη: ${cityValue}`);
+            if (budgetValue !== 'all') activeFilterLabels.push(`Budget: ${budgetValue}`);
+            if (availabilityValue !== 'all') {
+              const availabilityLabel = availabilityValue === 'asap'
+                ? 'Άμεσα διαθέσιμο'
+                : availabilityValue === 'this-week'
+                  ? 'Μέσα στην εβδομάδα'
+                  : 'Ευέλικτο ραντεβού';
+              activeFilterLabels.push(`Διαθεσιμότητα: ${availabilityLabel}`);
+            }
+            if (activeFiltersSummary instanceof HTMLElement) {
+              activeFiltersSummary.textContent = activeFilterLabels.length > 0
+                ? `Ενεργά φίλτρα: ${activeFilterLabels.join(' · ')}.`
+                : 'Χωρίς ενεργά φίλτρα.';
+            }
 
             const filteredCards = cards.filter((card) => {
               return (urgencyValue === 'all' || card.getAttribute('data-urgency') === urgencyValue)
@@ -402,15 +429,30 @@ const faqSchema = category.faq?.length ? {
                 ? 'Δεν υπάρχουν υπηρεσίες με αυτά τα φίλτρα.'
                 : `Εμφανίζονται ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`;
             }
+            if (a11ySummary instanceof HTMLElement) {
+              const pageMessage = matched === 0
+                ? 'Καμία υπηρεσία για τα τρέχοντα φίλτρα.'
+                : `Προβολή ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`;
+              a11ySummary.textContent = activeFilterLabels.length > 0
+                ? `${pageMessage} Ενεργά φίλτρα: ${activeFilterLabels.join(', ')}.`
+                : pageMessage;
+            }
+            if (a11ySummary instanceof HTMLElement) {
+              a11ySummary.textContent = matched === 0
+                ? 'Καμία υπηρεσία δεν ταιριάζει στα επιλεγμένα φίλτρα.'
+                : `Σελίδα αποτελεσμάτων: εμφανίζονται υπηρεσίες ${pageStart + 1} έως ${pageEnd} από σύνολο ${matched}.`;
+            }
             if (loadMore instanceof HTMLButtonElement) {
               loadMore.classList.toggle('hidden', matched <= pageSize || matched === 0);
             }
             if (pagePrev instanceof HTMLButtonElement) {
               pagePrev.disabled = pageStart === 0 || matched === 0;
+              pagePrev.setAttribute('aria-disabled', pagePrev.disabled ? 'true' : 'false');
               pagePrev.classList.toggle('opacity-50', pagePrev.disabled);
             }
             if (pageNext instanceof HTMLButtonElement) {
               pageNext.disabled = pageEnd >= matched || matched === 0;
+              pageNext.setAttribute('aria-disabled', pageNext.disabled ? 'true' : 'false');
               pageNext.classList.toggle('opacity-50', pageNext.disabled);
             }
             if (emptyState instanceof HTMLElement) {
