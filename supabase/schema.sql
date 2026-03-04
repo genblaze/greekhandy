@@ -121,3 +121,48 @@ create policy "Anyone can send messages" on messages
 
 create policy "Anyone can read messages in their thread" on messages
   for select using (true);
+
+-- 6. Message reports + moderation audit log (admin dashboard queue)
+create table if not exists message_reports (
+  id text primary key,
+  thread_id text not null,
+  message_id text not null,
+  reporter_email text not null,
+  reported_sender_email text,
+  reason text not null check (reason in ('spam', 'abuse', 'harassment', 'other')),
+  details text default '',
+  status text not null default 'open' check (status in ('open', 'resolved')),
+  reported_at timestamptz default now()
+);
+
+create table if not exists message_moderation_actions (
+  id uuid default gen_random_uuid() primary key,
+  report_id text,
+  thread_id text not null,
+  message_id text,
+  action text not null check (action in ('hide_message', 'dismiss_report', 'block_sender', 'review', 'reject', 'block', 'hide_latest_message')),
+  actor_identifier text not null,
+  actor_role text not null default 'moderator',
+  metadata jsonb default '{}'::jsonb,
+  acted_at timestamptz default now()
+);
+
+create index if not exists idx_message_reports_status on message_reports(status, reported_at desc);
+create index if not exists idx_message_reports_thread on message_reports(thread_id);
+create index if not exists idx_message_moderation_actions_report on message_moderation_actions(report_id, acted_at desc);
+create index if not exists idx_message_moderation_actions_thread on message_moderation_actions(thread_id, acted_at desc);
+
+alter table message_reports enable row level security;
+alter table message_moderation_actions enable row level security;
+
+create policy "Anyone can insert message reports" on message_reports
+  for insert with check (true);
+
+create policy "Anyone can read message reports" on message_reports
+  for select using (true);
+
+create policy "Anyone can insert message moderation actions" on message_moderation_actions
+  for insert with check (true);
+
+create policy "Anyone can read message moderation actions" on message_moderation_actions
+  for select using (true);
