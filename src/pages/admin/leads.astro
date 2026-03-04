@@ -1748,6 +1748,7 @@ const hasLeads = directoryData.leads.length > 0;
         parseFromUrl();
         syncControlsToState();
         renderPresets();
+        renderBulkAuditRail();
 
         categoryTabs.forEach((tab, index) => {
           if (!(tab instanceof HTMLButtonElement)) return;
@@ -2099,6 +2100,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (changed > 0) {
             const undoUntil = new Date(Date.now() + BULK_UNDO_WINDOW_MS).toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' });
             setLastActionNote(`Bulk outreach → ${nextLabel} (${changed} leads, αναίρεση έως ${undoUntil})`);
+            pushBulkAudit(`Bulk outreach → ${nextLabel} (${changed}) • undo έως ${undoUntil}`);
           }
           renderSelectionState();
           scheduleRun();
@@ -2131,6 +2133,7 @@ const hasLeads = directoryData.leads.length > 0;
           lastBulkOutreachSnapshot = null;
           if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Ολοκληρώθηκε αναίρεση outreach για ${restoredCount} leads. Οι υπόλοιπες ενέργειες παρέμειναν ανέπαφες.`;
           setLastActionNote(`Undo bulk outreach (${restoredCount} leads)`);
+          pushBulkAudit(`Undo outreach (${restoredCount})`);
           renderSelectionState();
           scheduleRun();
         };
@@ -2170,7 +2173,10 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ενημερώθηκε segment για ${changed} leads.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk segment.';
           }
-          if (changed > 0) setLastActionNote(`Bulk segment → ${segmentValue} (${changed} leads)`);
+          if (changed > 0) {
+            setLastActionNote(`Bulk segment → ${segmentValue} (${changed} leads)`);
+            pushBulkAudit(`Bulk segment → ${segmentValue} (${changed})`);
+          }
           scheduleRun();
         };
 
@@ -2211,7 +2217,10 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ορίστηκε follow-up για ${changed} leads.`
               : 'Δεν υπάρχει επιλεγμένο lead για follow-up.';
           }
-          if (changed > 0) setLastActionNote(`Bulk follow-up ημερομηνία (${changed} leads)`);
+          if (changed > 0) {
+            setLastActionNote(`Bulk follow-up ημερομηνία (${changed} leads)`);
+            pushBulkAudit(`Bulk follow-up set (${changed})`);
+          }
           scheduleRun();
         };
 
