@@ -1,0 +1,14 @@
+{
+  "id": "emergency-locksmith-24h-athina",
+  "slug": "kleidaras-24ores-epeigon-athina",
+  "nameGr": "Κλειδαράς 24 Ώρες Επείγον στην Αθήνα",
+  "nameEn": "24/7 Emergency Locksmith in Athens",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Άμεση επέμβαση κλειδαρά για πόρτες που δεν ανοίγουν, σπασμένα κλειδιά και επείγουσα αλλαγή κλειδαριάς στην Αθήνα. Ιδανικό για περιστατικά νυχτερινών ωρών και γρήγορη αποκατάσταση ασφάλειας.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "50-140€",
+  "demand": "high",
+  "keywords": ["κλειδαράς Αθήνα", "κλειδαράς 24ωρο", "άνοιγμα πόρτας Αθήνα", "επείγουσα αλλαγή κλειδαριάς", "κλειδαράς τώρα"],
+  "status": "researched"
+}
