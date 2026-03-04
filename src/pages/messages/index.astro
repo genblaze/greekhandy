@@ -339,6 +339,32 @@ const filteredNeedsAttention = filteredThreads.filter((thread) => thread.priorit
 const filteredNeedsReplyCount = filteredThreads.filter((thread) => thread.needsReply).length;
 const filteredBlockedCount = filteredThreads.filter((thread) => thread.isBlocked).length;
 const filteredReportedCount = filteredThreads.filter((thread) => thread.isReported).length;
+const filteredModerationWatchCount = filteredThreads.filter((thread) => thread.isModerated && !thread.isBlocked).length;
+const getThreadHref = (id: string) => `/messages/thread?threadId=${encodeURIComponent(id)}&viewerEmail=${encodeURIComponent(viewerEmail)}`;
+const priorityRank: Record<string, number> = { critical: 0, high: 1, medium: 2, normal: 3 };
+const triageOrderedThreads = [...filteredThreads].sort((a, b) => {
+  const rankDiff = (priorityRank[a.priorityTier] ?? 9) - (priorityRank[b.priorityTier] ?? 9);
+  if (rankDiff !== 0) return rankDiff;
+  if (a.needsReply !== b.needsReply) return Number(b.needsReply) - Number(a.needsReply);
+  if (a.hasUnread !== b.hasUnread) return Number(b.hasUnread) - Number(a.hasUnread);
+  return b.lastMessageAt.localeCompare(a.lastMessageAt);
+});
+const nextTriageThread = triageOrderedThreads.at(0) ?? null;
+const nextTriageHref = nextTriageThread ? getThreadHref(nextTriageThread.threadId) : '';
+const nextTriageLabel = !nextTriageThread
+  ? 'Δεν υπάρχει ενεργό triage item.'
+  : nextTriageThread.isBlocked
+    ? 'Άνοιγμα μπλοκαρισμένου thread για έλεγχο ιστορικού'
+    : nextTriageThread.needsReply
+      ? 'Απάντηση σε εισερχόμενο μήνυμα'
+      : nextTriageThread.threadAction === 'review'
+        ? 'Παρακολούθηση ενεργής αναφοράς'
+        : nextTriageThread.hasUnread
+          ? 'Επεξεργασία unread ροής'
+          : 'Έλεγχος moderation context';
+const nextTriageHint = !nextTriageThread
+  ? 'Μόλις προκύψει νέο thread, θα εμφανιστεί εδώ η προτεινόμενη επόμενη κίνηση.'
+  : `${nextTriageThread.professionalSlug} · ${nextTriageThread.triageFocusLabel} · ${nextTriageThread.moderationLabel}`;
 const clearFiltersHref = buildListHref();
 const listReturnTo = buildListHref({
   q: searchQueryRaw,
@@ -480,6 +506,15 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
       <div class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-4 text-rose-900">
         <p class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της λίστας.</p>
         <p class="mt-1 text-sm">{listLoadError}</p>
+        <p class="mt-1 text-xs">Μπορεί να λείπουν badges/moderation ενδείξεις μέχρι να επανέλθει η ανάγνωση δεδομένων.</p>
+        <div class="mt-3 flex flex-wrap items-center gap-2">
+          <a href={buildListHref({ q: searchQueryRaw, unread: showUnreadOnly, blocked: showBlockedOnly, reported: showReportedOnly, sort: sortMode })} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+            Επανάληψη φόρτωσης
+          </a>
+          <a href={clearFiltersHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+            Καθαρισμός φίλτρων
+          </a>
+        </div>
       </div>
     )}
 
@@ -627,18 +662,50 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
       </section>
     )}
 
+    {viewerEmail && (
+      <section class="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.45)]" aria-label="Triage σύνοψη inbox">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Προτεινόμενη επόμενη κίνηση</p>
+            <p class="mt-1 text-sm font-semibold text-slate-900">{nextTriageLabel}</p>
+            <p class="mt-1 text-xs text-slate-600">{nextTriageHint}</p>
+          </div>
+          {nextTriageThread && (
+            <a href={nextTriageHref} class="inline-flex rounded-lg border border-slate-900 bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-slate-700">
+              Άνοιγμα προτεραιότητας
+            </a>
+          )}
+        </div>
+        <div class="mt-3 grid gap-2 sm:grid-cols-3">
+          <div class="rounded-xl border border-indigo-200 bg-indigo-50 px-3 py-2 text-xs text-indigo-900">
+            <p class="font-semibold">Άμεση απάντηση</p>
+            <p class="mt-0.5">Threads: <span class="font-bold">{filteredNeedsReplyCount}</span></p>
+          </div>
+          <div class="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-900">
+            <p class="font-semibold">Κρίσιμο moderation</p>
+            <p class="mt-0.5">Μπλοκαρισμένα: <span class="font-bold">{filteredBlockedCount}</span></p>
+          </div>
+          <div class="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">
+            <p class="font-semibold">Παρακολούθηση moderation</p>
+            <p class="mt-0.5">Σε έλεγχο/κρυφά: <span class="font-bold">{filteredModerationWatchCount}</span></p>
+          </div>
+        </div>
+      </section>
+    )}
+
     {!viewerEmail && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-950">
         <p class="text-base font-semibold">Δεν ήταν δυνατή η φόρτωση των συνομιλιών.</p>
         <p class="mt-1 text-sm">Λείπει η παράμετρος <code>viewerEmail</code> από το URL.</p>
+        <p class="mt-2 text-xs">Παράδειγμα: <code>/messages?viewerEmail=name@example.com</code></p>
       </div>
     )}
 
     {viewerEmail && (
       <section class="mt-6 space-y-4" role="list" aria-label="Αποτελέσματα συνομιλιών">
         {showLoadingState && (
-          <div class="rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-sm text-sky-900" role="status" aria-live="polite">
-            Η λίστα συγχρονίζεται. Φορτώνουμε δείκτες προτεραιότητας, unread counts και moderation states.
+          <div class="rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-sm text-sky-900" role="status" aria-live="polite" aria-atomic="true">
+            Η λίστα συγχρονίζεται. Φορτώνουμε δείκτες προτεραιότητας, unread counts και moderation states ώστε να εμφανιστεί καθαρή ουρά triage.
           </div>
         )}
         {showLoadingState && LOADING_SKELETON_ROWS.map((item) => (
@@ -660,6 +727,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
             <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Inbox κατάσταση</p>
             <p class="mt-1 text-lg font-semibold text-slate-900">Δεν υπάρχουν συνομιλίες ακόμη.</p>
             <p class="mt-2 text-sm text-slate-600">Μόλις σταλεί ή ληφθεί το πρώτο μήνυμα, η κάρτα thread θα εμφανιστεί εδώ με προτεραιότητα, unread ένδειξη και moderation context.</p>
+            <p class="mt-2 text-xs text-slate-500">Θα προστεθεί αυτόματα και στην παραπάνω triage σύνοψη για γρήγορη αξιολόγηση.</p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <a href={buildListHref({ sort: 'recent' })} class="inline-flex rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Ανανέωση λίστας</a>
               <a href={unreadQueueHref} class="inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">Ουρά προτεραιότητας</a>
@@ -675,6 +743,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <a href={clearFiltersHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Καθαρισμός φίλτρων</a>
               <a href={unreadQueueHref} class="inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">Μόνο μη αναγνωσμένα</a>
+              <a href={reportedQueueHref} class="inline-flex rounded-lg border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">Αναφορές moderation</a>
             </div>
           </div>
         )}
@@ -725,6 +794,21 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
               {!thread.isBlocked && !thread.isAdminHidden && thread.threadAction === 'reject' && <span class="rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 text-[11px] font-semibold text-amber-900">Αναφορά χωρίς περιορισμό</span>}
               {!thread.isBlocked && thread.isMuted && <span class="rounded-full border border-orange-300 bg-orange-100 px-2.5 py-1 text-[11px] font-semibold text-orange-900">Σε σίγαση</span>}
               {thread.stateTone === 'active' && <span class="rounded-full border border-emerald-300 bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-900">Ενεργή</span>}
+            </div>
+
+            <div class="mt-3 grid gap-2 text-xs sm:grid-cols-3">
+              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                Triage focus
+                <p class="mt-0.5 text-sm font-semibold text-slate-900">{thread.triageFocusLabel}</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                Moderation impact
+                <p class="mt-0.5 text-sm font-semibold text-slate-900">{thread.moderationImpactLabel}</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-slate-600">
+                Επόμενη κίνηση
+                <p class={`mt-0.5 text-sm font-semibold ${thread.needsReply ? 'text-indigo-900' : 'text-slate-900'}`}>{thread.moderationNextStepLabel}</p>
+              </div>
             </div>
 
             <div class="mt-3 rounded-xl border border-slate-200/80 bg-white/70 px-3 py-3">
