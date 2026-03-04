@@ -1,0 +1,12 @@
+{
+  "id": "custom-wardrobe-build",
+  "slug": "kataskevi-ntoulapas-kata-paraggelia",
+  "nameGr": "Κατασκευή ντουλάπας κατά παραγγελία",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Σχεδιασμός και κατασκευή ντουλάπας στα μέτρα του χώρου.",
+  "typicalDuration": "3-10 ημέρες",
+  "priceRangeEUR": "600-2800€",
+  "demand": "medium",
+  "notes": "Υψηλής αξίας έργο με προσωποποιημένες απαιτήσεις."
+}

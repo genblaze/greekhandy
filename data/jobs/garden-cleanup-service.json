@@ -1,0 +1,12 @@
+{
+  "id": "garden-cleanup-service",
+  "slug": "katharismos-kipou",
+  "nameGr": "Καθαρισμός κήπου",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Απομάκρυνση ξερών κλαδιών/φυλλωμάτων και γενική τακτοποίηση κήπου.",
+  "typicalDuration": "2-8 ώρες",
+  "priceRangeEUR": "60-260€",
+  "demand": "high",
+  "notes": "Δημοφιλές one-off job πριν από καλοκαίρι."
+}

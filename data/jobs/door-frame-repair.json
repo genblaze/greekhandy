@@ -1,0 +1,12 @@
+{
+  "id": "door-frame-repair",
+  "slug": "episkevi-kasas-portas",
+  "nameGr": "Επισκευή κάσας/ξύλινης πόρτας",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Ευθυγράμμιση, ενίσχυση και επιδιόρθωση ξύλινης πόρτας ή κάσας.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "70-220€",
+  "demand": "medium",
+  "notes": "Συχνό σε παλαιά διαμερίσματα."
+}

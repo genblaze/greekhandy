@@ -1,0 +1,12 @@
+{
+  "id": "home-moving-service",
+  "slug": "oikiaki-metakomisi",
+  "nameGr": "Οικιακή μετακόμιση",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Οργανωμένη μεταφορά οικοσκευής με φορτηγό και προσωπικό.",
+  "typicalDuration": "4-12 ώρες",
+  "priceRangeEUR": "180-1200€",
+  "demand": "high",
+  "notes": "Core υπηρεσία με υψηλό όγκο αναζητήσεων."
+}

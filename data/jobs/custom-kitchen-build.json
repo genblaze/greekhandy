@@ -1,0 +1,12 @@
+{
+  "id": "custom-kitchen-build",
+  "slug": "kataskevi-kouzinas-kata-paraggelia",
+  "nameGr": "Κατασκευή κουζίνας κατά παραγγελία",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Μελέτη και κατασκευή σύνθεσης κουζίνας στα μέτρα του χώρου.",
+  "typicalDuration": "1-3 εβδομάδες",
+  "priceRangeEUR": "2500-12000€",
+  "demand": "medium",
+  "notes": "Premium έργο με μεγάλο budget."
+}

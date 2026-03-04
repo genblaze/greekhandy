@@ -1,0 +1,12 @@
+{
+  "id": "kitchen-cabinet-repair",
+  "slug": "episkevi-ntoulapion-kouzinas",
+  "nameGr": "Επισκευή ντουλαπιών κουζίνας",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Αντικατάσταση μεντεσέδων, πορτών και αποκατάσταση φθορών ντουλαπιών.",
+  "typicalDuration": "1-4 ώρες",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "notes": "Συχνό job μικρής/μεσαίας κλίμακας."
+}

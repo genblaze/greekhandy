@@ -1,0 +1,12 @@
+{
+  "id": "piano-heavy-item-moving",
+  "slug": "metafora-vareos-antikeimenou-pianou",
+  "nameGr": "Μεταφορά πιάνου/βαρέων αντικειμένων",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Εξειδικευμένη μεταφορά μεγάλων/ευαίσθητων αντικειμένων με κατάλληλο εξοπλισμό.",
+  "typicalDuration": "2-8 ώρες",
+  "priceRangeEUR": "180-900€",
+  "demand": "low",
+  "notes": "Long-tail εξειδικευμένη υπηρεσία με premium τιμολόγηση."
+}

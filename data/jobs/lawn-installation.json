@@ -1,0 +1,12 @@
+{
+  "id": "lawn-installation",
+  "slug": "egkatastasi-gazon",
+  "nameGr": "Εγκατάσταση γκαζόν",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Τοποθέτηση φυσικού ή συνθετικού γκαζόν με προετοιμασία εδάφους.",
+  "typicalDuration": "1-4 ημέρες",
+  "priceRangeEUR": "12-45€/τ.μ.",
+  "demand": "medium",
+  "notes": "Long-tail με υψηλό ενδιαφέρον σε μονοκατοικίες."
+}

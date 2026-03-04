@@ -1,15 +1,27 @@
 {
-  "lastManagerRun": "2026-03-04T13:49:00Z",
+  "lastManagerRun": "2026-03-04T13:52:00Z",
   "activeAgents": {
-    "research": { "status": "idle", "task": null, "startedAt": null },
-    "builder": { "status": "idle", "task": null, "startedAt": null },
-    "developer": { "status": "idle", "task": null, "startedAt": null }
+    "research": {
+      "status": "in-progress",
+      "task": "Added next 5 categories (locksmith, carpenter, tiler, gardener, mover) and seeded long-tail jobs",
+      "startedAt": "2026-03-04T13:52:00Z"
+    },
+    "builder": {
+      "status": "idle",
+      "task": null,
+      "startedAt": null
+    },
+    "developer": {
+      "status": "idle",
+      "task": null,
+      "startedAt": null
+    }
   },
   "stats": {
-    "categoriesResearched": 5,
-    "jobsResearched": 52,
+    "categoriesResearched": 10,
+    "jobsResearched": 77,
     "contentPagesBuilt": 57
   },
-  "lastDecision": "Site code fixed: all 57 content pages now render via [slug].astro with breadcrumbs, sub-job cards, navigation. Homepage has search+filter, category grid, job listings. Next: research more categories (locksmith, carpenter, tiler, gardener, mover).",
+  "lastDecision": "Expanded taxonomy with 5 new categories (locksmiths, carpenters, tilers, gardeners, movers) and added seed + long-tail job records; next step is generate/build corresponding content pages for new categories and jobs.",
   "blockers": []
 }

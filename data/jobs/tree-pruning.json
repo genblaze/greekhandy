@@ -1,0 +1,12 @@
+{
+  "id": "tree-pruning",
+  "slug": "kladema-dentron",
+  "nameGr": "Κλάδεμα δέντρων",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Κλάδεμα δέντρων και θάμνων για ασφάλεια και σωστή ανάπτυξη.",
+  "typicalDuration": "1-5 ώρες",
+  "priceRangeEUR": "70-300€",
+  "demand": "medium",
+  "notes": "Εποχικότητα αλλά καλή ζήτηση σε προάστια."
+}

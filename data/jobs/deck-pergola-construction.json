@@ -1,0 +1,12 @@
+{
+  "id": "deck-pergola-construction",
+  "slug": "kataskevi-pergolas-ntek",
+  "nameGr": "Κατασκευή πέργκολας/ξύλινου deck",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Κατασκευή εξωτερικών ξύλινων κατασκευών για κήπους και βεράντες.",
+  "typicalDuration": "2-8 ημέρες",
+  "priceRangeEUR": "900-5000€",
+  "demand": "low",
+  "notes": "Εποχική long-tail υπηρεσία."
+}

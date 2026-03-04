@@ -1,0 +1,12 @@
+{
+  "id": "security-lock-installation",
+  "slug": "egkatastasi-kleidarias-asfaleias",
+  "nameGr": "Εγκατάσταση κλειδαριάς ασφαλείας",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Τοποθέτηση σύγχρονων κυλίνδρων και κλειδαριών υψηλής ασφάλειας.",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "120-450€",
+  "demand": "medium",
+  "notes": "Long-tail με υψηλότερο μέσο καλάθι."
+}

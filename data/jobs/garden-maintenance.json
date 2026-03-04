@@ -1,0 +1,12 @@
+{
+  "id": "garden-maintenance",
+  "slug": "syntirisi-kipou",
+  "nameGr": "Συντήρηση κήπου",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Τακτική φροντίδα γκαζόν, φυτών, λίπανση και καθαριότητα εξωτερικού χώρου.",
+  "typicalDuration": "2-6 ώρες/επίσκεψη",
+  "priceRangeEUR": "50-220€",
+  "demand": "high",
+  "notes": "Recurring υπηρεσία με σταθερή αξία."
+}

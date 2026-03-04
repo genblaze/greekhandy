@@ -1,0 +1,12 @@
+{
+  "id": "lock-replacement",
+  "slug": "allagi-kleidarias",
+  "nameGr": "Αλλαγή κλειδαριάς",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Αντικατάσταση παλιάς ή χαλασμένης κλειδαριάς σε πόρτες ασφαλείας και απλές πόρτες.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "notes": "Συχνό αίτημα μετά από μετακόμιση ή απώλεια κλειδιών."
+}

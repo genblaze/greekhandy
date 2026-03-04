@@ -1,0 +1,12 @@
+{
+  "id": "bathroom-tiling",
+  "slug": "topothetisi-plakidion-baniou",
+  "nameGr": "Τοποθέτηση πλακιδίων μπάνιου",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Πλακάρισμα τοίχων/δαπέδου μπάνιου με σωστή υγρομόνωση.",
+  "typicalDuration": "3-8 ημέρες",
+  "priceRangeEUR": "25-55€/τ.μ.",
+  "demand": "high",
+  "notes": "Βασική υπηρεσία σε ανακαινίσεις."
+}

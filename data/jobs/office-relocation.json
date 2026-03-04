@@ -1,0 +1,12 @@
+{
+  "id": "office-relocation",
+  "slug": "epaggelmatiki-metafora-grafeiou",
+  "nameGr": "Μεταφορά γραφείου",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Μεταφορά εξοπλισμού και επίπλων γραφείου με ελαχιστοποίηση downtime.",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "500-4500€",
+  "demand": "medium",
+  "notes": "B2B έργο υψηλότερης αξίας."
+}

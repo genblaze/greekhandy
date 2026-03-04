@@ -1,0 +1,12 @@
+{
+  "id": "packing-unpacking-service",
+  "slug": "ampalaz-xepakarisma",
+  "nameGr": "Αμπαλάζ και ξεπακετάρισμα",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Επαγγελματικό πακετάρισμα εύθραυστων αντικειμένων και βοήθεια τακτοποίησης.",
+  "typicalDuration": "2-10 ώρες",
+  "priceRangeEUR": "90-480€",
+  "demand": "medium",
+  "notes": "Upsell service σε σχεδόν κάθε μετακόμιση."
+}

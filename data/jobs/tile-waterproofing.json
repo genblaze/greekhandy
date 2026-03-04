@@ -1,0 +1,12 @@
+{
+  "id": "tile-waterproofing",
+  "slug": "ygromonosi-prin-plakakia",
+  "nameGr": "Υγρομόνωση πριν την τοποθέτηση πλακιδίων",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εφαρμογή στεγανωτικών συστημάτων πριν από πλακάρισμα μπάνιου/βεράντας.",
+  "typicalDuration": "1-2 ημέρες",
+  "priceRangeEUR": "10-25€/τ.μ.",
+  "demand": "medium",
+  "notes": "Κρίσιμο quality step που μειώνει μελλοντικές βλάβες."
+}

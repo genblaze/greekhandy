@@ -1,0 +1,12 @@
+{
+  "id": "automatic-irrigation-installation",
+  "slug": "egkatastasi-aytomatou-potismatos",
+  "nameGr": "Εγκατάσταση αυτόματου ποτίσματος",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Μελέτη και εγκατάσταση δικτύου ποτίσματος με προγραμματιστή.",
+  "typicalDuration": "1-3 ημέρες",
+  "priceRangeEUR": "250-1200€",
+  "demand": "medium",
+  "notes": "Υψηλή αξία έργου με θερινή αιχμή."
+}

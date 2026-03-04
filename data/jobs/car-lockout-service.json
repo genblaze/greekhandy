@@ -1,0 +1,12 @@
+{
+  "id": "car-lockout-service",
+  "slug": "anoigma-autokinitou-kleidaras",
+  "nameGr": "Άνοιγμα αυτοκινήτου",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Ανάκτηση πρόσβασης σε όχημα όταν έχουν μείνει κλειδιά εντός.",
+  "typicalDuration": "20-50 λεπτά",
+  "priceRangeEUR": "50-140€",
+  "demand": "medium",
+  "notes": "Επείγον mobile service με καλή τοπική ζήτηση."
+}

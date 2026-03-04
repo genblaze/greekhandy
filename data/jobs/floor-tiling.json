@@ -1,0 +1,12 @@
+{
+  "id": "floor-tiling",
+  "slug": "topothetisi-plakidion-dapedou",
+  "nameGr": "Τοποθέτηση πλακιδίων δαπέδου",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Τοποθέτηση νέου δαπέδου πλακιδίων σε κατοικίες και καταστήματα.",
+  "typicalDuration": "2-6 ημέρες",
+  "priceRangeEUR": "20-45€/τ.μ.",
+  "demand": "high",
+  "notes": "Σταθερή ζήτηση για νέα/ανακαινισμένα ακίνητα."
+}

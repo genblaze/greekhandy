@@ -1,0 +1,12 @@
+{
+  "id": "balcony-tiling",
+  "slug": "plakakia-balkoniou",
+  "nameGr": "Τοποθέτηση πλακιδίων μπαλκονιού",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Πλακάρισμα εξωτερικών χώρων με αντιολισθητικά υλικά και σωστές κλίσεις.",
+  "typicalDuration": "1-4 ημέρες",
+  "priceRangeEUR": "24-52€/τ.μ.",
+  "demand": "medium",
+  "notes": "Συχνό σε ανακαινίσεις πολυκατοικιών."
+}

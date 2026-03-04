@@ -1,0 +1,12 @@
+{
+  "id": "tile-repair-regrouting",
+  "slug": "episkevi-armos-plakidion",
+  "nameGr": "Επισκευή πλακιδίων και αρμόστοκος",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Αντικατάσταση σπασμένων πλακιδίων και ανανέωση αρμών.",
+  "typicalDuration": "2-8 ώρες",
+  "priceRangeEUR": "70-260€",
+  "demand": "medium",
+  "notes": "Συχνό μικρό έργο συντήρησης."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "furniture-disassembly-assembly",
+  "slug": "aposynarmologisi-synarmologisi-epiplon",
+  "nameGr": "Αποσυναρμολόγηση/συναρμολόγηση επίπλων",
+  "categoryId": "movers",
+  "categorySlug": "metakomiseis",
+  "intent": "Ασφαλής λύση και επανασύνδεση επίπλων για μεταφορά.",
+  "typicalDuration": "1-6 ώρες",
+  "priceRangeEUR": "60-320€",
+  "demand": "high",
+  "notes": "Συχνό πρόσθετο job με καλή κερδοφορία."
+}

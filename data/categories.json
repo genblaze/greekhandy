@@ -6,9 +6,21 @@
     "nameEn": "Electricians",
     "description": "Ηλεκτρολογικές εγκαταστάσεις, βλάβες, ανακαινίσεις πινάκων και πιστοποιητικά.",
     "icon": "⚡",
-    "cities": ["athina", "thessaloniki", "patra", "irakleio", "larisa", "volos", "ioannina"],
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa",
+      "volos",
+      "ioannina"
+    ],
     "priority": 1,
-    "seedJobs": ["electrical-repair", "electrical-panel-upgrade", "lighting-installation"]
+    "seedJobs": [
+      "electrical-repair",
+      "electrical-panel-upgrade",
+      "lighting-installation"
+    ]
   },
   {
     "id": "plumbers",
@@ -17,9 +29,20 @@
     "nameEn": "Plumbers",
     "description": "Αποκατάσταση διαρροών, αποχετεύσεις, εγκατάσταση θερμοσίφωνα και ανακαινίσεις μπάνιου.",
     "icon": "🚰",
-    "cities": ["athina", "thessaloniki", "patra", "larisa", "volos", "ioannina"],
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "larisa",
+      "volos",
+      "ioannina"
+    ],
     "priority": 2,
-    "seedJobs": ["pipe-leak-repair", "water-heater-installation", "drain-cleaning"]
+    "seedJobs": [
+      "pipe-leak-repair",
+      "water-heater-installation",
+      "drain-cleaning"
+    ]
   },
   {
     "id": "painters",
@@ -28,9 +51,19 @@
     "nameEn": "Painters",
     "description": "Βάψιμο εσωτερικών και εξωτερικών χώρων, σπατουλαρίσματα και μονώσεις χρωμάτων.",
     "icon": "🎨",
-    "cities": ["athina", "thessaloniki", "patra", "irakleio", "larisa"],
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa"
+    ],
     "priority": 3,
-    "seedJobs": ["interior-painting", "exterior-painting", "wall-preparation"]
+    "seedJobs": [
+      "interior-painting",
+      "exterior-painting",
+      "wall-preparation"
+    ]
   },
   {
     "id": "cleaning-services",
@@ -39,9 +72,19 @@
     "nameEn": "Cleaning Services",
     "description": "Γενικοί καθαρισμοί, καθαρισμοί μετά από ανακαίνιση και βιολογικός καθαρισμός χώρων.",
     "icon": "🧽",
-    "cities": ["athina", "thessaloniki", "patra", "irakleio", "volos"],
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "volos"
+    ],
     "priority": 4,
-    "seedJobs": ["home-deep-cleaning", "post-renovation-cleaning", "office-cleaning"]
+    "seedJobs": [
+      "home-deep-cleaning",
+      "post-renovation-cleaning",
+      "office-cleaning"
+    ]
   },
   {
     "id": "hvac-technicians",
@@ -50,8 +93,126 @@
     "nameEn": "HVAC Technicians",
     "description": "Συντήρηση, επισκευή και εγκατάσταση κλιματιστικών για οικίες και επαγγελματικούς χώρους.",
     "icon": "❄️",
-    "cities": ["athina", "thessaloniki", "patra", "irakleio", "larisa", "ioannina"],
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa",
+      "ioannina"
+    ],
     "priority": 5,
-    "seedJobs": ["ac-installation", "ac-service", "ac-repair"]
+    "seedJobs": [
+      "ac-installation",
+      "ac-service",
+      "ac-repair"
+    ]
+  },
+  {
+    "id": "locksmiths",
+    "slug": "kleidarades",
+    "nameGr": "Κλειδαράδες",
+    "nameEn": "Locksmiths",
+    "description": "Άνοιγμα πορτών, αλλαγές κλειδαριών, τοποθέτηση θωρακισμένων συστημάτων ασφαλείας.",
+    "icon": "🔐",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "larisa",
+      "volos"
+    ],
+    "priority": 6,
+    "seedJobs": [
+      "door-unlock-service",
+      "lock-replacement",
+      "security-lock-installation"
+    ]
+  },
+  {
+    "id": "carpenters",
+    "slug": "ksyloyrgoi",
+    "nameGr": "Ξυλουργοί",
+    "nameEn": "Carpenters",
+    "description": "Κατασκευές επίπλων, ντουλάπες, κουζίνες και επισκευές ξύλινων επιφανειών.",
+    "icon": "🪚",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "larisa",
+      "volos"
+    ],
+    "priority": 7,
+    "seedJobs": [
+      "custom-wardrobe-build",
+      "kitchen-cabinet-repair",
+      "door-frame-repair"
+    ]
+  },
+  {
+    "id": "tilers",
+    "slug": "plakadades",
+    "nameGr": "Πλακάδες",
+    "nameEn": "Tilers",
+    "description": "Τοποθέτηση πλακιδίων σε μπάνια, κουζίνες, δάπεδα και εξωτερικούς χώρους.",
+    "icon": "🧱",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "ioannina"
+    ],
+    "priority": 8,
+    "seedJobs": [
+      "bathroom-tiling",
+      "floor-tiling",
+      "tile-repair-regrouting"
+    ]
+  },
+  {
+    "id": "gardeners",
+    "slug": "kipouroi",
+    "nameGr": "Κηπουροί",
+    "nameEn": "Gardeners",
+    "description": "Συντήρηση κήπου, κλαδέματα, εγκατάσταση αυτόματου ποτίσματος και φυτεύσεις.",
+    "icon": "🌿",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "irakleio",
+      "volos"
+    ],
+    "priority": 9,
+    "seedJobs": [
+      "garden-maintenance",
+      "tree-pruning",
+      "automatic-irrigation-installation"
+    ]
+  },
+  {
+    "id": "movers",
+    "slug": "metakomiseis",
+    "nameGr": "Μετακομίσεις",
+    "nameEn": "Movers",
+    "description": "Οικιακές και επαγγελματικές μετακομίσεις, αμπαλάζ, αποσυναρμολόγηση και μεταφορά.",
+    "icon": "🚚",
+    "cities": [
+      "athina",
+      "thessaloniki",
+      "patra",
+      "larisa",
+      "volos",
+      "irakleio"
+    ],
+    "priority": 10,
+    "seedJobs": [
+      "home-moving-service",
+      "office-relocation",
+      "packing-unpacking-service"
+    ]
   }
 ]

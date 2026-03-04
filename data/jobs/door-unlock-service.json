@@ -1,0 +1,12 @@
+{
+  "id": "door-unlock-service",
+  "slug": "anoigma-portas-kleidaras",
+  "nameGr": "Άνοιγμα πόρτας",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγον άνοιγμα πόρτας κατοικίας/επιχείρησης χωρίς ζημιές όπου είναι δυνατό.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "40-120€",
+  "demand": "high",
+  "notes": "24/7 υπηρεσία με ισχυρή πρόθεση άμεσης ανάθεσης."
+}

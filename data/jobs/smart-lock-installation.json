@@ -1,0 +1,12 @@
+{
+  "id": "smart-lock-installation",
+  "slug": "egkatastasi-smart-kleidarias",
+  "nameGr": "Εγκατάσταση smart κλειδαριάς",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Τοποθέτηση και ρύθμιση έξυπνης κλειδαριάς με app access.",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "90-260€",
+  "demand": "medium",
+  "notes": "Αυξανόμενο ενδιαφέρον σε βραχυχρόνιες μισθώσεις."
+}
