@@ -94,6 +94,7 @@ const justSubmitted = statusParam === 'submitted';
 const hasLookupError = statusParam === 'error';
 const hasInvalidLookup = statusParam === 'invalid';
 const hasRescheduleRequested = statusParam === 'reschedule-requested';
+const hasRescheduleAlreadyRequested = statusParam === 'reschedule-already-requested';
 const hasRescheduleNotAllowed = statusParam === 'reschedule-not-allowed';
 const contactDetails = booking
   ? [safeText(booking.email, ''), safeText(booking.phone, '')].filter(Boolean).join(' • ') || 'Δεν έχουν καταχωρηθεί'
@@ -170,6 +171,12 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
     {hasRescheduleRequested && (
       <div class="mt-6 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-violet-900">
         Το αίτημα αλλαγής καταχωρήθηκε επιτυχώς και αναμένει έγκριση moderation.
+      </div>
+    )}
+
+    {hasRescheduleAlreadyRequested && (
+      <div class="mt-6 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-violet-900">
+        Υπάρχει ήδη εκκρεμές αίτημα αλλαγής. Περιμένετε την απόφαση moderation πριν στείλετε νέο αίτημα.
       </div>
     )}
 

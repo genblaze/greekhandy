@@ -27,6 +27,8 @@ const statusExpected = (url.searchParams.get('expected') ?? '').trim();
 const statusActual = (url.searchParams.get('actual') ?? '').trim();
 const statusReason = (url.searchParams.get('reason') ?? '').trim();
 const isInvalidTransitionGuardrail = statusReason === 'invalid-transition';
+const isRescheduleOnlyFromApproved = statusReason === 'reschedule-request-only-from-approved';
+const isInvalidRescheduleResolution = statusReason === 'invalid-reschedule-resolution';
 
 const isAllowedTransition = (from: BookingModerationState, to: BookingModerationState) => {
   if (from === to) return true;
@@ -147,7 +149,7 @@ const hasAnyBookings = bookings.length > 0;
         )}
         {status === 'guardrail' && (
           <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
-            Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isInvalidTransitionGuardrail ? 'Επιτρέπονται μόνο οι μεταβάσεις που ορίζονται στο lifecycle (pending→approved/rejected/cancelled, approved→reschedule_requested, reschedule_requested→approved/reschedule_rejected/cancelled).' : 'Ελέγξτε τους κανόνες μετάβασης.'}
+            Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isRescheduleOnlyFromApproved ? 'Αίτημα αλλαγής επιτρέπεται μόνο όταν η τρέχουσα κατάσταση είναι approved.' : isInvalidRescheduleResolution ? 'Η εκκρεμής αλλαγή κλείνει μόνο με approved, reschedule_rejected ή cancelled.' : isInvalidTransitionGuardrail ? 'Επιτρέπονται μόνο οι μεταβάσεις που ορίζονται στο lifecycle (pending→approved/rejected/cancelled, approved→reschedule_requested, reschedule_requested→approved/reschedule_rejected/cancelled).' : 'Ελέγξτε τους κανόνες μετάβασης.'}
           </p>
         )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
@@ -280,7 +282,11 @@ const hasAnyBookings = bookings.length > 0;
             const fromState = form.getAttribute('data-from-state') || 'unknown';
             const toState = form.getAttribute('data-to-state') || 'unknown';
 
-            if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel}\nΑίτημα: ${bookingId}\nΜετάβαση: ${fromState} → ${toState}\n\nΠατήστε OK μόνο αν η μετάβαση είναι σωστή.`)) {
+            const riskNote = (toState === 'cancelled' || toState === 'reschedule_rejected')
+              ? '\nΠροσοχή: πρόκειται για αρνητική/τερματική απόφαση.'
+              : '';
+
+            if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel}\nΑίτημα: ${bookingId}\nΜετάβαση: ${fromState} → ${toState}${riskNote}\n\nΠατήστε OK μόνο αν η μετάβαση είναι σωστή.`)) {
               event.preventDefault();
               return;
             }

@@ -37,6 +37,10 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const latestAction = findLatestBookingAction(actions, bookingId);
     const state = resolveBookingModerationState({ action: latestAction?.action, submissionStatus: booking.status }).state;
 
+    if (state === 'reschedule_requested') {
+      return redirect(`${safeReturnTo}&status=reschedule-already-requested`, 303);
+    }
+
     if (state !== 'approved') {
       return redirect(`${safeReturnTo}&status=reschedule-not-allowed`, 303);
     }

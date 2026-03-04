@@ -34,6 +34,12 @@ const isAllowedTransition = (from: BookingModerationState, to: BookingModeration
   return false;
 };
 
+const transitionGuardrailReason = (from: BookingModerationState, to: BookingModerationState) => {
+  if (to === 'reschedule_requested' && from !== 'approved') return 'reschedule-request-only-from-approved';
+  if (from === 'reschedule_requested' && !['approved', 'reschedule_rejected', 'cancelled'].includes(to)) return 'invalid-reschedule-resolution';
+  return 'invalid-transition';
+};
+
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
   const moderationKey = clean(formData.get('moderationKey'));
@@ -66,7 +72,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     }
 
     if (!isAllowedTransition(currentState, targetState)) {
-      return redirect(`${returnUrl}&status=guardrail&bookingId=${short(bookingId)}&expected=${short('pending-only-transition')}&actual=${short(currentState)}&reason=${short('invalid-transition')}`, 303);
+      const reason = transitionGuardrailReason(currentState, targetState);
+      return redirect(`${returnUrl}&status=guardrail&bookingId=${short(bookingId)}&expected=${short('lifecycle-transition-rules')}&actual=${short(currentState)}&reason=${short(reason)}`, 303);
     }
 
     if (currentState === targetState) {
