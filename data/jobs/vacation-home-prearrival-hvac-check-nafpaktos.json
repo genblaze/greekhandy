@@ -1,0 +1,20 @@
+{
+  "id": "vacation-home-prearrival-hvac-check-nafpaktos",
+  "slug": "proafiksiakos-elegxos-klimatismou-eksaxikis-katoikias-nafpaktos",
+  "nameGr": "Προαφικσιακός Έλεγχος Κλιματισμού Εξοχικής Κατοικίας στη Ναύπακτο",
+  "nameEn": "Vacation Home Pre-Arrival HVAC Check in Ναύπακτος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Προαφικσιακός έλεγχος κλιματισμού στη Ναύπακτο για εξοχικές κατοικίες πριν από άφιξη ιδιοκτητών/επισκεπτών. SEO intent: καλύπτει conversion queries «έλεγχος κλιματισμού εξοχικού Ναύπακτος».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος κλιματισμού εξοχικού Ναύπακτος",
+    "service ac πριν άφιξη",
+    "τεχνικός εξοχικής κατοικίας",
+    "προληπτικός έλεγχος κλιματιστικού",
+    "vacation home hvac check"
+  ],
+  "status": "researched"
+}

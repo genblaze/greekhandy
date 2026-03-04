@@ -1,0 +1,20 @@
+{
+  "id": "vacation-home-prearrival-hvac-check-deskati",
+  "slug": "proafiksiakos-elegxos-klimatismou-eksaxikis-katoikias-deskati",
+  "nameGr": "Προαφικσιακός Έλεγχος Κλιματισμού Εξοχικής Κατοικίας στη Δεσκάτη",
+  "nameEn": "Vacation Home Pre-Arrival HVAC Check in Δεσκάτη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Προαφικσιακός έλεγχος κλιματισμού στη Δεσκάτη για εξοχικές κατοικίες πριν από άφιξη ιδιοκτητών/επισκεπτών. SEO intent: καλύπτει conversion queries «έλεγχος κλιματισμού εξοχικού Δεσκάτη».",
+  "typicalDuration": "1-2 ώρες",
+  "priceRangeEUR": "60-240€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος κλιματισμού εξοχικού Δεσκάτη",
+    "service ac πριν άφιξη",
+    "τεχνικός εξοχικής κατοικίας",
+    "προληπτικός έλεγχος κλιματιστικού",
+    "vacation home hvac check"
+  ],
+  "status": "researched"
+}
