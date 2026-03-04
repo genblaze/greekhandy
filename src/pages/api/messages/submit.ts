@@ -10,18 +10,37 @@ import {
   readNdjson,
   type MessageSubmission
 } from '../../../lib/messaging';
+import { supabaseServer } from '../../../lib/supabase-server';
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const isValidPhone = (phone: string) => /^[0-9+()\-\s]{7,20}$/.test(phone);
 const hasHtmlLikeTags = (value: string) => /<[^>]+>/.test(value);
 
-const isThreadBlocked = async (threadId: string) => {
+const isThreadBlocked = async (threadId: string, senderEmail: string) => {
   const actions = await readNdjson<{ threadId?: string; action?: string }>(MESSAGE_TRIAGE_ACTIONS_FILE_PATH);
   const latestActionByThread = new Map<string, string>();
   for (const action of actions) {
     if (action.threadId && action.action) latestActionByThread.set(action.threadId, action.action);
   }
-  return latestActionByThread.get(threadId) === 'block';
+  if (latestActionByThread.get(threadId) === 'block') return true;
+
+  const { data: moderationActions } = await supabaseServer
+    .from('message_moderation_actions')
+    .select('action, metadata, thread_id')
+    .eq('thread_id', threadId)
+    .in('action', ['block', 'block_sender']);
+
+  if (!moderationActions || moderationActions.length === 0) return false;
+
+  for (const row of moderationActions as Array<{ action: string; metadata?: any }>) {
+    if (row.action === 'block') return true;
+    if (row.action === 'block_sender') {
+      const blocked = (row.metadata?.blockedSenderEmail || '').toString().toLowerCase();
+      if (blocked && blocked === senderEmail.toLowerCase()) return true;
+    }
+  }
+
+  return false;
 };
 
 export const POST: APIRoute = async ({ request, redirect }) => {
@@ -70,7 +89,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     }
   }
 
-  if (await isThreadBlocked(threadId)) {
+  if (await isThreadBlocked(threadId, senderEmail)) {
     return redirect(`${returnTo}?message=blocked`, 303);
   }
 

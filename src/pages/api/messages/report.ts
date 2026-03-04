@@ -1,14 +1,13 @@
 import type { APIRoute } from 'astro';
 import {
-  appendNdjson,
   clean,
   max,
-  MESSAGE_REPORTS_FILE_PATH,
   MESSAGE_SUBMISSIONS_FILE_PATH,
   getMessageThreadId,
   readNdjson,
   type MessageSubmission
 } from '../../../lib/messaging';
+import { supabaseServer } from '../../../lib/supabase-server';
 
 const withStatus = (returnTo: string, status: string) => `${returnTo}${returnTo.includes('?') ? '&' : '?'}status=${status}`;
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -37,21 +36,24 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     return redirect(withStatus(returnTo, 'report-forbidden'), 303);
   }
 
-  try {
-    await appendNdjson(MESSAGE_REPORTS_FILE_PATH, {
-      id: `${messageId}|${Date.now()}`,
-      threadId,
-      messageId,
-      reporterEmail,
-      reason,
-      details,
-      status: 'open',
-      reportedAt: new Date().toISOString()
-    });
+  const reportId = `${messageId}|${Date.now()}`;
 
-    return redirect(withStatus(returnTo, 'reported'), 303);
-  } catch (error) {
+  const { error } = await supabaseServer.from('message_reports').insert({
+    id: reportId,
+    thread_id: threadId,
+    message_id: messageId,
+    reporter_email: reporterEmail,
+    reported_sender_email: targetMessage.senderEmail.toLowerCase(),
+    reason,
+    details,
+    status: 'open',
+    reported_at: new Date().toISOString()
+  });
+
+  if (error) {
     console.error('[message-report] failed', error);
     return redirect(withStatus(returnTo, 'report-error'), 303);
   }
+
+  return redirect(withStatus(returnTo, 'reported'), 303);
 };

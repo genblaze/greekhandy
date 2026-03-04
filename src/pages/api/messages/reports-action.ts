@@ -1,15 +1,14 @@
 import type { APIRoute } from 'astro';
 import {
-  MESSAGE_REPORTS_FILE_PATH,
-  MESSAGE_REPORT_ACTIONS_FILE_PATH,
-  MESSAGE_VISIBILITY_FILE_PATH,
   appendNdjson,
   clean,
   max,
+  MESSAGE_VISIBILITY_FILE_PATH,
   readNdjson,
-  type MessageReport,
-  type MessageReportAction
+  MESSAGE_SUBMISSIONS_FILE_PATH,
+  type MessageSubmission
 } from '../../../lib/messaging';
+import { supabaseServer } from '../../../lib/supabase-server';
 
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
@@ -21,38 +20,70 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   const reportId = max(clean(formData.get('reportId')), 260);
-  const action = clean(formData.get('action')) as MessageReportAction['action'];
-  const returnUrl = `/professionals/messages-moderation?key=${encodeURIComponent(moderationKey)}`;
+  const action = clean(formData.get('action')) as 'hide_message' | 'dismiss_report' | 'block_sender';
+  const actorIdentifier = max(clean(formData.get('actorIdentifier')) || 'admin', 120);
+  const returnUrl = `/professionals/messages-moderation?key=${encodeURIComponent(moderationKey)}&actor=${encodeURIComponent(actorIdentifier)}`;
 
-  if (!reportId || !['hide_message', 'dismiss_report'].includes(action)) {
+  if (!reportId || !['hide_message', 'dismiss_report', 'block_sender'].includes(action)) {
     return redirect(`${returnUrl}&status=invalid`, 303);
   }
 
-  const reports = await readNdjson<MessageReport>(MESSAGE_REPORTS_FILE_PATH);
-  const report = reports.find((entry) => entry.id === reportId);
-  if (!report) return redirect(`${returnUrl}&status=invalid`, 303);
+  const { data: report, error: reportError } = await supabaseServer
+    .from('message_reports')
+    .select('*')
+    .eq('id', reportId)
+    .single();
 
-  const actions = await readNdjson<MessageReportAction>(MESSAGE_REPORT_ACTIONS_FILE_PATH);
-  const alreadyHandled = actions.some((entry) => entry.reportId === reportId);
-  if (alreadyHandled) return redirect(`${returnUrl}&status=ok`, 303);
+  if (reportError || !report) return redirect(`${returnUrl}&status=invalid`, 303);
+
+  const { data: existingActions } = await supabaseServer
+    .from('message_moderation_actions')
+    .select('id')
+    .eq('report_id', reportId)
+    .limit(1);
+
+  if (existingActions && existingActions.length > 0) return redirect(`${returnUrl}&status=ok`, 303);
+
+  let metadata: Record<string, unknown> = {};
 
   try {
     if (action === 'hide_message') {
       await appendNdjson(MESSAGE_VISIBILITY_FILE_PATH, {
-        threadId: report.threadId,
-        messageId: report.messageId,
+        threadId: report.thread_id,
+        messageId: report.message_id,
         action: 'hide',
         actedAt: new Date().toISOString()
       });
     }
 
-    await appendNdjson(MESSAGE_REPORT_ACTIONS_FILE_PATH, {
-      reportId,
+    if (action === 'block_sender') {
+      let blockedSenderEmail = report.reported_sender_email as string | null;
+      if (!blockedSenderEmail) {
+        const submissions = await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH);
+        blockedSenderEmail = submissions.find((m) => m.id === report.message_id)?.senderEmail?.toLowerCase() ?? null;
+      }
+      if (blockedSenderEmail) metadata.blockedSenderEmail = blockedSenderEmail;
+    }
+
+    const { error: actionError } = await supabaseServer.from('message_moderation_actions').insert({
+      report_id: reportId,
       action,
-      messageId: report.messageId,
-      threadId: report.threadId,
-      actedAt: new Date().toISOString()
-    } satisfies MessageReportAction);
+      message_id: report.message_id,
+      thread_id: report.thread_id,
+      actor_identifier: actorIdentifier,
+      actor_role: 'moderator',
+      metadata,
+      acted_at: new Date().toISOString()
+    });
+
+    if (actionError) throw actionError;
+
+    const { error: updateError } = await supabaseServer
+      .from('message_reports')
+      .update({ status: 'resolved' })
+      .eq('id', reportId);
+
+    if (updateError) throw updateError;
 
     return redirect(`${returnUrl}&status=ok`, 303);
   } catch (error) {

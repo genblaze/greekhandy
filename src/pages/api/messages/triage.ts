@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { appendNdjson, clean, MESSAGE_TRIAGE_ACTIONS_FILE_PATH } from '../../../lib/messaging';
+import { supabaseServer } from '../../../lib/supabase-server';
 
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
@@ -12,14 +13,29 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
   const action = clean(formData.get('action'));
   const threadId = clean(formData.get('threadId'));
-  const returnUrl = `/professionals/messages-moderation?key=${encodeURIComponent(moderationKey)}`;
+  const actorIdentifier = clean(formData.get('actorIdentifier')) || 'admin';
+  const returnUrl = `/professionals/messages-moderation?key=${encodeURIComponent(moderationKey)}&actor=${encodeURIComponent(actorIdentifier)}`;
 
   if (!threadId || !['review', 'reject', 'block'].includes(action)) {
     return redirect(`${returnUrl}&status=invalid`, 303);
   }
 
   try {
-    await appendNdjson(MESSAGE_TRIAGE_ACTIONS_FILE_PATH, { threadId, action, actedAt: new Date().toISOString() });
+    await appendNdjson(MESSAGE_TRIAGE_ACTIONS_FILE_PATH, { threadId, action, actedAt: new Date().toISOString(), actorIdentifier });
+
+    const { error } = await supabaseServer.from('message_moderation_actions').insert({
+      report_id: null,
+      thread_id: threadId,
+      message_id: null,
+      action,
+      actor_identifier: actorIdentifier,
+      actor_role: 'moderator',
+      metadata: {},
+      acted_at: new Date().toISOString()
+    });
+
+    if (error) throw error;
+
     return redirect(`${returnUrl}&status=ok`, 303);
   } catch (error) {
     console.error('[message-triage] failed', error);

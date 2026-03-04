@@ -2,18 +2,18 @@
 import Layout from '../../layouts/Layout.astro';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { supabaseServer } from '../../lib/supabase-server';
 
 const SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
 const ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
 const VISIBILITY_FILE_PATH = resolve(process.cwd(), 'data', 'message-visibility-actions.ndjson');
-const REPORTS_FILE_PATH = resolve(process.cwd(), 'data', 'message-reports.ndjson');
-const REPORT_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-report-actions.ndjson');
 
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
 const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
 const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
 const status = url.searchParams.get('status');
+const actor = (url.searchParams.get('actor') ?? 'admin').slice(0, 120);
 
 interface MessageSubmission {
   id?: string;
@@ -45,11 +45,6 @@ interface MessageReport {
   reportedAt: string;
 }
 
-interface MessageReportAction {
-  reportId: string;
-  action: 'hide_message' | 'dismiss_report';
-  actedAt: string;
-}
 
 const readNdjson = async <T,>(path: string): Promise<T[]> => {
   try {
@@ -67,8 +62,6 @@ const readNdjson = async <T,>(path: string): Promise<T[]> => {
 const submissions = await readNdjson<MessageSubmission>(SUBMISSIONS_FILE_PATH);
 const actions = await readNdjson<ActionLog>(ACTIONS_FILE_PATH);
 const visibilityActions = await readNdjson<{ messageId?: string; action?: string }>(VISIBILITY_FILE_PATH);
-const reports = await readNdjson<MessageReport>(REPORTS_FILE_PATH);
-const reportActions = await readNdjson<MessageReportAction>(REPORT_ACTIONS_FILE_PATH);
 const hiddenMessageIds = new Set(visibilityActions.filter((entry) => entry.action === 'hide' && entry.messageId).map((entry) => entry.messageId as string));
 
 const latestActionByThread = new Map<string, ActionLog>();
@@ -101,9 +94,32 @@ const pendingThreads = Array.from(submissionsByThread.entries())
   .filter((thread) => thread.latestMessage && !thread.latestAction)
   .sort((a, b) => b.latestMessage.submittedAt.localeCompare(a.latestMessage.submittedAt));
 
-const handledReportIds = new Set(reportActions.map((entry) => entry.reportId));
+const { data: reportsData } = await supabaseServer
+  .from('message_reports')
+  .select('*')
+  .eq('status', 'open')
+  .order('reported_at', { ascending: true });
+
+const { data: reportActionsData } = await supabaseServer
+  .from('message_moderation_actions')
+  .select('report_id')
+  .not('report_id', 'is', null);
+
+const handledReportIds = new Set((reportActionsData || []).map((entry: any) => entry.report_id).filter(Boolean));
+
+const reports = (reportsData || []).map((row: any) => ({
+  id: row.id,
+  threadId: row.thread_id,
+  messageId: row.message_id,
+  reporterEmail: row.reporter_email,
+  reason: row.reason,
+  details: row.details,
+  status: row.status,
+  reportedAt: row.reported_at
+} as MessageReport));
+
 const openReports = reports
-  .filter((report) => report.status === 'open' && !handledReportIds.has(report.id))
+  .filter((report) => !handledReportIds.has(report.id))
   .map((report) => {
     const messages = submissionsByThread.get(report.threadId) || [];
     const target = messages.find((entry) => entry.id === report.messageId);
@@ -156,12 +172,21 @@ const openReports = reports
                 <form action="/api/messages/reports-action" method="POST">
                   <input type="hidden" name="moderationKey" value={moderationKey} />
                   <input type="hidden" name="reportId" value={report.id} />
+                  <input type="hidden" name="actorIdentifier" value={actor} />
                   <input type="hidden" name="action" value="hide_message" />
                   <button type="submit" class="rounded-lg border border-purple-300 bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-900 hover:bg-purple-200">Απόκρυψη μηνύματος</button>
                 </form>
                 <form action="/api/messages/reports-action" method="POST">
                   <input type="hidden" name="moderationKey" value={moderationKey} />
                   <input type="hidden" name="reportId" value={report.id} />
+                  <input type="hidden" name="actorIdentifier" value={actor} />
+                  <input type="hidden" name="action" value="block_sender" />
+                  <button type="submit" class="rounded-lg border border-red-300 bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 hover:bg-red-200">Block sender</button>
+                </form>
+                <form action="/api/messages/reports-action" method="POST">
+                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="reportId" value={report.id} />
+                  <input type="hidden" name="actorIdentifier" value={actor} />
                   <input type="hidden" name="action" value="dismiss_report" />
                   <button type="submit" class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100">Κλείσιμο αναφοράς</button>
                 </form>
@@ -210,6 +235,7 @@ const openReports = reports
                   <input type="hidden" name="moderationKey" value={moderationKey} />
                   <input type="hidden" name="action" value="review" />
                   <input type="hidden" name="threadId" value={threadId} />
+                  <input type="hidden" name="actorIdentifier" value={actor} />
                   <button type="submit" class="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-800">Mark Reviewed</button>
                 </form>
 
