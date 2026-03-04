@@ -388,6 +388,7 @@ const filteredModerationWatchCount = filteredThreads.filter((thread) => thread.i
 const filteredActiveCount = filteredThreads.filter((thread) => thread.stateTone === 'active').length;
 const filteredHiddenCount = filteredThreads.filter((thread) => thread.isAdminHidden).length;
 const filteredMutedCount = filteredThreads.filter((thread) => thread.isMuted).length;
+const filteredClearFlowCount = Math.max(0, filteredThreadsCount - filteredNeedsAttention);
 const getThreadHref = (id: string) => `/messages/thread?threadId=${encodeURIComponent(id)}&viewerEmail=${encodeURIComponent(viewerEmail)}`;
 const priorityRank: Record<string, number> = { critical: 0, high: 1, medium: 2, normal: 3 };
 const triageOrderedThreads = [...filteredThreads].sort((a, b) => {
@@ -561,10 +562,39 @@ const listStateRecoveryHint = showLoadingState
     : !hasFilteredResults && threads.length > 0
       ? 'Η προσαρμογή φίλτρων μπορεί να αποκαταστήσει άμεσα τα αποτελέσματα.'
       : 'Η τρέχουσα προβολή είναι σταθερή και έτοιμη για triage ενέργειες.';
+const listStateAriaRole = listLoadError && !hasPartialResults ? 'alert' : 'status';
+const listStateAriaLive = listLoadError && !hasPartialResults ? 'assertive' : 'polite';
 const activeFilterChips: Array<{ label: string; href: string; tone: 'sky' | 'rose' | 'amber' }> = [];
 if (showUnreadOnly) activeFilterChips.push({ label: 'Μόνο μη αναγνωσμένα', href: unreadChipHref, tone: 'sky' });
 if (showBlockedOnly) activeFilterChips.push({ label: 'Μόνο μπλοκαρισμένα', href: blockedChipHref, tone: 'rose' });
 if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμενα', href: reportedChipHref, tone: 'amber' });
+const inboxReadinessLabel = showLoadingState
+  ? 'Inbox σε συγχρονισμό'
+  : listLoadError
+    ? 'Inbox με περιορισμένη ορατότητα'
+    : filteredNeedsReplyCount > 0 || filteredBlockedCount > 0
+      ? 'Inbox με άμεση εκκρεμότητα'
+      : hasFilteredResults
+        ? 'Inbox σε σταθερή ροή'
+        : 'Inbox χωρίς ενεργές αντιστοιχίσεις';
+const inboxReadinessClass = showLoadingState
+  ? 'border-sky-300 bg-sky-100 text-sky-900'
+  : listLoadError
+    ? 'border-rose-300 bg-rose-100 text-rose-900'
+    : filteredNeedsReplyCount > 0 || filteredBlockedCount > 0
+      ? 'border-indigo-300 bg-indigo-100 text-indigo-900'
+      : hasFilteredResults
+        ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
+        : 'border-amber-300 bg-amber-100 text-amber-900';
+const inboxReadinessHint = listLoadError
+  ? 'Πιθανές ελλείψεις σε badges/moderation έως ότου ολοκληρωθεί το retry.'
+  : filteredNeedsReplyCount > 0
+    ? `Υπάρχουν ${filteredNeedsReplyCount} thread(s) που χρειάζονται απάντηση.`
+    : filteredBlockedCount > 0
+      ? `Υπάρχουν ${filteredBlockedCount} μπλοκαρισμένα thread(s) για έλεγχο.`
+      : hasFilteredResults
+        ? `Καθαρή ροή: ${filteredClearFlowCount} thread(s) χωρίς άμεση εκκρεμότητα.`
+        : 'Προσαρμόστε τα φίλτρα για να εμφανιστούν διαθέσιμα threads.';
 ---
 
 <Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με καθαρή ιεραρχία, moderation badges και βασικές ενέργειες.">
@@ -618,10 +648,10 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
           <a href="#messages-controls" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
             Φίλτρα και αναζήτηση
           </a>
-          <a href="#messages-triage" class="inline-flex items-center rounded-full border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
+          <a href="#messages-triage" aria-controls="messages-triage" class="inline-flex items-center rounded-full border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
             Triage προτεραιότητα
           </a>
-          <a href="#messages-results" class="inline-flex items-center rounded-full border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+          <a href="#messages-results" aria-controls="messages-results" class="inline-flex items-center rounded-full border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
             Λίστα συνομιλιών
           </a>
         </div>
@@ -704,7 +734,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
 
     {viewerEmail && (
       <section id="messages-controls" class="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.45)]">
-        <form method="GET" action="/messages" class="space-y-3" aria-label="Αναζήτηση συνομιλιών">
+        <form method="GET" action="/messages" class="space-y-3" aria-label="Αναζήτηση συνομιλιών" role="search" aria-describedby="messages-results-summary">
           <input type="hidden" name="viewerEmail" value={viewerEmail} />
           {showUnreadOnly && <input type="hidden" name="unread" value="1" />}
           {showBlockedOnly && <input type="hidden" name="blocked" value="1" />}
@@ -890,12 +920,14 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
             <p class="font-semibold text-slate-800">Προβολή: {filteredThreadsCount}/{totalThreads}</p>
             <p>Άμεση απάντηση: {filteredNeedsReplyCount}</p>
             <p>Ενεργά: {filteredActiveCount} · Κρυφά: {filteredHiddenCount} · Σίγαση: {filteredMutedCount}</p>
+            <p class={`messages-results-header__state mt-1 inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-semibold ${inboxReadinessClass}`}>{inboxReadinessLabel}</p>
+            <p class="mt-1 text-[11px] text-slate-500">{inboxReadinessHint}</p>
           </div>
         </div>
         <div
           class={`rounded-2xl border px-4 py-3 text-sm shadow-sm ${listStateToneClass}`}
-          role="status"
-          aria-live="polite"
+          role={listStateAriaRole}
+          aria-live={listStateAriaLive}
           aria-atomic="true"
           aria-labelledby="messages-list-state-title"
           aria-describedby="messages-list-state-summary messages-list-state-support messages-list-state-recovery"
@@ -927,6 +959,14 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
           <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="messages-list-partial-title" aria-describedby="messages-list-partial-description">
             <p id="messages-list-partial-title" class="font-semibold">Μερικό αποτέλεσμα φόρτωσης.</p>
             <p id="messages-list-partial-description" class="mt-1 text-xs">Μερικά δεδομένα λείπουν λόγω σφάλματος φόρτωσης. Τα αποτελέσματα μπορεί να είναι ελλιπή μέχρι την επόμενη επιτυχημένη ανάκτηση.</p>
+            <div class="mt-2 flex flex-wrap items-center gap-2">
+              <a href={currentViewHref} class="inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+                Επανάληψη φόρτωσης
+              </a>
+              <a href={clearFiltersHref} class="inline-flex rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                Καθαρισμός φίλτρων
+              </a>
+            </div>
           </div>
         )}
         {showLoadingState && (
