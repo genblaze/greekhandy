@@ -109,6 +109,8 @@ const customerStatusBadge = moderationState === 'approved'
     : moderationState === 'cancelled'
       ? 'Πελάτης: αίτημα ακυρωμένο'
       : 'Πελάτης: αναμονή ελέγχου';
+const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`GreekHandy κράτηση ${bookingId || ''}`)}&body=${encodeURIComponent(`Γεια σας,\n\nΘα ήθελα ενημέρωση για το αίτημα κράτησης με κωδικό: ${bookingId || '-'}\nΚατάσταση: ${moderationState}\n\nΕυχαριστώ.`)}`;
+const rescheduleMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`Αίτημα αλλαγής ραντεβού ${bookingId || ''}`)}&body=${encodeURIComponent(`Γεια σας,\n\nΘα ήθελα αλλαγή/ενημέρωση για το αίτημα κράτησης με κωδικό: ${bookingId || '-'}\n\nΝέα διαθεσιμότητα: \n\nΕυχαριστώ.`)}`;
 
 ---
 
@@ -263,6 +265,12 @@ const customerStatusBadge = moderationState === 'approved'
             <a href={`/professionals/${professionalSlug}`} class="inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">Προβολή επαγγελματία</a>
           )}
           {returnTo && <a href={returnTo} class="inline-flex rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">Επιστροφή στη φόρμα</a>}
+          {(moderationState === 'pending' || moderationState === 'approved') && (
+            <a href={supportMailTo} class="inline-flex rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">Αίτημα ενημέρωσης</a>
+          )}
+          {moderationState === 'approved' && (
+            <a href={rescheduleMailTo} class="inline-flex rounded-lg border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">Αίτημα αλλαγής ραντεβού</a>
+          )}
         </div>
       </section>
     )}

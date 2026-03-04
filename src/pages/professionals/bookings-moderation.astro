@@ -219,11 +219,12 @@ const hasAnyBookings = bookings.length > 0;
                     Προβολή σελίδας κατάστασης πελάτη
                   </a>
                   <span class="text-xs font-medium text-slate-500">Τρέχουσα κατάσταση: {resolution.state}</span>
+                  <span class="text-xs text-slate-500">Επιτρεπτές ενέργειες: {resolution.state === 'pending' ? 'approved, rejected, cancelled' : 'καμία άμεση μετάβαση (μόνο νέα υποβολή)'}</span>
 
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state && isAllowedTransition(resolution.state, target.state))
                     .map((target) => (
-                      <form action="/api/bookings/moderate" method="POST" data-moderation-form>
+                      <form action="/api/bookings/moderate" method="POST" data-moderation-form data-booking-id={bookingId} data-from-state={resolution.state} data-to-state={target.state}>
                         <input type="hidden" name="moderationKey" value={moderationKey} />
                         <input type="hidden" name="bookingId" value={bookingId} />
                         <input type="hidden" name="expectedState" value={resolution.state} />
@@ -256,8 +257,11 @@ const hasAnyBookings = bookings.length > 0;
             const actionLabel = clickedButton instanceof HTMLButtonElement
               ? (clickedButton.getAttribute('data-default-label') || clickedButton.textContent || 'ενημέρωση')
               : 'ενημέρωση';
+            const bookingId = form.getAttribute('data-booking-id') || '-';
+            const fromState = form.getAttribute('data-from-state') || 'unknown';
+            const toState = form.getAttribute('data-to-state') || 'unknown';
 
-            if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel};`)) {
+            if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel}\nΑίτημα: ${bookingId}\nΜετάβαση: ${fromState} → ${toState}`)) {
               event.preventDefault();
               return;
             }
