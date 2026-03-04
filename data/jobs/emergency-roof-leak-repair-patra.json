@@ -1,0 +1,20 @@
+{
+  "id": "emergency-roof-leak-repair-patra",
+  "slug": "episkevi-diarrois-stegi-amesa-patra",
+  "nameGr": "Άμεση Επισκευή Διαρροής Στέγης στην Πάτρα",
+  "nameEn": "Emergency Roof Leak Repair in Patras",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Άμεση αποκατάσταση διαρροών σε στέγη στην Πάτρα με έλεγχο κρίσιμων σημείων και προσωρινή/μόνιμη στεγανοποίηση. Ιδανικό για ιδιοκτήτες που χρειάζονται γρήγορη επέμβαση για να περιορίσουν ζημιές.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "80-290€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή στέγης Πάτρα",
+    "επείγουσα επισκευή σκεπής",
+    "κεραμίδια επισκευή Πάτρα",
+    "τεχνίτης στέγης άμεσα",
+    "στεγανοποίηση στέγης Πάτρα"
+  ],
+  "status": "researched"
+}

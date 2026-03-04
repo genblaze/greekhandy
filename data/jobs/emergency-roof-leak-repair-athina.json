@@ -1,0 +1,20 @@
+{
+  "id": "emergency-roof-leak-repair-athina",
+  "slug": "episkevi-diarrois-stegi-amesa-athina",
+  "nameGr": "Άμεση Επισκευή Διαρροής Στέγης στην Αθήνα",
+  "nameEn": "Emergency Roof Leak Repair in Athens",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εντοπισμός και άμεση επισκευή διαρροής σε στέγη ή κεραμοσκεπή στην Αθήνα, πριν επεκταθούν οι ζημιές. Υπηρεσία υψηλής πρόθεσης για επείγοντα περιστατικά μετά από βροχή ή κακοκαιρία.",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "90-320€",
+  "demand": "high",
+  "keywords": [
+    "επισκευή διαρροής στέγης Αθήνα",
+    "επείγουσα επισκευή κεραμοσκεπής",
+    "τεχνίτης στέγης Αθήνα",
+    "σταμάτημα νερών από στέγη",
+    "στέγη βροχή ζημιά"
+  ],
+  "status": "researched"
+}

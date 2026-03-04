@@ -1,0 +1,20 @@
+{
+  "id": "drain-cleaning-athina",
+  "slug": "katharismos-apofraxis-athina",
+  "nameGr": "Αποφράξεις & Καθαρισμός Αποχέτευσης στην Αθήνα",
+  "nameEn": "Drain Cleaning in Athens",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Άμεση απόφραξη και καθαρισμός αποχέτευσης στην Αθήνα για μπάνιο, κουζίνα ή κεντρική γραμμή. Υπηρεσία υψηλής πρόθεσης για επείγοντα περιστατικά με οσμές, υπερχείλιση ή αργή απορροή.",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "40-140€",
+  "demand": "high",
+  "keywords": [
+    "απόφραξη Αθήνα",
+    "καθαρισμός αποχέτευσης Αθήνα",
+    "υδραυλικός απόφραξη άμεσα",
+    "αποχέτευση βουλωμένη",
+    "υδραυλικός 24ωρο Αθήνα"
+  ],
+  "status": "researched"
+}

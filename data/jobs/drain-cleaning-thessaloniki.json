@@ -1,0 +1,20 @@
+{
+  "id": "drain-cleaning-thessaloniki",
+  "slug": "katharismos-apofraxis-thessaloniki",
+  "nameGr": "Αποφράξεις & Καθαρισμός Αποχέτευσης στη Θεσσαλονίκη",
+  "nameEn": "Drain Cleaning in Thessaloniki",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εξειδικευμένες αποφράξεις στη Θεσσαλονίκη για βουλωμένες σωληνώσεις σε κατοικίες και επαγγελματικούς χώρους. Ιδανικό για χρήστες που χρειάζονται άμεση αποκατάσταση της ροής χωρίς καθυστερήσεις.",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "40-130€",
+  "demand": "high",
+  "keywords": [
+    "απόφραξη Θεσσαλονίκη",
+    "καθαρισμός αποχέτευσης Θεσσαλονίκη",
+    "βουλωμένη λεκάνη λύση",
+    "υδραυλικός απόφραξη",
+    "επείγουσα απόφραξη"
+  ],
+  "status": "researched"
+}

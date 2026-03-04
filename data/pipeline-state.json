@@ -34,7 +34,7 @@
   },
   "stats": {
     "categoriesResearched": 19,
-    "jobsResearched": 143,
+    "jobsResearched": 176,
     "contentPagesBuilt": 126
   },
   "lastDecision": "Cycle run: checked active sessions via openclaw sessions --all-agents --active 15, relaunched idle greekhandy-research; kept builder/developer/developer-2/developer-3/leads on current in-scope tasks.",

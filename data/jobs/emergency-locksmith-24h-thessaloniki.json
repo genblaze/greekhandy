@@ -1,0 +1,20 @@
+{
+  "id": "emergency-locksmith-24h-thessaloniki",
+  "slug": "kleidaras-amesa-24ores-thessaloniki",
+  "nameGr": "Κλειδαράς Άμεσα 24 Ώρες στη Θεσσαλονίκη",
+  "nameEn": "24/7 Emergency Locksmith in Thessaloniki",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Άμεσο άνοιγμα πόρτας και αλλαγή κλειδαριάς στη Θεσσαλονίκη, όλο το 24ωρο, για περιστατικά κλειδώματος ή βλάβης. Υπηρεσία υψηλής πρόθεσης για επείγουσες ανάγκες κατοικίας και επαγγελματικών χώρων.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "35-130€",
+  "demand": "high",
+  "keywords": [
+    "κλειδαράς Θεσσαλονίκη 24ωρο",
+    "άνοιγμα πόρτας Θεσσαλονίκη",
+    "επείγων κλειδαράς",
+    "αλλαγή κλειδαριάς τώρα",
+    "κλειδαράς κοντά μου"
+  ],
+  "status": "researched"
+}
