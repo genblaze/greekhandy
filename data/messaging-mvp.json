@@ -1,35 +1,35 @@
 {
   "featureId": "messaging",
-  "version": "mvp-v1",
-  "goal": "Enable a customer and a professional to exchange basic in-platform messages tied to a lead, with minimal moderation and safety controls.",
+  "version": "mvp-v2-smallest-shippable",
+  "goal": "Ship a safe, lead-linked inquiry thread so one customer and one professional can message each other in-app.",
   "inScope": [
-    "One-to-one threads between customer and professional",
-    "Thread is created from an existing lead/contact request",
-    "Plain text messages only",
-    "Ordered message history within each thread",
-    "Unread indicator + last-message preview in thread list",
-    "Basic email notification for new unread message",
-    "Basic moderation actions: report message, block sender, admin hide message"
+    "Exactly one conversation per lead between one customer and one professional",
+    "Send/receive plain-text messages only (no rich formatting)",
+    "Conversation view with chronological message history",
+    "Conversation list showing last message preview and unread count",
+    "Mark messages as read when conversation is opened",
+    "Minimal moderation hooks: report message, block participant in conversation, admin hide message",
+    "Basic new-message email notification (best-effort)"
   ],
   "outOfScope": [
-    "Group chat",
-    "File/image attachments",
-    "Voice notes, calls, video",
-    "Typing indicators and read receipts",
-    "Push notifications/mobile app delivery",
+    "Group conversations",
+    "Attachments (images/files)",
+    "Typing indicators, read receipts, online presence",
     "Message edit/delete by sender",
+    "Search across messages",
+    "Push/mobile notifications",
     "Auto-translation"
   ],
   "minimalDataModel": {
     "conversation": {
       "id": "string",
-      "leadId": "string",
+      "leadId": "string (unique)",
       "customerUserId": "string",
       "professionalUserId": "string",
       "status": "active | blocked | closed",
+      "lastMessageAt": "datetime",
       "createdAt": "datetime",
-      "updatedAt": "datetime",
-      "lastMessageAt": "datetime"
+      "updatedAt": "datetime"
     },
     "message": {
       "id": "string",
@@ -39,38 +39,37 @@
       "createdAt": "datetime",
       "visibility": "visible | hidden_by_moderation"
     },
-    "conversationParticipant": {
+    "participantState": {
       "conversationId": "string",
       "userId": "string",
-      "unreadCount": "number",
       "lastReadMessageId": "string|null",
-      "isBlocked": "boolean"
+      "unreadCount": "number",
+      "blockedByUser": "boolean"
     },
     "messageReport": {
       "id": "string",
       "messageId": "string",
       "reportedByUserId": "string",
-      "reason": "abuse | spam | harassment | other",
+      "reason": "spam | abuse | harassment | other",
       "createdAt": "datetime",
       "status": "open | reviewed"
     }
   },
-  "moderationAndSafetyConstraints": [
-    "Only participants in a conversation can read or send messages in that conversation",
-    "Messages are immutable in MVP (no sender edits/deletes), except admin hide",
-    "Rate limit sends per user (example: max 20 messages / 5 minutes) to reduce spam",
-    "Block action immediately prevents future messages from blocked sender in that conversation",
-    "Report action is available per message and stores reason + audit trail",
-    "Admin can hide a message from both participants without deleting audit data",
-    "Basic server-side content checks: reject empty body, oversized body, and obvious script/html injection"
+  "rules": [
+    "Only conversation participants can read or send in that conversation",
+    "Conversation is created only from an existing lead",
+    "If either participant blocks, no further messages can be sent in that conversation",
+    "Messages are immutable in MVP; only admin can hide",
+    "Server rejects empty, oversized, or unsafe (HTML/script) message bodies",
+    "Rate limit message sending per user to reduce spam"
   ],
   "acceptanceCriteria": [
-    "A conversation is auto-created from a lead and both sides can exchange text messages",
-    "Thread list shows latest message preview and unread state for each participant",
-    "Opening a thread marks unread messages as read for the viewer",
-    "Users cannot access conversations where they are not a participant",
-    "Blocked sender cannot send additional messages in blocked conversation",
-    "Reported message appears in admin moderation queue with reason and timestamp",
-    "All MVP messaging JSON schemas remain valid and parseable"
+    "Given a valid lead with customer + professional, when first message is sent, then exactly one conversation exists for that lead",
+    "Given a participant sends a message, when recipient opens thread list, then unread count increments and last-message preview matches latest message",
+    "Given recipient opens the conversation, then unread count becomes 0 and lastReadMessageId is updated",
+    "Given a non-participant requests the conversation, then API returns forbidden/not found and no message data",
+    "Given a participant is blocked in the conversation, when they attempt to send, then message is rejected and not persisted",
+    "Given a participant reports a message, then a moderation record exists with reporter, reason, and timestamp",
+    "Given admin hides a message, then participants no longer see the message body while moderation/audit record remains intact"
   ]
 }

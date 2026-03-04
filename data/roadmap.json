@@ -43,7 +43,7 @@
     {
       "id": "messaging",
       "name": "Messaging",
-      "description": "Chat between users and professionals. Message threads per inquiry. Notification system. Chat history.",
+      "description": "Smallest shippable Messaging MVP: one-to-one inquiry thread per lead (customer ↔ professional), plain-text messages, thread list with unread + last preview, and minimal moderation hooks (report message, block participant, admin hide message). Scope/acceptance: data/messaging-mvp.json.",
       "priority": 6,
       "status": "in-progress",
       "estimatedComplexity": "high"
