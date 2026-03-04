@@ -41,6 +41,9 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
 - **Messaging MVP copy asset:**
   - Greek UI copy for conversation start, empty state, send failure, moderation/blocked notices, and thread status labels
   - Source file: `data/messaging-copy.json`
+- **Admin Dashboard MVP copy asset:**
+  - Greek UI copy for auth gate, moderation queue labels, status chips, empty/error states, and basic analytics labels
+  - Source file: `data/admin-dashboard-copy.json`
 - **Messaging Requests MVP slice:**
   - Message request form on each professional profile
   - Submission endpoint at `POST /api/messages/submit` (saved as `pending`)
