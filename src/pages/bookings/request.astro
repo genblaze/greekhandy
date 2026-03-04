@@ -316,7 +316,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
           </div>
         </dl>
 
-        <div class="mt-6 flex flex-wrap gap-3" role="group" aria-label="Ενέργειες αιτήματος κράτησης">
+        <div class="mt-6 flex flex-wrap gap-3" role="group" aria-label="Ενέργειες αιτήματος κράτησης" aria-describedby="booking-actions-guardrail-help">
           {canOpenProfessionalProfile && (
             <a href={`/professionals/${professionalSlug}`} class="inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800" aria-label="Προβολή σελίδας επαγγελματία">
               Προβολή επαγγελματία
@@ -340,6 +340,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
             </form>
           )}
         </div>
+        <p id="booking-actions-guardrail-help" class="mt-2 text-xs text-slate-600">Σημείωση ασφάλειας: οι ενέργειες εμφανίζονται μόνο όταν επιτρέπεται η μετάβαση στην τρέχουσα κατάσταση.</p>
       </section>
     )}
   </main>

@@ -144,7 +144,7 @@ const hasAnyBookings = bookings.length > 0;
         )}
         {status === 'stale' && (
           <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800" role="alert" aria-live="assertive">
-            Batch-safe guardrail: η κατάσταση άλλαξε πριν την καταχώρηση{statusBookingId ? ` (αίτημα ${statusBookingId})` : ''}. Αναμενόταν {statusExpected || 'unknown'}, αλλά βρέθηκε {statusActual || 'unknown'}. Κάντε ανανέωση και ξαναδοκιμάστε.
+            Batch-safe guardrail: η κατάσταση άλλαξε πριν την καταχώρηση{statusBookingId ? ` (αίτημα ${statusBookingId})` : ''}. Αναμενόταν {statusExpected || 'unknown'}, αλλά βρέθηκε {statusActual || 'unknown'}. Κάντε ανανέωση για νέα expectedState και ξαναδοκιμάστε.
           </p>
         )}
         {status === 'guardrail' && (
@@ -200,7 +200,7 @@ const hasAnyBookings = bookings.length > 0;
             )}
 
             {groupedBookings[state].map(({ booking, bookingId, latestAction, resolution }) => (
-              <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+              <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm" role="region" aria-label={`Κάρτα moderation αιτήματος ${bookingId}`}>
                 <div class="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <div class="flex flex-wrap items-center gap-2">
