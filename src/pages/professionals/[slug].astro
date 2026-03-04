@@ -364,7 +364,7 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε πρόβλημα. Δοκιμάστε ξανά.</p>
         </div>
 
-        <form action="/api/bookings/submit" method="POST" class="mt-4">
+        <form action="/api/bookings/submit" method="POST" class="mt-4" data-pending-form>
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
@@ -400,7 +400,7 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
             <textarea id="bookingMessage" name="message" rows="4" required maxlength="2000" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
           </div>
 
-          <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">Αποστολή αιτήματος</button>
+          <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος">Αποστολή αιτήματος</button>
         </form>
       </section>
 
@@ -415,7 +415,7 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε πρόβλημα. Δοκιμάστε ξανά.</p>
         </div>
 
-        <form action="/api/messages/submit" method="POST" class="mt-4">
+        <form action="/api/messages/submit" method="POST" class="mt-4" data-pending-form>
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="recipientEmail" value={profile.email} />
           <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
@@ -442,7 +442,7 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
             <textarea id="initialMessage" name="message" rows="4" required maxlength="2000" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
           </div>
 
-          <button type="submit" class="mt-4 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800">Αποστολή μηνύματος</button>
+          <button type="submit" class="mt-4 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή μηνύματος">Αποστολή μηνύματος</button>
         </form>
       </section>
 
@@ -525,6 +525,25 @@ const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat
                 submitButton.textContent = defaultLabel;
               }, 12000);
             }
+          });
+        }
+
+        for (const form of document.querySelectorAll('[data-pending-form]')) {
+          if (!(form instanceof HTMLFormElement)) continue;
+          form.addEventListener('submit', () => {
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (!(submitButton instanceof HTMLButtonElement)) return;
+
+            const defaultLabel = submitButton.getAttribute('data-default-label') || submitButton.textContent || 'Αποστολή';
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-busy', 'true');
+            submitButton.textContent = 'Αποστολή...';
+
+            window.setTimeout(() => {
+              submitButton.disabled = false;
+              submitButton.removeAttribute('aria-busy');
+              submitButton.textContent = defaultLabel;
+            }, 12000);
           });
         }
       })();

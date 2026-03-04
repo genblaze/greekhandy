@@ -285,15 +285,20 @@ const totalServices = allPages.length;
         </div>
       </form>
 
-      <p class="mt-4 text-sm text-gray-700" data-results-count aria-live="polite"></p>
+      <p class="mt-4 text-sm text-slate-700" data-results-count aria-live="polite"></p>
 
-      <ul class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list>
+      <div class="mt-5 hidden rounded-2xl border border-blue-200 bg-blue-50/70 p-4 text-blue-900" data-search-loading>
+        <p class="text-sm font-semibold">Φόρτωση αποτελεσμάτων...</p>
+        <p class="mt-1 text-xs text-blue-800">Συνδυάζουμε υπηρεσίες, κατηγορίες και επαγγελματίες.</p>
+      </div>
+
+      <ul class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false">
         {searchItems.map(item => (
           <li
             data-search-item
             data-search-text={item.searchText}
             data-cities={item.cities.join('|')}
-            class="rounded-xl border border-gray-200 bg-white p-4"
+            class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
           >
             <a href={item.href} class="block rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
               <div class="flex items-start gap-3">
@@ -312,9 +317,10 @@ const totalServices = allPages.length;
         ))}
       </ul>
 
-      <p class="mt-4 hidden rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-empty-state>
-        Δεν βρέθηκαν αποτελέσματα με αυτά τα φίλτρα. Δοκιμάστε άλλη λέξη ή πόλη.
-      </p>
+      <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-empty-state>
+        <p class="font-semibold text-orange-900">Δεν βρέθηκαν αποτελέσματα με αυτά τα φίλτρα.</p>
+        <p class="mt-1">Δοκιμάστε άλλη λέξη ή πόλη για περισσότερες επιλογές.</p>
+      </div>
     </div>
   </section>
 
@@ -425,8 +431,10 @@ const totalServices = allPages.length;
       const resultCards = Array.from(document.querySelectorAll('[data-search-item]'));
       const resultsCount = document.querySelector('[data-results-count]');
       const emptyState = document.querySelector('[data-empty-state]');
+      const loadingState = document.querySelector('[data-search-loading]');
+      const resultsList = document.querySelector('[data-results-list]');
 
-      if (!searchInput || !cityFilter || !resetButton || !resultsCount || !emptyState) return;
+      if (!searchInput || !cityFilter || !resetButton || !resultsCount || !emptyState || !resultsList) return;
 
       const getCityLabel = () => {
         const selectedOption = cityFilter.options[cityFilter.selectedIndex];
@@ -436,6 +444,9 @@ const totalServices = allPages.length;
       const updateResults = () => {
         const keyword = normalizeText(searchInput.value);
         const selectedCity = cityFilter.value;
+
+        if (loadingState) loadingState.classList.add('hidden');
+        resultsList.setAttribute('aria-busy', 'true');
 
         let visibleItems = 0;
 
@@ -463,7 +474,10 @@ const totalServices = allPages.length;
         }
 
         emptyState.classList.toggle('hidden', visibleItems > 0);
+        resultsList.setAttribute('aria-busy', 'false');
       };
+
+      if (loadingState) loadingState.classList.remove('hidden');
 
       searchInput.addEventListener('input', updateResults);
       cityFilter.addEventListener('change', updateResults);
