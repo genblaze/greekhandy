@@ -38,6 +38,9 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Moderation queue at `/professionals/bookings-moderation?key=...`
   - Moderation endpoint at `POST /api/bookings/moderate` (approve/reject actions logged)
   - Submission persistence in `data/booking-submissions.ndjson` and action log in `data/booking-moderation-actions.ndjson`
+- **Messaging MVP copy asset:**
+  - Greek UI copy for conversation start, empty state, send failure, moderation/blocked notices, and thread status labels
+  - Source file: `data/messaging-copy.json`
 
 ## Local Development
 
