@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import {
   MESSAGE_READ_STATE_FILE_PATH,
   MESSAGE_SUBMISSIONS_FILE_PATH,
+  MESSAGE_TRIAGE_ACTIONS_FILE_PATH,
   MESSAGE_VISIBILITY_FILE_PATH,
   getMessageThreadId,
   readNdjson,
@@ -13,8 +14,9 @@ import {
 const url = new URL(Astro.request.url);
 const viewerEmail = (url.searchParams.get('viewerEmail') ?? '').trim().toLowerCase();
 const status = (url.searchParams.get('status') ?? '').trim();
+const showLoadingState = status === 'loading';
 
-const truncatePreview = (value: string, max = 110) => {
+const truncatePreview = (value: string, max = 120) => {
   const normalized = value.replace(/\s+/g, ' ').trim();
   if (normalized.length <= max) return normalized;
   return `${normalized.slice(0, max - 1).trimEnd()}…`;
@@ -23,7 +25,14 @@ const truncatePreview = (value: string, max = 110) => {
 const allMessages = await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH);
 const readStates = await readNdjson<MessageReadState>(MESSAGE_READ_STATE_FILE_PATH);
 const visibilityActions = await readNdjson<{ messageId?: string; action?: string }>(MESSAGE_VISIBILITY_FILE_PATH);
+const triageActions = await readNdjson<{ threadId?: string; action?: string }>(MESSAGE_TRIAGE_ACTIONS_FILE_PATH);
+
 const hiddenMessageIds = new Set(visibilityActions.filter((entry) => entry.action === 'hide' && entry.messageId).map((entry) => entry.messageId as string));
+
+const latestTriageActionByThread = new Map<string, string>();
+for (const entry of triageActions) {
+  if (entry.threadId && entry.action) latestTriageActionByThread.set(entry.threadId, entry.action);
+}
 
 const readStateByThread = new Map<string, string>();
 for (const state of readStates) {
@@ -47,8 +56,16 @@ const threads = Array.from(threadMap.entries())
     const unreadCount = ordered.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail && (!lastReadAt || message.submittedAt > lastReadAt)).length;
     const isLastFromViewer = lastMessage.senderEmail.toLowerCase() === viewerEmail;
     const senderLabel = isLastFromViewer ? 'Εσείς' : (lastMessage.senderName || 'Συνεργάτης');
-    const lastPreview = hiddenMessageIds.has(lastMessage.id)
-      ? 'Το μήνυμα έχει κρυφτεί από moderation.'
+    const hiddenMessagesCount = ordered.filter((message) => hiddenMessageIds.has(message.id)).length;
+    const lastMessageHidden = hiddenMessageIds.has(lastMessage.id);
+    const threadAction = latestTriageActionByThread.get(threadId) || '';
+    const isBlocked = threadAction === 'block';
+    const isModerated = isBlocked || threadAction === 'review' || threadAction === 'reject' || hiddenMessagesCount > 0;
+    const isMuted = !isBlocked && lastMessageHidden;
+
+    const stateTone = isBlocked ? 'blocked' : isMuted ? 'muted' : isModerated ? 'moderated' : 'active';
+    const lastPreview = lastMessageHidden
+      ? 'Το τελευταίο μήνυμα έχει αποκρυφτεί από moderation.'
       : truncatePreview(lastMessage.message);
 
     return {
@@ -59,79 +76,173 @@ const threads = Array.from(threadMap.entries())
       lastPreview,
       senderLabel,
       messagesCount: ordered.length,
-      isLastFromViewer
+      isLastFromViewer,
+      hiddenMessagesCount,
+      isBlocked,
+      isModerated,
+      isMuted,
+      stateTone
     };
   })
   .sort((a, b) => b.lastMessageAt.localeCompare(a.lastMessageAt));
 
 const totalUnread = threads.reduce((sum, thread) => sum + thread.unreadCount, 0);
+const totalThreads = threads.length;
+const totalBlocked = threads.filter((thread) => thread.isBlocked).length;
+const totalMuted = threads.filter((thread) => thread.isMuted).length;
+const totalModerated = threads.filter((thread) => thread.isModerated).length;
+const totalActive = threads.filter((thread) => thread.stateTone === 'active').length;
+const listReturnTo = `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}`;
 ---
 
-<Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με προεπισκόπηση και μη αναγνωσμένα μηνύματα.">
-  <main class="mx-auto max-w-4xl px-4 py-14">
-    <div class="flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h1 class="text-3xl font-bold text-gray-900">Συνομιλίες</h1>
-        <p class="mt-2 text-sm text-gray-600">MVP inbox με ένδειξη μη αναγνωσμένων και καθαρή προεπισκόπηση τελευταίου μηνύματος.</p>
+<Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με καθαρή ιεραρχία, moderation badges και βασικές ενέργειες.">
+  <main class="mx-auto max-w-5xl px-4 py-12 md:py-14">
+    <section class="rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-blue-50 p-6 shadow-sm md:p-8">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">GreekHandy Messaging</p>
+          <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Συνομιλίες</h1>
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Οργανωμένη εικόνα όλων των threads με σαφή badges για μη αναγνωσμένα, moderation και περιορισμούς αποστολής.</p>
+        </div>
+
+        {viewerEmail && (
+          <div class="rounded-2xl border border-sky-200 bg-white/90 px-4 py-3 text-right shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-700">Προβολή ως</p>
+            <p class="mt-1 text-sm font-semibold text-slate-900">{viewerEmail}</p>
+          </div>
+        )}
       </div>
+
       {viewerEmail && (
-        <div class="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-800">
-          {totalUnread > 0 ? `${totalUnread} νέα μηνύματα` : 'Όλα αναγνωσμένα'}
+        <div class="mt-5 flex flex-wrap gap-2.5">
+          <span class="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-800">Threads: {totalThreads}</span>
+          <span class={`rounded-full border px-3 py-1 text-xs font-semibold ${totalUnread > 0 ? 'border-sky-300 bg-sky-100 text-sky-900' : 'border-emerald-300 bg-emerald-100 text-emerald-900'}`}>
+            {totalUnread > 0 ? `${totalUnread} μη αναγνωσμένα` : 'Όλα αναγνωσμένα'}
+          </span>
+          <span class="rounded-full border border-emerald-300 bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">Ενεργές: {totalActive}</span>
+          <span class="rounded-full border border-amber-300 bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-900">Σε moderation: {totalModerated}</span>
+          <span class="rounded-full border border-orange-300 bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-900">Σε σίγαση: {totalMuted}</span>
+          <span class="rounded-full border border-rose-300 bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-900">Μπλοκαρισμένα: {totalBlocked}</span>
         </div>
       )}
-    </div>
+    </section>
 
     {status === 'invalid' && (
-      <p class="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">Δεν ήταν δυνατή η ενημέρωση ως αναγνωσμένη (μη έγκυρα στοιχεία).</p>
+      <p class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-900">Δεν ήταν δυνατή η ενημέρωση ως αναγνωσμένη λόγω μη έγκυρων στοιχείων.</p>
     )}
     {status === 'forbidden' && (
-      <p class="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
+      <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
     )}
     {status === 'error' && (
-      <p class="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την ενημέρωση της συνομιλίας. Δοκιμάστε ξανά.</p>
+      <p class="mt-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-900">Προέκυψε σφάλμα κατά την ενημέρωση της κατάστασης. Δοκιμάστε ξανά.</p>
+    )}
+    {showLoadingState && (
+      <p class="mt-5 flex items-center gap-2 rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm font-medium text-sky-900">
+        <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700"></span>
+        Φόρτωση συνομιλιών...
+      </p>
     )}
 
     {!viewerEmail && (
-      <div class="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
-        <p class="font-semibold">Δεν μπορέσαμε να φορτώσουμε τις συνομιλίες.</p>
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-4 text-amber-950">
+        <p class="text-base font-semibold">Δεν ήταν δυνατή η φόρτωση των συνομιλιών.</p>
         <p class="mt-1 text-sm">Λείπει η παράμετρος <code>viewerEmail</code> από το URL.</p>
       </div>
     )}
 
     {viewerEmail && (
-      <section class="mt-6 space-y-3">
-        {threads.length === 0 && (
-          <div class="rounded-xl border border-gray-200 bg-white px-4 py-5 text-gray-700">
-            <p class="font-semibold text-gray-900">Δεν υπάρχουν συνομιλίες ακόμη.</p>
-            <p class="mt-1 text-sm text-gray-600">Μόλις σταλεί ή ληφθεί το πρώτο μήνυμα, θα εμφανιστεί εδώ.</p>
+      <section class="mt-6 space-y-4">
+        {showLoadingState && [1, 2, 3].map((item) => (
+          <article class="animate-pulse rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div class="h-4 w-40 rounded bg-slate-200"></div>
+            <div class="mt-3 h-3 w-full rounded bg-slate-100"></div>
+            <div class="mt-2 h-3 w-4/5 rounded bg-slate-100"></div>
+            <div class="mt-4 h-8 w-32 rounded bg-slate-200"></div>
+          </article>
+        ))}
+
+        {!showLoadingState && threads.length === 0 && (
+          <div class="rounded-2xl border border-slate-200 bg-white px-5 py-6 shadow-sm">
+            <p class="text-lg font-semibold text-slate-900">Δεν υπάρχουν συνομιλίες ακόμη.</p>
+            <p class="mt-2 text-sm text-slate-600">Μόλις σταλεί ή ληφθεί το πρώτο μήνυμα, θα εμφανιστεί εδώ με ένδειξη κατάστασης.</p>
           </div>
         )}
 
-        {threads.map((thread) => (
-          <a
-            href={`/messages/thread?threadId=${encodeURIComponent(thread.threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`}
-            class={`block rounded-xl border bg-white p-4 shadow-sm transition ${thread.unreadCount > 0 ? 'border-indigo-300 ring-1 ring-indigo-100 hover:border-indigo-400' : 'border-gray-200 hover:border-blue-300'}`}
+        {!showLoadingState && threads.map((thread) => (
+          <article
+            class={`rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md ${
+              thread.stateTone === 'blocked'
+                ? 'border-rose-300'
+                : thread.stateTone === 'muted'
+                  ? 'border-orange-300'
+                  : thread.unreadCount > 0
+                    ? 'border-sky-300 ring-1 ring-sky-100'
+                    : 'border-slate-200'
+            }`}
           >
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <div class="flex items-center gap-2">
-                <h2 class="font-semibold text-gray-900">/{thread.professionalSlug}</h2>
-                {thread.unreadCount > 0 && <span class="h-2.5 w-2.5 rounded-full bg-indigo-600" aria-label="Μη αναγνωσμένα μηνύματα"></span>}
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Thread</p>
+                <h2 class="mt-1 text-lg font-semibold text-slate-900">/{thread.professionalSlug}</h2>
+                <div class="mt-2 flex flex-wrap items-center gap-2">
+                  {thread.unreadCount > 0 && <span class="rounded-full border border-sky-300 bg-sky-100 px-2.5 py-1 text-[11px] font-semibold text-sky-900">{thread.unreadCount} νέο</span>}
+                  {thread.isBlocked && <span class="rounded-full border border-rose-300 bg-rose-100 px-2.5 py-1 text-[11px] font-semibold text-rose-900">Μπλοκαρισμένο</span>}
+                  {!thread.isBlocked && thread.isMuted && <span class="rounded-full border border-orange-300 bg-orange-100 px-2.5 py-1 text-[11px] font-semibold text-orange-900">Σε σίγαση</span>}
+                  {!thread.isBlocked && !thread.isMuted && thread.isModerated && <span class="rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 text-[11px] font-semibold text-amber-900">Moderation</span>}
+                  {thread.stateTone === 'active' && <span class="rounded-full border border-emerald-300 bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-900">Ενεργή</span>}
+                </div>
               </div>
-              <p class="text-xs text-gray-500">{new Date(thread.lastMessageAt).toLocaleString('el-GR')}</p>
+
+              <p class="text-xs font-medium text-slate-500">{new Date(thread.lastMessageAt).toLocaleString('el-GR')}</p>
             </div>
 
-            <p class="mt-2 text-sm text-gray-700">
-              <span class={`font-medium ${thread.isLastFromViewer ? 'text-gray-500' : 'text-gray-900'}`}>{thread.senderLabel}:</span>{' '}
+            <p class="mt-3 text-sm leading-6 text-slate-700">
+              <span class={`font-semibold ${thread.isLastFromViewer ? 'text-slate-500' : 'text-slate-900'}`}>{thread.senderLabel}:</span>{' '}
               {thread.lastPreview}
             </p>
 
-            <div class="mt-2 flex items-center justify-between">
-              <p class="text-xs text-gray-500">Μηνύματα: {thread.messagesCount}</p>
-              {thread.unreadCount > 0 && <span class="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-semibold text-indigo-800">{thread.unreadCount} μη αναγνωσμένα</span>}
+            <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
+              <span>Μηνύματα: <strong class="font-semibold text-slate-700">{thread.messagesCount}</strong></span>
+              <span>Κρυφά: <strong class="font-semibold text-slate-700">{thread.hiddenMessagesCount}</strong></span>
             </div>
-          </a>
+
+            <div class="mt-4 flex flex-wrap items-center gap-2.5">
+              <a
+                href={`/messages/thread?threadId=${encodeURIComponent(thread.threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`}
+                class="inline-flex items-center rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
+              >
+                Άνοιγμα συνομιλίας
+              </a>
+
+              {thread.unreadCount > 0 && (
+                <form action="/api/messages/read" method="POST" class="js-pending-form">
+                  <input type="hidden" name="threadId" value={thread.threadId} />
+                  <input type="hidden" name="viewerEmail" value={viewerEmail} />
+                  <input type="hidden" name="returnTo" value={listReturnTo} />
+                  <button type="submit" data-default-label="Σήμανση ως αναγνωσμένο" class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-65">
+                    Σήμανση ως αναγνωσμένο
+                  </button>
+                </form>
+              )}
+            </div>
+          </article>
         ))}
       </section>
     )}
   </main>
+
+  <script is:inline>
+    for (const form of document.querySelectorAll('.js-pending-form')) {
+      form.addEventListener('submit', () => {
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (!(submitButton instanceof HTMLButtonElement)) return;
+        submitButton.disabled = true;
+        const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent || 'Υποβολή';
+        submitButton.textContent = 'Επεξεργασία...';
+        submitButton.setAttribute('aria-busy', 'true');
+        form.classList.add('opacity-80');
+        form.setAttribute('data-submit-label', defaultLabel);
+      }, { once: true });
+    }
+  </script>
 </Layout>
