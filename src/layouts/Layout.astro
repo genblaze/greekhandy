@@ -74,6 +74,7 @@ const currentPath = Astro.url.pathname;
     <script is:inline>
       (() => {
         const toolbarSelector = '[data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar';
+        const root = document.documentElement;
         const schedule = (callback) => {
           if (typeof window.requestIdleCallback === 'function') {
             window.requestIdleCallback(() => callback(), { timeout: 1200 });
@@ -81,10 +82,27 @@ const currentPath = Astro.url.pathname;
           }
           window.setTimeout(callback, 0);
         };
+        const getToolbarSafeInset = (toolbar) => {
+          if (!(toolbar instanceof HTMLElement)) return 0;
+          const rect = toolbar.getBoundingClientRect();
+          if (rect.height <= 0 || rect.width <= 0) return 0;
+          const expanded = toolbar.getAttribute('data-gh-widget-expanded') !== 'false';
+          if (!expanded) return Math.round(Math.min(rect.height + 8, 72));
+          return Math.round(Math.min(rect.height + 12, window.innerHeight * 0.6));
+        };
+        const syncToolbarSafeArea = () => {
+          let nextInset = 0;
+          for (const toolbar of document.querySelectorAll(toolbarSelector)) {
+            if (!(toolbar instanceof HTMLElement)) continue;
+            nextInset = Math.max(nextInset, getToolbarSafeInset(toolbar));
+          }
+          root.style.setProperty('--gh-accessibility-toolbar-safe-area', `${nextInset}px`);
+        };
         const syncToolbarState = (toolbar) => {
           const collapsedByAttr = toolbar.getAttribute('aria-expanded') === 'false';
           const collapsedByClass = toolbar.classList.contains('is-collapsed');
           toolbar.setAttribute('data-gh-widget-expanded', collapsedByAttr || collapsedByClass ? 'false' : 'true');
+          schedule(syncToolbarSafeArea);
         };
         const attachToolbar = (node) => {
           if (!(node instanceof HTMLElement) || node.dataset.ghWidgetBound === 'true') return;
@@ -98,11 +116,19 @@ const currentPath = Astro.url.pathname;
             attributes: true,
             attributeFilter: ['aria-expanded', 'class']
           });
+
+          if (typeof ResizeObserver === 'function') {
+            const resizeObserver = new ResizeObserver(() => {
+              schedule(syncToolbarSafeArea);
+            });
+            resizeObserver.observe(node);
+          }
         };
         const scanToolbars = () => {
           for (const toolbar of document.querySelectorAll(toolbarSelector)) {
             attachToolbar(toolbar);
           }
+          syncToolbarSafeArea();
         };
         const start = () => {
           schedule(scanToolbars);
@@ -114,6 +140,8 @@ const currentPath = Astro.url.pathname;
           window.setTimeout(() => {
             discoveryObserver.disconnect();
           }, 20000);
+          window.addEventListener('resize', () => schedule(syncToolbarSafeArea), { passive: true });
+          window.addEventListener('orientationchange', () => schedule(syncToolbarSafeArea), { passive: true });
         };
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', start, { once: true });

@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
+:root {
+  --gh-accessibility-toolbar-safe-area: 0px;
+}
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
+  padding-bottom: max(env(safe-area-inset-bottom), var(--gh-accessibility-toolbar-safe-area));
+  scroll-padding-bottom: calc(var(--gh-accessibility-toolbar-safe-area) + 1rem);
 }
 
 :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
@@ -16,6 +22,7 @@ body {
   overflow: auto;
   overscroll-behavior: contain;
   contain: paint;
+  pointer-events: auto;
 }
 
 :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[aria-expanded='false'],
@@ -23,6 +30,11 @@ body {
 :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[data-gh-widget-expanded='false'] {
   overflow: hidden;
   max-height: 2.75rem;
+  pointer-events: none;
+}
+
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[data-gh-widget-expanded='false'] :is(button, a, [role='button'], [tabindex]) {
+  pointer-events: auto;
 }
 
 :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) :is(a, button, input, select, textarea) {

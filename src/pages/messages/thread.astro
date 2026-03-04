@@ -203,6 +203,8 @@ const composerInitialStateLabel = composerInitialState === 'success'
   : composerInitialState === 'error'
     ? 'Η τελευταία αποστολή απέτυχε. Ελέγξτε το κείμενο και δοκιμάστε ξανά.'
     : 'Το composer είναι έτοιμο για αποστολή.';
+const composerDraftStorageKey = canLoadThreadData ? `gh:thread-composer-draft:${threadId}:${viewerEmail}` : '';
+const shouldClearComposerDraftOnLoad = messageStatus === 'submitted';
 
 const participants = new Set<string>();
 for (const message of threadMessages) {
@@ -1025,6 +1027,10 @@ for (const message of threadMessages) {
             </span>
           </div>
           <p class="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-700">{moderationReplyGuidance}</p>
+          <div class="mt-3 rounded-xl border border-sky-200 bg-sky-50/70 px-3 py-2 text-xs text-sky-900">
+            <p class="font-semibold">Ιεραρχία ενεργειών</p>
+            <p class="mt-1">Primary CTA: αποστολή απάντησης από τον composer. Secondary CTA: έλεγχος ιστορικού/αναφορών πριν από νέα αποστολή.</p>
+          </div>
           <div class="thread-interaction-snapshot mt-3 grid gap-2 text-xs sm:grid-cols-3">
             <div class="rounded-lg border border-slate-200 bg-white px-3 py-2">
               <p class="font-semibold uppercase tracking-[0.08em] text-slate-500">Αποστολή</p>
@@ -1067,6 +1073,8 @@ for (const message of threadMessages) {
               class="js-pending-form js-composer-form mt-4 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_16px_42px_-30px_rgba(14,116,144,0.45)]"
               data-composer-state={composerInitialState}
               data-focus-composer={messageStatus === 'invalid' || messageStatus === 'error' ? 'true' : 'false'}
+              data-composer-draft-key={composerDraftStorageKey}
+              data-clear-composer-draft-on-load={shouldClearComposerDraftOnLoad ? 'true' : 'false'}
               data-pending-live-label="Η αποστολή μηνύματος εκτελείται."
               data-pending-timeout-label="Η αποστολή καθυστέρησε. Ελέγξτε το δίκτυο και δοκιμάστε ξανά."
               data-pending-timeout-ms="18000"
@@ -1571,6 +1579,54 @@ for (const message of threadMessages) {
       const offlineAlert = document.querySelector('#thread-offline-alert');
       const pendingTimeouts = new WeakMap();
       const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
+      const getDraftValue = (key) => {
+        if (!key) return '';
+        try {
+          return window.sessionStorage.getItem(key) || '';
+        } catch {
+          return '';
+        }
+      };
+      const setDraftValue = (key, value) => {
+        if (!key) return;
+        try {
+          if (value) {
+            window.sessionStorage.setItem(key, value);
+            return;
+          }
+          window.sessionStorage.removeItem(key);
+        } catch {
+          // Ignore storage failures to avoid submit regressions.
+        }
+      };
+      const syncOfflineSubmitAvailability = () => {
+        const offline = isOffline();
+        for (const form of pendingForms) {
+          const submitButton = form.querySelector('button[type="submit"]');
+          if (!(submitButton instanceof HTMLButtonElement)) continue;
+          if (form.getAttribute('aria-busy') === 'true') continue;
+          if (form.classList.contains('js-composer-form')) continue;
+          if (offline) {
+            submitButton.setAttribute('data-offline-disabled', submitButton.disabled ? 'true' : 'false');
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-disabled', 'true');
+            continue;
+          }
+          const wasDisabled = submitButton.getAttribute('data-offline-disabled') === 'true';
+          submitButton.removeAttribute('data-offline-disabled');
+          submitButton.disabled = wasDisabled;
+          if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
+        }
+      };
+      const refreshComposerAvailability = () => {
+        for (const form of pendingForms) {
+          if (!form.classList.contains('js-composer-form')) continue;
+          const textarea = form.querySelector('textarea[name="message"]');
+          if (textarea instanceof HTMLTextAreaElement) {
+            textarea.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      };
       const clearPendingTimeout = (form) => {
         const timer = pendingTimeouts.get(form);
         if (typeof timer === 'number') {
@@ -1587,6 +1643,8 @@ for (const message of threadMessages) {
         if (!(offlineAlert instanceof HTMLElement)) return;
         const offline = isOffline();
         offlineAlert.classList.toggle('hidden', !offline);
+        syncOfflineSubmitAvailability();
+        refreshComposerAvailability();
         if (!offline) {
           if (
             globalSubmitLive instanceof HTMLElement
@@ -1650,6 +1708,7 @@ for (const message of threadMessages) {
         submitButton.textContent = defaultLabel;
         submitButton.removeAttribute('aria-busy');
         if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
+        syncOfflineSubmitAvailability();
       };
 
       for (const form of pendingForms) {
@@ -1662,6 +1721,8 @@ for (const message of threadMessages) {
         const error = isComposerForm ? form.querySelector('#composer-error') : null;
         const live = isComposerForm ? form.querySelector('#composer-live') : null;
         const composerState = isComposerForm ? form.querySelector('#composer-state') : null;
+        const draftKey = isComposerForm ? (form.getAttribute('data-composer-draft-key') || '') : '';
+        const clearDraftOnLoad = isComposerForm && form.getAttribute('data-clear-composer-draft-on-load') === 'true';
         const maxLength = textarea instanceof HTMLTextAreaElement && textarea.maxLength > 0 ? textarea.maxLength : 2000;
         let preserveInitialComposerFeedback = isComposerForm && ['success', 'error'].includes(form.getAttribute('data-composer-state') || '');
 
@@ -1684,9 +1745,14 @@ for (const message of threadMessages) {
           const length = textarea.value.trim().length;
           const remaining = maxLength - length;
           const isBusy = form.getAttribute('aria-busy') === 'true';
+          const offline = isOffline();
           textarea.setCustomValidity(length === 0 ? 'Συμπληρώστε μήνυμα.' : '');
-          submitButton.disabled = length === 0 || isBusy;
+          submitButton.disabled = length === 0 || isBusy || offline;
           submitButton.setAttribute('aria-disabled', submitButton.disabled ? 'true' : 'false');
+          if (!isBusy) {
+            const draftValue = textarea.value.trim();
+            setDraftValue(draftKey, draftValue);
+          }
           if (counter) {
             counter.textContent = `${length} / ${maxLength}`;
             counter.classList.toggle('composer-count--warning', length > 0 && remaining <= 200 && remaining > 0);
@@ -1717,6 +1783,14 @@ for (const message of threadMessages) {
         };
 
         if (textarea instanceof HTMLTextAreaElement) {
+          if (clearDraftOnLoad) {
+            setDraftValue(draftKey, '');
+          } else {
+            const storedDraft = getDraftValue(draftKey);
+            if (!textarea.value.trim() && storedDraft) {
+              textarea.value = storedDraft;
+            }
+          }
           textarea.addEventListener('input', syncComposer);
           textarea.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {

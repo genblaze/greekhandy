@@ -246,23 +246,23 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio}</p>
 
       <div class="mt-6 rounded-2xl border border-blue-200 bg-white/90 p-4 shadow-sm">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια ενέργεια προφίλ</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Ιεραρχία ενεργειών προφίλ</p>
         <div class="mt-2 flex flex-wrap items-center gap-2.5">
           <a
             href="#primary-conversion"
             class="inline-flex items-center rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
             aria-describedby="profile-primary-cta-hint"
           >
-            Ζητήστε υπηρεσία
+            1. Ζητήστε υπηρεσία
           </a>
           <a href="#secondary-actions" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">
-            Μήνυμα
+            2. Μήνυμα
           </a>
           <a href="#contact-details" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">
-            Στοιχεία επικοινωνίας
+            3. Στοιχεία επικοινωνίας
           </a>
         </div>
-        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού προτιμήστε το κύριο αίτημα. Οι άλλες επιλογές είναι βοηθητικές.</p>
+        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά/ραντεβού προτιμήστε το βήμα 1. Τα βήματα 2-3 είναι βοηθητικές επιλογές όταν δεν θέλετε ακόμη πλήρες αίτημα.</p>
       </div>
 
       <div class="mt-8">
@@ -451,7 +451,19 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           )}
         </div>
 
-        <form action="/api/reviews/submit" method="POST" class="mt-6 rounded-xl border border-blue-100 bg-blue-50 p-4" data-review-form id="submit-review" aria-describedby="review-feedback submit-feedback-live">
+        <form
+          action="/api/reviews/submit"
+          method="POST"
+          class="mt-6 rounded-xl border border-blue-100 bg-blue-50 p-4"
+          data-review-form
+          data-pending-form
+          data-feedback-group-name="review"
+          data-pending-live-label="Η υποβολή κριτικής εκτελείται."
+          data-pending-timeout-label="Η υποβολή κριτικής καθυστέρησε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
+          data-pending-timeout-ms="18000"
+          id="submit-review"
+          aria-describedby="review-feedback submit-feedback-live profile-offline-alert"
+        >
           <h3 class="text-base font-bold text-gray-900">Υποβολή κριτικής</h3>
           <p class="mt-1 text-xs text-gray-600">Οι κριτικές ελέγχονται και γίνονται δημόσιες μόνο μετά από έγκριση.</p>
 
@@ -468,6 +480,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             <p data-feedback-status="pending" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Ευχαριστούμε! Κατάσταση: pending moderation. Η κριτική αποθηκεύτηκε αλλά δεν είναι ακόμη δημόσια.</p>
             <p data-feedback-status="approved" class="hidden rounded-md bg-emerald-100 px-3 py-2 text-sm text-emerald-800">Κατάσταση: approved. Η κριτική είναι πλέον δημόσια και μετρά στη σύνοψη αξιοπιστίας.</p>
             <p data-feedback-status="rejected" class="hidden rounded-md bg-slate-100 px-3 py-2 text-sm text-slate-800">Κατάσταση: rejected. Η κριτική δεν δημοσιεύτηκε και δεν μετρά στη βαθμολογία. Μπορείτε να υποβάλετε νέα, πιο συγκεκριμένη εμπειρία.</p>
+            <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η υποβολή κριτικής είναι προσωρινά ανενεργή.</p>
             <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε βαθμολογία και σχόλιο.</p>
             <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δεν χάνονται τα δημόσια δεδομένα· δοκιμάστε ξανά σε λίγο.</p>
           </div>
@@ -503,7 +516,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 
           <div class="mt-4">
             <label for="comment" class="mb-1 block text-sm font-semibold text-gray-800">Σχόλιο *</label>
-            <textarea id="comment" name="comment" rows="4" required maxlength="1200" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
+            <textarea id="comment" name="comment" rows="4" required maxlength="1200" data-trim-required class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
           </div>
 
           <button
@@ -511,6 +524,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70"
             data-review-submit-button
             data-default-label="Αποστολή κριτικής"
+            data-pending-label="Αποστολή..."
           >
             Αποστολή κριτικής
           </button>
@@ -547,6 +561,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             </span>
           </p>
           <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το αίτημά σας καταχωρήθηκε και είναι σε αναμονή moderation (pending).</p>
+          <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η υποβολή αιτήματος είναι προσωρινά ανενεργή.</p>
           <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε σωστά τα υποχρεωτικά πεδία (υπηρεσία, στοιχεία επικοινωνίας, μήνυμα) και δοκιμάστε ξανά.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
         </div>
@@ -564,7 +579,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           data-pending-live-label="Η αποστολή αιτήματος κράτησης εκτελείται."
           data-pending-timeout-label="Η υποβολή του αιτήματος καθυστέρησε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
           data-pending-timeout-ms="18000"
-          aria-describedby="booking-feedback submit-feedback-live"
+          aria-describedby="booking-feedback submit-feedback-live profile-offline-alert"
         >
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
@@ -598,12 +613,12 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 
           <div class="mt-4">
             <label for="bookingMessage" class="mb-1 block text-sm font-semibold text-gray-800">Λεπτομέρειες αιτήματος *</label>
-            <textarea id="bookingMessage" name="message" rows="4" required maxlength="2000" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
+            <textarea id="bookingMessage" name="message" rows="4" required maxlength="2000" data-trim-required class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
           </div>
 
           <p class="mt-2 text-xs text-blue-700">Καταστάσεις αιτήματος: pending (σε αναμονή) → approved (εγκρίθηκε) ή rejected (απορρίφθηκε).</p>
 
-          <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος">Αποστολή αιτήματος</button>
+          <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος" data-pending-label="Αποστολή...">Αποστολή αιτήματος</button>
         </form>
       </section>
 
@@ -629,6 +644,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             </span>
           </p>
           <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το μήνυμά σας καταχωρήθηκε για triage.</p>
+          <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η αποστολή μηνύματος είναι προσωρινά ανενεργή.</p>
           <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία και δοκιμάστε ξανά.</p>
           <p data-feedback-status="blocked" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Αυτή η συνομιλία έχει μπλοκαριστεί από moderation.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
@@ -648,7 +664,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             data-pending-live-label="Η αποστολή μηνύματος εκτελείται."
             data-pending-timeout-label="Η αποστολή μηνύματος καθυστέρησε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
             data-pending-timeout-ms="18000"
-            aria-describedby="message-feedback message-moderation-hint submit-feedback-live"
+            aria-describedby="message-feedback message-moderation-hint submit-feedback-live profile-offline-alert"
           >
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="recipientEmail" value={profile.email} />
@@ -673,11 +689,11 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 
           <div class="mt-4">
             <label for="initialMessage" class="mb-1 block text-sm font-semibold text-gray-800">Μήνυμα *</label>
-            <textarea id="initialMessage" name="message" rows="4" required maxlength="2000" aria-describedby="message-moderation-hint submit-feedback-live" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
+            <textarea id="initialMessage" name="message" rows="4" required maxlength="2000" data-trim-required aria-describedby="message-moderation-hint submit-feedback-live" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
           </div>
           <p id="message-moderation-hint" class="mt-2 text-xs text-indigo-800">Η συνομιλία δημιουργείται σε pending triage και μπορεί να περιοριστεί από moderation.</p>
 
-            <button type="submit" class="mt-4 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή μηνύματος">Αποστολή μηνύματος</button>
+            <button type="submit" class="mt-4 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή μηνύματος" data-pending-label="Αποστολή...">Αποστολή μηνύματος</button>
           </form>
         </details>
 
@@ -692,6 +708,10 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </div>
         </details>
       </section>
+      <div id="profile-offline-alert" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
+        <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
+        <p class="mt-1 text-xs">Οι υποβολές κριτικής/αιτήματος/μηνύματος μπλοκάρονται προσωρινά μέχρι να επανέλθει το δίκτυο.</p>
+      </div>
       <p id="submit-feedback-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
     </section>
 
@@ -699,17 +719,20 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
       (() => {
         const params = new URLSearchParams(window.location.search);
         const feedbackStatuses = {
-          review: ['loading', 'pending', 'approved', 'rejected', 'invalid', 'error'],
-          booking: ['loading', 'submitted', 'invalid', 'error'],
-          message: ['loading', 'submitted', 'invalid', 'blocked', 'error']
+          review: ['loading', 'pending', 'approved', 'rejected', 'offline', 'invalid', 'error'],
+          booking: ['loading', 'submitted', 'offline', 'invalid', 'error'],
+          message: ['loading', 'submitted', 'offline', 'invalid', 'blocked', 'error']
         };
         const feedbackStatusAliases = {
           review: { submitted: 'pending' }
         };
         const submitLiveRegion = document.querySelector('#submit-feedback-live');
+        const profileOfflineAlert = document.querySelector('#profile-offline-alert');
         const secondaryMessageDisclosure = document.querySelector('[data-secondary-message-disclosure]');
         const secondaryContactDisclosure = document.querySelector('[data-secondary-contact-disclosure]');
+        const pendingForms = Array.from(document.querySelectorAll('[data-pending-form]')).filter((form) => form instanceof HTMLFormElement);
         const pendingTimeouts = new WeakMap();
+        const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
         const getSessionFlag = (key) => {
           try {
             return window.sessionStorage.getItem(key);
@@ -733,6 +756,40 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         };
         const announceSubmitState = (message) => {
           if (submitLiveRegion instanceof HTMLElement) submitLiveRegion.textContent = message;
+        };
+        const syncOfflineSubmitAvailability = () => {
+          const offline = isOffline();
+          for (const form of pendingForms) {
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (!(submitButton instanceof HTMLButtonElement)) continue;
+            if (form.getAttribute('aria-busy') === 'true') continue;
+            if (offline) {
+              submitButton.setAttribute('data-offline-disabled', submitButton.disabled ? 'true' : 'false');
+              submitButton.disabled = true;
+              submitButton.setAttribute('aria-disabled', 'true');
+              continue;
+            }
+            const wasDisabled = submitButton.getAttribute('data-offline-disabled') === 'true';
+            submitButton.removeAttribute('data-offline-disabled');
+            submitButton.disabled = wasDisabled;
+            if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
+          }
+        };
+        const syncOfflineAlert = () => {
+          const offline = isOffline();
+          if (profileOfflineAlert instanceof HTMLElement) {
+            profileOfflineAlert.classList.toggle('hidden', !offline);
+          }
+          syncOfflineSubmitAvailability();
+          if (!offline) {
+            if (
+              submitLiveRegion instanceof HTMLElement
+              && typeof submitLiveRegion.textContent === 'string'
+              && submitLiveRegion.textContent.includes('Δεν υπάρχει σύνδεση')
+            ) submitLiveRegion.textContent = '';
+            return;
+          }
+          announceSubmitState('Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.');
         };
         const openDisclosure = (element) => {
           if (element instanceof HTMLDetailsElement) {
@@ -840,7 +897,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             message.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
             if (isVisible) {
               activeMessage = message;
-              const assertive = normalizedStatus === 'invalid' || normalizedStatus === 'error' || normalizedStatus === 'blocked';
+              const assertive = normalizedStatus === 'invalid' || normalizedStatus === 'error' || normalizedStatus === 'blocked' || normalizedStatus === 'offline';
               message.setAttribute('role', assertive ? 'alert' : 'status');
               message.setAttribute('aria-live', assertive ? 'assertive' : 'polite');
               message.setAttribute('aria-atomic', 'true');
@@ -851,7 +908,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             }
           }
           if (group instanceof HTMLElement) {
-            const assertiveGroup = normalizedStatus === 'invalid' || normalizedStatus === 'error' || normalizedStatus === 'blocked';
+            const assertiveGroup = normalizedStatus === 'invalid' || normalizedStatus === 'error' || normalizedStatus === 'blocked' || normalizedStatus === 'offline';
             group.setAttribute('role', assertiveGroup ? 'alert' : 'status');
             group.setAttribute('aria-live', assertiveGroup ? 'assertive' : 'polite');
             group.setAttribute('aria-atomic', 'true');
@@ -894,38 +951,8 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         if (reviewForm instanceof HTMLFormElement) {
           const markReviewInteracted = () => setSessionFlag('review-submit-attempted', '1');
           reviewForm.addEventListener('input', markReviewInteracted, { once: true });
-          reviewForm.addEventListener('submit', (event) => {
-            if (reviewForm.getAttribute('aria-busy') === 'true') {
-              event.preventDefault();
-              announceSubmitState('Η υποβολή κριτικής βρίσκεται ήδη σε εξέλιξη.');
-              return;
-            }
+          reviewForm.addEventListener('submit', () => {
             markReviewInteracted();
-            if (!reviewForm.checkValidity()) {
-              event.preventDefault();
-              showFeedbackStatus('review', 'invalid');
-              reviewForm.reportValidity();
-              return;
-            }
-
-            showFeedbackStatus('review', 'loading');
-
-            const submitButton = reviewForm.querySelector('[data-review-submit-button]');
-            if (submitButton instanceof HTMLButtonElement) {
-              const defaultLabel = submitButton.getAttribute('data-default-label') || submitButton.textContent || 'Αποστολή';
-              reviewForm.setAttribute('aria-busy', 'true');
-              submitButton.disabled = true;
-              submitButton.setAttribute('aria-busy', 'true');
-              submitButton.textContent = 'Αποστολή...';
-              announceSubmitState('Η υποβολή κριτικής εκτελείται.');
-
-              window.setTimeout(() => {
-                reviewForm.setAttribute('aria-busy', 'false');
-                submitButton.disabled = false;
-                submitButton.removeAttribute('aria-busy');
-                submitButton.textContent = defaultLabel;
-              }, 12000);
-            }
           });
         }
 
@@ -947,8 +974,9 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               control.setAttribute('aria-disabled', 'true');
             }
             const defaultLabel = submitButton.getAttribute('data-default-label') || submitButton.textContent || 'Αποστολή';
+            const pendingLabel = submitButton.getAttribute('data-pending-label') || 'Αποστολή...';
             form.setAttribute('data-submit-label', defaultLabel);
-            submitButton.textContent = 'Αποστολή...';
+            submitButton.textContent = pendingLabel;
             submitButton.setAttribute('aria-busy', 'true');
             const timeoutMs = Number(form.getAttribute('data-pending-timeout-ms') || '15000');
             if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
@@ -974,6 +1002,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           submitButton.textContent = defaultLabel;
           submitButton.removeAttribute('aria-busy');
           if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
+          syncOfflineSubmitAvailability();
         };
 
         const updateMessageFieldValidity = (form, forceInvalidState = false) => {
@@ -984,10 +1013,27 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           messageField.setCustomValidity(isValid ? '' : 'Συμπληρώστε μήνυμα.');
           messageField.setAttribute('aria-invalid', (!isValid && touched) ? 'true' : 'false');
         };
+        const updateTrimRequiredFields = (form, forceInvalidState = false) => {
+          const fields = Array.from(form.querySelectorAll('[data-trim-required]')).filter((field) => (
+            field instanceof HTMLTextAreaElement || field instanceof HTMLInputElement
+          ));
+          for (const field of fields) {
+            const isValid = field.value.trim().length > 0;
+            const touched = forceInvalidState || field.getAttribute('data-trim-touched') === 'true';
+            field.setCustomValidity(isValid ? '' : 'Συμπληρώστε το πεδίο.');
+            field.setAttribute('aria-invalid', (!isValid && touched) ? 'true' : 'false');
+          }
+        };
 
-        for (const form of document.querySelectorAll('[data-pending-form]')) {
-          if (!(form instanceof HTMLFormElement)) continue;
+        for (const form of pendingForms) {
           const feedbackGroupName = form.getAttribute('data-feedback-group-name') || '';
+          updateTrimRequiredFields(form);
+          form.addEventListener('input', (event) => {
+            if (!(event.target instanceof HTMLElement)) return;
+            if (!event.target.hasAttribute('data-trim-required')) return;
+            event.target.setAttribute('data-trim-touched', 'true');
+            updateTrimRequiredFields(form);
+          });
           if (form.hasAttribute('data-message-form')) {
             updateMessageFieldValidity(form);
             form.addEventListener('input', (event) => {
@@ -998,6 +1044,13 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             });
           }
           form.addEventListener('submit', (event) => {
+            if (isOffline()) {
+              event.preventDefault();
+              if (feedbackGroupName) showFeedbackStatus(feedbackGroupName, 'offline');
+              announceSubmitState('Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.');
+              syncOfflineAlert();
+              return;
+            }
             if (form.getAttribute('aria-busy') === 'true') {
               event.preventDefault();
               announceSubmitState('Η υποβολή βρίσκεται ήδη σε εξέλιξη.');
@@ -1007,6 +1060,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             if (form.hasAttribute('data-message-form')) {
               updateMessageFieldValidity(form, true);
             }
+            updateTrimRequiredFields(form, true);
 
             if (!form.checkValidity()) {
               event.preventDefault();

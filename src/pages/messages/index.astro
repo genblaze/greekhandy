@@ -1765,6 +1765,24 @@ const inboxReadinessHint = listLoadError
       const offlineAlert = document.querySelector('#messages-offline-alert');
       const pendingTimeouts = new WeakMap();
       const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
+      const syncOfflineSubmitAvailability = () => {
+        const offline = isOffline();
+        for (const form of pendingForms) {
+          const submitButton = form.querySelector('button[type="submit"]');
+          if (!(submitButton instanceof HTMLButtonElement)) continue;
+          if (form.getAttribute('aria-busy') === 'true') continue;
+          if (offline) {
+            submitButton.setAttribute('data-offline-disabled', submitButton.disabled ? 'true' : 'false');
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-disabled', 'true');
+            continue;
+          }
+          const wasDisabled = submitButton.getAttribute('data-offline-disabled') === 'true';
+          submitButton.removeAttribute('data-offline-disabled');
+          submitButton.disabled = wasDisabled;
+          if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
+        }
+      };
       const clearPendingTimeout = (form) => {
         const timer = pendingTimeouts.get(form);
         if (typeof timer === 'number') {
@@ -1779,6 +1797,7 @@ const inboxReadinessHint = listLoadError
         if (!(offlineAlert instanceof HTMLElement)) return;
         const offline = isOffline();
         offlineAlert.classList.toggle('hidden', !offline);
+        syncOfflineSubmitAvailability();
         if (!offline) {
           if (
             submitLiveRegion instanceof HTMLElement
@@ -1838,6 +1857,7 @@ const inboxReadinessHint = listLoadError
         submitButton.textContent = defaultLabel;
         submitButton.removeAttribute('aria-busy');
         if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
+        syncOfflineSubmitAvailability();
       };
 
       for (const form of pendingForms) {
