@@ -50,6 +50,10 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Thread triage queue at `/professionals/messages-moderation?key=...`
   - Triage endpoint at `POST /api/messages/triage` (`review`/`reject`/`block` actions logged)
   - Submission persistence in `data/message-submissions.ndjson` and action log in `data/message-triage-actions.ndjson`
+- **Admin Dashboard MVP shell:**
+  - Protected overview at `/admin?key=...`
+  - Queue cards for pending profiles, reviews, bookings, and message threads
+  - Direct links into existing moderation surfaces
 
 ## Local Development
 
@@ -80,4 +84,4 @@ If SMTP is not configured, submissions are still saved to `data/contact-submissi
 
 ## Professional Moderation Environment Variable
 
-- `PROFESSIONAL_MODERATION_KEY` (required to access/operate `/professionals/moderation`, `/professionals/reviews-moderation`, `/professionals/bookings-moderation`, and `/professionals/messages-moderation`)
+- `PROFESSIONAL_MODERATION_KEY` (required to access/operate `/admin`, `/professionals/moderation`, `/professionals/reviews-moderation`, `/professionals/bookings-moderation`, and `/professionals/messages-moderation`)

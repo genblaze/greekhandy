@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+
+const PROFESSIONAL_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
+const PROFESSIONAL_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registration-actions.ndjson');
+const REVIEW_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-submissions.ndjson');
+const REVIEW_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-moderation-actions.ndjson');
+const BOOKING_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-submissions.ndjson');
+const BOOKING_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-moderation-actions.ndjson');
+const MESSAGE_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
+const MESSAGE_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
+
+const url = new URL(Astro.request.url);
+const moderationKey = url.searchParams.get('key') ?? '';
+const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
+const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
+
+interface RegistrationSubmission {
+  email: string;
+  submittedAt: string;
+}
+
+interface RegistrationAction {
+  registrationId: string;
+}
+
+interface ReviewSubmission {
+  professionalSlug: string;
+  submittedAt: string;
+}
+
+interface ReviewAction {
+  reviewId: string;
+}
+
+interface BookingSubmission {
+  id?: string;
+  professionalSlug: string;
+  submittedAt: string;
+}
+
+interface BookingAction {
+  bookingId: string;
+}
+
+interface MessageSubmission {
+  threadId?: string;
+  professionalSlug: string;
+  senderEmail: string;
+  submittedAt: string;
+}
+
+interface MessageAction {
+  threadId: string;
+}
+
+const readNdjson = async <T,>(path: string): Promise<T[]> => {
+  try {
+    const raw = await readFile(path, 'utf-8');
+    return raw
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => JSON.parse(line) as T);
+  } catch {
+    return [];
+  }
+};
+
+const buildQueueHref = (pathname: string) => `${pathname}?key=${encodeURIComponent(moderationKey)}`;
+
+let pendingProfiles = 0;
+let pendingReviews = 0;
+let pendingBookings = 0;
+let pendingMessageThreads = 0;
+
+if (isAuthorized) {
+  const registrations = await readNdjson<RegistrationSubmission>(PROFESSIONAL_SUBMISSIONS_FILE_PATH);
+  const registrationActions = await readNdjson<RegistrationAction>(PROFESSIONAL_ACTIONS_FILE_PATH);
+  const registrationActionIds = new Set(registrationActions.map((action) => action.registrationId));
+  pendingProfiles = registrations.filter(
+    (registration) => !registrationActionIds.has(`${registration.email}|${registration.submittedAt}`)
+  ).length;
+
+  const reviews = await readNdjson<ReviewSubmission>(REVIEW_SUBMISSIONS_FILE_PATH);
+  const reviewActions = await readNdjson<ReviewAction>(REVIEW_ACTIONS_FILE_PATH);
+  const reviewActionIds = new Set(reviewActions.map((action) => action.reviewId));
+  pendingReviews = reviews.filter(
+    (review) => !reviewActionIds.has(`${review.professionalSlug}|${review.submittedAt}`)
+  ).length;
+
+  const bookings = await readNdjson<BookingSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
+  const bookingActions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
+  const bookingActionIds = new Set(bookingActions.map((action) => action.bookingId));
+  pendingBookings = bookings.filter((booking) => {
+    const bookingId = booking.id || `${booking.professionalSlug}|${booking.submittedAt}`;
+    return !bookingActionIds.has(bookingId);
+  }).length;
+
+  const messageSubmissions = await readNdjson<MessageSubmission>(MESSAGE_SUBMISSIONS_FILE_PATH);
+  const messageActions = await readNdjson<MessageAction>(MESSAGE_ACTIONS_FILE_PATH);
+  const messageActionIds = new Set(messageActions.map((action) => action.threadId));
+  const threadIds = new Set<string>();
+
+  for (const submission of messageSubmissions) {
+    const fallbackThreadId = `${submission.professionalSlug}|${submission.senderEmail}|${submission.submittedAt}`;
+    const threadId = submission.threadId || fallbackThreadId;
+    threadIds.add(threadId);
+  }
+
+  pendingMessageThreads = Array.from(threadIds).filter((threadId) => !messageActionIds.has(threadId)).length;
+}
+
+const queues = [
+  {
+    label: 'Εγγραφές Επαγγελματιών',
+    count: pendingProfiles,
+    href: buildQueueHref('/professionals/moderation'),
+    helper: 'Νέες αιτήσεις επαγγελματιών προς έγκριση/απόρριψη.'
+  },
+  {
+    label: 'Αξιολογήσεις',
+    count: pendingReviews,
+    href: buildQueueHref('/professionals/reviews-moderation'),
+    helper: 'Νέες κριτικές πελατών προς moderation.'
+  },
+  {
+    label: 'Κρατήσεις',
+    count: pendingBookings,
+    href: buildQueueHref('/professionals/bookings-moderation'),
+    helper: 'Νέα αιτήματα κράτησης προς έλεγχο.'
+  },
+  {
+    label: 'Message Threads',
+    count: pendingMessageThreads,
+    href: buildQueueHref('/professionals/messages-moderation'),
+    helper: 'Νέα threads επικοινωνίας προς triage.'
+  }
+];
+
+const totalPending = pendingProfiles + pendingReviews + pendingBookings + pendingMessageThreads;
+---
+
+<Layout title="Admin Dashboard | GreekHandy" description="Protected admin dashboard with moderation queue overview.">
+  <main class="mx-auto max-w-6xl px-4 py-14">
+    <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">Admin Dashboard</h1>
+    <p class="mt-2 max-w-3xl text-gray-700">
+      Βασική εσωτερική επισκόπηση moderation queues. Πρόσβαση μόνο με key μέσω query param.
+    </p>
+
+    {!isAuthorized && (
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
+        Μη εξουσιοδοτημένη πρόσβαση. Προσθέστε <code>?key=...</code> και ορίστε env <code>PROFESSIONAL_MODERATION_KEY</code>.
+      </div>
+    )}
+
+    {isAuthorized && (
+      <>
+        <section class="mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-5">
+          <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">Σύνολο εκκρεμών</p>
+          <p class="mt-1 text-3xl font-bold text-blue-900">{totalPending}</p>
+          <p class="mt-1 text-sm text-blue-900">
+            {totalPending === 0 ? 'Δεν υπάρχουν εκκρεμότητες αυτή τη στιγμή.' : 'Υπάρχουν εκκρεμότητες που χρειάζονται ενέργεια.'}
+          </p>
+        </section>
+
+        <section class="mt-6 grid gap-4 md:grid-cols-2">
+          {queues.map((queue) => (
+            <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+              <p class="text-sm font-semibold text-gray-500">{queue.label}</p>
+              <p class="mt-1 text-3xl font-bold text-gray-900">{queue.count}</p>
+              <p class="mt-2 text-sm text-gray-700">{queue.helper}</p>
+              <a href={queue.href} class="mt-4 inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">
+                Άνοιγμα ουράς
+              </a>
+            </article>
+          ))}
+        </section>
+      </>
+    )}
+  </main>
+</Layout>
