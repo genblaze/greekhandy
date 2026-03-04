@@ -1,10 +1,10 @@
 {
-  "lastManagerRun": "2026-03-04T14:00:00Z",
+  "lastManagerRun": "2026-03-04T14:10:02Z",
   "activeAgents": {
     "research": {
-      "status": "completed",
-      "task": "Expanded with 3 new categories (appliance repair, pest control, aluminum frames), added 12 long-tail jobs, and linked category content pages.",
-      "startedAt": "2026-03-04T13:58:00Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     },
     "builder": {
       "status": "idle",
@@ -12,16 +12,16 @@
       "startedAt": null
     },
     "developer": {
-      "status": "completed",
-      "task": "Completed Contact Forms MVP slice: service-page lead form, backend persistence + SMTP email notification, thank-you flow, and anti-spam/validation hardening.",
-      "startedAt": "2026-03-04T13:59:00Z"
+      "status": "idle",
+      "task": null,
+      "startedAt": null
     }
   },
   "stats": {
-    "categoriesResearched": 13,
-    "jobsResearched": 89,
-    "contentPagesBuilt": 114
+    "categoriesResearched": 19,
+    "jobsResearched": 107,
+    "contentPagesBuilt": 126
   },
-  "lastDecision": "Generated missing job content pages from current data/jobs and synced pipeline content totals.",
+  "lastDecision": "Manager reconciliation complete: pipeline stats synced to repository totals, roadmap aligned with delivered MVP slices, and stale research run closed.",
   "blockers": []
 }
