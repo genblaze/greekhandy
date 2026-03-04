@@ -227,14 +227,14 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
           {reviewedAt && <p class="mt-1 text-xs opacity-85">Τελευταία ενημέρωση: {reviewedAt}</p>}
         </div>
 
-        <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-label="Βήματα κύκλου ζωής αιτήματος">
           {statusPills.map((pill) => {
             const isActive = moderationState === pill.key;
             const isCompleted = pill.key === 'pending' && moderationState !== 'pending';
             const completedClasses = isCompleted ? 'border-emerald-200 bg-emerald-50 text-emerald-900' : '';
             const activeClasses = isActive ? 'border-blue-200 bg-blue-50 text-blue-900' : '';
             return (
-              <div class={`rounded-lg border px-3 py-2 text-sm font-semibold text-gray-500 ${activeClasses} ${completedClasses}`}>
+              <div role="listitem" aria-current={isActive ? 'step' : undefined} class={`rounded-lg border px-3 py-2 text-sm font-semibold text-gray-500 ${activeClasses} ${completedClasses}`}>
                 {pill.label}
               </div>
             );
@@ -315,15 +315,17 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
           )}
           {returnTo && <a href={returnTo} class="inline-flex rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">Επιστροφή στη φόρμα</a>}
           {(moderationState === 'pending' || moderationState === 'approved') && (
-            <a href={supportMailTo} class="inline-flex rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">Αίτημα ενημέρωσης</a>
+            <a href={supportMailTo} class="inline-flex rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50" aria-label="Αποστολή αιτήματος ενημέρωσης στο GreekHandy">
+              Αίτημα ενημέρωσης
+            </a>
           )}
           {moderationState === 'approved' && booking && (
-            <form action="/api/bookings/request-update" method="POST" class="inline-flex">
+            <form action="/api/bookings/request-update" method="POST" class="inline-flex" aria-label={`Αίτημα αλλαγής ραντεβού για κράτηση ${bookingId}`}>
               <input type="hidden" name="bookingId" value={bookingId} />
               <input type="hidden" name="requestedAction" value="reschedule" />
               <input type="hidden" name="email" value={booking.email} />
               <input type="hidden" name="returnTo" value={`/bookings/request?bookingId=${encodeURIComponent(bookingId)}`} />
-              <button type="submit" class="inline-flex rounded-lg border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50" onclick="return window.confirm('Θέλετε να σταλεί αίτημα αλλαγής ραντεβού για moderation;');">
+              <button type="submit" class="inline-flex rounded-lg border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50" onclick="return window.confirm('Θέλετε να σταλεί αίτημα αλλαγής ραντεβού για moderation; Θα παραμείνει εκκρεμές μέχρι απόφαση.');">
                 Αίτημα αλλαγής ραντεβού
               </button>
             </form>

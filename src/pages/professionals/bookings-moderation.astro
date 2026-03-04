@@ -291,6 +291,12 @@ const hasAnyBookings = bookings.length > 0;
               return;
             }
 
+            if ((toState === 'cancelled' || toState === 'reschedule_rejected')
+              && !window.confirm('Τελική επιβεβαίωση: συνεχίζετε με τερματική/αρνητική απόφαση;')) {
+              event.preventDefault();
+              return;
+            }
+
             submissionLocked = true;
             if (loadingBanner instanceof HTMLElement) {
               loadingBanner.classList.remove('hidden');
