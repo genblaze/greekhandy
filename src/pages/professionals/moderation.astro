@@ -1,0 +1,121 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+
+const REGISTRATIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
+const ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registration-actions.ndjson');
+
+const url = new URL(Astro.request.url);
+const moderationKey = url.searchParams.get('key') ?? '';
+const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
+const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
+const status = url.searchParams.get('status');
+
+interface Registration {
+  name: string;
+  profession: string;
+  city: string;
+  phone: string;
+  email: string;
+  areasServed?: string;
+  bio: string;
+  submittedAt: string;
+}
+
+interface ActionLog {
+  registrationId: string;
+  action: string;
+  actedAt: string;
+}
+
+const readNdjson = async <T,>(path: string): Promise<T[]> => {
+  try {
+    const raw = await readFile(path, 'utf-8');
+    return raw
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => JSON.parse(line) as T);
+  } catch {
+    return [];
+  }
+};
+
+const registrations = await readNdjson<Registration>(REGISTRATIONS_FILE_PATH);
+const actions = await readNdjson<ActionLog>(ACTIONS_FILE_PATH);
+
+const latestActionById = new Map<string, ActionLog>();
+for (const action of actions) latestActionById.set(action.registrationId, action);
+
+const pendingRegistrations = registrations
+  .map((registration) => {
+    const registrationId = `${registration.email}|${registration.submittedAt}`;
+    const latestAction = latestActionById.get(registrationId);
+    return { registration, registrationId, latestAction };
+  })
+  .filter((item) => !item.latestAction)
+  .reverse();
+---
+
+<Layout title="Moderation Επαγγελματιών | GreekHandy" description="Internal moderation workflow for professional registrations.">
+  <main class="mx-auto max-w-5xl px-4 py-14">
+    <h1 class="text-3xl font-bold text-gray-900">Moderation Εγγραφών Επαγγελματιών</h1>
+    <p class="mt-2 text-gray-700">Εσωτερική σελίδα διαχείρισης αιτήσεων. Απαιτείται κλειδί ασφαλείας.</p>
+
+    {!isAuthorized && (
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
+        Μη εξουσιοδοτημένη πρόσβαση. Προσθέστε <code>?key=...</code> και ορίστε env <code>PROFESSIONAL_MODERATION_KEY</code>.
+      </div>
+    )}
+
+    {isAuthorized && (
+      <>
+        {status === 'ok' && <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">Η ενέργεια ολοκληρώθηκε.</p>}
+        {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
+        {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα.</p>}
+
+        <section class="mt-8 space-y-4">
+          <h2 class="text-xl font-bold text-gray-900">Εκκρεμείς Αιτήσεις ({pendingRegistrations.length})</h2>
+
+          {pendingRegistrations.length === 0 && (
+            <p class="rounded-xl border border-gray-200 bg-white p-4 text-gray-700">Δεν υπάρχουν εκκρεμείς αιτήσεις.</p>
+          )}
+
+          {pendingRegistrations.map(({ registration, registrationId }) => (
+            <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <h3 class="text-lg font-bold text-gray-900">{registration.name}</h3>
+                  <p class="text-sm text-gray-600">{registration.profession} • {registration.city}</p>
+                  <p class="mt-1 text-sm text-gray-600">{registration.email} • {registration.phone}</p>
+                </div>
+                <p class="text-xs text-gray-500">{new Date(registration.submittedAt).toLocaleString('el-GR')}</p>
+              </div>
+
+              {registration.areasServed && <p class="mt-3 text-sm text-gray-700"><strong>Περιοχές:</strong> {registration.areasServed}</p>}
+              <p class="mt-3 text-sm text-gray-700"><strong>Bio:</strong> {registration.bio}</p>
+
+              <div class="mt-4 flex flex-wrap gap-3">
+                <form action="/api/professionals/moderate" method="POST">
+                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="action" value="approve" />
+                  <input type="hidden" name="registrationId" value={registrationId} />
+                  <input type="hidden" name="registration" value={JSON.stringify(registration)} />
+                  <button type="submit" class="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-800">Approve (draft profile)</button>
+                </form>
+
+                <form action="/api/professionals/moderate" method="POST">
+                  <input type="hidden" name="moderationKey" value={moderationKey} />
+                  <input type="hidden" name="action" value="reject" />
+                  <input type="hidden" name="registrationId" value={registrationId} />
+                  <button type="submit" class="rounded-lg bg-gray-700 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">Reject</button>
+                </form>
+              </div>
+            </article>
+          ))}
+        </section>
+      </>
+    )}
+  </main>
+</Layout>

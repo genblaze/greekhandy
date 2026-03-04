@@ -15,13 +15,17 @@ const profiles = (profilesFile.default ?? profilesFile) as Array<{
   services: string[];
   phone: string;
   email: string;
+  approved?: boolean;
+  published?: boolean;
 }>;
 
 export function getStaticPaths() {
   const profilesFile = Object.values(import.meta.glob('../../../data/professionals.json', { eager: true }))[0] as any;
-  const profiles = (profilesFile.default ?? profilesFile) as Array<{ slug: string }>;
+  const profiles = (profilesFile.default ?? profilesFile) as Array<{ slug: string; approved?: boolean; published?: boolean }>;
 
-  return profiles.map((profile) => ({
+  return profiles
+    .filter((profile) => profile.approved === true && profile.published === true)
+    .map((profile) => ({
     params: { slug: profile.slug },
     props: { profile }
   }));

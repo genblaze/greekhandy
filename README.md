@@ -20,6 +20,9 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Registration endpoint at `POST /api/professionals/register`
   - Registration thank-you flow at `/professionals/thank-you`
   - Registration persistence to `data/professional-registrations.ndjson`
+  - Basic moderation queue at `/professionals/moderation?key=...`
+  - Moderation endpoint at `POST /api/professionals/moderate` (approve/reject)
+  - Approval creates a draft profile (`approved: true`, `published: false`) in `data/professionals.json`
 
 ## Local Development
 
@@ -47,3 +50,7 @@ Set these to enable admin email notifications:
 - `SMTP_PASS`
 
 If SMTP is not configured, submissions are still saved to `data/contact-submissions.ndjson` and the app redirects users to the thank-you page.
+
+## Professional Moderation Environment Variable
+
+- `PROFESSIONAL_MODERATION_KEY` (required to access/operate `/professionals/moderation`)

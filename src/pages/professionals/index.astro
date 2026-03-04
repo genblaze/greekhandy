@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 
 const profilesFile = await import('../../../data/professionals.json');
-const profiles = (profilesFile.default ?? profilesFile) as Array<{
+const profiles = ((profilesFile.default ?? profilesFile) as Array<{
   slug: string;
   name: string;
   profession: string;
@@ -11,7 +11,9 @@ const profiles = (profilesFile.default ?? profilesFile) as Array<{
   experienceYears: number;
   bio: string;
   services: string[];
-}>;
+  approved?: boolean;
+  published?: boolean;
+}>).filter((profile) => profile.approved === true && profile.published === true);
 ---
 
 <Layout

@@ -19,7 +19,7 @@
     {
       "id": "professional-profiles",
       "name": "Professional Profiles",
-      "description": "MVP slices complete: basic professional listing + profile pages + professional registration form submission + homepage search results now include approved/published profiles. Next: photos/portfolio and moderation workflow.",
+      "description": "MVP slices complete: basic professional listing + profile pages + professional registration form submission + homepage search results include approved/published profiles + basic moderation workflow (pending queue with approve/reject and draft profile creation). Next: photos/portfolio.",
       "priority": 3,
       "status": "in-progress",
       "estimatedComplexity": "high"
