@@ -208,7 +208,7 @@ const faqSchema = category.faq?.length ? {
           </ul>
         </div>
 
-        <form action="/api/contact" method="POST" class="rounded-2xl bg-white p-6 text-gray-900 shadow-xl md:p-8">
+        <form id="contact-form" class="rounded-2xl bg-white p-6 text-gray-900 shadow-xl md:p-8">
           <input type="hidden" name="serviceSlug" value={category.slug} />
           <input type="hidden" name="serviceName" value={category.nameGr} />
           <input type="hidden" name="pageUrl" value={canonicalUrl} />
@@ -216,7 +216,13 @@ const faqSchema = category.faq?.length ? {
           <h3 class="text-xl font-bold text-gray-900">{category.cta?.buttonText || 'Ζητήστε Προσφορά'}</h3>
           <p class="mt-1 text-sm text-gray-600">Συμπληρώστε τα στοιχεία σας και θα σας καλέσουμε σύντομα.</p>
 
-          <div class="mt-5 grid gap-4">
+          <div id="form-success" class="hidden rounded-lg bg-green-50 border border-green-200 p-4 text-green-800">
+            <p class="font-semibold">Ευχαριστούμε!</p>
+            <p class="text-sm mt-1">Το αίτημά σας καταχωρήθηκε. Θα επικοινωνήσουμε σύντομα.</p>
+          </div>
+          <div id="form-error" class="hidden rounded-lg bg-red-50 border border-red-200 p-4 text-red-800 text-sm"></div>
+
+          <div id="form-fields" class="mt-5 grid gap-4">
             <div>
               <label for="lead-name" class="mb-1 block text-sm font-semibold text-gray-800">Όνομα *</label>
               <input id="lead-name" name="name" type="text" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
@@ -240,11 +246,48 @@ const faqSchema = category.faq?.length ? {
             </div>
           </div>
 
-          <button type="submit" class="mt-5 w-full rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">
+          <button id="form-submit" type="submit" class="mt-5 w-full rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">
             Αποστολή Αιτήματος
           </button>
           <p class="mt-2 text-xs text-gray-500">Με την αποστολή αποδέχεστε να επικοινωνήσουμε μαζί σας για το συγκεκριμένο αίτημα.</p>
         </form>
+
+        <script>
+          import { createClient } from '@supabase/supabase-js';
+          const supabase = createClient(
+            'https://rwggwqnddoturgcyluuo.supabase.co',
+            'sb_publishable_tkTy4XLRcY6AP6T-PPIVNg_HDI7Z0J5'
+          );
+          const form = document.getElementById('contact-form');
+          form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fd = new FormData(form as HTMLFormElement);
+            // Honeypot check
+            if (fd.get('website')) return;
+            const btn = document.getElementById('form-submit') as HTMLButtonElement;
+            btn.disabled = true;
+            btn.textContent = 'Αποστολή...';
+            const { error } = await supabase.from('contact_requests').insert({
+              name: fd.get('name'),
+              phone: fd.get('phone'),
+              email: fd.get('email'),
+              description: fd.get('description'),
+              service_slug: fd.get('serviceSlug'),
+              service_name: fd.get('serviceName'),
+              page_url: fd.get('pageUrl'),
+            });
+            if (error) {
+              document.getElementById('form-error')!.textContent = 'Κάτι πήγε στραβά. Δοκιμάστε ξανά.';
+              document.getElementById('form-error')!.classList.remove('hidden');
+              btn.disabled = false;
+              btn.textContent = 'Αποστολή Αιτήματος';
+            } else {
+              document.getElementById('form-fields')!.classList.add('hidden');
+              btn.classList.add('hidden');
+              document.getElementById('form-success')!.classList.remove('hidden');
+            }
+          });
+        </script>
       </div>
     </section>
   </main>
