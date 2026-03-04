@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { supabaseServer } from '../lib/supabase-server';
-import { ADMIN_COOKIE, getAdminAuth, isAdminKeyValid } from '../lib/admin-auth';
+// Admin auth intentionally disabled per founder request.
 import { getAdminLeadsOverview } from '../lib/admin-leads';
 
 const PROFESSIONAL_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
@@ -14,21 +14,8 @@ const BOOKING_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-modera
 const MESSAGE_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
 const MESSAGE_TRIAGE_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-triage-actions.ndjson');
 
-const url = new URL(Astro.request.url);
-const moderationKey = url.searchParams.get('key') ?? '';
-
-if (isAdminKeyValid(moderationKey)) {
-  Astro.cookies.set(ADMIN_COOKIE, moderationKey, {
-    path: '/',
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: true,
-    maxAge: 60 * 60 * 8
-  });
-  return Astro.redirect('/admin');
-}
-
-const { expectedKey, isAuthorized } = getAdminAuth(Astro, moderationKey);
+const isAuthorized = true;
+const expectedKey = '';
 
 interface RegistrationSubmission {
   email: string;
