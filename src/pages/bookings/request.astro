@@ -151,37 +151,37 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
     <p class="mt-2 text-sm text-gray-600">Σελίδα παρακολούθησης για την εξέλιξη του αιτήματός σας.</p>
 
     {justSubmitted && (
-      <div class="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-900">
+      <div class="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-900" role="status" aria-live="polite">
         Το αίτημά σας υποβλήθηκε επιτυχώς. Κρατήστε αυτό το link για να παρακολουθείτε την εξέλιξη.
       </div>
     )}
 
     {hasInvalidLookup && (
-      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900" role="alert" aria-live="assertive">
         Το αίτημα δεν περιέχει έγκυρα στοιχεία αναζήτησης. Ελέγξτε το link και δοκιμάστε ξανά.
       </div>
     )}
 
     {hasLookupError && (
-      <div class="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-900">
+      <div class="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-900" role="alert" aria-live="assertive">
         Προέκυψε προσωρινό σφάλμα φόρτωσης της κατάστασης. Κάντε ανανέωση σε λίγα δευτερόλεπτα.
       </div>
     )}
 
     {hasRescheduleRequested && (
-      <div class="mt-6 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-violet-900">
+      <div class="mt-6 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-violet-900" role="status" aria-live="polite">
         Το αίτημα αλλαγής καταχωρήθηκε επιτυχώς και αναμένει έγκριση moderation.
       </div>
     )}
 
     {hasRescheduleAlreadyRequested && (
-      <div class="mt-6 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-violet-900">
+      <div class="mt-6 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-violet-900" role="status" aria-live="polite">
         Υπάρχει ήδη εκκρεμές αίτημα αλλαγής. Περιμένετε την απόφαση moderation πριν στείλετε νέο αίτημα.
       </div>
     )}
 
     {hasRescheduleNotAllowed && (
-      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900" role="alert" aria-live="assertive">
         Η αλλαγή ραντεβού επιτρέπεται μόνο για εγκεκριμένα αιτήματα. Ελέγξτε την τρέχουσα κατάσταση πριν δοκιμάσετε ξανά.
       </div>
     )}
@@ -216,13 +216,14 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
           </span>
         </div>
 
-        <div class={`mt-4 rounded-xl px-4 py-3 text-sm ${statusView.tone}`}>
+        <div class={`mt-4 rounded-xl px-4 py-3 text-sm ${statusView.tone}`} role="status" aria-live="polite" aria-atomic="true">
           <div class="flex flex-wrap items-center gap-2">
             <span class="inline-flex rounded-full border border-white/70 bg-white/70 px-2.5 py-0.5 text-xs font-semibold">{customerStatusBadge}</span>
             <span class="inline-flex rounded-full border border-white/70 bg-white/70 px-2.5 py-0.5 text-xs font-semibold">{professionalStatusBadge}</span>
           </div>
           <p class="mt-2 font-semibold">{statusView.summary}</p>
           <p class="mt-1 text-xs opacity-85">{statusView.hint}</p>
+          <p class="mt-1 text-xs opacity-85">Εμπιστοσύνη συστήματος: οι μεταβάσεις κατάστασης γίνονται με ελέγχους συνέπειας για αποφυγή λανθασμένων ενημερώσεων.</p>
           {reviewedAt && <p class="mt-1 text-xs opacity-85">Τελευταία ενημέρωση: {reviewedAt}</p>}
         </div>
 

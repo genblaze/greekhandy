@@ -133,7 +133,7 @@ const hasAnyBookings = bookings.length > 0;
     {isAuthorized && (
       <>
         {status === 'updated' && (
-          <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">
+          <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800" role="status" aria-live="polite">
             Η μετάβαση ολοκληρώθηκε{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}{statusFrom && statusTo ? `: ${statusFrom} → ${statusTo}` : ''}.
           </p>
         )}
@@ -148,7 +148,7 @@ const hasAnyBookings = bookings.length > 0;
           </p>
         )}
         {status === 'guardrail' && (
-          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
+          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800" role="alert" aria-live="assertive">
             Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isRescheduleOnlyFromApproved ? 'Αίτημα αλλαγής επιτρέπεται μόνο όταν η τρέχουσα κατάσταση είναι approved.' : isInvalidRescheduleResolution ? 'Η εκκρεμής αλλαγή κλείνει μόνο με approved, reschedule_rejected ή cancelled.' : isInvalidTransitionGuardrail ? 'Επιτρέπονται μόνο οι μεταβάσεις που ορίζονται στο lifecycle (pending→approved/rejected/cancelled, approved→reschedule_requested, reschedule_requested→approved/reschedule_rejected/cancelled).' : 'Ελέγξτε τους κανόνες μετάβασης.'}
           </p>
         )}
@@ -245,12 +245,12 @@ const hasAnyBookings = bookings.length > 0;
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state && isAllowedTransition(resolution.state, target.state))
                     .map((target) => (
-                      <form action="/api/bookings/moderate" method="POST" data-moderation-form data-booking-id={bookingId} data-from-state={resolution.state} data-to-state={target.state}>
+                      <form action="/api/bookings/moderate" method="POST" data-moderation-form data-booking-id={bookingId} data-from-state={resolution.state} data-to-state={target.state} aria-label={`Μετάβαση κράτησης ${bookingId} από ${resolution.state} σε ${target.state}`}>
                         <input type="hidden" name="moderationKey" value={moderationKey} />
                         <input type="hidden" name="bookingId" value={bookingId} />
                         <input type="hidden" name="expectedState" value={resolution.state} />
                         <input type="hidden" name="targetState" value={target.state} />
-                        <button type="submit" data-default-label={target.label} class={`rounded-lg px-4 py-2 text-sm font-semibold ${target.buttonClass}`}>{target.label}</button>
+                        <button type="submit" data-default-label={target.label} aria-label={`${target.label} για αίτημα ${bookingId}`} class={`rounded-lg px-4 py-2 text-sm font-semibold ${target.buttonClass}`}>{target.label}</button>
                       </form>
                     ))}
                 </div>
