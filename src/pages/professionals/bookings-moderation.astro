@@ -272,6 +272,12 @@ const hasAnyBookings = bookings.length > 0;
           form.addEventListener('submit', (event) => {
             if (submissionLocked) {
               event.preventDefault();
+              if (loadingBanner instanceof HTMLElement) {
+                loadingBanner.classList.remove('hidden');
+                loadingBanner.setAttribute('role', 'alert');
+                loadingBanner.setAttribute('aria-live', 'assertive');
+                loadingBanner.textContent = 'Υπάρχει ήδη ενέργεια σε εξέλιξη. Περιμένετε να ολοκληρωθεί πριν κάνετε νέα μετάβαση.';
+              }
               return;
             }
 
@@ -301,6 +307,8 @@ const hasAnyBookings = bookings.length > 0;
             submissionLocked = true;
             if (loadingBanner instanceof HTMLElement) {
               loadingBanner.classList.remove('hidden');
+              loadingBanner.setAttribute('role', 'status');
+              loadingBanner.setAttribute('aria-live', 'polite');
               loadingBanner.textContent = 'Καταχώρηση μετάβασης... οι υπόλοιπες ενέργειες κλειδώθηκαν προσωρινά για batch-safe αποφυγή διπλών μεταβάσεων.';
             }
 
