@@ -266,6 +266,7 @@ const hasLeads = directoryData.leads.length > 0;
                   <p id="leads-selection-summary" data-selection-summary class="text-xs font-medium text-slate-600" role="status" aria-live="polite" aria-atomic="true">0 επιλεγμένα</p>
                   <p data-bulk-impact-preview class="text-[11px] text-slate-500" aria-live="polite">Impact preview: 0 για outreach/segment/follow-up.</p>
                   <p data-bulk-action-preview class="text-[11px] text-slate-500" aria-live="polite">Προεπισκόπηση ενεργειών: outreach 0 • segment 0 • follow-up 0</p>
+                  <p data-bulk-confirmation-preview class="text-[11px] text-slate-500" aria-live="polite">Επιβεβαίωση: μονή επιβεβαίωση (low-volume).</p>
                   <p data-bulk-safety-note class="text-[11px] text-slate-500" aria-live="polite">Ασφάλεια bulk: οι αλλαγές εφαρμόζονται μόνο στα επιλεγμένα leads και η outreach αλλαγή υποστηρίζει αναίρεση.</p>
                 </div>
                 <p id="leads-bulk-prompt" class="mt-2 text-[11px] text-slate-600" aria-live="polite">Γρήγορη μετατροπή: πρώτα "Έγινε επαφή", μετά segment και follow-up. Η τελευταία μαζική αλλαγή outreach ανακαλείται για 5 λεπτά (κουμπί ή Alt+Z).</p>
@@ -563,6 +564,7 @@ const hasLeads = directoryData.leads.length > 0;
         const selectionSummary = root.querySelector('[data-selection-summary]');
         const bulkImpactPreview = root.querySelector('[data-bulk-impact-preview]');
         const bulkActionPreview = root.querySelector('[data-bulk-action-preview]');
+        const bulkConfirmationPreview = root.querySelector('[data-bulk-confirmation-preview]');
         const bulkSafetyNote = root.querySelector('[data-bulk-safety-note]');
         const selectionDock = root.querySelector('[data-selection-dock]');
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
@@ -975,6 +977,11 @@ const hasLeads = directoryData.leads.length > 0;
           if (bulkActionPreview instanceof HTMLElement) {
             bulkActionPreview.textContent = `Προεπισκόπηση ενεργειών: outreach ${Math.max(outreachToContacted, outreachToNotContacted)} • segment ${Math.max(segmentToHot, segmentToWarm, segmentToCold)} • follow-up ${followupPending}`;
           }
+          if (bulkConfirmationPreview instanceof HTMLElement) {
+            bulkConfirmationPreview.textContent = count >= 25
+              ? `Επιβεβαίωση: διπλή επιβεβαίωση (high-volume ${count} επιλεγμένα).`
+              : 'Επιβεβαίωση: μονή επιβεβαίωση (low-volume).';
+          }
           if (selectionNextHint instanceof HTMLElement) {
             if (count === 0) {
               selectionNextHint.textContent = 'Επόμενο βήμα μετατροπής: επιλέξτε ορατά leads (Shift+A) και εφαρμόστε την κατάλληλη μαζική ενέργεια.';
@@ -1079,6 +1086,9 @@ const hasLeads = directoryData.leads.length > 0;
             announcePolite(count > 0
               ? `Επιλέχθηκαν ${count} leads για μαζικές ενέργειες.`
               : 'Η τρέχουσα επιλογή καθαρίστηκε.');
+          }
+          if ((previousSelectionCount ?? 0) < 25 && count >= 25) {
+            announceState(`Υψηλός όγκος επιλογής: ${count} leads. Οι bulk ενέργειες θα ζητούν διπλή επιβεβαίωση για ασφάλεια.`);
           }
           previousSelectionCount = count;
         };
