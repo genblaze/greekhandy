@@ -249,35 +249,37 @@ const hasLeads = directoryData.leads.length > 0;
                     <button type="button" data-page-next aria-label="Μετάβαση στην επόμενη σελίδα αποτελεσμάτων" aria-controls="leads-list-region" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επόμενη</button>
                   </div>
                 </div>
-                <div class="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Bulk row actions">
+                <div class="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Μαζικές ενέργειες μετατροπής">
                   <button type="button" data-select-visible aria-label="Επιλογή όλων των ορατών leads σε αυτή τη σελίδα" aria-keyshortcuts="Shift+A" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επιλογή ορατών</button>
-                  <button type="button" data-clear-selection aria-label="Καθαρισμός τρέχουσας επιλογής leads" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός</button>
-                  <button type="button" data-bulk-contacted="true" aria-describedby="leads-selection-summary leads-selection-next-hint" aria-keyshortcuts="Alt+Shift+E" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Bulk: Επικοινωνήθηκε</button>
-                  <button type="button" data-bulk-contacted="false" aria-describedby="leads-selection-summary leads-selection-next-hint" aria-keyshortcuts="Alt+Shift+N" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Bulk: Χωρίς επαφή</button>
-                  <button type="button" data-bulk-segment="hot" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Bulk: Hot</button>
-                  <button type="button" data-bulk-segment="warm" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-2.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Bulk: Warm</button>
-                  <button type="button" data-bulk-segment="cold" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Bulk: Cold</button>
+                  <button type="button" data-clear-selection aria-label="Καθαρισμός τρέχουσας επιλογής leads" aria-keyshortcuts="Shift+U" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός</button>
+                  <button type="button" data-bulk-contacted="true" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+E" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Έγινε επαφή</button>
+                  <button type="button" data-bulk-contacted="false" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+N" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Εκκρεμεί επαφή</button>
+                  <button type="button" data-bulk-segment="hot" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+1" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Μαζικά: Segment Hot</button>
+                  <button type="button" data-bulk-segment="warm" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+2" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-2.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Μαζικά: Segment Warm</button>
+                  <button type="button" data-bulk-segment="cold" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+3" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Μαζικά: Segment Cold</button>
                   <input type="datetime-local" data-bulk-followup-at aria-label="Ορισμός ημερομηνίας και ώρας follow-up για επιλεγμένα leads" class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
-                  <button type="button" data-bulk-followup-set aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Bulk: Follow-up date</button>
+                  <button type="button" data-bulk-followup-set aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+F" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Μαζικά: Ορισμός follow-up</button>
                   <button type="button" data-bulk-outreach-undo aria-label="Αναίρεση τελευταίας μαζικής ενημέρωσης επικοινωνίας" aria-keyshortcuts="Alt+Z" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αναίρεση outreach</button>
+                  <button type="button" data-shortcuts-help aria-label="Εμφάνιση λίστας συντομεύσεων πληκτρολογίου" aria-keyshortcuts="Shift+?" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Συντομεύσεις</button>
                   <p id="leads-selection-summary" data-selection-summary class="text-xs font-medium text-slate-600" role="status" aria-live="polite" aria-atomic="true">0 επιλεγμένα</p>
                 </div>
+                <p id="leads-bulk-prompt" class="mt-2 text-[11px] text-slate-600" aria-live="polite">Γρήγορη μετατροπή: πρώτα "Έγινε επαφή", μετά segment και follow-up. Η τελευταία μαζική αλλαγή outreach ανακαλείται για 5 λεπτά (κουμπί ή Alt+Z).</p>
                 <div class="mt-3 grid gap-2 border-t border-slate-200 pt-3 sm:grid-cols-3" data-filter-analytics>
-                  <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Contacted: <strong data-analytics-contacted>0</strong></p>
-                  <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Qualified: <strong data-analytics-qualified>0</strong></p>
+                  <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Με επαφή: <strong data-analytics-contacted>0</strong></p>
+                  <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Κατάλληλα: <strong data-analytics-qualified>0</strong></p>
                   <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Μέσο score: <strong data-analytics-score>0</strong></p>
                 </div>
                 <div class="mt-2 grid gap-2 sm:grid-cols-3" data-segment-analytics>
-                  <button type="button" data-select-segment-visible="hot" class="rounded-md border border-rose-200 bg-rose-50 px-2.5 py-1.5 text-left text-xs text-rose-900">Hot segment: <strong data-analytics-segment-hot>0</strong></button>
-                  <button type="button" data-select-segment-visible="warm" class="rounded-md border border-orange-200 bg-orange-50 px-2.5 py-1.5 text-left text-xs text-orange-900">Warm segment: <strong data-analytics-segment-warm>0</strong></button>
-                  <button type="button" data-select-segment-visible="cold" class="rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-left text-xs text-sky-900">Cold segment: <strong data-analytics-segment-cold>0</strong></button>
+                  <button type="button" data-select-segment-visible="hot" aria-keyshortcuts="Alt+Shift+H" class="rounded-md border border-rose-200 bg-rose-50 px-2.5 py-1.5 text-left text-xs text-rose-900">Επιλογή ορατών Hot: <strong data-analytics-segment-hot>0</strong></button>
+                  <button type="button" data-select-segment-visible="warm" aria-keyshortcuts="Alt+Shift+W" class="rounded-md border border-orange-200 bg-orange-50 px-2.5 py-1.5 text-left text-xs text-orange-900">Επιλογή ορατών Warm: <strong data-analytics-segment-warm>0</strong></button>
+                  <button type="button" data-select-segment-visible="cold" aria-keyshortcuts="Alt+Shift+C" class="rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-left text-xs text-sky-900">Επιλογή ορατών Cold: <strong data-analytics-segment-cold>0</strong></button>
                 </div>
                 <div class="mt-3 grid gap-2 border-t border-slate-200 pt-3 sm:grid-cols-3" data-followup-board>
-                  <p class="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1.5 text-xs text-amber-900">Overdue: <strong data-followup-overdue>0</strong></p>
-                  <p class="rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-xs text-sky-900">Today: <strong data-followup-today>0</strong></p>
-                  <p class="rounded-md border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-xs text-indigo-900">This week: <strong data-followup-week>0</strong></p>
+                  <p class="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1.5 text-xs text-amber-900">Ληγμένα follow-up: <strong data-followup-overdue>0</strong></p>
+                  <p class="rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-xs text-sky-900">Follow-up σήμερα: <strong data-followup-today>0</strong></p>
+                  <p class="rounded-md border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-xs text-indigo-900">Follow-up 7ημέρου: <strong data-followup-week>0</strong></p>
                 </div>
-                <p class="mt-3 text-[11px] text-slate-500" aria-live="polite">Shortcuts: Shift+A επιλογή ορατών, Alt+1/2/3 bulk segment, Alt+Shift+H/W/C επιλογή ορατών segment, Alt+Shift+E/N bulk outreach, Alt+D focus follow-up, Alt+Shift+F apply follow-up, Alt+Z αναίρεση outreach, Shift+? βοήθεια.</p>
+                <p class="mt-3 text-[11px] text-slate-500" aria-live="polite">Συντομεύσεις: `/` αναζήτηση, Shift+A επιλογή ορατών, Shift+U καθαρισμός επιλογής, Alt+1/2/3 segment, Alt+Shift+H/W/C επιλογή segment ορατών, Alt+Shift+E/N outreach, Alt+D focus πεδίου follow-up, Alt+Shift+F εφαρμογή follow-up, Alt+Z αναίρεση, Shift+? βοήθεια.</p>
                 <div class="mt-2 flex flex-wrap gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Sortable columns">
                   <button type="button" data-sort-col="name" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Όνομα</button>
                   <button type="button" data-sort-col="category" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Κατηγορία</button>
@@ -347,13 +349,13 @@ const hasLeads = directoryData.leads.length > 0;
                     </div>
 
                     <div class="mt-4 flex flex-wrap gap-2">
-                      <button type="button" data-toggle-contacted="true" aria-pressed="false" class="inline-flex min-h-9 items-center rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Επικοινωνήθηκε</button>
-                      <button type="button" data-toggle-contacted="false" aria-pressed="false" class="inline-flex min-h-9 items-center rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Χωρίς επαφή</button>
+                      <button type="button" data-toggle-contacted="true" aria-pressed="false" class="inline-flex min-h-9 items-center rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Σημείωση: Έγινε επαφή</button>
+                      <button type="button" data-toggle-contacted="false" aria-pressed="false" class="inline-flex min-h-9 items-center rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Σημείωση: Εκκρεμεί επαφή</button>
                     </div>
 
                     <p data-last-contacted-display class="mt-2 text-xs font-medium text-slate-600">Τελευταία επικοινωνία: Ποτέ</p>
                     <p data-next-best-action-hint class="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700">
-                      Next best action: Ξεκινήστε με πρώτη επαφή (κλήση ή email).
+                      Επόμενο βήμα μετατροπής: κάντε πρώτη επαφή (κλήση ή email) και ορίστε follow-up.
                     </p>
 
                     <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
@@ -365,16 +367,17 @@ const hasLeads = directoryData.leads.length > 0;
 
                     <div class="mt-3 rounded-lg border border-slate-200 bg-white p-3">
                       <div class="flex flex-wrap items-center gap-2">
-                        <button type="button" data-set-segment="hot" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800">Hot</button>
-                        <button type="button" data-set-segment="warm" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-2.5 text-xs font-semibold text-orange-800">Warm</button>
-                        <button type="button" data-set-segment="cold" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800">Cold</button>
-                        <button type="button" data-triage-quick="contact-now" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800">Triage: Contact now</button>
-                        <button type="button" data-triage-quick="followup-2d" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800">Triage: +2 ημέρες</button>
+                        <button type="button" data-set-segment="hot" aria-label={`Ορισμός segment σε hot για ${lead.name}`} class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800">Hot</button>
+                        <button type="button" data-set-segment="warm" aria-label={`Ορισμός segment σε warm για ${lead.name}`} class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-2.5 text-xs font-semibold text-orange-800">Warm</button>
+                        <button type="button" data-set-segment="cold" aria-label={`Ορισμός segment σε cold για ${lead.name}`} class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800">Cold</button>
+                        <button type="button" data-triage-quick="contact-now" aria-label={`Γρήγορο triage για ${lead.name}: σημείωση ως έγινε επαφή`} class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800">Γρήγορο triage: Έγινε επαφή τώρα</button>
+                        <button type="button" data-triage-quick="followup-2d" aria-label={`Γρήγορο triage για ${lead.name}: follow-up σε 2 ημέρες`} class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800">Γρήγορο triage: Follow-up +2 ημέρες</button>
                       </div>
+                      <p data-triage-hint class="mt-2 text-[11px] text-slate-600">Triage 20": μαρκάρετε επαφή, επιλέξτε segment και αφήστε σύντομη σημείωση για το επόμενο βήμα.</p>
                       <label class="mt-3 block text-[11px] font-semibold uppercase tracking-wide text-slate-500">Quick note</label>
                       <div class="mt-1 flex gap-2">
-                        <input type="text" data-note-input placeholder="Σύντομη σημείωση για follow-up" class="w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-xs text-slate-800" />
-                        <button type="button" data-save-note class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700">Save</button>
+                        <input type="text" data-note-input aria-label={`Σύντομη σημείωση για ${lead.name}`} placeholder="Σύντομη σημείωση για follow-up" class="w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-xs text-slate-800" />
+                        <button type="button" data-save-note class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700">Αποθήκευση</button>
                       </div>
                     </div>
 
@@ -434,19 +437,19 @@ const hasLeads = directoryData.leads.length > 0;
                 <div class="pointer-events-auto mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur">
                   <div>
                     <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
-                    <p data-selection-next-hint id="leads-selection-next-hint" class="mt-1 text-xs text-slate-600" aria-live="polite">Επόμενο βήμα: επιλέξτε μαζική ενέργεια για τα επιλεγμένα leads (Alt+Shift+H/W/C segment selection, Alt+Shift+F follow-up, Alt+Z undo, Alt+U focus undo, Shift+? βοήθεια).</p>
+                    <p data-selection-next-hint id="leads-selection-next-hint" class="mt-1 text-xs text-slate-600" aria-live="polite">Επόμενο βήμα μετατροπής: εφαρμόστε outreach, μετά segment και follow-up. Alt+Z για άμεση αναίρεση της τελευταίας μαζικής outreach αλλαγής.</p>
                     <p data-selection-last-action class="mt-1 text-[11px] text-slate-500" aria-live="polite">Τελευταία ενέργεια: —</p>
-                    <p data-undo-availability class="mt-0.5 text-[11px] text-slate-500" aria-live="polite">Undo outreach: μη διαθέσιμο.</p>
+                    <p data-undo-availability class="mt-0.5 text-[11px] text-slate-500" aria-live="polite">Αναίρεση outreach: μη διαθέσιμη μέχρι την επόμενη μαζική αλλαγή.</p>
                   </div>
                   <div class="flex flex-wrap items-center gap-2">
-                    <button type="button" data-selection-dock-contacted="true" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Επικοινωνήθηκε</button>
-                    <button type="button" data-selection-dock-contacted="false" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-3 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Χωρίς επαφή</button>
-                    <button type="button" data-selection-dock-segment="hot" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-3 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Hot</button>
-                    <button type="button" data-selection-dock-segment="warm" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-3 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Warm</button>
-                    <button type="button" data-selection-dock-segment="cold" aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-3 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Cold</button>
+                    <button type="button" data-selection-dock-contacted="true" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+E" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Έγινε επαφή</button>
+                    <button type="button" data-selection-dock-contacted="false" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+N" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-3 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Εκκρεμεί επαφή</button>
+                    <button type="button" data-selection-dock-segment="hot" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+1" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-3 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Segment Hot</button>
+                    <button type="button" data-selection-dock-segment="warm" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+2" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-3 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Segment Warm</button>
+                    <button type="button" data-selection-dock-segment="cold" aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+3" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-3 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Segment Cold</button>
                     <input type="datetime-local" data-selection-dock-followup-at aria-label="Ορισμός ημερομηνίας και ώρας follow-up για επιλεγμένα leads" class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
-                    <button type="button" data-selection-dock-followup-set aria-describedby="leads-selection-summary leads-selection-next-hint" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-3 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Follow-up date</button>
-                    <button type="button" data-selection-dock-outreach-undo aria-label="Αναίρεση τελευταίας μαζικής ενημέρωσης επικοινωνίας" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Undo outreach</button>
+                    <button type="button" data-selection-dock-followup-set aria-describedby="leads-selection-summary leads-selection-next-hint leads-bulk-prompt" aria-keyshortcuts="Alt+Shift+F" class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-3 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Ορισμός follow-up</button>
+                    <button type="button" data-selection-dock-outreach-undo aria-label="Αναίρεση τελευταίας μαζικής ενημέρωσης επικοινωνίας" aria-keyshortcuts="Alt+Z" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αναίρεση outreach</button>
                     <button type="button" data-selection-dock-clear aria-label="Καθαρισμός επιλογής από το dock" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός επιλογής</button>
                   </div>
                 </div>
@@ -547,6 +550,7 @@ const hasLeads = directoryData.leads.length > 0;
         const bulkFollowupAt = root.querySelector('[data-bulk-followup-at]');
         const bulkFollowupSet = root.querySelector('[data-bulk-followup-set]');
         const bulkOutreachUndo = root.querySelector('[data-bulk-outreach-undo]');
+        const shortcutsHelpButton = root.querySelector('[data-shortcuts-help]');
         const selectionSummary = root.querySelector('[data-selection-summary]');
         const selectionDock = root.querySelector('[data-selection-dock]');
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
@@ -627,10 +631,19 @@ const hasLeads = directoryData.leads.length > 0;
         };
 
         const BULK_UNDO_WINDOW_MS = 5 * 60 * 1000;
+        const BULK_UNDO_WINDOW_MINUTES = Math.floor(BULK_UNDO_WINDOW_MS / 60000);
 
         const isUndoAvailable = () => {
           if (!lastBulkOutreachSnapshot?.createdAt) return false;
           return Date.now() - lastBulkOutreachSnapshot.createdAt <= BULK_UNDO_WINDOW_MS;
+        };
+
+        const formatUndoCountdown = (remainingMs) => {
+          const safeMs = Math.max(0, remainingMs);
+          const totalSeconds = Math.floor(safeMs / 1000);
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = totalSeconds % 60;
+          return `${minutes}:${String(seconds).padStart(2, '0')}`;
         };
 
         const setLastActionNote = (message) => {
@@ -925,13 +938,13 @@ const hasLeads = directoryData.leads.length > 0;
           const overdueFollowups = selectedEntries.filter((entry) => classifyFollowup(entry.nextAction?.at) === 'overdue').length;
           if (selectionNextHint instanceof HTMLElement) {
             if (count === 0) {
-              selectionNextHint.textContent = 'Επόμενο βήμα: επιλέξτε μαζική ενέργεια για τα επιλεγμένα leads.';
+              selectionNextHint.textContent = 'Επόμενο βήμα μετατροπής: επιλέξτε ορατά leads (Shift+A) και εφαρμόστε την κατάλληλη μαζική ενέργεια.';
             } else if (withoutContact > 0) {
-              selectionNextHint.textContent = `Επόμενο βήμα: ${withoutContact} lead(s) χωρίς επαφή — ξεκινήστε με bulk "Επικοινωνήθηκε".`;
+              selectionNextHint.textContent = `Προτεραιότητα μετατροπής: ${withoutContact} επιλεγμένα lead χωρίς επαφή. Ξεκινήστε με "Μαζικά: Έγινε επαφή".`;
             } else if (overdueFollowups > 0) {
-              selectionNextHint.textContent = `Επόμενο βήμα: ${overdueFollowups} lead(s) με ληγμένο follow-up — ορίστε νέα ημερομηνία.`;
+              selectionNextHint.textContent = `Προτεραιότητα εκτέλεσης: ${overdueFollowups} επιλεγμένα lead με ληγμένο follow-up. Ορίστε νέα ημερομηνία τώρα.`;
             } else {
-              selectionNextHint.textContent = 'Επόμενο βήμα: ενημερώστε segment ή follow-up για προώθηση pipeline.';
+              selectionNextHint.textContent = 'Επόμενο βήμα μετατροπής: ενημερώστε segment και follow-up για καθαρή προώθηση pipeline.';
             }
           }
 
@@ -960,12 +973,13 @@ const hasLeads = directoryData.leads.length > 0;
           if (selectionDockOutreachUndo instanceof HTMLButtonElement) selectionDockOutreachUndo.disabled = !undoAvailable;
           if (undoAvailability instanceof HTMLElement) {
             if (!lastBulkOutreachSnapshot?.createdAt) {
-              undoAvailability.textContent = 'Undo outreach: μη διαθέσιμο.';
+              undoAvailability.textContent = `Αναίρεση outreach: μη διαθέσιμη. Θα ενεργοποιηθεί για ${BULK_UNDO_WINDOW_MINUTES} λεπτά μετά την επόμενη μαζική outreach αλλαγή.`;
             } else {
-              const remainingSec = Math.max(0, Math.floor((BULK_UNDO_WINDOW_MS - (Date.now() - lastBulkOutreachSnapshot.createdAt)) / 1000));
+              const remainingMs = BULK_UNDO_WINDOW_MS - (Date.now() - lastBulkOutreachSnapshot.createdAt);
+              const remainingLabel = formatUndoCountdown(remainingMs);
               undoAvailability.textContent = undoAvailable
-                ? `Undo outreach: διαθέσιμο για ${remainingSec}s.`
-                : 'Undo outreach: έληξε.';
+                ? `Αναίρεση outreach: διαθέσιμη για ${remainingLabel}. Χρησιμοποιήστε το κουμπί "Αναίρεση outreach" ή Alt+Z.`
+                : 'Αναίρεση outreach: το παράθυρο έληξε. Καμία άλλη αλλαγή δεν επηρεάστηκε.';
             }
           }
 
@@ -1001,17 +1015,17 @@ const hasLeads = directoryData.leads.length > 0;
           }
           if (bulkOutreachUndo instanceof HTMLButtonElement) {
             bulkOutreachUndo.setAttribute('aria-label', isUndoAvailable()
-              ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας (${lastBulkOutreachSnapshot.changed} leads)`
-              : 'Δεν υπάρχει διαθέσιμη πρόσφατη μαζική outreach ενέργεια για αναίρεση');
+              ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας για ${lastBulkOutreachSnapshot.changed} leads`
+              : `Δεν υπάρχει διαθέσιμη πρόσφατη μαζική outreach ενέργεια για αναίρεση μέσα στο παράθυρο ${BULK_UNDO_WINDOW_MINUTES} λεπτών`);
           }
           if (selectionDockOutreachUndo instanceof HTMLButtonElement) {
             selectionDockOutreachUndo.setAttribute('aria-label', isUndoAvailable()
-              ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας από το dock (${lastBulkOutreachSnapshot.changed} leads)`
-              : 'Δεν υπάρχει διαθέσιμη πρόσφατη μαζική outreach ενέργεια για αναίρεση');
+              ? `Αναίρεση τελευταίας μαζικής outreach ενέργειας από το dock για ${lastBulkOutreachSnapshot.changed} leads`
+              : `Δεν υπάρχει διαθέσιμη πρόσφατη μαζική outreach ενέργεια για αναίρεση μέσα στο παράθυρο ${BULK_UNDO_WINDOW_MINUTES} λεπτών`);
           }
 
           if (selectionLastAction instanceof HTMLElement && lastBulkOutreachSnapshot && !isUndoAvailable()) {
-            selectionLastAction.textContent = 'Τελευταία ενέργεια: Το παράθυρο αναίρεσης outreach έληξε.';
+            selectionLastAction.textContent = 'Τελευταία ενέργεια: Το παράθυρο αναίρεσης outreach έληξε, η κατάσταση παραμένει όπως εφαρμόστηκε.';
           }
 
           if (previousSelectionCount !== null && previousSelectionCount !== count) {
@@ -1098,39 +1112,39 @@ const hasLeads = directoryData.leads.length > 0;
             if (followupClass === 'overdue') {
               return {
                 tone: 'critical',
-                text: `Επόμενη καλύτερη ενέργεια: Η προγραμματισμένη ${actionKind} έχει λήξει. Εκτελέστε την άμεσα.`
+                text: `Επόμενο βήμα μετατροπής: Η προγραμματισμένη ${actionKind} έχει λήξει. Εκτελέστε την τώρα και ενημερώστε αποτέλεσμα.`
               };
             }
             if (followupClass === 'today') {
               return {
                 tone: 'due-soon',
-                text: `Επόμενη καλύτερη ενέργεια: ${actionKind} σήμερα στις ${new Date(scheduledAt).toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' })}.`
+                text: `Επόμενο βήμα μετατροπής: ${actionKind} σήμερα στις ${new Date(scheduledAt).toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' })}. Ετοιμάστε σημείωση πριν την εκτέλεση.`
               };
             }
             return {
               tone: 'scheduled',
-              text: `Επόμενη καλύτερη ενέργεια: ${actionKind} στις ${new Date(scheduledAt).toLocaleString('el-GR')}.`
+              text: `Επόμενο βήμα μετατροπής: ${actionKind} στις ${new Date(scheduledAt).toLocaleString('el-GR')}. Επιβεβαιώστε segment και στόχο κλήσης/email.`
             };
           }
 
           if (!entry.isContacted) {
             if (hasPhone && hasEmail) {
-              return { tone: 'priority', text: 'Επόμενη καλύτερη ενέργεια: Ξεκινήστε πρώτη επαφή με κλήση ή email.' };
+              return { tone: 'priority', text: 'Επόμενο βήμα μετατροπής: Ξεκινήστε πρώτη επαφή με κλήση ή email και καταγράψτε σύντομη σημείωση.' };
             }
             if (hasPhone) {
-              return { tone: 'priority', text: 'Επόμενη καλύτερη ενέργεια: Ξεκινήστε πρώτη επαφή με κλήση.' };
+              return { tone: 'priority', text: 'Επόμενο βήμα μετατροπής: Ξεκινήστε πρώτη επαφή με κλήση και ορίστε follow-up.' };
             }
             if (hasEmail) {
-              return { tone: 'priority', text: 'Επόμενη καλύτερη ενέργεια: Ξεκινήστε πρώτη επαφή με email.' };
+              return { tone: 'priority', text: 'Επόμενο βήμα μετατροπής: Ξεκινήστε πρώτη επαφή με email και ορίστε follow-up.' };
             }
-            return { tone: 'info', text: 'Επόμενη καλύτερη ενέργεια: Προσθέστε τηλέφωνο ή email πριν το outreach.' };
+            return { tone: 'info', text: 'Επόμενο βήμα μετατροπής: Συμπληρώστε τηλέφωνο ή email πριν το outreach.' };
           }
 
           if (entry.status === 'qualified') {
-            return { tone: 'progress', text: 'Επόμενη καλύτερη ενέργεια: Κλείστε συνάντηση ή follow-up για μετατροπή.' };
+            return { tone: 'progress', text: 'Επόμενο βήμα μετατροπής: Κλείστε συνάντηση ή follow-up για να κλείσει η ευκαιρία.' };
           }
 
-          return { tone: 'info', text: 'Επόμενη καλύτερη ενέργεια: Ορίστε follow-up για να διατηρηθεί το momentum.' };
+          return { tone: 'info', text: 'Επόμενο βήμα μετατροπής: Ορίστε follow-up ώστε να μη χαθεί το momentum.' };
         };
 
         const renderNextBestActionHint = (entry) => {
@@ -1175,6 +1189,7 @@ const hasLeads = directoryData.leads.length > 0;
 
           if (markContactedButton instanceof HTMLButtonElement) {
             markContactedButton.setAttribute('aria-pressed', entry.isContacted ? 'true' : 'false');
+            markContactedButton.setAttribute('aria-label', `Σημείωση lead ${entry.name} ως έγινε επαφή`);
             markContactedButton.classList.toggle('bg-emerald-600', entry.isContacted);
             markContactedButton.classList.toggle('border-emerald-600', entry.isContacted);
             markContactedButton.classList.toggle('text-white', entry.isContacted);
@@ -1185,6 +1200,7 @@ const hasLeads = directoryData.leads.length > 0;
 
           if (markNotContactedButton instanceof HTMLButtonElement) {
             markNotContactedButton.setAttribute('aria-pressed', !entry.isContacted ? 'true' : 'false');
+            markNotContactedButton.setAttribute('aria-label', `Σημείωση lead ${entry.name} ως εκκρεμεί επαφή`);
             markNotContactedButton.classList.toggle('bg-amber-600', !entry.isContacted);
             markNotContactedButton.classList.toggle('border-amber-600', !entry.isContacted);
             markNotContactedButton.classList.toggle('text-white', !entry.isContacted);
@@ -1906,9 +1922,9 @@ const hasLeads = directoryData.leads.length > 0;
         const applyBulkOutreach = (targetContacted) => {
           const count = selectedLeadIds.size;
           if (count <= 0) return;
-          const nextLabel = targetContacted ? 'Επικοινωνήθηκε' : 'Χωρίς επαφή';
+          const nextLabel = targetContacted ? 'Έγινε επαφή' : 'Εκκρεμεί επαφή';
           const impacted = parsedCards.filter((entry) => selectedLeadIds.has(entry.id) && entry.isContacted !== targetContacted).length;
-          const ok = window.confirm(`Bulk outreach: ${nextLabel}\n\nΣύνολο επιλογής: ${count} leads\nΘα αλλάξουν πραγματικά: ${impacted} leads\n\nUndo διαθέσιμο από κουμπί ή Alt+Z.`);
+          const ok = window.confirm(`Μαζική ενημέρωση outreach: ${nextLabel}\n\nΣύνολο επιλογής: ${count} leads\nΘα αλλάξουν πραγματικά: ${impacted} leads\n\nΑσφάλεια: μπορείτε να κάνετε αναίρεση για ${BULK_UNDO_WINDOW_MINUTES} λεπτά από το κουμπί ή με Alt+Z.`);
           if (!ok) return;
 
           const snapshot = [];
@@ -1942,10 +1958,10 @@ const hasLeads = directoryData.leads.length > 0;
 
           if (liveRegion instanceof HTMLElement) {
             liveRegion.textContent = changed > 0
-              ? `Ενημερώθηκαν ${changed} leads σε ${nextLabel}. Διαθέσιμη αναίρεση.`
+              ? `Ενημερώθηκαν ${changed} leads σε "${nextLabel}". Η αναίρεση παραμένει διαθέσιμη για ${BULK_UNDO_WINDOW_MINUTES} λεπτά.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk ενέργεια.';
           }
-          if (changed > 0) setLastActionNote(`Bulk outreach → ${nextLabel} (${changed} leads)`);
+          if (changed > 0) setLastActionNote(`Bulk outreach → ${nextLabel} (${changed} leads, με ενεργό παράθυρο αναίρεσης)`);
           renderSelectionState();
           scheduleRun();
         };
@@ -1954,11 +1970,11 @@ const hasLeads = directoryData.leads.length > 0;
           if (!lastBulkOutreachSnapshot?.entries?.length) return;
           if (!isUndoAvailable()) {
             setLastActionNote('Το παράθυρο αναίρεσης outreach έχει λήξει.');
-            announcePolite('Δεν είναι διαθέσιμη αναίρεση: έχει λήξει το χρονικό παράθυρο.');
+            announcePolite('Η αναίρεση δεν είναι πλέον διαθέσιμη γιατί έληξε το χρονικό παράθυρο.');
             renderSelectionState();
             return;
           }
-          const ok = window.confirm(`Αναίρεση τελευταίας bulk outreach ενέργειας για ${lastBulkOutreachSnapshot.changed} leads;`);
+          const ok = window.confirm(`Αναίρεση τελευταίας μαζικής outreach ενέργειας για ${lastBulkOutreachSnapshot.changed} leads;\n\nΘα επανέλθουν μόνο οι outreach τιμές που άλλαξαν στο τελευταίο βήμα.`);
           if (!ok) return;
 
           lastBulkOutreachSnapshot.entries.forEach((item) => {
@@ -1975,7 +1991,7 @@ const hasLeads = directoryData.leads.length > 0;
 
           const restoredCount = lastBulkOutreachSnapshot.changed;
           lastBulkOutreachSnapshot = null;
-          if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Ολοκληρώθηκε αναίρεση outreach για ${restoredCount} leads.`;
+          if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Ολοκληρώθηκε αναίρεση outreach για ${restoredCount} leads. Οι υπόλοιπες ενέργειες παρέμειναν ανέπαφες.`;
           setLastActionNote(`Undo bulk outreach (${restoredCount} leads)`);
           renderSelectionState();
           scheduleRun();
@@ -1984,7 +2000,7 @@ const hasLeads = directoryData.leads.length > 0;
         const applyBulkSegment = (segmentValue) => {
           const count = selectedLeadIds.size;
           if (count <= 0) return;
-          const ok = window.confirm(`Επιβεβαίωση μαζικού segment '${segmentValue}' για ${count} leads;`);
+          const ok = window.confirm(`Επιβεβαίωση μαζικού segment '${segmentValue}' για ${count} leads;\n\nΗ ενέργεια επηρεάζει μόνο το segment.`);
           if (!ok) return;
 
           let changed = 0;
@@ -1993,7 +2009,7 @@ const hasLeads = directoryData.leads.length > 0;
             entry.segment = segmentValue;
             segmentState = { ...segmentState, [entry.id]: segmentValue };
             entry.searchableText = [entry.name, entry.phone, entry.email, entry.categoryLabel, entry.city, entry.statusLabel, `score:${entry.score}`, entry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', entry.segment, entry.note].join(' ').toLowerCase();
-            appendActivity(entry, `Bulk segment: ${segmentValue}`);
+            appendActivity(entry, `Bulk: segment → ${segmentValue}`);
             renderCardOutreach(entry);
             syncActiveDetail(entry);
             changed += 1;
@@ -2011,7 +2027,7 @@ const hasLeads = directoryData.leads.length > 0;
         const applyBulkFollowupDate = (isoDateTime) => {
           const count = selectedLeadIds.size;
           if (count <= 0 || !isoDateTime) return;
-          const ok = window.confirm(`Ορισμός follow-up για ${count} leads στις ${new Date(isoDateTime).toLocaleString('el-GR')};`);
+          const ok = window.confirm(`Ορισμός follow-up για ${count} leads στις ${new Date(isoDateTime).toLocaleString('el-GR')};\n\nΗ ενέργεια παραμένει περιορισμένη στα επιλεγμένα leads.`);
           if (!ok) return;
 
           let changed = 0;
@@ -2019,7 +2035,7 @@ const hasLeads = directoryData.leads.length > 0;
             if (!selectedLeadIds.has(entry.id)) return;
             entry.nextAction = { kind: entry.nextAction?.kind || 'followup', at: isoDateTime };
             nextActionState = { ...nextActionState, [entry.id]: entry.nextAction };
-            appendActivity(entry, 'Bulk follow-up date set');
+            appendActivity(entry, 'Bulk: ορίστηκε follow-up ημερομηνία');
             renderCardOutreach(entry);
             syncActiveDetail(entry);
             changed += 1;
@@ -2030,7 +2046,7 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ορίστηκε follow-up για ${changed} leads.`
               : 'Δεν υπάρχει επιλεγμένο lead για follow-up.';
           }
-          if (changed > 0) setLastActionNote(`Bulk follow-up date (${changed} leads)`);
+          if (changed > 0) setLastActionNote(`Bulk follow-up ημερομηνία (${changed} leads)`);
           scheduleRun();
         };
 
@@ -2098,7 +2114,7 @@ const hasLeads = directoryData.leads.length > 0;
           appendActivity(entry, at ? `Προγραμματίστηκε ${kind}` : 'Καθαρίστηκε next-action');
           renderDetailNextAction(entry);
           renderCardOutreach(entry);
-          if (liveRegion instanceof HTMLElement) liveRegion.textContent = at ? 'Αποθηκεύτηκε next action.' : 'Αφαιρέθηκε next action.';
+          if (liveRegion instanceof HTMLElement) liveRegion.textContent = at ? 'Αποθηκεύτηκε επόμενη ενέργεια.' : 'Αφαιρέθηκε επόμενη ενέργεια.';
         });
 
         detailNextActionClear?.addEventListener('click', () => {
@@ -2112,96 +2128,132 @@ const hasLeads = directoryData.leads.length > 0;
           renderDetailHistory(entry);
         });
 
+        const showShortcutsHelp = () => {
+          window.alert(
+            'Συντομεύσεις leads:\n'
+            + '/ focus αναζήτησης\n'
+            + 'Shift+A επιλογή ορατών\n'
+            + 'Shift+U καθαρισμός επιλογής\n'
+            + 'Alt+Backspace καθαρισμός επιλογής\n'
+            + 'Alt+1/2/3 μαζικό segment\n'
+            + 'Alt+Shift+H/W/C επιλογή ορατών ανά segment\n'
+            + 'Alt+Shift+E/N μαζικό outreach\n'
+            + 'Alt+D focus πεδίου follow-up\n'
+            + 'Alt+Shift+F εφαρμογή follow-up\n'
+            + `Alt+Z undo τελευταίου bulk outreach (εντός ${BULK_UNDO_WINDOW_MINUTES} λεπτών)\n`
+            + 'Alt+U focus κουμπιού undo\n'
+            + 'J/K πλοήγηση καρτών\n'
+            + 'C/N/H/W/L/S triage στο detail drawer'
+          );
+        };
+
+        shortcutsHelpButton?.addEventListener('click', showShortcutsHelp);
+
+        const isEditableTarget = (target) => {
+          if (!(target instanceof HTMLElement)) return false;
+          if (target.isContentEditable) return true;
+          return target instanceof HTMLInputElement
+            || target instanceof HTMLTextAreaElement
+            || target instanceof HTMLSelectElement;
+        };
+
         window.addEventListener('keydown', (event) => {
           if (!(event instanceof KeyboardEvent)) return;
-          if (event.key === 'Escape') closeDetailPanel();
-          if (event.key === '/' && document.activeElement !== searchInput) {
+          if (event.key === 'Escape') {
+            closeDetailPanel();
+            return;
+          }
+
+          const typingContext = isEditableTarget(event.target);
+          const hasSystemModifier = event.ctrlKey || event.metaKey;
+          const key = event.key.toLowerCase();
+
+          if (!typingContext && !hasSystemModifier && !event.altKey && !event.shiftKey && event.key === '/' && document.activeElement !== searchInput) {
             event.preventDefault();
             if (searchInput instanceof HTMLInputElement) searchInput.focus();
           }
-          if (event.shiftKey && event.key.toLowerCase() === 'a') {
+          if (!typingContext && !hasSystemModifier && event.shiftKey && key === 'a') {
             event.preventDefault();
             selectVisibleButton?.dispatchEvent(new Event('click'));
           }
-          if (event.shiftKey && event.key.toLowerCase() === 'u') {
+          if (!typingContext && !hasSystemModifier && event.shiftKey && key === 'u') {
             event.preventDefault();
             clearSelectionButton?.dispatchEvent(new Event('click'));
           }
-          if (event.altKey && event.key === '1') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.key === '1') {
             event.preventDefault();
             const btn = root.querySelector('[data-bulk-segment="hot"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.key === '2') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.key === '2') {
             event.preventDefault();
             const btn = root.querySelector('[data-bulk-segment="warm"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.key === '3') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.key === '3') {
             event.preventDefault();
             const btn = root.querySelector('[data-bulk-segment="cold"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'h') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.shiftKey && key === 'h') {
             event.preventDefault();
             const btn = root.querySelector('[data-select-segment-visible="hot"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'w') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.shiftKey && key === 'w') {
             event.preventDefault();
             const btn = root.querySelector('[data-select-segment-visible="warm"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'c') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.shiftKey && key === 'c') {
             event.preventDefault();
             const btn = root.querySelector('[data-select-segment-visible="cold"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'e') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.shiftKey && key === 'e') {
             event.preventDefault();
             const btn = root.querySelector('[data-bulk-contacted="true"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'n') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.shiftKey && key === 'n') {
             event.preventDefault();
             const btn = root.querySelector('[data-bulk-contacted="false"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
           }
-          if (event.altKey && event.key.toLowerCase() === 'd') {
+          if (!typingContext && !hasSystemModifier && event.altKey && key === 'd') {
             event.preventDefault();
             if (selectionDockFollowupAt instanceof HTMLInputElement && !selectionDockFollowupAt.disabled) selectionDockFollowupAt.focus();
           }
-          if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'f') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.shiftKey && key === 'f') {
             event.preventDefault();
             const at = (selectionDockFollowupAt instanceof HTMLInputElement && selectionDockFollowupAt.value)
               ? selectionDockFollowupAt.value
               : (bulkFollowupAt instanceof HTMLInputElement ? bulkFollowupAt.value : '');
             applyBulkFollowupDate(at);
           }
-          if (event.altKey && event.key.toLowerCase() === 'z') {
+          if (!typingContext && !hasSystemModifier && event.altKey && key === 'z') {
             event.preventDefault();
             undoBulkOutreach();
           }
-          if (event.altKey && event.key.toLowerCase() === 'u') {
+          if (!typingContext && !hasSystemModifier && event.altKey && key === 'u') {
             event.preventDefault();
             if (selectionDockOutreachUndo instanceof HTMLButtonElement && !selectionDockOutreachUndo.disabled) selectionDockOutreachUndo.focus();
             else if (bulkOutreachUndo instanceof HTMLButtonElement && !bulkOutreachUndo.disabled) bulkOutreachUndo.focus();
           }
-          if (event.altKey && event.key === 'Backspace') {
+          if (!typingContext && !hasSystemModifier && event.altKey && event.key === 'Backspace') {
             event.preventDefault();
             selectedLeadIds.clear();
             renderSelectionState();
             announcePolite('Καθαρίστηκε η επιλογή μέσω συντόμευσης πληκτρολογίου.');
           }
-          if (event.shiftKey && event.key === '?') {
+          if (!typingContext && !hasSystemModifier && event.shiftKey && event.key === '?') {
             event.preventDefault();
-            window.alert('Leads shortcuts:\n/ αναζήτηση\nShift+A επιλογή ορατών\nShift+U καθαρισμός επιλογής\nAlt+Backspace καθαρισμός επιλογής\nAlt+1/2/3 bulk segment\nAlt+Shift+H/W/C επιλογή ορατών ανά segment\nAlt+Shift+E/N bulk outreach για επιλογή\nAlt+D focus follow-up date\nAlt+Shift+F εφαρμογή bulk follow-up date\nAlt+Z undo τελευταίου bulk outreach (εντός 5 λεπτών)\nAlt+U focus κουμπιού undo\nJ/K πλοήγηση καρτών\nC/N/H/W/L/S triage στο detail drawer');
+            showShortcutsHelp();
           }
 
           const activeEntry = getActiveDetailEntry();
-          const inTextInput = document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement;
-          if (activeEntry && !inTextInput) {
-            const key = event.key.toLowerCase();
+          const inTextInput = isEditableTarget(document.activeElement);
+          if (activeEntry && !inTextInput && !hasSystemModifier && !event.altKey && !event.shiftKey) {
             if (key === 'c') {
               event.preventDefault();
               activeEntry.isContacted = true;
@@ -2231,7 +2283,7 @@ const hasLeads = directoryData.leads.length > 0;
               segmentState = { ...segmentState, [activeEntry.id]: segment };
               writeMapState(SEGMENT_STORAGE_KEY, segmentState);
               activeEntry.searchableText = [activeEntry.name, activeEntry.phone, activeEntry.email, activeEntry.categoryLabel, activeEntry.city, activeEntry.statusLabel, `score:${activeEntry.score}`, activeEntry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', activeEntry.segment, activeEntry.note].join(' ').toLowerCase();
-              appendActivity(activeEntry, `Shortcut segment: ${segment}`);
+              appendActivity(activeEntry, `Shortcut: segment → ${segment}`);
               renderCardOutreach(activeEntry);
               syncActiveDetail(activeEntry);
               scheduleRun();
@@ -2242,12 +2294,12 @@ const hasLeads = directoryData.leads.length > 0;
             }
           }
 
-          if (event.key.toLowerCase() === 'j' || event.key.toLowerCase() === 'k') {
+          if (!typingContext && !hasSystemModifier && !event.altKey && !event.shiftKey && (key === 'j' || key === 'k')) {
             const visibleCards = parsedCards.filter((entry) => !entry.card.hidden).map((entry) => entry.card);
             const activeIndex = visibleCards.findIndex((card) => card === document.activeElement);
             if (activeIndex !== -1) {
               event.preventDefault();
-              const delta = event.key.toLowerCase() === 'j' ? 1 : -1;
+              const delta = key === 'j' ? 1 : -1;
               const nextIndex = Math.min(Math.max(activeIndex + delta, 0), visibleCards.length - 1);
               visibleCards[nextIndex]?.focus();
             }
@@ -2376,7 +2428,7 @@ const hasLeads = directoryData.leads.length > 0;
             if (mode === 'contact-now') {
               entry.isContacted = true;
               entry.lastContactedTs = Date.now();
-              appendActivity(entry, 'Triage quick: contact-now');
+              appendActivity(entry, 'Γρήγορο triage: έγινε επαφή τώρα');
               syncOutreachRecord(entry);
             }
             if (mode === 'followup-2d') {
@@ -2385,12 +2437,12 @@ const hasLeads = directoryData.leads.length > 0;
               entry.nextAction = { kind: 'followup', at: isoLocal };
               nextActionState = { ...nextActionState, [entry.id]: entry.nextAction };
               writeMapState(NEXT_ACTION_STORAGE_KEY, nextActionState);
-              appendActivity(entry, 'Triage quick: followup +2 ημέρες');
+              appendActivity(entry, 'Γρήγορο triage: follow-up +2 ημέρες');
             }
             entry.searchableText = [entry.name, entry.phone, entry.email, entry.categoryLabel, entry.city, entry.statusLabel, `score:${entry.score}`, entry.isContacted ? 'επικοινωνηθηκε' : 'χωρις επαφη', entry.segment, entry.note].join(' ').toLowerCase();
             renderCardOutreach(entry);
             syncActiveDetail(entry);
-            if (liveRegion instanceof HTMLElement) liveRegion.textContent = 'Εφαρμόστηκε triage quick action.';
+            if (liveRegion instanceof HTMLElement) liveRegion.textContent = 'Εφαρμόστηκε γρήγορη triage ενέργεια.';
             scheduleRun();
             return;
           }
