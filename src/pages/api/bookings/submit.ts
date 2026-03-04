@@ -1,4 +1,6 @@
 import type { APIRoute } from 'astro';
+
+export const prerender = false;
 import { appendFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { BOOKING_SUBMISSIONS_FILE_PATH, getBookingStatusPath } from '../../../lib/bookings';
@@ -8,9 +10,15 @@ const max = (value: string, limit: number) => value.slice(0, limit);
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const isValidPhone = (phone: string) => /^[0-9+()\-\s]{7,20}$/.test(phone);
+const isValidSlug = (slug: string) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
 
 export const POST: APIRoute = async ({ request, redirect }) => {
-  const formData = await request.formData();
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return redirect('/professionals?booking=invalid', 303);
+  }
 
   const professionalSlug = max(clean(formData.get('professionalSlug')), 120);
   const returnTo = clean(formData.get('returnTo')) || `/professionals/${professionalSlug}`;
@@ -34,6 +42,9 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
   if (
     !submission.professionalSlug ||
+    !isValidSlug(submission.professionalSlug) ||
+    !returnTo.startsWith('/') ||
+    returnTo.startsWith('//') ||
     !submission.service ||
     !submission.customerName ||
     !submission.phone ||
@@ -42,7 +53,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     !isValidEmail(submission.email) ||
     !isValidPhone(submission.phone)
   ) {
-    return redirect(`${returnTo}?booking=invalid`, 303);
+    return redirect(`${returnTo.startsWith('/') ? returnTo : '/professionals'}?booking=invalid`, 303);
   }
 
   try {
