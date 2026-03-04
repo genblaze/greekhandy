@@ -21,6 +21,7 @@ const messageStatus = clean(url.searchParams.get('message'));
 const knownThreadStatuses = new Set(['', 'reported', 'report-error', 'report-invalid', 'report-forbidden', 'loading']);
 const knownMessageStatuses = new Set(['', 'submitted', 'invalid', 'error', 'blocked', 'loading']);
 const showLoadingState = status === 'loading' || messageStatus === 'loading';
+const THREAD_LOADING_SKELETON_ROWS = [1, 2, 3];
 const hasUnknownStatus = status !== '' && !knownThreadStatuses.has(status);
 const hasUnknownMessageStatus = messageStatus !== '' && !knownMessageStatuses.has(messageStatus);
 const formatDateTime = (value: string) => new Date(value).toLocaleString('el-GR');
@@ -292,6 +293,32 @@ const historyStateActionHref = showLoadingState
     : threadMessages.length === 0
       ? '#thread-interaction'
       : latestVisibleMessageHref;
+const historyStateFocusLabel = showLoadingState
+  ? 'Συγχρονισμός'
+  : threadLoadError
+    ? 'Επαναφορά ιστορικού'
+    : threadMessages.length === 0
+      ? 'Εκκίνηση συνομιλίας'
+      : 'Ανάγνωση/triage';
+const historyStateSupportHint = threadLoadError
+  ? 'Μπορεί να λείπουν moderation ενδείξεις ή τμήματα ιστορικού μέχρι να επανέλθει η φόρτωση.'
+  : threadMessages.length === 0
+    ? 'Μόλις σταλεί το πρώτο μήνυμα, θα εμφανιστούν αυτόματα ροή, badges και διαθέσιμες ενέργειες moderation.'
+    : `Ορατά: ${visibleMessagesCount} · Κρυφά: ${hiddenMessagesCount} · Εισερχόμενα reportable: ${reportableIncomingCount}.`;
+const threadStatePrimaryActionLabel = hasMissingParams
+  ? 'Επιστροφή στη λίστα'
+  : hasAccessIssue
+    ? 'Άνοιγμα προσβάσιμου thread'
+    : threadLoadError
+      ? 'Επανάληψη φόρτωσης'
+      : '';
+const threadStatePrimaryActionHref = hasMissingParams
+  ? threadListHref
+  : hasAccessIssue
+    ? threadListHref
+    : threadLoadError
+      ? `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`
+      : '';
 const moderationConsequences: string[] = [];
 if (threadBlockedByModeration) moderationConsequences.push('Δεν επιτρέπεται αποστολή νέου μηνύματος μέχρι να αρθεί το μπλοκάρισμα.');
 if (threadMutedByModeration) moderationConsequences.push('Η ορατότητα του περιεχομένου είναι πλήρως περιορισμένη και το composer παραμένει κλειστό.');
@@ -480,30 +507,35 @@ for (const message of threadMessages) {
     </section>
 
     {hasMissingParams && (
-      <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-missing-params-title">
+      <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-missing-params-title" aria-describedby="thread-missing-params-description">
         <p id="thread-missing-params-title" class="font-semibold">Δεν μπορέσαμε να ανοίξουμε τη συνομιλία.</p>
-        <p class="mt-1 text-sm">Λείπουν τα απαραίτητα στοιχεία <code>threadId</code> ή <code>viewerEmail</code>.</p>
+        <p id="thread-missing-params-description" class="mt-1 text-sm">Λείπουν τα απαραίτητα στοιχεία <code>threadId</code> ή <code>viewerEmail</code>.</p>
         <p class="mt-2 text-xs">Παράδειγμα: <code>/messages/thread?threadId=...&viewerEmail=name@example.com</code></p>
+        {threadStatePrimaryActionHref && (
+          <a href={threadStatePrimaryActionHref} class="mt-2 inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">
+            {threadStatePrimaryActionLabel}
+          </a>
+        )}
       </div>
     )}
 
     {hasAccessIssue && (
-      <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-access-issue-title">
+      <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-access-issue-title" aria-describedby="thread-access-issue-description">
         <p id="thread-access-issue-title" class="font-semibold">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
-        <p class="mt-1 text-sm">Επιστρέψτε στη λίστα συνομιλιών και επιλέξτε thread όπου συμμετέχετε.</p>
+        <p id="thread-access-issue-description" class="mt-1 text-sm">Επιστρέψτε στη λίστα συνομιλιών και επιλέξτε thread όπου συμμετέχετε.</p>
         <a href={threadListHref} class="mt-2 inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
-          Επιστροφή στη λίστα
+          {threadStatePrimaryActionLabel || 'Επιστροφή στη λίστα'}
         </a>
       </div>
     )}
     {threadLoadError && (
-      <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-load-error-title">
+      <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-load-error-title" aria-describedby="thread-load-error-description">
         <p id="thread-load-error-title" class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της συνομιλίας.</p>
-        <p class="mt-1 text-sm">{threadLoadError}</p>
+        <p id="thread-load-error-description" class="mt-1 text-sm">{threadLoadError}</p>
         <p class="mt-1 text-xs">Ενδέχεται να λείπουν moderation indicators ή ιστορικό μέχρι να αποκατασταθεί η φόρτωση. {hasPartialThreadHistory ? 'Εμφανίζονται διαθέσιμα μηνύματα με πιθανές ελλείψεις.' : 'Το thread δεν μπόρεσε να αποδοθεί.'}</p>
         <div class="mt-2 flex flex-wrap items-center gap-2">
-          <a href={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
-            Επανάληψη φόρτωσης
+          <a href={threadStatePrimaryActionHref || `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+            {threadStatePrimaryActionLabel || 'Επανάληψη φόρτωσης'}
           </a>
           <a href={threadListHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
             Πίσω στη λίστα
@@ -661,11 +693,20 @@ for (const message of threadMessages) {
               )}
             </div>
           </div>
+          <div class="thread-history-summary mt-3" role="status" aria-live="polite" aria-atomic="true">
+            <p class="font-semibold text-slate-800">Ανάγνωση ιστορικού: {threadMessages.length} συνολικά</p>
+            <p class="mt-0.5 text-slate-600">Moderation: {threadModerationLabel} · {moderationSeverityLabel}</p>
+            <p class="mt-0.5 text-slate-600">Επόμενο triage: {triagePrimaryActionLabel}</p>
+          </div>
           <p id="thread-history-state" class="sr-only" aria-live="polite" aria-atomic="true">{historyStateSummary}</p>
           <div class={`mt-3 rounded-xl border px-3 py-3 text-xs ${historyStateToneClass}`} role="status" aria-live="polite" aria-atomic="true">
-            <p class="font-semibold uppercase tracking-[0.1em] opacity-80">Κατάσταση ιστορικού</p>
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <p class="font-semibold uppercase tracking-[0.1em] opacity-80">Κατάσταση ιστορικού</p>
+              <p class="rounded-full border border-current/30 bg-white/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em]">Focus: {historyStateFocusLabel}</p>
+            </div>
             <p class="mt-1 text-sm font-semibold">{historyStateTitle}</p>
             <p class="mt-1">{historyStateSummary}</p>
+            <p class="mt-1 text-[11px] font-medium opacity-90">{historyStateSupportHint}</p>
             {!showLoadingState && (
               <a href={historyStateActionHref} class="mt-2 inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
                 {historyStateActionLabel}
@@ -678,8 +719,8 @@ for (const message of threadMessages) {
             {showLoadingState && (
               <div class="space-y-3" role="status" aria-live="polite" aria-atomic="true">
                 <p class="sr-only">Φορτώνονται placeholder μηνύματα για το ιστορικό.</p>
-                {[1, 2, 3].map((item) => (
-                  <article class="animate-pulse rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" aria-hidden="true">
+                {THREAD_LOADING_SKELETON_ROWS.map((item) => (
+                  <article class="thread-loading-card rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" aria-hidden="true">
                     <div class="h-3 w-24 rounded bg-slate-200"></div>
                     <div class="mt-3 h-3 w-full rounded bg-slate-100"></div>
                     <div class="mt-2 h-3 w-5/6 rounded bg-slate-100"></div>
@@ -773,24 +814,33 @@ for (const message of threadMessages) {
                         <p id={messageMetaId} class="mt-0.5 text-xs text-slate-500">
                           #{messageOrder || '–'} · <time datetime={message.submittedAt}>{formatDateTime(message.submittedAt)}</time>
                         </p>
-                        <p id={messageStatusId} class="mt-0.5 text-[11px] font-medium text-slate-600">Κατάσταση moderation: {messageVisibilityLabel}</p>
+                        <div id={messageStatusId} class="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]" role="status" aria-live="polite" aria-atomic="true">
+                          <span class={`rounded-full border px-2 py-0.5 font-semibold ${
+                            hidden
+                              ? 'border-orange-300 bg-orange-100 text-orange-900'
+                              : 'border-emerald-300 bg-emerald-100 text-emerald-900'
+                          }`}>{messageVisibilityLabel}</span>
+                          <span class={`rounded-full border px-2 py-0.5 font-semibold ${
+                            own
+                              ? 'border-sky-300 bg-sky-100 text-sky-900'
+                              : 'border-slate-300 bg-slate-100 text-slate-700'
+                          }`}>{own ? 'Εξερχόμενο' : 'Εισερχόμενο'}</span>
+                        </div>
                       </div>
                       <div class="flex flex-wrap gap-1.5">
                         {isLatestMessage && <span class="rounded-full border border-indigo-300 bg-indigo-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-indigo-900">Τελευταίο</span>}
                         <a href={`#${messageAnchorId}`} class="thread-message__anchor rounded-full border border-slate-300 bg-white px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-600 transition hover:border-slate-400 hover:bg-slate-50" aria-label={`Σύνδεσμος μηνύματος ${messageOrder || ''}`}>
                           Σύνδεσμος
                         </a>
-                        {own && <span class="rounded-full border border-sky-300 bg-sky-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-sky-900">Εξερχόμενο</span>}
-                        {!own && <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-700">Εισερχόμενο</span>}
                         {hidden && <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-orange-900">Κρυφό περιεχόμενο</span>}
                       </div>
                     </div>
 
-                    <p id={messageBodyId} class={`mt-2 text-sm leading-7 ${hidden ? 'font-medium text-orange-900' : 'whitespace-pre-wrap break-words text-slate-800'}`}>
+                    <p id={messageBodyId} class={`mt-2 text-sm leading-7 ${hidden ? 'font-semibold text-orange-900' : 'whitespace-pre-wrap break-words text-slate-800'}`}>
                       {hidden ? 'Το μήνυμα έχει αποκρυφτεί από moderation.' : message.message}
                     </p>
 
-                    {hidden && <p class="mt-2 text-xs font-semibold text-orange-900">Η προβολή του περιεχομένου είναι περιορισμένη από την ομάδα moderation.</p>}
+                    {hidden && <p class="mt-2 rounded-lg border border-orange-200 bg-orange-50 px-2.5 py-2 text-xs font-semibold text-orange-900">Η προβολή του περιεχομένου είναι περιορισμένη από την ομάδα moderation.</p>}
 
                     {!hidden && !own && (
                       <details class="thread-report mt-3 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50/80 to-white p-3" aria-labelledby={reportSummaryId}>
@@ -1082,6 +1132,31 @@ for (const message of threadMessages) {
       color: rgb(136 19 55);
     }
 
+    .thread-history-summary {
+      border: 1px solid rgb(226 232 240);
+      border-radius: 0.85rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.9));
+      padding: 0.65rem 0.85rem;
+      font-size: 0.74rem;
+      line-height: 1.45;
+    }
+
+    .thread-loading-card {
+      position: relative;
+      overflow: hidden;
+      animation: thread-card-pulse 1.4s ease-in-out infinite;
+    }
+
+    .thread-loading-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 10%, rgba(255, 255, 255, 0.62) 48%, transparent 82%);
+      transform: translateX(-100%);
+      animation: thread-loading-shimmer 1.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
     .thread-message {
       border-radius: 1rem;
       border: 1px solid rgb(226 232 240);
@@ -1174,6 +1249,21 @@ for (const message of threadMessages) {
       }
     }
 
+    @keyframes thread-card-pulse {
+      0%, 100% {
+        opacity: 0.92;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes thread-loading-shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
     .js-composer-form[data-composer-state='error'] {
       border-color: rgb(253 164 175);
       box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12);
@@ -1221,6 +1311,8 @@ for (const message of threadMessages) {
         transition: none;
       }
 
+      .thread-loading-card,
+      .thread-loading-card::after,
       .thread-message--highlight {
         animation: none;
       }

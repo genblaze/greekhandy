@@ -367,6 +367,9 @@ const filteredNeedsReplyCount = filteredThreads.filter((thread) => thread.needsR
 const filteredBlockedCount = filteredThreads.filter((thread) => thread.isBlocked).length;
 const filteredReportedCount = filteredThreads.filter((thread) => thread.isReported).length;
 const filteredModerationWatchCount = filteredThreads.filter((thread) => thread.isModerated && !thread.isBlocked).length;
+const filteredActiveCount = filteredThreads.filter((thread) => thread.stateTone === 'active').length;
+const filteredHiddenCount = filteredThreads.filter((thread) => thread.isAdminHidden).length;
+const filteredMutedCount = filteredThreads.filter((thread) => thread.isMuted).length;
 const getThreadHref = (id: string) => `/messages/thread?threadId=${encodeURIComponent(id)}&viewerEmail=${encodeURIComponent(viewerEmail)}`;
 const priorityRank: Record<string, number> = { critical: 0, high: 1, medium: 2, normal: 3 };
 const triageOrderedThreads = [...filteredThreads].sort((a, b) => {
@@ -499,6 +502,40 @@ const listStateToneClass = showLoadingState
     : !hasFilteredResults && threads.length > 0
       ? 'border-amber-200 bg-amber-50/80 text-amber-900'
       : 'border-emerald-200 bg-emerald-50/80 text-emerald-900';
+const listStateFocusLabel = showLoadingState
+  ? 'Συγχρονισμός ουράς'
+  : listLoadError
+    ? 'Ανάκτηση δεδομένων'
+    : !hasFilteredResults && threads.length > 0
+      ? 'Προσαρμογή φίλτρων'
+      : hasFilteredResults
+        ? 'Επόμενη triage ενέργεια'
+        : 'Έναρξη inbox';
+const listStateActionLabel = showLoadingState
+  ? ''
+  : listLoadError
+    ? 'Επανάληψη φόρτωσης'
+    : threads.length === 0
+      ? 'Ανανέωση λίστας'
+      : hasFilteredResults
+        ? (nextTriageThread ? 'Άνοιγμα προτεινόμενου thread' : 'Μετάβαση στα φίλτρα')
+        : 'Καθαρισμός φίλτρων';
+const listStateActionHref = showLoadingState
+  ? ''
+  : listLoadError
+    ? currentViewHref
+    : threads.length === 0
+      ? buildListHref({ sort: 'recent' })
+      : hasFilteredResults
+        ? (nextTriageHref || '#messages-controls')
+        : clearFiltersHref;
+const listStateSupportHint = listLoadError
+  ? 'Ορισμένα badges moderation μπορεί να μην αποδίδονται μέχρι να ολοκληρωθεί η ανάκτηση.'
+  : hasFilteredResults
+    ? `Ενεργή προβολή: ${filteredNeedsReplyCount} threads για απάντηση, ${filteredBlockedCount} μπλοκαρισμένα, ${filteredReportedCount} σε αναφορές.`
+    : threads.length === 0
+      ? 'Το πρώτο thread θα εμφανιστεί αυτόματα εδώ μόλις υπάρξει activity.'
+      : 'Δοκιμάστε διαφορετικά φίλτρα για να επανέλθουν αποτελέσματα.';
 const activeFilterChips: Array<{ label: string; href: string; tone: 'sky' | 'rose' | 'amber' }> = [];
 if (showUnreadOnly) activeFilterChips.push({ label: 'Μόνο μη αναγνωσμένα', href: unreadChipHref, tone: 'sky' });
 if (showBlockedOnly) activeFilterChips.push({ label: 'Μόνο μπλοκαρισμένα', href: blockedChipHref, tone: 'rose' });
@@ -815,12 +852,32 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
     )}
 
     {viewerEmail && (
-      <section id="messages-results" class="mt-6 space-y-4" aria-label="Αποτελέσματα συνομιλιών" tabindex="-1" aria-busy={showLoadingState ? 'true' : 'false'} aria-describedby="messages-results-state">
+      <section id="messages-results" class="mt-6 space-y-4" aria-label="Αποτελέσματα συνομιλιών" tabindex="-1" aria-busy={showLoadingState ? 'true' : 'false'} aria-describedby="messages-results-state" aria-labelledby="messages-results-title">
         <p id="messages-results-state" class="sr-only" aria-live="polite" aria-atomic="true">{listStateSummary}</p>
+        <div class="messages-results-header">
+          <div>
+            <h2 id="messages-results-title" class="text-lg font-semibold text-slate-900">Threads inbox</h2>
+            <p class="mt-1 text-xs text-slate-600">Καθαρή ανάγνωση προτεραιοτήτων με εμφανή moderation context και επόμενη ενέργεια.</p>
+          </div>
+          <div class="messages-results-header__stats" role="status" aria-live="polite" aria-atomic="true">
+            <p class="font-semibold text-slate-800">Προβολή: {filteredThreadsCount}/{totalThreads}</p>
+            <p>Άμεση απάντηση: {filteredNeedsReplyCount}</p>
+            <p>Ενεργά: {filteredActiveCount} · Κρυφά: {filteredHiddenCount} · Σίγαση: {filteredMutedCount}</p>
+          </div>
+        </div>
         <div class={`rounded-2xl border px-4 py-3 text-sm shadow-sm ${listStateToneClass}`} role="status" aria-live="polite" aria-atomic="true">
-          <p class="text-[11px] font-semibold uppercase tracking-[0.12em] opacity-80">Κατάσταση λίστας</p>
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] opacity-80">Κατάσταση λίστας</p>
+            <p class="rounded-full border border-current/30 bg-white/70 px-2.5 py-1 text-[11px] font-semibold">Focus: {listStateFocusLabel}</p>
+          </div>
           <p class="mt-1 font-semibold">{listStateTitle}</p>
           <p class="mt-1 text-xs">{listStateSummary}</p>
+          <p class="mt-1 text-[11px] font-medium opacity-90">{listStateSupportHint}</p>
+          {listStateActionHref && listStateActionLabel && (
+            <a href={listStateActionHref} class="mt-2 inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+              {listStateActionLabel}
+            </a>
+          )}
         </div>
         {showLoadingState && (
           <div class="rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-sm text-sky-900" role="status" aria-live="polite" aria-atomic="true">
@@ -833,7 +890,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
           </div>
         )}
         {showLoadingState && (
-          <div class="space-y-3" role="status" aria-live="polite" aria-atomic="true">
+          <div class="space-y-3" role="status" aria-live="polite" aria-atomic="true" aria-label="Φόρτωση προσωρινών καρτών thread">
             <p class="sr-only">Φορτώνονται προσωρινές κάρτες συνομιλιών.</p>
             {LOADING_SKELETON_ROWS.map((item) => (
               <article class="loading-thread-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" aria-hidden="true">
@@ -869,6 +926,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
             <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Καμία αντιστοίχιση</p>
             <p class="mt-1 text-lg font-semibold text-slate-900">Δεν βρέθηκαν συνομιλίες με αυτά τα φίλτρα.</p>
             <p class="mt-2 text-sm text-slate-600">Δοκιμάστε διαφορετική αναζήτηση ή αφαιρέστε ένα φίλτρο για να επαναφέρετε την πλήρη ουρά.</p>
+            <p class="mt-2 text-xs text-slate-500">Ενεργά φίλτρα: <span class="font-semibold text-slate-700">{activeFilterCount}</span>{searchQueryRaw ? <span> · Αναζήτηση: <span class="font-semibold text-slate-700">{searchQueryRaw}</span></span> : null}</p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <a href={clearFiltersHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Καθαρισμός φίλτρων</a>
               <a href={unreadQueueHref} class="inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">Μόνο μη αναγνωσμένα</a>
@@ -900,7 +958,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                             : thread.unreadCount > 0
                               ? 'thread-card--unread'
                               : 'thread-card--active'
-                    }`}
+                    } ${thread.needsReply ? 'thread-card--needs-reply' : ''}`}
                     aria-labelledby={threadHeadingId}
                     aria-describedby={`${threadPreviewId} ${threadStatusId} ${threadQueueId}`}
                     aria-label={threadA11yLabel}
@@ -922,6 +980,7 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
                 <div>
                   <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Thread</p>
                   <h2 id={threadHeadingId} class={`mt-1 text-xl ${thread.unreadCount > 0 ? 'font-bold text-slate-950' : 'font-semibold text-slate-900'}`}>/{thread.professionalSlug}</h2>
+                  {thread.needsReply && <p class="mt-1 inline-flex rounded-full border border-indigo-300 bg-indigo-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-indigo-900">Άμεση απάντηση</p>}
                   <p class="mt-1 text-xs text-slate-500">Συμμετέχων: <span class="font-medium text-slate-700">{thread.counterpartEmail || 'Μη διαθέσιμος'}</span></p>
                   <p class="mt-1 text-[11px] text-slate-500">ID: <span class="font-mono text-slate-700">{thread.threadId}</span></p>
                 </div>
@@ -1197,6 +1256,30 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
       animation: thread-loading-bar 1.35s ease-in-out infinite;
     }
 
+    .messages-results-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border: 1px solid rgb(226 232 240);
+      border-radius: 1rem;
+      padding: 0.85rem 1rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.88));
+      box-shadow: 0 14px 34px -30px rgba(15, 23, 42, 0.46);
+    }
+
+    .messages-results-header__stats {
+      border: 1px solid rgb(226 232 240);
+      border-radius: 0.8rem;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 0.5rem 0.7rem;
+      font-size: 0.72rem;
+      color: rgb(71 85 105);
+      line-height: 1.5;
+      min-width: 14.5rem;
+    }
+
     @keyframes thread-loading-shimmer {
       100% {
         transform: translateX(100%);
@@ -1293,6 +1376,12 @@ if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμ
     .thread-card--active::before {
       background: rgb(34 197 94);
       opacity: 0.85;
+    }
+
+    .thread-card--needs-reply {
+      box-shadow:
+        0 0 0 2px rgba(99, 102, 241, 0.16),
+        0 20px 40px -32px rgba(15, 23, 42, 0.5);
     }
 
     .thread-card--pending {
