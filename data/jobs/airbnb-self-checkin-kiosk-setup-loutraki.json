@@ -1,0 +1,20 @@
+{
+  "id": "airbnb-self-checkin-kiosk-setup-loutraki",
+  "slug": "egkatastasi-kiosk-self-checkin-airbnb-loutraki",
+  "nameGr": "Εγκατάσταση Kiosk Self Check-in Airbnb στο Λουτράκι",
+  "nameEn": "Airbnb Self Check-in Kiosk Setup in Λουτράκι",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εγκατάσταση kiosk self check-in στο Λουτράκι για καταλύματα με ασφαλή ταυτοποίηση και αυτοματοποιημένη πρόσβαση. SEO intent: στοχεύει conversion queries «self check in Airbnb σύστημα Λουτράκι».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "220-1300€",
+  "demand": "high",
+  "keywords": [
+    "self check in Airbnb Λουτράκι",
+    "kiosk checkin καταλύματος",
+    "αυτοματοποιημένη πρόσβαση επισκεπτών",
+    "smart εισοδος διαμερισματος",
+    "τεχνικός checkin system"
+  ],
+  "status": "researched"
+}

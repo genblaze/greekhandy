@@ -1,0 +1,20 @@
+{
+  "id": "airbnb-self-checkin-kiosk-setup-grevena-city",
+  "slug": "egkatastasi-kiosk-self-checkin-airbnb-grevena-city",
+  "nameGr": "Εγκατάσταση Kiosk Self Check-in Airbnb στην πόλη των Γρεβενών",
+  "nameEn": "Airbnb Self Check-in Kiosk Setup in Γρεβενά",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εγκατάσταση kiosk self check-in στην πόλη των Γρεβενών για καταλύματα με ασφαλή ταυτοποίηση και αυτοματοποιημένη πρόσβαση. SEO intent: στοχεύει conversion queries «self check in Airbnb σύστημα Γρεβενά».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "220-1300€",
+  "demand": "high",
+  "keywords": [
+    "self check in Airbnb Γρεβενά",
+    "kiosk checkin καταλύματος",
+    "αυτοματοποιημένη πρόσβαση επισκεπτών",
+    "smart εισοδος διαμερισματος",
+    "τεχνικός checkin system"
+  ],
+  "status": "researched"
+}
