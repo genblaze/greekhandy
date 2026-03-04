@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { supabaseServer } from '../../lib/supabase-server';
 
 export const prerender = true;
 
@@ -35,29 +36,42 @@ export function getStaticPaths() {
 
 interface ApprovedReview {
   id: string;
-  professionalSlug: string;
   reviewerName: string;
   rating: number;
   comment: string;
   verified?: boolean;
-  status: 'approved';
   submittedAt: string;
 }
-
-const reviewsFile = await import('../../../data/reviews.json');
-const approvedReviews = ((reviewsFile.default ?? reviewsFile) as ApprovedReview[])
-  .filter((review) => review.status === 'approved' && review.professionalSlug === (Astro.props as { profile: (typeof profiles)[number] }).profile.slug)
-  .sort((a, b) => b.submittedAt.localeCompare(a.submittedAt));
-
-const reviewsCount = approvedReviews.length;
-const averageRating = reviewsCount > 0
-  ? (approvedReviews.reduce((sum, review) => sum + review.rating, 0) / reviewsCount).toFixed(1)
-  : null;
 
 const reviewStatus = Astro.url.searchParams.get('review');
 const bookingStatus = Astro.url.searchParams.get('booking');
 const messageStatus = Astro.url.searchParams.get('message');
 const { profile } = Astro.props as { profile: (typeof profiles)[number] };
+
+const { data: approvedRows } = await supabaseServer
+  .from('reviews')
+  .select('id, reviewer_name, rating, comment, created_at')
+  .eq('status', 'approved')
+  .eq('service_slug', profile.slug)
+  .order('created_at', { ascending: false });
+
+const approvedReviews: ApprovedReview[] = (approvedRows || []).map((row: any) => ({
+  id: row.id,
+  reviewerName: row.reviewer_name || 'Ανώνυμος Πελάτης',
+  rating: Math.max(1, Math.min(5, Number(row.rating) || 1)),
+  comment: row.comment || '',
+  verified: false,
+  submittedAt: row.created_at
+}));
+
+const reviewsCount = approvedReviews.length;
+const averageRating = reviewsCount > 0
+  ? (approvedReviews.reduce((sum, review) => sum + review.rating, 0) / reviewsCount).toFixed(1)
+  : null;
+const ratingDistribution = [5, 4, 3, 2, 1].map((star) => ({
+  star,
+  count: approvedReviews.filter((review) => review.rating === star).length
+}));
 ---
 
 <Layout
@@ -110,9 +124,26 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
             : <p class="text-sm text-gray-500">Δεν υπάρχουν εγκεκριμένες κριτικές ακόμη.</p>}
         </div>
 
+        {approvedReviews.length > 0 && (
+          <div class="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <p class="text-sm font-semibold text-gray-800">Κατανομή βαθμολογιών</p>
+            <div class="mt-2 space-y-2">
+              {ratingDistribution.map((row) => (
+                <div class="flex items-center gap-2 text-xs text-gray-700">
+                  <span class="w-10">{row.star}★</span>
+                  <div class="h-2 flex-1 overflow-hidden rounded-full bg-gray-200">
+                    <div class="h-2 rounded-full bg-amber-400" style={`width: ${reviewsCount > 0 ? Math.round((row.count / reviewsCount) * 100) : 0}%`}></div>
+                  </div>
+                  <span class="w-8 text-right">{row.count}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div class="mt-4 space-y-3">
           {approvedReviews.length === 0 && <p class="text-sm text-gray-600">Γίνετε ο πρώτος που θα αφήσει αξιολόγηση.</p>}
-          {approvedReviews.map((review) => (
+          {approvedReviews.slice(0, 8).map((review) => (
             <article class="rounded-lg border border-gray-200 bg-gray-50 p-4">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <div class="flex flex-wrap items-center gap-2">
@@ -141,6 +172,7 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
+          <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
           <div class="mt-4 grid gap-4 md:grid-cols-2">
             <div>
@@ -148,6 +180,10 @@ const { profile } = Astro.props as { profile: (typeof profiles)[number] };
               <input id="reviewerName" name="reviewerName" type="text" maxlength="80" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
             </div>
             <div>
+              <label for="reviewerEmail" class="mb-1 block text-sm font-semibold text-gray-800">Email (προαιρετικό)</label>
+              <input id="reviewerEmail" name="reviewerEmail" type="email" maxlength="160" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+            </div>
+            <div class="md:col-span-2">
               <label for="rating" class="mb-1 block text-sm font-semibold text-gray-800">Βαθμολογία (1-5) *</label>
               <select id="rating" name="rating" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5">
                 <option value="">Επιλέξτε</option>

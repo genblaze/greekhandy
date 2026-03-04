@@ -7,8 +7,7 @@ import { ADMIN_COOKIE, getAdminAuth, isAdminKeyValid } from '../lib/admin-auth';
 
 const PROFESSIONAL_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
 const PROFESSIONAL_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registration-actions.ndjson');
-const REVIEW_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-submissions.ndjson');
-const REVIEW_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'review-moderation-actions.ndjson');
+
 const BOOKING_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-submissions.ndjson');
 const BOOKING_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-moderation-actions.ndjson');
 const MESSAGE_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'message-submissions.ndjson');
@@ -39,14 +38,6 @@ interface RegistrationAction {
   registrationId: string;
 }
 
-interface ReviewSubmission {
-  professionalSlug: string;
-  submittedAt: string;
-}
-
-interface ReviewAction {
-  reviewId: string;
-}
 
 interface BookingSubmission {
   id?: string;
