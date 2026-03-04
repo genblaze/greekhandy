@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { supabaseServer } from '../lib/supabase-server';
 import { ADMIN_COOKIE, getAdminAuth, isAdminKeyValid } from '../lib/admin-auth';
+import { getAdminLeadsOverview } from '../lib/admin-leads';
 
 const PROFESSIONAL_SUBMISSIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
 const PROFESSIONAL_ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registration-actions.ndjson');
@@ -69,6 +70,7 @@ let pendingProfiles = 0;
 let pendingReviews = 0;
 let pendingBookings = 0;
 let pendingUnifiedModeration = 0;
+let leadsDirectoryCount = 0;
 
 if (isAuthorized) {
   const registrations = await readNdjson<RegistrationSubmission>(PROFESSIONAL_SUBMISSIONS_FILE_PATH);
@@ -120,6 +122,9 @@ if (isAuthorized) {
   const openReportCount = (reportsData || []).filter((row: any) => !handledReportIds.has(row.id)).length;
 
   pendingUnifiedModeration = pendingThreadCount + openReportCount;
+
+  const leadsOverview = await getAdminLeadsOverview();
+  leadsDirectoryCount = leadsOverview.totalLeads;
 }
 
 const queues = [
@@ -146,6 +151,13 @@ const queues = [
     count: pendingUnifiedModeration,
     href: buildQueueHref('/professionals/messages-moderation'),
     helper: 'Ενοποιημένη ουρά για message threads + reported messages.'
+  },
+  {
+    label: 'Leads Directory',
+    count: leadsDirectoryCount,
+    href: '/admin/leads',
+    helper: 'Κεντρικός κατάλογος leads με φίλτρα ανά κατηγορία, πόλη και κατάσταση.',
+    ctaLabel: 'Άνοιγμα καταλόγου'
   }
 ];
 
@@ -188,7 +200,7 @@ const totalPending = pendingProfiles + pendingReviews + pendingBookings + pendin
               <p class="mt-1 text-3xl font-bold text-gray-900">{queue.count}</p>
               <p class="mt-2 text-sm text-gray-700">{queue.helper}</p>
               <a href={queue.href} class="mt-4 inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">
-                Άνοιγμα ουράς
+                {queue.ctaLabel || 'Άνοιγμα ουράς'}
               </a>
             </article>
           ))}

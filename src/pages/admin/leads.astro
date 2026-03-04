@@ -1,0 +1,354 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ADMIN_COOKIE, getAdminAuth, isAdminKeyValid } from '../../lib/admin-auth';
+import { loadAdminLeadsDirectoryData } from '../../lib/admin-leads';
+
+const url = new URL(Astro.request.url);
+const moderationKey = url.searchParams.get('key') ?? '';
+
+if (isAdminKeyValid(moderationKey)) {
+  Astro.cookies.set(ADMIN_COOKIE, moderationKey, {
+    path: '/',
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: true,
+    maxAge: 60 * 60 * 8
+  });
+  return Astro.redirect('/admin/leads');
+}
+
+const { expectedKey, isAuthorized } = getAdminAuth(Astro, moderationKey);
+
+const directoryData = isAuthorized
+  ? await loadAdminLeadsDirectoryData()
+  : { leads: [], categories: [], cities: [], statuses: [], summary: null, totalLeads: 0 };
+
+const statusLabel = (status: string) => {
+  if (status === 'new') return 'Νέο';
+  if (status === 'contacted') return 'Επικοινωνήθηκε';
+  if (status === 'qualified') return 'Κατάλληλο';
+  if (status === 'rejected') return 'Απορρίφθηκε';
+  return status
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+};
+
+const summaryUpdatedAt = directoryData.summary?.lastUpdated
+  ? new Date(directoryData.summary.lastUpdated).toLocaleString('el-GR')
+  : null;
+---
+
+<Layout title="Admin Leads Directory | GreekHandy" description="Protected admin leads directory with filters and sorting.">
+  <main class="mx-auto max-w-6xl px-4 py-14" data-leads-root>
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">Κατάλογος Leads</h1>
+        <p class="mt-2 max-w-3xl text-gray-700">Εσωτερική λίστα με leads από αρχεία JSON. Περιλαμβάνει φίλτρα, αναζήτηση και ταξινόμηση.</p>
+      </div>
+      <a href="/admin" class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-100">
+        Επιστροφή στο Admin
+      </a>
+    </div>
+
+    {!isAuthorized && (
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
+        <p class="font-semibold">Μη εξουσιοδοτημένη πρόσβαση.</p>
+        <p class="mt-1 text-sm">Συνδεθείτε με moderation key.</p>
+        <form method="GET" class="mt-3 flex flex-col gap-2 sm:flex-row">
+          <input name="key" type="password" required class="rounded-lg border border-amber-300 bg-white px-3 py-2 text-sm text-gray-900" placeholder="Moderation key" />
+          <button type="submit" class="rounded-lg bg-amber-700 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-800">Σύνδεση</button>
+        </form>
+        {!expectedKey && <p class="mt-2 text-xs">Missing env: <code>PROFESSIONAL_MODERATION_KEY</code></p>}
+      </div>
+    )}
+
+    {isAuthorized && (
+      <>
+        <section class="mt-8 grid gap-4 md:grid-cols-3">
+          <article class="rounded-xl border border-blue-200 bg-blue-50 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">Σύνολο Leads</p>
+            <p class="mt-1 text-3xl font-bold text-blue-900">{directoryData.totalLeads}</p>
+          </article>
+          <article class="rounded-xl border border-gray-200 bg-white p-5">
+            <p class="text-sm font-semibold text-gray-500">Κατηγορίες</p>
+            <p class="mt-1 text-3xl font-bold text-gray-900">{directoryData.categories.length}</p>
+          </article>
+          <article class="rounded-xl border border-gray-200 bg-white p-5">
+            <p class="text-sm font-semibold text-gray-500">Τελευταία ενημέρωση</p>
+            <p class="mt-1 text-sm font-semibold text-gray-900">{summaryUpdatedAt || 'Δεν υπάρχει summary timestamp'}</p>
+          </article>
+        </section>
+
+        <section class="mt-6 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+          <p class="text-sm font-semibold text-gray-700">Κατηγορίες</p>
+          <div class="mt-3 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Φίλτρο κατηγορίας">
+            <button
+              type="button"
+              data-category-tab
+              data-category-value="all"
+              aria-selected="true"
+              class="rounded-full border border-blue-700 bg-blue-700 px-4 py-2 text-sm font-semibold whitespace-nowrap text-white"
+            >
+              Όλες ({directoryData.leads.length})
+            </button>
+            {directoryData.categories.map((category) => (
+              <button
+                type="button"
+                data-category-tab
+                data-category-value={category.slug}
+                aria-selected="false"
+                class="rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold whitespace-nowrap text-gray-700 hover:border-blue-300 hover:text-blue-700"
+              >
+                {category.label} ({category.count})
+              </button>
+            ))}
+          </div>
+
+          <div class="mt-5 grid gap-3 md:grid-cols-4">
+            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700">
+              Πόλη
+              <select data-city-filter class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900">
+                <option value="all">Όλες</option>
+                {directoryData.cities.map((city) => <option value={city}>{city}</option>)}
+              </select>
+            </label>
+
+            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700">
+              Κατάσταση
+              <select data-status-filter class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900">
+                <option value="all">Όλες</option>
+                {directoryData.statuses.map((status) => <option value={status}>{statusLabel(status)}</option>)}
+              </select>
+            </label>
+
+            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700 md:col-span-2">
+              Αναζήτηση (όνομα, τηλέφωνο, email)
+              <input
+                type="search"
+                data-search-input
+                placeholder="π.χ. 210, info@, Όνομα"
+                class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900"
+              />
+            </label>
+
+            <label class="flex flex-col gap-1 text-sm font-semibold text-gray-700">
+              Ταξινόμηση
+              <select data-sort-select class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900">
+                <option value="newest">Πιο πρόσφατα</option>
+                <option value="score">Υψηλότερο score</option>
+              </select>
+            </label>
+
+            <div class="flex items-end">
+              <button type="button" data-reset-filters class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100">
+                Καθαρισμός φίλτρων
+              </button>
+            </div>
+
+            <div class="flex items-end md:col-span-2">
+              <p class="text-sm text-gray-700">Εμφανίζονται <strong data-visible-count>{directoryData.leads.length}</strong> leads.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-6" data-leads-list>
+          {directoryData.leads.map((lead) => (
+            <article
+              data-lead-card
+              data-category={lead.categorySlug}
+              data-city={lead.city}
+              data-status={lead.status}
+              data-name={lead.name}
+              data-phone={lead.phone}
+              data-email={lead.email}
+              data-score={lead.score ?? -1}
+              data-newest={lead.newestTs}
+              class="mb-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm"
+            >
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <h2 class="text-lg font-bold text-gray-900">{lead.name}</h2>
+                  <p class="mt-1 text-sm text-gray-600">{lead.categoryLabel} • {lead.city}</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 text-xs">
+                  <span class="rounded-full bg-gray-100 px-2 py-1 font-semibold text-gray-700">{statusLabel(lead.status)}</span>
+                  <span class="rounded-full bg-blue-100 px-2 py-1 font-semibold text-blue-800">
+                    Score: {lead.score ?? 'N/A'}
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-3 grid gap-2 text-sm text-gray-700 sm:grid-cols-2">
+                <p><strong>Τηλέφωνο:</strong> {lead.phone || '—'}</p>
+                <p><strong>Email:</strong> {lead.email || '—'}</p>
+              </div>
+
+              {lead.sourceUrl && (
+                <a href={lead.sourceUrl} target="_blank" rel="noreferrer" class="mt-4 inline-flex text-sm font-semibold text-blue-700 hover:text-blue-900">
+                  Άνοιγμα πηγής
+                </a>
+              )}
+            </article>
+          ))}
+        </section>
+
+        <section id="leads-empty-state" class:list={['rounded-xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-700', directoryData.leads.length === 0 ? '' : 'hidden']}>
+          <h2 class="text-lg font-bold text-gray-900">Δεν βρέθηκαν leads</h2>
+          <p class="mt-2 text-sm">Δοκιμάστε διαφορετικά φίλτρα ή καθαρίστε την αναζήτηση.</p>
+        </section>
+      </>
+    )}
+  </main>
+
+  <script>
+    const root = document.querySelector('[data-leads-root]');
+    if (root) {
+      const cards = Array.from(root.querySelectorAll('[data-lead-card]'));
+      const list = root.querySelector('[data-leads-list]');
+      const categoryTabs = Array.from(root.querySelectorAll('[data-category-tab]'));
+      const cityFilter = root.querySelector('[data-city-filter]');
+      const statusFilter = root.querySelector('[data-status-filter]');
+      const searchInput = root.querySelector('[data-search-input]');
+      const sortSelect = root.querySelector('[data-sort-select]');
+      const resetButton = root.querySelector('[data-reset-filters]');
+      const visibleCount = root.querySelector('[data-visible-count]');
+      const emptyState = root.querySelector('#leads-empty-state');
+
+      const state = {
+        category: 'all',
+        city: 'all',
+        status: 'all',
+        search: '',
+        sort: 'newest'
+      };
+
+      const syncCategoryTabs = () => {
+        categoryTabs.forEach((tab) => {
+          if (!(tab instanceof HTMLButtonElement)) return;
+          const selected = tab.dataset.categoryValue === state.category;
+          tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+          tab.classList.toggle('bg-blue-700', selected);
+          tab.classList.toggle('border-blue-700', selected);
+          tab.classList.toggle('text-white', selected);
+          tab.classList.toggle('bg-white', !selected);
+          tab.classList.toggle('border-gray-300', !selected);
+          tab.classList.toggle('text-gray-700', !selected);
+        });
+      };
+
+      const applyFilters = () => {
+        const normalizedSearch = state.search.trim().toLowerCase();
+        const filtered = cards.filter((card) => {
+          if (!(card instanceof HTMLElement)) return false;
+
+          const category = card.dataset.category || '';
+          const city = card.dataset.city || '';
+          const status = card.dataset.status || '';
+          const name = (card.dataset.name || '').toLowerCase();
+          const phone = (card.dataset.phone || '').toLowerCase();
+          const email = (card.dataset.email || '').toLowerCase();
+
+          const categoryMatch = state.category === 'all' || state.category === category;
+          const cityMatch = state.city === 'all' || state.city === city;
+          const statusMatch = state.status === 'all' || state.status === status;
+          const searchMatch =
+            !normalizedSearch ||
+            name.includes(normalizedSearch) ||
+            phone.includes(normalizedSearch) ||
+            email.includes(normalizedSearch);
+
+          return categoryMatch && cityMatch && statusMatch && searchMatch;
+        });
+
+        filtered.sort((a, b) => {
+          if (!(a instanceof HTMLElement) || !(b instanceof HTMLElement)) return 0;
+
+          const aScore = Number(a.dataset.score || -1);
+          const bScore = Number(b.dataset.score || -1);
+          const aNewest = Number(a.dataset.newest || 0);
+          const bNewest = Number(b.dataset.newest || 0);
+
+          if (state.sort === 'score') {
+            return bScore - aScore || bNewest - aNewest;
+          }
+          return bNewest - aNewest || bScore - aScore;
+        });
+
+        cards.forEach((card) => {
+          if (card instanceof HTMLElement) card.hidden = true;
+        });
+
+        if (list) {
+          filtered.forEach((card) => {
+            if (!(card instanceof HTMLElement)) return;
+            card.hidden = false;
+            list.appendChild(card);
+          });
+        }
+
+        if (visibleCount) visibleCount.textContent = String(filtered.length);
+        if (emptyState instanceof HTMLElement) {
+          emptyState.classList.toggle('hidden', filtered.length > 0);
+        }
+      };
+
+      categoryTabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          if (!(tab instanceof HTMLButtonElement)) return;
+          state.category = tab.dataset.categoryValue || 'all';
+          syncCategoryTabs();
+          applyFilters();
+        });
+      });
+
+      cityFilter?.addEventListener('change', (event) => {
+        const target = event.currentTarget;
+        if (!(target instanceof HTMLSelectElement)) return;
+        state.city = target.value;
+        applyFilters();
+      });
+
+      statusFilter?.addEventListener('change', (event) => {
+        const target = event.currentTarget;
+        if (!(target instanceof HTMLSelectElement)) return;
+        state.status = target.value;
+        applyFilters();
+      });
+
+      searchInput?.addEventListener('input', (event) => {
+        const target = event.currentTarget;
+        if (!(target instanceof HTMLInputElement)) return;
+        state.search = target.value;
+        applyFilters();
+      });
+
+      sortSelect?.addEventListener('change', (event) => {
+        const target = event.currentTarget;
+        if (!(target instanceof HTMLSelectElement)) return;
+        state.sort = target.value;
+        applyFilters();
+      });
+
+      resetButton?.addEventListener('click', () => {
+        state.category = 'all';
+        state.city = 'all';
+        state.status = 'all';
+        state.search = '';
+        state.sort = 'newest';
+
+        if (cityFilter instanceof HTMLSelectElement) cityFilter.value = 'all';
+        if (statusFilter instanceof HTMLSelectElement) statusFilter.value = 'all';
+        if (searchInput instanceof HTMLInputElement) searchInput.value = '';
+        if (sortSelect instanceof HTMLSelectElement) sortSelect.value = 'newest';
+
+        syncCategoryTabs();
+        applyFilters();
+      });
+
+      syncCategoryTabs();
+      applyFilters();
+    }
+  </script>
+</Layout>
