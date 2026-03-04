@@ -1,10 +1,10 @@
 {
-  "lastManagerRun": "2026-03-04T18:11:22Z", 
+  "lastManagerRun": "2026-03-04T18:12:35Z", 
   "activeAgents": {
     "research": {
       "status": "active",
       "task": "Expand high-intent Greek service sub-jobs with city variants for SEO coverage",
-      "startedAt": "2026-03-04T17:56:00Z"
+      "startedAt": "2026-03-04T18:12:00Z"
     },
     "builder": {
       "status": "active",
@@ -37,6 +37,6 @@
     "jobsResearched": 116,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Cycle run: assessed sessions/roadmap/leads/directives + recent deliveries; found greekhandy-developer idle in active-session view, relaunched it on a distinct Reviews & Ratings UX polish slice, kept other agents on current in-scope tasks.",
+  "lastDecision": "Cycle run: assessed sessions/roadmap/leads/directives + recent deliveries; relaunched idle greekhandy-developer on a distinct Reviews & Ratings UX polish slice and relaunched greekhandy-research on fresh city-variant sub-job research, while keeping builder, developer-2, developer-3, and leads on their current in-scope tasks.",
   "blockers": []
 }
