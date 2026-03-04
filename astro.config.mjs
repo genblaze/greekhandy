@@ -22,7 +22,8 @@ export default defineConfig({
     '/katharistes': '/katharismoi',
     '/katharistries': '/katharismoi',
     '/klimatismos': '/techniki-klimatismou',
-    '/klimatistika': '/techniki-klimatismou'
+    '/klimatistika': '/techniki-klimatismou',
+    '/thermansi': '/techniki-klimatismou'
   },
   vite: {
     plugins: [tailwindcss()]

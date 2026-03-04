@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/verify-utf8.mjs",
+    "build": "astro build && node scripts/verify-utf8.mjs && node scripts/check-nav-health.mjs",
     "build:astro": "astro build",
+    "test:nav-health": "node scripts/check-nav-health.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
