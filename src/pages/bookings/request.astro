@@ -84,6 +84,16 @@ const timelineSteps: Array<{ key: BookingModerationState; title: string; detail:
   { key: 'approved', title: '2A. Έγκριση', detail: 'Το αίτημα εγκρίθηκε και προχωρά σε επικοινωνία.' },
   { key: 'rejected', title: '2B. Απόρριψη', detail: 'Το αίτημα απορρίφθηκε και μπορείτε να στείλετε νέο.' }
 ];
+const professionalStatusBadge = moderationState === 'approved'
+  ? 'Ο επαγγελματίας ενημερώθηκε'
+  : moderationState === 'rejected'
+    ? 'Δεν προχώρησε σε επαγγελματία'
+    : 'Σε αναμονή επαγγελματία';
+const customerStatusBadge = moderationState === 'approved'
+  ? 'Πελάτης: αναμένεται επικοινωνία'
+  : moderationState === 'rejected'
+    ? 'Πελάτης: προτείνεται νέο αίτημα'
+    : 'Πελάτης: αναμονή ελέγχου';
 
 ---
 
@@ -142,7 +152,11 @@ const timelineSteps: Array<{ key: BookingModerationState; title: string; detail:
         </div>
 
         <div class={`mt-4 rounded-xl px-4 py-3 text-sm ${statusView.tone}`}>
-          <p class="font-semibold">{statusView.summary}</p>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex rounded-full border border-white/70 bg-white/70 px-2.5 py-0.5 text-xs font-semibold">{customerStatusBadge}</span>
+            <span class="inline-flex rounded-full border border-white/70 bg-white/70 px-2.5 py-0.5 text-xs font-semibold">{professionalStatusBadge}</span>
+          </div>
+          <p class="mt-2 font-semibold">{statusView.summary}</p>
           <p class="mt-1 text-xs opacity-85">{statusView.hint}</p>
           {reviewedAt && <p class="mt-1 text-xs opacity-85">Τελευταία ενημέρωση: {reviewedAt}</p>}
         </div>
