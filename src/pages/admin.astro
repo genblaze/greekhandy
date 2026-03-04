@@ -132,25 +132,29 @@ const queues = [
     label: 'Εγγραφές Επαγγελματιών',
     count: pendingProfiles,
     href: buildQueueHref('/professionals/moderation'),
-    helper: 'Νέες αιτήσεις επαγγελματιών προς έγκριση/απόρριψη.'
+    helper: 'Νέες αιτήσεις επαγγελματιών προς έγκριση/απόρριψη.',
+    ctaLabel: 'Άνοιγμα ουράς'
   },
   {
     label: 'Αξιολογήσεις',
     count: pendingReviews,
     href: buildQueueHref('/professionals/reviews-moderation'),
-    helper: 'Νέες κριτικές πελατών προς moderation.'
+    helper: 'Νέες κριτικές πελατών προς moderation.',
+    ctaLabel: 'Άνοιγμα ουράς'
   },
   {
     label: 'Κρατήσεις',
     count: pendingBookings,
     href: buildQueueHref('/professionals/bookings-moderation'),
-    helper: 'Νέα αιτήματα κράτησης προς έλεγχο.'
+    helper: 'Νέα αιτήματα κράτησης προς έλεγχο.',
+    ctaLabel: 'Άνοιγμα ουράς'
   },
   {
     label: 'Unified Moderation Queue',
     count: pendingUnifiedModeration,
     href: buildQueueHref('/professionals/messages-moderation'),
-    helper: 'Ενοποιημένη ουρά για message threads + reported messages.'
+    helper: 'Ενοποιημένη ουρά για message threads + reported messages.',
+    ctaLabel: 'Άνοιγμα ουράς'
   },
   {
     label: 'Leads Directory',
