@@ -28,6 +28,31 @@ interface ContentPage {
   categoryNameGr?: string;
 }
 
+interface ProfessionalProfile {
+  slug: string;
+  name: string;
+  profession: string;
+  city?: string;
+  areasServed?: string[];
+  experienceYears?: number;
+  bio?: string;
+  services?: string[];
+  approved?: boolean;
+  published?: boolean;
+}
+
+interface SearchItem {
+  href: string;
+  nameGr: string;
+  description: string;
+  priceRange?: string;
+  typeLabel: string;
+  categoryName: string;
+  cities: string[];
+  searchText: string;
+  icon: string;
+}
+
 const majorCities = [
   { value: 'athina', label: 'Αθήνα' },
   { value: 'thessaloniki', label: 'Θεσσαλονίκη' },
@@ -39,6 +64,7 @@ const majorCities = [
 ];
 
 const cityLabelByValue = Object.fromEntries(majorCities.map(city => [city.value, city.label]));
+const majorCityValues = new Set(majorCities.map(city => city.value));
 
 const fallbackIconsBySlug: Record<string, string> = {
   ilektrologoi: '⚡',
@@ -55,6 +81,25 @@ const normalizeText = (value = '') => value
   .replace(/ς/g, 'σ')
   .replace(/\s+/g, ' ')
   .trim();
+
+const cityValueByNormalizedLabel = new Map(majorCities.map(city => [normalizeText(city.label), city.value]));
+
+const getCityValuesFromText = (cities: string[] = []) => {
+  const resolvedCities = new Set<string>();
+
+  for (const city of cities) {
+    const normalizedCity = normalizeText(city);
+    if (!normalizedCity) continue;
+    if (majorCityValues.has(normalizedCity)) {
+      resolvedCities.add(normalizedCity);
+      continue;
+    }
+    const matchedCity = cityValueByNormalizedLabel.get(normalizedCity);
+    if (matchedCity) resolvedCities.add(matchedCity);
+  }
+
+  return [...resolvedCities];
+};
 
 const contentFiles = import.meta.glob('../../data/content/*.json', { eager: true });
 const allPages: ContentPage[] = [];
@@ -106,7 +151,14 @@ for (const key of Object.keys(jobsByCategory)) {
   jobsByCategory[key].sort((a, b) => a.nameGr.localeCompare(b.nameGr, 'el'));
 }
 
-const searchItems = [...categoryPages, ...jobPages]
+let professionalProfiles: ProfessionalProfile[] = [];
+try {
+  const profilesFile = await import('../../data/professionals.json');
+  professionalProfiles = ((profilesFile.default ?? profilesFile) as ProfessionalProfile[])
+    .filter(profile => profile.approved === true && profile.published === true);
+} catch {}
+
+const pageSearchItems: SearchItem[] = [...categoryPages, ...jobPages]
   .map(page => {
     const category = getCategoryForPage(page);
     const cityValues = getCitiesForCategory(category);
@@ -127,7 +179,7 @@ const searchItems = [...categoryPages, ...jobPages]
     const typeLabel = isCategoryPage ? 'Κατηγορία' : 'Υπηρεσία';
 
     return {
-      slug: page.slug,
+      href: `/${page.slug}`,
       nameGr: page.nameGr,
       description: page.summary?.intent ?? page.metaDescription ?? category?.description ?? '',
       priceRange: page.summary?.priceRangeEUR,
@@ -137,7 +189,32 @@ const searchItems = [...categoryPages, ...jobPages]
       searchText: searchableText,
       icon: getCategoryIcon(category)
     };
-  })
+  });
+
+const professionalSearchItems: SearchItem[] = professionalProfiles.map(profile => {
+  const cityValues = getCityValuesFromText([profile.city ?? '', ...(profile.areasServed ?? [])]);
+  const searchText = normalizeText([
+    profile.name,
+    profile.profession,
+    profile.city,
+    profile.bio,
+    profile.services?.join(' '),
+    profile.areasServed?.join(' ')
+  ].filter(Boolean).join(' '));
+
+  return {
+    href: `/professionals/${profile.slug}`,
+    nameGr: profile.name,
+    description: profile.bio ?? '',
+    typeLabel: 'Επαγγελματίας',
+    categoryName: profile.profession,
+    cities: cityValues,
+    searchText,
+    icon: '👤'
+  };
+});
+
+const searchItems = [...pageSearchItems, ...professionalSearchItems]
   .sort((a, b) => a.nameGr.localeCompare(b.nameGr, 'el'));
 
 const availableCityValues = new Set(searchItems.flatMap(item => item.cities));
@@ -164,9 +241,9 @@ const totalServices = allPages.length;
   <section id="search-browse" class="mx-auto max-w-6xl px-4 py-14">
     <div class="rounded-2xl border border-blue-100 bg-blue-50/60 p-6 md:p-8">
       <h2 class="text-3xl font-bold text-gray-900">Αναζήτηση με λέξη-κλειδί</h2>
-      <p class="mt-2 text-gray-700">Βρείτε γρήγορα υπηρεσίες ή κατηγορίες και φιλτράρετε ανά πόλη.</p>
+      <p class="mt-2 text-gray-700">Βρείτε γρήγορα υπηρεσίες, κατηγορίες ή προφίλ επαγγελματιών και φιλτράρετε ανά πόλη.</p>
 
-      <form class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-12" role="search" aria-label="Αναζήτηση υπηρεσιών">
+      <form class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-12" role="search" aria-label="Αναζήτηση υπηρεσιών, κατηγοριών και επαγγελματιών">
         <div class="md:col-span-6">
           <label for="search-keyword" class="mb-2 block text-sm font-semibold text-gray-800">Λέξη-κλειδί</label>
           <input
@@ -216,7 +293,7 @@ const totalServices = allPages.length;
             data-cities={item.cities.join('|')}
             class="rounded-xl border border-gray-200 bg-white p-4"
           >
-            <a href={`/${item.slug}`} class="block rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+            <a href={item.href} class="block rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
               <div class="flex items-start gap-3">
                 <span class="text-2xl" aria-hidden="true">{item.icon}</span>
                 <div>
@@ -358,7 +435,7 @@ const totalServices = allPages.length;
 
         const cityLabel = selectedCity ? getCityLabel() : '';
         if (!keyword && !selectedCity) {
-          resultsCount.textContent = `Εμφανίζονται ${visibleItems} διαθέσιμες υπηρεσίες και κατηγορίες.`;
+          resultsCount.textContent = `Εμφανίζονται ${visibleItems} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.`;
         } else if (cityLabel && keyword) {
           resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}» στην ${cityLabel}.`;
         } else if (cityLabel) {
