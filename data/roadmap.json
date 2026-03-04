@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-7",
+      "name": "QA Critical Fixes (Wave 7)",
+      "description": "Wave 7 QA directives: fix homepage hero readability/contrast to WCAG-compliant levels and remove haze blur; repair top-nav IA by routing Οδηγοί/Επαγγελματίες to live pages with automated nav-link 200 checks; align service taxonomy and slug routing so promoted categories (e.g. thermansi) never 404; improve category-card trust signals with validated marketplace data/provenance; add GDPR-grade consent + privacy notice and explicit success/failure/response-time expectations on category lead forms.",
+      "priority": 1,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "qa-critical-fixes-wave-1",
       "name": "QA Critical Fixes (Wave 1)",
       "description": "Fix critical trust/UX/SEO issues from QA: broken professional images with robust fallbacks + publish validation gates, remove public-facing failure diagnostics and defer validation errors until user interaction, ensure complete OG/Twitter metadata, ship SEO-safe custom 404 UX, and improve homepage language consistency + information architecture (less endless-scroll fatigue).",

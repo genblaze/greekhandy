@@ -1080,18 +1080,22 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         }
 
         window.addEventListener('pageshow', () => {
-          for (const form of document.querySelectorAll('[data-pending-form]')) {
-            if (!(form instanceof HTMLFormElement)) continue;
+          for (const form of pendingForms) {
             setFormPending(form, false);
+            updateTrimRequiredFields(form);
             if (form.hasAttribute('data-message-form')) {
               updateMessageFieldValidity(form);
             }
           }
           announceSubmitState('');
+          syncOfflineAlert();
         });
         window.addEventListener('hashchange', () => {
           syncSecondaryActionsWithIntent();
         });
+        window.addEventListener('online', syncOfflineAlert);
+        window.addEventListener('offline', syncOfflineAlert);
+        syncOfflineAlert();
       })();
     </script>
   </main>

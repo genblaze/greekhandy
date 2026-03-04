@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Homepage hero is unreadable on both desktop and mobile (white/cyan text on pale gray + glow blur). Fix contrast to WCAG-compliant levels, remove the haze effect, and tighten spacing so core value proposition is legible within 2 seconds.",
-      "addedAt": "2026-03-04T23:32:36Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Top navigation ships broken IA: 'Οδηγοί' and 'Επαγγελματίες' currently return 404 from the live menu. Point menu items to real routes (or publish those pages) and add an automated test that fails deploys on nav links returning non-200.",
-      "addedAt": "2026-03-04T23:32:36Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Service taxonomy is inconsistent and exposes dead pages: category route '/thermansi' returns 404 while Heating appears as a promoted service path. Align slugs across homepage, footer, and category data so every promoted category resolves to a valid landing page.",
-      "addedAt": "2026-03-04T23:32:36Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Category listing cards look synthetic and untrustworthy (repetitive placeholder-like provider names, duplicated patterns, no real credibility signals). Replace fake-looking entries with validated marketplace data: consistent naming, service area clarity, review count provenance, and realistic profile snippets.",
-      "addedAt": "2026-03-04T23:32:36Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Lead forms on category pages lack basic trust/compliance UX: no explicit privacy consent checkbox, no clear personal-data notice near submit, and no expectation-setting after submission. Add GDPR-compliant consent text + policy link, and show clear success/failure states with response time expectations.",
-      "addedAt": "2026-03-04T23:32:36Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -260,6 +234,36 @@
       "addedAt": "2026-03-04T23:03:10Z",
       "source": "qa-agent",
       "processedAt": "2026-03-04T23:04:54Z"
+    },
+    {
+      "directive": "Homepage hero is unreadable on both desktop and mobile (white/cyan text on pale gray + glow blur). Fix contrast to WCAG-compliant levels, remove the haze effect, and tighten spacing so core value proposition is legible within 2 seconds.",
+      "addedAt": "2026-03-04T23:32:36Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T23:35:07Z"
+    },
+    {
+      "directive": "Top navigation ships broken IA: 'Οδηγοί' and 'Επαγγελματίες' currently return 404 from the live menu. Point menu items to real routes (or publish those pages) and add an automated test that fails deploys on nav links returning non-200.",
+      "addedAt": "2026-03-04T23:32:36Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T23:35:07Z"
+    },
+    {
+      "directive": "Service taxonomy is inconsistent and exposes dead pages: category route '/thermansi' returns 404 while Heating appears as a promoted service path. Align slugs across homepage, footer, and category data so every promoted category resolves to a valid landing page.",
+      "addedAt": "2026-03-04T23:32:36Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T23:35:07Z"
+    },
+    {
+      "directive": "Category listing cards look synthetic and untrustworthy (repetitive placeholder-like provider names, duplicated patterns, no real credibility signals). Replace fake-looking entries with validated marketplace data: consistent naming, service area clarity, review count provenance, and realistic profile snippets.",
+      "addedAt": "2026-03-04T23:32:36Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T23:35:07Z"
+    },
+    {
+      "directive": "Lead forms on category pages lack basic trust/compliance UX: no explicit privacy consent checkbox, no clear personal-data notice near submit, and no expectation-setting after submission. Add GDPR-compliant consent text + policy link, and show clear success/failure states with response time expectations.",
+      "addedAt": "2026-03-04T23:32:36Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-04T23:35:07Z"
     }
   ]
 }
