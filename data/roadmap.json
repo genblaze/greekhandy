@@ -27,7 +27,7 @@
     {
       "id": "reviews-ratings",
       "name": "Reviews & Ratings",
-      "description": "User review submission with star ratings (1-5). Display reviews on professional profiles. Review moderation. Verified review badges.",
+      "description": "MVP slices complete: review submission form (1-5 rating + comment), pending moderation workflow, and approved review display on professional profiles with average rating. Next: verified review badges.",
       "priority": 4,
       "status": "in-progress",
       "estimatedComplexity": "high"

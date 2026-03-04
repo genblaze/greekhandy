@@ -24,6 +24,14 @@ Marketplace-style directory for home services in Greece, built with Astro + Tail
   - Basic moderation queue at `/professionals/moderation?key=...`
   - Moderation endpoint at `POST /api/professionals/moderate` (approve/reject)
   - Approval creates a draft profile (`approved: true`, `published: false`) in `data/professionals.json`
+- **Reviews & Ratings MVP slices:**
+  - Review submission form on each professional profile
+  - Rating capture from 1 to 5
+  - Submission endpoint at `POST /api/reviews/submit` (saved as pending)
+  - Approved-only public review display with average rating on `/professionals/[slug]`
+  - Review moderation queue at `/professionals/reviews-moderation?key=...`
+  - Review moderation endpoint at `POST /api/reviews/moderate` (approve/reject)
+  - Approved reviews stored in `data/reviews.json`
 
 ## Local Development
 
@@ -54,4 +62,4 @@ If SMTP is not configured, submissions are still saved to `data/contact-submissi
 
 ## Professional Moderation Environment Variable
 
-- `PROFESSIONAL_MODERATION_KEY` (required to access/operate `/professionals/moderation`)
+- `PROFESSIONAL_MODERATION_KEY` (required to access/operate `/professionals/moderation` and `/professionals/reviews-moderation`)
