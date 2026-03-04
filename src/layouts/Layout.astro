@@ -11,18 +11,15 @@ interface Props {
 }
 
 const { title, description, canonicalUrl, ogImage, twitterCard } = Astro.props;
-const hasCustomHead = Astro.slots.has('head');
+Astro.response.headers.set('Content-Type', 'text/html; charset=UTF-8');
 const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
 <html lang="el">
   <head>
-    {hasCustomHead ? (
-      <slot name="head" />
-    ) : (
-      <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage} twitterCard={twitterCard} />
-    )}
+    <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage} twitterCard={twitterCard} />
+    <slot name="head" />
   </head>
   <body class="bg-slate-50 font-sans text-slate-900 antialiased">
     <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">

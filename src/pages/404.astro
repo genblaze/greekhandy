@@ -1,14 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BaseHead from '../components/BaseHead.astro';
-
 const title = '404 - Η σελίδα δεν βρέθηκε | GreekHandy';
 const description = 'Η σελίδα που ζητήσατε δεν είναι διαθέσιμη. Επιστρέψτε στην αρχική ή δείτε βασικές κατηγορίες υπηρεσιών στο GreekHandy.';
 ---
 
 <Layout title={title} description={description}>
   <Fragment slot="head">
-    <BaseHead title={title} description={description} canonicalUrl={Astro.url.href} />
     <meta name="robots" content="noindex,follow" />
   </Fragment>
 

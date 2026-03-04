@@ -193,11 +193,14 @@ const professionalServiceSchema = {
       }
     : undefined
 };
+
+const profileMetaTitle = `${profile.name} | ${profile.profession} σε ${profile.city || 'Ελλάδα'} | GreekHandy`;
+const profileMetaDescription = `Επαγγελματικό προφίλ GreekHandy: ${profile.name}, ${profile.profession}${profile.city ? ` στη ${profile.city}` : ''}. Δείτε υπηρεσίες, περιοχές εξυπηρέτησης και αξιολογήσεις πελατών.`;
 ---
 
 <Layout
-  title={`${profile.name} | ${profile.profession} | GreekHandy`}
-  description={`Δείτε το προφίλ του/της ${profile.name}, ${profile.profession} στη ${profile.city}.`}
+  title={profileMetaTitle}
+  description={profileMetaDescription}
   canonicalUrl={profileUrl}
 >
   <Fragment slot="head">

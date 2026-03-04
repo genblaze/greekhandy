@@ -1,5 +1,4 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
 import Layout from '../layouts/Layout.astro';
 
 export const prerender = true;
@@ -136,7 +135,6 @@ const faqSchema = category.faq?.length ? {
 
 <Layout title={category.metaTitle} description={category.metaDescription} canonicalUrl={canonicalUrl}>
   <Fragment slot="head">
-    <BaseHead title={category.metaTitle} description={category.metaDescription} canonicalUrl={canonicalUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     {itemListSchema && <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />}
