@@ -9,12 +9,17 @@ interface Props {
 }
 
 const { title, description, canonicalUrl } = Astro.props;
+const hasCustomHead = Astro.slots.has('head');
 ---
 
 <!doctype html>
 <html lang="el">
   <head>
-    <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} />
+    {hasCustomHead ? (
+      <slot name="head" />
+    ) : (
+      <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} />
+    )}
   </head>
   <body class="font-sans text-gray-900 bg-white">
     <!-- Header -->

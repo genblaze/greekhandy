@@ -4,8 +4,12 @@
     "nameEn": "Electrician",
     "nameGr": "Ηλεκτρολόγος",
     "slug": "ilektrologos",
-    "status": "researched",
-    "subCategories": ["residential", "commercial", "industrial"]
+    "status": "built",
+    "subCategories": [
+      "residential",
+      "commercial",
+      "industrial"
+    ]
   },
   {
     "id": "plumber",
@@ -13,7 +17,11 @@
     "nameGr": "Υδραυλικός",
     "slug": "ydravlikos",
     "status": "researched",
-    "subCategories": ["residential", "commercial", "emergency"]
+    "subCategories": [
+      "residential",
+      "commercial",
+      "emergency"
+    ]
   },
   {
     "id": "painter",
@@ -21,7 +29,11 @@
     "nameGr": "Ελαιοχρωματιστής",
     "slug": "elaioxromatistis",
     "status": "researched",
-    "subCategories": ["interior", "exterior", "decorative"]
+    "subCategories": [
+      "interior",
+      "exterior",
+      "decorative"
+    ]
   },
   {
     "id": "locksmith",
@@ -29,7 +41,11 @@
     "nameGr": "Κλειδαράς",
     "slug": "kleidaras",
     "status": "researched",
-    "subCategories": ["emergency", "installation", "automotive"]
+    "subCategories": [
+      "emergency",
+      "installation",
+      "automotive"
+    ]
   },
   {
     "id": "carpenter",
@@ -37,7 +53,11 @@
     "nameGr": "Ξυλουργός",
     "slug": "xylourgos",
     "status": "researched",
-    "subCategories": ["furniture", "doors-windows", "custom"]
+    "subCategories": [
+      "furniture",
+      "doors-windows",
+      "custom"
+    ]
   },
   {
     "id": "aluminum-worker",
@@ -45,7 +65,11 @@
     "nameGr": "Αλουμινάς",
     "slug": "alouminas",
     "status": "researched",
-    "subCategories": ["windows", "doors", "frames"]
+    "subCategories": [
+      "windows",
+      "doors",
+      "frames"
+    ]
   },
   {
     "id": "ironworker",
@@ -53,7 +77,11 @@
     "nameGr": "Σιδεράς",
     "slug": "sideras",
     "status": "researched",
-    "subCategories": ["railings", "gates", "structures"]
+    "subCategories": [
+      "railings",
+      "gates",
+      "structures"
+    ]
   },
   {
     "id": "plasterer",
@@ -61,7 +89,11 @@
     "nameGr": "Γυψαδόρος",
     "slug": "gypsadoros",
     "status": "researched",
-    "subCategories": ["walls", "ceilings", "decorative"]
+    "subCategories": [
+      "walls",
+      "ceilings",
+      "decorative"
+    ]
   },
   {
     "id": "tiler",
@@ -69,7 +101,11 @@
     "nameGr": "Πλακάς",
     "slug": "plakas",
     "status": "researched",
-    "subCategories": ["bathroom", "kitchen", "floor"]
+    "subCategories": [
+      "bathroom",
+      "kitchen",
+      "floor"
+    ]
   },
   {
     "id": "insulation-worker",
@@ -77,7 +113,11 @@
     "nameGr": "Μονωτής",
     "slug": "monotis",
     "status": "researched",
-    "subCategories": ["thermal", "waterproof", "acoustic"]
+    "subCategories": [
+      "thermal",
+      "waterproof",
+      "acoustic"
+    ]
   },
   {
     "id": "house-cleaning",
@@ -85,7 +125,11 @@
     "nameGr": "Καθαρισμός Σπιτιού",
     "slug": "katharismos-spitiou",
     "status": "researched",
-    "subCategories": ["regular", "deep-clean", "move-in-out"]
+    "subCategories": [
+      "regular",
+      "deep-clean",
+      "move-in-out"
+    ]
   },
   {
     "id": "carpet-cleaning",
@@ -93,7 +137,11 @@
     "nameGr": "Καθαρισμός Χαλιών",
     "slug": "katharismos-xalion",
     "status": "researched",
-    "subCategories": ["residential", "commercial", "upholstery"]
+    "subCategories": [
+      "residential",
+      "commercial",
+      "upholstery"
+    ]
   },
   {
     "id": "pest-control",
@@ -101,7 +149,11 @@
     "nameGr": "Απεντόμωση",
     "slug": "apentomosi",
     "status": "researched",
-    "subCategories": ["insects", "rodents", "disinfection"]
+    "subCategories": [
+      "insects",
+      "rodents",
+      "disinfection"
+    ]
   },
   {
     "id": "drain-cleaning",
@@ -109,7 +161,11 @@
     "nameGr": "Αποφράξεις",
     "slug": "apofraxeis",
     "status": "researched",
-    "subCategories": ["residential", "commercial", "emergency"]
+    "subCategories": [
+      "residential",
+      "commercial",
+      "emergency"
+    ]
   },
   {
     "id": "housekeeper",
@@ -117,7 +173,11 @@
     "nameGr": "Οικιακή Βοηθός",
     "slug": "oikiaki-voithos",
     "status": "researched",
-    "subCategories": ["daily", "live-in", "elderly-care"]
+    "subCategories": [
+      "daily",
+      "live-in",
+      "elderly-care"
+    ]
   },
   {
     "id": "renovation",
@@ -125,7 +185,11 @@
     "nameGr": "Ανακαίνιση",
     "slug": "anakenisi",
     "status": "researched",
-    "subCategories": ["bathroom", "kitchen", "full-home"]
+    "subCategories": [
+      "bathroom",
+      "kitchen",
+      "full-home"
+    ]
   },
   {
     "id": "architect",
@@ -133,7 +197,11 @@
     "nameGr": "Αρχιτέκτονας",
     "slug": "arxitektonas",
     "status": "researched",
-    "subCategories": ["residential", "commercial", "interior"]
+    "subCategories": [
+      "residential",
+      "commercial",
+      "interior"
+    ]
   },
   {
     "id": "civil-engineer",
@@ -141,7 +209,11 @@
     "nameGr": "Πολιτικός Μηχανικός",
     "slug": "politikos-mixanikos",
     "status": "researched",
-    "subCategories": ["structural", "permits", "inspections"]
+    "subCategories": [
+      "structural",
+      "permits",
+      "inspections"
+    ]
   },
   {
     "id": "moving-services",
@@ -149,7 +221,11 @@
     "nameGr": "Μεταφορές",
     "slug": "metafores",
     "status": "researched",
-    "subCategories": ["local", "long-distance", "office"]
+    "subCategories": [
+      "local",
+      "long-distance",
+      "office"
+    ]
   },
   {
     "id": "demolition",
@@ -157,7 +233,11 @@
     "nameGr": "Κατεδαφίσεις",
     "slug": "katedafiseis",
     "status": "researched",
-    "subCategories": ["interior", "exterior", "debris-removal"]
+    "subCategories": [
+      "interior",
+      "exterior",
+      "debris-removal"
+    ]
   },
   {
     "id": "computer-technician",
@@ -165,7 +245,11 @@
     "nameGr": "Τεχνικός Υπολογιστών",
     "slug": "texnikos-ypologiston",
     "status": "researched",
-    "subCategories": ["repair", "networking", "data-recovery"]
+    "subCategories": [
+      "repair",
+      "networking",
+      "data-recovery"
+    ]
   },
   {
     "id": "ac-installation",
@@ -173,7 +257,11 @@
     "nameGr": "Εγκατάσταση Κλιματιστικών",
     "slug": "egkatastasi-klimatistikon",
     "status": "researched",
-    "subCategories": ["split", "central", "maintenance"]
+    "subCategories": [
+      "split",
+      "central",
+      "maintenance"
+    ]
   },
   {
     "id": "alarms-cctv",
@@ -181,7 +269,11 @@
     "nameGr": "Συναγερμοί & Κάμερες",
     "slug": "synagermi-kameres",
     "status": "researched",
-    "subCategories": ["home", "business", "monitoring"]
+    "subCategories": [
+      "home",
+      "business",
+      "monitoring"
+    ]
   },
   {
     "id": "gardener",
@@ -189,7 +281,11 @@
     "nameGr": "Κηπουρός",
     "slug": "kipouros",
     "status": "researched",
-    "subCategories": ["maintenance", "design", "landscaping"]
+    "subCategories": [
+      "maintenance",
+      "design",
+      "landscaping"
+    ]
   },
   {
     "id": "tree-pruning",
@@ -197,7 +293,11 @@
     "nameGr": "Κλάδεμα Δέντρων",
     "slug": "kladema-dentron",
     "status": "researched",
-    "subCategories": ["pruning", "removal", "stump-grinding"]
+    "subCategories": [
+      "pruning",
+      "removal",
+      "stump-grinding"
+    ]
   },
   {
     "id": "pool-maintenance",
@@ -205,7 +305,11 @@
     "nameGr": "Πισίνες",
     "slug": "pisines",
     "status": "researched",
-    "subCategories": ["cleaning", "repair", "installation"]
+    "subCategories": [
+      "cleaning",
+      "repair",
+      "installation"
+    ]
   },
   {
     "id": "auto-mechanic",
@@ -213,7 +317,11 @@
     "nameGr": "Μηχανικός Αυτοκινήτων",
     "slug": "mixanikos-aftokinton",
     "status": "researched",
-    "subCategories": ["service", "repair", "diagnostics"]
+    "subCategories": [
+      "service",
+      "repair",
+      "diagnostics"
+    ]
   },
   {
     "id": "body-shop",
@@ -221,7 +329,11 @@
     "nameGr": "Φανοποιός",
     "slug": "fanopoios",
     "status": "researched",
-    "subCategories": ["paint", "dent-repair", "collision"]
+    "subCategories": [
+      "paint",
+      "dent-repair",
+      "collision"
+    ]
   },
   {
     "id": "photographer",
@@ -229,7 +341,11 @@
     "nameGr": "Φωτογράφος",
     "slug": "fotografos",
     "status": "researched",
-    "subCategories": ["wedding", "event", "commercial"]
+    "subCategories": [
+      "wedding",
+      "event",
+      "commercial"
+    ]
   },
   {
     "id": "private-tutoring",
@@ -237,6 +353,10 @@
     "nameGr": "Ιδιαίτερα Μαθήματα",
     "slug": "idiaitera-mathimata",
     "status": "researched",
-    "subCategories": ["school", "university", "languages"]
+    "subCategories": [
+      "school",
+      "university",
+      "languages"
+    ]
   }
 ]
