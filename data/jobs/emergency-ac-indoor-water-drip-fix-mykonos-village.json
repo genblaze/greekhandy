@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-water-drip-fix-mykonos-village",
+  "slug": "epigousa-episkevi-nerou-esoterikis-monadas-ac-mykonos-village",
+  "nameGr": "Επείγουσα Επισκευή Σταξίματος Εσωτερικής Μονάδας AC σε χωριό της Μυκόνου",
+  "nameEn": "Emergency AC Indoor Water Drip Fix in Μύκονος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση σταξίματος εσωτερικής μονάδας AC σε χωριό της Μυκόνου για αποφυγή ζημιών σε τοίχους/έπιπλα. SEO intent: «ac στάζει μέσα Μύκονος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "ac στάζει μέσα Μύκονος",
+    "κλιματιστικό τρέχει νερά",
+    "τεχνικός ac επείγον",
+    "επισκευή απορροής κλιματιστικού",
+    "service κλιματισμού διαρροή"
+  ],
+  "status": "researched"
+}

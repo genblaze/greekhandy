@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-fault-diagnosis-mykonos-village",
+  "slug": "epigousa-diagnosi-vlavis-oudeterou-mykonos-village",
+  "nameGr": "Επείγουσα Διάγνωση Βλάβης Ουδετέρου σε χωριό της Μυκόνου",
+  "nameEn": "Emergency Electrical Neutral Fault Diagnosis in Μύκονος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση βλάβης ουδετέρου σε χωριό της Μυκόνου για αποφυγή υπερτάσεων και βλάβης συσκευών. SEO intent: «τρέμουν τα φώτα σπίτι Μύκονος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "τρέμουν τα φώτα σπίτι Μύκονος",
+    "βλάβη ουδετέρου Μύκονος",
+    "ηλεκτρολόγος επείγον υπέρταση",
+    "προστασία συσκευών ρεύμα",
+    "διάγνωση ηλεκτρικής ανωμαλίας"
+  ],
+  "status": "researched"
+}

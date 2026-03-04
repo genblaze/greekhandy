@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-water-drip-fix-kalampaka",
+  "slug": "epigousa-episkevi-nerou-esoterikis-monadas-ac-kalampaka",
+  "nameGr": "Επείγουσα Επισκευή Σταξίματος Εσωτερικής Μονάδας AC στα Καλαμπάκα",
+  "nameEn": "Emergency AC Indoor Water Drip Fix in Καλαμπάκα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση σταξίματος εσωτερικής μονάδας AC στα Καλαμπάκα για αποφυγή ζημιών σε τοίχους/έπιπλα. SEO intent: «ac στάζει μέσα Καλαμπάκα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "ac στάζει μέσα Καλαμπάκα",
+    "κλιματιστικό τρέχει νερά",
+    "τεχνικός ac επείγον",
+    "επισκευή απορροής κλιματιστικού",
+    "service κλιματισμού διαρροή"
+  ],
+  "status": "researched"
+}

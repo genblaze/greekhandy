@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-fault-diagnosis-kalampaka",
+  "slug": "epigousa-diagnosi-vlavis-oudeterou-kalampaka",
+  "nameGr": "Επείγουσα Διάγνωση Βλάβης Ουδετέρου στα Καλαμπάκα",
+  "nameEn": "Emergency Electrical Neutral Fault Diagnosis in Καλαμπάκα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση βλάβης ουδετέρου στα Καλαμπάκα για αποφυγή υπερτάσεων και βλάβης συσκευών. SEO intent: «τρέμουν τα φώτα σπίτι Καλαμπάκα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "τρέμουν τα φώτα σπίτι Καλαμπάκα",
+    "βλάβη ουδετέρου Καλαμπάκα",
+    "ηλεκτρολόγος επείγον υπέρταση",
+    "προστασία συσκευών ρεύμα",
+    "διάγνωση ηλεκτρικής ανωμαλίας"
+  ],
+  "status": "researched"
+}

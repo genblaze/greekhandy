@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-fault-diagnosis-filiatra",
+  "slug": "epigousa-diagnosi-vlavis-oudeterou-filiatra",
+  "nameGr": "Επείγουσα Διάγνωση Βλάβης Ουδετέρου στα Φιλιατρά",
+  "nameEn": "Emergency Electrical Neutral Fault Diagnosis in Φιλιατρά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση βλάβης ουδετέρου στα Φιλιατρά για αποφυγή υπερτάσεων και βλάβης συσκευών. SEO intent: «τρέμουν τα φώτα σπίτι Φιλιατρά».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "τρέμουν τα φώτα σπίτι Φιλιατρά",
+    "βλάβη ουδετέρου Φιλιατρά",
+    "ηλεκτρολόγος επείγον υπέρταση",
+    "προστασία συσκευών ρεύμα",
+    "διάγνωση ηλεκτρικής ανωμαλίας"
+  ],
+  "status": "researched"
+}

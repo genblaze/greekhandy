@@ -1,0 +1,20 @@
+{
+  "id": "emergency-smart-lock-battery-failure-entry-mykonos-village",
+  "slug": "epigousa-eisodos-logo-vlavis-mpatarias-smart-lock-mykonos-village",
+  "nameGr": "Επείγουσα Είσοδος λόγω Βλάβης Μπαταρίας Smart Lock σε χωριό της Μυκόνου",
+  "nameEn": "Emergency Smart Lock Battery Failure Entry in Μύκονος",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα είσοδος κατοικίας σε χωριό της Μυκόνου όταν smart lock μένει από μπαταρία ή κολλάει. SEO intent: «smart lock δεν ανοίγει Μύκονος».",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "60-210€",
+  "demand": "high",
+  "keywords": [
+    "smart lock δεν ανοίγει Μύκονος",
+    "κλειδαράς smart lock επείγον",
+    "μπαταρία κλειδαριάς άδεια είσοδος",
+    "ξεκλείδωμα έξυπνης κλειδαριάς",
+    "άμεση πρόσβαση κατοικίας"
+  ],
+  "status": "researched"
+}
