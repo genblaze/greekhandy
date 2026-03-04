@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fridge-door-not-sealing-fix-mouzaki",
+  "slug": "epigousa-episkevi-portas-psygeiou-pou-den-sfragizei-mouzaki",
+  "nameGr": "Επείγουσα Επισκευή Πόρτας Ψυγείου που δεν Σφραγίζει στο Μουζάκι",
+  "nameEn": "Emergency Fridge Door Not Sealing Fix in Μουζάκι",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή πόρτας ψυγείου στο Μουζάκι όταν δεν σφραγίζει για αποφυγή απώλειας ψύξης. SEO intent: «ψυγείο δεν κλείνει καλά Μουζάκι».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "ψυγείο δεν κλείνει καλά Μουζάκι",
+    "λάστιχο πόρτας ψυγείου βλάβη",
+    "τεχνικός ψυγείου επείγον",
+    "απώλεια ψύξης ψυγείου",
+    "service πόρτας ψυγείου"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-burner-ignition-failure-fix-chalki",
+  "slug": "epigousa-episkevi-anammatos-kaustira-chalki",
+  "nameGr": "Επείγουσα Επισκευή Αδυναμίας Ανάμματος Καυστήρα στη Χάλκη",
+  "nameEn": "Emergency Burner Ignition Failure Fix in Χάλκη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή καυστήρα στη Χάλκη όταν δεν ανάβει, με έλεγχο ασφαλείας και άμεση επαναλειτουργία. SEO intent: «καυστήρας δεν ανάβει Χάλκη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "καυστήρας δεν ανάβει Χάλκη",
+    "τεχνικός καυστήρα επείγον",
+    "βλάβη λέβητα ανάφλεξη",
+    "service θέρμανσης τώρα",
+    "χωρίς θέρμανση λύση"
+  ],
+  "status": "researched"
+}

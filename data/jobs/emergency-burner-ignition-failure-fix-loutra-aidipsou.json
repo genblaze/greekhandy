@@ -1,0 +1,20 @@
+{
+  "id": "emergency-burner-ignition-failure-fix-loutra-aidipsou",
+  "slug": "epigousa-episkevi-anammatos-kaustira-loutra-aidipsou",
+  "nameGr": "Επείγουσα Επισκευή Αδυναμίας Ανάμματος Καυστήρα στα Λουτρά Αιδηψού",
+  "nameEn": "Emergency Burner Ignition Failure Fix in Λουτρά Αιδηψού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή καυστήρα στα Λουτρά Αιδηψού όταν δεν ανάβει, με έλεγχο ασφαλείας και άμεση επαναλειτουργία. SEO intent: «καυστήρας δεν ανάβει Λουτρά Αιδηψού».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "καυστήρας δεν ανάβει Λουτρά Αιδηψού",
+    "τεχνικός καυστήρα επείγον",
+    "βλάβη λέβητα ανάφλεξη",
+    "service θέρμανσης τώρα",
+    "χωρίς θέρμανση λύση"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-burner-ignition-failure-fix-mouzaki",
+  "slug": "epigousa-episkevi-anammatos-kaustira-mouzaki",
+  "nameGr": "Επείγουσα Επισκευή Αδυναμίας Ανάμματος Καυστήρα στο Μουζάκι",
+  "nameEn": "Emergency Burner Ignition Failure Fix in Μουζάκι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή καυστήρα στο Μουζάκι όταν δεν ανάβει, με έλεγχο ασφαλείας και άμεση επαναλειτουργία. SEO intent: «καυστήρας δεν ανάβει Μουζάκι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "καυστήρας δεν ανάβει Μουζάκι",
+    "τεχνικός καυστήρα επείγον",
+    "βλάβη λέβητα ανάφλεξη",
+    "service θέρμανσης τώρα",
+    "χωρίς θέρμανση λύση"
+  ],
+  "status": "researched"
+}

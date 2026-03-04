@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-ac-filter-sanitization-plan-mouzaki",
+  "slug": "epochiako-plano-aposanosis-filtron-ac-mouzaki",
+  "nameGr": "Εποχικό Πλάνο Απολύμανσης Φίλτρων AC στο Μουζάκι",
+  "nameEn": "Seasonal AC Filter Sanitization Plan in Μουζάκι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό πλάνο απολύμανσης φίλτρων AC στο Μουζάκι για καλύτερη ποιότητα αέρα και απόδοση. SEO intent: «καθαρισμός φίλτρων κλιματιστικού Μουζάκι».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "35-120€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός φίλτρων κλιματιστικού Μουζάκι",
+    "απολύμανση ac σπίτι",
+    "service κλιματιστικού εποχικό",
+    "οσμές ac λύση",
+    "τεχνικός ac συντήρηση"
+  ],
+  "status": "researched"
+}

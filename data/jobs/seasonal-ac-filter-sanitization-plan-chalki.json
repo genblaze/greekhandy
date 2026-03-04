@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-ac-filter-sanitization-plan-chalki",
+  "slug": "epochiako-plano-aposanosis-filtron-ac-chalki",
+  "nameGr": "Εποχικό Πλάνο Απολύμανσης Φίλτρων AC στη Χάλκη",
+  "nameEn": "Seasonal AC Filter Sanitization Plan in Χάλκη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό πλάνο απολύμανσης φίλτρων AC στη Χάλκη για καλύτερη ποιότητα αέρα και απόδοση. SEO intent: «καθαρισμός φίλτρων κλιματιστικού Χάλκη».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "35-120€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός φίλτρων κλιματιστικού Χάλκη",
+    "απολύμανση ac σπίτι",
+    "service κλιματιστικού εποχικό",
+    "οσμές ac λύση",
+    "τεχνικός ac συντήρηση"
+  ],
+  "status": "researched"
+}

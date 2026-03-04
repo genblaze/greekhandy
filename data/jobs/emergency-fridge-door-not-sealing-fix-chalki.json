@@ -1,0 +1,20 @@
+{
+  "id": "emergency-fridge-door-not-sealing-fix-chalki",
+  "slug": "epigousa-episkevi-portas-psygeiou-pou-den-sfragizei-chalki",
+  "nameGr": "Επείγουσα Επισκευή Πόρτας Ψυγείου που δεν Σφραγίζει στη Χάλκη",
+  "nameEn": "Emergency Fridge Door Not Sealing Fix in Χάλκη",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή πόρτας ψυγείου στη Χάλκη όταν δεν σφραγίζει για αποφυγή απώλειας ψύξης. SEO intent: «ψυγείο δεν κλείνει καλά Χάλκη».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "ψυγείο δεν κλείνει καλά Χάλκη",
+    "λάστιχο πόρτας ψυγείου βλάβη",
+    "τεχνικός ψυγείου επείγον",
+    "απώλεια ψύξης ψυγείου",
+    "service πόρτας ψυγείου"
+  ],
+  "status": "researched"
+}
