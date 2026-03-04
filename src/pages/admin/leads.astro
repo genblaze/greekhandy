@@ -2140,6 +2140,24 @@ const hasLeads = directoryData.leads.length > 0;
           }
         });
 
+        list?.addEventListener('focusout', (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLInputElement) || !target.matches('[data-note-input]')) return;
+          const card = target.closest('[data-lead-card]');
+          if (!(card instanceof HTMLElement)) return;
+          const entry = parsedCards.find((item) => item.card === card);
+          if (!entry) return;
+          const nextNote = target.value.trim();
+          if ((entry.note || '') === nextNote) return;
+          entry.note = nextNote;
+          notesState = { ...notesState, [entry.id]: entry.note };
+          writeMapState(NOTES_STORAGE_KEY, notesState);
+          appendActivity(entry, entry.note ? 'Auto-save σημείωσης' : 'Καθαρίστηκε σημείωση');
+          renderCardOutreach(entry);
+          if (liveRegion instanceof HTMLElement) liveRegion.textContent = 'Η σημείωση αποθηκεύτηκε αυτόματα.';
+          scheduleRun();
+        });
+
         list?.addEventListener('click', async (event) => {
           const target = event.target;
           if (!(target instanceof HTMLElement)) return;
