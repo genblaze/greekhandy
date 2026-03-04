@@ -6,9 +6,11 @@ interface Props {
   title: string;
   description: string;
   canonicalUrl?: string;
+  ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
 }
 
-const { title, description, canonicalUrl } = Astro.props;
+const { title, description, canonicalUrl, ogImage, twitterCard } = Astro.props;
 const hasCustomHead = Astro.slots.has('head');
 ---
 
@@ -18,7 +20,7 @@ const hasCustomHead = Astro.slots.has('head');
     {hasCustomHead ? (
       <slot name="head" />
     ) : (
-      <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} />
+      <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage} twitterCard={twitterCard} />
     )}
   </head>
   <body class="bg-slate-50 font-sans text-slate-900 antialiased">
