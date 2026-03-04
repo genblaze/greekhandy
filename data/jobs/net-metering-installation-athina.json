@@ -1,0 +1,14 @@
+{
+  "id": "net-metering-installation-athina",
+  "slug": "egkatastasi-net-metering-athina",
+  "nameGr": "Εγκατάσταση Net Metering στην Αθήνα",
+  "nameEn": "Net Metering Installation in Athens",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Εγκατάσταση net metering στην Αθήνα με μελέτη κατανάλωσης, διαστασιολόγηση φωτοβολταϊκού και καθοδήγηση για αιτήσεις σύνδεσης. Στοχεύει χρήστες με ισχυρή πρόθεση μείωσης λογαριασμών ρεύματος και επένδυσης σε ηλιακή ενέργεια.",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "3500-9500€",
+  "demand": "high",
+  "keywords": ["net metering Αθήνα", "εγκατάσταση φωτοβολταϊκών Αθήνα", "συμψηφισμός ενέργειας", "τιμή net metering", "φωτοβολταϊκό για κατοικία"],
+  "status": "researched"
+}

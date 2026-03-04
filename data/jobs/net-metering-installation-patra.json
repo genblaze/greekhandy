@@ -1,0 +1,14 @@
+{
+  "id": "net-metering-installation-patra",
+  "slug": "egkatastasi-net-metering-patra",
+  "nameGr": "Εγκατάσταση Net Metering στην Πάτρα",
+  "nameEn": "Net Metering Installation in Patras",
+  "categoryId": "solar-technicians",
+  "categorySlug": "fotovoltaika-systimata",
+  "intent": "Εγκατάσταση net metering στην Πάτρα για μείωση κόστους ηλεκτρικής ενέργειας και μακροπρόθεσμη εξοικονόμηση. Αφορά πελάτες με υψηλή εμπορική πρόθεση που αναζητούν άμεσα προσφορά και υλοποίηση έργου.",
+  "typicalDuration": "2-5 ημέρες",
+  "priceRangeEUR": "3300-9000€",
+  "demand": "high",
+  "keywords": ["net metering Πάτρα", "φωτοβολταϊκό σύστημα Πάτρα", "εγκατάσταση φωτοβολταϊκών", "μείωση λογαριασμού ρεύματος", "προσφορά net metering"],
+  "status": "researched"
+}
