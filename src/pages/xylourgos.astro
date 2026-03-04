@@ -1,12 +1,12 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Layout from '../layouts/Layout.astro';
-import locksmith from '../../data/content/locksmith.json';
+import carpenter from '../../data/content/carpenter.json';
 
-const canonicalUrl = new URL(`/${locksmith.slug}`, Astro.site).toString();
+const canonicalUrl = new URL(`/${carpenter.slug}`, Astro.site).toString();
 const ogImage = new URL('/favicon.svg', Astro.site).toString();
-const locksmithAccusative = 'κλειδαρά';
-const locksmithGenitive = 'κλειδαρά';
+const carpenterAccusative = 'ξυλουργό';
+const carpenterGenitive = 'ξυλουργού';
 
 const categoryModules = import.meta.glob('../../data/content/*.json', { eager: true });
 const categoryNameBySlug: Record<string, string> = {};
@@ -18,54 +18,56 @@ for (const moduleEntry of Object.values(categoryModules)) {
   }
 }
 
-const relatedCategories = locksmith.relatedCategories.map((slug: string) => ({
+const relatedCategories = carpenter.relatedCategories.map((slug: string) => ({
   slug,
   nameGr: categoryNameBySlug[slug] ?? slug
 }));
 
 const grammarFixes: Array<[string, string]> = [
-  ['αξιόπιστο κλειδαράς', 'αξιόπιστο κλειδαρά'],
-  ['Πότε να καλέσετε κλειδαράς', 'Πότε να καλέσετε κλειδαρά'],
-  ['Είναι σημαντικό να καλέσετε κλειδαράς', 'Είναι σημαντικό να καλέσετε κλειδαρά'],
-  ['Τιμές κλειδαράς στην Ελλάδα', 'Τιμές κλειδαρά στην Ελλάδα'],
-  ['υπηρεσίες κλειδαράς', 'υπηρεσίες κλειδαρά'],
-  ['Πώς να επιλέξετε κλειδαράς', 'Πώς να επιλέξετε κλειδαρά'],
-  ['επιλέξετε σωστά κλειδαράς', 'επιλέξετε σωστά κλειδαρά'],
-  ['Πώς επιλέγω αξιόπιστο κλειδαράς;', 'Πώς επιλέγω αξιόπιστο κλειδαρά;'],
-  ['Χρειάζεστε κλειδαράς;', 'Χρειάζεστε κλειδαρά;'],
-  ['για κλειδαράς στην περιοχή σας', 'για κλειδαρά στην περιοχή σας'],
+  ['αξιόπιστο ξυλουργός', 'αξιόπιστο ξυλουργό'],
+  ['Πότε να καλέσετε ξυλουργός', 'Πότε να καλέσετε ξυλουργό'],
+  ['Είναι σημαντικό να καλέσετε ξυλουργός', 'Είναι σημαντικό να καλέσετε ξυλουργό'],
+  ['Τιμές ξυλουργός στην Ελλάδα', 'Τιμές ξυλουργού στην Ελλάδα'],
+  ['υπηρεσίες ξυλουργός', 'υπηρεσίες ξυλουργού'],
+  ['Πώς να επιλέξετε ξυλουργός', 'Πώς να επιλέξετε ξυλουργό'],
+  ['επιλέξετε σωστά ξυλουργός', 'επιλέξετε σωστά ξυλουργό'],
+  ['Πώς επιλέγω αξιόπιστο ξυλουργός;', 'Πώς επιλέγω αξιόπιστο ξυλουργό;'],
+  ['Χρειάζεστε ξυλουργός;', 'Χρειάζεστε ξυλουργό;'],
+  ['για ξυλουργός στην περιοχή σας', 'για ξυλουργό στην περιοχή σας'],
+  ['για Ξυλουργός.', 'για ξυλουργό.'],
   ['value for money', 'σχέση ποιότητας-τιμής']
 ];
 
 const normalizeGreek = (text: string) =>
   grammarFixes.reduce((output, [from, to]) => output.replaceAll(from, to), text);
 
-const heroText = normalizeGreek(locksmith.heroText);
-const sections = locksmith.sections.map((section) => ({
+const metaDescription = normalizeGreek(carpenter.metaDescription);
+const heroText = normalizeGreek(carpenter.heroText);
+const sections = carpenter.sections.map((section) => ({
   ...section,
   heading: normalizeGreek(section.heading),
   content: normalizeGreek(section.content),
   priceRange: section.priceRange ? normalizeGreek(section.priceRange) : section.priceRange
 }));
-const faq = locksmith.faq.map((item) => ({
+const faq = carpenter.faq.map((item) => ({
   ...item,
   question: normalizeGreek(item.question),
   answer: normalizeGreek(item.answer)
 }));
 const cta = {
-  ...locksmith.cta,
-  heading: normalizeGreek(locksmith.cta.heading),
-  text: normalizeGreek(locksmith.cta.text)
+  ...carpenter.cta,
+  heading: normalizeGreek(carpenter.cta.heading),
+  text: normalizeGreek(carpenter.cta.text)
 };
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: `Υπηρεσίες ${locksmithGenitive}`,
+  name: `Υπηρεσίες ${carpenterGenitive}`,
   url: canonicalUrl,
-  description: locksmith.metaDescription,
+  description: metaDescription,
   areaServed: ['Αθήνα', 'Θεσσαλονίκη', 'Πάτρα', 'Ηράκλειο', 'Λάρισα', 'Ελλάδα'],
-  serviceType: `Υπηρεσίες ${locksmithGenitive}`,
+  serviceType: `Υπηρεσίες ${carpenterGenitive}`,
   availableLanguage: ['el-GR'],
   provider: {
     '@type': 'Organization',
@@ -88,21 +90,21 @@ const faqSchema = {
 };
 ---
 
-<Layout title={locksmith.metaTitle} description={locksmith.metaDescription} canonicalUrl={canonicalUrl}>
+<Layout title={carpenter.metaTitle} description={metaDescription} canonicalUrl={canonicalUrl}>
   <Fragment slot="head">
-    <BaseHead title={locksmith.metaTitle} description={locksmith.metaDescription} canonicalUrl={canonicalUrl} ogImage={ogImage} />
+    <BaseHead title={carpenter.metaTitle} description={metaDescription} canonicalUrl={canonicalUrl} ogImage={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <main>
-    <section class="bg-gradient-to-b from-emerald-700 to-teal-600 px-4 py-16 text-white md:py-20">
+    <section class="bg-gradient-to-b from-amber-800 to-orange-700 px-4 py-16 text-white md:py-20">
       <div class="mx-auto max-w-5xl">
-        <h1 class="text-3xl font-bold leading-tight md:text-5xl">{locksmith.h1}</h1>
-        <p class="mt-6 max-w-4xl text-lg leading-relaxed text-teal-100">{heroText}</p>
+        <h1 class="text-3xl font-bold leading-tight md:text-5xl">{carpenter.h1}</h1>
+        <p class="mt-6 max-w-4xl text-lg leading-relaxed text-amber-100">{heroText}</p>
         <a
           href="#contact"
-          class="mt-8 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-50"
+          class="mt-8 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-amber-800 transition hover:bg-amber-50"
         >
           {cta.buttonText}
         </a>
@@ -111,14 +113,14 @@ const faqSchema = {
 
     <section id="services" class="px-4 py-12 md:py-16" aria-labelledby="services-heading">
       <div class="mx-auto max-w-5xl space-y-6">
-        <h2 id="services-heading" class="sr-only">Υπηρεσίες Κλειδαρά</h2>
+        <h2 id="services-heading" class="sr-only">Υπηρεσίες Ξυλουργού</h2>
         {sections.map((section) => (
           <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
             <h2 class="text-2xl font-bold text-gray-900">{section.heading}</h2>
             <p class="mt-4 leading-relaxed text-gray-700">{section.content}</p>
             {section.priceRange && (
               <p class="mt-4 font-medium text-gray-900">
-                Ενδεικτικό εύρος τιμής: <span class="text-emerald-700">{section.priceRange}</span>
+                Ενδεικτικό εύρος τιμής: <span class="text-amber-800">{section.priceRange}</span>
               </p>
             )}
           </article>
@@ -135,7 +137,7 @@ const faqSchema = {
               <li>
                 <a
                   href={`/${category.slug}`}
-                  class="block rounded-lg border border-gray-200 bg-white px-5 py-4 font-medium text-emerald-700 transition hover:border-emerald-300 hover:bg-emerald-50"
+                  class="block rounded-lg border border-gray-200 bg-white px-5 py-4 font-medium text-amber-800 transition hover:border-amber-300 hover:bg-amber-50"
                 >
                   {category.nameGr}
                 </a>
@@ -148,7 +150,7 @@ const faqSchema = {
 
     <section id="faq" itemscope itemtype="https://schema.org/FAQPage" class="px-4 py-12 md:py-16" aria-labelledby="faq-heading">
       <div class="mx-auto max-w-5xl">
-        <h2 id="faq-heading" class="text-2xl font-bold text-gray-900 md:text-3xl">Συχνές Ερωτήσεις για {locksmithAccusative}</h2>
+        <h2 id="faq-heading" class="text-2xl font-bold text-gray-900 md:text-3xl">Συχνές Ερωτήσεις για {carpenterAccusative}</h2>
         <div class="mt-6 space-y-4">
           {faq.map((item) => (
             <article
@@ -167,13 +169,13 @@ const faqSchema = {
       </div>
     </section>
 
-    <section id="contact" class="bg-emerald-700 px-4 py-12 text-white md:py-16" aria-labelledby="contact-heading">
+    <section id="contact" class="bg-amber-800 px-4 py-12 text-white md:py-16" aria-labelledby="contact-heading">
       <div class="mx-auto max-w-4xl text-center">
         <h2 id="contact-heading" class="text-2xl font-bold md:text-3xl">{cta.heading}</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-emerald-100">{cta.text}</p>
+        <p class="mx-auto mt-4 max-w-2xl text-amber-100">{cta.text}</p>
         <a
-          href={`mailto:info@greekhandy.gr?subject=${encodeURIComponent(`Ζητώ προσφορά για ${locksmithAccusative}`)}`}
-          class="mt-6 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-50"
+          href={`mailto:info@greekhandy.gr?subject=${encodeURIComponent(`Ζητώ προσφορά για ${carpenterAccusative}`)}`}
+          class="mt-6 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-amber-800 transition hover:bg-amber-50"
         >
           {cta.buttonText}
         </a>
