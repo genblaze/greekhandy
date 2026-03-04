@@ -169,3 +169,25 @@ create policy "Anyone can insert message moderation actions" on message_moderati
 
 create policy "Anyone can read message moderation actions" on message_moderation_actions
   for select using (true);
+
+-- 7. Review moderation audit trail (idempotent approve/reject actions)
+create table if not exists review_moderation_actions (
+  id uuid default gen_random_uuid() primary key,
+  review_id uuid not null references reviews(id) on delete cascade,
+  action text not null check (action in ('approve', 'reject')),
+  actor_identifier text not null,
+  actor_role text not null default 'moderator',
+  metadata jsonb default '{}'::jsonb,
+  acted_at timestamptz default now()
+);
+
+create unique index if not exists uq_review_moderation_actions_review_id on review_moderation_actions(review_id);
+create index if not exists idx_review_moderation_actions_actor on review_moderation_actions(actor_identifier, acted_at desc);
+
+alter table review_moderation_actions enable row level security;
+
+create policy "Anyone can insert review moderation actions" on review_moderation_actions
+  for insert with check (true);
+
+create policy "Anyone can read review moderation actions" on review_moderation_actions
+  for select using (true);
