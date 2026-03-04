@@ -857,8 +857,11 @@ for (const message of threadMessages) {
           <p id="thread-history-state" class="sr-only" aria-live="polite" aria-atomic="true">{historyStateSummary}</p>
           <div class={`mt-3 rounded-xl border px-3 py-3 text-xs ${historyStateToneClass}`} role={historyStateAriaRole} aria-live={historyStateAriaLive} aria-atomic="true" aria-labelledby="thread-history-state-title" aria-describedby="thread-history-state-summary thread-history-state-support thread-history-state-recovery">
             <div class="flex flex-wrap items-start justify-between gap-2">
-              <p id="thread-history-state-title" class="font-semibold uppercase tracking-[0.1em] opacity-80">Κατάσταση ιστορικού</p>
-              <p class="rounded-full border border-current/30 bg-white/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em]">Focus: {historyStateFocusLabel}</p>
+              <p id="thread-history-state-title" class="font-semibold uppercase tracking-[0.1em] opacity-80">Κατάσταση προβολής</p>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <p class={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] ${historyStatePhaseClass}`}>{historyStatePhaseLabel}</p>
+                <p class="rounded-full border border-current/30 bg-white/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em]">Focus: {historyStateFocusLabel}</p>
+              </div>
             </div>
             <p class="mt-1 text-sm font-semibold">{historyStateTitle}</p>
             <p id="thread-history-state-summary" class="mt-1">{historyStateSummary}</p>
@@ -875,6 +878,7 @@ for (const message of threadMessages) {
           <div class="mt-4 space-y-3" aria-describedby="thread-history-description" role="region" aria-label="Ροή ιστορικού και καταστάσεων thread">
             {showLoadingState && (
               <div class="rounded-xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-xs text-sky-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-loading-title" aria-describedby="thread-history-loading-description">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-800">Κατάσταση προβολής · Loading</p>
                 <p id="thread-history-loading-title" class="font-semibold">Το ιστορικό συγχρονίζεται αυτή τη στιγμή.</p>
                 <p id="thread-history-loading-description" class="mt-1">Αν η φόρτωση παραμείνει στάσιμη, επαναφορτώστε το thread για νέα απόπειρα ανάκτησης.</p>
                 <a href={threadViewHref} class="mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
@@ -899,6 +903,7 @@ for (const message of threadMessages) {
 
             {!showLoadingState && hasPartialThreadHistory && (
               <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-partial-title" aria-describedby="thread-history-partial-description">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-800">Κατάσταση προβολής · Partial</p>
                 <p id="thread-history-partial-title" class="font-semibold">Το ιστορικό φορτώθηκε μερικώς.</p>
                 <p id="thread-history-partial-description" class="mt-1 text-xs">Ορισμένα μηνύματα ή moderation στοιχεία μπορεί να λείπουν μέχρι να ολοκληρωθεί επιτυχής επανάκτηση.</p>
                 <a href={threadViewHref} class="mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
@@ -909,6 +914,7 @@ for (const message of threadMessages) {
 
             {!showLoadingState && !threadLoadError && threadMessages.length === 0 && (
               <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-6 shadow-sm" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-empty-title" aria-describedby="thread-history-empty-description thread-history-empty-support">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Κατάσταση προβολής · Empty</p>
                 <p id="thread-history-empty-title" class="text-lg font-semibold text-slate-900">Δεν υπάρχουν μηνύματα ακόμη.</p>
                 <p id="thread-history-empty-description" class="mt-1 text-sm text-slate-600">Στείλτε το πρώτο μήνυμα για να ξεκινήσει η συνομιλία.</p>
                 <p id="thread-history-empty-support" class="mt-2 text-xs text-slate-500">Οι καταστάσεις αναφοράς, μπλοκαρίσματος και απόκρυψης εμφανίζονται αυτόματα όταν υπάρξει activity.</p>
@@ -927,6 +933,7 @@ for (const message of threadMessages) {
             )}
             {!showLoadingState && threadLoadError && threadMessages.length === 0 && (
               <div class="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-6 text-rose-900 shadow-sm" role="alert" aria-live="assertive" aria-labelledby="thread-history-error-title" aria-describedby="thread-history-error-description">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-700">Κατάσταση προβολής · Error</p>
                 <p id="thread-history-error-title" class="text-lg font-semibold">Το ιστορικό δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
                 <p id="thread-history-error-description" class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση μηνυμάτων για το thread.</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
@@ -1130,6 +1137,8 @@ for (const message of threadMessages) {
               data-composer-state={composerInitialState}
               data-focus-composer={messageStatus === 'invalid' || messageStatus === 'error' ? 'true' : 'false'}
               data-composer-draft-key={composerDraftStorageKey}
+              data-composer-thread-id={threadId}
+              data-composer-viewer-email={viewerEmail}
               data-clear-composer-draft-on-load={shouldClearComposerDraftOnLoad ? 'true' : 'false'}
               data-pending-live-label="Η αποστολή μηνύματος εκτελείται."
               data-pending-timeout-label="Η αποστολή καθυστέρησε. Ελέγξτε το δίκτυο και δοκιμάστε ξανά."
@@ -1137,7 +1146,7 @@ for (const message of threadMessages) {
               data-pending-recovery-label="Η αποστολή επανήλθε. Ελέγξτε το μήνυμα και προσπαθήστε ξανά."
               data-pending-timeout-ms="18000"
               aria-labelledby="thread-composer-title"
-              aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live composer-submit-live thread-offline-alert"
+              aria-describedby={composerAriaDescribedBy}
             >
               <div class="flex flex-wrap items-start justify-between gap-2">
                 <div>
@@ -1154,6 +1163,29 @@ for (const message of threadMessages) {
                   {composerInitialStateLabel}
                 </span>
               </div>
+              {hasFailedSendStatus && (
+                <div id="composer-retry-panel" class={`mt-3 rounded-xl border px-3 py-3 text-xs ${composerRetryPanelToneClass}`} role="status" aria-live="polite" aria-atomic="true">
+                  <p class="font-semibold">{composerRetryPanelTitle}</p>
+                  <p class="mt-1">{composerRetryPanelDescription}</p>
+                  <p class="mt-1 text-[11px] font-medium">Το πρόχειρο αποθηκεύεται αυτόματα ανά thread και επαναφέρεται μετά από ανανέωση.</p>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      data-retry-send
+                      class="inline-flex rounded-md border border-current/40 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white"
+                    >
+                      Επανάληψη αποστολής
+                    </button>
+                    <button
+                      type="button"
+                      data-restore-draft
+                      class="inline-flex rounded-md border border-current/40 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white"
+                    >
+                      Επαναφορά πρόχειρου
+                    </button>
+                  </div>
+                </div>
+              )}
               <input type="hidden" name="professionalSlug" value={professionalSlug} />
               <input type="hidden" name="threadId" value={threadId} />
               <input type="hidden" name="senderName" value="Participant" />
@@ -1168,7 +1200,7 @@ for (const message of threadMessages) {
                 required
                 maxlength="2000"
                 minlength="1"
-                aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live composer-submit-live"
+                aria-describedby={composerAriaDescribedBy}
                 aria-keyshortcuts="Control+Enter Meta+Enter"
                 aria-invalid="false"
                 class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm leading-6 text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-100"
@@ -1671,24 +1703,71 @@ for (const message of threadMessages) {
       const offlineAlert = document.querySelector('#thread-offline-alert');
       const pendingTimeouts = new WeakMap();
       const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
-      const getDraftValue = (key) => {
-        if (!key) return '';
+      const getSafeStorage = (storageName) => {
         try {
-          return window.sessionStorage.getItem(key) || '';
+          const storage = window[storageName];
+          if (!storage) return null;
+          storage.getItem('__gh_draft_probe__');
+          return storage;
         } catch {
-          return '';
+          return null;
         }
       };
-      const setDraftValue = (key, value) => {
-        if (!key) return;
+      const draftStores = [
+        getSafeStorage('localStorage'),
+        getSafeStorage('sessionStorage')
+      ].filter((storage) => storage !== null);
+      const normalizeDraftRecord = (rawValue) => {
+        if (typeof rawValue !== 'string' || rawValue.length === 0) {
+          return { value: '', updatedAt: 0, threadId: '', viewerEmail: '' };
+        }
         try {
-          if (value) {
-            window.sessionStorage.setItem(key, value);
-            return;
-          }
-          window.sessionStorage.removeItem(key);
+          const parsed = JSON.parse(rawValue);
+          if (!parsed || typeof parsed !== 'object') throw new Error('Invalid draft payload.');
+          const value = typeof parsed.value === 'string' ? parsed.value : '';
+          const updatedAt = Number.isFinite(parsed.updatedAt) ? parsed.updatedAt : 0;
+          const threadId = typeof parsed.threadId === 'string' ? parsed.threadId : '';
+          const viewerEmail = typeof parsed.viewerEmail === 'string' ? parsed.viewerEmail : '';
+          return { value, updatedAt, threadId, viewerEmail };
         } catch {
-          // Ignore storage failures to avoid submit regressions.
+          return { value: rawValue, updatedAt: 0, threadId: '', viewerEmail: '' };
+        }
+      };
+      const getDraftRecord = (key) => {
+        if (!key) return { value: '', updatedAt: 0, threadId: '', viewerEmail: '' };
+        let latestRecord = { value: '', updatedAt: 0, threadId: '', viewerEmail: '' };
+        for (const storage of draftStores) {
+          try {
+            const rawValue = storage.getItem(key);
+            if (!rawValue) continue;
+            const candidate = normalizeDraftRecord(rawValue);
+            if (!candidate.value) continue;
+            if (candidate.updatedAt >= latestRecord.updatedAt) latestRecord = candidate;
+          } catch {
+            // Ignore per-storage failures and continue with fallback storage.
+          }
+        }
+        return latestRecord;
+      };
+      const setDraftRecord = (key, value, metadata = {}) => {
+        if (!key) return;
+        const normalizedValue = typeof value === 'string' ? value : '';
+        for (const storage of draftStores) {
+          try {
+            if (!normalizedValue.trim()) {
+              storage.removeItem(key);
+              continue;
+            }
+            const payload = JSON.stringify({
+              value: normalizedValue,
+              updatedAt: Date.now(),
+              threadId: metadata.threadId || '',
+              viewerEmail: metadata.viewerEmail || ''
+            });
+            storage.setItem(key, payload);
+          } catch {
+            // Ignore storage failures to avoid submit regressions.
+          }
         }
       };
       const syncOfflineSubmitAvailability = () => {
@@ -1856,10 +1935,34 @@ for (const message of threadMessages) {
         const error = isComposerForm ? form.querySelector('#composer-error') : null;
         const live = isComposerForm ? form.querySelector('#composer-live') : null;
         const composerState = isComposerForm ? form.querySelector('#composer-state') : null;
+        const retrySendButton = isComposerForm ? form.querySelector('[data-retry-send]') : null;
+        const restoreDraftButton = isComposerForm ? form.querySelector('[data-restore-draft]') : null;
         const draftKey = isComposerForm ? (form.getAttribute('data-composer-draft-key') || '') : '';
+        const composerThreadId = isComposerForm ? (form.getAttribute('data-composer-thread-id') || '') : '';
+        const composerViewerEmail = isComposerForm ? (form.getAttribute('data-composer-viewer-email') || '') : '';
         const clearDraftOnLoad = isComposerForm && form.getAttribute('data-clear-composer-draft-on-load') === 'true';
         const maxLength = textarea instanceof HTMLTextAreaElement && textarea.maxLength > 0 ? textarea.maxLength : 2000;
         let preserveInitialComposerFeedback = isComposerForm && ['success', 'error'].includes(form.getAttribute('data-composer-state') || '');
+        const persistDraft = (value) => {
+          setDraftRecord(draftKey, value, {
+            threadId: composerThreadId,
+            viewerEmail: composerViewerEmail
+          });
+        };
+        const restoreDraft = (options = {}) => {
+          if (!(textarea instanceof HTMLTextAreaElement)) return false;
+          const storedDraft = getDraftRecord(draftKey);
+          if (!storedDraft.value.trim()) {
+            if (options.announceMissing && draftLiveRegion instanceof HTMLElement) {
+              draftLiveRegion.textContent = 'Δεν υπάρχει αποθηκευμένο πρόχειρο για αυτό το thread.';
+            }
+            return false;
+          }
+          if (options.force !== true && textarea.value.trim()) return false;
+          textarea.value = storedDraft.value;
+          if (draftLiveRegion instanceof HTMLElement) draftLiveRegion.textContent = 'Επαναφέρθηκε πρόχειρο μηνύματος.';
+          return true;
+        };
 
         const setComposerState = (state, message) => {
           if (!(composerState instanceof HTMLElement)) return;
@@ -1885,8 +1988,7 @@ for (const message of threadMessages) {
           submitButton.disabled = length === 0 || isBusy || offline;
           submitButton.setAttribute('aria-disabled', submitButton.disabled ? 'true' : 'false');
           if (!isBusy) {
-            const draftValue = textarea.value.trim();
-            setDraftValue(draftKey, draftValue);
+            persistDraft(textarea.value);
           }
           if (counter) {
             counter.textContent = `${length} / ${maxLength}`;
@@ -1919,15 +2021,19 @@ for (const message of threadMessages) {
 
         if (textarea instanceof HTMLTextAreaElement) {
           if (clearDraftOnLoad) {
-            setDraftValue(draftKey, '');
-          } else {
-            const storedDraft = getDraftValue(draftKey);
-            if (!textarea.value.trim() && storedDraft) {
-              textarea.value = storedDraft;
-              if (draftLiveRegion instanceof HTMLElement) draftLiveRegion.textContent = 'Επαναφέρθηκε πρόχειρο μηνύματος.';
-            }
+            persistDraft('');
+          } else if (!textarea.value.trim()) {
+            restoreDraft();
           }
           textarea.addEventListener('input', syncComposer);
+          textarea.addEventListener('blur', () => {
+            syncComposer();
+            persistDraft(textarea.value);
+          });
+          window.addEventListener('pagehide', () => {
+            if (form.getAttribute('aria-busy') === 'true') return;
+            persistDraft(textarea.value);
+          });
           textarea.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
               if (error) error.classList.add('hidden');
@@ -1955,9 +2061,57 @@ for (const message of threadMessages) {
             }
             setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
             if (live) live.textContent = 'Αποστολή μηνύματος...';
+            persistDraft(textarea.value);
             form.requestSubmit(submitButton);
           });
-          textarea.addEventListener('blur', syncComposer);
+          if (retrySendButton instanceof HTMLButtonElement) {
+            retrySendButton.addEventListener('click', () => {
+              if (form.getAttribute('aria-busy') === 'true') return;
+              if (isOffline()) {
+                announcePendingState(form, 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου για retry.');
+                setFormFeedback(form, 'Δεν υπάρχει σύνδεση. Το retry θα είναι διαθέσιμο όταν επανέλθει το δίκτυο.', 'error');
+                setComposerState('error', 'Δεν υπάρχει σύνδεση για retry αποστολής.');
+                if (live) live.textContent = 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου.';
+                return;
+              }
+              if (textarea.value.trim().length === 0) {
+                const restored = restoreDraft({ force: true });
+                if (restored) {
+                  syncComposer();
+                  if (live) live.textContent = 'Επαναφέρθηκε πρόχειρο. Πατήστε ξανά επανάληψη αποστολής.';
+                } else {
+                  if (error) error.classList.remove('hidden');
+                  setComposerState('error', 'Δεν υπάρχει διαθέσιμο πρόχειρο για retry.');
+                  if (live) live.textContent = 'Δεν υπάρχει διαθέσιμο πρόχειρο για επανάληψη αποστολής.';
+                }
+                focusElement(textarea, {
+                  preventScroll: isCompactViewport(),
+                  announcement: 'Η εστίαση μεταφέρθηκε στο πεδίο μηνύματος για retry.'
+                });
+                return;
+              }
+              setComposerState('submitting', 'Επανάληψη αποστολής σε εξέλιξη...');
+              if (live) live.textContent = 'Επανάληψη αποστολής...';
+              persistDraft(textarea.value);
+              form.requestSubmit(submitButton);
+            });
+          }
+          if (restoreDraftButton instanceof HTMLButtonElement) {
+            restoreDraftButton.addEventListener('click', () => {
+              const restored = restoreDraft({ force: true, announceMissing: true });
+              if (!restored) {
+                setFormFeedback(form, 'Δεν βρέθηκε αποθηκευμένο πρόχειρο για αυτό το thread.', 'error');
+                return;
+              }
+              syncComposer();
+              setFormFeedback(form, 'Το πρόχειρο επαναφέρθηκε. Μπορείτε να συνεχίσετε ή να στείλετε ξανά.', 'neutral');
+              if (live) live.textContent = 'Το πρόχειρο επαναφέρθηκε από την αποθήκευση.';
+              focusElement(textarea, {
+                preventScroll: isCompactViewport(),
+                announcement: 'Επαναφέρθηκε πρόχειρο και η εστίαση μεταφέρθηκε στο πεδίο μηνύματος.'
+              });
+            });
+          }
           syncComposer();
         }
 
@@ -2009,6 +2163,7 @@ for (const message of threadMessages) {
             return;
           }
           if (isComposerForm) {
+            if (textarea instanceof HTMLTextAreaElement) persistDraft(textarea.value);
             setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
             if (live) live.textContent = 'Αποστολή μηνύματος...';
           }
