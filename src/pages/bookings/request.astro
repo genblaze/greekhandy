@@ -243,6 +243,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
 
         <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4" role="region" aria-label="Χρονοδιάγραμμα κατάστασης αιτήματος">
           <p class="text-xs font-semibold uppercase tracking-wide text-slate-600">Timeline αιτήματος</p>
+          <p class="mt-1 text-xs text-slate-600">Guardrail: οι μεταβάσεις ακολουθούν αυστηρούς κανόνες για αποφυγή αντικρουόμενων ενημερώσεων.</p>
           <ol class="mt-2 space-y-2">
             {timelineSteps.map((step) => {
               const isCurrent = moderationState === step.key;
@@ -273,7 +274,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
         )}
 
         {moderationResolution.hasUnknownData && (
-          <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive">
             Εντοπίστηκαν μη αναγνωρίσιμα δεδομένα κατάστασης. Προβάλλουμε προσωρινά την ασφαλή ένδειξη «Σε αναμονή».
           </div>
         )}

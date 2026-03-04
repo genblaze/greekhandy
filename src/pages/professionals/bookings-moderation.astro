@@ -138,12 +138,12 @@ const hasAnyBookings = bookings.length > 0;
           </p>
         )}
         {status === 'no-change' && (
-          <p class="mt-5 rounded-lg bg-blue-50 px-4 py-3 text-blue-800">
+          <p class="mt-5 rounded-lg bg-blue-50 px-4 py-3 text-blue-800" role="status" aria-live="polite">
             Δεν έγινε αλλαγή{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}, γιατί είναι ήδη στην κατάσταση {statusActual || 'target'}.
           </p>
         )}
         {status === 'stale' && (
-          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
+          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800" role="alert" aria-live="assertive">
             Batch-safe guardrail: η κατάσταση άλλαξε πριν την καταχώρηση{statusBookingId ? ` (αίτημα ${statusBookingId})` : ''}. Αναμενόταν {statusExpected || 'unknown'}, αλλά βρέθηκε {statusActual || 'unknown'}. Κάντε ανανέωση και ξαναδοκιμάστε.
           </p>
         )}
@@ -152,9 +152,9 @@ const hasAnyBookings = bookings.length > 0;
             Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isRescheduleOnlyFromApproved ? 'Αίτημα αλλαγής επιτρέπεται μόνο όταν η τρέχουσα κατάσταση είναι approved.' : isInvalidRescheduleResolution ? 'Η εκκρεμής αλλαγή κλείνει μόνο με approved, reschedule_rejected ή cancelled.' : isInvalidTransitionGuardrail ? 'Επιτρέπονται μόνο οι μεταβάσεις που ορίζονται στο lifecycle (pending→approved/rejected/cancelled, approved→reschedule_requested, reschedule_requested→approved/reschedule_rejected/cancelled).' : 'Ελέγξτε τους κανόνες μετάβασης.'}
           </p>
         )}
-        {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
+        {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800" role="alert" aria-live="assertive">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
         {status === 'invalid' && (
-          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
+          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800" role="alert" aria-live="assertive">
             Μη έγκυρα δεδομένα μετάβασης. Απαιτείται bookingId, expectedState και επιτρεπτό targetState (pending/approved/reschedule_requested/reschedule_rejected/rejected/cancelled).
             {statusReason === 'missing-or-invalid-expected-state' && ' Εντοπίστηκε κενό ή μη έγκυρο expectedState για batch-safe προστασία.'}
           </p>
