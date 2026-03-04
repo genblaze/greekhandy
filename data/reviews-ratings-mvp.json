@@ -1,6 +1,6 @@
 {
   "featureId": "reviews-ratings",
-  "version": "mvp-v2",
+  "version": "mvp-v3",
   "goal": "Collect trustworthy post-service feedback to improve conversion without heavy ops overhead.",
   "launchScope": {
     "surfaces": [
@@ -18,11 +18,35 @@
   "ratingModel": {
     "scale": "1-5 stars",
     "inputs": [
-      { "key": "overall", "type": "integer", "required": true, "min": 1, "max": 5 },
-      { "key": "comment", "type": "string", "required": true, "minLength": 20, "maxLength": 800 },
-      { "key": "jobType", "type": "string", "required": true },
-      { "key": "city", "type": "string", "required": false },
-      { "key": "wouldRecommend", "type": "boolean", "required": true }
+      {
+        "key": "overall",
+        "type": "integer",
+        "required": true,
+        "min": 1,
+        "max": 5
+      },
+      {
+        "key": "comment",
+        "type": "string",
+        "required": true,
+        "minLength": 20,
+        "maxLength": 800
+      },
+      {
+        "key": "jobType",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "city",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wouldRecommend",
+        "type": "boolean",
+        "required": true
+      }
     ],
     "computed": [
       "professional.averageRating (1 decimal)",
@@ -36,7 +60,12 @@
     }
   },
   "moderationPolicy": {
-    "states": ["pending", "published", "rejected", "flagged"],
+    "states": [
+      "pending",
+      "published",
+      "rejected",
+      "flagged"
+    ],
     "stateLabels": {
       "pending": "Σε έλεγχο",
       "published": "Δημοσιευμένη",
@@ -224,6 +253,38 @@
     "Average rating and review count update after publish",
     "Auto-reject and auto-flag rules trigger correctly",
     "Greek UX copy visible on submit, success, error, and empty states",
-    "JSON-LD aggregateRating and Review payloads can be generated from templates"
-  ]
+    "JSON-LD aggregateRating and Review payloads can be generated from templates",
+    "Verified badge appears only on published reviews with verifiedLead=true"
+  ],
+  "verifiedReviewBadgesMvp": {
+    "objective": "Show a clear trust signal only for reviews tied to a completed platform lead.",
+    "eligibilityRule": "badge shown when review.verifiedLead=true AND review.status=\"published\"",
+    "badgeSpec": {
+      "key": "verifiedBadge",
+      "labelEl": "Επιβεβαιωμένη αξιολόγηση",
+      "icon": "check-circle",
+      "placement": "next to review author line on profile review cards",
+      "tooltipEl": "Η αξιολόγηση προέρχεται από επιβεβαιωμένο αίτημα μέσω GreekHandy."
+    },
+    "nonEligibleBehavior": [
+      "no placeholder badge",
+      "no negative label (do not show \"Μη επιβεβαιωμένη\")"
+    ],
+    "implementationNotes": [
+      "reuse existing review.verifiedLead field; no schema migration",
+      "hide badge for pending/rejected/flagged reviews even if verifiedLead=true",
+      "include verifiedBadge=true|false in review list API response for UI simplicity"
+    ],
+    "qaChecks": [
+      "published + verifiedLead=true => badge visible",
+      "published + verifiedLead=false => no badge",
+      "pending/flagged/rejected => not publicly visible, therefore no badge on UI",
+      "Greek label and tooltip copy render correctly on mobile and desktop"
+    ],
+    "outOfScope": [
+      "multi-level verification types (invoice, ID, on-site proof)",
+      "badge filters/sorting (e.g., only verified)",
+      "backfill script for legacy reviews missing verifiedLead"
+    ]
+  }
 }
