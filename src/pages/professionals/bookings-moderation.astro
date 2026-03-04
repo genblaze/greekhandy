@@ -231,12 +231,12 @@ const hasAnyBookings = bookings.length > 0;
 
                 <p class="mt-3 text-sm text-gray-700"><strong>Μήνυμα:</strong> {safeText(booking.message, 'Δεν υπάρχουν λεπτομέρειες αιτήματος.')}</p>
                 {resolution.hasUnknownData && (
-                  <p class="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+                  <p class="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900" role="alert" aria-live="assertive">
                     Εντοπίστηκαν μη αναγνωρίσιμα δεδομένα κατάστασης και το αίτημα εμφανίζεται ως εκκρεμές για ασφάλεια.
                   </p>
                 )}
 
-                <div class="mt-4 flex flex-wrap items-center gap-3">
+                <div class="mt-4 flex flex-wrap items-center gap-3" role="group" aria-label={`Ενέργειες moderation για αίτημα ${bookingId}`}>
                   <a href={getBookingStatusPath(bookingId)} class="rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">
                     Προβολή σελίδας κατάστασης πελάτη
                   </a>
