@@ -12,6 +12,7 @@ interface Props {
 
 const { title, description, canonicalUrl, ogImage, twitterCard } = Astro.props;
 const hasCustomHead = Astro.slots.has('head');
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -30,6 +31,12 @@ const hasCustomHead = Astro.slots.has('head');
         <div class="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
           <a href="/" class="transition hover:text-slate-900">Αρχική</a>
           <a href="/#services" class="transition hover:text-slate-900">Υπηρεσίες</a>
+          <a
+            href="/blog"
+            class={`transition hover:text-slate-900 ${currentPath === '/blog' ? 'text-slate-900 underline decoration-2 underline-offset-8' : ''}`}
+          >
+            Οδηγοί
+          </a>
           <a href="/professionals" class="transition hover:text-slate-900">Επαγγελματίες</a>
           <a href="/#contact" class="rounded-full border border-slate-300 px-4 py-2 transition hover:border-slate-400 hover:bg-slate-100">Επικοινωνία</a>
         </div>
@@ -48,6 +55,7 @@ const hasCustomHead = Astro.slots.has('head');
           <div>
             <h3 class="mb-3 text-lg font-semibold text-slate-900">Δημοφιλείς Υπηρεσίες</h3>
             <ul class="space-y-2 text-sm">
+              <li><a href="/blog" class="transition hover:text-slate-900">Οδηγοί GreekHandy</a></li>
               <li><a href="/ilektrologoi" class="transition hover:text-slate-900">Ηλεκτρολόγοι</a></li>
               <li><a href="/ydravlikoi" class="transition hover:text-slate-900">Υδραυλικοί</a></li>
               <li><a href="/elaiokhrwmatistes" class="transition hover:text-slate-900">Ελαιοχρωματιστές</a></li>

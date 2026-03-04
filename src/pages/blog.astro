@@ -2,31 +2,142 @@
 import Layout from '../layouts/Layout.astro';
 
 const title = 'Blog GreekHandy | Οδηγοί και συμβουλές για υπηρεσίες σπιτιού';
-const description = 'Δείτε πρακτικούς οδηγούς, χρήσιμες συμβουλές και ενημερώσεις από το GreekHandy για εργασίες σπιτιού και επιλογή επαγγελματία.';
+const description =
+  'Πρακτικοί οδηγοί GreekHandy για συντήρηση σπιτιού, επιλογή επαγγελματία και σωστό προϋπολογισμό με σαφή, χρήσιμα βήματα.';
+
+const guides = [
+  {
+    title: 'Υδραυλικές βλάβες στο σπίτι: τι ελέγχετε πριν καλέσετε επαγγελματία',
+    excerpt:
+      'Checklist για διαρροές, πίεση νερού και ασφάλεια ώστε να περιγράψετε σωστά τη βλάβη και να πάρετε ακριβέστερη προσφορά.',
+    category: 'Υδραυλικά',
+    author: 'Μαρία Αντωνίου',
+    publishedAt: '2026-02-24',
+    dateLabel: '24 Φεβ 2026',
+    readingTime: '6 λεπτά',
+    href: '/ydravlikoi',
+    ctaLabel: 'Δείτε διαθέσιμους υδραυλικούς'
+  },
+  {
+    title: 'Ηλεκτρολογικός πίνακας: 7 ενδείξεις ότι χρειάζεστε άμεσο έλεγχο',
+    excerpt:
+      'Πότε οι συχνές πτώσεις ρελέ, οι οσμές ή η υπερθέρμανση πίνακα απαιτούν επίσκεψη πιστοποιημένου ηλεκτρολόγου.',
+    category: 'Ηλεκτρολογικά',
+    author: 'Νίκος Παπαϊωάννου',
+    publishedAt: '2026-02-19',
+    dateLabel: '19 Φεβ 2026',
+    readingTime: '5 λεπτά',
+    href: '/ilektrologoi',
+    ctaLabel: 'Βρείτε ηλεκτρολόγο στην περιοχή σας'
+  },
+  {
+    title: 'Service κλιματιστικού: πότε γίνεται, τι περιλαμβάνει, τι να ρωτήσετε',
+    excerpt:
+      'Καθαρισμός, έλεγχος απόδοσης και σωστές ερωτήσεις πριν κλείσετε ραντεβού για να παρατείνετε τη ζωή της μονάδας.',
+    category: 'Κλιματισμός',
+    author: 'Ελένη Κωστή',
+    publishedAt: '2026-02-12',
+    dateLabel: '12 Φεβ 2026',
+    readingTime: '7 λεπτά',
+    href: '/techniki-klimatismou',
+    ctaLabel: 'Αναζήτηση τεχνικού κλιματισμού'
+  },
+  {
+    title: 'Βάψιμο σπιτιού χωρίς αστοχίες: προετοιμασία χώρου και σωστό χρονοδιάγραμμα',
+    excerpt:
+      'Πρακτικά βήματα για στόκους, αστάρι, στρώσεις και χρόνο στεγνώματος ώστε να αποφύγετε επαναληπτικές εργασίες.',
+    category: 'Ελαιοχρωματισμοί',
+    author: 'Σταύρος Δεληγιάννης',
+    publishedAt: '2026-02-07',
+    dateLabel: '7 Φεβ 2026',
+    readingTime: '8 λεπτά',
+    href: '/elaiokhrwmatistes',
+    ctaLabel: 'Δείτε ελαιοχρωματιστές'
+  },
+  {
+    title: 'Καθαρισμός μετά από ανακαίνιση: τι να ζητήσετε στην προσφορά',
+    excerpt:
+      'Λεπτομερής λίστα για σκόνη οικοδομής, δύσκολες επιφάνειες και παράδοση χώρου ώστε να συγκρίνετε προσφορές δίκαια.',
+    category: 'Καθαρισμοί',
+    author: 'Άννα Γεωργίου',
+    publishedAt: '2026-01-30',
+    dateLabel: '30 Ιαν 2026',
+    readingTime: '6 λεπτά',
+    href: '/katharismoi',
+    ctaLabel: 'Σύγκριση συνεργείων καθαρισμού'
+  },
+  {
+    title: 'Πώς να συγκρίνετε προσφορές επαγγελματιών χωρίς να πέσετε στην παγίδα “φθηνό = καλύτερο”',
+    excerpt:
+      'Πλαίσιο αξιολόγησης με κόστος, υλικά, χρόνο απόκρισης και εγγύηση ώστε να επιλέγετε με ασφάλεια και διαφάνεια.',
+    category: 'Οδηγός επιλογής',
+    author: 'Συντακτική ομάδα GreekHandy',
+    publishedAt: '2026-01-24',
+    dateLabel: '24 Ιαν 2026',
+    readingTime: '9 λεπτά',
+    href: '/professionals',
+    ctaLabel: 'Δείτε επαγγελματίες'
+  }
+];
 ---
 
 <Layout title={title} description={description}>
-  <main class="mx-auto max-w-4xl px-4 py-14">
-    <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">GreekHandy Blog</p>
-    <h1 class="mt-2 text-3xl font-bold text-slate-900">Οδηγοί & Συμβουλές</h1>
-    <p class="mt-3 text-slate-600">
-      Ετοιμάζουμε τον νέο χώρο περιεχομένου του GreekHandy με πρακτικούς οδηγούς για κάθε υπηρεσία.
-      Μέχρι να δημοσιευτούν τα πρώτα άρθρα, μπορείτε να συνεχίσετε από τις βασικές σελίδες.
-    </p>
+  <main class="mx-auto max-w-6xl px-4 py-14 md:px-6">
+    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">GreekHandy Guides</p>
+      <h1 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Οδηγοί για σωστή επιλογή επαγγελματία και ασφαλείς εργασίες στο σπίτι</h1>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-600">
+        Συγκεντρώνουμε πρακτικά άρθρα για συχνές τεχνικές εργασίες, κόστη και σημεία ελέγχου πριν κλείσετε ραντεβού.
+        Κάθε οδηγός περιλαμβάνει καθαρά βήματα και σύνδεση με σχετικές υπηρεσίες GreekHandy.
+      </p>
+      <div class="mt-6 grid gap-3 text-sm sm:grid-cols-3">
+        <p class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700">
+          <span class="font-semibold text-slate-900">Συντακτική εποπτεία:</span> Ομάδα περιεχομένου GreekHandy
+        </p>
+        <p class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700">
+          <span class="font-semibold text-slate-900">Τελευταία ενημέρωση σελίδας:</span> 4 Μαρ 2026
+        </p>
+        <p class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700">
+          <span class="font-semibold text-slate-900">Εστίαση:</span> Χρήσιμα βήματα πριν την ανάθεση εργασίας
+        </p>
+      </div>
+    </section>
 
-    <section class="mt-6 grid gap-3 sm:grid-cols-2">
-      <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
-        Μετάβαση στην Αρχική
-      </a>
-      <a href="/professionals" class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
-        Βρείτε Επαγγελματία
-      </a>
-      <a href="/ilektrologoi" class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
-        Ηλεκτρολόγοι
-      </a>
-      <a href="/ydravlikoi" class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
-        Υδραυλικοί
-      </a>
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold text-slate-900">Πρόσφατοι οδηγοί</h2>
+      <div class="mt-4 grid gap-4 lg:grid-cols-2">
+        {guides.map((guide) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-slate-300 hover:shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">{guide.category}</p>
+            <h3 class="mt-2 text-xl font-semibold leading-snug text-slate-900">
+              <a href={guide.href} class="hover:text-blue-700">{guide.title}</a>
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{guide.excerpt}</p>
+            <dl class="mt-4 grid gap-2 text-xs text-slate-500 sm:grid-cols-3">
+              <div>
+                <dt class="font-semibold uppercase tracking-wide text-slate-600">Συντάκτης</dt>
+                <dd class="mt-1 text-sm text-slate-700">{guide.author}</dd>
+              </div>
+              <div>
+                <dt class="font-semibold uppercase tracking-wide text-slate-600">Ημερομηνία</dt>
+                <dd class="mt-1 text-sm text-slate-700">
+                  <time datetime={guide.publishedAt}>{guide.dateLabel}</time>
+                </dd>
+              </div>
+              <div>
+                <dt class="font-semibold uppercase tracking-wide text-slate-600">Χρόνος ανάγνωσης</dt>
+                <dd class="mt-1 text-sm text-slate-700">{guide.readingTime}</dd>
+              </div>
+            </dl>
+            <a
+              href={guide.href}
+              class="mt-5 inline-flex items-center rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900"
+            >
+              {guide.ctaLabel}
+            </a>
+          </article>
+        ))}
+      </div>
     </section>
   </main>
 </Layout>
