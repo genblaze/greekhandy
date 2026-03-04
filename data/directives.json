@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Homepage is endless scrolling and feels like an SEO dump. Redesign homepage information architecture to reduce scroll fatigue and improve UX while preserving SEO quality.",
+      "addedAt": "2026-03-04T21:28:01Z",
+      "source": "slack"
+    },
+    {
+      "directive": "Homepage hero contrast is unacceptable (especially on mobile): headline/body text blends into the pale background and is barely readable. Rework hero typography/colors to pass WCAG contrast and remove the washed-out gradient aesthetic that looks broken.",
+      "addedAt": "2026-03-04T21:32:21Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "A floating accessibility toolbar is rendering on top of content (seen across category/profile/blog pages), covering CTAs and text. Dock it unobtrusively or collapse it to a small trigger so it never blocks core UI.",
+      "addedAt": "2026-03-04T21:32:21Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "/blog is still a thin placeholder ('coming soon' style) with no real articles, which looks unfinished and low-trust. Publish actual Greek guides immediately (with author/date/reading time) or remove blog from primary nav until content exists.",
+      "addedAt": "2026-03-04T21:32:21Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Category pages like /ydravlikoi are bloated with an endless grid of low-context service cards. Add meaningful grouping + filters (urgency, city, budget) and reduce initial card dump so users can choose services without fatigue.",
+      "addedAt": "2026-03-04T21:32:21Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
