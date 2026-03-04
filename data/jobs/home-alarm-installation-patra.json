@@ -1,0 +1,14 @@
+{
+  "id": "home-alarm-installation-patra",
+  "slug": "egkatastasi-synagermou-katoikias-patra",
+  "nameGr": "Εγκατάσταση Συναγερμού Κατοικίας στην Πάτρα",
+  "nameEn": "Home Alarm Installation in Patras",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εγκατάσταση συναγερμού κατοικίας στην Πάτρα για πρόληψη διαρρήξεων και έλεγχο ασφάλειας σε πραγματικό χρόνο. Περιλαμβάνει μελέτη χώρου, προτάσεις εξοπλισμού και σωστή παραμετροποίηση.",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "200-780€",
+  "demand": "high",
+  "keywords": ["εγκατάσταση συναγερμού Πάτρα", "συναγερμός σπιτιού Πάτρα", "συστήματα ασφαλείας Πάτρα", "τεχνικός συναγερμών", "προστασία κατοικίας"],
+  "status": "researched"
+}

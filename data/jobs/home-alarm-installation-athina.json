@@ -1,0 +1,14 @@
+{
+  "id": "home-alarm-installation-athina",
+  "slug": "egkatastasi-synagermou-katoikias-athina",
+  "nameGr": "Εγκατάσταση Συναγερμού Κατοικίας στην Αθήνα",
+  "nameEn": "Home Alarm Installation in Athens",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εγκατάσταση συναγερμού κατοικίας στην Αθήνα με αισθητήρες, σειρήνα και απομακρυσμένο έλεγχο από κινητό. Στόχος είναι η άμεση ενίσχυση ασφάλειας διαμερισμάτων και μονοκατοικιών με επαγγελματική ρύθμιση.",
+  "typicalDuration": "3-6 ώρες",
+  "priceRangeEUR": "220-850€",
+  "demand": "high",
+  "keywords": ["εγκατάσταση συναγερμού Αθήνα", "συναγερμός σπιτιού Αθήνα", "συστήματα ασφαλείας κατοικίας", "ασύρματος συναγερμός", "τεχνικός συναγερμών Αθήνα"],
+  "status": "researched"
+}
