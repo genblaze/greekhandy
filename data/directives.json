@@ -1,10 +1,11 @@
 {
-  "active": [
+  "active": [],
+  "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
       "addedAt": "2026-03-04T16:13:27Z",
-      "source": "slack"
+      "source": "slack",
+      "processedAt": "2026-03-04T16:23:26Z"
     }
-  ],
-  "history": []
+  ]
 }

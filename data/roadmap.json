@@ -25,42 +25,10 @@
       "estimatedComplexity": "high"
     },
     {
-      "id": "reviews-ratings",
-      "name": "Reviews & Ratings",
-      "description": "MVP slices complete: review submission form (1-5 rating + comment), pending moderation workflow, approved review display on professional profiles with average rating, and verified review badge shown only for published reviews tied to verified leads.",
-      "priority": 4,
-      "status": "in-progress",
-      "estimatedComplexity": "high"
-    },
-    {
-      "id": "booking-system",
-      "name": "Booking System",
-      "description": "Μικρότερο shippable MVP: end-to-end booking request flow από profile page (submit -> pending) με internal moderation queue και αποφάσεις approve/reject που αφαιρούν το request από τα pending.",
-      "priority": 5,
-      "status": "in-progress",
-      "estimatedComplexity": "high"
-    },
-    {
-      "id": "messaging",
-      "name": "Messaging",
-      "description": "Smallest shippable Messaging MVP: one-to-one inquiry thread per lead (customer ↔ professional), plain-text messages, thread list with unread + last preview, and minimal moderation hooks (report message, block participant, admin hide message). Scope/acceptance: data/messaging-mvp.json.",
-      "priority": 6,
-      "status": "in-progress",
-      "estimatedComplexity": "high"
-    },
-    {
-      "id": "admin-dashboard",
-      "name": "Admin Dashboard",
-      "description": "MVP slice scoped for immediate post-messaging launch: protected /admin shell + queue count overview + unified moderation queue for pending profiles, reviews, bookings, and reported messages. Single-item moderation actions only. Spec: data/admin-dashboard-mvp.json.",
-      "priority": 7,
-      "status": "in-progress",
-      "estimatedComplexity": "medium"
-    },
-    {
       "id": "premium-sitewide-design-system",
       "name": "Premium Sitewide Experience",
       "description": "Airbnb-level premium visual and UX system across every surface: homepage, category pages, service pages, profile pages, booking flow, messaging threads, moderation/admin pages, and all states (empty/loading/error).",
-      "priority": 8,
+      "priority": 4,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
@@ -68,15 +36,55 @@
       "id": "worker-lead-engine",
       "name": "Worker Lead Engine",
       "description": "Continuous worker/pro lead acquisition via subagents with extensive coverage by trade × city, deduplication/scoring, and daily high-priority outreach-ready lists.",
+      "priority": 5,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "seo-sitewide-optimization",
+      "name": "Sitewide SEO Optimization",
+      "description": "Continuous technical + on-page SEO improvements across homepage, category pages, service pages, profiles, schema metadata, internal linking, and performance signals to maximize rankings in Greece.",
+      "priority": 6,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "reviews-ratings",
+      "name": "Reviews & Ratings",
+      "description": "MVP slices complete: review submission form (1-5 rating + comment), pending moderation workflow, approved review display on professional profiles with average rating, and verified review badge shown only for published reviews tied to verified leads.",
+      "priority": 7,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "booking-system",
+      "name": "Booking System",
+      "description": "Μικρότερο shippable MVP: end-to-end booking request flow από profile page (submit -> pending) με internal moderation queue και αποφάσεις approve/reject που αφαιρούν το request από τα pending.",
+      "priority": 8,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
+      "id": "messaging",
+      "name": "Messaging",
+      "description": "Smallest shippable Messaging MVP: one-to-one inquiry thread per lead (customer ↔ professional), plain-text messages, thread list with unread + last preview, and minimal moderation hooks (report message, block participant, admin hide message). Scope/acceptance: data/messaging-mvp.json.",
       "priority": 9,
       "status": "in-progress",
       "estimatedComplexity": "high"
     },
     {
+      "id": "admin-dashboard",
+      "name": "Admin Dashboard",
+      "description": "MVP slice scoped for immediate post-messaging launch: protected /admin shell + queue count overview + unified moderation queue for pending profiles, reviews, bookings, and reported messages. Single-item moderation actions only. Spec: data/admin-dashboard-mvp.json.",
+      "priority": 10,
+      "status": "in-progress",
+      "estimatedComplexity": "medium"
+    },
+    {
       "id": "payment",
       "name": "Payment System",
       "description": "Booking deposits via Stripe. Professional subscription plans. Invoice generation. Payment history.",
-      "priority": 10,
+      "priority": 11,
       "status": "planned",
       "estimatedComplexity": "high"
     }
