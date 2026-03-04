@@ -1,10 +1,10 @@
 {
-  "lastManagerRun": "2026-03-04T18:24:00Z",
+  "lastManagerRun": "2026-03-04T18:28:00Z",
   "activeAgents": {
     "research": {
       "status": "active",
-      "task": "Expand high-intent Greek service sub-jobs with city variants for SEO coverage",
-      "startedAt": "2026-03-04T18:12:00Z"
+      "task": "Research and add 20+ high-intent Greek service sub-jobs with Athens/Thessaloniki/Patra city variants in unsaturated categories",
+      "startedAt": "2026-03-04T18:28:00Z"
     },
     "builder": {
       "status": "active",
@@ -37,6 +37,6 @@
     "jobsResearched": 116,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Cycle run: verified active sessions via openclaw sessions (all 6 agents active), reviewed roadmap/leads/directives and recent commits, committed/pushed latest branch state (already up to date), no relaunches needed.",
+  "lastDecision": "Cycle run: checked active sessions via openclaw sessions --all-agents --active 15, relaunched idle greekhandy-research, kept other agents on current in-scope tasks.",
   "blockers": []
 }
