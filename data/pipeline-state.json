@@ -1,20 +1,20 @@
 {
-  "lastManagerRun": "2026-03-04T14:41:47Z",
+  "lastManagerRun": "2026-03-04T14:46:00Z",
   "activeAgents": {
     "research": {
       "status": "running",
-      "task": "Define smallest shippable Admin Dashboard MVP scope and acceptance criteria",
-      "startedAt": "2026-03-04T14:41:47Z"
+      "task": "Define smallest shippable Unified Moderation Queue MVP scope and acceptance criteria for /admin",
+      "startedAt": "2026-03-04T14:46:00Z"
     },
     "builder": {
       "status": "running",
-      "task": "Prepare Admin Dashboard MVP Greek copy/content assets for moderation and overview UX",
-      "startedAt": "2026-03-04T14:41:47Z"
+      "task": "Prepare Greek copy/content assets for Unified Moderation Queue filters, item labels, states, and actions",
+      "startedAt": "2026-03-04T14:46:00Z"
     },
     "developer": {
       "status": "running",
-      "task": "Implement minimal protected Admin Dashboard shell with queue overview",
-      "startedAt": "2026-03-04T14:41:47Z"
+      "task": "Implement minimal protected Unified Moderation Queue in /admin using existing data sources and moderation routes",
+      "startedAt": "2026-03-04T14:46:00Z"
     },
     "leads": {
       "status": "idle",
@@ -27,6 +27,6 @@
     "jobsResearched": 107,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Started Admin Dashboard MVP cycle by dispatching research, builder, and developer in parallel after Messaging MVP progress.",
+  "lastDecision": "Admin Dashboard shell is in place; dispatched a focused Unified Moderation Queue MVP cycle (research + copy + implementation) to complete the highest-impact missing admin workflow.",
   "blockers": []
 }
