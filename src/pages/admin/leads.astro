@@ -188,8 +188,11 @@ const hasLeads = directoryData.leads.length > 0;
                   <label for="leads-sort" class="text-sm font-semibold text-slate-700">Ταξινόμηση</label>
                   <select id="leads-sort" data-sort-select class="mt-1 block min-h-10 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
                     <option value="newest">Πιο πρόσφατα</option>
-                    <option value="score">Υψηλότερο score</option>
-                    <option value="name">Αλφαβητικά (Α-Ω)</option>
+                    <option value="score">Score</option>
+                    <option value="name">Όνομα</option>
+                    <option value="category">Κατηγορία</option>
+                    <option value="city">Πόλη</option>
+                    <option value="status">Κατάσταση</option>
                   </select>
                 </div>
 
@@ -225,6 +228,13 @@ const hasLeads = directoryData.leads.length > 0;
                     <button type="button" data-page-next class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Επόμενη</button>
                   </div>
                 </div>
+                <div class="mt-3 flex flex-wrap gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Sortable columns">
+                  <button type="button" data-sort-col="name" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Όνομα</button>
+                  <button type="button" data-sort-col="category" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Κατηγορία</button>
+                  <button type="button" data-sort-col="city" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Πόλη</button>
+                  <button type="button" data-sort-col="score" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Score</button>
+                  <button type="button" data-sort-col="status" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Κατάσταση</button>
+                </div>
                 <p data-live-region class="sr-only" aria-live="polite" aria-atomic="true"></p>
               </div>
 
@@ -247,6 +257,7 @@ const hasLeads = directoryData.leads.length > 0;
                     data-phone={lead.phone}
                     data-email={lead.email}
                     data-score={lead.score ?? -1}
+                    data-notes={lead.sourceUrl ? `Πηγή: ${lead.sourceUrl}` : 'Δεν υπάρχουν διαθέσιμες σημειώσεις για αυτό το lead.'}
                     data-newest={lead.newestTs}
                     class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-slate-300 hover:shadow md:p-5"
                   >
@@ -272,6 +283,12 @@ const hasLeads = directoryData.leads.length > 0;
                         {' '}
                         {lead.email ? <a class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900" href={`mailto:${lead.email}`}>{lead.email}</a> : '—'}
                       </p>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <button type="button" data-copy-phone class="inline-flex min-h-9 items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αντιγραφή τηλεφώνου</button>
+                      <button type="button" data-copy-email class="inline-flex min-h-9 items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αντιγραφή email</button>
+                      <button type="button" data-open-detail class="inline-flex min-h-9 items-center rounded-lg border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-800 transition hover:bg-indigo-100">Λεπτομέρειες</button>
                     </div>
 
                     {lead.sourceUrl && (
@@ -307,6 +324,29 @@ const hasLeads = directoryData.leads.length > 0;
                   Επαναφορά φίλτρων
                 </button>
               </section>
+
+              <section data-detail-panel class="pointer-events-none fixed inset-0 z-40 hidden">
+                <button type="button" data-detail-overlay class="absolute inset-0 bg-slate-900/40"></button>
+                <aside class="pointer-events-auto absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto border-l border-slate-200 bg-white p-5 shadow-2xl">
+                  <div class="flex items-start justify-between gap-3">
+                    <h2 class="text-lg font-bold text-slate-900">Lead λεπτομέρειες</h2>
+                    <button type="button" data-detail-close class="rounded-md border border-slate-300 px-2 py-1 text-xs font-semibold text-slate-700">Κλείσιμο</button>
+                  </div>
+                  <div class="mt-4 space-y-2 text-sm text-slate-700">
+                    <p><strong>Όνομα:</strong> <span data-detail-name>—</span></p>
+                    <p><strong>Κατηγορία:</strong> <span data-detail-category>—</span></p>
+                    <p><strong>Πόλη:</strong> <span data-detail-city>—</span></p>
+                    <p><strong>Κατάσταση:</strong> <span data-detail-status>—</span></p>
+                    <p><strong>Score:</strong> <span data-detail-score>—</span></p>
+                    <p><strong>Τηλέφωνο:</strong> <span data-detail-phone>—</span></p>
+                    <p><strong>Email:</strong> <span data-detail-email>—</span></p>
+                  </div>
+                  <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Preview σημειώσεων</p>
+                    <p data-detail-notes class="mt-2 text-sm text-slate-700">—</p>
+                  </div>
+                </aside>
+              </section>
             </section>
           </div>
         )}
@@ -328,6 +368,7 @@ const hasLeads = directoryData.leads.length > 0;
         const searchInput = root.querySelector('[data-search-input]');
         const clearSearchButton = root.querySelector('[data-clear-search]');
         const sortSelect = root.querySelector('[data-sort-select]');
+        const sortColumnButtons = Array.from(root.querySelectorAll('[data-sort-col]'));
         const resetButton = root.querySelector('[data-reset-filters]');
         const visibleCount = root.querySelector('[data-visible-count]');
         const resultsSummary = root.querySelector('[data-results-summary]');
@@ -348,6 +389,17 @@ const hasLeads = directoryData.leads.length > 0;
         const runtimeError = root.querySelector('[data-runtime-error]');
         const runtimeErrorMessage = root.querySelector('[data-runtime-error-message]');
         const runtimeReset = root.querySelector('[data-runtime-reset]');
+        const detailPanel = root.querySelector('[data-detail-panel]');
+        const detailOverlay = root.querySelector('[data-detail-overlay]');
+        const detailClose = root.querySelector('[data-detail-close]');
+        const detailName = root.querySelector('[data-detail-name]');
+        const detailCategory = root.querySelector('[data-detail-category]');
+        const detailCity = root.querySelector('[data-detail-city]');
+        const detailStatus = root.querySelector('[data-detail-status]');
+        const detailScore = root.querySelector('[data-detail-score]');
+        const detailPhone = root.querySelector('[data-detail-phone]');
+        const detailEmail = root.querySelector('[data-detail-email]');
+        const detailNotes = root.querySelector('[data-detail-notes]');
         const resultsRegion = root.querySelector('[data-results-region]');
 
         const parsedCards = cards
@@ -416,6 +468,7 @@ const hasLeads = directoryData.leads.length > 0;
           minScore: 'any',
           search: '',
           sort: 'newest',
+          sortDir: 'desc',
           page: 1,
           perPage: 15
         };
@@ -433,6 +486,7 @@ const hasLeads = directoryData.leads.length > 0;
           const minScore = params.get('minScore') || 'any';
           const search = (params.get('q') || '').trim();
           const sort = params.get('sort') || 'newest';
+          const dir = params.get('dir') || 'desc';
           const page = Number(params.get('page') || '1');
 
           state.category = validCategories.has(category) ? category : 'all';
@@ -440,7 +494,8 @@ const hasLeads = directoryData.leads.length > 0;
           state.status = status === 'all' || validStatuses.has(status) ? status : 'all';
           state.minScore = ['any', '80', '60', '40'].includes(minScore) ? minScore : 'any';
           state.search = search;
-          state.sort = sort === 'score' || sort === 'name' ? sort : 'newest';
+          state.sort = ['newest', 'score', 'name', 'category', 'city', 'status'].includes(sort) ? sort : 'newest';
+          state.sortDir = dir === 'asc' ? 'asc' : 'desc';
           state.page = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
         };
 
@@ -463,6 +518,19 @@ const hasLeads = directoryData.leads.length > 0;
           if (scoreFilter instanceof HTMLSelectElement) scoreFilter.value = state.minScore;
           if (searchInput instanceof HTMLInputElement) searchInput.value = state.search;
           if (sortSelect instanceof HTMLSelectElement) sortSelect.value = state.sort;
+          const sortLabels = { name: 'Όνομα', category: 'Κατηγορία', city: 'Πόλη', score: 'Score', status: 'Κατάσταση' };
+          sortColumnButtons.forEach((button) => {
+            if (!(button instanceof HTMLButtonElement)) return;
+            const key = button.dataset.sortCol || '';
+            const isActive = key === state.sort;
+            button.classList.toggle('bg-sky-600', isActive);
+            button.classList.toggle('border-sky-600', isActive);
+            button.classList.toggle('text-white', isActive);
+            button.classList.toggle('text-slate-700', !isActive);
+            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            const base = sortLabels[key] || key;
+            button.textContent = isActive ? `${base} ${state.sortDir === 'asc' ? '↑' : '↓'}` : base;
+          });
 
           if (categoryContext instanceof HTMLElement) {
             const label = categoryLabelByValue.get(state.category) || 'Όλες';
@@ -570,6 +638,7 @@ const hasLeads = directoryData.leads.length > 0;
           setParam('status', state.status);
           setParam('minScore', state.minScore, 'any');
           setParam('sort', state.sort, 'newest');
+          setParam('dir', state.sortDir, 'desc');
           setParam('page', String(state.page), '1');
 
           if (state.search.trim()) params.set('q', state.search.trim());
@@ -586,9 +655,16 @@ const hasLeads = directoryData.leads.length > 0;
           const filtered = parsedCards.filter((lead) => matchesLead(lead));
 
           filtered.sort((a, b) => {
-            if (state.sort === 'score') return b.score - a.score || b.newest - a.newest;
-            if (state.sort === 'name') return a.name.localeCompare(b.name, 'el') || b.newest - a.newest;
-            return b.newest - a.newest || b.score - a.score;
+            let result = 0;
+            if (state.sort === 'score') result = (a.score - b.score);
+            else if (state.sort === 'name') result = a.name.localeCompare(b.name, 'el');
+            else if (state.sort === 'category') result = a.categoryLabel.localeCompare(b.categoryLabel, 'el');
+            else if (state.sort === 'city') result = a.city.localeCompare(b.city, 'el');
+            else if (state.sort === 'status') result = a.statusLabel.localeCompare(b.statusLabel, 'el');
+            else result = a.newest - b.newest;
+
+            if (result === 0) result = a.name.localeCompare(b.name, 'el');
+            return state.sortDir === 'asc' ? result : -result;
           });
 
           lastFiltered = filtered;
@@ -676,6 +752,7 @@ const hasLeads = directoryData.leads.length > 0;
           state.minScore = 'any';
           state.search = '';
           state.sort = 'newest';
+          state.sortDir = 'desc';
           state.page = 1;
           syncControlsToState();
           scheduleRun();
@@ -758,8 +835,26 @@ const hasLeads = directoryData.leads.length > 0;
           const target = event.currentTarget;
           if (!(target instanceof HTMLSelectElement)) return;
           state.sort = target.value;
+          state.sortDir = target.value === 'name' || target.value === 'category' || target.value === 'city' || target.value === 'status' ? 'asc' : 'desc';
           state.page = 1;
           scheduleRun();
+        });
+
+        sortColumnButtons.forEach((button) => {
+          if (!(button instanceof HTMLButtonElement)) return;
+          button.addEventListener('click', () => {
+            const key = button.dataset.sortCol;
+            if (!key) return;
+            if (state.sort === key) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+            else {
+              state.sort = key;
+              state.sortDir = key === 'score' ? 'desc' : 'asc';
+            }
+            state.page = 1;
+            if (sortSelect instanceof HTMLSelectElement) sortSelect.value = state.sort;
+            syncControlsToState();
+            scheduleRun();
+          });
         });
 
         resetButton?.addEventListener('click', () => {
@@ -793,6 +888,27 @@ const hasLeads = directoryData.leads.length > 0;
           window.history.replaceState({}, '', window.location.pathname);
         });
 
+        const closeDetailPanel = () => {
+          if (detailPanel instanceof HTMLElement) {
+            detailPanel.classList.add('hidden');
+            detailPanel.classList.add('pointer-events-none');
+          }
+        };
+
+        const openDetailPanel = (entry) => {
+          if (!(detailPanel instanceof HTMLElement)) return;
+          if (detailName instanceof HTMLElement) detailName.textContent = entry.name || '—';
+          if (detailCategory instanceof HTMLElement) detailCategory.textContent = entry.categoryLabel || '—';
+          if (detailCity instanceof HTMLElement) detailCity.textContent = entry.city || '—';
+          if (detailStatus instanceof HTMLElement) detailStatus.textContent = entry.statusLabel || '—';
+          if (detailScore instanceof HTMLElement) detailScore.textContent = String(entry.score ?? '—');
+          if (detailPhone instanceof HTMLElement) detailPhone.textContent = entry.card.dataset.phone || '—';
+          if (detailEmail instanceof HTMLElement) detailEmail.textContent = entry.card.dataset.email || '—';
+          if (detailNotes instanceof HTMLElement) detailNotes.textContent = entry.card.dataset.notes || 'Δεν υπάρχουν σημειώσεις.';
+          detailPanel.classList.remove('hidden');
+          detailPanel.classList.remove('pointer-events-none');
+        };
+
         pagePrevButton?.addEventListener('click', () => {
           state.page = Math.max(1, state.page - 1);
           scheduleRun();
@@ -801,6 +917,40 @@ const hasLeads = directoryData.leads.length > 0;
         pageNextButton?.addEventListener('click', () => {
           state.page = Math.min(lastTotalPages, state.page + 1);
           scheduleRun();
+        });
+
+        detailOverlay?.addEventListener('click', closeDetailPanel);
+        detailClose?.addEventListener('click', closeDetailPanel);
+
+        list?.addEventListener('click', async (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const card = target.closest('[data-lead-card]');
+          if (!(card instanceof HTMLElement)) return;
+          const entry = parsedCards.find((item) => item.card === card);
+          if (!entry) return;
+
+          const copyPhone = target.closest('[data-copy-phone]');
+          const copyEmail = target.closest('[data-copy-email]');
+          const openDetail = target.closest('[data-open-detail]');
+
+          if (copyPhone) {
+            const value = card.dataset.phone || '';
+            if (!value) return;
+            await navigator.clipboard.writeText(value).catch(() => {});
+            if (liveRegion instanceof HTMLElement) liveRegion.textContent = 'Αντιγράφηκε το τηλέφωνο.';
+          }
+
+          if (copyEmail) {
+            const value = card.dataset.email || '';
+            if (!value) return;
+            await navigator.clipboard.writeText(value).catch(() => {});
+            if (liveRegion instanceof HTMLElement) liveRegion.textContent = 'Αντιγράφηκε το email.';
+          }
+
+          if (openDetail) {
+            openDetailPanel(entry);
+          }
         });
 
         exportCsvButton?.addEventListener('click', () => {
