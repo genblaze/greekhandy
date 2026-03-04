@@ -3,3 +3,36 @@
 body {
   font-family: 'Inter', system-ui, sans-serif;
 }
+
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
+  position: fixed;
+  right: max(0.75rem, env(safe-area-inset-right));
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  top: auto !important;
+  left: auto !important;
+  z-index: 45;
+  max-width: min(20rem, calc(100vw - 1.5rem));
+  max-height: min(70vh, 32rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  contain: paint;
+}
+
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[aria-expanded='false'],
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar).is-collapsed,
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[data-gh-widget-expanded='false'] {
+  overflow: hidden;
+  max-height: 2.75rem;
+}
+
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) :is(a, button, input, select, textarea) {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
+    max-width: min(18rem, calc(100vw - 1rem));
+    right: max(0.5rem, env(safe-area-inset-right));
+    bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}

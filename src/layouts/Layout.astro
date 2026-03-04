@@ -70,5 +70,57 @@ const currentPath = Astro.url.pathname;
         </div>
       </div>
     </footer>
+
+    <script is:inline>
+      (() => {
+        const toolbarSelector = '[data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar';
+        const schedule = (callback) => {
+          if (typeof window.requestIdleCallback === 'function') {
+            window.requestIdleCallback(() => callback(), { timeout: 1200 });
+            return;
+          }
+          window.setTimeout(callback, 0);
+        };
+        const syncToolbarState = (toolbar) => {
+          const collapsedByAttr = toolbar.getAttribute('aria-expanded') === 'false';
+          const collapsedByClass = toolbar.classList.contains('is-collapsed');
+          toolbar.setAttribute('data-gh-widget-expanded', collapsedByAttr || collapsedByClass ? 'false' : 'true');
+        };
+        const attachToolbar = (node) => {
+          if (!(node instanceof HTMLElement) || node.dataset.ghWidgetBound === 'true') return;
+          node.dataset.ghWidgetBound = 'true';
+          syncToolbarState(node);
+
+          const stateObserver = new MutationObserver(() => {
+            syncToolbarState(node);
+          });
+          stateObserver.observe(node, {
+            attributes: true,
+            attributeFilter: ['aria-expanded', 'class']
+          });
+        };
+        const scanToolbars = () => {
+          for (const toolbar of document.querySelectorAll(toolbarSelector)) {
+            attachToolbar(toolbar);
+          }
+        };
+        const start = () => {
+          schedule(scanToolbars);
+          if (!(document.body instanceof HTMLElement)) return;
+          const discoveryObserver = new MutationObserver(() => {
+            schedule(scanToolbars);
+          });
+          discoveryObserver.observe(document.body, { childList: true, subtree: true });
+          window.setTimeout(() => {
+            discoveryObserver.disconnect();
+          }, 20000);
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', start, { once: true });
+          return;
+        }
+        start();
+      })();
+    </script>
   </body>
 </html>

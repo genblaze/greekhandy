@@ -28,7 +28,7 @@ const showReportedOnly = (url.searchParams.get('reported') ?? '') === '1';
 const activeFilterCount = Number(showUnreadOnly) + Number(showBlockedOnly) + Number(showReportedOnly);
 const hasListFilters = Boolean(searchQueryRaw) || activeFilterCount > 0 || showUnreadFirst;
 const knownListStatuses = new Set(['', 'loading', 'invalid', 'forbidden', 'error']);
-const showLoadingState = status === 'loading';
+const requestedLoadingState = status === 'loading';
 const hasUnknownStatus = status !== '' && !knownListStatuses.has(status);
 const formatDateTime = (value: string) => new Date(value).toLocaleString('el-GR');
 const formatUnreadCount = (count: number) => (count === 1 ? '1 μη αναγνωσμένο' : `${count} μη αναγνωσμένα`);
@@ -507,6 +507,8 @@ const triageNormalCount = triageOrderedThreads.filter((thread) => thread.priorit
 const triagePositionByThread = new Map(triageOrderedThreads.map((thread, index) => [thread.threadId, index + 1]));
 const hasPartialResults = Boolean(listLoadError) && filteredThreadsCount > 0;
 const hasViewerParamIssue = !hasViewerEmail || !hasValidViewerEmail;
+const showLoadingState = requestedLoadingState && !listLoadError && filteredThreadsCount === 0;
+const hasRecoveredLoadingState = requestedLoadingState && !showLoadingState;
 const listStateSummary = !hasViewerEmail
   ? 'Προσθέστε `viewerEmail` στο URL για να φορτωθούν οι συνομιλίες.'
   : !hasValidViewerEmail
@@ -635,7 +637,7 @@ const inboxReadinessHint = listLoadError
 ---
 
 <Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με καθαρή ιεραρχία, moderation badges και βασικές ενέργειες.">
-  <main class="messages-shell mx-auto max-w-6xl px-4 py-10 md:py-14">
+  <main class="messages-shell mx-auto max-w-6xl px-4 py-10 md:py-14" data-clear-status-on-load={hasRecoveredLoadingState ? 'true' : null}>
     <a href="#messages-results" class="messages-skip-link">Μετάβαση στη λίστα συνομιλιών</a>
     <section class="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-gradient-to-br from-[#f9fcff] via-white to-[#f4f7fb] p-6 shadow-[0_12px_40px_-24px_rgba(15,23,42,0.35)] md:p-8">
       <div class="flex flex-wrap items-start justify-between gap-4">
@@ -704,25 +706,25 @@ const inboxReadinessHint = listLoadError
 
     <section class="messages-toast-stack" aria-label="Καταστάσεις λίστας συνομιλιών">
       {status === 'invalid' && (
-        <div class="messages-toast messages-toast--amber js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+        <div class="messages-toast messages-toast--amber js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true" data-clear-status="true">
           <p class="text-sm font-semibold">Δεν ήταν δυνατή η ενημέρωση ως αναγνωσμένη λόγω μη έγκυρων στοιχείων.</p>
           <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
       {status === 'forbidden' && (
-        <div class="messages-toast messages-toast--rose js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+        <div class="messages-toast messages-toast--rose js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true" data-clear-status="true">
           <p class="text-sm font-semibold">Δεν έχετε πρόσβαση σε αυτό το thread.</p>
           <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
       {status === 'error' && (
-        <div class="messages-toast messages-toast--rose js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+        <div class="messages-toast messages-toast--rose js-messages-toast" role="alert" tabindex="-1" data-focus-on-load="true" data-clear-status="true">
           <p class="text-sm font-semibold">Προέκυψε σφάλμα κατά την ενημέρωση της κατάστασης. Δοκιμάστε ξανά.</p>
           <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
       {showLoadingState && (
-        <div class="messages-toast messages-toast--sky js-messages-toast" role="status" aria-live="polite" tabindex="-1" data-autohide-ms="0">
+        <div class="messages-toast messages-toast--sky js-messages-toast" role="status" aria-live="polite" tabindex="-1" data-autohide-ms="0" data-clear-status="true">
           <p class="flex items-center gap-2 text-sm font-semibold">
             <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700" aria-hidden="true"></span>
             Φόρτωση συνομιλιών...
@@ -730,8 +732,14 @@ const inboxReadinessHint = listLoadError
           <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
+      {hasRecoveredLoadingState && (
+        <div class="messages-toast messages-toast--emerald js-messages-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true" data-autohide-ms="3600" data-clear-status="true">
+          <p class="text-sm font-semibold">Ο συγχρονισμός ολοκληρώθηκε και η λίστα είναι διαθέσιμη.</p>
+          <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
       {hasUnknownStatus && (
-        <div class="messages-toast messages-toast--slate js-messages-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
+        <div class="messages-toast messages-toast--slate js-messages-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true" data-clear-status="true">
           <p class="text-sm font-semibold">Ελήφθη άγνωστη κατάσταση ενημέρωσης: <code>{status}</code>. Επαναφορτώστε τη σελίδα.</p>
           <button type="button" class="messages-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
@@ -1412,6 +1420,12 @@ const inboxReadinessHint = listLoadError
       color: rgb(51 65 85);
     }
 
+    .messages-toast--emerald {
+      border-color: rgb(167 243 208);
+      background: rgb(236 253 245);
+      color: rgb(6 95 70);
+    }
+
     .messages-toast__dismiss {
       flex-shrink: 0;
       border-radius: 0.6rem;
@@ -1693,9 +1707,28 @@ const inboxReadinessHint = listLoadError
   <script is:inline>
     (() => {
       const toasts = Array.from(document.querySelectorAll('.js-messages-toast'));
+      const clearStatusParam = () => {
+        try {
+          const currentUrl = new URL(window.location.href);
+          if (!currentUrl.searchParams.has('status')) return;
+          currentUrl.searchParams.delete('status');
+          const nextQuery = currentUrl.searchParams.toString();
+          const nextUrl = `${currentUrl.pathname}${nextQuery ? `?${nextQuery}` : ''}${currentUrl.hash}`;
+          window.history.replaceState(window.history.state, '', nextUrl);
+        } catch {
+          // Ignore malformed URL scenarios and keep UX functional.
+        }
+      };
+      const messagesShell = document.querySelector('.messages-shell');
+      if (messagesShell instanceof HTMLElement && messagesShell.dataset.clearStatusOnLoad === 'true') {
+        clearStatusParam();
+      }
       const dismissToast = (toast) => {
         if (!(toast instanceof HTMLElement) || toast.dataset.removed === 'true') return;
         toast.dataset.removed = 'true';
+        if (toast.dataset.clearStatus === 'true') {
+          clearStatusParam();
+        }
         const focusFallback = toast.contains(document.activeElement)
           ? (document.querySelector('#thread-search') || document.querySelector('#messages-results'))
           : null;

@@ -1086,29 +1086,6 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       color: rgb(154 52 18);
     }
 
-    .home-root :is([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
-      position: fixed;
-      right: 0.75rem;
-      bottom: 0.75rem;
-      top: auto !important;
-      left: auto !important;
-      z-index: 20;
-      max-width: min(20rem, calc(100vw - 1.5rem));
-    }
-
-    .home-root :is([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[aria-expanded="false"],
-    .home-root :is([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar).is-collapsed {
-      overflow: hidden;
-      max-height: 2.75rem;
-    }
-
-    .home-root :is([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) :is(a, button) {
-      max-width: 100%;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
     @media (max-width: 768px) {
       .home-root .gh-display {
         line-height: 1.2;
