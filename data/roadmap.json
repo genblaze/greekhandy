@@ -17,6 +17,14 @@
       "estimatedComplexity": "high"
     },
     {
+      "id": "qa-critical-fixes-wave-3",
+      "name": "QA Critical Fixes (Wave 3)",
+      "description": "Wave 3 QA/founder directives: redesign homepage information architecture to reduce scroll fatigue while preserving SEO, fix homepage hero contrast/typography for WCAG readability (especially mobile), reposition/collapse floating accessibility toolbar so it never blocks core UI, replace thin /blog placeholder with real Greek editorial guides (author/date/reading-time) or demote from primary navigation, and restructure category pages (e.g. /ydravlikoi) with meaningful grouping + urgency/city/budget filtering and progressive disclosure.",
+      "priority": 2,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "leads-directory-page",
       "name": "Leads Directory Page",
       "description": "Create an internal leads page to view worker leads by category with related filters (city, status, score/search) for fast sourcing and outreach prep.",
