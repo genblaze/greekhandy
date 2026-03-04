@@ -1,0 +1,20 @@
+{
+  "id": "ac-drain-line-cleaning-service-almyros",
+  "slug": "katharismos-grammis-aporrois-klimatistikou-almyros",
+  "nameGr": "Καθαρισμός Γραμμής Απορροής Κλιματιστικού στον Αλμυρό",
+  "nameEn": "AC Drain Line Cleaning Service in Αλμυρός",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Καθαρισμός γραμμής απορροής κλιματιστικού στον Αλμυρό για αποφυγή διαρροών νερού και οσμών στον εσωτερικό χώρο. SEO intent: καλύπτει αναζητήσεις «κλιματιστικό στάζει νερά Αλμυρός».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "45-140€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό στάζει νερά Αλμυρός",
+    "καθαρισμός αποχέτευσης ac Αλμυρός",
+    "τεχνικός κλιματισμού διαρροή",
+    "service drain line κλιματιστικού",
+    "οσμές κλιματιστικού λύση"
+  ],
+  "status": "researched"
+}
