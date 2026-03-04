@@ -1,0 +1,20 @@
+{
+  "id": "ev-charger-installation-home-rodos",
+  "slug": "egkatastasi-fortisti-ilektrikou-autokinitou-rodos",
+  "nameGr": "Εγκατάσταση Οικιακού Φορτιστή Ηλεκτρικού Αυτοκινήτου στη Ρόδο",
+  "nameEn": "Home EV Charger Installation in Ρόδος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση οικιακού φορτιστή ηλεκτρικού αυτοκινήτου στη Ρόδο με έλεγχο πίνακα και ασφαλή ηλεκτρολογική γραμμή. SEO intent: καλύπτει εμπορικές αναζητήσεις «φορτιστής ηλεκτρικού αυτοκινήτου Ρόδος» και «wallbox εγκατάσταση».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "450-1600€",
+  "demand": "high",
+  "keywords": [
+    "εγκατάσταση φορτιστή ηλεκτρικού αυτοκινήτου Ρόδος",
+    "wallbox Ρόδος",
+    "ηλεκτρολόγος φορτιστής EV",
+    "οικιακός φορτιστής αυτοκινήτου",
+    "γραμμή ρεύματος wallbox"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "septic-tank-cleaning-service-trikala",
+  "slug": "katharismos-vothrou-trikala",
+  "nameGr": "Καθαρισμός Βόθρου στα Τρίκαλα",
+  "nameEn": "Septic Tank Cleaning in Τρίκαλα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Καθαρισμός βόθρου στα Τρίκαλα με άμεση επέμβαση και ασφαλή απομάκρυνση λυμάτων για αποφυγή υπερχείλισης. SEO intent: στοχεύει επείγουσες αναζητήσεις υψηλής πρόθεσης όπως «εκκένωση βόθρου Τρίκαλα» και «βυτιοφόρο άμεσα».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "90-280€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός βόθρου Τρίκαλα",
+    "εκκένωση βόθρου Τρίκαλα",
+    "βυτιοφόρο λυμάτων",
+    "υπερχείλιση βόθρου λύση",
+    "απόφραξη αποχέτευσης αυλής"
+  ],
+  "status": "researched"
+}

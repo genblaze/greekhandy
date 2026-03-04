@@ -1,0 +1,20 @@
+{
+  "id": "ev-charger-installation-home-trikala",
+  "slug": "egkatastasi-fortisti-ilektrikou-autokinitou-trikala",
+  "nameGr": "Εγκατάσταση Οικιακού Φορτιστή Ηλεκτρικού Αυτοκινήτου στα Τρίκαλα",
+  "nameEn": "Home EV Charger Installation in Τρίκαλα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση οικιακού φορτιστή ηλεκτρικού αυτοκινήτου στα Τρίκαλα με έλεγχο πίνακα και ασφαλή ηλεκτρολογική γραμμή. SEO intent: καλύπτει εμπορικές αναζητήσεις «φορτιστής ηλεκτρικού αυτοκινήτου Τρίκαλα» και «wallbox εγκατάσταση».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "450-1600€",
+  "demand": "high",
+  "keywords": [
+    "εγκατάσταση φορτιστή ηλεκτρικού αυτοκινήτου Τρίκαλα",
+    "wallbox Τρίκαλα",
+    "ηλεκτρολόγος φορτιστής EV",
+    "οικιακός φορτιστής αυτοκινήτου",
+    "γραμμή ρεύματος wallbox"
+  ],
+  "status": "researched"
+}

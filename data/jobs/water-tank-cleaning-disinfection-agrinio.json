@@ -1,0 +1,20 @@
+{
+  "id": "water-tank-cleaning-disinfection-agrinio",
+  "slug": "katharismos-apolymansi-dexameniou-nerou-agrinio",
+  "nameGr": "Καθαρισμός & Απολύμανση Δεξαμενής Νερού στο Αγρίνιο",
+  "nameEn": "Water Tank Cleaning & Disinfection in Αγρίνιο",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Καθαρισμός και απολύμανση δεξαμενής νερού στο Αγρίνιο για ασφαλή ποιότητα χρήσης σε κατοικίες και εξοχικά. SEO intent: στοχεύει high-intent αναζητήσεις «καθαρισμός δεξαμενής νερού Αγρίνιο» και «απολύμανση υδροδεξαμενής».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "110-420€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός δεξαμενής νερού Αγρίνιο",
+    "απολύμανση δεξαμενής Αγρίνιο",
+    "καθαρισμός υδροδεξαμενής",
+    "ποιότητα νερού δεξαμενής",
+    "service δεξαμενής εξοχικού"
+  ],
+  "status": "researched"
+}
