@@ -902,7 +902,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (clearSelectionButton instanceof HTMLButtonElement) clearSelectionButton.disabled = count === 0;
           if (selectionDockClear instanceof HTMLButtonElement) selectionDockClear.disabled = count === 0;
 
-           bulkStatusButtons.forEach((button) => {
+          bulkStatusButtons.forEach((button) => {
             if (!(button instanceof HTMLButtonElement)) return;
             const action = button.dataset.bulkContacted === 'true'
               ? 'Μαζική επισήμανση ως επικοινωνημένα'
@@ -1440,6 +1440,18 @@ const hasLeads = directoryData.leads.length > 0;
             filteredEmptyState.classList.toggle('hidden', !shouldShowFilteredEmpty);
           }
 
+          const currentViewState = !hasAnyData ? 'no-data' : totalFiltered === 0 ? 'filtered-empty' : 'results';
+          if (currentViewState !== previousRenderedViewState) {
+            if (currentViewState === 'filtered-empty') {
+              announceState('Δεν βρέθηκαν αποτελέσματα με τα τρέχοντα φίλτρα. Χρησιμοποιήστε το κουμπί Καθαρισμός φίλτρων για άμεση επαναφορά.');
+            } else if (currentViewState === 'no-data') {
+              announceState('Δεν υπάρχουν διαθέσιμα leads ακόμη. Όταν προστεθούν νέα αρχεία, η λίστα θα ενημερωθεί.');
+            } else if (previousRenderedViewState) {
+              announceState(`Τα αποτελέσματα είναι ξανά διαθέσιμα. Βρέθηκαν ${totalFiltered} leads.`);
+            }
+            previousRenderedViewState = currentViewState;
+          }
+
           renderSelectionState();
         };
 
@@ -1448,21 +1460,29 @@ const hasLeads = directoryData.leads.length > 0;
           if (runtimeErrorMessage instanceof HTMLElement) runtimeErrorMessage.textContent = message;
           if (list instanceof HTMLElement) list.classList.add('hidden');
           if (filteredEmptyState instanceof HTMLElement) filteredEmptyState.classList.add('hidden');
-          if (loadingSkeleton instanceof HTMLElement) loadingSkeleton.classList.add('hidden');
+          if (loadingSkeleton instanceof HTMLElement) {
+            loadingSkeleton.classList.add('hidden');
+            loadingSkeleton.setAttribute('aria-hidden', 'true');
+          }
+          announceState('Παρουσιάστηκε σφάλμα στην εφαρμογή φίλτρων. Επιλέξτε Επαναφορά φίλτρων ή Ανανέωση σελίδας.');
         };
 
         const runFilters = () => {
           setBusy(true);
           window.requestAnimationFrame(() => {
             try {
+              const hadRuntimeError = runtimeError instanceof HTMLElement && !runtimeError.classList.contains('hidden');
               updateOptionCounts();
               updateActiveFilters();
               render();
               syncUrl();
               if (runtimeError instanceof HTMLElement) runtimeError.classList.add('hidden');
               if (list instanceof HTMLElement) list.classList.remove('hidden');
+              if (hadRuntimeError) {
+                announceState('Η προβολή αποκαταστάθηκε επιτυχώς και τα φίλτρα λειτουργούν ξανά.');
+              }
             } catch {
-              setRuntimeError('Η εφαρμογή φίλτρων απέτυχε. Επιλέξτε επαναφορά φίλτρων για ανάκτηση.');
+              setRuntimeError('Η εφαρμογή φίλτρων απέτυχε προσωρινά. Επιλέξτε επαναφορά φίλτρων για ασφαλή ανάκτηση.');
             } finally {
               setBusy(false);
             }
@@ -1606,6 +1626,16 @@ const hasLeads = directoryData.leads.length > 0;
 
         emptyReset?.addEventListener('click', () => {
           resetFilters();
+          announceState('Τα φίλτρα καθαρίστηκαν. Εμφανίζεται ξανά η πλήρης λίστα leads.');
+        });
+
+        emptyClearSearch?.addEventListener('click', () => {
+          if (!state.search.trim()) return;
+          state.search = '';
+          state.page = 1;
+          syncControlsToState();
+          scheduleRun();
+          announcePolite('Αφαιρέθηκε ο όρος αναζήτησης. Τα υπόλοιπα φίλτρα παραμένουν ενεργά.');
         });
 
         activeFilters?.addEventListener('click', (event) => {
@@ -2167,6 +2197,11 @@ const hasLeads = directoryData.leads.length > 0;
           resetFilters();
           if (runtimeError instanceof HTMLElement) runtimeError.classList.add('hidden');
           if (list instanceof HTMLElement) list.classList.remove('hidden');
+          announceState('Επαναφορά φίλτρων ολοκληρώθηκε. Η προβολή είναι ξανά διαθέσιμη.');
+        });
+
+        runtimeReload?.addEventListener('click', () => {
+          window.location.reload();
         });
 
         runFilters();
@@ -2175,7 +2210,7 @@ const hasLeads = directoryData.leads.length > 0;
         const runtimeErrorMessage = root.querySelector('[data-runtime-error-message]');
         if (runtimeError instanceof HTMLElement) runtimeError.classList.remove('hidden');
         if (runtimeErrorMessage instanceof HTMLElement) {
-          runtimeErrorMessage.textContent = 'Η αρχικοποίηση του πίνακα φίλτρων απέτυχε. Κάντε ανανέωση σελίδας.';
+          runtimeErrorMessage.textContent = 'Η αρχικοποίηση του πίνακα φίλτρων απέτυχε. Τα δεδομένα παραμένουν ασφαλή. Κάντε ανανέωση σελίδας.';
         }
       }
     }
