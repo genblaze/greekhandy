@@ -1,0 +1,20 @@
+{
+  "id": "ac-duct-cleaning-chania",
+  "slug": "katharismos-aeragogon-klimatismou-chania",
+  "nameGr": "Καθαρισμός Αεραγωγών Κλιματισμού στα Χανιά",
+  "nameEn": "AC Duct Cleaning in Χανιά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Καθαρισμός αεραγωγών κλιματισμού στα Χανιά για καλύτερη ποιότητα αέρα, απόδοση και υγιεινή του χώρου. SEO intent: στοχεύει queries «καθαρισμός αεραγωγών Χανιά» και «απολύμανση κεντρικού κλιματισμού».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "140-520€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός αεραγωγών Χανιά",
+    "απολύμανση κλιματισμού Χανιά",
+    "service central ac",
+    "ποιότητα αέρα εσωτερικού χώρου",
+    "καθαρισμός duct"
+  ],
+  "status": "researched"
+}

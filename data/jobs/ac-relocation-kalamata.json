@@ -1,0 +1,20 @@
+{
+  "id": "ac-relocation-kalamata",
+  "slug": "metafora-klimatistikou-kalamata",
+  "nameGr": "Μεταφορά Κλιματιστικού στην Καλαμάτα",
+  "nameEn": "AC Relocation in Καλαμάτα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Απεγκατάσταση και μεταφορά κλιματιστικού στην Καλαμάτα με επανατοποθέτηση, έλεγχο στεγανότητας και δοκιμή απόδοσης. SEO intent: καλύπτει high-intent αναζητήσεις «μεταφορά κλιματιστικού Καλαμάτα» και «τεχνικός κλιματισμού μετακόμιση».",
+  "typicalDuration": "2-5 ώρες",
+  "priceRangeEUR": "120-420€",
+  "demand": "high",
+  "keywords": [
+    "μεταφορά κλιματιστικού Καλαμάτα",
+    "απεγκατάσταση ac Καλαμάτα",
+    "επανατοποθέτηση air condition",
+    "τεχνικός κλιματισμού μετακόμιση",
+    "μετακόμιση κλιματιστικού τιμή"
+  ],
+  "status": "researched"
+}

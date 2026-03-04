@@ -1,0 +1,20 @@
+{
+  "id": "ac-duct-cleaning-kavala",
+  "slug": "katharismos-aeragogon-klimatismou-kavala",
+  "nameGr": "Καθαρισμός Αεραγωγών Κλιματισμού στην Καβάλα",
+  "nameEn": "AC Duct Cleaning in Καβάλα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Καθαρισμός αεραγωγών κλιματισμού στην Καβάλα για καλύτερη ποιότητα αέρα, απόδοση και υγιεινή του χώρου. SEO intent: στοχεύει queries «καθαρισμός αεραγωγών Καβάλα» και «απολύμανση κεντρικού κλιματισμού».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "140-520€",
+  "demand": "high",
+  "keywords": [
+    "καθαρισμός αεραγωγών Καβάλα",
+    "απολύμανση κλιματισμού Καβάλα",
+    "service central ac",
+    "ποιότητα αέρα εσωτερικού χώρου",
+    "καθαρισμός duct"
+  ],
+  "status": "researched"
+}
