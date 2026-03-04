@@ -574,35 +574,35 @@ for (const message of threadMessages) {
         </nav>
 
         {threadBlockedByModeration && (
-          <div class="mt-5 rounded-2xl border border-rose-300 bg-gradient-to-r from-rose-50/95 via-white to-rose-50/80 px-4 py-4 text-rose-900 shadow-sm">
+          <div class="mt-5 rounded-2xl border border-rose-300 bg-gradient-to-r from-rose-50/95 via-white to-rose-50/80 px-4 py-4 text-rose-900 shadow-sm" role="alert" aria-labelledby="thread-blocked-title" aria-describedby="thread-blocked-description">
             <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-800">Περιορισμός αποστολής</p>
-            <p class="mt-1 text-sm font-semibold">Μπλοκαρισμένη συνομιλία</p>
-            <p class="mt-1 text-sm">Η αποστολή νέων μηνυμάτων είναι απενεργοποιημένη από moderation.</p>
+            <p id="thread-blocked-title" class="mt-1 text-sm font-semibold">Μπλοκαρισμένη συνομιλία</p>
+            <p id="thread-blocked-description" class="mt-1 text-sm">Η αποστολή νέων μηνυμάτων είναι απενεργοποιημένη από moderation.</p>
             <p class="mt-1 text-xs">Μπορείτε να διαβάσετε το ιστορικό και τις αναφορές, αλλά το composer παραμένει κλειδωμένο μέχρι να αρθεί ο περιορισμός.</p>
           </div>
         )}
         {showReportedConversationBanner && (
-          <div class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadReviewedByModeration ? 'border-sky-300 bg-gradient-to-r from-sky-50/95 via-white to-sky-50/80 text-sky-900' : 'border-amber-300 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/80 text-amber-900'}`}>
-            <p class="text-[11px] font-semibold uppercase tracking-[0.12em]">{reportedConversationBannerTitle}</p>
-            <p class="mt-1 text-sm">{reportedConversationBannerDescription}</p>
+          <div class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadReviewedByModeration ? 'border-sky-300 bg-gradient-to-r from-sky-50/95 via-white to-sky-50/80 text-sky-900' : 'border-amber-300 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/80 text-amber-900'}`} role="status" aria-live="polite" aria-labelledby="thread-reported-title" aria-describedby="thread-reported-description">
+            <p id="thread-reported-title" class="text-[11px] font-semibold uppercase tracking-[0.12em]">{reportedConversationBannerTitle}</p>
+            <p id="thread-reported-description" class="mt-1 text-sm">{reportedConversationBannerDescription}</p>
           </div>
         )}
 
-        <div id="thread-moderation-state" class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadModerationBannerClass}`} role="status" aria-live="polite" aria-atomic="true">
+        <div id="thread-moderation-state" class={`mt-5 rounded-2xl border px-4 py-4 shadow-sm ${threadModerationBannerClass}`} role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-moderation-state-title" aria-describedby="thread-moderation-state-description">
           <p class="text-[11px] font-semibold uppercase tracking-[0.12em] opacity-80">Moderation snapshot</p>
           <div class="flex flex-wrap items-start justify-between gap-2">
-            <p class="font-semibold">Κατάσταση moderation thread: {threadModerationLabel}</p>
+            <p id="thread-moderation-state-title" class="font-semibold">Κατάσταση moderation thread: {threadModerationLabel}</p>
             <span class="rounded-full border border-current/20 bg-white/80 px-2.5 py-1 text-[11px] font-semibold">{moderationSeverityLabel}</span>
           </div>
           <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.12em]">Επίδραση</p>
-          <p class="mt-1 text-sm">{threadModerationDescription}</p>
+          <p id="thread-moderation-state-description" class="mt-1 text-sm">{threadModerationDescription}</p>
           <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.12em]">Τι μπορείτε να κάνετε τώρα</p>
           <div class="mt-1 rounded-lg border border-current/20 bg-white/75 px-3 py-2 text-xs font-medium">
             <p>{threadModerationActionLabel}</p>
             <p class="mt-1">{moderationReplyGuidance}</p>
             <p class="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] opacity-80">Σύνοψη impact: {threadModerationImpactLabel}</p>
           </div>
-          <ul class="mt-2 grid gap-1 text-xs">
+          <ul class="mt-2 grid gap-1 text-xs md:grid-cols-2">
             {moderationConsequences.map((item) => (
               <li class="rounded-md border border-current/20 bg-white/70 px-2.5 py-1.5">{item}</li>
             ))}
@@ -719,16 +719,22 @@ for (const message of threadMessages) {
               </div>
             </div>
           </div>
+          <div class="thread-history-legend mt-3 flex flex-wrap items-center gap-2 text-[11px]" aria-label="Υπόμνημα ιστορικού">
+            <span class="rounded-full border border-slate-300 bg-slate-100 px-2.5 py-1 font-semibold text-slate-700">Εισερχόμενο</span>
+            <span class="rounded-full border border-sky-300 bg-sky-100 px-2.5 py-1 font-semibold text-sky-900">Εξερχόμενο</span>
+            <span class="rounded-full border border-orange-300 bg-orange-100 px-2.5 py-1 font-semibold text-orange-900">Περιορισμένη προβολή</span>
+            <span class="rounded-full border border-indigo-300 bg-indigo-100 px-2.5 py-1 font-semibold text-indigo-900">Τελευταίο μήνυμα</span>
+          </div>
           <p id="thread-history-state" class="sr-only" aria-live="polite" aria-atomic="true">{historyStateSummary}</p>
-          <div class={`mt-3 rounded-xl border px-3 py-3 text-xs ${historyStateToneClass}`} role="status" aria-live="polite" aria-atomic="true">
+          <div class={`mt-3 rounded-xl border px-3 py-3 text-xs ${historyStateToneClass}`} role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-state-title" aria-describedby="thread-history-state-summary thread-history-state-support thread-history-state-recovery">
             <div class="flex flex-wrap items-start justify-between gap-2">
-              <p class="font-semibold uppercase tracking-[0.1em] opacity-80">Κατάσταση ιστορικού</p>
+              <p id="thread-history-state-title" class="font-semibold uppercase tracking-[0.1em] opacity-80">Κατάσταση ιστορικού</p>
               <p class="rounded-full border border-current/30 bg-white/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em]">Focus: {historyStateFocusLabel}</p>
             </div>
             <p class="mt-1 text-sm font-semibold">{historyStateTitle}</p>
-            <p class="mt-1">{historyStateSummary}</p>
-            <p class="mt-1 text-[11px] font-medium opacity-90">{historyStateSupportHint}</p>
-            <p class="mt-1 text-[11px] opacity-90">{historyStateRecoveryHint}</p>
+            <p id="thread-history-state-summary" class="mt-1">{historyStateSummary}</p>
+            <p id="thread-history-state-support" class="mt-1 text-[11px] font-medium opacity-90">{historyStateSupportHint}</p>
+            <p id="thread-history-state-recovery" class="mt-1 text-[11px] opacity-90">{historyStateRecoveryHint}</p>
             {!showLoadingState && (
               <a href={historyStateActionHref} class="mt-2 inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
                 {historyStateActionLabel}
@@ -737,19 +743,20 @@ for (const message of threadMessages) {
             {showLoadingState && <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.08em]">Αναμονή συγχρονισμού</p>}
           </div>
 
-          <div class="mt-4 space-y-3" aria-describedby="thread-history-description">
+          <div class="mt-4 space-y-3" aria-describedby="thread-history-description" role="region" aria-label="Ροή ιστορικού και καταστάσεων thread">
             {showLoadingState && (
-              <div class="rounded-xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-xs text-sky-900" role="status" aria-live="polite" aria-atomic="true">
-                <p class="font-semibold">Το ιστορικό συγχρονίζεται αυτή τη στιγμή.</p>
-                <p class="mt-1">Αν η φόρτωση παραμείνει στάσιμη, επαναφορτώστε το thread για νέα απόπειρα ανάκτησης.</p>
+              <div class="rounded-xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-xs text-sky-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-loading-title" aria-describedby="thread-history-loading-description">
+                <p id="thread-history-loading-title" class="font-semibold">Το ιστορικό συγχρονίζεται αυτή τη στιγμή.</p>
+                <p id="thread-history-loading-description" class="mt-1">Αν η φόρτωση παραμείνει στάσιμη, επαναφορτώστε το thread για νέα απόπειρα ανάκτησης.</p>
                 <a href={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
                   Επαναφόρτωση thread
                 </a>
               </div>
             )}
             {showLoadingState && (
-              <div class="space-y-3" role="status" aria-live="polite" aria-atomic="true">
-                <p class="sr-only">Φορτώνονται placeholder μηνύματα για το ιστορικό.</p>
+              <div class="space-y-3" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-skeleton-title" aria-describedby="thread-history-skeleton-description">
+                <p id="thread-history-skeleton-title" class="text-[11px] font-semibold uppercase tracking-[0.1em] text-slate-500">Προσωρινά μηνύματα φόρτωσης</p>
+                <p id="thread-history-skeleton-description" class="text-xs text-slate-500">Τα placeholders θα αντικατασταθούν αυτόματα μόλις έρθει το ιστορικό.</p>
                 {THREAD_LOADING_SKELETON_ROWS.map((item) => (
                   <article class="thread-loading-card rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" aria-hidden="true">
                     <div class="h-3 w-24 rounded bg-slate-200"></div>
@@ -762,16 +769,17 @@ for (const message of threadMessages) {
             )}
 
             {!showLoadingState && hasPartialThreadHistory && (
-              <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-900" role="status" aria-live="polite" aria-atomic="true">
-                Η φόρτωση ολοκληρώθηκε με μερικό αποτέλεσμα. Ορισμένα μηνύματα ή moderation στοιχεία μπορεί να λείπουν.
+              <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-partial-title" aria-describedby="thread-history-partial-description">
+                <p id="thread-history-partial-title" class="font-semibold">Το ιστορικό φορτώθηκε μερικώς.</p>
+                <p id="thread-history-partial-description" class="mt-1 text-xs">Ορισμένα μηνύματα ή moderation στοιχεία μπορεί να λείπουν μέχρι να ολοκληρωθεί επιτυχής επανάκτηση.</p>
               </div>
             )}
 
             {!showLoadingState && !threadLoadError && threadMessages.length === 0 && (
-              <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-6 shadow-sm" role="status" aria-live="polite" aria-atomic="true">
-                <p class="text-lg font-semibold text-slate-900">Δεν υπάρχουν μηνύματα ακόμη.</p>
-                <p class="mt-1 text-sm text-slate-600">Στείλτε το πρώτο μήνυμα για να ξεκινήσει η συνομιλία.</p>
-                <p class="mt-2 text-xs text-slate-500">Οι καταστάσεις αναφοράς, μπλοκαρίσματος και απόκρυψης εμφανίζονται αυτόματα όταν υπάρξει activity.</p>
+              <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-6 shadow-sm" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-empty-title" aria-describedby="thread-history-empty-description thread-history-empty-support">
+                <p id="thread-history-empty-title" class="text-lg font-semibold text-slate-900">Δεν υπάρχουν μηνύματα ακόμη.</p>
+                <p id="thread-history-empty-description" class="mt-1 text-sm text-slate-600">Στείλτε το πρώτο μήνυμα για να ξεκινήσει η συνομιλία.</p>
+                <p id="thread-history-empty-support" class="mt-2 text-xs text-slate-500">Οι καταστάσεις αναφοράς, μπλοκαρίσματος και απόκρυψης εμφανίζονται αυτόματα όταν υπάρξει activity.</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
                   <a href={threadListHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
                     Επιστροφή στη λίστα
@@ -783,9 +791,9 @@ for (const message of threadMessages) {
               </div>
             )}
             {!showLoadingState && threadLoadError && threadMessages.length === 0 && (
-              <div class="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-6 text-rose-900 shadow-sm" role="alert" aria-live="assertive">
-                <p class="text-lg font-semibold">Το ιστορικό δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
-                <p class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση μηνυμάτων για το thread.</p>
+              <div class="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-6 text-rose-900 shadow-sm" role="alert" aria-live="assertive" aria-labelledby="thread-history-error-title" aria-describedby="thread-history-error-description">
+                <p id="thread-history-error-title" class="text-lg font-semibold">Το ιστορικό δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
+                <p id="thread-history-error-description" class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση μηνυμάτων για το thread.</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
                   <a href={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
                     Επανάληψη φόρτωσης
@@ -842,10 +850,10 @@ for (const message of threadMessages) {
                     <div class="flex flex-wrap items-start justify-between gap-2">
                       <div>
                         <h3 id={messageHeadingId} class="text-sm font-semibold text-slate-800">{messageSenderLabel}</h3>
-                        <p id={messageMetaId} class="mt-0.5 text-xs text-slate-500">
+                        <p id={messageMetaId} class="thread-message__meta mt-0.5 text-xs text-slate-500">
                           #{messageOrder || '–'} · <time datetime={message.submittedAt}>{formatDateTime(message.submittedAt)}</time>
                         </p>
-                        <div id={messageStatusId} class="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]" role="status" aria-live="polite" aria-atomic="true">
+                        <div id={messageStatusId} class="thread-message__status mt-1 flex flex-wrap items-center gap-1.5 text-[11px]" role="status" aria-live="polite" aria-atomic="true">
                           <span class={`rounded-full border px-2 py-0.5 font-semibold ${
                             hidden
                               ? 'border-orange-300 bg-orange-100 text-orange-900'
@@ -860,14 +868,14 @@ for (const message of threadMessages) {
                       </div>
                       <div class="flex flex-wrap gap-1.5">
                         {isLatestMessage && <span class="rounded-full border border-indigo-300 bg-indigo-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-indigo-900">Τελευταίο</span>}
-                        <a href={`#${messageAnchorId}`} class="thread-message__anchor rounded-full border border-slate-300 bg-white px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-600 transition hover:border-slate-400 hover:bg-slate-50" aria-label={`Σύνδεσμος μηνύματος ${messageOrder || ''}`}>
+                        <a href={`#${messageAnchorId}`} class="thread-message__anchor rounded-full border border-slate-300 bg-white px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-600 transition hover:border-slate-400 hover:bg-slate-50" aria-label={`Σύνδεσμος μηνύματος ${messageOrder || ''}`} aria-current={isLatestMessage ? 'true' : undefined}>
                           Σύνδεσμος
                         </a>
                         {hidden && <span class="rounded-full border border-orange-300 bg-orange-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-orange-900">Κρυφό περιεχόμενο</span>}
                       </div>
                     </div>
 
-                    <p id={messageBodyId} class={`mt-2 text-sm leading-7 ${hidden ? 'font-semibold text-orange-900' : 'whitespace-pre-wrap break-words text-slate-800'}`}>
+                    <p id={messageBodyId} class={`thread-message__body mt-2 text-sm leading-7 ${hidden ? 'font-semibold text-orange-900' : 'whitespace-pre-wrap break-words text-slate-800'}`}>
                       {hidden ? 'Το μήνυμα έχει αποκρυφτεί από moderation.' : message.message}
                     </p>
 
@@ -1172,6 +1180,13 @@ for (const message of threadMessages) {
       line-height: 1.45;
     }
 
+    .thread-history-legend {
+      border: 1px dashed rgb(203 213 225);
+      border-radius: 0.8rem;
+      background: rgb(255 255 255 / 0.9);
+      padding: 0.5rem 0.65rem;
+    }
+
     .thread-loading-card {
       position: relative;
       overflow: hidden;
@@ -1201,6 +1216,18 @@ for (const message of threadMessages) {
     .thread-message__anchor {
       text-decoration: none;
       line-height: 1.1;
+    }
+
+    .thread-message__meta {
+      letter-spacing: 0.01em;
+    }
+
+    .thread-message__status {
+      min-height: 1.45rem;
+    }
+
+    .thread-message__body {
+      word-break: break-word;
     }
 
     .thread-day-divider {
