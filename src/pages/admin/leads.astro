@@ -414,6 +414,7 @@ const hasLeads = directoryData.leads.length > 0;
           state.category = validCategories.has(category) ? category : 'all';
           state.city = city === 'all' || validCities.has(city) ? city : 'all';
           state.status = status === 'all' || validStatuses.has(status) ? status : 'all';
+          state.minScore = ['any', '80', '60', '40'].includes(minScore) ? minScore : 'any';
           state.search = search;
           state.sort = sort === 'score' || sort === 'name' ? sort : 'newest';
         };
@@ -434,8 +435,16 @@ const hasLeads = directoryData.leads.length > 0;
 
           if (cityFilter instanceof HTMLSelectElement) cityFilter.value = state.city;
           if (statusFilter instanceof HTMLSelectElement) statusFilter.value = state.status;
+          if (scoreFilter instanceof HTMLSelectElement) scoreFilter.value = state.minScore;
           if (searchInput instanceof HTMLInputElement) searchInput.value = state.search;
           if (sortSelect instanceof HTMLSelectElement) sortSelect.value = state.sort;
+
+          if (categoryContext instanceof HTMLElement) {
+            const label = categoryLabelByValue.get(state.category) || 'Όλες';
+            categoryContext.textContent = state.category === 'all'
+              ? 'Εμφάνιση όλων των κατηγοριών. Επιλέξτε κατηγορία για πιο στοχευμένη λίστα leads.'
+              : `Επιλεγμένη κατηγορία: ${label}. Τα υπόλοιπα φίλτρα λειτουργούν μέσα σε αυτήν.`;
+          }
 
           if (clearSearchButton instanceof HTMLButtonElement) {
             clearSearchButton.classList.toggle('hidden', !state.search.trim());
@@ -452,11 +461,17 @@ const hasLeads = directoryData.leads.length > 0;
 
         const matchesLead = (lead, criteria = state) => {
           const normalizedSearch = criteria.search.trim().toLowerCase();
+          const scoreSearchMatch = normalizedSearch.match(/score\s*:\s*(\d+)/);
+          const scoreFromSearch = scoreSearchMatch ? Number(scoreSearchMatch[1]) : null;
+          const minScore = criteria.minScore === 'any' ? -1 : Number(criteria.minScore);
+          const effectiveScoreThreshold = Number.isFinite(scoreFromSearch) ? Math.max(minScore, scoreFromSearch) : minScore;
+
           const categoryMatch = criteria.category === 'all' || lead.category === criteria.category;
           const cityMatch = criteria.city === 'all' || lead.city === criteria.city;
           const statusMatch = criteria.status === 'all' || lead.status === criteria.status;
+          const scoreMatch = effectiveScoreThreshold <= -1 || lead.score >= effectiveScoreThreshold;
           const searchMatch = !normalizedSearch || lead.searchableText.includes(normalizedSearch);
-          return categoryMatch && cityMatch && statusMatch && searchMatch;
+          return categoryMatch && cityMatch && statusMatch && scoreMatch && searchMatch;
         };
 
         const updateOptionCounts = () => {
@@ -497,6 +512,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (state.category !== 'all') items.push({ key: 'category', label: `Κατηγορία: ${categoryLabelByValue.get(state.category) || state.category}` });
           if (state.city !== 'all') items.push({ key: 'city', label: `Πόλη: ${cityLabelByValue.get(state.city) || state.city}` });
           if (state.status !== 'all') items.push({ key: 'status', label: `Κατάσταση: ${statusLabelByValue.get(state.status) || state.status}` });
+          if (state.minScore !== 'any') items.push({ key: 'minScore', label: `Score: ${state.minScore}+` });
           if (state.search.trim()) items.push({ key: 'search', label: `Αναζήτηση: “${state.search.trim()}”` });
 
           activeFilters.innerHTML = '';
@@ -524,6 +540,7 @@ const hasLeads = directoryData.leads.length > 0;
           setParam('category', state.category);
           setParam('city', state.city);
           setParam('status', state.status);
+          setParam('minScore', state.minScore, 'any');
           setParam('sort', state.sort, 'newest');
 
           if (state.search.trim()) params.set('q', state.search.trim());
@@ -610,6 +627,7 @@ const hasLeads = directoryData.leads.length > 0;
           state.category = 'all';
           state.city = 'all';
           state.status = 'all';
+          state.minScore = 'any';
           state.search = '';
           state.sort = 'newest';
           syncControlsToState();
@@ -662,6 +680,13 @@ const hasLeads = directoryData.leads.length > 0;
           scheduleRun();
         });
 
+        scoreFilter?.addEventListener('change', (event) => {
+          const target = event.currentTarget;
+          if (!(target instanceof HTMLSelectElement)) return;
+          state.minScore = target.value;
+          scheduleRun();
+        });
+
         searchInput?.addEventListener('input', (event) => {
           const target = event.currentTarget;
           if (!(target instanceof HTMLInputElement)) return;
@@ -688,6 +713,10 @@ const hasLeads = directoryData.leads.length > 0;
           resetFilters();
         });
 
+        emptyReset?.addEventListener('click', () => {
+          resetFilters();
+        });
+
         activeFilters?.addEventListener('click', (event) => {
           const target = event.target;
           if (!(target instanceof HTMLElement)) return;
@@ -698,6 +727,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (key === 'category') state.category = 'all';
           if (key === 'city') state.city = 'all';
           if (key === 'status') state.status = 'all';
+          if (key === 'minScore') state.minScore = 'any';
           if (key === 'search') state.search = '';
 
           syncControlsToState();
