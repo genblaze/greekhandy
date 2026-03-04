@@ -11,6 +11,7 @@ import {
 } from '../../../lib/bookings';
 
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
+const short = (value: string, max = 80) => encodeURIComponent(value.slice(0, max));
 
 const isState = (value: string): value is BookingModerationState => ['pending', 'approved', 'rejected'].includes(value);
 
@@ -50,11 +51,11 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     }).state;
 
     if (expectedState && currentState !== expectedState) {
-      return redirect(`${returnUrl}&status=stale`, 303);
+      return redirect(`${returnUrl}&status=stale&bookingId=${short(bookingId)}&expected=${short(expectedState)}&actual=${short(currentState)}`, 303);
     }
 
     if (currentState === targetState) {
-      return redirect(`${returnUrl}&status=no-change`, 303);
+      return redirect(`${returnUrl}&status=no-change&bookingId=${short(bookingId)}&actual=${short(currentState)}`, 303);
     }
 
     await mkdir(dirname(BOOKING_ACTIONS_FILE_PATH), { recursive: true });
@@ -64,7 +65,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       'utf-8'
     );
 
-    return redirect(`${returnUrl}&status=updated`, 303);
+    return redirect(`${returnUrl}&status=updated&bookingId=${short(bookingId)}&from=${short(currentState)}&to=${short(targetState)}`, 303);
   } catch (error) {
     console.error('[booking-moderation] failed', error);
     return redirect(`${returnUrl}&status=error`, 303);

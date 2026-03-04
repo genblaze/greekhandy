@@ -18,6 +18,11 @@ const moderationKey = url.searchParams.get('key') ?? '';
 const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
 const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
 const status = url.searchParams.get('status');
+const statusBookingId = (url.searchParams.get('bookingId') ?? '').trim();
+const statusFrom = (url.searchParams.get('from') ?? '').trim();
+const statusTo = (url.searchParams.get('to') ?? '').trim();
+const statusExpected = (url.searchParams.get('expected') ?? '').trim();
+const statusActual = (url.searchParams.get('actual') ?? '').trim();
 
 const formatDateTime = (value: string | undefined) => {
   const timestamp = Date.parse(value ?? '');
@@ -89,10 +94,20 @@ const hasAnyBookings = bookings.length > 0;
 
     {isAuthorized && (
       <>
-        {status === 'updated' && <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">Η μετάβαση κατάστασης ολοκληρώθηκε.</p>}
-        {status === 'no-change' && <p class="mt-5 rounded-lg bg-blue-50 px-4 py-3 text-blue-800">Δεν έγινε αλλαγή γιατί το αίτημα ήταν ήδη σε αυτή την κατάσταση.</p>}
+        {status === 'updated' && (
+          <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">
+            Η μετάβαση ολοκληρώθηκε{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}{statusFrom && statusTo ? `: ${statusFrom} → ${statusTo}` : ''}.
+          </p>
+        )}
+        {status === 'no-change' && (
+          <p class="mt-5 rounded-lg bg-blue-50 px-4 py-3 text-blue-800">
+            Δεν έγινε αλλαγή{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}, γιατί είναι ήδη στην κατάσταση {statusActual || 'target'}.
+          </p>
+        )}
         {status === 'stale' && (
-          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Η κατάσταση άλλαξε από άλλη ενέργεια. Ανανεώστε τη σελίδα και δοκιμάστε ξανά.</p>
+          <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
+            Batch-safe guardrail: η κατάσταση άλλαξε πριν την καταχώρηση{statusBookingId ? ` (αίτημα ${statusBookingId})` : ''}. Αναμενόταν {statusExpected || 'unknown'}, αλλά βρέθηκε {statusActual || 'unknown'}. Κάντε ανανέωση και ξαναδοκιμάστε.
+          </p>
         )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
         {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα μετάβασης. Ελέγξτε ότι το αίτημα έχει έγκυρο bookingId και επιτρεπτό targetState (pending/approved/rejected).</p>}
@@ -187,27 +202,53 @@ const hasAnyBookings = bookings.length > 0;
     <script is:inline>
       (() => {
         const loadingBanner = document.querySelector('[data-booking-moderation-loading]');
-        const forms = document.querySelectorAll('[data-moderation-form]');
+        const forms = Array.from(document.querySelectorAll('[data-moderation-form]'));
+        let submissionLocked = false;
 
         for (const form of forms) {
           if (!(form instanceof HTMLFormElement)) continue;
-          form.addEventListener('submit', () => {
-            if (loadingBanner instanceof HTMLElement) {
-              loadingBanner.classList.remove('hidden');
+          form.addEventListener('submit', (event) => {
+            if (submissionLocked) {
+              event.preventDefault();
+              return;
             }
 
-            const button = form.querySelector('button[type="submit"]');
-            if (button instanceof HTMLButtonElement) {
-              const defaultLabel = button.getAttribute('data-default-label') || button.textContent || 'Ενημέρωση';
-              button.disabled = true;
-              button.setAttribute('aria-busy', 'true');
-              button.textContent = 'Ενημέρωση...';
+            const clickedButton = form.querySelector('button[type="submit"]');
+            const actionLabel = clickedButton instanceof HTMLButtonElement
+              ? (clickedButton.getAttribute('data-default-label') || clickedButton.textContent || 'ενημέρωση')
+              : 'ενημέρωση';
 
-              window.setTimeout(() => {
-                button.disabled = false;
-                button.removeAttribute('aria-busy');
-                button.textContent = defaultLabel;
-              }, 12000);
+            if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel};`)) {
+              event.preventDefault();
+              return;
+            }
+
+            submissionLocked = true;
+            if (loadingBanner instanceof HTMLElement) {
+              loadingBanner.classList.remove('hidden');
+              loadingBanner.textContent = 'Καταχώρηση μετάβασης... οι υπόλοιπες ενέργειες κλειδώθηκαν προσωρινά για batch-safe αποφυγή διπλών μεταβάσεων.';
+            }
+
+            for (const candidate of forms) {
+              if (!(candidate instanceof HTMLFormElement)) continue;
+              const candidateButton = candidate.querySelector('button[type="submit"]');
+              if (candidateButton instanceof HTMLButtonElement) {
+                const defaultLabel = candidateButton.getAttribute('data-default-label') || candidateButton.textContent || 'Ενημέρωση';
+                candidateButton.disabled = true;
+                candidateButton.setAttribute('aria-busy', 'true');
+                if (candidate === form) {
+                  candidateButton.textContent = 'Ενημέρωση...';
+                } else {
+                  candidateButton.textContent = 'Κλείδωμα...';
+                }
+
+                window.setTimeout(() => {
+                  candidateButton.disabled = false;
+                  candidateButton.removeAttribute('aria-busy');
+                  candidateButton.textContent = defaultLabel;
+                  submissionLocked = false;
+                }, 12000);
+              }
             }
           });
         }
