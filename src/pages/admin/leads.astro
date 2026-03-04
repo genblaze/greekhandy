@@ -257,12 +257,19 @@ const hasLeads = directoryData.leads.length > 0;
                   <button type="button" data-bulk-segment="hot" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Bulk: Hot</button>
                   <button type="button" data-bulk-segment="warm" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-2.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Bulk: Warm</button>
                   <button type="button" data-bulk-segment="cold" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Bulk: Cold</button>
+                  <input type="datetime-local" data-bulk-followup-at class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
+                  <button type="button" data-bulk-followup-set class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-2.5 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Bulk: Follow-up date</button>
                   <p data-selection-summary class="text-xs font-medium text-slate-600">0 επιλεγμένα</p>
                 </div>
                 <div class="mt-3 grid gap-2 border-t border-slate-200 pt-3 sm:grid-cols-3" data-filter-analytics>
                   <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Contacted: <strong data-analytics-contacted>0</strong></p>
                   <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Qualified: <strong data-analytics-qualified>0</strong></p>
                   <p class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-700">Μέσο score: <strong data-analytics-score>0</strong></p>
+                </div>
+                <div class="mt-3 grid gap-2 border-t border-slate-200 pt-3 sm:grid-cols-3" data-followup-board>
+                  <p class="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1.5 text-xs text-amber-900">Overdue: <strong data-followup-overdue>0</strong></p>
+                  <p class="rounded-md border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-xs text-sky-900">Today: <strong data-followup-today>0</strong></p>
+                  <p class="rounded-md border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-xs text-indigo-900">This week: <strong data-followup-week>0</strong></p>
                 </div>
                 <div class="mt-3 flex flex-wrap gap-2 border-t border-slate-200 pt-3" role="group" aria-label="Sortable columns">
                   <button type="button" data-sort-col="name" class="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100">Όνομα</button>
@@ -314,6 +321,7 @@ const hasLeads = directoryData.leads.length > 0;
                         <span class="rounded-full bg-sky-100 px-2 py-1 font-semibold text-sky-800">Score: {lead.score ?? 'N/A'}</span>
                         <span data-outreach-badge class="rounded-full bg-amber-100 px-2 py-1 font-semibold text-amber-800">Χωρίς επικοινωνία</span>
                         <span data-segment-badge class="rounded-full border border-slate-200 bg-slate-50 px-2 py-1 font-semibold text-slate-700">Segment: untagged</span>
+                        <span data-reminder-badge class="rounded-full border border-violet-200 bg-violet-50 px-2 py-1 font-semibold text-violet-800">Follow-up: none</span>
                       </div>
                     </div>
 
@@ -409,6 +417,8 @@ const hasLeads = directoryData.leads.length > 0;
                     <button type="button" data-selection-dock-segment="hot" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-3 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Hot</button>
                     <button type="button" data-selection-dock-segment="warm" class="inline-flex min-h-8 items-center rounded-md border border-orange-300 bg-orange-50 px-3 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Warm</button>
                     <button type="button" data-selection-dock-segment="cold" class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-3 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Cold</button>
+                    <input type="datetime-local" data-selection-dock-followup-at class="min-h-8 rounded-md border border-slate-300 px-2 text-xs text-slate-800" />
+                    <button type="button" data-selection-dock-followup-set class="inline-flex min-h-8 items-center rounded-md border border-violet-300 bg-violet-50 px-3 text-xs font-semibold text-violet-800 transition hover:bg-violet-100">Follow-up date</button>
                     <button type="button" data-selection-dock-clear class="inline-flex min-h-8 items-center rounded-md border border-slate-300 px-3 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Καθαρισμός επιλογής</button>
                   </div>
                 </div>
@@ -505,15 +515,22 @@ const hasLeads = directoryData.leads.length > 0;
         const clearSelectionButton = root.querySelector('[data-clear-selection]');
         const bulkStatusButtons = Array.from(root.querySelectorAll('[data-bulk-contacted]'));
         const bulkSegmentButtons = Array.from(root.querySelectorAll('[data-bulk-segment]'));
+        const bulkFollowupAt = root.querySelector('[data-bulk-followup-at]');
+        const bulkFollowupSet = root.querySelector('[data-bulk-followup-set]');
         const selectionSummary = root.querySelector('[data-selection-summary]');
         const selectionDock = root.querySelector('[data-selection-dock]');
         const selectionDockCount = root.querySelector('[data-selection-dock-count]');
         const selectionDockButtons = Array.from(root.querySelectorAll('[data-selection-dock-contacted]'));
         const selectionDockSegmentButtons = Array.from(root.querySelectorAll('[data-selection-dock-segment]'));
+        const selectionDockFollowupAt = root.querySelector('[data-selection-dock-followup-at]');
+        const selectionDockFollowupSet = root.querySelector('[data-selection-dock-followup-set]');
         const selectionDockClear = root.querySelector('[data-selection-dock-clear]');
         const analyticsContacted = root.querySelector('[data-analytics-contacted]');
         const analyticsQualified = root.querySelector('[data-analytics-qualified]');
         const analyticsScore = root.querySelector('[data-analytics-score]');
+        const followupOverdue = root.querySelector('[data-followup-overdue]');
+        const followupToday = root.querySelector('[data-followup-today]');
+        const followupWeek = root.querySelector('[data-followup-week]');
         const noDataState = root.querySelector('[data-empty-state="no-data"]');
         const filteredEmptyState = root.querySelector('[data-empty-state="filtered"]');
         const emptyReset = root.querySelector('[data-empty-reset]');
@@ -841,6 +858,8 @@ const hasLeads = directoryData.leads.length > 0;
           bulkSegmentButtons.forEach((button) => {
             if (button instanceof HTMLButtonElement) button.disabled = count === 0;
           });
+          if (bulkFollowupSet instanceof HTMLButtonElement) bulkFollowupSet.disabled = count === 0;
+          if (selectionDockFollowupSet instanceof HTMLButtonElement) selectionDockFollowupSet.disabled = count === 0;
           selectionDockButtons.forEach((button) => {
             if (button instanceof HTMLButtonElement) button.disabled = count === 0;
           });
@@ -864,6 +883,21 @@ const hasLeads = directoryData.leads.length > 0;
           else statusChip.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
         };
 
+        const classifyFollowup = (at) => {
+          const ts = toMaybeTimestamp(at);
+          if (!Number.isFinite(ts)) return 'none';
+          const now = Date.now();
+          if (ts < now) return 'overdue';
+          const todayEnd = new Date();
+          todayEnd.setHours(23, 59, 59, 999);
+          if (ts <= todayEnd.getTime()) return 'today';
+          const weekEnd = new Date();
+          weekEnd.setDate(weekEnd.getDate() + 7);
+          weekEnd.setHours(23, 59, 59, 999);
+          if (ts <= weekEnd.getTime()) return 'week';
+          return 'later';
+        };
+
         const renderSegmentBadge = (entry) => {
           const segmentBadge = entry.card.querySelector('[data-segment-badge]');
           if (!(segmentBadge instanceof HTMLElement)) return;
@@ -874,6 +908,28 @@ const hasLeads = directoryData.leads.length > 0;
           else if (segment === 'warm') segmentBadge.classList.add('border-orange-200', 'bg-orange-50', 'text-orange-800');
           else if (segment === 'cold') segmentBadge.classList.add('border-sky-200', 'bg-sky-50', 'text-sky-800');
           else segmentBadge.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
+
+          const reminderBadge = entry.card.querySelector('[data-reminder-badge]');
+          if (reminderBadge instanceof HTMLElement) {
+            const followupClass = classifyFollowup(entry.nextAction?.at);
+            reminderBadge.className = 'rounded-full border px-2 py-1 font-semibold';
+            if (followupClass === 'overdue') {
+              reminderBadge.textContent = 'Follow-up: overdue';
+              reminderBadge.classList.add('border-rose-200', 'bg-rose-50', 'text-rose-800');
+            } else if (followupClass === 'today') {
+              reminderBadge.textContent = 'Follow-up: today';
+              reminderBadge.classList.add('border-amber-200', 'bg-amber-50', 'text-amber-800');
+            } else if (followupClass === 'week') {
+              reminderBadge.textContent = 'Follow-up: this week';
+              reminderBadge.classList.add('border-indigo-200', 'bg-indigo-50', 'text-indigo-800');
+            } else if (followupClass === 'later') {
+              reminderBadge.textContent = 'Follow-up: scheduled';
+              reminderBadge.classList.add('border-sky-200', 'bg-sky-50', 'text-sky-800');
+            } else {
+              reminderBadge.textContent = 'Follow-up: none';
+              reminderBadge.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-700');
+            }
+          }
 
           const noteInput = entry.card.querySelector('[data-note-input]');
           if (noteInput instanceof HTMLInputElement && noteInput.value !== entry.note) noteInput.value = entry.note || '';
@@ -1204,9 +1260,15 @@ const hasLeads = directoryData.leads.length > 0;
           const avgScore = filtered.length > 0
             ? Math.round((filtered.reduce((sum, lead) => sum + (Number.isFinite(lead.score) ? lead.score : 0), 0) / filtered.length) * 10) / 10
             : 0;
+          const overdueCount = filtered.filter((lead) => classifyFollowup(lead.nextAction?.at) === 'overdue').length;
+          const todayCount = filtered.filter((lead) => classifyFollowup(lead.nextAction?.at) === 'today').length;
+          const weekCount = filtered.filter((lead) => classifyFollowup(lead.nextAction?.at) === 'week').length;
           if (analyticsContacted instanceof HTMLElement) analyticsContacted.textContent = String(contactedCount);
           if (analyticsQualified instanceof HTMLElement) analyticsQualified.textContent = String(qualifiedCount);
           if (analyticsScore instanceof HTMLElement) analyticsScore.textContent = String(avgScore);
+          if (followupOverdue instanceof HTMLElement) followupOverdue.textContent = String(overdueCount);
+          if (followupToday instanceof HTMLElement) followupToday.textContent = String(todayCount);
+          if (followupWeek instanceof HTMLElement) followupWeek.textContent = String(weekCount);
 
           if (paginationSummary instanceof HTMLElement) {
             paginationSummary.textContent = `Σελίδα ${state.page} από ${totalPages} • ${visible} στοιχεία σε αυτή τη σελίδα`;
@@ -1611,6 +1673,31 @@ const hasLeads = directoryData.leads.length > 0;
           scheduleRun();
         };
 
+        const applyBulkFollowupDate = (isoDateTime) => {
+          const count = selectedLeadIds.size;
+          if (count <= 0 || !isoDateTime) return;
+          const ok = window.confirm(`Ορισμός follow-up για ${count} leads στις ${new Date(isoDateTime).toLocaleString('el-GR')};`);
+          if (!ok) return;
+
+          let changed = 0;
+          parsedCards.forEach((entry) => {
+            if (!selectedLeadIds.has(entry.id)) return;
+            entry.nextAction = { kind: entry.nextAction?.kind || 'followup', at: isoDateTime };
+            nextActionState = { ...nextActionState, [entry.id]: entry.nextAction };
+            appendActivity(entry, 'Bulk follow-up date set');
+            renderCardOutreach(entry);
+            syncActiveDetail(entry);
+            changed += 1;
+          });
+          writeMapState(NEXT_ACTION_STORAGE_KEY, nextActionState);
+          if (liveRegion instanceof HTMLElement) {
+            liveRegion.textContent = changed > 0
+              ? `Ορίστηκε follow-up για ${changed} leads.`
+              : 'Δεν υπάρχει επιλεγμένο lead για follow-up.';
+          }
+          scheduleRun();
+        };
+
         bulkStatusButtons.forEach((button) => {
           if (!(button instanceof HTMLButtonElement)) return;
           button.addEventListener('click', () => {
@@ -1641,6 +1728,16 @@ const hasLeads = directoryData.leads.length > 0;
             if (!segmentValue) return;
             applyBulkSegment(segmentValue);
           });
+        });
+
+        bulkFollowupSet?.addEventListener('click', () => {
+          const at = bulkFollowupAt instanceof HTMLInputElement ? bulkFollowupAt.value : '';
+          applyBulkFollowupDate(at);
+        });
+
+        selectionDockFollowupSet?.addEventListener('click', () => {
+          const at = selectionDockFollowupAt instanceof HTMLInputElement ? selectionDockFollowupAt.value : '';
+          applyBulkFollowupDate(at);
         });
 
         detailOverlay?.addEventListener('click', closeDetailPanel);
@@ -1700,6 +1797,10 @@ const hasLeads = directoryData.leads.length > 0;
             event.preventDefault();
             const btn = root.querySelector('[data-bulk-segment="cold"]');
             if (btn instanceof HTMLButtonElement && !btn.disabled) btn.click();
+          }
+          if (event.altKey && event.key.toLowerCase() === 'd') {
+            event.preventDefault();
+            if (selectionDockFollowupAt instanceof HTMLInputElement && !selectionDockFollowupAt.disabled) selectionDockFollowupAt.focus();
           }
 
           const activeEntry = getActiveDetailEntry();

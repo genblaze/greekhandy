@@ -13,7 +13,7 @@ export interface BookingSubmission {
   email: string;
   preferredDate?: string;
   message: string;
-  status?: 'pending' | 'approved' | 'rejected' | 'cancelled' | string;
+  status?: 'pending' | 'approved' | 'rejected' | 'cancelled' | 'reschedule_requested' | 'reschedule_rejected' | string;
   submittedAt: string;
 }
 
@@ -23,7 +23,7 @@ export interface BookingAction {
   actedAt: string;
 }
 
-export type BookingModerationState = 'pending' | 'approved' | 'rejected' | 'cancelled';
+export type BookingModerationState = 'pending' | 'approved' | 'rejected' | 'cancelled' | 'reschedule_requested' | 'reschedule_rejected';
 type BookingModerationStateSource = 'action' | 'submission-status' | 'fallback';
 export const BOOKING_STATUS_PAGE_PATH = '/bookings/request';
 
@@ -50,6 +50,8 @@ const moderationStateFromValue = (value?: string | null): BookingModerationState
   if (normalized === 'approve' || normalized === 'approved') return 'approved';
   if (normalized === 'reject' || normalized === 'rejected') return 'rejected';
   if (normalized === 'cancel' || normalized === 'cancelled' || normalized === 'canceled') return 'cancelled';
+  if (normalized === 'reschedule-requested' || normalized === 'reschedule_requested') return 'reschedule_requested';
+  if (normalized === 'reschedule-rejected' || normalized === 'reschedule_rejected') return 'reschedule_rejected';
   if (normalized === 'pending') return 'pending';
   return null;
 };

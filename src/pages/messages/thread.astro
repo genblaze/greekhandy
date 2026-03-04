@@ -231,6 +231,84 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       <p class="mt-2 text-xs text-slate-500">Με το άνοιγμα του thread, τα τρέχοντα μηνύματα σημειώνονται ως διαβασμένα για τον χρήστη προβολής.</p>
     </section>
 
+    <section class="thread-toast-stack" aria-label="Καταστάσεις συνομιλίας">
+      {messageStatus === 'submitted' && (
+        <div class="thread-toast thread-toast--emerald js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true" data-autohide-ms="5600">
+          <p class="text-sm font-semibold">Το μήνυμα στάλθηκε επιτυχώς.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {messageStatus === 'invalid' && (
+        <div class="thread-toast thread-toast--amber js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Μη έγκυρα στοιχεία μηνύματος. Ελέγξτε το περιεχόμενο και προσπαθήστε ξανά.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {messageStatus === 'error' && (
+        <div class="thread-toast thread-toast--rose js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Δεν ήταν δυνατή η αποστολή μηνύματος. Προσπαθήστε ξανά σε λίγο.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {messageStatus === 'blocked' && (
+        <div class="thread-toast thread-toast--rose js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Η αποστολή σε αυτό το thread έχει μπλοκαριστεί από moderation.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {status === 'reported' && (
+        <div class="thread-toast thread-toast--sky js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true" data-autohide-ms="6400">
+          <p class="text-sm font-semibold">Η αναφορά καταχωρήθηκε και θα εξεταστεί από την ομάδα moderation.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {status === 'report-error' && (
+        <div class="thread-toast thread-toast--rose js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Δεν ήταν δυνατή η αποστολή της αναφοράς.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {status === 'report-invalid' && (
+        <div class="thread-toast thread-toast--amber js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Μη έγκυρα στοιχεία αναφοράς.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {status === 'report-forbidden' && (
+        <div class="thread-toast thread-toast--rose js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Δεν έχετε πρόσβαση για αναφορά αυτού του μηνύματος.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {hasUnknownStatus && (
+        <div class="thread-toast thread-toast--slate js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Ελήφθη άγνωστη κατάσταση thread: <code>{status}</code>.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {hasUnknownMessageStatus && (
+        <div class="thread-toast thread-toast--slate js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Ελήφθη άγνωστη κατάσταση μηνύματος: <code>{messageStatus}</code>.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {readStateWriteError && (
+        <div class="thread-toast thread-toast--amber js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">{readStateWriteError}</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+      {showLoadingState && (
+        <div class="thread-toast thread-toast--sky js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-autohide-ms="0">
+          <p class="flex items-center gap-2 text-sm font-semibold">
+            <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700"></span>
+            Φόρτωση συνομιλίας...
+          </p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
+    </section>
+
     {hasMissingParams && (
       <div class="thread-alert thread-alert--amber mt-5" role="alert">
         <p class="font-semibold">Δεν μπορέσαμε να ανοίξουμε τη συνομιλία.</p>
@@ -253,46 +331,15 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
 
     {threadId && viewerEmail && isParticipant && (
       <>
-        {messageStatus === 'submitted' && <p class="thread-alert thread-alert--emerald mt-5" role="status" aria-live="polite">Το μήνυμα στάλθηκε επιτυχώς.</p>}
-        {messageStatus === 'invalid' && <p class="thread-alert thread-alert--amber mt-5" role="alert">Μη έγκυρα στοιχεία μηνύματος. Ελέγξτε το περιεχόμενο και προσπαθήστε ξανά.</p>}
-        {messageStatus === 'error' && <p class="thread-alert thread-alert--rose mt-5" role="alert">Δεν ήταν δυνατή η αποστολή μηνύματος. Προσπαθήστε ξανά σε λίγο.</p>}
-        {messageStatus === 'blocked' && <p class="thread-alert thread-alert--rose mt-5" role="alert">Η αποστολή σε αυτό το thread έχει μπλοκαριστεί από moderation.</p>}
-
-        {status === 'reported' && <p class="thread-alert thread-alert--sky mt-5" role="status" aria-live="polite">Η αναφορά καταχωρήθηκε και θα εξεταστεί από την ομάδα moderation.</p>}
-        {status === 'report-error' && <p class="thread-alert thread-alert--rose mt-5" role="alert">Δεν ήταν δυνατή η αποστολή της αναφοράς.</p>}
-        {status === 'report-invalid' && <p class="thread-alert thread-alert--amber mt-5" role="alert">Μη έγκυρα στοιχεία αναφοράς.</p>}
-        {status === 'report-forbidden' && <p class="thread-alert thread-alert--rose mt-5" role="alert">Δεν έχετε πρόσβαση για αναφορά αυτού του μηνύματος.</p>}
-        {hasUnknownStatus && (
-          <p class="thread-alert mt-5 border-slate-300 bg-slate-50 text-slate-700" role="status" aria-live="polite">
-            Ελήφθη άγνωστη κατάσταση thread: <code>{status}</code>.
-          </p>
-        )}
-        {hasUnknownMessageStatus && (
-          <p class="thread-alert mt-5 border-slate-300 bg-slate-50 text-slate-700" role="status" aria-live="polite">
-            Ελήφθη άγνωστη κατάσταση μηνύματος: <code>{messageStatus}</code>.
-          </p>
-        )}
-        {readStateWriteError && (
-          <p class="thread-alert thread-alert--amber mt-5" role="alert">{readStateWriteError}</p>
-        )}
-        {showLoadingState && (
-          <p class="thread-alert thread-alert--sky mt-5 flex items-center gap-2" role="status" aria-live="polite">
-            <span class="h-3 w-3 animate-spin rounded-full border-2 border-sky-300 border-t-sky-700"></span>
-            Φόρτωση συνομιλίας...
-          </p>
-        )}
-
         <nav class="mt-5 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm" aria-label="Γρήγορη πλοήγηση συνομιλίας">
           <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Γρήγορη πλοήγηση</p>
           <div class="mt-2 flex flex-wrap gap-2">
             <a href="#thread-history" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
               Ιστορικό μηνυμάτων
             </a>
-            {canReply && (
-              <a href="#thread-composer" class="inline-flex items-center rounded-full border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
-                Μετάβαση στο composer
-              </a>
-            )}
+            <a href="#thread-interaction" class="inline-flex items-center rounded-full border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+              Ενέργειες thread
+            </a>
           </div>
         </nav>
 
@@ -480,81 +527,93 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
           </div>
         </section>
 
-        {!canReply && threadBlockedByModeration && (
-          <div class="thread-alert thread-alert--rose mt-6" role="alert">
-            <p class="font-semibold">Το thread είναι περιορισμένο.</p>
-            <p class="mt-1 text-sm">Η αποστολή νέων μηνυμάτων έχει απενεργοποιηθεί από την ομάδα moderation.</p>
-          </div>
-        )}
-
-        {!threadBlockedByModeration && threadMutedByModeration && (
-          <div class="thread-alert thread-alert--orange mt-6" role="alert">
-            <p class="font-semibold">Η συνομιλία βρίσκεται σε κατάσταση σίγασης.</p>
-            <p class="mt-1 text-sm">Τα μηνύματα είναι κρυφά από moderation. Δεν μπορείτε να στείλετε νέο μήνυμα όσο ισχύει ο περιορισμός.</p>
-          </div>
-        )}
-
-        {!canReply && !threadBlockedByModeration && !threadMutedByModeration && (
-          <div class="thread-alert thread-alert--amber mt-6" role="alert">
-            <p class="font-semibold">Δεν είναι διαθέσιμο το composer.</p>
-            <p class="mt-1 text-sm">Ελέγξτε ότι υπάρχει έγκυρος παραλήπτης και ότι το thread είναι ενεργό.</p>
-          </div>
-        )}
-
-        {canReply && (
-          <form
-            id="thread-composer"
-            action="/api/messages/submit"
-            method="POST"
-            class="js-pending-form js-composer-form mt-6 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_16px_42px_-30px_rgba(14,116,144,0.45)]"
-            data-composer-state={composerInitialState}
-            aria-labelledby="thread-composer-title"
-            aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live"
-          >
-            <div class="flex flex-wrap items-start justify-between gap-2">
-              <div>
-                <h2 id="thread-composer-title" class="text-lg font-semibold text-slate-900">Composer απάντησης</h2>
-                <p id="thread-composer-description" class="mt-1 text-sm text-slate-600">Απάντηση μέσα στο ίδιο thread με αυτόματη ενημέρωση στη λίστα συνομιλιών.</p>
-              </div>
-              <span id="composer-state" class={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold ${
-                composerInitialState === 'success'
-                  ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
-                  : composerInitialState === 'error'
-                    ? 'border-rose-300 bg-rose-100 text-rose-900'
-                    : 'border-sky-300 bg-sky-100 text-sky-900'
-              }`} role="status" aria-live="polite">
-                {composerInitialStateLabel}
-              </span>
+        <section id="thread-interaction" class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_16px_42px_-30px_rgba(15,23,42,0.5)] md:p-6" aria-labelledby="thread-interaction-title">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h2 id="thread-interaction-title" class="text-lg font-semibold text-slate-900">Ενέργειες thread</h2>
+              <p class="mt-1 text-sm text-slate-600">Composer αποστολής και ασφαλή pending states για αποφυγή διπλής υποβολής.</p>
             </div>
-            <input type="hidden" name="professionalSlug" value={professionalSlug} />
-            <input type="hidden" name="threadId" value={threadId} />
-            <input type="hidden" name="senderName" value="Participant" />
-            <input type="hidden" name="senderEmail" value={viewerEmail} />
-            <input type="hidden" name="recipientEmail" value={recipientForReply} />
-            <input type="hidden" name="returnTo" value={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} />
-            <label for="composer-message" class="mt-3 block text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Κείμενο απάντησης</label>
-            <textarea
-              id="composer-message"
-              name="message"
-              rows="4"
-              required
-              maxlength="2000"
-              minlength="1"
+            <span class={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${canReply ? 'border-emerald-300 bg-emerald-100 text-emerald-900' : 'border-amber-300 bg-amber-100 text-amber-900'}`}>
+              {canReply ? 'Composer ενεργό' : 'Composer ανενεργό'}
+            </span>
+          </div>
+          <p class="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-700">{moderationReplyGuidance}</p>
+
+          {!canReply && threadBlockedByModeration && (
+            <div class="thread-alert thread-alert--rose mt-4" role="alert">
+              <p class="font-semibold">Το thread είναι περιορισμένο.</p>
+              <p class="mt-1 text-sm">Η αποστολή νέων μηνυμάτων έχει απενεργοποιηθεί από την ομάδα moderation.</p>
+            </div>
+          )}
+          {!threadBlockedByModeration && threadMutedByModeration && (
+            <div class="thread-alert thread-alert--orange mt-4" role="alert">
+              <p class="font-semibold">Η συνομιλία βρίσκεται σε κατάσταση σίγασης.</p>
+              <p class="mt-1 text-sm">Τα μηνύματα είναι κρυφά από moderation. Δεν μπορείτε να στείλετε νέο μήνυμα όσο ισχύει ο περιορισμός.</p>
+            </div>
+          )}
+          {!canReply && !threadBlockedByModeration && !threadMutedByModeration && (
+            <div class="thread-alert thread-alert--amber mt-4" role="alert">
+              <p class="font-semibold">Δεν είναι διαθέσιμο το composer.</p>
+              <p class="mt-1 text-sm">Ελέγξτε ότι υπάρχει έγκυρος παραλήπτης και ότι το thread είναι ενεργό.</p>
+            </div>
+          )}
+
+          {canReply && (
+            <form
+              id="thread-composer"
+              action="/api/messages/submit"
+              method="POST"
+              class="js-pending-form js-composer-form mt-4 rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_16px_42px_-30px_rgba(14,116,144,0.45)]"
+              data-composer-state={composerInitialState}
+              data-focus-composer={messageStatus === 'invalid' || messageStatus === 'error' ? 'true' : 'false'}
+              aria-labelledby="thread-composer-title"
               aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live"
-              aria-keyshortcuts="Control+Enter Meta+Enter"
-              aria-invalid="false"
-              class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm leading-6 text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-100"
-              placeholder="Γράψτε το μήνυμά σας"
-            ></textarea>
-            <p id="composer-shortcuts" class="mt-2 text-xs text-slate-500">Συντόμευση πληκτρολογίου: <span class="font-semibold text-slate-700">Ctrl+Enter</span> (ή <span class="font-semibold text-slate-700">Cmd+Enter</span> σε Mac) για αποστολή.</p>
-            <div class="mt-2 flex items-center justify-between text-xs">
-              <p id="composer-error" class="hidden font-medium text-rose-700" role="alert">Το μήνυμα δεν μπορεί να είναι κενό.</p>
-              <p id="composer-count" class="text-slate-500">0 / 2000</p>
-            </div>
-            <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite"></p>
-            <button type="submit" data-default-label="Αποστολή" data-pending-label="Αποστολή..." disabled class="mt-3 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-65">Αποστολή</button>
-          </form>
-        )}
+            >
+              <div class="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <h3 id="thread-composer-title" class="text-lg font-semibold text-slate-900">Composer απάντησης</h3>
+                  <p id="thread-composer-description" class="mt-1 text-sm text-slate-600">Απάντηση μέσα στο ίδιο thread με αυτόματη ενημέρωση στη λίστα συνομιλιών.</p>
+                </div>
+                <span id="composer-state" class={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold ${
+                  composerInitialState === 'success'
+                    ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
+                    : composerInitialState === 'error'
+                      ? 'border-rose-300 bg-rose-100 text-rose-900'
+                      : 'border-sky-300 bg-sky-100 text-sky-900'
+                }`} role="status" aria-live="polite">
+                  {composerInitialStateLabel}
+                </span>
+              </div>
+              <input type="hidden" name="professionalSlug" value={professionalSlug} />
+              <input type="hidden" name="threadId" value={threadId} />
+              <input type="hidden" name="senderName" value="Participant" />
+              <input type="hidden" name="senderEmail" value={viewerEmail} />
+              <input type="hidden" name="recipientEmail" value={recipientForReply} />
+              <input type="hidden" name="returnTo" value={`/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`} />
+              <label for="composer-message" class="mt-3 block text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Κείμενο απάντησης</label>
+              <textarea
+                id="composer-message"
+                name="message"
+                rows="4"
+                required
+                maxlength="2000"
+                minlength="1"
+                aria-describedby="thread-composer-description composer-state composer-shortcuts composer-error composer-count composer-live"
+                aria-keyshortcuts="Control+Enter Meta+Enter"
+                aria-invalid="false"
+                class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm leading-6 text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-100"
+                placeholder="Γράψτε το μήνυμά σας"
+              ></textarea>
+              <p id="composer-shortcuts" class="mt-2 text-xs text-slate-500">Συντόμευση πληκτρολογίου: <span class="font-semibold text-slate-700">Ctrl+Enter</span> (ή <span class="font-semibold text-slate-700">Cmd+Enter</span> σε Mac) για αποστολή.</p>
+              <div class="mt-2 flex items-center justify-between text-xs">
+                <p id="composer-error" class="hidden font-medium text-rose-700" role="alert">Το μήνυμα δεν μπορεί να είναι κενό.</p>
+                <p id="composer-count" class="text-slate-500">0 / 2000</p>
+              </div>
+              <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite"></p>
+              <button type="submit" data-default-label="Αποστολή" data-pending-label="Αποστολή..." disabled class="mt-3 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-65">Αποστολή</button>
+            </form>
+          )}
+        </section>
       </>
     )}
   </main>
@@ -579,8 +638,84 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
 
     .thread-shell :where(a, button, input, select, textarea, summary):focus-visible {
       outline: 3px solid rgba(14, 116, 144, 0.4);
-      outline-offset: 2px;
+      outline-offset: 3px;
       box-shadow: 0 0 0 4px rgba(14, 116, 144, 0.12);
+    }
+
+    .thread-toast-stack {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 70;
+      display: grid;
+      width: min(28rem, calc(100vw - 2rem));
+      gap: 0.6rem;
+      pointer-events: none;
+    }
+
+    .thread-toast {
+      pointer-events: auto;
+      border-radius: 0.95rem;
+      border: 1px solid rgb(203 213 225);
+      background: rgb(248 250 252);
+      padding: 0.75rem 0.85rem;
+      color: rgb(51 65 85);
+      box-shadow: 0 18px 36px -24px rgba(15, 23, 42, 0.6);
+      transition: opacity 140ms ease, transform 140ms ease;
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .thread-toast.is-dismissing {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+
+    .thread-toast--sky {
+      border-color: rgb(186 230 253);
+      background: rgb(240 249 255);
+      color: rgb(12 74 110);
+    }
+
+    .thread-toast--emerald {
+      border-color: rgb(167 243 208);
+      background: rgb(236 253 245);
+      color: rgb(6 95 70);
+    }
+
+    .thread-toast--amber {
+      border-color: rgb(253 230 138);
+      background: rgb(255 251 235);
+      color: rgb(146 64 14);
+    }
+
+    .thread-toast--rose {
+      border-color: rgb(254 205 211);
+      background: rgb(255 241 242);
+      color: rgb(136 19 55);
+    }
+
+    .thread-toast--slate {
+      border-color: rgb(203 213 225);
+      background: rgb(248 250 252);
+      color: rgb(51 65 85);
+    }
+
+    .thread-toast__dismiss {
+      flex-shrink: 0;
+      border-radius: 0.6rem;
+      border: 1px solid currentColor;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 0.25rem 0.55rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .thread-toast__dismiss:hover {
+      background: rgba(255, 255, 255, 0.92);
     }
 
     .thread-alert {
@@ -673,6 +808,14 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.16);
     }
 
+    .js-pending-form[aria-busy='true'] {
+      opacity: 0.8;
+    }
+
+    .js-pending-form[aria-busy='true'] :where(input:not([type='hidden']), textarea, select, button) {
+      cursor: wait;
+    }
+
     .composer-count--warning {
       color: rgb(161 98 7);
       font-weight: 600;
@@ -682,168 +825,216 @@ const counterpartEmail = [...participants].find((email) => email !== viewerEmail
       color: rgb(190 24 93);
       font-weight: 700;
     }
+
+    @media (max-width: 640px) {
+      .thread-toast-stack {
+        top: 0.75rem;
+        left: 0.75rem;
+        right: 0.75rem;
+        width: auto;
+      }
+    }
   </style>
 
   <script is:inline>
-    for (const form of document.querySelectorAll('.js-pending-form')) {
-      const submitButton = form.querySelector('button[type="submit"]');
-      if (!(submitButton instanceof HTMLButtonElement)) continue;
-
-      const isComposerForm = form.classList.contains('js-composer-form');
-      const textarea = isComposerForm ? form.querySelector('textarea[name="message"]') : null;
-      const counter = isComposerForm ? form.querySelector('#composer-count') : null;
-      const error = isComposerForm ? form.querySelector('#composer-error') : null;
-      const live = isComposerForm ? form.querySelector('#composer-live') : null;
-      const composerState = isComposerForm ? form.querySelector('#composer-state') : null;
-      const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent || 'Υποβολή';
-      const pendingLabel = submitButton.dataset.pendingLabel || 'Υποβολή...';
-      const maxLength = textarea instanceof HTMLTextAreaElement && textarea.maxLength > 0 ? textarea.maxLength : 2000;
-      const warningThreshold = Math.max(0, maxLength - 200);
-      let preserveInitialComposerFeedback = isComposerForm && ['success', 'error'].includes(form.getAttribute('data-composer-state') || '');
-
-      const setComposerState = (state, message) => {
-        if (!(composerState instanceof HTMLElement)) return;
-        const toneClass = state === 'success'
-          ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
-          : state === 'error'
-            ? 'border-rose-300 bg-rose-100 text-rose-900'
-            : state === 'submitting'
-              ? 'border-slate-300 bg-slate-200 text-slate-800'
-              : 'border-sky-300 bg-sky-100 text-sky-900';
-        composerState.className = `inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold ${toneClass}`;
-        composerState.textContent = message;
-        form.setAttribute('data-composer-state', state);
+    (() => {
+      const toasts = Array.from(document.querySelectorAll('.js-thread-toast'));
+      const dismissToast = (toast) => {
+        if (!(toast instanceof HTMLElement) || toast.dataset.removed === 'true') return;
+        toast.dataset.removed = 'true';
+        const focusFallback = toast.contains(document.activeElement) ? document.querySelector('#composer-message') : null;
+        toast.classList.add('is-dismissing');
+        window.setTimeout(() => {
+          toast.remove();
+          if (focusFallback instanceof HTMLElement) focusFallback.focus();
+        }, 150);
       };
 
-      const syncComposer = () => {
-        if (!(textarea instanceof HTMLTextAreaElement)) return;
-        const length = textarea.value.trim().length;
-        const remaining = maxLength - length;
-        const isBusy = submitButton.getAttribute('aria-busy') === 'true';
-        submitButton.disabled = length === 0 || isBusy;
-        if (counter) {
-          counter.textContent = `${length} / ${maxLength}`;
-          counter.classList.toggle('composer-count--warning', length > 0 && remaining <= 200 && remaining > 0);
-          counter.classList.toggle('composer-count--limit', remaining <= 0);
+      for (const toast of toasts) {
+        const dismissButton = toast.querySelector('[data-toast-dismiss]');
+        if (dismissButton instanceof HTMLButtonElement) {
+          dismissButton.addEventListener('click', () => dismissToast(toast));
         }
-        if (error) error.classList.toggle('hidden', length > 0);
-        textarea.setAttribute('aria-invalid', length === 0 ? 'true' : 'false');
+        const autoHideMs = Number(toast.getAttribute('data-autohide-ms') || '0');
+        if (Number.isFinite(autoHideMs) && autoHideMs > 0) {
+          window.setTimeout(() => dismissToast(toast), autoHideMs);
+        }
+      }
 
-        if (!isBusy) {
-          if (length > 0) {
-            preserveInitialComposerFeedback = false;
-            setComposerState('idle', 'Το composer είναι έτοιμο για αποστολή.');
-          } else if (!preserveInitialComposerFeedback) {
-            setComposerState('idle', 'Το composer είναι έτοιμο για αποστολή.');
+      const focusToast = document.querySelector('.js-thread-toast[data-focus-on-load="true"]');
+      if (focusToast instanceof HTMLElement) {
+        requestAnimationFrame(() => focusToast.focus());
+      }
+
+      const pendingForms = Array.from(document.querySelectorAll('.js-pending-form')).filter((form) => form instanceof HTMLFormElement);
+      const setFormPending = (form, isPending) => {
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (!(submitButton instanceof HTMLButtonElement)) return;
+        const controls = Array.from(form.querySelectorAll('button, input, select, textarea')).filter((control) => (
+          !(control instanceof HTMLInputElement && control.type === 'hidden')
+        ));
+
+        form.setAttribute('aria-busy', isPending ? 'true' : 'false');
+        form.classList.toggle('opacity-80', isPending);
+
+        if (isPending) {
+          for (const control of controls) {
+            control.setAttribute('data-pending-disabled', control.disabled ? 'true' : 'false');
+            control.disabled = true;
+            control.setAttribute('aria-disabled', 'true');
           }
+          const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent || 'Υποβολή';
+          const pendingLabel = submitButton.dataset.pendingLabel || 'Επεξεργασία...';
+          form.setAttribute('data-submit-label', defaultLabel);
+          submitButton.textContent = pendingLabel;
+          submitButton.setAttribute('aria-busy', 'true');
+          return;
         }
 
-        if (live) {
-          if (length === 0 && live.textContent === 'Πληκτρολογήστε μήνυμα πριν την αποστολή.') return;
-          if (remaining <= 200 && length > 0) {
-            live.textContent = remaining === 0 ? 'Φτάσατε το όριο χαρακτήρων.' : `Απομένουν ${remaining} χαρακτήρες.`;
-            return;
-          }
-          if (live.textContent.startsWith('Απομένουν') || live.textContent === 'Φτάσατε το όριο χαρακτήρων.') {
-            live.textContent = '';
-          }
+        for (const control of controls) {
+          const wasDisabled = control.getAttribute('data-pending-disabled') === 'true';
+          control.disabled = wasDisabled;
+          control.removeAttribute('data-pending-disabled');
+          if (!control.disabled) control.removeAttribute('aria-disabled');
         }
+        const defaultLabel = submitButton.dataset.defaultLabel || form.getAttribute('data-submit-label') || submitButton.textContent || 'Υποβολή';
+        submitButton.textContent = defaultLabel;
+        submitButton.removeAttribute('aria-busy');
+        if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
       };
 
-      if (textarea instanceof HTMLTextAreaElement) {
-        textarea.addEventListener('input', syncComposer);
-        textarea.addEventListener('keydown', (event) => {
-          if (event.key === 'Escape') {
-            if (error) error.classList.add('hidden');
-            if (live) live.textContent = '';
-            return;
-          }
-          if (event.key !== 'Enter' || (!event.ctrlKey && !event.metaKey)) return;
-          event.preventDefault();
+      for (const form of pendingForms) {
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (!(submitButton instanceof HTMLButtonElement)) continue;
+
+        const isComposerForm = form.classList.contains('js-composer-form');
+        const textarea = isComposerForm ? form.querySelector('textarea[name="message"]') : null;
+        const counter = isComposerForm ? form.querySelector('#composer-count') : null;
+        const error = isComposerForm ? form.querySelector('#composer-error') : null;
+        const live = isComposerForm ? form.querySelector('#composer-live') : null;
+        const composerState = isComposerForm ? form.querySelector('#composer-state') : null;
+        const maxLength = textarea instanceof HTMLTextAreaElement && textarea.maxLength > 0 ? textarea.maxLength : 2000;
+        let preserveInitialComposerFeedback = isComposerForm && ['success', 'error'].includes(form.getAttribute('data-composer-state') || '');
+
+        const setComposerState = (state, message) => {
+          if (!(composerState instanceof HTMLElement)) return;
+          const toneClass = state === 'success'
+            ? 'border-emerald-300 bg-emerald-100 text-emerald-900'
+            : state === 'error'
+              ? 'border-rose-300 bg-rose-100 text-rose-900'
+              : state === 'submitting'
+                ? 'border-slate-300 bg-slate-200 text-slate-800'
+                : 'border-sky-300 bg-sky-100 text-sky-900';
+          composerState.className = `inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold ${toneClass}`;
+          composerState.textContent = message;
+          form.setAttribute('data-composer-state', state);
+        };
+
+        const syncComposer = () => {
+          if (!(textarea instanceof HTMLTextAreaElement)) return;
           const length = textarea.value.trim().length;
-          if (length === 0) {
+          const remaining = maxLength - length;
+          const isBusy = form.getAttribute('aria-busy') === 'true';
+          submitButton.disabled = length === 0 || isBusy;
+          submitButton.setAttribute('aria-disabled', submitButton.disabled ? 'true' : 'false');
+          if (counter) {
+            counter.textContent = `${length} / ${maxLength}`;
+            counter.classList.toggle('composer-count--warning', length > 0 && remaining <= 200 && remaining > 0);
+            counter.classList.toggle('composer-count--limit', remaining <= 0);
+          }
+          if (error) error.classList.toggle('hidden', length > 0);
+          textarea.setAttribute('aria-invalid', length === 0 ? 'true' : 'false');
+
+          if (!isBusy) {
+            if (length > 0) {
+              preserveInitialComposerFeedback = false;
+              setComposerState('idle', 'Το composer είναι έτοιμο για αποστολή.');
+            } else if (!preserveInitialComposerFeedback) {
+              setComposerState('idle', 'Το composer είναι έτοιμο για αποστολή.');
+            }
+          }
+
+          if (live) {
+            if (length === 0 && live.textContent === 'Πληκτρολογήστε μήνυμα πριν την αποστολή.') return;
+            if (remaining <= 200 && length > 0) {
+              live.textContent = remaining === 0 ? 'Φτάσατε το όριο χαρακτήρων.' : `Απομένουν ${remaining} χαρακτήρες.`;
+              return;
+            }
+            if (live.textContent.startsWith('Απομένουν') || live.textContent === 'Φτάσατε το όριο χαρακτήρων.') {
+              live.textContent = '';
+            }
+          }
+        };
+
+        if (textarea instanceof HTMLTextAreaElement) {
+          textarea.addEventListener('input', syncComposer);
+          textarea.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+              if (error) error.classList.add('hidden');
+              if (live) live.textContent = '';
+              return;
+            }
+            if (event.key !== 'Enter' || (!event.ctrlKey && !event.metaKey)) return;
+            event.preventDefault();
+            if (form.getAttribute('aria-busy') === 'true') return;
+            const length = textarea.value.trim().length;
+            if (length === 0) {
+              if (error) error.classList.remove('hidden');
+              if (live) live.textContent = 'Πληκτρολογήστε μήνυμα πριν την αποστολή.';
+              submitButton.disabled = true;
+              textarea.setAttribute('aria-invalid', 'true');
+              setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
+              textarea.focus();
+              return;
+            }
+            setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
+            if (live) live.textContent = 'Αποστολή μηνύματος...';
+            form.requestSubmit(submitButton);
+          });
+          textarea.addEventListener('blur', syncComposer);
+          syncComposer();
+        }
+
+        form.addEventListener('submit', (event) => {
+          if (form.getAttribute('aria-busy') === 'true') {
+            event.preventDefault();
+            return;
+          }
+          if (!form.checkValidity()) return;
+          if (textarea instanceof HTMLTextAreaElement && textarea.value.trim().length === 0) {
+            event.preventDefault();
             if (error) error.classList.remove('hidden');
             if (live) live.textContent = 'Πληκτρολογήστε μήνυμα πριν την αποστολή.';
-            submitButton.disabled = true;
             textarea.setAttribute('aria-invalid', 'true');
             setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
             textarea.focus();
             return;
           }
-          if (submitButton.getAttribute('aria-busy') === 'true') return;
-          setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
-          if (live) live.textContent = 'Αποστολή μηνύματος...';
-          form.requestSubmit(submitButton);
+          if (isComposerForm) {
+            setComposerState('submitting', 'Αποστολή μηνύματος σε εξέλιξη...');
+            if (live) live.textContent = 'Αποστολή μηνύματος...';
+          }
+          setFormPending(form, true);
         });
-        textarea.addEventListener('blur', syncComposer);
-        syncComposer();
       }
 
-      form.addEventListener('submit', (event) => {
-        if (submitButton.getAttribute('aria-busy') === 'true') {
-          event.preventDefault();
-          return;
+      window.addEventListener('pageshow', () => {
+        for (const form of pendingForms) {
+          setFormPending(form, false);
         }
-        if (textarea instanceof HTMLTextAreaElement && textarea.value.trim().length === 0) {
-          event.preventDefault();
-          if (error) error.classList.remove('hidden');
-          if (live) live.textContent = 'Πληκτρολογήστε μήνυμα πριν την αποστολή.';
-          submitButton.disabled = true;
-          textarea.setAttribute('aria-invalid', 'true');
-          setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
-          textarea.focus();
-          return;
+        const composerTextarea = document.querySelector('#composer-message');
+        if (composerTextarea instanceof HTMLTextAreaElement) {
+          composerTextarea.dispatchEvent(new Event('input', { bubbles: true }));
         }
-        submitButton.disabled = true;
-        setComposerState(isComposerForm ? 'submitting' : 'idle', isComposerForm ? 'Αποστολή μηνύματος σε εξέλιξη...' : 'Επεξεργασία σε εξέλιξη...');
-        if (live) live.textContent = 'Αποστολή μηνύματος...';
-        submitButton.textContent = pendingLabel;
-        submitButton.setAttribute('aria-busy', 'true');
-        submitButton.setAttribute('aria-disabled', 'true');
-        form.classList.add('opacity-80');
-        form.setAttribute('data-submit-label', defaultLabel);
       });
-    }
 
-    window.addEventListener('pageshow', () => {
-      for (const form of document.querySelectorAll('.js-pending-form')) {
-        form.classList.remove('opacity-80');
-        const submitButton = form.querySelector('button[type="submit"]');
-        if (!(submitButton instanceof HTMLButtonElement)) continue;
-        const defaultLabel = submitButton.dataset.defaultLabel || form.getAttribute('data-submit-label') || submitButton.textContent || 'Υποβολή';
-        submitButton.disabled = false;
-        submitButton.textContent = defaultLabel;
-        submitButton.removeAttribute('aria-busy');
-        submitButton.removeAttribute('aria-disabled');
+      if (!(focusToast instanceof HTMLElement)) {
+        const composerForm = document.querySelector('.js-composer-form');
+        const composerInput = document.querySelector('#composer-message');
+        if (composerForm instanceof HTMLFormElement && composerForm.dataset.focusComposer === 'true' && composerInput instanceof HTMLTextAreaElement) {
+          requestAnimationFrame(() => composerInput.focus());
+        }
       }
-      const composerForm = document.querySelector('.js-composer-form');
-      if (!(composerForm instanceof HTMLFormElement)) return;
-      const textarea = composerForm.querySelector('textarea[name="message"]');
-      const submitButton = composerForm.querySelector('button[type="submit"]');
-      const counter = composerForm.querySelector('#composer-count');
-      const error = composerForm.querySelector('#composer-error');
-      const live = composerForm.querySelector('#composer-live');
-      const composerState = composerForm.querySelector('#composer-state');
-      if (!(textarea instanceof HTMLTextAreaElement) || !(submitButton instanceof HTMLButtonElement)) return;
-      const length = textarea.value.trim().length;
-      submitButton.disabled = length === 0;
-      const maxLength = textarea.maxLength > 0 ? textarea.maxLength : 2000;
-      const remaining = maxLength - length;
-      if (counter) {
-        counter.textContent = `${length} / ${maxLength}`;
-        counter.classList.toggle('composer-count--warning', length > 0 && remaining <= 200 && remaining > 0);
-        counter.classList.toggle('composer-count--limit', remaining <= 0);
-      }
-      if (error) error.classList.toggle('hidden', length > 0);
-      textarea.setAttribute('aria-invalid', length === 0 ? 'true' : 'false');
-      if (live && (live.textContent.startsWith('Απομένουν') || live.textContent === 'Φτάσατε το όριο χαρακτήρων.')) {
-        live.textContent = '';
-      }
-      if (composerState instanceof HTMLElement && length > 0) {
-        composerState.className = 'inline-flex rounded-full border border-sky-300 bg-sky-100 px-2.5 py-1 text-[11px] font-semibold text-sky-900';
-        composerState.textContent = 'Το composer είναι έτοιμο για αποστολή.';
-        composerForm.setAttribute('data-composer-state', 'idle');
-      }
-    });
+    })();
   </script>
 </Layout>

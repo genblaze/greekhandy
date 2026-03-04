@@ -13,20 +13,25 @@ import {
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const short = (value: string, max = 80) => encodeURIComponent(value.slice(0, max));
 
-const isState = (value: string): value is BookingModerationState => ['pending', 'approved', 'rejected', 'cancelled'].includes(value);
+const isState = (value: string): value is BookingModerationState => ['pending', 'approved', 'rejected', 'cancelled', 'reschedule_requested', 'reschedule_rejected'].includes(value);
 
 const toTargetState = (inputAction: string, inputTargetState: string): BookingModerationState | null => {
   if (isState(inputTargetState)) return inputTargetState;
   if (inputAction === 'approve') return 'approved';
   if (inputAction === 'reject') return 'rejected';
   if (inputAction === 'cancel') return 'cancelled';
+  if (inputAction === 'request-reschedule') return 'reschedule_requested';
+  if (inputAction === 'reject-reschedule') return 'reschedule_rejected';
   if (inputAction === 'reset') return 'pending';
   return null;
 };
 
 const isAllowedTransition = (from: BookingModerationState, to: BookingModerationState) => {
   if (from === to) return true;
-  return from === 'pending' && ['approved', 'rejected', 'cancelled'].includes(to);
+  if (from === 'pending') return ['approved', 'rejected', 'cancelled'].includes(to);
+  if (from === 'approved') return ['reschedule_requested'].includes(to);
+  if (from === 'reschedule_requested') return ['approved', 'reschedule_rejected', 'cancelled'].includes(to);
+  return false;
 };
 
 export const POST: APIRoute = async ({ request, redirect }) => {

@@ -12,6 +12,8 @@ import {
   type BookingSubmission
 } from '../../lib/bookings';
 
+Astro.response.headers.set('Content-Type', 'text/html; charset=UTF-8');
+
 const statusParam = (Astro.url.searchParams.get('status') ?? '').trim();
 const returnToParam = (Astro.url.searchParams.get('returnTo') ?? '').trim();
 const returnTo = returnToParam.startsWith('/') && !returnToParam.startsWith('//') ? returnToParam : null;
@@ -66,6 +68,20 @@ const statusStyles: Record<BookingModerationState, { badge: string; tone: string
     label: 'Ακυρώθηκε',
     summary: 'Το αίτημα ακυρώθηκε και δεν θα προχωρήσει σε ανάθεση.',
     hint: 'Αν θέλετε, μπορείτε να δημιουργήσετε νέο αίτημα με ενημερωμένες λεπτομέρειες.'
+  },
+  reschedule_requested: {
+    badge: 'bg-violet-100 text-violet-900 border border-violet-200',
+    tone: 'border-violet-200 bg-violet-50 text-violet-900',
+    label: 'Αίτημα αλλαγής',
+    summary: 'Έχει καταχωρηθεί αίτημα αλλαγής ραντεβού και αναμένει απόφαση moderation.',
+    hint: 'Θα ενημερωθείτε μόλις εγκριθεί ή απορριφθεί η αλλαγή.'
+  },
+  reschedule_rejected: {
+    badge: 'bg-orange-100 text-orange-900 border border-orange-200',
+    tone: 'border-orange-200 bg-orange-50 text-orange-900',
+    label: 'Αλλαγή μη εγκεκριμένη',
+    summary: 'Το αίτημα αλλαγής δεν εγκρίθηκε. Η προηγούμενη συμφωνία παραμένει ενεργή.',
+    hint: 'Μπορείτε να στείλετε νέο αίτημα ενημέρωσης με πιο συγκεκριμένη διαθεσιμότητα.'
   }
 };
 
@@ -77,6 +93,8 @@ const isPendingLongerThanDay = moderationState === 'pending' && typeof bookingAg
 const justSubmitted = statusParam === 'submitted';
 const hasLookupError = statusParam === 'error';
 const hasInvalidLookup = statusParam === 'invalid';
+const hasRescheduleRequested = statusParam === 'reschedule-requested';
+const hasRescheduleNotAllowed = statusParam === 'reschedule-not-allowed';
 const contactDetails = booking
   ? [safeText(booking.email, ''), safeText(booking.phone, '')].filter(Boolean).join(' • ') || 'Δεν έχουν καταχωρηθεί'
   : '';
@@ -85,6 +103,8 @@ const canOpenProfessionalProfile = Boolean(professionalSlug);
 const statusPills: Array<{ key: BookingModerationState; label: string }> = [
   { key: 'pending', label: 'Σε αναμονή' },
   { key: 'approved', label: 'Εγκρίθηκε' },
+  { key: 'reschedule_requested', label: 'Αίτημα αλλαγής' },
+  { key: 'reschedule_rejected', label: 'Αλλαγή μη εγκεκριμένη' },
   { key: 'rejected', label: 'Απορρίφθηκε' },
   { key: 'cancelled', label: 'Ακυρώθηκε' }
 ];
@@ -92,25 +112,34 @@ const statusPills: Array<{ key: BookingModerationState; label: string }> = [
 const timelineSteps: Array<{ key: BookingModerationState; title: string; detail: string }> = [
   { key: 'pending', title: '1. Υποβολή & Έλεγχος', detail: 'Το αίτημα έχει ληφθεί και είναι σε moderation.' },
   { key: 'approved', title: '2A. Έγκριση', detail: 'Το αίτημα εγκρίθηκε και προχωρά σε επικοινωνία.' },
-  { key: 'rejected', title: '2B. Απόρριψη', detail: 'Το αίτημα απορρίφθηκε και μπορείτε να στείλετε νέο.' },
-  { key: 'cancelled', title: '2C. Ακύρωση', detail: 'Το αίτημα ακυρώθηκε με ασφάλεια και έκλεισε.' }
+  { key: 'reschedule_requested', title: '2B. Αίτημα αλλαγής', detail: 'Ζητήθηκε αλλαγή και αναμένεται έγκριση moderation.' },
+  { key: 'reschedule_rejected', title: '2C. Απόρριψη αλλαγής', detail: 'Το αίτημα αλλαγής δεν εγκρίθηκε.' },
+  { key: 'rejected', title: '2D. Απόρριψη αιτήματος', detail: 'Το αρχικό αίτημα απορρίφθηκε και μπορείτε να στείλετε νέο.' },
+  { key: 'cancelled', title: '2E. Ακύρωση', detail: 'Το αίτημα ακυρώθηκε με ασφάλεια και έκλεισε.' }
 ];
 const professionalStatusBadge = moderationState === 'approved'
   ? 'Ο επαγγελματίας ενημερώθηκε'
-  : moderationState === 'rejected'
-    ? 'Δεν προχώρησε σε επαγγελματία'
-    : moderationState === 'cancelled'
-      ? 'Η ανάθεση ακυρώθηκε'
-      : 'Σε αναμονή επαγγελματία';
+  : moderationState === 'reschedule_requested'
+    ? 'Εκκρεμεί απόφαση αλλαγής'
+    : moderationState === 'reschedule_rejected'
+      ? 'Η αλλαγή δεν εγκρίθηκε'
+      : moderationState === 'rejected'
+        ? 'Δεν προχώρησε σε επαγγελματία'
+        : moderationState === 'cancelled'
+          ? 'Η ανάθεση ακυρώθηκε'
+          : 'Σε αναμονή επαγγελματία';
 const customerStatusBadge = moderationState === 'approved'
   ? 'Πελάτης: αναμένεται επικοινωνία'
-  : moderationState === 'rejected'
-    ? 'Πελάτης: προτείνεται νέο αίτημα'
-    : moderationState === 'cancelled'
-      ? 'Πελάτης: αίτημα ακυρωμένο'
-      : 'Πελάτης: αναμονή ελέγχου';
+  : moderationState === 'reschedule_requested'
+    ? 'Πελάτης: εκκρεμεί αλλαγή'
+    : moderationState === 'reschedule_rejected'
+      ? 'Πελάτης: αλλαγή μη εγκεκριμένη'
+      : moderationState === 'rejected'
+        ? 'Πελάτης: προτείνεται νέο αίτημα'
+        : moderationState === 'cancelled'
+          ? 'Πελάτης: αίτημα ακυρωμένο'
+          : 'Πελάτης: αναμονή ελέγχου';
 const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`GreekHandy κράτηση ${bookingId || ''}`)}&body=${encodeURIComponent(`Γεια σας,\n\nΘα ήθελα ενημέρωση για το αίτημα κράτησης με κωδικό: ${bookingId || '-'}\nΚατάσταση: ${moderationState}\n\nΕυχαριστώ.`)}`;
-const rescheduleMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`Αίτημα αλλαγής ραντεβού ${bookingId || ''}`)}&body=${encodeURIComponent(`Γεια σας,\n\nΘα ήθελα αλλαγή/ενημέρωση για το αίτημα κράτησης με κωδικό: ${bookingId || '-'}\n\nΝέα διαθεσιμότητα: \n\nΕυχαριστώ.`)}`;
 
 ---
 
@@ -135,6 +164,18 @@ const rescheduleMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent
     {hasLookupError && (
       <div class="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-900">
         Προέκυψε προσωρινό σφάλμα φόρτωσης της κατάστασης. Κάντε ανανέωση σε λίγα δευτερόλεπτα.
+      </div>
+    )}
+
+    {hasRescheduleRequested && (
+      <div class="mt-6 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-violet-900">
+        Το αίτημα αλλαγής καταχωρήθηκε επιτυχώς και αναμένει έγκριση moderation.
+      </div>
+    )}
+
+    {hasRescheduleNotAllowed && (
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
+        Η αλλαγή ραντεβού επιτρέπεται μόνο για εγκεκριμένα αιτήματα. Ελέγξτε την τρέχουσα κατάσταση πριν δοκιμάσετε ξανά.
       </div>
     )}
 
@@ -178,7 +219,7 @@ const rescheduleMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent
           {reviewedAt && <p class="mt-1 text-xs opacity-85">Τελευταία ενημέρωση: {reviewedAt}</p>}
         </div>
 
-        <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {statusPills.map((pill) => {
             const isActive = moderationState === pill.key;
             const isCompleted = pill.key === 'pending' && moderationState !== 'pending';
@@ -217,7 +258,7 @@ const rescheduleMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent
           </div>
         )}
 
-        {(moderationState === 'approved' || moderationState === 'rejected' || moderationState === 'cancelled') && (
+        {(moderationState === 'rejected' || moderationState === 'cancelled' || moderationState === 'reschedule_rejected') && (
           <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
             Η κατάσταση έχει οριστικοποιηθεί. Για νέα ενέργεια, υποβάλετε νέο αίτημα κράτησης από τη σελίδα επαγγελματία.
           </div>
@@ -268,8 +309,16 @@ const rescheduleMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent
           {(moderationState === 'pending' || moderationState === 'approved') && (
             <a href={supportMailTo} class="inline-flex rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">Αίτημα ενημέρωσης</a>
           )}
-          {moderationState === 'approved' && (
-            <a href={rescheduleMailTo} class="inline-flex rounded-lg border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">Αίτημα αλλαγής ραντεβού</a>
+          {moderationState === 'approved' && booking && (
+            <form action="/api/bookings/request-update" method="POST" class="inline-flex">
+              <input type="hidden" name="bookingId" value={bookingId} />
+              <input type="hidden" name="requestedAction" value="reschedule" />
+              <input type="hidden" name="email" value={booking.email} />
+              <input type="hidden" name="returnTo" value={`/bookings/request?bookingId=${encodeURIComponent(bookingId)}`} />
+              <button type="submit" class="inline-flex rounded-lg border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50" onclick="return window.confirm('Θέλετε να σταλεί αίτημα αλλαγής ραντεβού για moderation;');">
+                Αίτημα αλλαγής ραντεβού
+              </button>
+            </form>
           )}
         </div>
       </section>

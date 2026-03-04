@@ -13,6 +13,8 @@ import {
   type BookingSubmission
 } from '../../lib/bookings';
 
+Astro.response.headers.set('Content-Type', 'text/html; charset=UTF-8');
+
 const url = new URL(Astro.request.url);
 const moderationKey = url.searchParams.get('key') ?? '';
 const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
@@ -28,7 +30,10 @@ const isInvalidTransitionGuardrail = statusReason === 'invalid-transition';
 
 const isAllowedTransition = (from: BookingModerationState, to: BookingModerationState) => {
   if (from === to) return true;
-  return from === 'pending' && ['approved', 'rejected', 'cancelled'].includes(to);
+  if (from === 'pending') return ['approved', 'rejected', 'cancelled'].includes(to);
+  if (from === 'approved') return ['reschedule_requested'].includes(to);
+  if (from === 'reschedule_requested') return ['approved', 'reschedule_rejected', 'cancelled'].includes(to);
+  return false;
 };
 
 const formatDateTime = (value: string | undefined) => {
@@ -65,13 +70,25 @@ const stateMeta: Record<BookingModerationState, { label: string; badge: string; 
     label: 'Ακυρώθηκε',
     badge: 'border-slate-300 bg-slate-100 text-slate-800',
     timelineTitle: 'Ακύρωση από χρήστη'
+  },
+  reschedule_requested: {
+    label: 'Αίτημα αλλαγής',
+    badge: 'border-violet-200 bg-violet-50 text-violet-900',
+    timelineTitle: 'Εκκρεμής αλλαγή ραντεβού'
+  },
+  reschedule_rejected: {
+    label: 'Αλλαγή μη εγκεκριμένη',
+    badge: 'border-orange-200 bg-orange-50 text-orange-900',
+    timelineTitle: 'Απόρριψη αιτήματος αλλαγής'
   }
 };
 
 const transitionTargets: Array<{ state: BookingModerationState; label: string; buttonClass: string }> = [
-  { state: 'approved', label: 'Μετάβαση σε Εγκρίθηκε', buttonClass: 'bg-emerald-700 hover:bg-emerald-800 text-white' },
-  { state: 'rejected', label: 'Μετάβαση σε Απορρίφθηκε', buttonClass: 'bg-rose-700 hover:bg-rose-800 text-white' },
+  { state: 'approved', label: 'Έγκριση αιτήματος', buttonClass: 'bg-emerald-700 hover:bg-emerald-800 text-white' },
+  { state: 'rejected', label: 'Απόρριψη αιτήματος', buttonClass: 'bg-rose-700 hover:bg-rose-800 text-white' },
   { state: 'cancelled', label: 'Ακύρωση αιτήματος', buttonClass: 'bg-slate-700 hover:bg-slate-800 text-white' },
+  { state: 'reschedule_requested', label: 'Καταχώρηση αιτήματος αλλαγής', buttonClass: 'bg-violet-700 hover:bg-violet-800 text-white' },
+  { state: 'reschedule_rejected', label: 'Απόρριψη αλλαγής ραντεβού', buttonClass: 'bg-orange-700 hover:bg-orange-800 text-white' },
   { state: 'pending', label: 'Επαναφορά σε Αναμονή', buttonClass: 'border border-gray-300 text-gray-700 hover:bg-gray-50' }
 ];
 
@@ -90,18 +107,20 @@ const bookings = submissions
 const groupedBookings: Record<BookingModerationState, typeof bookings> = {
   pending: bookings.filter((entry) => entry.resolution.state === 'pending'),
   approved: bookings.filter((entry) => entry.resolution.state === 'approved'),
+  reschedule_requested: bookings.filter((entry) => entry.resolution.state === 'reschedule_requested'),
+  reschedule_rejected: bookings.filter((entry) => entry.resolution.state === 'reschedule_rejected'),
   rejected: bookings.filter((entry) => entry.resolution.state === 'rejected'),
   cancelled: bookings.filter((entry) => entry.resolution.state === 'cancelled')
 };
 
-const orderedStates: BookingModerationState[] = ['pending', 'approved', 'rejected', 'cancelled'];
+const orderedStates: BookingModerationState[] = ['pending', 'approved', 'reschedule_requested', 'reschedule_rejected', 'rejected', 'cancelled'];
 const hasAnyBookings = bookings.length > 0;
 ---
 
 <Layout title="Lifecycle Moderation Κρατήσεων | GreekHandy" description="Εσωτερική σελίδα διαχείρισης και μεταβάσεων κατάστασης αιτημάτων κράτησης.">
   <main class="mx-auto max-w-5xl px-4 py-14">
     <h1 class="text-3xl font-bold text-gray-900">Lifecycle Moderation Αιτημάτων Κράτησης</h1>
-    <p class="mt-2 text-gray-700">Ορατότητα σε όλα τα αιτήματα και έλεγχος μεταβάσεων κατάστασης (pending / approved / rejected / cancelled).</p>
+    <p class="mt-2 text-gray-700">Ορατότητα σε όλα τα αιτήματα και έλεγχος μεταβάσεων κατάστασης (pending / approved / reschedule_requested / reschedule_rejected / rejected / cancelled).</p>
 
     {!isAuthorized && (
       <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
@@ -128,13 +147,13 @@ const hasAnyBookings = bookings.length > 0;
         )}
         {status === 'guardrail' && (
           <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
-            Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isInvalidTransitionGuardrail ? 'Επιτρέπονται μόνο μεταβάσεις από pending προς approved, rejected ή cancelled.' : 'Ελέγξτε τους κανόνες μετάβασης.'}
+            Η ενέργεια μπλοκαρίστηκε από guardrail{statusBookingId ? ` για το αίτημα ${statusBookingId}` : ''}. {isInvalidTransitionGuardrail ? 'Επιτρέπονται μόνο οι μεταβάσεις που ορίζονται στο lifecycle (pending→approved/rejected/cancelled, approved→reschedule_requested, reschedule_requested→approved/reschedule_rejected/cancelled).' : 'Ελέγξτε τους κανόνες μετάβασης.'}
           </p>
         )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
         {status === 'invalid' && (
           <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">
-            Μη έγκυρα δεδομένα μετάβασης. Απαιτείται bookingId, expectedState και επιτρεπτό targetState (pending/approved/rejected/cancelled).
+            Μη έγκυρα δεδομένα μετάβασης. Απαιτείται bookingId, expectedState και επιτρεπτό targetState (pending/approved/reschedule_requested/reschedule_rejected/rejected/cancelled).
             {statusReason === 'missing-or-invalid-expected-state' && ' Εντοπίστηκε κενό ή μη έγκυρο expectedState για batch-safe προστασία.'}
           </p>
         )}
@@ -149,7 +168,7 @@ const hasAnyBookings = bookings.length > 0;
 
         <div class="mt-6 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
           <p class="font-semibold text-slate-900">Flow μεταβάσεων</p>
-          <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Guardrail: η ακύρωση επιτρέπεται μόνο από pending. Αν χρειαστεί διόρθωση, επιτρέπεται επαναφορά σε <strong>pending</strong>.</p>
+          <p class="mt-1">Κάθε αίτημα ξεκινά ως <strong>pending</strong> και μπορεί να μεταβεί σε <strong>approved</strong>, <strong>rejected</strong> ή <strong>cancelled</strong>. Από <strong>approved</strong> επιτρέπεται αίτημα αλλαγής (<strong>reschedule_requested</strong>), που κλείνει με <strong>approved</strong> ή <strong>reschedule_rejected</strong>.</p>
         </div>
 
         <section class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -165,7 +184,7 @@ const hasAnyBookings = bookings.length > 0;
         {!hasAnyBookings && (
           <div class="mt-6 rounded-2xl border border-dashed border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 text-blue-900">
             <p class="font-semibold">Δεν υπάρχουν ακόμη καταχωρημένα αιτήματα κράτησης.</p>
-            <p class="mt-1 text-sm text-blue-800">Μόλις υποβληθεί το πρώτο αίτημα, θα εμφανιστεί εδώ με πλήρες lifecycle (pending/approved/rejected/cancelled).</p>
+            <p class="mt-1 text-sm text-blue-800">Μόλις υποβληθεί το πρώτο αίτημα, θα εμφανιστεί εδώ με πλήρες lifecycle (pending/approved/reschedule_requested/reschedule_rejected/rejected/cancelled).</p>
           </div>
         )}
 
@@ -219,7 +238,7 @@ const hasAnyBookings = bookings.length > 0;
                     Προβολή σελίδας κατάστασης πελάτη
                   </a>
                   <span class="text-xs font-medium text-slate-500">Τρέχουσα κατάσταση: {resolution.state}</span>
-                  <span class="text-xs text-slate-500">Επιτρεπτές ενέργειες: {resolution.state === 'pending' ? 'approved, rejected, cancelled' : 'καμία άμεση μετάβαση (μόνο νέα υποβολή)'}</span>
+                  <span class="text-xs text-slate-500">Επιτρεπτές ενέργειες: {resolution.state === 'pending' ? 'approved, rejected, cancelled' : resolution.state === 'approved' ? 'reschedule_requested' : resolution.state === 'reschedule_requested' ? 'approved, reschedule_rejected, cancelled' : 'καμία άμεση μετάβαση'}</span>
 
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state && isAllowedTransition(resolution.state, target.state))
@@ -261,7 +280,7 @@ const hasAnyBookings = bookings.length > 0;
             const fromState = form.getAttribute('data-from-state') || 'unknown';
             const toState = form.getAttribute('data-to-state') || 'unknown';
 
-            if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel}\nΑίτημα: ${bookingId}\nΜετάβαση: ${fromState} → ${toState}`)) {
+            if (!window.confirm(`Επιβεβαίωση ενέργειας: ${actionLabel}\nΑίτημα: ${bookingId}\nΜετάβαση: ${fromState} → ${toState}\n\nΠατήστε OK μόνο αν η μετάβαση είναι σωστή.`)) {
               event.preventDefault();
               return;
             }
