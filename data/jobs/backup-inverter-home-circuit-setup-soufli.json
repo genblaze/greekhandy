@@ -1,0 +1,20 @@
+{
+  "id": "backup-inverter-home-circuit-setup-soufli",
+  "slug": "egkatastasi-backup-inverter-gia-kyklomata-spitiou-soufli",
+  "nameGr": "Εγκατάσταση Backup Inverter για Κυκλώματα Σπιτιού στο Σουφλί",
+  "nameEn": "Backup Inverter Home Circuit Setup in Σουφλί",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εγκατάσταση backup inverter στο Σουφλί για κρίσιμα κυκλώματα κατοικίας σε διακοπές ρεύματος. SEO intent: στοχεύει high-intent queries «backup inverter σπίτι Σουφλί».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "380-1900€",
+  "demand": "high",
+  "keywords": [
+    "backup inverter σπίτι Σουφλί",
+    "εφεδρικό ρεύμα κατοικίας",
+    "ηλεκτρολόγος inverter εγκατάσταση",
+    "διακοπή ρεύματος λύση σπίτι",
+    "UPS κυκλώματα σπιτιού"
+  ],
+  "status": "researched"
+}

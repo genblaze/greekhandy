@@ -1,0 +1,20 @@
+{
+  "id": "well-water-uv-purification-install-soufli",
+  "slug": "egkatastasi-uv-katharismou-nerou-geotrisis-soufli",
+  "nameGr": "Εγκατάσταση UV Καθαρισμού Νερού Γεώτρησης στο Σουφλί",
+  "nameEn": "Well Water UV Purification Install in Σουφλί",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εγκατάσταση UV καθαρισμού νερού γεώτρησης στο Σουφλί για βελτίωση υγιεινής και ποιότητας χρήσης νερού. SEO intent: καλύπτει αναζητήσεις «UV νερού γεώτρησης Σουφλί».",
+  "typicalDuration": "2-6 ώρες",
+  "priceRangeEUR": "260-1200€",
+  "demand": "high",
+  "keywords": [
+    "UV νερού γεώτρησης Σουφλί",
+    "καθαρισμός νερού γεώτρησης",
+    "σύστημα απολύμανσης νερού UV",
+    "υδραυλικός φίλτρα νερού γεώτρησης",
+    "ποιότητα νερού κατοικίας"
+  ],
+  "status": "researched"
+}
