@@ -216,7 +216,10 @@ const hasLeads = directoryData.leads.length > 0;
                   <div class="mt-4 border-t border-slate-100 pt-3">
                     <div class="flex items-center justify-between gap-2">
                       <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Saved presets</p>
-                      <button type="button" data-save-preset class="inline-flex min-h-8 items-center rounded-md border border-indigo-300 bg-indigo-50 px-2.5 text-xs font-semibold text-indigo-800 transition hover:bg-indigo-100">Αποθήκευση τρέχοντος</button>
+                      <div class="flex items-center gap-2">
+                        <button type="button" data-copy-current-view class="inline-flex min-h-8 items-center rounded-md border border-sky-300 bg-sky-50 px-2.5 text-xs font-semibold text-sky-800 transition hover:bg-sky-100">Copy view URL</button>
+                        <button type="button" data-save-preset class="inline-flex min-h-8 items-center rounded-md border border-indigo-300 bg-indigo-50 px-2.5 text-xs font-semibold text-indigo-800 transition hover:bg-indigo-100">Αποθήκευση τρέχοντος</button>
+                      </div>
                     </div>
                     <div data-presets-list class="mt-2 flex flex-wrap gap-2"></div>
                     <p data-no-presets class="mt-2 text-xs text-slate-500">Δεν υπάρχουν αποθηκευμένα presets.</p>
@@ -399,7 +402,7 @@ const hasLeads = directoryData.leads.length > 0;
 
               <section data-selection-dock class="pointer-events-none fixed inset-x-0 bottom-3 z-30 hidden px-4">
                 <div class="pointer-events-auto mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur">
-                  <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα</p>
+                  <p class="text-sm font-semibold text-slate-800"><span data-selection-dock-count>0</span> leads επιλεγμένα <span class="ml-2 text-xs font-medium text-slate-500">(Shift+A επιλογή ορατών)</span></p>
                   <div class="flex flex-wrap items-center gap-2">
                     <button type="button" data-selection-dock-contacted="true" class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100">Μαζικά: Επικοινωνήθηκε</button>
                     <button type="button" data-selection-dock-contacted="false" class="inline-flex min-h-8 items-center rounded-md border border-amber-300 bg-amber-50 px-3 text-xs font-semibold text-amber-800 transition hover:bg-amber-100">Μαζικά: Χωρίς επαφή</button>
@@ -468,6 +471,7 @@ const hasLeads = directoryData.leads.length > 0;
         const noActiveFilters = root.querySelector('[data-no-active-filters]');
         const clearUrlFiltersButton = root.querySelector('[data-clear-url-filters]');
         const savePresetButton = root.querySelector('[data-save-preset]');
+        const copyCurrentViewButton = root.querySelector('[data-copy-current-view]');
         const presetsList = root.querySelector('[data-presets-list]');
         const noPresets = root.querySelector('[data-no-presets]');
         const exportCsvButton = root.querySelector('[data-export-csv]');
@@ -712,12 +716,24 @@ const hasLeads = directoryData.leads.length > 0;
           const presets = readPresets();
           presetsList.innerHTML = '';
           presets.forEach((preset) => {
+            const row = document.createElement('div');
+            row.className = 'inline-flex items-center gap-1 rounded-full border border-indigo-200 bg-indigo-50 p-1';
+
             const applyBtn = document.createElement('button');
             applyBtn.type = 'button';
             applyBtn.dataset.presetName = preset.name;
-            applyBtn.className = 'inline-flex min-h-8 items-center rounded-full border border-indigo-200 bg-indigo-50 px-3 text-xs font-semibold text-indigo-800 hover:bg-indigo-100';
+            applyBtn.className = 'inline-flex min-h-7 items-center rounded-full px-2 text-xs font-semibold text-indigo-900 hover:bg-indigo-100';
             applyBtn.textContent = preset.name;
-            presetsList.appendChild(applyBtn);
+
+            const copyBtn = document.createElement('button');
+            copyBtn.type = 'button';
+            copyBtn.dataset.presetCopy = preset.name;
+            copyBtn.className = 'inline-flex min-h-7 items-center rounded-full border border-indigo-300 bg-white px-2 text-[11px] font-semibold text-indigo-700 hover:bg-indigo-100';
+            copyBtn.textContent = 'Copy URL';
+
+            row.appendChild(applyBtn);
+            row.appendChild(copyBtn);
+            presetsList.appendChild(row);
           });
           noPresets.classList.toggle('hidden', presets.length > 0);
         };
@@ -1341,12 +1357,21 @@ const hasLeads = directoryData.leads.length > 0;
           window.history.replaceState({}, '', window.location.pathname);
         });
 
+        const currentViewUrl = () => `${window.location.origin}${window.location.pathname}${window.location.search}`;
+
+        copyCurrentViewButton?.addEventListener('click', async () => {
+          const url = currentViewUrl();
+          await navigator.clipboard.writeText(url).catch(() => {});
+          if (liveRegion instanceof HTMLElement) liveRegion.textContent = 'Αντιγράφηκε το URL της τρέχουσας προβολής.';
+        });
+
         savePresetButton?.addEventListener('click', () => {
           const name = window.prompt('Όνομα preset φίλτρων:')?.trim();
           if (!name) return;
           const presets = readPresets().filter((preset) => preset.name !== name);
           presets.unshift({
             name,
+            query: window.location.search || '',
             state: {
               category: state.category,
               city: state.city,
@@ -1363,9 +1388,21 @@ const hasLeads = directoryData.leads.length > 0;
           if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Αποθηκεύτηκε preset: ${name}`;
         });
 
-        presetsList?.addEventListener('click', (event) => {
+        presetsList?.addEventListener('click', async (event) => {
           const target = event.target;
           if (!(target instanceof HTMLElement)) return;
+
+          const copyButton = target.closest('[data-preset-copy]');
+          if (copyButton instanceof HTMLButtonElement) {
+            const name = copyButton.dataset.presetCopy || '';
+            const preset = readPresets().find((item) => item.name === name);
+            const query = typeof preset?.query === 'string' ? preset.query : '';
+            const shareUrl = `${window.location.origin}${window.location.pathname}${query}`;
+            await navigator.clipboard.writeText(shareUrl).catch(() => {});
+            if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Αντιγράφηκε το URL για το preset ${name}.`;
+            return;
+          }
+
           const button = target.closest('[data-preset-name]');
           if (!(button instanceof HTMLButtonElement)) return;
           const name = button.dataset.presetName || '';
@@ -1437,6 +1474,11 @@ const hasLeads = directoryData.leads.length > 0;
         });
 
         const applyBulkOutreach = (targetContacted) => {
+          const count = selectedLeadIds.size;
+          if (count <= 0) return;
+          const ok = window.confirm(`Επιβεβαίωση μαζικής ενέργειας για ${count} leads: ${targetContacted ? 'Επικοινωνήθηκε' : 'Χωρίς επαφή'};`);
+          if (!ok) return;
+
           let changed = 0;
           parsedCards.forEach((entry) => {
             if (!selectedLeadIds.has(entry.id)) return;
@@ -1468,6 +1510,11 @@ const hasLeads = directoryData.leads.length > 0;
         };
 
         const applyBulkSegment = (segmentValue) => {
+          const count = selectedLeadIds.size;
+          if (count <= 0) return;
+          const ok = window.confirm(`Επιβεβαίωση μαζικού segment '${segmentValue}' για ${count} leads;`);
+          if (!ok) return;
+
           let changed = 0;
           parsedCards.forEach((entry) => {
             if (!selectedLeadIds.has(entry.id)) return;
