@@ -1,0 +1,20 @@
+{
+  "id": "smart-water-meter-leak-analytics-porto-heli",
+  "slug": "egkatastasi-smart-ydrometriti-kai-analysi-diarrois-porto-heli",
+  "nameGr": "Εγκατάσταση Smart Υδρομετρητή & Ανάλυση Διαρροών στο Πόρτο Χέλι",
+  "nameEn": "Smart Water Meter Leak Analytics in Πόρτο Χέλι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εγκατάσταση smart υδρομετρητή στο Πόρτο Χέλι με ειδοποιήσεις και ανάλυση κατανάλωσης για έγκαιρη διάγνωση διαρροών. SEO intent: καλύπτει conversion queries «smart υδρόμετρο Πόρτο Χέλι».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "140-620€",
+  "demand": "high",
+  "keywords": [
+    "smart υδρόμετρο Πόρτο Χέλι",
+    "ανίχνευση διαρροής νερού app",
+    "παρακολούθηση κατανάλωσης νερού",
+    "υδραυλικός έξυπνα συστήματα",
+    "ειδοποίηση διαρροής νερού"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "smart-water-meter-leak-analytics-kalavryta",
+  "slug": "egkatastasi-smart-ydrometriti-kai-analysi-diarrois-kalavryta",
+  "nameGr": "Εγκατάσταση Smart Υδρομετρητή & Ανάλυση Διαρροών στα Καλάβρυτα",
+  "nameEn": "Smart Water Meter Leak Analytics in Καλάβρυτα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εγκατάσταση smart υδρομετρητή στα Καλάβρυτα με ειδοποιήσεις και ανάλυση κατανάλωσης για έγκαιρη διάγνωση διαρροών. SEO intent: καλύπτει conversion queries «smart υδρόμετρο Καλάβρυτα».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "140-620€",
+  "demand": "high",
+  "keywords": [
+    "smart υδρόμετρο Καλάβρυτα",
+    "ανίχνευση διαρροής νερού app",
+    "παρακολούθηση κατανάλωσης νερού",
+    "υδραυλικός έξυπνα συστήματα",
+    "ειδοποίηση διαρροής νερού"
+  ],
+  "status": "researched"
+}
