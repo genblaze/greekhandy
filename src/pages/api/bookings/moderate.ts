@@ -1,8 +1,13 @@
 import type { APIRoute } from 'astro';
 import { appendFile, mkdir } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-
-const ACTIONS_FILE_PATH = resolve(process.cwd(), 'data', 'booking-moderation-actions.ndjson');
+import { dirname } from 'node:path';
+import {
+  BOOKING_ACTIONS_FILE_PATH,
+  findLatestBookingAction,
+  readNdjson,
+  resolveBookingModerationState,
+  type BookingAction
+} from '../../../lib/bookings';
 
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 
@@ -24,9 +29,19 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   try {
-    await mkdir(dirname(ACTIONS_FILE_PATH), { recursive: true });
+    const actions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
+    const latestAction = findLatestBookingAction(actions, bookingId);
+
+    const currentState = resolveBookingModerationState({
+      action: latestAction?.action
+    }).state;
+    if (currentState !== 'pending') {
+      return redirect(`${returnUrl}&status=already-processed`, 303);
+    }
+
+    await mkdir(dirname(BOOKING_ACTIONS_FILE_PATH), { recursive: true });
     await appendFile(
-      ACTIONS_FILE_PATH,
+      BOOKING_ACTIONS_FILE_PATH,
       `${JSON.stringify({ bookingId, action, actedAt: new Date().toISOString() })}\n`,
       'utf-8'
     );

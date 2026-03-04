@@ -3,9 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import {
   BOOKING_ACTIONS_FILE_PATH,
   BOOKING_SUBMISSIONS_FILE_PATH,
+  getLatestBookingActionById,
   getBookingId,
   getBookingStatusPath,
   readNdjson,
+  resolveBookingModerationState,
   type BookingAction,
   type BookingSubmission
 } from '../../lib/bookings';
@@ -15,20 +17,31 @@ const moderationKey = url.searchParams.get('key') ?? '';
 const expectedKey = process.env.PROFESSIONAL_MODERATION_KEY ?? '';
 const isAuthorized = Boolean(expectedKey && moderationKey === expectedKey);
 const status = url.searchParams.get('status');
+const formatDateTime = (value: string | undefined) => {
+  const timestamp = Date.parse(value ?? '');
+  return Number.isNaN(timestamp) ? 'Μη διαθέσιμη ημερομηνία' : new Date(timestamp).toLocaleString('el-GR');
+};
+const safeText = (value: string | undefined, fallback = 'Δεν έχει καταχωρηθεί') => {
+  const cleaned = (value ?? '').trim();
+  return cleaned || fallback;
+};
 
 const submissions = await readNdjson<BookingSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
 const actions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
 
-const latestActionById = new Map<string, BookingAction>();
-for (const action of actions) latestActionById.set(action.bookingId, action);
+const latestActionById = getLatestBookingActionById(actions);
 
 const pendingBookings = submissions
   .map((booking) => {
     const bookingId = getBookingId(booking);
     const latestAction = latestActionById.get(bookingId);
-    return { booking, bookingId, latestAction };
+    const resolution = resolveBookingModerationState({
+      action: latestAction?.action,
+      submissionStatus: booking.status
+    });
+    return { booking, bookingId, resolution };
   })
-  .filter((item) => !item.latestAction)
+  .filter((item) => item.resolution.state === 'pending')
   .reverse();
 ---
 
@@ -45,9 +58,13 @@ const pendingBookings = submissions
 
     {isAuthorized && (
       <>
-        {status === 'ok' && <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">Η ενέργεια ολοκληρώθηκε.</p>}
+        {status === 'ok' && <p class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-green-800">Η απόφαση moderation καταχωρήθηκε.</p>}
+        {status === 'already-processed' && (
+          <p class="mt-5 rounded-lg bg-blue-50 px-4 py-3 text-blue-800">Το αίτημα έχει ήδη επεξεργαστεί και δεν απαιτεί νέα ενέργεια.</p>
+        )}
         {status === 'error' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Προέκυψε σφάλμα κατά την επεξεργασία.</p>}
         {status === 'invalid' && <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-amber-800">Μη έγκυρα δεδομένα.</p>}
+        {status === 'unauthorized' && <p class="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-800">Μη εξουσιοδοτημένη ενέργεια moderation.</p>}
 
         <section class="mt-8 space-y-4">
           <h2 class="text-xl font-bold text-gray-900">Εκκρεμή Αιτήματα ({pendingBookings.length})</h2>
@@ -56,38 +73,43 @@ const pendingBookings = submissions
             <p class="rounded-xl border border-gray-200 bg-white p-4 text-gray-700">Δεν υπάρχουν εκκρεμή αιτήματα.</p>
           )}
 
-          {pendingBookings.map(({ booking, bookingId }) => (
+          {pendingBookings.map(({ booking, bookingId, resolution }) => (
             <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
               <div class="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p class="text-sm font-semibold text-blue-700">/{booking.professionalSlug}</p>
-                  <h3 class="text-lg font-bold text-gray-900">{booking.customerName}</h3>
-                  <p class="mt-1 text-sm text-gray-600">{booking.email} • {booking.phone}</p>
-                  {booking.service && <p class="mt-1 text-sm text-gray-700"><strong>Υπηρεσία:</strong> {booking.service}</p>}
-                  {booking.preferredDate && <p class="mt-1 text-sm text-gray-700"><strong>Προτιμώμενο πρόγραμμα:</strong> {booking.preferredDate}</p>}
+                  <p class="text-sm font-semibold text-blue-700">/{safeText(booking.professionalSlug)}</p>
+                  <h3 class="text-lg font-bold text-gray-900">{safeText(booking.customerName)}</h3>
+                  <p class="mt-1 text-sm text-gray-600">{safeText(booking.email, 'Χωρίς email')} • {safeText(booking.phone, 'Χωρίς τηλέφωνο')}</p>
+                  {booking.service && <p class="mt-1 text-sm text-gray-700"><strong>Υπηρεσία:</strong> {safeText(booking.service)}</p>}
+                  {booking.preferredDate && <p class="mt-1 text-sm text-gray-700"><strong>Προτιμώμενο πρόγραμμα:</strong> {safeText(booking.preferredDate)}</p>}
                 </div>
-                <p class="text-xs text-gray-500">{new Date(booking.submittedAt).toLocaleString('el-GR')}</p>
+                <p class="text-xs text-gray-500">{formatDateTime(booking.submittedAt)}</p>
               </div>
 
-              <p class="mt-3 text-sm text-gray-700"><strong>Μήνυμα:</strong> {booking.message}</p>
+              <p class="mt-3 text-sm text-gray-700"><strong>Μήνυμα:</strong> {safeText(booking.message, 'Δεν υπάρχουν λεπτομέρειες αιτήματος.')}</p>
+              {resolution.hasUnknownData && (
+                <p class="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+                  Εντοπίστηκαν μη αναγνωρίσιμα δεδομένα κατάστασης και το αίτημα εμφανίζεται ως εκκρεμές για ασφάλεια.
+                </p>
+              )}
 
               <div class="mt-4 flex flex-wrap gap-3">
                 <a href={getBookingStatusPath(bookingId)} class="rounded-lg border border-blue-300 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">
-                  Προβολή customer status page
+                  Προβολή σελίδας κατάστασης πελάτη
                 </a>
 
                 <form action="/api/bookings/moderate" method="POST">
                   <input type="hidden" name="moderationKey" value={moderationKey} />
                   <input type="hidden" name="action" value="approve" />
                   <input type="hidden" name="bookingId" value={bookingId} />
-                  <button type="submit" class="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-800">Approve</button>
+                  <button type="submit" class="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-800">Έγκριση</button>
                 </form>
 
                 <form action="/api/bookings/moderate" method="POST">
                   <input type="hidden" name="moderationKey" value={moderationKey} />
                   <input type="hidden" name="action" value="reject" />
                   <input type="hidden" name="bookingId" value={bookingId} />
-                  <button type="submit" class="rounded-lg bg-gray-700 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">Reject</button>
+                  <button type="submit" class="rounded-lg bg-gray-700 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">Απόρριψη</button>
                 </form>
               </div>
             </article>

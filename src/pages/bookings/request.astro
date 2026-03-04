@@ -3,10 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import {
   BOOKING_ACTIONS_FILE_PATH,
   BOOKING_SUBMISSIONS_FILE_PATH,
+  findLatestBookingAction,
   getBookingId,
-  getBookingModerationState,
   readNdjson,
   type BookingAction,
+  resolveBookingModerationState,
   type BookingModerationState,
   type BookingSubmission
 } from '../../lib/bookings';
@@ -15,6 +16,14 @@ const statusParam = (Astro.url.searchParams.get('status') ?? '').trim();
 const returnToParam = (Astro.url.searchParams.get('returnTo') ?? '').trim();
 const returnTo = returnToParam.startsWith('/') && !returnToParam.startsWith('//') ? returnToParam : null;
 const bookingId = (Astro.url.searchParams.get('bookingId') ?? '').trim();
+const safeText = (value: string | undefined, fallback = 'Δεν έχει καταχωρηθεί') => {
+  const cleaned = (value ?? '').trim();
+  return cleaned || fallback;
+};
+const toDateString = (value: string | undefined) => {
+  const timestamp = Date.parse(value ?? '');
+  return Number.isNaN(timestamp) ? null : new Date(timestamp).toLocaleString('el-GR');
+};
 
 const submissions = await readNdjson<BookingSubmission>(BOOKING_SUBMISSIONS_FILE_PATH);
 const actions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
@@ -22,39 +31,51 @@ const actions = await readNdjson<BookingAction>(BOOKING_ACTIONS_FILE_PATH);
 const booking = submissions.find((entry) => getBookingId(entry) === bookingId);
 if (!booking && bookingId) Astro.response.status = 404;
 
-let latestAction: BookingAction | null = null;
-for (const action of actions) {
-  if (action.bookingId !== bookingId) continue;
-  if (!latestAction || action.actedAt > latestAction.actedAt) latestAction = action;
-}
+const latestAction = findLatestBookingAction(actions, bookingId);
+const moderationResolution = resolveBookingModerationState({
+  action: latestAction?.action,
+  submissionStatus: booking?.status
+});
+const moderationState: BookingModerationState = moderationResolution.state;
 
-const moderationState: BookingModerationState = getBookingModerationState(latestAction?.action);
-
-const statusStyles: Record<BookingModerationState, { badge: string; tone: string; label: string; summary: string }> = {
+const statusStyles: Record<BookingModerationState, { badge: string; tone: string; label: string; summary: string; hint: string }> = {
   pending: {
     badge: 'bg-amber-100 text-amber-900 border border-amber-200',
     tone: 'border-amber-200 bg-amber-50 text-amber-900',
     label: 'Σε αναμονή',
-    summary: 'Το αίτημα έχει καταχωρηθεί και βρίσκεται σε διαδικασία ελέγχου.'
+    summary: 'Το αίτημα έχει καταχωρηθεί και βρίσκεται σε διαδικασία ελέγχου.',
+    hint: 'Μόλις ολοκληρωθεί το moderation, η κατάσταση θα ενημερωθεί αυτόματα σε αυτή τη σελίδα.'
   },
   approved: {
     badge: 'bg-emerald-100 text-emerald-900 border border-emerald-200',
     tone: 'border-emerald-200 bg-emerald-50 text-emerald-900',
     label: 'Εγκρίθηκε',
-    summary: 'Το αίτημα εγκρίθηκε. Ο επαγγελματίας θα επικοινωνήσει μαζί σας για τα επόμενα βήματα.'
+    summary: 'Το αίτημα εγκρίθηκε. Ο επαγγελματίας θα επικοινωνήσει μαζί σας για τα επόμενα βήματα.',
+    hint: 'Αν χρειάζεστε αλλαγή στο ραντεβού, χρησιμοποιήστε τα στοιχεία επικοινωνίας του επαγγελματία.'
   },
   rejected: {
     badge: 'bg-rose-100 text-rose-900 border border-rose-200',
     tone: 'border-rose-200 bg-rose-50 text-rose-900',
     label: 'Απορρίφθηκε',
-    summary: 'Το αίτημα δεν εγκρίθηκε στο στάδιο moderation.'
+    summary: 'Το αίτημα δεν εγκρίθηκε στο στάδιο moderation.',
+    hint: 'Μπορείτε να υποβάλετε νέο αίτημα με πιο συγκεκριμένες λεπτομέρειες ή να επιλέξετε άλλον επαγγελματία.'
   }
 };
 
 const statusView = statusStyles[moderationState];
-const submittedAt = booking ? new Date(booking.submittedAt).toLocaleString('el-GR') : '';
-const reviewedAt = latestAction ? new Date(latestAction.actedAt).toLocaleString('el-GR') : '';
+const submittedAt = booking ? toDateString(booking.submittedAt) : null;
+const reviewedAt = latestAction ? toDateString(latestAction.actedAt) : null;
 const justSubmitted = statusParam === 'submitted';
+const contactDetails = booking
+  ? [safeText(booking.email, ''), safeText(booking.phone, '')].filter(Boolean).join(' • ') || 'Δεν έχουν καταχωρηθεί'
+  : '';
+const professionalSlug = booking ? safeText(booking.professionalSlug, '') : '';
+const canOpenProfessionalProfile = Boolean(professionalSlug);
+const statusPills: Array<{ key: BookingModerationState; label: string }> = [
+  { key: 'pending', label: 'Σε αναμονή' },
+  { key: 'approved', label: 'Εγκρίθηκε' },
+  { key: 'rejected', label: 'Απορρίφθηκε' }
+];
 ---
 
 <Layout title="Κατάσταση Αιτήματος Κράτησης | GreekHandy" description="Δείτε την κατάσταση moderation και τα στοιχεία του αιτήματος κράτησης σας.">
@@ -65,7 +86,7 @@ const justSubmitted = statusParam === 'submitted';
 
     {justSubmitted && (
       <div class="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-900">
-        Το αίτημά σας υποβλήθηκε επιτυχώς.
+        Το αίτημά σας υποβλήθηκε επιτυχώς. Κρατήστε αυτό το link για να παρακολουθείτε την εξέλιξη.
       </div>
     )}
 
@@ -101,42 +122,65 @@ const justSubmitted = statusParam === 'submitted';
 
         <div class={`mt-4 rounded-xl px-4 py-3 text-sm ${statusView.tone}`}>
           <p class="font-semibold">{statusView.summary}</p>
-          {reviewedAt && <p class="mt-1 text-xs opacity-85">Ενημερώθηκε: {reviewedAt}</p>}
+          <p class="mt-1 text-xs opacity-85">{statusView.hint}</p>
+          {reviewedAt && <p class="mt-1 text-xs opacity-85">Τελευταία ενημέρωση: {reviewedAt}</p>}
         </div>
+
+        <div class="mt-4 grid gap-2 sm:grid-cols-3">
+          {statusPills.map((pill) => {
+            const isActive = moderationState === pill.key;
+            const isCompletedPending = pill.key === 'pending' && moderationState !== 'pending';
+            const completedClasses = isCompletedPending ? 'border-emerald-200 bg-emerald-50 text-emerald-900' : '';
+            const activeClasses = isActive ? 'border-blue-200 bg-blue-50 text-blue-900' : '';
+            return (
+              <div class={`rounded-lg border px-3 py-2 text-sm font-semibold text-gray-500 ${activeClasses} ${completedClasses}`}>
+                {pill.label}
+              </div>
+            );
+          })}
+        </div>
+
+        {moderationResolution.hasUnknownData && (
+          <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            Εντοπίστηκαν μη αναγνωρίσιμα δεδομένα κατάστασης. Προβάλλουμε προσωρινά την ασφαλή ένδειξη «Σε αναμονή».
+          </div>
+        )}
 
         <dl class="mt-5 grid gap-4 sm:grid-cols-2">
           <div>
             <dt class="text-xs font-semibold uppercase tracking-wide text-gray-500">Επαγγελματίας</dt>
-            <dd class="mt-1 text-sm text-gray-900">/{booking.professionalSlug}</dd>
+            <dd class="mt-1 text-sm text-gray-900">{professionalSlug ? `/${professionalSlug}` : 'Δεν έχει καταχωρηθεί'}</dd>
           </div>
           <div>
             <dt class="text-xs font-semibold uppercase tracking-wide text-gray-500">Υποβολή</dt>
-            <dd class="mt-1 text-sm text-gray-900">{submittedAt}</dd>
+            <dd class="mt-1 text-sm text-gray-900">{submittedAt || 'Μη διαθέσιμη ημερομηνία'}</dd>
           </div>
           <div>
             <dt class="text-xs font-semibold uppercase tracking-wide text-gray-500">Υπηρεσία</dt>
-            <dd class="mt-1 text-sm text-gray-900">{booking.service || 'Δεν ορίστηκε'}</dd>
+            <dd class="mt-1 text-sm text-gray-900">{safeText(booking.service, 'Δεν ορίστηκε')}</dd>
           </div>
           <div>
             <dt class="text-xs font-semibold uppercase tracking-wide text-gray-500">Προτιμώμενο πρόγραμμα</dt>
-            <dd class="mt-1 text-sm text-gray-900">{booking.preferredDate || 'Δεν ορίστηκε'}</dd>
+            <dd class="mt-1 text-sm text-gray-900">{safeText(booking.preferredDate, 'Δεν ορίστηκε')}</dd>
           </div>
           <div>
             <dt class="text-xs font-semibold uppercase tracking-wide text-gray-500">Ονοματεπώνυμο</dt>
-            <dd class="mt-1 text-sm text-gray-900">{booking.customerName}</dd>
+            <dd class="mt-1 text-sm text-gray-900">{safeText(booking.customerName)}</dd>
           </div>
           <div>
             <dt class="text-xs font-semibold uppercase tracking-wide text-gray-500">Στοιχεία επικοινωνίας</dt>
-            <dd class="mt-1 text-sm text-gray-900">{booking.email} • {booking.phone}</dd>
+            <dd class="mt-1 text-sm text-gray-900">{contactDetails}</dd>
           </div>
           <div class="sm:col-span-2">
             <dt class="text-xs font-semibold uppercase tracking-wide text-gray-500">Λεπτομέρειες αιτήματος</dt>
-            <dd class="mt-1 whitespace-pre-wrap text-sm text-gray-900">{booking.message}</dd>
+            <dd class="mt-1 whitespace-pre-wrap text-sm text-gray-900">{safeText(booking.message, 'Δεν υπάρχουν λεπτομέρειες αιτήματος.')}</dd>
           </div>
         </dl>
 
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href={`/professionals/${booking.professionalSlug}`} class="inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">Προβολή επαγγελματία</a>
+          {canOpenProfessionalProfile && (
+            <a href={`/professionals/${professionalSlug}`} class="inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">Προβολή επαγγελματία</a>
+          )}
           {returnTo && <a href={returnTo} class="inline-flex rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">Επιστροφή στη φόρμα</a>}
         </div>
       </section>
