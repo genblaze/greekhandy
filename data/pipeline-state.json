@@ -1,20 +1,20 @@
 {
-  "lastManagerRun": "2026-03-04T14:46:00Z",
+  "lastManagerRun": "2026-03-04T14:52:00Z",
   "activeAgents": {
     "research": {
       "status": "running",
-      "task": "Define smallest shippable Unified Moderation Queue MVP scope and acceptance criteria for /admin",
-      "startedAt": "2026-03-04T14:46:00Z"
+      "task": "Define the smallest shippable Booking Request MVP scope and acceptance criteria for request submission + moderation flow",
+      "startedAt": "2026-03-04T14:52:00Z"
     },
     "builder": {
       "status": "running",
-      "task": "Prepare Greek copy/content assets for Unified Moderation Queue filters, item labels, states, and actions",
-      "startedAt": "2026-03-04T14:46:00Z"
+      "task": "Prepare Greek copy/content assets for Booking Request UX (form labels, validation, statuses, moderation actions)",
+      "startedAt": "2026-03-04T14:52:00Z"
     },
     "developer": {
       "status": "running",
-      "task": "Implement minimal protected Unified Moderation Queue in /admin using existing data sources and moderation routes",
-      "startedAt": "2026-03-04T14:46:00Z"
+      "task": "Implement minimal Booking Request MVP (submit endpoint + pending moderation flow + admin/moderation surface) using existing project patterns",
+      "startedAt": "2026-03-04T14:52:00Z"
     },
     "leads": {
       "status": "idle",
@@ -27,6 +27,6 @@
     "jobsResearched": 107,
     "contentPagesBuilt": 126
   },
-  "lastDecision": "Admin Dashboard shell is in place; dispatched a focused Unified Moderation Queue MVP cycle (research + copy + implementation) to complete the highest-impact missing admin workflow.",
+  "lastDecision": "Unified moderation queue cycle completed and merged; next highest-impact gap is booking requests, so I dispatched a focused booking MVP cycle (research + copy + implementation).",
   "blockers": []
 }
