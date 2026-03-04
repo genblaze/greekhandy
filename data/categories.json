@@ -52,7 +52,7 @@
     "nameEn": "Carpenter",
     "nameGr": "Ξυλουργός",
     "slug": "xylourgos",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "furniture",
       "doors-windows",
@@ -64,7 +64,7 @@
     "nameEn": "Aluminum Worker",
     "nameGr": "Αλουμινάς",
     "slug": "alouminas",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "windows",
       "doors",
@@ -76,7 +76,7 @@
     "nameEn": "Ironworker",
     "nameGr": "Σιδεράς",
     "slug": "sideras",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "railings",
       "gates",
@@ -88,7 +88,7 @@
     "nameEn": "Plasterer",
     "nameGr": "Γυψαδόρος",
     "slug": "gypsadoros",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "walls",
       "ceilings",
@@ -100,7 +100,7 @@
     "nameEn": "Tiler",
     "nameGr": "Πλακάς",
     "slug": "plakas",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "bathroom",
       "kitchen",
@@ -112,7 +112,7 @@
     "nameEn": "Insulation Worker",
     "nameGr": "Μονωτής",
     "slug": "monotis",
-    "status": "researched",
+    "status": "built",
     "subCategories": [
       "thermal",
       "waterproof",
