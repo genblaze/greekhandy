@@ -49,71 +49,12 @@ try {
   approvedReviewsBySlug = new Map();
 }
 
-const MEDIA_GRADIENTS = [
-  ['#0b3b66', '#1f6da8'],
-  ['#0f3d2e', '#21835f'],
-  ['#4f2f18', '#a86026'],
-  ['#3f2a61', '#7154b8'],
-  ['#1f2937', '#4b5563']
-] as const;
-
-const hashValue = (value: string) => {
-  let hash = 2166136261;
-  for (const char of Array.from(value)) {
-    hash ^= char.codePointAt(0) || 0;
-    hash = Math.imul(hash, 16777619);
-  }
-  return Math.abs(hash >>> 0);
-};
-
-const escapeXml = (value: string) => value
-  .replace(/&/g, '&amp;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;')
-  .replace(/'/g, '&apos;');
-
-const getInitials = (name: string) => {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  const initials = parts.slice(0, 2).map((part) => Array.from(part)[0] || '').join('').toUpperCase();
-  return initials || 'GH';
-};
-
-const truncateLabel = (value: string, maxLength: number) => {
-  const chars = Array.from((value || '').trim());
-  if (chars.length <= maxLength) return chars.join('');
-  return `${chars.slice(0, maxLength).join('')}…`;
-};
-
 const isDeterministicRealPhoto = (src: string) => {
   const clean = src.split('#')[0].split('?')[0].toLowerCase();
   if (!clean) return false;
   if (clean === fallbackProfileImage) return false;
   if (clean.startsWith('data:image/')) return !clean.startsWith('data:image/svg+xml');
   return /\.(avif|gif|jpe?g|png|webp)$/i.test(clean);
-};
-
-const buildIdentityPlaceholder = (profile: Pick<ProfessionalProfile, 'slug' | 'name' | 'profession'>) => {
-  const key = `${profile.slug}|${profile.name}|${profile.profession}`;
-  const [top, bottom] = MEDIA_GRADIENTS[hashValue(key) % MEDIA_GRADIENTS.length];
-  const initials = escapeXml(getInitials(profile.name));
-  const safeProfession = escapeXml(truncateLabel(profile.profession, 36));
-  const svg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${top}" />
-      <stop offset="100%" stop-color="${bottom}" />
-    </linearGradient>
-  </defs>
-  <rect width="800" height="600" rx="28" fill="url(#bg)" />
-  <circle cx="130" cy="130" r="66" fill="rgba(255,255,255,0.18)" />
-  <text x="130" y="150" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="56" font-weight="700" fill="#ffffff">${initials}</text>
-  <rect x="44" y="430" width="292" height="38" rx="19" fill="rgba(255,255,255,0.2)" />
-  <text x="190" y="455" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff">Προφίλ χωρίς φωτογραφία</text>
-  <text x="44" y="514" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="700" fill="#ffffff">${safeProfession}</text>
-</svg>`;
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg.trim())}`;
 };
 
 const profilesWithSafeImage = await Promise.all(
@@ -125,17 +66,16 @@ const profilesWithSafeImage = await Promise.all(
     const primaryArea = serviceAreas[0] || profile.city || 'Η περιοχή σας';
     const extraAreasCount = Math.max(serviceAreas.length - 1, 0);
     const resolvedProfileImage = await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl);
-    const mediaPlaceholderImage = buildIdentityPlaceholder(profile);
     const usesRealPhoto = isDeterministicRealPhoto(resolvedProfileImage);
     const reviewTotal = reviewStats.total;
     const verifiedReviews = reviewStats.verified;
     const serviceAreaSummary = extraAreasCount > 0 ? `${primaryArea} +${extraAreasCount}` : primaryArea;
     const mediaNote = usesRealPhoto
-      ? 'Χρησιμοποιείται φωτογραφία που έχει δημοσιευθεί στο προφίλ.'
-      : 'Δεν έχει δημοσιευθεί φωτογραφία. Εμφανίζεται ουδέτερο γραφικό.';
+      ? 'Η φωτογραφία έχει δημοσιευθεί στο προφίλ.'
+      : 'Δεν έχει δημοσιευθεί φωτογραφία προφίλ.';
     const imageAlt = usesRealPhoto
       ? `Φωτογραφία ${profile.name}`
-      : `Ουδέτερο γραφικό για το προφίλ ${profile.name}`;
+      : `Προφίλ ${profile.name} χωρίς δημοσιευμένη φωτογραφία`;
 
     return {
       ...profile,
@@ -145,9 +85,9 @@ const profilesWithSafeImage = await Promise.all(
       serviceAreaSummary,
       mediaNote,
       imageAlt,
-      cardImageSrc: usesRealPhoto ? resolvedProfileImage : mediaPlaceholderImage,
-      mediaFallbackSrc: usesRealPhoto ? mediaPlaceholderImage : fallbackProfileImage,
-      mediaState: usesRealPhoto ? 'photo' : 'placeholder'
+      cardImageSrc: usesRealPhoto ? resolvedProfileImage : fallbackProfileImage,
+      mediaFallbackSrc: fallbackProfileImage,
+      mediaState: usesRealPhoto ? 'photo' : 'no-photo'
     };
   })
 );
