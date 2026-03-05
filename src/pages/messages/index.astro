@@ -1853,9 +1853,9 @@ const inboxReadinessHint = listLoadError
 
     @media (max-width: 640px) {
       .messages-toast-stack {
-        top: 0.75rem;
-        left: 0.75rem;
-        right: 0.75rem;
+        top: max(0.75rem, calc(env(safe-area-inset-top) + 0.35rem));
+        left: max(0.75rem, calc(env(safe-area-inset-left) + 0.35rem));
+        right: max(0.75rem, calc(env(safe-area-inset-right) + 0.35rem));
         width: auto;
       }
 
@@ -2022,7 +2022,8 @@ const inboxReadinessHint = listLoadError
         if (!(resumeThreadPanel instanceof HTMLElement) || !(resumeThreadLink instanceof HTMLAnchorElement)) return;
         const record = readResumeRecord();
         const viewerEmail = getResumeViewerEmail();
-        if (!record || !record.href || (viewerEmail && record.viewerEmail && record.viewerEmail !== viewerEmail)) return;
+        if (!record || !record.href || !record.href.includes('/messages/thread')) return;
+        if (viewerEmail && record.viewerEmail && record.viewerEmail !== viewerEmail) return;
         resumeThreadLink.href = record.href;
         if (resumeThreadTitle instanceof HTMLElement) {
           const threadLabel = record.slug ? `Συνέχεια στο /${record.slug}` : 'Συνέχεια στο τελευταίο thread';
