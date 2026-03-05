@@ -106,7 +106,14 @@ const cardType = twitterCard || 'summary_large_image';
     description,
     areaServed: 'GR',
     url: canonical,
-    image: ogImageUrl
+    image: ogImageUrl,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: 5,
+      ratingCount: 1,
+      bestRating: 5,
+      worstRating: 1
+    }
   };
 
   const nodes = [];
