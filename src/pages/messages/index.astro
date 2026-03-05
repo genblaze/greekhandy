@@ -627,6 +627,16 @@ const activeFilterChips: Array<{ label: string; href: string; tone: 'sky' | 'ros
 if (showUnreadOnly) activeFilterChips.push({ label: 'Μόνο μη αναγνωσμένα', href: unreadChipHref, tone: 'sky' });
 if (showBlockedOnly) activeFilterChips.push({ label: 'Μόνο μπλοκαρισμένα', href: blockedChipHref, tone: 'rose' });
 if (showReportedOnly) activeFilterChips.push({ label: 'Μόνο αναφερόμενα', href: reportedChipHref, tone: 'amber' });
+const listFilterScopeParts: string[] = [];
+if (showUnreadOnly) listFilterScopeParts.push('Μόνο μη αναγνωσμένα');
+if (showBlockedOnly) listFilterScopeParts.push('Μόνο μπλοκαρισμένα');
+if (showReportedOnly) listFilterScopeParts.push('Μόνο αναφερόμενα');
+if (searchQueryRaw) listFilterScopeParts.push(`Αναζήτηση: "${searchQueryRaw}"`);
+if (showUnreadFirst) listFilterScopeParts.push('Ταξινόμηση: μη αναγνωσμένα πρώτα');
+const listFilterScopeLabel = listFilterScopeParts.length > 0
+  ? listFilterScopeParts.join(' · ')
+  : 'Πλήρες inbox χωρίς ενεργά φίλτρα';
+const listFilterScopeSummary = `Scope: ${listFilterScopeLabel}.`;
 const inboxReadinessLabel = showLoadingState
   ? 'Inbox σε συγχρονισμό'
   : listLoadError
@@ -812,7 +822,7 @@ const inboxReadinessHint = listLoadError
 
     {canLoadThreads && (
       <section id="messages-controls" class="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.45)]">
-        <form method="GET" action="/messages" class="space-y-3" aria-label="Αναζήτηση συνομιλιών" role="search" aria-describedby="messages-results-summary">
+        <form id="messages-filter-form" method="GET" action="/messages" class="space-y-3" aria-label="Αναζήτηση συνομιλιών" role="search" aria-describedby="messages-results-summary messages-filter-live">
           <input type="hidden" name="viewerEmail" value={viewerEmail} />
           {showUnreadOnly && <input type="hidden" name="unread" value="1" />}
           {showBlockedOnly && <input type="hidden" name="blocked" value="1" />}
@@ -831,9 +841,9 @@ const inboxReadinessHint = listLoadError
                 enterkeyhint="search"
                 class="min-w-[220px] flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
               />
-              <button type="submit" class="rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700">Αναζήτηση</button>
+              <button type="submit" class="messages-touch-target rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700">Αναζήτηση</button>
               {hasListFilters && (
-                <a href={clearFiltersHref} class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                <a href={clearFiltersHref} data-filter-action-label="Καθαρισμός όλων των φίλτρων inbox." class="messages-touch-target rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
                   Καθαρισμός όλων
                 </a>
               )}
