@@ -278,7 +278,10 @@ const hasLeads = directoryData.leads.length > 0;
                   <button type="button" data-bulk-outreach-undo aria-label="Αναίρεση τελευταίας μαζικής ενημέρωσης επικοινωνίας" aria-keyshortcuts="Alt+Z" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αναίρεση outreach</button>
                   <button type="button" data-shortcuts-help aria-label="Εμφάνιση λίστας συντομεύσεων πληκτρολογίου" aria-keyshortcuts="Shift+?" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Συντομεύσεις</button>
                   <p id="leads-selection-summary" data-selection-summary class="text-xs font-medium text-slate-600" role="status" aria-live="polite" aria-atomic="true">0 επιλεγμένα</p>
-                  <p data-operation-feedback class="text-[11px] text-slate-600" role="status" aria-live="polite">Καμία πρόσφατη ενέργεια.</p>
+                  <div data-operation-feedback-wrap class="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-2 py-1">
+                    <p data-operation-feedback class="text-[11px] text-slate-600" role="status" aria-live="polite">Καμία πρόσφατη ενέργεια.</p>
+                    <button type="button" data-operation-feedback-clear class="inline-flex min-h-6 items-center rounded border border-slate-300 bg-white px-1.5 text-[10px] font-semibold text-slate-600">OK</button>
+                  </div>
                   <p data-bulk-impact-preview class="text-[11px] text-slate-500" aria-live="polite">Impact preview: 0 για outreach/segment/follow-up.</p>
                   <p data-bulk-action-preview class="text-[11px] text-slate-500" aria-live="polite">Προεπισκόπηση ενεργειών: outreach 0 • segment 0 • follow-up 0</p>
                   <p data-bulk-confirmation-preview class="text-[11px] text-slate-500" aria-live="polite">Επιβεβαίωση: μονή επιβεβαίωση (low-volume).</p>
@@ -588,6 +591,8 @@ const hasLeads = directoryData.leads.length > 0;
         const shortcutsHelpButton = root.querySelector('[data-shortcuts-help]');
         const selectionSummary = root.querySelector('[data-selection-summary]');
         const operationFeedback = root.querySelector('[data-operation-feedback]');
+        const operationFeedbackWrap = root.querySelector('[data-operation-feedback-wrap]');
+        const operationFeedbackClear = root.querySelector('[data-operation-feedback-clear]');
         const bulkImpactPreview = root.querySelector('[data-bulk-impact-preview]');
         const bulkActionPreview = root.querySelector('[data-bulk-action-preview]');
         const bulkConfirmationPreview = root.querySelector('[data-bulk-confirmation-preview]');
@@ -723,10 +728,23 @@ const hasLeads = directoryData.leads.length > 0;
           if (!(operationFeedback instanceof HTMLElement)) return;
           operationFeedback.textContent = message;
           operationFeedback.classList.remove('text-slate-600', 'text-emerald-700', 'text-rose-700', 'text-amber-700');
-          if (type === 'success') operationFeedback.classList.add('text-emerald-700');
-          else if (type === 'error') operationFeedback.classList.add('text-rose-700');
-          else if (type === 'warn') operationFeedback.classList.add('text-amber-700');
-          else operationFeedback.classList.add('text-slate-600');
+          if (operationFeedbackWrap instanceof HTMLElement) {
+            operationFeedbackWrap.classList.remove('border-slate-200', 'border-emerald-200', 'border-rose-200', 'border-amber-200', 'bg-slate-50', 'bg-emerald-50', 'bg-rose-50', 'bg-amber-50');
+          }
+
+          if (type === 'success') {
+            operationFeedback.classList.add('text-emerald-700');
+            operationFeedbackWrap?.classList.add('border-emerald-200', 'bg-emerald-50');
+          } else if (type === 'error') {
+            operationFeedback.classList.add('text-rose-700');
+            operationFeedbackWrap?.classList.add('border-rose-200', 'bg-rose-50');
+          } else if (type === 'warn') {
+            operationFeedback.classList.add('text-amber-700');
+            operationFeedbackWrap?.classList.add('border-amber-200', 'bg-amber-50');
+          } else {
+            operationFeedback.classList.add('text-slate-600');
+            operationFeedbackWrap?.classList.add('border-slate-200', 'bg-slate-50');
+          }
         };
 
         const toMaybeTimestamp = (value) => {
@@ -2503,6 +2521,7 @@ const hasLeads = directoryData.leads.length > 0;
             + 'Alt+Shift+X reset URL φίλτρων\n'
             + 'Alt+Shift+R επαναφορά τελευταίου preset\n'
             + 'Alt+P focus preset picker (Enter apply)\n'
+            + 'Alt+K καθαρισμός μηνύματος feedback\n'
             + `Alt+Z undo τελευταίου bulk outreach (εντός ${BULK_UNDO_WINDOW_MINUTES} λεπτών)\n`
             + 'Alt+U focus κουμπιού undo\n'
             + 'J/K πλοήγηση καρτών\n'
@@ -2511,6 +2530,10 @@ const hasLeads = directoryData.leads.length > 0;
         };
 
         shortcutsHelpButton?.addEventListener('click', showShortcutsHelp);
+
+        operationFeedbackClear?.addEventListener('click', () => {
+          setOperationFeedback('neutral', 'Καμία πρόσφατη ενέργεια.');
+        });
 
         const isEditableTarget = (target) => {
           if (!(target instanceof HTMLElement)) return false;
@@ -2614,6 +2637,11 @@ const hasLeads = directoryData.leads.length > 0;
           if (!typingContext && !hasSystemModifier && event.altKey && key === 'p') {
             event.preventDefault();
             if (presetPicker instanceof HTMLSelectElement) presetPicker.focus();
+          }
+          if (!typingContext && !hasSystemModifier && event.altKey && key === 'k') {
+            event.preventDefault();
+            setOperationFeedback('neutral', 'Καμία πρόσφατη ενέργεια.');
+            announcePolite('Καθαρίστηκε το μήνυμα feedback ενεργειών.');
           }
           if (!typingContext && !hasSystemModifier && event.altKey && key === 'z') {
             event.preventDefault();

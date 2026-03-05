@@ -625,6 +625,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 
           <p class="mt-2 text-xs text-blue-700">Καταστάσεις αιτήματος: pending (σε αναμονή) → approved (εγκρίθηκε) ή rejected (απορρίφθηκε).</p>
           <p class="mt-1 text-xs text-slate-600" data-booking-validation-summary aria-live="polite">Έλεγχος φόρμας: συμπληρώστε στοιχεία επικοινωνίας και προτιμώμενο πρόγραμμα για ταχύτερη ανάθεση.</p>
+          <p class="mt-1 text-xs text-slate-600" data-booking-step-state role="status" aria-live="polite">{bookingStatusParam === 'submitted' ? 'Βήμα 3/3: Το αίτημα καταχωρήθηκε επιτυχώς και βρίσκεται σε pending έλεγχο.' : bookingStatusParam === 'invalid' ? 'Βήμα 2/3: Χρειάζονται διορθώσεις πριν την υποβολή.' : bookingStatusParam === 'error' ? 'Βήμα 2/3: Προσωρινό πρόβλημα καταχώρισης· δοκιμάστε ξανά.' : 'Βήμα 1/3: Συμπληρώστε τα στοιχεία και προχωρήστε σε υποβολή.'}</p>
 
           <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος" data-pending-label="Αποστολή...">Αποστολή αιτήματος</button>
         </form>
@@ -1040,6 +1041,14 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           preferredDate: (value) => value.trim() === '' || (value.trim().length >= 4 && /\d/.test(value))
         };
 
+        const updateBookingStepState = (form, message) => {
+          if (!form.hasAttribute('data-booking-form')) return;
+          const node = form.querySelector('[data-booking-step-state]');
+          if (node instanceof HTMLElement) {
+            node.textContent = message;
+          }
+        };
+
         const updateBookingFieldValidity = (form, forceInvalidState = false) => {
           if (!form.hasAttribute('data-booking-form')) return;
           const fields = Array.from(form.querySelectorAll('[data-booking-validate]')).filter((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement);
@@ -1136,7 +1145,12 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             if (!form.checkValidity()) {
               event.preventDefault();
               if (feedbackGroupName) showFeedbackStatus(feedbackGroupName, 'invalid');
+              const firstInvalid = form.querySelector(':invalid');
+              if (firstInvalid instanceof HTMLElement) {
+                firstInvalid.focus();
+              }
               form.reportValidity();
+              updateBookingStepState(form, 'Βήμα 2/3: Χρειάζονται διορθώσεις για να συνεχιστεί η υποβολή.');
               announceSubmitState('Ελέγξτε τα πεδία και δοκιμάστε ξανά.');
               return;
             }
@@ -1145,6 +1159,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               showFeedbackStatus(feedbackGroupName, 'loading');
             }
 
+            updateBookingStepState(form, 'Βήμα 3/3: Υποβολή σε εξέλιξη. Περιμένετε επιβεβαίωση καταχώρισης.');
             announceSubmitState(form.getAttribute('data-pending-live-label') || 'Η υποβολή εκτελείται.');
             setFormPending(form, true);
           });
@@ -1155,6 +1170,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             setFormPending(form, false);
             updateTrimRequiredFields(form);
             updateBookingFieldValidity(form);
+            updateBookingStepState(form, 'Βήμα 1/3: Συμπλήρωση στοιχείων επικοινωνίας και προτιμώμενου προγράμματος.');
             if (form.hasAttribute('data-message-form')) {
               updateMessageFieldValidity(form);
             }

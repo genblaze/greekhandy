@@ -741,6 +741,7 @@ const faqSchema = pageCategory.faq?.length ? {
           </div>
 
           <p id="lead-validation-summary" class="mt-2 text-xs text-slate-600" aria-live="polite">Έλεγχος φόρμας: συμπληρώστε τα υποχρεωτικά πεδία για ασφαλή καταχώρηση.</p>
+          <p id="lead-step-feedback" class="mt-1 text-xs text-slate-600" aria-live="polite">Βήμα 1/3: Συμπλήρωση στοιχείων και επιβεβαίωση συγκατάθεσης.</p>
           <button id="form-submit" type="submit" class="mt-5 w-full rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">
             Αποστολή Αιτήματος
           </button>
@@ -760,6 +761,7 @@ const faqSchema = pageCategory.faq?.length ? {
           const errorState = document.getElementById('form-error');
           const fieldsState = document.getElementById('form-fields');
           const validationSummary = document.getElementById('lead-validation-summary');
+          const leadStepFeedback = document.getElementById('lead-step-feedback');
           const REQUEST_TIMEOUT_MS = 12000;
           let isSubmitting = false;
 
@@ -825,6 +827,9 @@ const faqSchema = pageCategory.faq?.length ? {
             if (!(errorState instanceof HTMLElement)) return;
             errorState.textContent = message;
             errorState.classList.remove('hidden');
+            if (leadStepFeedback instanceof HTMLElement) {
+              leadStepFeedback.textContent = 'Βήμα 2/3: Χρειάζονται διορθώσεις ή επανάληψη υποβολής.';
+            }
           };
 
           ['lead-name', 'lead-phone', 'lead-email', 'lead-description', 'lead-consent'].forEach((id) => {
@@ -873,6 +878,9 @@ const faqSchema = pageCategory.faq?.length ? {
             submitButton.disabled = true;
             submitButton.setAttribute('aria-busy', 'true');
             submitButton.textContent = 'Αποστολή...';
+            if (leadStepFeedback instanceof HTMLElement) {
+              leadStepFeedback.textContent = 'Βήμα 2/3: Υποβολή σε εξέλιξη, ελέγχουμε και καταχωρούμε το αίτημα.';
+            }
             if (loadingState instanceof HTMLElement) loadingState.classList.remove('hidden');
             if (errorState instanceof HTMLElement) errorState.classList.add('hidden');
 
@@ -898,6 +906,9 @@ const faqSchema = pageCategory.faq?.length ? {
               if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
               if (fieldsState instanceof HTMLElement) fieldsState.classList.add('hidden');
               submitButton.classList.add('hidden');
+              if (leadStepFeedback instanceof HTMLElement) {
+                leadStepFeedback.textContent = 'Βήμα 3/3: Το αίτημα στάλθηκε επιτυχώς. Περιμένετε πρώτη ενημέρωση εντός 1–2 εργάσιμων ωρών.';
+              }
               if (successState instanceof HTMLElement) successState.classList.remove('hidden');
             } catch {
               if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
