@@ -266,10 +266,19 @@ const reviewValue = (field: string) => reviewFlash.values?.[field] || '';
 const reviewError = (field: string) => reviewFlash.errors?.[field] || '';
 const messageValue = (field: string) => messageFlash.values?.[field] || '';
 const messageError = (field: string) => messageFlash.errors?.[field] || '';
+if (bookingStatusParam === 'invalid' || bookingStatusParam === 'error') {
+  clearFormFlash(Astro.cookies, `booking:${profile.slug}`);
+}
+if (reviewStatusParam === 'invalid' || reviewStatusParam === 'error') {
+  clearFormFlash(Astro.cookies, `review:${profile.slug}`);
+}
+if (messageStatusParam === 'invalid' || messageStatusParam === 'error') {
+  clearFormFlash(Astro.cookies, `message:${profile.slug}`);
+}
+
 const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => {
-  const entries = [...query.keys()];
-  const marker = prefix === 'booking' ? 'be_' : prefix === 'review' ? 're_' : 'me_';
-  return entries.some((key) => key.startsWith(marker));
+  const target = prefix === 'booking' ? bookingFlash.errors : prefix === 'review' ? reviewFlash.errors : messageFlash.errors;
+  return Boolean(target && Object.keys(target).length > 0);
 };
 
 ---

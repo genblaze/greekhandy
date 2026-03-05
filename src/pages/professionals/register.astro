@@ -10,3 +10,7 @@ const registerErrors = registerFlash.errors || {};
 const getValue = (field: string) => registerValues[field] || '';
 const getError = (field: string) => registerErrors[field] || '';
 
+if (status === 'invalid' || status === 'error') {
+  clearFormFlash(Astro.cookies, 'register');
+}
+
