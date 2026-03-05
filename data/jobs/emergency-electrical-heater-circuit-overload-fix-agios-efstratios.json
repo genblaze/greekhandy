@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-heater-circuit-overload-fix-agios-efstratios",
+  "slug": "epigousa-episkevi-yperfortosis-kyklomatos-thermansi-agios-efstratios",
+  "nameGr": "Επείγουσα Επισκευή Υπερφόρτωσης Κυκλώματος Θέρμανσης στον Άγιο Ευστράτιο",
+  "nameEn": "Emergency Electrical Heater Circuit Overload Fix in Άγιος Ευστράτιος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αντιμετώπιση υπερφόρτωσης κυκλώματος θέρμανσης στον Άγιο Ευστράτιο για ασφαλή επαναφορά λειτουργίας. SEO intent: «πέφτει ασφάλεια με θέρμανση Άγιος Ευστράτιος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-240€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ασφάλεια με θέρμανση Άγιος Ευστράτιος",
+    "ηλεκτρολόγος υπερφόρτωση κυκλώματος",
+    "βραχυκύκλωμα θερμαντικό σώμα",
+    "επείγουσα αποκατάσταση ρεύματος",
+    "service ηλεκτρικής θέρμανσης"
+  ],
+  "status": "researched"
+}

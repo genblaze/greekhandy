@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-heater-circuit-overload-fix-molaoi",
+  "slug": "epigousa-episkevi-yperfortosis-kyklomatos-thermansi-molaoi",
+  "nameGr": "Επείγουσα Επισκευή Υπερφόρτωσης Κυκλώματος Θέρμανσης στους Μολάους",
+  "nameEn": "Emergency Electrical Heater Circuit Overload Fix in Μολάοι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αντιμετώπιση υπερφόρτωσης κυκλώματος θέρμανσης στους Μολάους για ασφαλή επαναφορά λειτουργίας. SEO intent: «πέφτει ασφάλεια με θέρμανση Μολάοι».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-240€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ασφάλεια με θέρμανση Μολάοι",
+    "ηλεκτρολόγος υπερφόρτωση κυκλώματος",
+    "βραχυκύκλωμα θερμαντικό σώμα",
+    "επείγουσα αποκατάσταση ρεύματος",
+    "service ηλεκτρικής θέρμανσης"
+  ],
+  "status": "researched"
+}

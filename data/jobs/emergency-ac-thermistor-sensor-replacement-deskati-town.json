@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-thermistor-sensor-replacement-deskati-town",
+  "slug": "epigousa-antikatastasi-aisthitira-thermokrasias-ac-deskati-town",
+  "nameGr": "Επείγουσα Αντικατάσταση Αισθητήρα Θερμοκρασίας AC στη Δεσκάτη",
+  "nameEn": "Emergency AC Thermistor Sensor Replacement in Δεσκάτη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντικατάσταση αισθητήρα θερμοκρασίας AC στη Δεσκάτη όταν η μονάδα δείχνει λάθος θερμοκρασία ή σφάλματα. SEO intent: «κλιματιστικό δείχνει λάθος θερμοκρασία Δεσκάτη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό δείχνει λάθος θερμοκρασία Δεσκάτη",
+    "αισθητήρας ac βλάβη",
+    "τεχνικός κλιματισμού θερμίστορ",
+    "error sensor κλιματιστικού",
+    "service ac επείγον"
+  ],
+  "status": "researched"
+}

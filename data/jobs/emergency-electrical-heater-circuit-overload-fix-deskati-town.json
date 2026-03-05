@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-heater-circuit-overload-fix-deskati-town",
+  "slug": "epigousa-episkevi-yperfortosis-kyklomatos-thermansi-deskati-town",
+  "nameGr": "Επείγουσα Επισκευή Υπερφόρτωσης Κυκλώματος Θέρμανσης στη Δεσκάτη",
+  "nameEn": "Emergency Electrical Heater Circuit Overload Fix in Δεσκάτη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αντιμετώπιση υπερφόρτωσης κυκλώματος θέρμανσης στη Δεσκάτη για ασφαλή επαναφορά λειτουργίας. SEO intent: «πέφτει ασφάλεια με θέρμανση Δεσκάτη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-240€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ασφάλεια με θέρμανση Δεσκάτη",
+    "ηλεκτρολόγος υπερφόρτωση κυκλώματος",
+    "βραχυκύκλωμα θερμαντικό σώμα",
+    "επείγουσα αποκατάσταση ρεύματος",
+    "service ηλεκτρικής θέρμανσης"
+  ],
+  "status": "researched"
+}

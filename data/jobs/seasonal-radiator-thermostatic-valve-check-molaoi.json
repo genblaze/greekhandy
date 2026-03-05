@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-thermostatic-valve-check-molaoi",
+  "slug": "epochiakos-elegxos-thermostatikis-valvidas-kalorifer-molaoi",
+  "nameGr": "Εποχικός Έλεγχος Θερμοστατικής Βαλβίδας Καλοριφέρ στους Μολάους",
+  "nameEn": "Seasonal Radiator Thermostatic Valve Check in Μολάοι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοστατικής βαλβίδας καλοριφέρ στους Μολάους για σωστή ρύθμιση θερμοκρασίας και οικονομία. SEO intent: «θερμοστατική βαλβίδα καλοριφέρ Μολάοι».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "θερμοστατική βαλβίδα καλοριφέρ Μολάοι",
+    "service σώματος θέρμανσης",
+    "τεχνικός θέρμανσης βαλβίδα",
+    "καλοριφέρ δεν ρυθμίζει θερμοκρασία",
+    "προληπτικός έλεγχος θέρμανσης"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-thermostatic-valve-check-deskati-town",
+  "slug": "epochiakos-elegxos-thermostatikis-valvidas-kalorifer-deskati-town",
+  "nameGr": "Εποχικός Έλεγχος Θερμοστατικής Βαλβίδας Καλοριφέρ στη Δεσκάτη",
+  "nameEn": "Seasonal Radiator Thermostatic Valve Check in Δεσκάτη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοστατικής βαλβίδας καλοριφέρ στη Δεσκάτη για σωστή ρύθμιση θερμοκρασίας και οικονομία. SEO intent: «θερμοστατική βαλβίδα καλοριφέρ Δεσκάτη».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "θερμοστατική βαλβίδα καλοριφέρ Δεσκάτη",
+    "service σώματος θέρμανσης",
+    "τεχνικός θέρμανσης βαλβίδα",
+    "καλοριφέρ δεν ρυθμίζει θερμοκρασία",
+    "προληπτικός έλεγχος θέρμανσης"
+  ],
+  "status": "researched"
+}
