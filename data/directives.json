@@ -612,6 +612,12 @@
       "addedAt": "2026-03-05T05:33:48Z",
       "source": "qa-agent",
       "processedAt": "2026-03-05T05:35:49Z"
+    },
+    {
+      "directive": "Hero section color contrast is too low and text is hard to read; also fix footer links that currently cause infinite loops.",
+      "addedAt": "2026-03-05T05:36:16Z",
+      "source": "slack",
+      "processedAt": "2026-03-05T05:40:59Z"
     }
   ]
 }

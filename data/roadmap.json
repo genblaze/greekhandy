@@ -1,6 +1,29 @@
 {
   "features": [
     {
+      "id": "founder-directive-7cadfea32c",
+      "title": "Founder Directive: Hero Contrast + Footer Link Loop Fixes",
+      "pillar": "Product",
+      "owner": "greekhandy-developer",
+      "priority": 1,
+      "status": "planned",
+      "summary": "Fix homepage hero readability contrast and resolve footer links that currently loop infinitely.",
+      "acceptanceCriteria": [
+        "Homepage hero text and CTAs meet accessible contrast and readability standards on desktop and mobile.",
+        "Footer links navigate to the correct destinations without redirect loops or self-loop traps.",
+        "Affected routes render stable SEO metadata and pass build checks."
+      ],
+      "tasks": [
+        {
+          "id": "founder-directive-7cadfea32c-task-1",
+          "source": "slack",
+          "directive": "Hero section color contrast is too low and text is hard to read; also fix footer links that currently cause infinite loops."
+        }
+      ],
+      "createdAt": "2026-03-05T05:40:59Z",
+      "updatedAt": "2026-03-05T05:40:59Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-19",
       "title": "QA Critical Fixes Wave 19",
       "pillar": "Product",
