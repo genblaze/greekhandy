@@ -263,12 +263,15 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             aria-label="Κύριο CTA: Ζητήστε υπηρεσία"
             Κύριο CTA: Ζητήστε υπηρεσία
           </a>
-          <a href="#secondary-actions" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">
-            Δευτερεύουσες επιλογές
-          </a>
         </div>
-        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά/ραντεβού προτιμήστε την κύρια φόρμα αιτήματος. Κριτικές, μήνυμα και στοιχεία επικοινωνίας παραμένουν διαθέσιμα ως δευτερεύουσες επιλογές.</p>
+        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά/ραντεβού προτιμήστε την κύρια φόρμα αιτήματος. Κριτικές, μήνυμα και στοιχεία επικοινωνίας παραμένουν διαθέσιμα ως δευτερεύουσες επιλογές σε accordion ενότητες χαμηλότερα.</p>
         <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα εμφανίζει καθαρά status pending → approved/rejected για μεγαλύτερη διαφάνεια.</p>
+        <p class="mt-1 text-xs text-slate-500">
+          Εναλλακτικά:
+          <a href="#secondary-actions" class="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900">
+            δευτερεύουσες επιλογές επικοινωνίας
+          </a>
+        </p>
       </div>
 
       <div class="mt-8">
@@ -572,9 +575,6 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             <p class="mt-1 text-sm text-gray-600">Συμπληρώστε μία φόρμα για προσφορά ή ραντεβού. Θα λάβετε ενημέρωση για την πορεία του αιτήματος.</p>
             <p class="mt-1 text-xs text-slate-600">Για ταχύτερη εξυπηρέτηση, ξεκινήστε από αυτό το CTA και χρησιμοποιήστε τις δευτερεύουσες επιλογές μόνο αν χρειάζεται.</p>
           </div>
-          <a href="#secondary-actions" class="inline-flex rounded-full border border-blue-200 bg-white px-3 py-1.5 text-xs font-semibold text-blue-700 transition hover:bg-blue-100">
-            Δείτε δευτερεύουσες επιλογές
-          </a>
         </div>
         <p class="mt-3 rounded-lg border border-blue-200 bg-white px-3 py-2 text-xs text-blue-800">Κατάσταση αιτήματος: <strong>pending</strong> έως την επεξεργασία, με τελικό αποτέλεσμα <strong>approved</strong> ή <strong>rejected</strong>.</p>
 
@@ -655,11 +655,15 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         </form>
       </section>
 
-      <section id="secondary-actions" class="mt-5 space-y-3" role="region" aria-label="Δευτερεύουσες επιλογές επικοινωνίας">
-        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
+      <details id="secondary-actions" class="group mt-5 rounded-2xl border border-slate-200 bg-white p-4 md:p-5" data-secondary-actions-disclosure>
+        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900 marker:hidden">
+          Δευτερεύουσες επιλογές επικοινωνίας (μήνυμα και στοιχεία)
+        </summary>
+        <div class="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
           <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-600">Προτεραιότητα 2-3</p>
           <p class="mt-1 text-sm text-slate-700">Χρησιμοποιήστε τις επιλογές παρακάτω μόνο αν δεν χρειάζεστε ακόμη πλήρες αίτημα συνεργασίας.</p>
         </div>
+        <div class="mt-3 space-y-3">
         <details class="group rounded-xl border border-indigo-100 bg-indigo-50/70 p-5" data-secondary-message-disclosure>
           <summary class="cursor-pointer list-none text-sm font-semibold text-indigo-900 marker:hidden">
             Δευτερεύουσα επιλογή: ξεκινήστε συζήτηση με μήνυμα
@@ -740,7 +744,8 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             <p class="mt-2 text-xs text-slate-500">Για ταχύτερη επεξεργασία προτιμήστε το κύριο αίτημα συνεργασίας.</p>
           </div>
         </details>
-      </section>
+        </div>
+      </details>
       <div id="profile-offline-alert" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
         <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
         <p class="mt-1 text-xs">Οι υποβολές κριτικής/αιτήματος/μηνύματος μπλοκάρονται προσωρινά μέχρι να επανέλθει το δίκτυο.</p>
@@ -761,6 +766,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         };
         const submitLiveRegion = document.querySelector('#submit-feedback-live');
         const profileOfflineAlert = document.querySelector('#profile-offline-alert');
+        const secondaryActionsDisclosure = document.querySelector('[data-secondary-actions-disclosure]');
         const secondaryReviewsDisclosure = document.querySelector('[data-secondary-reviews-disclosure]');
         const secondaryMessageDisclosure = document.querySelector('[data-secondary-message-disclosure]');
         const secondaryContactDisclosure = document.querySelector('[data-secondary-contact-disclosure]');
@@ -809,6 +815,9 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           if (submitLiveRegion instanceof HTMLElement) submitLiveRegion.textContent = message;
         };
         const collapseSecondaryActions = () => {
+          if (secondaryActionsDisclosure instanceof HTMLDetailsElement) {
+            secondaryActionsDisclosure.open = false;
+          }
           if (secondaryReviewsDisclosure instanceof HTMLDetailsElement) {
             secondaryReviewsDisclosure.open = false;
           }
@@ -863,10 +872,15 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           if (params.get('review') || hash === '#reviews' || hash === '#submit-review' || hash === '#secondary-reviews') {
             openDisclosure(secondaryReviewsDisclosure);
           }
-          if (params.get('message') || hash === '#secondary-actions') {
+          if (params.get('message')) {
+            openDisclosure(secondaryActionsDisclosure);
             openDisclosure(secondaryMessageDisclosure);
           }
+          if (hash === '#secondary-actions') {
+            openDisclosure(secondaryActionsDisclosure);
+          }
           if (hash === '#contact-details') {
+            openDisclosure(secondaryActionsDisclosure);
             openDisclosure(secondaryContactDisclosure);
           }
         };
