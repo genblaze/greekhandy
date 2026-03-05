@@ -1,5 +1,26 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Homepage hero still fails basic readability: headline/body are ultra-light on a pale background (desktop + mobile), so the core value proposition is barely legible. Redesign hero contrast and typography hierarchy to pass WCAG AA and remove the glow haze that makes text look blurred.",
+      "addedAt": "2026-03-05T04:03:52Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "/professionals still looks like staging data, not a trustworthy marketplace: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and trust metrics sitting at 0/100 across profiles. Remove all placeholder/filler language from public cards and hide credibility widgets until they are backed by real data.",
+      "addedAt": "2026-03-05T04:03:52Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional profile /professionals/giannis-kosta-klimatismos still ships a broken credibility layout: large empty portfolio area and stacked conversion forms create visual clutter and low trust. Hide empty media sections and simplify to one primary contact flow instead of dumping multiple competing forms in sequence.",
+      "addedAt": "2026-03-05T04:03:52Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Form handling is misleading and opaque: invalid POSTs to /api/professionals/register return HTTP 200 and redirect users to a thank-you page with `status=invalid`, while other invalid form submits bounce to /professionals with query flags. Implement explicit validation UX with field-level errors and truthful success/failure states instead of faux-success redirects.",
+      "addedAt": "2026-03-05T04:03:52Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
