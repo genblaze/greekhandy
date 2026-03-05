@@ -323,6 +323,7 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           <p class="text-sm font-semibold text-slate-900">{(profile.areasServed?.length || 0) > 0 ? `${profile.areasServed.length} περιοχές` : '1 βασική περιοχή'}</p>
         </div>
       </div>
+      <p class="mt-2 text-xs text-slate-500">Οι δείκτες εμπιστοσύνης βασίζονται αποκλειστικά σε εγκεκριμένα δημοσιευμένα δεδομένα κριτικών και υπηρεσιών.</p>
 
       {hasProofTimeline && (
         <section class="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-3.5 md:p-4" aria-labelledby="profile-proof-timeline-heading">
