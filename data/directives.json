@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Mobile homepage header is sloppy and confusing: it shows both a standalone 'ΜΕΝΟΥ' label and a separate '☰ Μενού' button at the same time. Remove the duplicate label and ship one clear mobile navigation trigger with consistent spacing/alignment.",
+      "addedAt": "2026-03-05T01:03:23Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional profile page `/professionals/giannis-kosta-klimatismos` still leaks internal validation/debug copy directly into public UI (e.g. inline technical warnings in booking/reviews sections). Stop exposing system-style error text to users; show clean Greek microcopy and only after user interaction/submit.",
+      "addedAt": "2026-03-05T01:03:23Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Service page `/ydravlikoi` has an empty 'Σχετικές Υπηρεσίες' section ('Δεν υπάρχουν σχετικές υπηρεσίες για την ώρα'), which makes the page feel unfinished. Either populate real related services dynamically or remove the section entirely until it has content.",
+      "addedAt": "2026-03-05T01:03:23Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Floating accessibility toolbar is still physically covering page content/controls across key pages (`/blog`, `/allagi-kleidarias`, `/ydravlikoi`, profile pages). Dock it to a non-overlapping edge trigger and enforce collision-safe spacing so it never sits on top of CTAs/text.",
+      "addedAt": "2026-03-05T01:03:23Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Homepage hero is still barely readable (very light text on pale background, especially on mobile), so first impression looks broken. Rebuild hero contrast and typography hierarchy to pass WCAG AA and make core value proposition legible instantly.",
+      "addedAt": "2026-03-05T01:03:23Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
