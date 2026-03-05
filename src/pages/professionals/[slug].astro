@@ -177,6 +177,34 @@ const formatReviewDate = (dateValue: string) =>
   new Date(dateValue).toLocaleDateString('el-GR', { day: '2-digit', month: 'long', year: 'numeric' });
 const renderStarRating = (rating: number) => '★'.repeat(rating) + '☆'.repeat(5 - rating);
 
+const proofTimelineItems = [
+  reviewsCount > 0
+    ? {
+        key: 'jobs',
+        label: 'Ολοκληρωμένες συνεργασίες',
+        value: `${reviewsCount}+ τεκμηριωμένες`,
+        tone: 'border-emerald-200 bg-emerald-50 text-emerald-900'
+      }
+    : null,
+  recommendationRate > 0
+    ? {
+        key: 'response',
+        label: 'Αξιοπιστία ανταπόκρισης',
+        value: `${recommendationRate}% θετικές αξιολογήσεις`,
+        tone: 'border-blue-200 bg-blue-50 text-blue-900'
+      }
+    : null,
+  recentApprovedReviewDate
+    ? {
+        key: 'recency',
+        label: 'Πιο πρόσφατη αξιολόγηση',
+        value: recentApprovedReviewDate,
+        tone: 'border-violet-200 bg-violet-50 text-violet-900'
+      }
+    : null
+].filter(Boolean) as Array<{ key: string; label: string; value: string; tone: string }>;
+const hasProofTimeline = proofTimelineItems.length > 0;
+
 const profileUrl = new URL(`/professionals/${profile.slug}`, Astro.site).toString();
 const siteUrl = new URL('/', Astro.site).toString();
 
@@ -259,6 +287,20 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
           <p class="text-sm font-semibold text-slate-900">{(profile.areasServed?.length || 0) > 0 ? `${profile.areasServed.length} περιοχές` : '1 βασική περιοχή'}</p>
         </div>
       </div>
+
+      {hasProofTimeline && (
+        <section class="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-3.5 md:p-4" aria-labelledby="profile-proof-timeline-heading">
+          <h2 id="profile-proof-timeline-heading" class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-700">Χρονογραμμή αξιοπιστίας</h2>
+          <ul class="mt-2.5 space-y-2" role="list" aria-label="Δείκτες αξιοπιστίας προφίλ">
+            {proofTimelineItems.map((item) => (
+              <li class={`rounded-lg border px-3 py-2 ${item.tone}`}>
+                <p class="text-[11px] font-semibold uppercase tracking-wide">{item.label}</p>
+                <p class="mt-0.5 text-sm font-semibold leading-relaxed md:text-[0.95rem]">{item.value}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[16/9]" data-prof-media-shell>
         <img
