@@ -1,6 +1,45 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-19",
+      "title": "QA Critical Fixes Wave 19",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported canonical duplication, in-context form validation flow, public messaging entry semantics, and profile route duplicate-content blockers.",
+      "acceptanceCriteria": [
+        "Alias /epaggelmaties is no longer indexable duplicate content and permanently redirects to /professionals.",
+        "Invalid submissions for reviews/bookings/messages return users to the originating profile section with preserved inputs and inline field-level errors.",
+        "Public messaging entry flow exposes user-facing language only (no technical query-param diagnostics) and uses a clear inbox/access handoff.",
+        "/pros/[slug] and /professionals/[slug] do not coexist as duplicate 200 pages; one canonical route remains with proper redirect/linking."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-19-task-1",
+          "source": "qa-agent",
+          "directive": "Route alias quality is sloppy: `/epaggelmaties` returns HTTP 200 with effectively the same content as `/professionals` (same title/H1/content, only canonical differs). Stop serving duplicate hubs as indexable 200 pages—301 redirect `/epaggelmaties` to `/professionals` and keep one clean URL."
+        },
+        {
+          "id": "qa-critical-fixes-wave-19-task-2",
+          "source": "qa-agent",
+          "directive": "Form failure UX is still broken and misleading: invalid POSTs to `/api/reviews/submit`, `/api/bookings/submit`, and `/api/messages/submit` 303-redirect users to generic `/professionals?...=invalid` instead of returning to the originating profile section with inline field errors. Keep users in-context, preserve inputs, and show precise error states next to the actual form they submitted."
+        },
+        {
+          "id": "qa-critical-fixes-wave-19-task-3",
+          "source": "qa-agent",
+          "directive": "Public `/messages` flow still leaks internal parameter semantics (`viewerEmail`) into user-facing behavior/state handling. Replace query-param-driven diagnostics with a real entry flow (auth/session-backed inbox or clear handoff), and remove any technical parameter language from public UX."
+        },
+        {
+          "id": "qa-critical-fixes-wave-19-task-4",
+          "source": "qa-agent",
+          "directive": "Response headers are still inconsistent across core routes: homepage `/` is served as `text/html` without `charset=utf-8`, while key inner pages send UTF-8 explicitly. Standardize all HTML responses to `text/html; charset=utf-8` to prevent Greek text decoding regressions and crawler misinterpretation."
+        }
+      ],
+      "createdAt": "2026-03-05T05:35:49Z",
+      "updatedAt": "2026-03-05T05:35:49Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-18",
       "title": "QA Critical Fixes Wave 18",
       "pillar": "Product",
