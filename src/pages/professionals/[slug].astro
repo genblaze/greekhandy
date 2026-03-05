@@ -1155,6 +1155,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             setFormPending(form, false);
             updateTrimRequiredFields(form);
             updateBookingFieldValidity(form);
+            updateBookingStepState(form, 'Βήμα 1/3: Συμπληρώστε στοιχεία και πατήστε «Αποστολή αιτήματος».');
             if (form.hasAttribute('data-message-form')) {
               updateMessageFieldValidity(form);
             }
