@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-terminal-reseat-fylakti-karditsas",
+  "slug": "epigousa-epanafora-akrodexti-kentrikis-trofodosias-fylakti-karditsas",
+  "nameGr": "Επείγουσα Επαναφορά Ακροδέκτη Κεντρικής Τροφοδοσίας στη Φυλακτή Καρδίτσας",
+  "nameEn": "Emergency Electrical Main Feed Terminal Reseat in Φυλακτή Καρδίτσας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ακροδέκτη κεντρικής τροφοδοσίας στη Φυλακτή Καρδίτσας για σταθερή ηλεκτροδότηση χωρίς υπερθέρμανση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Φυλακτή Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-cold-inlet-union-reset-fylakti-karditsas",
+  "slug": "epigousa-epanafora-enosis-kryas-eisodou-thermosifona-fylakti-karditsas",
+  "nameGr": "Επείγουσα Επαναφορά Ένωσης Κρύας Εισόδου Θερμοσίφωνα στη Φυλακτή Καρδίτσας",
+  "nameEn": "Emergency Water Heater Cold Inlet Union Reset in Φυλακτή Καρδίτσας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επαναφορά ένωσης κρύας εισόδου θερμοσίφωνα στη Φυλακτή Καρδίτσας για άμεση διακοπή διαρροής και ασφαλή παροχή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Φυλακτή Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

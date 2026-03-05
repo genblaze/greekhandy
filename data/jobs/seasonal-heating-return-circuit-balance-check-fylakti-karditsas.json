@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-circuit-balance-check-fylakti-karditsas",
+  "slug": "epochiakos-elegxos-eksisorropisis-kyklomatos-epistrofis-thermansis-fylakti-karditsas",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Κυκλώματος Επιστροφής Θέρμανσης στη Φυλακτή Καρδίτσας",
+  "nameEn": "Seasonal Heating Return Circuit Balance Check in Φυλακτή Καρδίτσας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης κυκλώματος επιστροφής θέρμανσης στη Φυλακτή Καρδίτσας για σταθερή θερμική απόδοση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Φυλακτή Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

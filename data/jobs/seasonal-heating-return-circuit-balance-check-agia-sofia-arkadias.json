@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-circuit-balance-check-agia-sofia-arkadias",
+  "slug": "epochiakos-elegxos-eksisorropisis-kyklomatos-epistrofis-thermansis-agia-sofia-arkadias",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Κυκλώματος Επιστροφής Θέρμανσης στην Αγία Σοφία Αρκαδίας",
+  "nameEn": "Seasonal Heating Return Circuit Balance Check in Αγία Σοφία Αρκαδίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης κυκλώματος επιστροφής θέρμανσης στην Αγία Σοφία Αρκαδίας για σταθερή θερμική απόδοση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Σοφία Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

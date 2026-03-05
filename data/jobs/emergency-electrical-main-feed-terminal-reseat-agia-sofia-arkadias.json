@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-terminal-reseat-agia-sofia-arkadias",
+  "slug": "epigousa-epanafora-akrodexti-kentrikis-trofodosias-agia-sofia-arkadias",
+  "nameGr": "Επείγουσα Επαναφορά Ακροδέκτη Κεντρικής Τροφοδοσίας στην Αγία Σοφία Αρκαδίας",
+  "nameEn": "Emergency Electrical Main Feed Terminal Reseat in Αγία Σοφία Αρκαδίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ακροδέκτη κεντρικής τροφοδοσίας στην Αγία Σοφία Αρκαδίας για σταθερή ηλεκτροδότηση χωρίς υπερθέρμανση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Σοφία Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

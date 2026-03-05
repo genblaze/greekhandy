@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-elbow-reset-agia-sofia-arkadias",
+  "slug": "epigousa-epanafora-gonias-grammis-aporrois-esoterikou-ac-agia-sofia-arkadias",
+  "nameGr": "Επείγουσα Επαναφορά Γωνίας Γραμμής Απορροής Εσωτερικού AC στην Αγία Σοφία Αρκαδίας",
+  "nameEn": "Emergency AC Indoor Drainline Elbow Reset in Αγία Σοφία Αρκαδίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά γωνίας γραμμής απορροής εσωτερικού AC στην Αγία Σοφία Αρκαδίας για αποτροπή επιστροφής νερού στον χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Σοφία Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

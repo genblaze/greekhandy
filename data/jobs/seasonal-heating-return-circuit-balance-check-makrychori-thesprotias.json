@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-circuit-balance-check-makrychori-thesprotias",
+  "slug": "epochiakos-elegxos-eksisorropisis-kyklomatos-epistrofis-thermansis-makrychori-thesprotias",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Κυκλώματος Επιστροφής Θέρμανσης στο Μακρυχώρι Θεσπρωτίας",
+  "nameEn": "Seasonal Heating Return Circuit Balance Check in Μακρυχώρι Θεσπρωτίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης κυκλώματος επιστροφής θέρμανσης στο Μακρυχώρι Θεσπρωτίας για σταθερή θερμική απόδοση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μακρυχώρι Θεσπρωτίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

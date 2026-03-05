@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-elbow-reset-fylakti-karditsas",
+  "slug": "epigousa-epanafora-gonias-grammis-aporrois-esoterikou-ac-fylakti-karditsas",
+  "nameGr": "Επείγουσα Επαναφορά Γωνίας Γραμμής Απορροής Εσωτερικού AC στη Φυλακτή Καρδίτσας",
+  "nameEn": "Emergency AC Indoor Drainline Elbow Reset in Φυλακτή Καρδίτσας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά γωνίας γραμμής απορροής εσωτερικού AC στη Φυλακτή Καρδίτσας για αποτροπή επιστροφής νερού στον χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Φυλακτή Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
