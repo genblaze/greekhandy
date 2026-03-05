@@ -398,6 +398,10 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           syncToolbarSafeArea();
         };
         const start = () => {
+          if (window.location.hash === '#contact' && window.location.pathname === '/') {
+            window.history.replaceState({}, '', '/epikoinonia');
+          }
+
           schedule(scanToolbars);
           if (!(document.body instanceof HTMLElement)) return;
           const skipTarget = document.querySelector('#gh-site-content');
