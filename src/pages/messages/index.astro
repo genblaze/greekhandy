@@ -401,7 +401,20 @@ const filteredActiveCount = filteredThreads.filter((thread) => thread.stateTone 
 const filteredHiddenCount = filteredThreads.filter((thread) => thread.isAdminHidden).length;
 const filteredMutedCount = filteredThreads.filter((thread) => thread.isMuted).length;
 const filteredClearFlowCount = Math.max(0, filteredThreadsCount - filteredNeedsAttention);
-const getThreadHref = (id: string) => `/messages/thread?threadId=${encodeURIComponent(id)}&viewerEmail=${encodeURIComponent(viewerEmail)}`;
+const appendListContextParams = (params: URLSearchParams) => {
+  if (searchQueryRaw) params.set('listQ', searchQueryRaw);
+  if (showUnreadOnly) params.set('listUnread', '1');
+  if (showBlockedOnly) params.set('listBlocked', '1');
+  if (showReportedOnly) params.set('listReported', '1');
+  if (sortMode === 'unread') params.set('listSort', 'unread');
+};
+const getThreadHref = (id: string) => {
+  const params = new URLSearchParams();
+  params.set('threadId', id);
+  params.set('viewerEmail', viewerEmail);
+  appendListContextParams(params);
+  return `/messages/thread?${params.toString()}`;
+};
 const priorityRank: Record<string, number> = { critical: 0, high: 1, medium: 2, normal: 3 };
 const triageOrderedThreads = [...filteredThreads].sort((a, b) => {
   const rankDiff = (priorityRank[a.priorityTier] ?? 9) - (priorityRank[b.priorityTier] ?? 9);
@@ -505,6 +518,16 @@ const triageHighCount = triageOrderedThreads.filter((thread) => thread.priorityT
 const triageMediumCount = triageOrderedThreads.filter((thread) => thread.priorityTier === 'medium').length;
 const triageNormalCount = triageOrderedThreads.filter((thread) => thread.priorityTier === 'normal').length;
 const triagePositionByThread = new Map(triageOrderedThreads.map((thread, index) => [thread.threadId, index + 1]));
+const listContextSummaryParts: string[] = [];
+if (searchQueryRaw) listContextSummaryParts.push(`Αναζήτηση: "${searchQueryRaw}"`);
+if (showUnreadOnly) listContextSummaryParts.push('Μόνο μη αναγνωσμένα');
+if (showBlockedOnly) listContextSummaryParts.push('Μόνο μπλοκαρισμένα');
+if (showReportedOnly) listContextSummaryParts.push('Μόνο αναφερόμενα');
+if (showUnreadFirst) listContextSummaryParts.push('Sort: μη αναγνωσμένα πρώτα');
+const listContextSummaryLabel = listContextSummaryParts.length > 0
+  ? listContextSummaryParts.join(' · ')
+  : 'Χωρίς ενεργά φίλτρα inbox.';
+const resumeThreadStorageKey = hasValidViewerEmail ? `gh:last-thread-visit:${viewerEmail}` : '';
 const hasPartialResults = Boolean(listLoadError) && filteredThreadsCount > 0;
 const hasViewerParamIssue = !hasViewerEmail || !hasValidViewerEmail;
 const showLoadingState = requestedLoadingState && !listLoadError && filteredThreadsCount === 0;
@@ -667,7 +690,11 @@ const inboxReadinessHint = listLoadError
 ---
 
 <Layout title="Συνομιλίες | GreekHandy" description="Λίστα συνομιλιών με καθαρή ιεραρχία, moderation badges και βασικές ενέργειες.">
-  <main class="messages-shell mx-auto max-w-6xl px-4 py-10 md:py-14" data-clear-status-on-load={hasRecoveredLoadingState ? 'true' : null}>
+  <main
+    class="messages-shell mx-auto max-w-6xl px-4 py-10 md:py-14"
+    data-clear-status-on-load={hasRecoveredLoadingState ? 'true' : null}
+    data-resume-thread-storage-key={resumeThreadStorageKey || null}
+  >
     <a href="#messages-results" class="messages-skip-link">Μετάβαση στη λίστα συνομιλιών</a>
     <section class="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-gradient-to-br from-[#f9fcff] via-white to-[#f4f7fb] p-6 shadow-[0_12px_40px_-24px_rgba(15,23,42,0.35)] md:p-8">
       <div class="flex flex-wrap items-start justify-between gap-4">
@@ -732,6 +759,45 @@ const inboxReadinessHint = listLoadError
           </a>
         </div>
       </nav>
+    )}
+
+    {canLoadThreads && (
+      <section
+        id="messages-resume-thread"
+        data-resume-thread
+        data-resume-storage-key={resumeThreadStorageKey}
+        data-resume-viewer-email={viewerEmail}
+        class="mt-4 hidden rounded-2xl border border-indigo-200 bg-gradient-to-r from-indigo-50/90 via-white to-sky-50/80 px-4 py-3 text-indigo-950 shadow-[0_12px_30px_-26px_rgba(30,64,175,0.5)]"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-indigo-700">Συνέχεια από πρόσφατο thread</p>
+        <p data-resume-thread-title class="mt-1 text-sm font-semibold text-indigo-950">Άνοιγμα τελευταίου ενεργού thread</p>
+        <p data-resume-thread-meta class="mt-1 text-xs text-indigo-900/85">{listContextSummaryLabel}</p>
+        <div class="mt-2 flex flex-wrap items-center gap-2">
+          <a
+            href={nextTriageHref || '#messages-triage'}
+            data-resume-thread-link
+            data-filter-action-label="Συνέχεια στο πιο πρόσφατα ανοιγμένο thread."
+            class="messages-touch-target inline-flex rounded-lg border border-indigo-300 bg-white px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100"
+          >
+            Συνέχεια thread
+          </a>
+          {nextTriageThread && (
+            <a
+              href={nextTriageHref}
+              data-thread-link
+              data-thread-id={nextTriageThread.threadId}
+              data-thread-slug={nextTriageThread.professionalSlug}
+              data-thread-priority={nextTriageThread.priorityLabel}
+              data-filter-action-label="Άνοιγμα προτεινόμενης triage συνομιλίας."
+              class="messages-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Άνοιγμα προτεινόμενου triage
+            </a>
+          )}
+        </div>
+      </section>
     )}
 
     <section class="messages-toast-stack" aria-label="Καταστάσεις λίστας συνομιλιών">
@@ -974,7 +1040,14 @@ const inboxReadinessHint = listLoadError
             </p>
           </div>
           {nextTriageThread && (
-            <a href={nextTriageHref} class="inline-flex rounded-lg border border-slate-900 bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-slate-700">
+            <a
+              href={nextTriageHref}
+              data-thread-link
+              data-thread-id={nextTriageThread.threadId}
+              data-thread-slug={nextTriageThread.professionalSlug}
+              data-thread-priority={nextTriageThread.priorityLabel}
+              class="inline-flex rounded-lg border border-slate-900 bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-slate-700"
+            >
               Άνοιγμα προτεραιότητας
             </a>
           )}
@@ -1348,8 +1421,12 @@ const inboxReadinessHint = listLoadError
 
               <div class="thread-card__actions mt-4 flex flex-wrap items-center gap-2.5">
                 <a
-                  href={`/messages/thread?threadId=${encodeURIComponent(thread.threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`}
-                  class="inline-flex items-center rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
+                  href={getThreadHref(thread.threadId)}
+                  data-thread-link
+                  data-thread-id={thread.threadId}
+                  data-thread-slug={thread.professionalSlug}
+                  data-thread-priority={thread.priorityLabel}
+                  class="messages-touch-target inline-flex items-center rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
                   aria-label={`Άνοιγμα συνομιλίας ${thread.professionalSlug}`}
                 >
                   {thread.needsReply ? 'Απάντηση τώρα' : 'Άνοιγμα συνομιλίας'}
@@ -1450,8 +1527,8 @@ const inboxReadinessHint = listLoadError
 
     .messages-toast-stack {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
+      top: max(1rem, calc(env(safe-area-inset-top) + 0.5rem));
+      right: max(1rem, calc(env(safe-area-inset-right) + 0.5rem));
       z-index: 70;
       display: grid;
       width: min(28rem, calc(100vw - 2rem));
@@ -1867,15 +1944,123 @@ const inboxReadinessHint = listLoadError
       const threadSearchField = document.querySelector('#thread-search');
       const filterActionLinks = Array.from(document.querySelectorAll('[data-filter-action-label]')).filter((link) => link instanceof HTMLAnchorElement);
       const offlineAlert = document.querySelector('#messages-offline-alert');
+      const threadOpenLinks = Array.from(document.querySelectorAll('[data-thread-link]')).filter((link) => link instanceof HTMLAnchorElement);
+      const resumeThreadPanel = document.querySelector('[data-resume-thread]');
+      const resumeThreadLink = resumeThreadPanel instanceof HTMLElement ? resumeThreadPanel.querySelector('[data-resume-thread-link]') : null;
+      const resumeThreadTitle = resumeThreadPanel instanceof HTMLElement ? resumeThreadPanel.querySelector('[data-resume-thread-title]') : null;
+      const resumeThreadMeta = resumeThreadPanel instanceof HTMLElement ? resumeThreadPanel.querySelector('[data-resume-thread-meta]') : null;
       const pendingTimeouts = new WeakMap();
       const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
       const isCompactViewport = () => typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 640px)').matches;
+      const getSafeLocalStorage = () => {
+        try {
+          const storage = window.localStorage;
+          const probeKey = '__gh_resume_probe__';
+          storage.setItem(probeKey, '1');
+          storage.removeItem(probeKey);
+          return storage;
+        } catch {
+          return null;
+        }
+      };
+      const localStore = getSafeLocalStorage();
+      const parseResumeRecord = (rawValue) => {
+        if (typeof rawValue !== 'string' || rawValue.length === 0) return null;
+        try {
+          const parsed = JSON.parse(rawValue);
+          if (!parsed || typeof parsed !== 'object') return null;
+          if (typeof parsed.href !== 'string' || parsed.href.length === 0) return null;
+          return {
+            href: parsed.href,
+            threadId: typeof parsed.threadId === 'string' ? parsed.threadId : '',
+            slug: typeof parsed.slug === 'string' ? parsed.slug : '',
+            priority: typeof parsed.priority === 'string' ? parsed.priority : '',
+            savedAt: Number.isFinite(parsed.savedAt) ? parsed.savedAt : 0,
+            viewerEmail: typeof parsed.viewerEmail === 'string' ? parsed.viewerEmail : ''
+          };
+        } catch {
+          return null;
+        }
+      };
+      const getResumeStorageKey = () => (
+        resumeThreadPanel instanceof HTMLElement ? (resumeThreadPanel.dataset.resumeStorageKey || '') : ''
+      );
+      const getResumeViewerEmail = () => (
+        resumeThreadPanel instanceof HTMLElement ? (resumeThreadPanel.dataset.resumeViewerEmail || '').toLowerCase() : ''
+      );
+      const readResumeRecord = () => {
+        if (!localStore) return null;
+        const storageKey = getResumeStorageKey();
+        if (!storageKey) return null;
+        const rawValue = localStore.getItem(storageKey);
+        return parseResumeRecord(rawValue);
+      };
+      const writeResumeRecord = (record) => {
+        if (!localStore) return;
+        const storageKey = getResumeStorageKey();
+        if (!storageKey) return;
+        try {
+          localStore.setItem(storageKey, JSON.stringify(record));
+        } catch {
+          // Ignore storage failures and keep navigation functional.
+        }
+      };
+      const formatResumeDateTime = (timestamp) => {
+        if (!Number.isFinite(timestamp) || timestamp <= 0) return '';
+        try {
+          return new Date(timestamp).toLocaleString('el-GR', {
+            day: '2-digit',
+            month: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+        } catch {
+          return '';
+        }
+      };
+      const hydrateResumeThreadPanel = () => {
+        if (!(resumeThreadPanel instanceof HTMLElement) || !(resumeThreadLink instanceof HTMLAnchorElement)) return;
+        const record = readResumeRecord();
+        const viewerEmail = getResumeViewerEmail();
+        if (!record || !record.href || (viewerEmail && record.viewerEmail && record.viewerEmail !== viewerEmail)) return;
+        resumeThreadLink.href = record.href;
+        if (resumeThreadTitle instanceof HTMLElement) {
+          const threadLabel = record.slug ? `Συνέχεια στο /${record.slug}` : 'Συνέχεια στο τελευταίο thread';
+          resumeThreadTitle.textContent = threadLabel;
+        }
+        if (resumeThreadMeta instanceof HTMLElement) {
+          const metadata = [];
+          if (record.priority) metadata.push(`Προτεραιότητα: ${record.priority}`);
+          if (record.threadId) metadata.push(`Thread ID: ${record.threadId}`);
+          const savedAtLabel = formatResumeDateTime(record.savedAt);
+          if (savedAtLabel) metadata.push(`Τελευταία επίσκεψη: ${savedAtLabel}`);
+          if (metadata.length > 0) resumeThreadMeta.textContent = metadata.join(' · ');
+        }
+        resumeThreadPanel.classList.remove('hidden');
+      };
       const announceFocusState = (message) => {
         if (focusLiveRegion instanceof HTMLElement) focusLiveRegion.textContent = message;
       };
       const announceFilterState = (message) => {
         if (filterLiveRegion instanceof HTMLElement) filterLiveRegion.textContent = message;
       };
+      for (const link of threadOpenLinks) {
+        if (!(link instanceof HTMLAnchorElement)) continue;
+        link.addEventListener('click', () => {
+          const viewerEmail = getResumeViewerEmail();
+          if (!viewerEmail) return;
+          const record = {
+            href: link.href,
+            threadId: link.dataset.threadId || '',
+            slug: link.dataset.threadSlug || '',
+            priority: link.dataset.threadPriority || '',
+            savedAt: Date.now(),
+            viewerEmail
+          };
+          writeResumeRecord(record);
+        });
+      }
+      hydrateResumeThreadPanel();
       const focusElement = (element, options = {}) => {
         if (!(element instanceof HTMLElement)) return;
         const preventScroll = options.preventScroll === true;

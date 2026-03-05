@@ -235,6 +235,16 @@ const hasLeads = directoryData.leads.length > 0;
                         <button type="button" data-preset-delete class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800">Delete</button>
                         <button type="button" data-preset-set-default class="inline-flex min-h-8 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-800">Set default</button>
                       </div>
+                      <label for="worklist-picker" class="text-[11px] font-semibold uppercase tracking-wide text-indigo-800">Worklists (saved segments)</label>
+                      <div class="flex flex-wrap items-center gap-2">
+                        <select id="worklist-picker" data-worklist-picker aria-label="Επιλογή worklist" class="min-h-8 rounded-md border border-indigo-200 bg-white px-2 py-1 text-xs text-indigo-900">
+                          <option value="">Επιλέξτε worklist...</option>
+                        </select>
+                        <button type="button" data-worklist-save aria-label="Αποθήκευση επιλογής ως νέο worklist" class="inline-flex min-h-8 items-center rounded-md border border-indigo-300 bg-white px-2.5 text-xs font-semibold text-indigo-800">Save selection</button>
+                        <button type="button" data-worklist-apply aria-label="Εφαρμογή worklist στην επιλογή" class="inline-flex min-h-8 items-center rounded-md border border-indigo-300 bg-white px-2.5 text-xs font-semibold text-indigo-800">Apply worklist</button>
+                        <button type="button" data-worklist-clear aria-label="Καθαρισμός worklist και επιλογής" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700">Clear worklist</button>
+                        <button type="button" data-worklist-delete aria-label="Διαγραφή επιλεγμένου worklist" class="inline-flex min-h-8 items-center rounded-md border border-rose-300 bg-rose-50 px-2.5 text-xs font-semibold text-rose-800">Delete worklist</button>
+                      </div>
                       <p data-preset-feedback class="text-[11px] text-indigo-700" aria-live="polite">Preset manager έτοιμο.</p>
                     </div>
                     <p data-no-presets class="mt-2 text-xs text-slate-500">Δεν υπάρχουν αποθηκευμένα presets.</p>
@@ -575,6 +585,11 @@ const hasLeads = directoryData.leads.length > 0;
         const presetDeleteButton = root.querySelector('[data-preset-delete]');
         const presetSetDefaultButton = root.querySelector('[data-preset-set-default]');
         const presetFeedback = root.querySelector('[data-preset-feedback]');
+        const worklistPicker = root.querySelector('[data-worklist-picker]');
+        const worklistSaveButton = root.querySelector('[data-worklist-save]');
+        const worklistApplyButton = root.querySelector('[data-worklist-apply]');
+        const worklistClearButton = root.querySelector('[data-worklist-clear]');
+        const worklistDeleteButton = root.querySelector('[data-worklist-delete]');
         const noPresets = root.querySelector('[data-no-presets]');
         const exportCsvButton = root.querySelector('[data-export-csv]');
         const pagePrevButton = root.querySelector('[data-page-prev]');

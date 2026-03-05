@@ -1,12 +1,14 @@
 export const NAV_TARGETS = Object.freeze({
   guides: '/blog',
   professionals: '/professionals',
-  heating: '/thermansi'
+  heating: '/thermansi',
+  messages: '/messages'
 });
 
 export const TOP_NAV_LINKS = Object.freeze([
   { label: 'Οδηγοί', href: NAV_TARGETS.guides },
-  { label: 'Επαγγελματίες', href: NAV_TARGETS.professionals }
+  { label: 'Επαγγελματίες', href: NAV_TARGETS.professionals },
+  { label: 'Συνομιλίες', href: NAV_TARGETS.messages }
 ]);
 
 export const PRIMARY_NAV_LINKS = Object.freeze([
@@ -14,6 +16,7 @@ export const PRIMARY_NAV_LINKS = Object.freeze([
   { label: 'Υπηρεσίες', href: '/#services' },
   { label: 'Επαγγελματίες', href: NAV_TARGETS.professionals },
   { label: 'Οδηγοί', href: NAV_TARGETS.guides },
+  { label: 'Συνομιλίες', href: NAV_TARGETS.messages },
   { label: 'Επικοινωνία', href: '/#contact' }
 ]);
 

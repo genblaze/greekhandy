@@ -26,6 +26,12 @@ const status = clean(url.searchParams.get('status'));
 const messageStatus = clean(url.searchParams.get('message'));
 const threadSearchQueryRaw = clean(url.searchParams.get('q'));
 const threadSearchQuery = threadSearchQueryRaw.toLowerCase();
+const listSearchQueryRaw = clean(url.searchParams.get('listQ'));
+const requestedListSortMode = clean(url.searchParams.get('listSort')).toLowerCase();
+const listSortMode = requestedListSortMode === 'unread' ? 'unread' : 'recent';
+const listUnreadOnly = clean(url.searchParams.get('listUnread')) === '1';
+const listBlockedOnly = clean(url.searchParams.get('listBlocked')) === '1';
+const listReportedOnly = clean(url.searchParams.get('listReported')) === '1';
 type ThreadVisibilityFilter = 'all' | 'visible' | 'hidden' | 'reportable';
 const isThreadVisibilityFilter = (value: string): value is ThreadVisibilityFilter => (
   value === 'all' || value === 'visible' || value === 'hidden' || value === 'reportable'
@@ -254,7 +260,36 @@ for (const message of threadMessages) {
   participants.add(message.recipientEmail.toLowerCase());
 }
 const counterpartEmail = [...participants].find((email) => email !== viewerEmail) || recipientForReply.toLowerCase();
-const threadListHref = hasValidViewerEmail ? `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}` : '/messages';
+const hasListContext = Boolean(listSearchQueryRaw) || listUnreadOnly || listBlockedOnly || listReportedOnly || listSortMode === 'unread';
+const listContextSummaryParts: string[] = [];
+if (listSearchQueryRaw) listContextSummaryParts.push(`Αναζήτηση: "${listSearchQueryRaw}"`);
+if (listUnreadOnly) listContextSummaryParts.push('Μόνο μη αναγνωσμένα');
+if (listBlockedOnly) listContextSummaryParts.push('Μόνο μπλοκαρισμένα');
+if (listReportedOnly) listContextSummaryParts.push('Μόνο αναφερόμενα');
+if (listSortMode === 'unread') listContextSummaryParts.push('Sort: μη αναγνωσμένα πρώτα');
+const listContextSummaryLabel = listContextSummaryParts.length > 0
+  ? listContextSummaryParts.join(' · ')
+  : 'Χωρίς ενεργά φίλτρα inbox.';
+const threadListBackLabel = hasListContext ? 'Επιστροφή στη φιλτραρισμένη λίστα' : 'Επιστροφή στις συνομιλίες';
+const appendListContextParams = (params: URLSearchParams) => {
+  if (listSearchQueryRaw) params.set('listQ', listSearchQueryRaw);
+  if (listUnreadOnly) params.set('listUnread', '1');
+  if (listBlockedOnly) params.set('listBlocked', '1');
+  if (listReportedOnly) params.set('listReported', '1');
+  if (listSortMode === 'unread') params.set('listSort', 'unread');
+};
+const buildThreadListHref = () => {
+  const params = new URLSearchParams();
+  if (hasValidViewerEmail) params.set('viewerEmail', viewerEmail);
+  if (listSearchQueryRaw) params.set('q', listSearchQueryRaw);
+  if (listUnreadOnly) params.set('unread', '1');
+  if (listBlockedOnly) params.set('blocked', '1');
+  if (listReportedOnly) params.set('reported', '1');
+  if (listSortMode === 'unread') params.set('sort', 'unread');
+  const query = params.toString();
+  return query ? `/messages?${query}` : '/messages';
+};
+const threadListHref = buildThreadListHref();
 
 const buildThreadHref = (options: { q?: string; visibility?: string } = {}) => {
   const params = new URLSearchParams();
@@ -265,6 +300,7 @@ const buildThreadHref = (options: { q?: string; visibility?: string } = {}) => {
   const requestedVisibility = typeof options.visibility === 'string' ? options.visibility.trim().toLowerCase() : threadVisibilityFilter;
   const nextVisibility = isThreadVisibilityFilter(requestedVisibility) ? requestedVisibility : 'all';
   if (nextVisibility !== 'all') params.set('visibility', nextVisibility);
+  appendListContextParams(params);
   const query = params.toString();
   return query ? `/messages/thread?${query}` : '/messages/thread';
 };
@@ -518,7 +554,7 @@ const historyStatePhaseClass = showLoadingState
           ? 'border-indigo-300 bg-indigo-100 text-indigo-900'
           : 'border-emerald-300 bg-emerald-100 text-emerald-900';
 const threadStatePrimaryActionLabel = hasViewerParamIssue
-  ? 'Επιστροφή στη λίστα'
+  ? threadListBackLabel
   : hasAccessIssue
     ? 'Άνοιγμα προσβάσιμου thread'
     : threadLoadError
@@ -594,7 +630,15 @@ for (const message of filteredThreadMessages) {
 ---
 
 <Layout title="Συνομιλία μηνυμάτων | GreekHandy" description="Αναλυτική προβολή thread με moderation badges, reporting εργαλεία και κατάσταση απάντησης.">
-  <main class="thread-shell mx-auto max-w-6xl px-4 py-10 md:py-14">
+  <main
+    class="thread-shell mx-auto max-w-6xl px-4 py-10 md:py-14"
+    data-thread-id={threadId || null}
+    data-thread-viewer-email={viewerEmail || null}
+    data-thread-counterpart-email={counterpartEmail || null}
+    data-thread-professional-slug={professionalSlug || null}
+    data-thread-list-href={threadListHref}
+    data-thread-list-context={listContextSummaryLabel}
+  >
     <a href="#thread-history" class="thread-skip-link thread-skip-link--history">Μετάβαση στο ιστορικό</a>
     <a href="#thread-moderation-state" class="thread-skip-link thread-skip-link--moderation">Μετάβαση σε moderation status</a>
     <a href="#thread-interaction" class="thread-skip-link thread-skip-link--interaction">Μετάβαση στις ενέργειες thread</a>
@@ -603,8 +647,13 @@ for (const message of filteredThreadMessages) {
       class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
     >
       <span aria-hidden="true">←</span>
-      Επιστροφή στις συνομιλίες
+      {threadListBackLabel}
     </a>
+    {hasListContext && (
+      <p class="mt-2 rounded-xl border border-indigo-200 bg-indigo-50/80 px-3 py-2 text-[11px] text-indigo-900">
+        Ενεργό context λίστας: <span class="font-semibold">{listContextSummaryLabel}</span>
+      </p>
+    )}
 
     <section class="mt-4 overflow-hidden rounded-[2rem] border border-slate-200/80 bg-gradient-to-br from-[#f8fbff] via-white to-[#f3f7fc] p-6 shadow-[0_14px_42px_-28px_rgba(15,23,42,0.42)] md:p-8">
       <div class="flex flex-wrap items-start justify-between gap-4">
@@ -990,6 +1039,11 @@ for (const message of filteredThreadMessages) {
           >
             <input type="hidden" name="threadId" value={threadId} />
             <input type="hidden" name="viewerEmail" value={viewerEmail} />
+            {listSearchQueryRaw && <input type="hidden" name="listQ" value={listSearchQueryRaw} />}
+            {listUnreadOnly && <input type="hidden" name="listUnread" value="1" />}
+            {listBlockedOnly && <input type="hidden" name="listBlocked" value="1" />}
+            {listReportedOnly && <input type="hidden" name="listReported" value="1" />}
+            {listSortMode === 'unread' && <input type="hidden" name="listSort" value="unread" />}
             <div class="flex flex-wrap items-end justify-between gap-3">
               <div class="min-w-[16rem] flex-1">
                 <p id="thread-filter-title" class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Αναζήτηση στο thread</p>
@@ -1520,8 +1574,8 @@ for (const message of filteredThreadMessages) {
 
     .thread-toast-stack {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
+      top: max(1rem, calc(env(safe-area-inset-top) + 0.5rem));
+      right: max(1rem, calc(env(safe-area-inset-right) + 0.5rem));
       z-index: 70;
       display: grid;
       width: min(28rem, calc(100vw - 2rem));
@@ -1919,7 +1973,42 @@ for (const message of filteredThreadMessages) {
       const threadFilterForm = document.querySelector('#thread-filter-controls');
       const threadFilterQuery = document.querySelector('#thread-filter-query');
       const threadFilterActions = Array.from(document.querySelectorAll('[data-thread-filter-action]')).filter((item) => item instanceof HTMLElement);
+      const threadShell = document.querySelector('.thread-shell');
       const isCompactViewport = () => typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 640px)').matches;
+      const getSafeThreadStorage = () => {
+        try {
+          const storage = window.localStorage;
+          const probeKey = '__gh_thread_resume_probe__';
+          storage.setItem(probeKey, '1');
+          storage.removeItem(probeKey);
+          return storage;
+        } catch {
+          return null;
+        }
+      };
+      const threadVisitStorage = getSafeThreadStorage();
+      const persistLastVisitedThread = () => {
+        if (!(threadShell instanceof HTMLElement) || !threadVisitStorage) return;
+        const persistedThreadId = threadShell.dataset.threadId || '';
+        const persistedViewerEmail = (threadShell.dataset.threadViewerEmail || '').toLowerCase();
+        if (!persistedThreadId || !persistedViewerEmail) return;
+        const payload = {
+          href: `${window.location.pathname}${window.location.search}`,
+          listHref: threadShell.dataset.threadListHref || '',
+          threadId: persistedThreadId,
+          slug: threadShell.dataset.threadProfessionalSlug || '',
+          counterpartEmail: threadShell.dataset.threadCounterpartEmail || '',
+          savedAt: Date.now(),
+          viewerEmail: persistedViewerEmail
+        };
+        try {
+          threadVisitStorage.setItem(`gh:last-thread-visit:${persistedViewerEmail}`, JSON.stringify(payload));
+        } catch {
+          // Ignore storage write failures to avoid interrupting thread interactions.
+        }
+      };
+      persistLastVisitedThread();
+      window.addEventListener('pagehide', persistLastVisitedThread);
       const announceFocusState = (message) => {
         if (focusLiveRegion instanceof HTMLElement) focusLiveRegion.textContent = message;
       };

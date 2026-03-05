@@ -25,6 +25,12 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
     <slot name="head" />
   </head>
   <body class="bg-slate-50 font-sans text-slate-900 antialiased">
+    <a
+      href="#gh-site-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-3 focus:z-[90] focus:rounded-full focus:border focus:border-sky-600 focus:bg-white focus:px-3 focus:py-1.5 focus:text-xs focus:font-semibold focus:text-sky-900 focus:shadow-lg focus:outline-none"
+    >
+      Μετάβαση στο κύριο περιεχόμενο
+    </a>
     <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
       <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
         <a href="/" class="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">GreekHandy</a>
@@ -34,6 +40,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           {TOP_NAV_LINKS.map((navLink) => (
             <a
               href={navLink.href}
+              aria-current={isRouteActive(navLink.href) ? 'page' : undefined}
               class={`transition hover:text-slate-900 ${isRouteActive(navLink.href) ? 'text-slate-900 underline decoration-2 underline-offset-8' : ''}`}
             >
               {navLink.label}
@@ -50,6 +57,8 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
             data-mobile-nav-toggle
             aria-controls="mobile-nav-drawer"
             aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="Άνοιγμα μενού πλοήγησης"
             class="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
           >
             ☰ Μενού
@@ -60,15 +69,20 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
         <nav
           id="mobile-nav-drawer"
           data-mobile-nav-drawer
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-nav-title"
           aria-label="Κύρια πλοήγηση κινητού"
           aria-hidden="true"
+          tabindex="-1"
           class="fixed right-0 top-0 z-50 hidden h-full w-[min(88vw,22rem)] border-l border-slate-200 bg-white p-4 shadow-2xl"
         >
           <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-            <p class="text-sm font-semibold text-slate-900">Πλοήγηση</p>
+            <p id="mobile-nav-title" class="text-sm font-semibold text-slate-900">Πλοήγηση</p>
             <button
               type="button"
               data-mobile-nav-close
+              aria-label="Κλείσιμο μενού πλοήγησης"
               class="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
             >
               Κλείσιμο
@@ -80,6 +94,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
                 <a
                   href={navLink.href}
                   data-mobile-nav-link
+                  aria-current={isRouteActive(navLink.href) ? 'page' : undefined}
                   class={`flex min-h-11 items-center rounded-lg px-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 ${isRouteActive(navLink.href) ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'}`}
                 >
                   {navLink.label}
@@ -91,7 +106,9 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
       </div>
     </header>
 
-    <slot />
+    <div id="gh-site-content">
+      <slot />
+    </div>
 
     <footer class="mt-12 border-t border-slate-200 bg-white py-12 text-slate-600">
       <div class="mx-auto max-w-6xl px-4 md:px-6">
@@ -243,6 +260,15 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
         const start = () => {
           schedule(scanToolbars);
           if (!(document.body instanceof HTMLElement)) return;
+          const skipTarget = document.querySelector('#gh-site-content');
+          if (skipTarget instanceof HTMLElement && !skipTarget.hasAttribute('tabindex')) {
+            skipTarget.setAttribute('tabindex', '-1');
+          }
+          const mainContent = document.querySelector('main');
+          if (mainContent instanceof HTMLElement) {
+            if (!mainContent.id) mainContent.id = 'gh-main-content';
+            if (!mainContent.hasAttribute('tabindex')) mainContent.setAttribute('tabindex', '-1');
+          }
           const discoveryObserver = new MutationObserver(() => {
             schedule(scanToolbars);
           });
@@ -270,44 +296,137 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           });
 
           const toggle = document.querySelector('[data-mobile-nav-toggle]');
-          const close = document.querySelector('[data-mobile-nav-close]');
+          const closeButton = document.querySelector('[data-mobile-nav-close]');
           const drawer = document.querySelector('[data-mobile-nav-drawer]');
           const overlay = document.querySelector('[data-mobile-nav-overlay]');
           const links = Array.from(document.querySelectorAll('[data-mobile-nav-link]'));
+          const pageContent = document.querySelector('#gh-site-content');
+          const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+          const desktopQuery = typeof window.matchMedia === 'function' ? window.matchMedia('(min-width: 768px)') : null;
+          let navOpen = false;
+          let restoreFocusElement = null;
+          let bodyLockPaddingRight = '';
+          let touchStartX = 0;
+          let touchStartY = 0;
 
           if (!(toggle instanceof HTMLButtonElement) || !(drawer instanceof HTMLElement) || !(overlay instanceof HTMLElement)) return;
 
-          const setOpen = (open) => {
+          const setBackgroundInert = (inert) => {
+            if (!(pageContent instanceof HTMLElement) || !('inert' in pageContent)) return;
+            pageContent.inert = inert;
+          };
+          const getFocusableDrawerItems = () => Array.from(drawer.querySelectorAll(focusableSelector))
+            .filter((item) => item instanceof HTMLElement && !item.hasAttribute('disabled') && item.getAttribute('aria-hidden') !== 'true');
+          const syncBodyScrollLock = (lock) => {
+            if (lock) {
+              const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+              bodyLockPaddingRight = document.body.style.paddingRight || '';
+              if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+              document.body.classList.add('overflow-hidden');
+              return;
+            }
+            document.body.classList.remove('overflow-hidden');
+            document.body.style.paddingRight = bodyLockPaddingRight;
+          };
+          const setOpen = (open, options = {}) => {
+            const shouldRestoreFocus = options.restoreFocus !== false;
+            if (open === navOpen) return;
+            navOpen = open;
+            if (open && document.activeElement instanceof HTMLElement) {
+              restoreFocusElement = document.activeElement;
+            }
             toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.setAttribute('aria-label', open ? 'Κλείσιμο μενού πλοήγησης' : 'Άνοιγμα μενού πλοήγησης');
             drawer.classList.toggle('hidden', !open);
             drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+            if ('inert' in drawer) drawer.inert = !open;
             overlay.classList.toggle('hidden', !open);
             overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
-            document.body.classList.toggle('overflow-hidden', open);
+            setBackgroundInert(open);
+            syncBodyScrollLock(open);
             if (open) {
-              const firstLink = links.find((link) => link instanceof HTMLElement);
-              if (firstLink instanceof HTMLElement) firstLink.focus();
+              const firstFocusable = getFocusableDrawerItems().find((item) => item instanceof HTMLElement);
+              if (firstFocusable instanceof HTMLElement) {
+                firstFocusable.focus({ preventScroll: true });
+              } else {
+                drawer.focus({ preventScroll: true });
+              }
             } else {
-              toggle.focus();
+              if (shouldRestoreFocus) {
+                const target = restoreFocusElement instanceof HTMLElement ? restoreFocusElement : toggle;
+                target.focus({ preventScroll: true });
+              }
+              restoreFocusElement = null;
+            }
+          };
+          const trapDrawerFocus = (event) => {
+            if (!navOpen || event.key !== 'Tab') return;
+            const focusableItems = getFocusableDrawerItems();
+            if (focusableItems.length === 0) {
+              event.preventDefault();
+              drawer.focus({ preventScroll: true });
+              return;
+            }
+            const firstItem = focusableItems[0];
+            const lastItem = focusableItems[focusableItems.length - 1];
+            const activeElement = document.activeElement;
+            if (event.shiftKey && activeElement === firstItem) {
+              event.preventDefault();
+              lastItem.focus({ preventScroll: true });
+              return;
+            }
+            if (!event.shiftKey && activeElement === lastItem) {
+              event.preventDefault();
+              firstItem.focus({ preventScroll: true });
             }
           };
 
           toggle.addEventListener('click', () => {
-            const open = toggle.getAttribute('aria-expanded') === 'true';
-            setOpen(!open);
+            setOpen(!navOpen);
           });
 
-          close?.addEventListener('click', () => setOpen(false));
+          closeButton?.addEventListener('click', () => setOpen(false));
           overlay.addEventListener('click', () => setOpen(false));
-          links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
+          links.forEach((link) => link.addEventListener('click', () => setOpen(false, { restoreFocus: false })));
+          drawer.addEventListener('keydown', trapDrawerFocus);
+          drawer.addEventListener('touchstart', (event) => {
+            const touch = event.touches[0];
+            if (!touch) return;
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+          }, { passive: true });
+          drawer.addEventListener('touchmove', (event) => {
+            if (!navOpen) return;
+            const touch = event.touches[0];
+            if (!touch) return;
+            const deltaX = touch.clientX - touchStartX;
+            const deltaY = touch.clientY - touchStartY;
+            if (deltaX > 70 && Math.abs(deltaY) < 48) {
+              setOpen(false);
+            }
+          }, { passive: true });
 
           document.addEventListener('keydown', (event) => {
             if (!(event instanceof KeyboardEvent)) return;
-            if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+            if (event.key === 'Escape' && navOpen) {
               event.preventDefault();
               setOpen(false);
             }
           });
+          if (desktopQuery) {
+            const closeOnDesktop = (event) => {
+              if (event.matches && navOpen) setOpen(false, { restoreFocus: false });
+            };
+            if (typeof desktopQuery.addEventListener === 'function') {
+              desktopQuery.addEventListener('change', closeOnDesktop);
+            } else if (typeof desktopQuery.addListener === 'function') {
+              desktopQuery.addListener(closeOnDesktop);
+            }
+          }
+          window.addEventListener('pageshow', () => {
+            if (navOpen) setOpen(false, { restoreFocus: false });
+          });
+          setOpen(false, { restoreFocus: false });
         };
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', start, { once: true });
