@@ -1,0 +1,20 @@
+{
+  "id": "emergency-hot-water-loss-diagnosis-siatista",
+  "slug": "epigousa-diagnosi-apoleias-zestou-nerou-siatista",
+  "nameGr": "Επείγουσα Διάγνωση Απώλειας Ζεστού Νερού στη Σιάτιστα",
+  "nameEn": "Emergency Hot Water Loss Diagnosis in Σιάτιστα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα διάγνωση απώλειας ζεστού νερού στη Σιάτιστα με άμεσο έλεγχο θερμοσίφωνα, βαλβίδων και παροχών. SEO intent: «δεν έχω ζεστό νερό Σιάτιστα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "δεν έχω ζεστό νερό Σιάτιστα",
+    "υδραυλικός επείγον θερμοσίφωνας",
+    "βλάβη παροχής ζεστού νερού",
+    "άμεση επισκευή boiler",
+    "service θερμοσίφωνα τώρα"
+  ],
+  "status": "researched"
+}

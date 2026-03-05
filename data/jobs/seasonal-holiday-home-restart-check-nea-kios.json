@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-holiday-home-restart-check-nea-kios",
+  "slug": "epochiakos-elegxos-epanekkinisis-eksaxikis-katoikias-nea-kios",
+  "nameGr": "Εποχικός Έλεγχος Επανεκκίνησης Εξοχικής Κατοικίας στη Νέα Κίο",
+  "nameEn": "Seasonal Holiday Home Restart Check in Νέα Κίος",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εποχικός έλεγχος επανεκκίνησης εξοχικής κατοικίας στη Νέα Κίο με βασικούς ελέγχους νερού, ρεύματος και λειτουργιών πριν χρήση. SEO intent: «προετοιμασία εξοχικού πριν άνοιγμα Νέα Κίος».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-190€",
+  "demand": "high",
+  "keywords": [
+    "προετοιμασία εξοχικού πριν άνοιγμα Νέα Κίος",
+    "restart check κατοικίας",
+    "έλεγχος λειτουργιών εξοχικού",
+    "seasonal home opening service",
+    "καθαρισμός και έλεγχος πριν άφιξη"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-bleeding-service-parga",
+  "slug": "epochiaki-exaerosi-kalorifer-parga",
+  "nameGr": "Εποχική Εξαέρωση Καλοριφέρ στην Πάργα",
+  "nameEn": "Seasonal Heating Radiator Bleeding Service in Πάργα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξαέρωση καλοριφέρ στην Πάργα πριν τον χειμώνα για ομοιόμορφη θέρμανση και καλύτερη απόδοση. SEO intent: «καλοριφέρ δεν ζεσταίνει καλά Πάργα».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-140€",
+  "demand": "high",
+  "keywords": [
+    "καλοριφέρ δεν ζεσταίνει καλά Πάργα",
+    "εξαέρωση καλοριφέρ Πάργα",
+    "τεχνικός θέρμανσης σώματα",
+    "service καλοριφέρ εποχικό",
+    "προετοιμασία θέρμανσης χειμώνα"
+  ],
+  "status": "researched"
+}

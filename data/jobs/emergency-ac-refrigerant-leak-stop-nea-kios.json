@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-refrigerant-leak-stop-nea-kios",
+  "slug": "epigousa-antimetopisi-diarrois-psyktikou-ac-nea-kios",
+  "nameGr": "Επείγουσα Αντιμετώπιση Διαρροής Ψυκτικού AC στη Νέα Κίο",
+  "nameEn": "Emergency AC Refrigerant Leak Stop in Νέα Κίος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντιμετώπιση διαρροής ψυκτικού στη Νέα Κίο για γρήγορη αποκατάσταση ψύξης και ασφαλή λειτουργία συστήματος. SEO intent: «διαρροή φρέον ac Νέα Κίος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή φρέον ac Νέα Κίος",
+    "τεχνικός κλιματισμού επείγον",
+    "ac δεν ψύχει διαρροή",
+    "εντοπισμός διαρροής ψυκτικού",
+    "άμεσο service κλιματιστικού"
+  ],
+  "status": "researched"
+}

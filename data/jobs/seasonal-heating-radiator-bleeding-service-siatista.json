@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-bleeding-service-siatista",
+  "slug": "epochiaki-exaerosi-kalorifer-siatista",
+  "nameGr": "Εποχική Εξαέρωση Καλοριφέρ στη Σιάτιστα",
+  "nameEn": "Seasonal Heating Radiator Bleeding Service in Σιάτιστα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξαέρωση καλοριφέρ στη Σιάτιστα πριν τον χειμώνα για ομοιόμορφη θέρμανση και καλύτερη απόδοση. SEO intent: «καλοριφέρ δεν ζεσταίνει καλά Σιάτιστα».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-140€",
+  "demand": "high",
+  "keywords": [
+    "καλοριφέρ δεν ζεσταίνει καλά Σιάτιστα",
+    "εξαέρωση καλοριφέρ Σιάτιστα",
+    "τεχνικός θέρμανσης σώματα",
+    "service καλοριφέρ εποχικό",
+    "προετοιμασία θέρμανσης χειμώνα"
+  ],
+  "status": "researched"
+}

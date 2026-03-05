@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-refrigerant-leak-stop-siatista",
+  "slug": "epigousa-antimetopisi-diarrois-psyktikou-ac-siatista",
+  "nameGr": "Επείγουσα Αντιμετώπιση Διαρροής Ψυκτικού AC στη Σιάτιστα",
+  "nameEn": "Emergency AC Refrigerant Leak Stop in Σιάτιστα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντιμετώπιση διαρροής ψυκτικού στη Σιάτιστα για γρήγορη αποκατάσταση ψύξης και ασφαλή λειτουργία συστήματος. SEO intent: «διαρροή φρέον ac Σιάτιστα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή φρέον ac Σιάτιστα",
+    "τεχνικός κλιματισμού επείγον",
+    "ac δεν ψύχει διαρροή",
+    "εντοπισμός διαρροής ψυκτικού",
+    "άμεσο service κλιματιστικού"
+  ],
+  "status": "researched"
+}

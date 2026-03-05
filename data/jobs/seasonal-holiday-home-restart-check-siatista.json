@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-holiday-home-restart-check-siatista",
+  "slug": "epochiakos-elegxos-epanekkinisis-eksaxikis-katoikias-siatista",
+  "nameGr": "Εποχικός Έλεγχος Επανεκκίνησης Εξοχικής Κατοικίας στη Σιάτιστα",
+  "nameEn": "Seasonal Holiday Home Restart Check in Σιάτιστα",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εποχικός έλεγχος επανεκκίνησης εξοχικής κατοικίας στη Σιάτιστα με βασικούς ελέγχους νερού, ρεύματος και λειτουργιών πριν χρήση. SEO intent: «προετοιμασία εξοχικού πριν άνοιγμα Σιάτιστα».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-190€",
+  "demand": "high",
+  "keywords": [
+    "προετοιμασία εξοχικού πριν άνοιγμα Σιάτιστα",
+    "restart check κατοικίας",
+    "έλεγχος λειτουργιών εξοχικού",
+    "seasonal home opening service",
+    "καθαρισμός και έλεγχος πριν άφιξη"
+  ],
+  "status": "researched"
+}

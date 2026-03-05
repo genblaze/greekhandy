@@ -1,0 +1,20 @@
+{
+  "id": "emergency-meter-box-water-ingress-fix-siatista",
+  "slug": "epigousa-episkevi-eisrois-nerou-kivotiou-metriti-siatista",
+  "nameGr": "Επείγουσα Επισκευή Εισροής Νερού σε Κιβώτιο Μετρητή στη Σιάτιστα",
+  "nameEn": "Emergency Meter Box Water Ingress Fix in Σιάτιστα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση εισροής νερού σε κιβώτιο μετρητή στη Σιάτιστα για αποφυγή βραχυκυκλωμάτων και κινδύνων. SEO intent: «νερό στον μετρητή ρεύματος Σιάτιστα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "νερό στον μετρητή ρεύματος Σιάτιστα",
+    "ηλεκτρολόγος επείγον μετρητής",
+    "βραχυκύκλωμα από υγρασία",
+    "στεγανοποίηση κιβωτίου μετρητή",
+    "ασφάλεια παροχής ρεύματος"
+  ],
+  "status": "researched"
+}

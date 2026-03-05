@@ -1,0 +1,20 @@
+{
+  "id": "emergency-hot-water-loss-diagnosis-parga",
+  "slug": "epigousa-diagnosi-apoleias-zestou-nerou-parga",
+  "nameGr": "Επείγουσα Διάγνωση Απώλειας Ζεστού Νερού στην Πάργα",
+  "nameEn": "Emergency Hot Water Loss Diagnosis in Πάργα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα διάγνωση απώλειας ζεστού νερού στην Πάργα με άμεσο έλεγχο θερμοσίφωνα, βαλβίδων και παροχών. SEO intent: «δεν έχω ζεστό νερό Πάργα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "δεν έχω ζεστό νερό Πάργα",
+    "υδραυλικός επείγον θερμοσίφωνας",
+    "βλάβη παροχής ζεστού νερού",
+    "άμεση επισκευή boiler",
+    "service θερμοσίφωνα τώρα"
+  ],
+  "status": "researched"
+}

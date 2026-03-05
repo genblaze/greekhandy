@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-refrigerant-leak-stop-parga",
+  "slug": "epigousa-antimetopisi-diarrois-psyktikou-ac-parga",
+  "nameGr": "Επείγουσα Αντιμετώπιση Διαρροής Ψυκτικού AC στην Πάργα",
+  "nameEn": "Emergency AC Refrigerant Leak Stop in Πάργα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντιμετώπιση διαρροής ψυκτικού στην Πάργα για γρήγορη αποκατάσταση ψύξης και ασφαλή λειτουργία συστήματος. SEO intent: «διαρροή φρέον ac Πάργα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή φρέον ac Πάργα",
+    "τεχνικός κλιματισμού επείγον",
+    "ac δεν ψύχει διαρροή",
+    "εντοπισμός διαρροής ψυκτικού",
+    "άμεσο service κλιματιστικού"
+  ],
+  "status": "researched"
+}
