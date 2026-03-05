@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pipe-freeze-thaw-service-sofades",
+  "slug": "epigousa-apopsyxi-pagomenis-solinwsis-nerou-sofades",
+  "nameGr": "Επείγουσα Απόψυξη Παγωμένης Σωλήνωσης Νερού στους Σοφάδες",
+  "nameEn": "Emergency Water Pipe Freeze Thaw Service in Σοφάδες",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απόψυξη παγωμένης σωλήνωσης στους Σοφάδες για άμεση αποκατάσταση ροής και αποφυγή ρήξης δικτύου. SEO intent: «πάγωσαν σωλήνες νερού Σοφάδες».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "πάγωσαν σωλήνες νερού Σοφάδες",
+    "υδραυλικός επείγον παγετός",
+    "απόψυξη σωλήνων νερού",
+    "χωρίς νερό λόγω παγετού",
+    "πρόληψη σπασίματος σωλήνα"
+  ],
+  "status": "researched"
+}

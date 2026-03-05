@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-outlet-sparking-fix-spetses",
+  "slug": "epigousa-episkevi-prizas-pou-spinthirizei-spetses",
+  "nameGr": "Επείγουσα Επισκευή Πρίζας που Σπινθηρίζει στις Σπέτσες",
+  "nameEn": "Emergency Electrical Outlet Sparking Fix in Σπέτσες",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πρίζας που σπινθηρίζει στις Σπέτσες για πρόληψη βραχυκυκλώματος και πυρκαγιάς. SEO intent: «πρίζα σπινθηρίζει Σπέτσες».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "πρίζα σπινθηρίζει Σπέτσες",
+    "ηλεκτρολόγος επείγον πρίζα",
+    "βραχυκύκλωμα πρίζας λύση",
+    "κίνδυνος πυρκαγιάς πρίζα",
+    "επισκευή ηλεκτρικής πρίζας"
+  ],
+  "status": "researched"
+}

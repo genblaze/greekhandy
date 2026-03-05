@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-circuit-breaker-trip-fix-didyma-argolidas",
+  "slug": "epigousa-episkevi-ptosis-asfaleias-ac-didyma-argolidas",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Ασφάλειας AC στα Δίδυμα Αργολίδας",
+  "nameEn": "Emergency AC Circuit Breaker Trip Fix in Δίδυμα Αργολίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση πτώσης ασφάλειας AC στα Δίδυμα Αργολίδας για ασφαλή επαναλειτουργία ψύξης/θέρμανσης. SEO intent: «ac ρίχνει ασφάλεια Δίδυμα Αργολίδας».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-220€",
+  "demand": "high",
+  "keywords": [
+    "ac ρίχνει ασφάλεια Δίδυμα Αργολίδας",
+    "τεχνικός κλιματισμού επείγον",
+    "βλάβη κλιματιστικού ηλεκτρική",
+    "air condition breaker trip",
+    "service ac άμεσα"
+  ],
+  "status": "researched"
+}

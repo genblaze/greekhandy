@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-outlet-sparking-fix-sofades",
+  "slug": "epigousa-episkevi-prizas-pou-spinthirizei-sofades",
+  "nameGr": "Επείγουσα Επισκευή Πρίζας που Σπινθηρίζει στους Σοφάδες",
+  "nameEn": "Emergency Electrical Outlet Sparking Fix in Σοφάδες",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πρίζας που σπινθηρίζει στους Σοφάδες για πρόληψη βραχυκυκλώματος και πυρκαγιάς. SEO intent: «πρίζα σπινθηρίζει Σοφάδες».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "πρίζα σπινθηρίζει Σοφάδες",
+    "ηλεκτρολόγος επείγον πρίζα",
+    "βραχυκύκλωμα πρίζας λύση",
+    "κίνδυνος πυρκαγιάς πρίζα",
+    "επισκευή ηλεκτρικής πρίζας"
+  ],
+  "status": "researched"
+}

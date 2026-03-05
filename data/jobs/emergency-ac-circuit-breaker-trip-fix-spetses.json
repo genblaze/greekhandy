@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-circuit-breaker-trip-fix-spetses",
+  "slug": "epigousa-episkevi-ptosis-asfaleias-ac-spetses",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Ασφάλειας AC στις Σπέτσες",
+  "nameEn": "Emergency AC Circuit Breaker Trip Fix in Σπέτσες",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση πτώσης ασφάλειας AC στις Σπέτσες για ασφαλή επαναλειτουργία ψύξης/θέρμανσης. SEO intent: «ac ρίχνει ασφάλεια Σπέτσες».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-220€",
+  "demand": "high",
+  "keywords": [
+    "ac ρίχνει ασφάλεια Σπέτσες",
+    "τεχνικός κλιματισμού επείγον",
+    "βλάβη κλιματιστικού ηλεκτρική",
+    "air condition breaker trip",
+    "service ac άμεσα"
+  ],
+  "status": "researched"
+}
