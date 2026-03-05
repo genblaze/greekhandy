@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-inlet-float-valve-fix-vryses-chanion",
+  "slug": "epigousa-episkevi-floter-valvidas-eisodou-dexamenis-nerou-vryses-chanion",
+  "nameGr": "Επείγουσα Επισκευή Φλοτέρ Βαλβίδας Εισόδου Δεξαμενής Νερού στις Βρύσες Χανίων",
+  "nameEn": "Emergency Water Tank Inlet Float Valve Fix in Βρύσες Χανίων",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή φλοτέρ βαλβίδας εισόδου δεξαμενής νερού στις Βρύσες Χανίων για αποφυγή υπερχείλισης και διακοπών παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Βρύσες Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-pressure-hold-check-vryses-chanion",
+  "slug": "epochiakos-elegxos-diakratisis-piesis-kyklomatos-thermansis-vryses-chanion",
+  "nameGr": "Εποχικός Έλεγχος Διακράτησης Πίεσης Κυκλώματος Θέρμανσης στις Βρύσες Χανίων",
+  "nameEn": "Seasonal Heating Circuit Pressure Hold Check in Βρύσες Χανίων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος διακράτησης πίεσης κυκλώματος θέρμανσης στις Βρύσες Χανίων για αποφυγή απωλειών και αξιόπιστη λειτουργία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βρύσες Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

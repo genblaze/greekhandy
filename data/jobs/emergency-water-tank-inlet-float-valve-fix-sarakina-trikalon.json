@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-inlet-float-valve-fix-sarakina-trikalon",
+  "slug": "epigousa-episkevi-floter-valvidas-eisodou-dexamenis-nerou-sarakina-trikalon",
+  "nameGr": "Επείγουσα Επισκευή Φλοτέρ Βαλβίδας Εισόδου Δεξαμενής Νερού στη Σαρακίνα Τρικάλων",
+  "nameEn": "Emergency Water Tank Inlet Float Valve Fix in Σαρακίνα Τρικάλων",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή φλοτέρ βαλβίδας εισόδου δεξαμενής νερού στη Σαρακίνα Τρικάλων για αποφυγή υπερχείλισης και διακοπών παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Σαρακίνα Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

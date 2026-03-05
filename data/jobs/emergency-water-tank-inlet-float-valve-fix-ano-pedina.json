@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-inlet-float-valve-fix-ano-pedina",
+  "slug": "epigousa-episkevi-floter-valvidas-eisodou-dexamenis-nerou-ano-pedina",
+  "nameGr": "Επείγουσα Επισκευή Φλοτέρ Βαλβίδας Εισόδου Δεξαμενής Νερού στα Άνω Πεδινά",
+  "nameEn": "Emergency Water Tank Inlet Float Valve Fix in Άνω Πεδινά",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή φλοτέρ βαλβίδας εισόδου δεξαμενής νερού στα Άνω Πεδινά για αποφυγή υπερχείλισης και διακοπών παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Άνω Πεδινά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-pressure-hold-check-sarakina-trikalon",
+  "slug": "epochiakos-elegxos-diakratisis-piesis-kyklomatos-thermansis-sarakina-trikalon",
+  "nameGr": "Εποχικός Έλεγχος Διακράτησης Πίεσης Κυκλώματος Θέρμανσης στη Σαρακίνα Τρικάλων",
+  "nameEn": "Seasonal Heating Circuit Pressure Hold Check in Σαρακίνα Τρικάλων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος διακράτησης πίεσης κυκλώματος θέρμανσης στη Σαρακίνα Τρικάλων για αποφυγή απωλειών και αξιόπιστη λειτουργία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Σαρακίνα Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

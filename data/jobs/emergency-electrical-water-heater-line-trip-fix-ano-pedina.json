@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-water-heater-line-trip-fix-ano-pedina",
+  "slug": "epigousa-episkevi-ptosis-grammis-thermosifona-ano-pedina",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Γραμμής Θερμοσίφωνα στα Άνω Πεδινά",
+  "nameEn": "Emergency Electrical Water Heater Line Trip Fix in Άνω Πεδινά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης γραμμής θερμοσίφωνα στα Άνω Πεδινά για άμεση επαναφορά ζεστού νερού με ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άνω Πεδινά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

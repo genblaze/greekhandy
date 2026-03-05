@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-siphon-unblock-sarakina-trikalon",
+  "slug": "epigousa-apofraxi-sifoniou-aporrois-esoterikou-ac-sarakina-trikalon",
+  "nameGr": "Επείγουσα Απόφραξη Σιφωνίου Απορροής Εσωτερικού AC στη Σαρακίνα Τρικάλων",
+  "nameEn": "Emergency AC Indoor Drain Siphon Unblock in Σαρακίνα Τρικάλων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα απόφραξη σιφωνίου απορροής εσωτερικού AC στη Σαρακίνα Τρικάλων για άμεση αποτροπή διαρροής νερού στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Σαρακίνα Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

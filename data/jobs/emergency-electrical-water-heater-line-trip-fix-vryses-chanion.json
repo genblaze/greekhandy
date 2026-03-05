@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-water-heater-line-trip-fix-vryses-chanion",
+  "slug": "epigousa-episkevi-ptosis-grammis-thermosifona-vryses-chanion",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Γραμμής Θερμοσίφωνα στις Βρύσες Χανίων",
+  "nameEn": "Emergency Electrical Water Heater Line Trip Fix in Βρύσες Χανίων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης γραμμής θερμοσίφωνα στις Βρύσες Χανίων για άμεση επαναφορά ζεστού νερού με ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Βρύσες Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

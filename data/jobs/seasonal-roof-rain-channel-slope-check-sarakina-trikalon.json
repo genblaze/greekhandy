@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-rain-channel-slope-check-sarakina-trikalon",
+  "slug": "epochiakos-elegxos-klisis-kanaliou-vroxon-stegis-sarakina-trikalon",
+  "nameGr": "Εποχικός Έλεγχος Κλίσης Καναλιού Βρόχινων Στέγης στη Σαρακίνα Τρικάλων",
+  "nameEn": "Seasonal Roof Rain Channel Slope Check in Σαρακίνα Τρικάλων",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός έλεγχος κλίσης καναλιού βρόχινων στέγης στη Σαρακίνα Τρικάλων για σωστή απορροή πριν τις δυνατές βροχές.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Σαρακίνα Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

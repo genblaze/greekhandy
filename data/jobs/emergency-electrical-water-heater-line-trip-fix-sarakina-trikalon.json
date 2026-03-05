@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-water-heater-line-trip-fix-sarakina-trikalon",
+  "slug": "epigousa-episkevi-ptosis-grammis-thermosifona-sarakina-trikalon",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Γραμμής Θερμοσίφωνα στη Σαρακίνα Τρικάλων",
+  "nameEn": "Emergency Electrical Water Heater Line Trip Fix in Σαρακίνα Τρικάλων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης γραμμής θερμοσίφωνα στη Σαρακίνα Τρικάλων για άμεση επαναφορά ζεστού νερού με ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Σαρακίνα Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

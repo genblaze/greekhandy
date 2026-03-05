@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-siphon-unblock-vryses-chanion",
+  "slug": "epigousa-apofraxi-sifoniou-aporrois-esoterikou-ac-vryses-chanion",
+  "nameGr": "Επείγουσα Απόφραξη Σιφωνίου Απορροής Εσωτερικού AC στις Βρύσες Χανίων",
+  "nameEn": "Emergency AC Indoor Drain Siphon Unblock in Βρύσες Χανίων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα απόφραξη σιφωνίου απορροής εσωτερικού AC στις Βρύσες Χανίων για άμεση αποτροπή διαρροής νερού στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Βρύσες Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
