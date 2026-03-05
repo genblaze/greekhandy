@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-pressure-tune-meligalas-evias",
+  "slug": "epochiaki-rythmisi-piesis-vroxou-epistrofis-thermansis-meligalas-evias",
+  "nameGr": "Εποχική Ρύθμιση Πίεσης Βρόχου Επιστροφής Θέρμανσης στο Μελιγαλά Ευβοίας",
+  "nameEn": "Seasonal Heating Return Loop Pressure Tune in Μελιγαλάς Ευβοίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση πίεσης βρόχου επιστροφής θέρμανσης στο Μελιγαλά Ευβοίας για πιο σταθερή λειτουργία και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μελιγαλάς Ευβοίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

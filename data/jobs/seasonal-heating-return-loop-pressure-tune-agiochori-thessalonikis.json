@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-pressure-tune-agiochori-thessalonikis",
+  "slug": "epochiaki-rythmisi-piesis-vroxou-epistrofis-thermansis-agiochori-thessalonikis",
+  "nameGr": "Εποχική Ρύθμιση Πίεσης Βρόχου Επιστροφής Θέρμανσης στο Αγιοχώρι Θεσσαλονίκης",
+  "nameEn": "Seasonal Heating Return Loop Pressure Tune in Αγιοχώρι Θεσσαλονίκης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση πίεσης βρόχου επιστροφής θέρμανσης στο Αγιοχώρι Θεσσαλονίκης για πιο σταθερή λειτουργία και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγιοχώρι Θεσσαλονίκης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-pressure-tune-kastanitsa-trikalon",
+  "slug": "epochiaki-rythmisi-piesis-vroxou-epistrofis-thermansis-kastanitsa-trikalon",
+  "nameGr": "Εποχική Ρύθμιση Πίεσης Βρόχου Επιστροφής Θέρμανσης στην Καστανίτσα Τρικάλων",
+  "nameEn": "Seasonal Heating Return Loop Pressure Tune in Καστανίτσα Τρικάλων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση πίεσης βρόχου επιστροφής θέρμανσης στην Καστανίτσα Τρικάλων για πιο σταθερή λειτουργία και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καστανίτσα Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-contact-fix-kastanitsa-trikalon",
+  "slug": "epigousa-episkevi-epafis-oudeterou-kentrikis-trofodosias-kastanitsa-trikalon",
+  "nameGr": "Επείγουσα Επισκευή Επαφής Ουδετέρου Κεντρικής Τροφοδοσίας στην Καστανίτσα Τρικάλων",
+  "nameEn": "Emergency Electrical Main Feed Neutral Contact Fix in Καστανίτσα Τρικάλων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή επαφής ουδετέρου κεντρικής τροφοδοσίας στην Καστανίτσα Τρικάλων για σταθερή τάση και ασφαλή ηλεκτροδότηση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καστανίτσα Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
