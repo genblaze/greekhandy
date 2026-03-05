@@ -46,7 +46,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
               {navLink.label}
             </a>
           ))}
-          <a href="/#contact" class="rounded-full border border-slate-300 px-4 py-2 transition hover:border-slate-400 hover:bg-slate-100">Επικοινωνία</a>
+          <a href={NAV_TARGETS.contact} class="rounded-full border border-slate-300 px-4 py-2 transition hover:border-slate-400 hover:bg-slate-100">Επικοινωνία</a>
         </div>
       </nav>
       <div class="border-t border-slate-200/80 md:hidden">
@@ -130,7 +130,10 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           </div>
           <div>
             <h3 class="mb-3 text-lg font-semibold text-slate-900">Επικοινωνία</h3>
-            <p class="text-sm">info@greekhandy.gr</p>
+            <ul class="space-y-2 text-sm">
+              <li><a href={NAV_TARGETS.contact} class="transition hover:text-slate-900">Σελίδα επικοινωνίας</a></li>
+              <li><a href="mailto:info@greekhandy.gr" class="transition hover:text-slate-900">info@greekhandy.gr</a></li>
+            </ul>
           </div>
         </div>
         <div class="mt-8 border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
