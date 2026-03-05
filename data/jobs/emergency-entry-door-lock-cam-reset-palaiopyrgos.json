@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-lock-cam-reset-palaiopyrgos",
+  "slug": "epigousa-epanafora-cam-kleidarias-portas-eisodou-palaiopyrgos",
+  "nameGr": "Επείγουσα Επαναφορά Cam Κλειδαριάς Πόρτας Εισόδου στον Παλαιόπυργο",
+  "nameEn": "Emergency Entry Door Lock Cam Reset in Παλαιόπυργος",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα επαναφορά cam κλειδαριάς πόρτας εισόδου στον Παλαιόπυργο όταν το κλειδί γυρίζει δύσκολα.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόπυργος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-main-stopcock-seize-release-agios-germanos",
+  "slug": "epigousa-apemploki-kollimenou-kentrikou-diakopti-nerou-agios-germanos",
+  "nameGr": "Επείγουσα Απεμπλοκή Κολλημένου Κεντρικού Διακόπτη Νερού στον Άγιο Γερμανό",
+  "nameEn": "Emergency Water Main Stopcock Seize Release in Άγιος Γερμανός",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απεμπλοκή κολλημένου κεντρικού διακόπτη νερού στον Άγιο Γερμανό για άμεσο έλεγχο παροχής σε βλάβη.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γερμανός επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

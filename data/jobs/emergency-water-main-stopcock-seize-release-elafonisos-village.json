@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-main-stopcock-seize-release-elafonisos-village",
+  "slug": "epigousa-apemploki-kollimenou-kentrikou-diakopti-nerou-elafonisos-village",
+  "nameGr": "Επείγουσα Απεμπλοκή Κολλημένου Κεντρικού Διακόπτη Νερού στο χωριό της Ελαφονήσου",
+  "nameEn": "Emergency Water Main Stopcock Seize Release in Ελαφόνησος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απεμπλοκή κολλημένου κεντρικού διακόπτη νερού στο χωριό της Ελαφονήσου για άμεσο έλεγχο παροχής σε βλάβη.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Ελαφόνησος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

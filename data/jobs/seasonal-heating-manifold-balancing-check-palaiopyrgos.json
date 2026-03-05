@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-balancing-check-palaiopyrgos",
+  "slug": "epochiakos-elegxos-eksisorropisis-syllekti-thermansis-palaiopyrgos",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Συλλέκτη Θέρμανσης στον Παλαιόπυργο",
+  "nameEn": "Seasonal Heating Manifold Balancing Check in Παλαιόπυργος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης συλλέκτη θέρμανσης στον Παλαιόπυργο για ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόπυργος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

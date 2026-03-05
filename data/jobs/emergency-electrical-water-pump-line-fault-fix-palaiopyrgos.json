@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-water-pump-line-fault-fix-palaiopyrgos",
+  "slug": "epigousa-episkevi-vlavis-grammis-ilektrikis-antlias-nerou-palaiopyrgos",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Γραμμής Ηλεκτρικής Αντλίας Νερού στον Παλαιόπυργο",
+  "nameEn": "Emergency Electrical Water Pump Line Fault Fix in Παλαιόπυργος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βλάβης στη γραμμή ηλεκτρικής αντλίας νερού στον Παλαιόπυργο για άμεση αποκατάσταση τροφοδοσίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόπυργος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

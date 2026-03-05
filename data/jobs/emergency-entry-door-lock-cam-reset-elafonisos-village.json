@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-lock-cam-reset-elafonisos-village",
+  "slug": "epigousa-epanafora-cam-kleidarias-portas-eisodou-elafonisos-village",
+  "nameGr": "Επείγουσα Επαναφορά Cam Κλειδαριάς Πόρτας Εισόδου στο χωριό της Ελαφονήσου",
+  "nameEn": "Emergency Entry Door Lock Cam Reset in Ελαφόνησος",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα επαναφορά cam κλειδαριάς πόρτας εισόδου στο χωριό της Ελαφονήσου όταν το κλειδί γυρίζει δύσκολα.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Ελαφόνησος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

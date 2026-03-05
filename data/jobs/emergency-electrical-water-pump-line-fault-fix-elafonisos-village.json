@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-water-pump-line-fault-fix-elafonisos-village",
+  "slug": "epigousa-episkevi-vlavis-grammis-ilektrikis-antlias-nerou-elafonisos-village",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Γραμμής Ηλεκτρικής Αντλίας Νερού στο χωριό της Ελαφονήσου",
+  "nameEn": "Emergency Electrical Water Pump Line Fault Fix in Ελαφόνησος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βλάβης στη γραμμή ηλεκτρικής αντλίας νερού στο χωριό της Ελαφονήσου για άμεση αποκατάσταση τροφοδοσίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ελαφόνησος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

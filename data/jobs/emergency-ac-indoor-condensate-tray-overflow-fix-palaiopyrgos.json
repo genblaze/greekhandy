@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-tray-overflow-fix-palaiopyrgos",
+  "slug": "epigousa-episkevi-yperxeilisis-lekanis-sympyknomaton-ac-palaiopyrgos",
+  "nameGr": "Επείγουσα Επισκευή Υπερχείλισης Λεκάνης Συμπυκνωμάτων AC στον Παλαιόπυργο",
+  "nameEn": "Emergency AC Indoor Condensate Tray Overflow Fix in Παλαιόπυργος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή υπερχείλισης λεκάνης συμπυκνωμάτων AC στον Παλαιόπυργο για αποφυγή ζημιών από νερά.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόπυργος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

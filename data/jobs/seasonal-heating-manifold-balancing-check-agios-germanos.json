@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-balancing-check-agios-germanos",
+  "slug": "epochiakos-elegxos-eksisorropisis-syllekti-thermansis-agios-germanos",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Συλλέκτη Θέρμανσης στον Άγιο Γερμανό",
+  "nameEn": "Seasonal Heating Manifold Balancing Check in Άγιος Γερμανός",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης συλλέκτη θέρμανσης στον Άγιο Γερμανό για ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γερμανός επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

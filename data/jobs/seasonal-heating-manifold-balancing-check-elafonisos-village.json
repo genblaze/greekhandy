@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-balancing-check-elafonisos-village",
+  "slug": "epochiakos-elegxos-eksisorropisis-syllekti-thermansis-elafonisos-village",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Συλλέκτη Θέρμανσης στο χωριό της Ελαφονήσου",
+  "nameEn": "Seasonal Heating Manifold Balancing Check in Ελαφόνησος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης συλλέκτη θέρμανσης στο χωριό της Ελαφονήσου για ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ελαφόνησος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
