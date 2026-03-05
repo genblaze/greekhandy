@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-mixing-valve-fix-paliochora",
+  "slug": "epigousa-episkevi-miktis-valvidas-thermosifona-paliochora",
+  "nameGr": "Επείγουσα Επισκευή Μίκτη Βαλβίδας Θερμοσίφωνα στην Παλαιόχωρα",
+  "nameEn": "Emergency Water Heater Mixing Valve Fix in Παλαιόχωρα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή μίκτη βαλβίδας θερμοσίφωνα στην Παλαιόχωρα για άμεση σταθεροποίηση θερμοκρασίας νερού και ασφαλή χρήση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόχωρα επείγον",
+    "Επείγουσα Παλαιόχωρα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

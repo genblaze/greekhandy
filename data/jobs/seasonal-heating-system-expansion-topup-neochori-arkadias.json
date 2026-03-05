@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-system-expansion-topup-neochori-arkadias",
+  "slug": "epochiaki-symplirwsi-systimatos-diastolis-thermansis-neochori-arkadias",
+  "nameGr": "Εποχική Συμπλήρωση Συστήματος Διαστολής Θέρμανσης στο Νεοχώρι Αρκαδίας",
+  "nameEn": "Seasonal Heating System Expansion Top-up in Νεοχώρι Αρκαδίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική συμπλήρωση συστήματος διαστολής θέρμανσης στο Νεοχώρι Αρκαδίας για σταθερή πίεση και αξιόπιστη χειμερινή λειτουργία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Νεοχώρι Αρκαδίας επείγον",
+    "Εποχική Νεοχώρι Αρκαδίας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

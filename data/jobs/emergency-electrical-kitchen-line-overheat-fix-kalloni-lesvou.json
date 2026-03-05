@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-kitchen-line-overheat-fix-kalloni-lesvou",
+  "slug": "epigousa-episkevi-yperthermansis-grammis-kouzinas-kalloni-lesvou",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Γραμμής Κουζίνας στην Καλλονή Λέσβου",
+  "nameEn": "Emergency Electrical Kitchen Line Overheat Fix in Καλλονή Λέσβου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης γραμμής κουζίνας στην Καλλονή Λέσβου για αποφυγή βλάβης συσκευών και κινδύνου πυρκαγιάς.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλλονή Λέσβου επείγον",
+    "Επείγουσα Καλλονή Λέσβου",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

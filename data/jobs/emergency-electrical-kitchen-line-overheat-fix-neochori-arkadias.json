@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-kitchen-line-overheat-fix-neochori-arkadias",
+  "slug": "epigousa-episkevi-yperthermansis-grammis-kouzinas-neochori-arkadias",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Γραμμής Κουζίνας στο Νεοχώρι Αρκαδίας",
+  "nameEn": "Emergency Electrical Kitchen Line Overheat Fix in Νεοχώρι Αρκαδίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης γραμμής κουζίνας στο Νεοχώρι Αρκαδίας για αποφυγή βλάβης συσκευών και κινδύνου πυρκαγιάς.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Νεοχώρι Αρκαδίας επείγον",
+    "Επείγουσα Νεοχώρι Αρκαδίας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

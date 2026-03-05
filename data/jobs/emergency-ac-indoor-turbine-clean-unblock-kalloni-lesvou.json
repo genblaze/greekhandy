@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-turbine-clean-unblock-kalloni-lesvou",
+  "slug": "epigousos-katharismos-kai-apofraxi-tourbinas-esoterikou-ac-kalloni-lesvou",
+  "nameGr": "Επείγων Καθαρισμός & Απόφραξη Τουρμπίνας Εσωτερικού AC στην Καλλονή Λέσβου",
+  "nameEn": "Emergency AC Indoor Turbine Clean Unblock in Καλλονή Λέσβου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγων καθαρισμός και απόφραξη τουρμπίνας εσωτερικού AC στην Καλλονή Λέσβου για αποκατάσταση ροής αέρα και απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καλλονή Λέσβου επείγον",
+    "Επείγων Καλλονή Λέσβου",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

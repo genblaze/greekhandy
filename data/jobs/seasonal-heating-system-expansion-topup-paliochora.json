@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-system-expansion-topup-paliochora",
+  "slug": "epochiaki-symplirwsi-systimatos-diastolis-thermansis-paliochora",
+  "nameGr": "Εποχική Συμπλήρωση Συστήματος Διαστολής Θέρμανσης στην Παλαιόχωρα",
+  "nameEn": "Seasonal Heating System Expansion Top-up in Παλαιόχωρα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική συμπλήρωση συστήματος διαστολής θέρμανσης στην Παλαιόχωρα για σταθερή πίεση και αξιόπιστη χειμερινή λειτουργία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόχωρα επείγον",
+    "Εποχική Παλαιόχωρα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

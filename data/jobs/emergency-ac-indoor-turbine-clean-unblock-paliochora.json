@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-turbine-clean-unblock-paliochora",
+  "slug": "epigousos-katharismos-kai-apofraxi-tourbinas-esoterikou-ac-paliochora",
+  "nameGr": "Επείγων Καθαρισμός & Απόφραξη Τουρμπίνας Εσωτερικού AC στην Παλαιόχωρα",
+  "nameEn": "Emergency AC Indoor Turbine Clean Unblock in Παλαιόχωρα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγων καθαρισμός και απόφραξη τουρμπίνας εσωτερικού AC στην Παλαιόχωρα για αποκατάσταση ροής αέρα και απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόχωρα επείγον",
+    "Επείγων Παλαιόχωρα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
