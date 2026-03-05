@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-fan-balance-fix-feneos",
+  "slug": "epigousa-rythmisi-isorropias-esoterikou-anemistira-ac-feneos",
+  "nameGr": "Επείγουσα Ρύθμιση Ισορροπίας Εσωτερικού Ανεμιστήρα AC στο Φενεό",
+  "nameEn": "Emergency AC Indoor Fan Balance Fix in Φενεός",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα ρύθμιση ισορροπίας εσωτερικού ανεμιστήρα AC στο Φενεό για μείωση θορύβου και άμεση αποκατάσταση άνεσης. SEO intent: «εσωτερική μονάδα ac θόρυβος Φενεός».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "εσωτερική μονάδα ac θόρυβος Φενεός",
+    "τεχνικός κλιματισμού επείγον θόρυβος",
+    "ανεμιστήρας ac τρέμει",
+    "service εσωτερικής μονάδας",
+    "επισκευή ac άμεσα"
+  ],
+  "status": "researched"
+}
