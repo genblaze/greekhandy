@@ -25,6 +25,11 @@ const requiredStaticRoutes = [
   '/techniki-klimatismou'
 ];
 
+const requiredRootFiles = [
+  { path: '/robots.txt', expectedSnippet: 'Sitemap: https://greekhandy.gr/sitemap.xml' },
+  { path: '/sitemap.xml', expectedSnippet: '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' }
+];
+
 const routeContentChecks = [
   {
     route: NAV_TARGETS.guides,
@@ -54,6 +59,8 @@ const routeToClientHtml = (route) => {
   return resolve(distClientDir, normalized.slice(1), 'index.html');
 };
 
+const rootFileToClientPath = (routePath) => resolve(distClientDir, routePath.replace(/^\//, ''));
+
 const fileExists = async (path) => {
   try {
     await access(path, fsConstants.R_OK);
@@ -69,6 +76,18 @@ for (const route of new Set(requiredStaticRoutes)) {
   const filePath = routeToClientHtml(route);
   if (!(await fileExists(filePath))) {
     issues.push(`${route} -> missing built HTML file: ${filePath}`);
+  }
+}
+
+for (const requiredFile of requiredRootFiles) {
+  const filePath = rootFileToClientPath(requiredFile.path);
+  if (!(await fileExists(filePath))) {
+    issues.push(`${requiredFile.path} -> missing built file: ${filePath}`);
+    continue;
+  }
+  const content = await readFile(filePath, 'utf-8');
+  if (!content.includes(requiredFile.expectedSnippet)) {
+    issues.push(`${requiredFile.path} -> missing expected content snippet: ${requiredFile.expectedSnippet}`);
   }
 }
 
@@ -212,4 +231,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log('Nav-link health test passed. Canonical contact IA, top-nav, and promoted routes are healthy in built artifacts.');
+console.log('Nav-link health test passed. Canonical contact IA, promoted routes, and robots/sitemap artifacts are healthy.');
