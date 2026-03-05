@@ -624,7 +624,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </div>
 
           <p class="mt-2 text-xs text-blue-700">Καταστάσεις αιτήματος: pending (σε αναμονή) → approved (εγκρίθηκε) ή rejected (απορρίφθηκε).</p>
-          <p class="mt-1 text-xs text-slate-600" data-booking-validation-summary aria-live="polite">Έλεγχος φόρμας: συμπληρώστε στοιχεία επικοινωνίας και προτιμώμενο πρόγραμμα για ταχύτερη ανάθεση.</p>
+          <p class="mt-1 text-xs text-slate-600" data-booking-validation-summary aria-live="polite">Έλεγχος φόρμας: συμπληρώστε στοιχεία επικοινωνίας και προτιμώμενο πρόγραμμα για ταχύτερη ανάθεση. Αν υπάρχει σφάλμα, διορθώστε και ξαναδοκιμάστε χωρίς απώλεια στοιχείων.</p>
 
           <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος" data-pending-label="Αποστολή...">Αποστολή αιτήματος</button>
         </form>

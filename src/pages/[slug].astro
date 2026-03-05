@@ -758,8 +758,10 @@ const faqSchema = pageCategory.faq?.length ? {
           const loadingState = document.getElementById('form-loading');
           const successState = document.getElementById('form-success');
           const errorState = document.getElementById('form-error');
+          const retryButton = document.getElementById('form-retry');
           const fieldsState = document.getElementById('form-fields');
           const validationSummary = document.getElementById('lead-validation-summary');
+          const leadStepFeedback = document.getElementById('lead-step-feedback');
           const REQUEST_TIMEOUT_MS = 12000;
           let isSubmitting = false;
 
@@ -822,9 +824,16 @@ const faqSchema = pageCategory.faq?.length ? {
           };
 
           const setErrorState = (message) => {
-            if (!(errorState instanceof HTMLElement)) return;
-            errorState.textContent = message;
-            errorState.classList.remove('hidden');
+            if (errorState instanceof HTMLElement) {
+              errorState.textContent = message;
+              errorState.classList.remove('hidden');
+            }
+            if (retryButton instanceof HTMLElement) {
+              retryButton.classList.remove('hidden');
+            }
+            if (leadStepFeedback instanceof HTMLElement) {
+              leadStepFeedback.textContent = 'Βήμα 2/3: Ελέγξτε τα πεδία και επαναλάβετε την υποβολή.';
+            }
           };
 
           ['lead-name', 'lead-phone', 'lead-email', 'lead-description', 'lead-consent'].forEach((id) => {
@@ -839,6 +848,20 @@ const faqSchema = pageCategory.faq?.length ? {
               validateLeadForm();
             });
           });
+
+          if (retryButton instanceof HTMLButtonElement) {
+            retryButton.addEventListener('click', () => {
+              retryButton.classList.add('hidden');
+              validateLeadForm(true);
+              const firstInvalid = form instanceof HTMLFormElement ? form.querySelector(':invalid') : null;
+              if (firstInvalid instanceof HTMLElement) {
+                firstInvalid.focus();
+              }
+              if (leadStepFeedback instanceof HTMLElement) {
+                leadStepFeedback.textContent = 'Βήμα 1/3: Συμπληρώστε τις διορθώσεις και ξαναστείλτε το αίτημα.';
+              }
+            });
+          }
 
           form?.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -875,6 +898,10 @@ const faqSchema = pageCategory.faq?.length ? {
             submitButton.textContent = 'Αποστολή...';
             if (loadingState instanceof HTMLElement) loadingState.classList.remove('hidden');
             if (errorState instanceof HTMLElement) errorState.classList.add('hidden');
+            if (retryButton instanceof HTMLElement) retryButton.classList.add('hidden');
+            if (leadStepFeedback instanceof HTMLElement) {
+              leadStepFeedback.textContent = 'Βήμα 2/3: Υποβολή σε εξέλιξη, ελέγχουμε τα στοιχεία σας.';
+            }
 
             const payload = {
               name: String(fd.get('name') || '').trim(),
@@ -898,6 +925,9 @@ const faqSchema = pageCategory.faq?.length ? {
               if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
               if (fieldsState instanceof HTMLElement) fieldsState.classList.add('hidden');
               submitButton.classList.add('hidden');
+              if (leadStepFeedback instanceof HTMLElement) {
+                leadStepFeedback.textContent = 'Βήμα 3/3: Ολοκληρώθηκε. Θα λάβετε πρώτη ενημέρωση εντός 1–2 εργάσιμων ωρών.';
+              }
               if (successState instanceof HTMLElement) successState.classList.remove('hidden');
             } catch {
               if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
