@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Homepage mobile hero is still unreadable: the main heading/body blend into the pale background and look washed out on first screen. Rework mobile hero contrast + typography (background, heading, supporting text, CTA states) to pass WCAG AA and make the value proposition legible immediately.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "/professionals still looks like demo data, not a trustworthy marketplace: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and zero-value trust stats (0/100). Remove placeholder/internal trust-framework language from public UI until real verified data exists.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional profile page (/professionals/giannis-kosta-klimatismos) still ships broken visual hierarchy: a large empty/near-empty hero media block with a floating dark control pill on top makes the profile look corrupted. Remove overlay artifacts and hide media containers when no valid asset is available.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Contact page (/epikoinonia) is functionally weak and confusing: the top actions are generic tiles (e.g. 'Βρίσκεστε ήδη στην κεντρική σελίδα επικοινωνίας') without a clear support form, SLA, or next-step flow. Replace with one explicit contact journey (form + expected response time + support scope) instead of dead-end buttons.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Blog IA still feels bait-and-switch: guide cards on /blog present as articles but route users to broad service category pages instead of dedicated article detail URLs. Publish real article pages with unique slugs/content or relabel these cards as category shortcuts so users aren’t misled.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
