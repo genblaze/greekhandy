@@ -4,16 +4,18 @@ import { join, resolve } from 'node:path';
 
 const root = process.cwd();
 const dist = resolve(root, 'dist');
+const distClient = resolve(root, 'dist', 'client');
+const outDir = existsSync(distClient) ? distClient : dist;
 
 const read = (p) => (existsSync(p) ? readFileSync(p, 'utf8') : '');
 const issues = [];
 
-const home = read(join(dist, 'index.html'));
-if (!home) issues.push('Missing dist/index.html for JSON-LD checks.');
+const home = read(join(outDir, 'index.html'));
+if (!home) issues.push('Missing built index.html for JSON-LD checks.');
 if (home && !home.includes('"@type":"Organization"')) issues.push('Homepage missing Organization JSON-LD.');
 if (home && !home.includes('"@type":"WebSite"')) issues.push('Homepage missing WebSite JSON-LD.');
 
-const profileDir = join(dist, 'professionals');
+const profileDir = join(outDir, 'professionals');
 let profileHtml = '';
 if (existsSync(profileDir)) {
   const entries = readdirSync(profileDir)
@@ -43,10 +45,10 @@ const walk = (dir) => {
     else if (entry.endsWith('.html')) htmlFiles.push(full);
   }
 };
-walk(dist);
+walk(outDir);
 
 const serviceCandidate = htmlFiles.find((p) => {
-  const rel = p.replace(dist, '').replace(/\\/g, '/');
+  const rel = p.replace(outDir, '').replace(/\\/g, '/');
   if (rel === '/index.html') return false;
   if (rel.startsWith('/professionals/') || rel.startsWith('/blog/') || rel.startsWith('/admin/') || rel.startsWith('/messages')) return false;
   return true;

@@ -4,9 +4,16 @@ import { join, resolve } from 'node:path';
 
 const root = process.cwd();
 const dist = resolve(root, 'dist');
+const distClient = resolve(root, 'dist', 'client');
 
-const robotsPath = join(dist, 'robots.txt');
-const sitemapPath = join(dist, 'sitemap.xml');
+const pickArtifactPath = (filename) => {
+  const clientPath = join(distClient, filename);
+  if (existsSync(clientPath)) return clientPath;
+  return join(dist, filename);
+};
+
+const robotsPath = pickArtifactPath('robots.txt');
+const sitemapPath = pickArtifactPath('sitemap.xml');
 
 const issues = [];
 

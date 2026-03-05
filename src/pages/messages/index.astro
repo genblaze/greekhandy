@@ -1,50 +1,284 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const hasLegacyParams = Astro.url.searchParams.has('viewerEmail')
-  || Astro.url.searchParams.has('professional')
-  || Astro.url.searchParams.has('professionalSlug')
-  || Astro.url.searchParams.has('thread');
+const url = new URL(Astro.request.url);
+const viewerEmail = (url.searchParams.get('viewerEmail') || '').trim().toLowerCase();
+const threadId = (url.searchParams.get('threadId') || url.searchParams.get('thread') || '').trim();
+const statusRaw = (url.searchParams.get('status') || '').trim().toLowerCase();
+const listQuery = (url.searchParams.get('q') || '').trim();
+const unreadOnly = (url.searchParams.get('unread') || '') === '1';
+const blockedOnly = (url.searchParams.get('blocked') || '') === '1';
+const reportedOnly = (url.searchParams.get('reported') || '') === '1';
+const sortMode = (url.searchParams.get('sort') || '').trim().toLowerCase() === 'unread' ? 'unread' : 'recent';
+const hasLegacyParams = url.searchParams.has('professional')
+  || url.searchParams.has('professionalSlug')
+  || url.searchParams.has('thread');
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const THREAD_PATTERN = /^[a-z0-9|@._-]{1,220}$/;
+const KNOWN_STATUSES = new Set(['', 'loading', 'invalid', 'forbidden', 'error']);
+
+const hasViewerEmail = viewerEmail.length > 0;
+const hasValidViewerEmail = EMAIL_PATTERN.test(viewerEmail);
+const hasThreadId = threadId.length > 0;
+const hasValidThreadId = THREAD_PATTERN.test(threadId);
+const hasValidThreadContext = hasValidViewerEmail && hasValidThreadId;
+const hasPartialThreadContext = hasViewerEmail || hasThreadId;
+const hasUnknownStatus = !KNOWN_STATUSES.has(statusRaw);
+
+const listContextParts: string[] = [];
+if (listQuery) listContextParts.push(`Αναζήτηση: "${listQuery}"`);
+if (unreadOnly) listContextParts.push('Μόνο μη αναγνωσμένα');
+if (blockedOnly) listContextParts.push('Μόνο μπλοκαρισμένα');
+if (reportedOnly) listContextParts.push('Μόνο αναφερόμενα');
+if (sortMode === 'unread') listContextParts.push('Sort: μη αναγνωσμένα πρώτα');
+const listContextLabel = listContextParts.length > 0
+  ? listContextParts.join(' · ')
+  : 'Χωρίς ενεργό context inbox.';
+
+const buildThreadHref = (options: { loading?: boolean } = {}) => {
+  const params = new URLSearchParams();
+  if (hasValidThreadId) params.set('threadId', threadId);
+  if (hasValidViewerEmail) params.set('viewerEmail', viewerEmail);
+  if (listQuery) params.set('listQ', listQuery);
+  if (unreadOnly) params.set('listUnread', '1');
+  if (blockedOnly) params.set('listBlocked', '1');
+  if (reportedOnly) params.set('listReported', '1');
+  if (sortMode === 'unread') params.set('listSort', 'unread');
+  if (options.loading) params.set('status', 'loading');
+  const query = params.toString();
+  return query ? `/messages/thread?${query}` : '/messages/thread';
+};
+
+const threadEntryHref = buildThreadHref();
+const threadLoadingHref = buildThreadHref({ loading: true });
+
+const statusToneClass = statusRaw === 'error' || statusRaw === 'forbidden'
+  ? 'border-rose-200 bg-rose-50 text-rose-900'
+  : statusRaw === 'invalid'
+    ? 'border-amber-200 bg-amber-50 text-amber-900'
+    : statusRaw === 'loading'
+      ? 'border-sky-200 bg-sky-50 text-sky-900'
+      : 'border-slate-200 bg-slate-50 text-slate-800';
+
+const statusTitle = statusRaw === 'error'
+  ? 'Προσωρινή αποτυχία φόρτωσης inbox.'
+  : statusRaw === 'forbidden'
+    ? 'Η πρόσβαση στη συγκεκριμένη συνομιλία απορρίφθηκε.'
+    : statusRaw === 'invalid'
+      ? 'Ο σύνδεσμος εισόδου δεν ήταν πλήρης.'
+      : statusRaw === 'loading'
+        ? 'Ο συγχρονισμός inbox βρίσκεται σε εξέλιξη.'
+        : hasUnknownStatus
+          ? 'Εμφανίστηκε άγνωστη κατάσταση στο inbox.'
+          : '';
+
+const statusDescription = statusRaw === 'error'
+  ? 'Δοκιμάστε ξανά το άνοιγμα thread ή επιστρέψτε στη ροή επαγγελματιών.'
+  : statusRaw === 'forbidden'
+    ? 'Ανοίξτε thread στο οποίο συμμετέχετε με το σωστό email προβολής.'
+    : statusRaw === 'invalid'
+      ? 'Ελέγξτε ότι υπάρχουν και τα δύο στοιχεία: threadId και viewerEmail.'
+      : statusRaw === 'loading'
+        ? 'Αν η φόρτωση κολλήσει, χρησιμοποιήστε άμεση επανάληψη.'
+        : hasUnknownStatus
+          ? 'Κάντε ανανέωση ή ανοίξτε ξανά τη συνομιλία από έγκυρη ροή.'
+          : '';
+
+const entryToneClass = hasValidThreadContext
+  ? 'border-emerald-200 bg-emerald-50/70 text-emerald-900'
+  : hasPartialThreadContext
+    ? 'border-amber-200 bg-amber-50/70 text-amber-900'
+    : 'border-slate-200 bg-slate-50/80 text-slate-700';
+
+const entryTitle = hasValidThreadContext
+  ? 'Το thread είναι έτοιμο για άνοιγμα.'
+  : hasPartialThreadContext
+    ? 'Χρειάζονται επιπλέον στοιχεία για άνοιγμα thread.'
+    : 'Επιλέξτε συνομιλία από το inbox για ασφαλή είσοδο.';
+
+const entryDescription = hasValidThreadContext
+  ? 'Υπάρχει πλήρες context εισόδου. Μπορείτε να συνεχίσετε κατευθείαν στο thread.'
+  : hasPartialThreadContext
+    ? 'Λείπει ή δεν είναι έγκυρο μέρος του context (threadId/viewerEmail).'
+    : 'Η δημόσια είσοδος μηνυμάτων υποστηρίζει μόνο τις έγκυρες ροές thread.';
+
+const threadEntryActionLabel = hasValidThreadContext ? 'Άνοιγμα thread τώρα' : 'Άνοιγμα σελίδας thread';
+const threadRetryActionLabel = hasValidThreadContext ? 'Άνοιγμα με loading state' : 'Έλεγχος φόρτωσης thread';
 ---
 
 <Layout
-  title="Μηνύματα | GreekHandy"
-  description="Ασφαλής πρόσβαση στα μηνύματα μέσω των σωστών ροών του GreekHandy."
+  title="Inbox Μηνυμάτων | GreekHandy"
+  description="Οδηγός ασφαλούς εισόδου inbox/thread με ανθεκτικές καταστάσεις φόρτωσης και καθαρό context."
   canonicalUrl="https://greekhandy.gr/messages"
 >
-  <main class="mx-auto max-w-3xl px-4 py-12 md:px-6">
-    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-      <p class="text-xs font-semibold uppercase tracking-wide text-sky-700">Inbox entry update</p>
-      <h1 class="mt-2 text-2xl font-bold text-slate-900">Η δημόσια είσοδος μηνυμάτων ενημερώθηκε</h1>
-      <p class="mt-3 text-sm leading-relaxed text-slate-700">
-        Για ασφαλή και σταθερή εμπειρία, η πρόσβαση στα μηνύματα γίνεται πλέον από τις καθορισμένες ροές του GreekHandy,
-        χωρίς κρυφές παραμέτρους URL.
+  <main class="messages-shell mx-auto max-w-4xl px-4 py-10 md:px-6 md:py-14">
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.5)] md:p-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">Messaging Entry</p>
+      <h1 class="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">Inbox και thread είσοδος</h1>
+      <p class="mt-3 text-sm leading-6 text-slate-700">
+        Η πρόσβαση στα μηνύματα γίνεται από έγκυρο context συνομιλίας, χωρίς hidden ή παρωχημένες URL παραμέτρους.
       </p>
 
-      {hasLegacyParams && (
-        <div class="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="status" aria-live="polite">
-          Εντοπίστηκε παλιός σύνδεσμος με παραμέτρους. Χρησιμοποιήστε τις επιλογές παρακάτω για σωστή είσοδο.
+      {(statusTitle || hasLegacyParams) && (
+        <div class={`mt-4 rounded-xl border px-4 py-3 text-sm ${statusToneClass}`} role={statusRaw === 'error' || statusRaw === 'forbidden' ? 'alert' : 'status'} aria-live={statusRaw === 'error' || statusRaw === 'forbidden' ? 'assertive' : 'polite'} aria-atomic="true">
+          {statusTitle && <p class="font-semibold">{statusTitle}</p>}
+          {statusDescription && <p class="mt-1">{statusDescription}</p>}
+          {hasLegacyParams && (
+            <p class="mt-1 text-xs">
+              Εντοπίστηκε legacy παράμετρος σύνδεσης. Χρησιμοποιήστε τα κουμπιά εισόδου παρακάτω για ασφαλές thread context.
+            </p>
+          )}
         </div>
       )}
 
-      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+      <section id="thread-entry-guide" class={`mt-5 rounded-2xl border px-4 py-4 text-sm ${entryToneClass}`} aria-labelledby="thread-entry-guide-title" aria-describedby="thread-entry-guide-description">
+        <p id="thread-entry-guide-title" class="font-semibold">{entryTitle}</p>
+        <p id="thread-entry-guide-description" class="mt-1">{entryDescription}</p>
+        <dl class="mt-3 grid gap-2 text-xs sm:grid-cols-2" aria-label="Δεδομένα εισόδου thread">
+          <div class="rounded-lg border border-current/20 bg-white/75 px-3 py-2">
+            <dt class="font-semibold uppercase tracking-[0.08em] opacity-80">Viewer Email</dt>
+            <dd class="mt-1 break-all font-medium">{hasViewerEmail ? viewerEmail : 'Δεν δόθηκε'}</dd>
+            {!hasViewerEmail && <p class="mt-1 text-[11px] opacity-90">Απαιτείται για participant έλεγχο.</p>}
+            {hasViewerEmail && !hasValidViewerEmail && <p class="mt-1 text-[11px] opacity-90">Μη έγκυρη μορφή email.</p>}
+          </div>
+          <div class="rounded-lg border border-current/20 bg-white/75 px-3 py-2">
+            <dt class="font-semibold uppercase tracking-[0.08em] opacity-80">Thread ID</dt>
+            <dd class="mt-1 break-all font-medium">{hasThreadId ? threadId : 'Δεν δόθηκε'}</dd>
+            {!hasThreadId && <p class="mt-1 text-[11px] opacity-90">Απαιτείται για φόρτωση ιστορικού.</p>}
+            {hasThreadId && !hasValidThreadId && <p class="mt-1 text-[11px] opacity-90">Μη έγκυρο thread identifier.</p>}
+          </div>
+        </dl>
+        <p class="mt-2 text-[11px] font-medium">Context inbox: {listContextLabel}</p>
+      </section>
+
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         <a
-          href="/professionals/messages"
-          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+          href={threadEntryHref}
+          class="messages-touch-target inline-flex min-h-11 items-center justify-center rounded-xl bg-sky-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
         >
-          Είσοδος στα Μηνύματα Επαγγελματιών
+          {threadEntryActionLabel}
+        </a>
+        <a
+          href={threadLoadingHref}
+          class="messages-touch-target inline-flex min-h-11 items-center justify-center rounded-xl border border-sky-300 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+        >
+          {threadRetryActionLabel}
         </a>
         <a
           href="/professionals"
-          class="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+          class="messages-touch-target inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
         >
           Μετάβαση στον Κατάλογο Επαγγελματιών
         </a>
       </div>
 
-      <p class="mt-4 text-xs text-slate-500">
-        Αν αντιμετωπίζετε πρόβλημα πρόσβασης, χρησιμοποιήστε τη φόρμα στην ενότητα «Επικοινωνία» για υποστήριξη.
+      <section data-resume-card class="mt-5 hidden rounded-2xl border border-indigo-200 bg-indigo-50/80 px-4 py-4 text-sm text-indigo-900" aria-live="polite" aria-atomic="true" aria-labelledby="inbox-resume-title" aria-describedby="inbox-resume-description">
+        <p id="inbox-resume-title" class="font-semibold">Συνέχεια από το τελευταίο thread</p>
+        <p id="inbox-resume-description" class="mt-1 text-xs">Βρέθηκε πρόσφατη συνομιλία από την ίδια συσκευή.</p>
+        <p class="mt-2 text-xs" data-resume-meta></p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <a data-resume-open href="/messages/thread" class="messages-touch-target inline-flex min-h-11 items-center justify-center rounded-lg border border-indigo-300 bg-white px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
+            Συνέχεια thread
+          </a>
+          <a data-resume-list href="/messages" class="messages-touch-target inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+            Επιστροφή στο context inbox
+          </a>
+        </div>
+      </section>
+
+      <p class="mt-5 text-xs text-slate-500">
+        Αν αντιμετωπίζετε σταθερά πρόβλημα πρόσβασης, χρησιμοποιήστε τη φόρμα στην ενότητα «Επικοινωνία» για υποστήριξη.
       </p>
     </section>
   </main>
+
+  <style>
+    .messages-shell :where(a, button, input):focus-visible {
+      outline: 3px solid rgba(14, 116, 144, 0.4);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 4px rgba(14, 116, 144, 0.12);
+    }
+
+    @media (max-width: 640px) {
+      .messages-touch-target {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script is:inline>
+    (() => {
+      const resumeCard = document.querySelector('[data-resume-card]');
+      if (!(resumeCard instanceof HTMLElement)) return;
+
+      const resumeMeta = resumeCard.querySelector('[data-resume-meta]');
+      const resumeOpen = resumeCard.querySelector('[data-resume-open]');
+      const resumeList = resumeCard.querySelector('[data-resume-list]');
+      if (!(resumeMeta instanceof HTMLElement) || !(resumeOpen instanceof HTMLAnchorElement) || !(resumeList instanceof HTMLAnchorElement)) return;
+
+      const getStorage = () => {
+        try {
+          const storage = window.localStorage;
+          const probeKey = '__gh_messages_resume_probe__';
+          storage.setItem(probeKey, '1');
+          storage.removeItem(probeKey);
+          return storage;
+        } catch {
+          return null;
+        }
+      };
+
+      const storage = getStorage();
+      if (!storage) return;
+
+      const searchParams = new URLSearchParams(window.location.search);
+      const scopedViewer = (searchParams.get('viewerEmail') || '').trim().toLowerCase();
+      const keys = [];
+
+      if (scopedViewer) {
+        keys.push(`gh:last-thread-visit:${scopedViewer}`);
+      } else {
+        for (let index = 0; index < storage.length; index += 1) {
+          const key = storage.key(index) || '';
+          if (key.startsWith('gh:last-thread-visit:')) keys.push(key);
+        }
+      }
+
+      let latest = null;
+      for (const key of keys) {
+        let parsed = null;
+        try {
+          parsed = JSON.parse(storage.getItem(key) || 'null');
+        } catch {
+          parsed = null;
+        }
+        if (!parsed || typeof parsed !== 'object') continue;
+        if (typeof parsed.href !== 'string' || !parsed.href.startsWith('/messages/thread')) continue;
+        const savedAt = Number(parsed.savedAt || 0);
+        if (!Number.isFinite(savedAt) || savedAt <= 0) continue;
+        if (!latest || savedAt > latest.savedAt) latest = parsed;
+      }
+
+      if (!latest) return;
+
+      const formattedDate = new Intl.DateTimeFormat('el-GR', {
+        dateStyle: 'short',
+        timeStyle: 'short'
+      }).format(new Date(latest.savedAt));
+      const counterpart = typeof latest.counterpartEmail === 'string' && latest.counterpartEmail.length > 0
+        ? latest.counterpartEmail
+        : 'μη διαθέσιμος συμμετέχων';
+
+      resumeMeta.textContent = `Τελευταία δραστηριότητα: ${formattedDate} · Συμμετέχων: ${counterpart}`;
+      resumeOpen.href = latest.href;
+      if (typeof latest.listHref === 'string' && latest.listHref.startsWith('/messages')) {
+        resumeList.href = latest.listHref;
+      } else {
+        resumeList.hidden = true;
+      }
+
+      resumeCard.classList.remove('hidden');
+    })();
+  </script>
 </Layout>
