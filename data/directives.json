@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Critical regression: `/professionals/register` returns HTTP 200 with an empty body (0-byte HTML), so users see a blank white page instead of the registration form. Fix routing/render pipeline immediately and add an automated smoke test that fails deploy if this page responds blank.",
+      "addedAt": "2026-03-05T06:33:32Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Homepage mobile hero is still unreadable: ultra-light heading/body copy on a pale background makes the core value proposition invisible on first screen. Rebuild mobile hero contrast and typography hierarchy to WCAG AA so users can read the message instantly.",
+      "addedAt": "2026-03-05T06:33:32Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "`/professionals` still looks like fake staging data: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and zeroed trust metrics (`0/100`), which destroys credibility. Remove placeholder/trust-framework filler from public UI until backed by real verified data.",
+      "addedAt": "2026-03-05T06:33:32Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional profile `/professionals/giannis-kosta-klimatismos` still renders a large empty Portfolio block and a cluttered stack of competing contact forms. Hide empty media sections and reduce to one clear primary conversion path.",
+      "addedAt": "2026-03-05T06:33:32Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Operational endpoint policy is inconsistent again: QA docs still describe 4322/4321 fallback, but runtime behavior has flipped (4322 serves, 4321 connection-refused). Standardize to one canonical QA port and update all docs/automation so every cycle hits a reliable endpoint without false outage noise.",
+      "addedAt": "2026-03-05T06:33:32Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
