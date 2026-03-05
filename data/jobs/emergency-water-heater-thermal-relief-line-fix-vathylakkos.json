@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-thermal-relief-line-fix-vathylakkos",
+  "slug": "epigousa-episkevi-grammis-thermikis-ektonosis-thermosifona-vathylakkos",
+  "nameGr": "Επείγουσα Επισκευή Γραμμής Θερμικής Εκτόνωσης Θερμοσίφωνα στο Βαθύλακκο",
+  "nameEn": "Emergency Water Heater Thermal Relief Line Fix in Βαθύλακκο",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή γραμμής θερμικής εκτόνωσης θερμοσίφωνα στο Βαθύλακκο για άμεση αποτροπή διαρροής και ασφαλή λειτουργία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύλακκο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

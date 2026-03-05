@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-automation-relay-reseat-vathylakkos",
+  "slug": "epigousa-epanafora-rele-aftomatismou-pinaka-vathylakkos",
+  "nameGr": "Επείγουσα Επαναφορά Ρελέ Αυτοματισμού Πίνακα στο Βαθύλακκο",
+  "nameEn": "Emergency Electrical Automation Relay Reseat in Βαθύλακκο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ρελέ αυτοματισμού πίνακα στο Βαθύλακκο για άμεση σταθεροποίηση της ηλεκτρικής παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύλακκο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

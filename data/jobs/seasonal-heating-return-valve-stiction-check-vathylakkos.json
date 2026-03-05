@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-valve-stiction-check-vathylakkos",
+  "slug": "epochiakos-elegxos-kollimatos-valvidas-epistrofis-thermansis-vathylakkos",
+  "nameGr": "Εποχικός Έλεγχος Κολλήματος Βαλβίδας Επιστροφής Θέρμανσης στο Βαθύλακκο",
+  "nameEn": "Seasonal Heating Return Valve Stiction Check in Βαθύλακκο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κολλήματος βαλβίδας επιστροφής θέρμανσης στο Βαθύλακκο για έγκαιρη πρόληψη αστοχίας τον χειμώνα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύλακκο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

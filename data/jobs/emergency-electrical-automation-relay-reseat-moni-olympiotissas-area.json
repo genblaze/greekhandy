@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-automation-relay-reseat-moni-olympiotissas-area",
+  "slug": "epigousa-epanafora-rele-aftomatismou-pinaka-moni-olympiotissas-area",
+  "nameGr": "Επείγουσα Επαναφορά Ρελέ Αυτοματισμού Πίνακα στην περιοχή Μονής Ολυμπιώτισσας",
+  "nameEn": "Emergency Electrical Automation Relay Reseat in περιοχή Μονής Ολυμπιώτισσας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ρελέ αυτοματισμού πίνακα στην περιοχή Μονής Ολυμπιώτισσας για άμεση σταθεροποίηση της ηλεκτρικής παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "περιοχή Μονής Ολυμπιώτισσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

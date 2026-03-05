@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-valve-stiction-check-moni-olympiotissas-area",
+  "slug": "epochiakos-elegxos-kollimatos-valvidas-epistrofis-thermansis-moni-olympiotissas-area",
+  "nameGr": "Εποχικός Έλεγχος Κολλήματος Βαλβίδας Επιστροφής Θέρμανσης στην περιοχή Μονής Ολυμπιώτισσας",
+  "nameEn": "Seasonal Heating Return Valve Stiction Check in περιοχή Μονής Ολυμπιώτισσας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κολλήματος βαλβίδας επιστροφής θέρμανσης στην περιοχή Μονής Ολυμπιώτισσας για έγκαιρη πρόληψη αστοχίας τον χειμώνα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "περιοχή Μονής Ολυμπιώτισσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-valve-stiction-check-dilofo-zagoriou",
+  "slug": "epochiakos-elegxos-kollimatos-valvidas-epistrofis-thermansis-dilofo-zagoriou",
+  "nameGr": "Εποχικός Έλεγχος Κολλήματος Βαλβίδας Επιστροφής Θέρμανσης στο Δίλοφο Ζαγορίου",
+  "nameEn": "Seasonal Heating Return Valve Stiction Check in Δίλοφο Ζαγορίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κολλήματος βαλβίδας επιστροφής θέρμανσης στο Δίλοφο Ζαγορίου για έγκαιρη πρόληψη αστοχίας τον χειμώνα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δίλοφο Ζαγορίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

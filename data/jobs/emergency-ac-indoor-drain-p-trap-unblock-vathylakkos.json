@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-p-trap-unblock-vathylakkos",
+  "slug": "epigousa-apofraxi-p-trap-aporrois-esoterikou-ac-vathylakkos",
+  "nameGr": "Επείγουσα Απόφραξη P-Trap Απορροής Εσωτερικού AC στο Βαθύλακκο",
+  "nameEn": "Emergency AC Indoor Drain P-Trap Unblock in Βαθύλακκο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα απόφραξη p-trap απορροής εσωτερικού AC στο Βαθύλακκο για άμεση διακοπή διαρροών νερού στον χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύλακκο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
