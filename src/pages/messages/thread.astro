@@ -15,8 +15,32 @@ import {
 
 const url = new URL(Astro.request.url);
 const threadId = clean(url.searchParams.get('threadId'));
-const viewerEmail = clean(url.searchParams.get('viewerEmail')).toLowerCase();
+const requestedViewerEmail = clean(url.searchParams.get('viewerEmail')).toLowerCase();
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const messagesAccessCookie = (Astro.cookies.get('gh_messages_access')?.value || '').trim().toLowerCase();
+const hasValidAccessCookie = EMAIL_PATTERN.test(messagesAccessCookie);
+const hasValidRequestedViewerEmail = EMAIL_PATTERN.test(requestedViewerEmail);
+const viewerEmail = hasValidRequestedViewerEmail
+  ? requestedViewerEmail
+  : hasValidAccessCookie
+    ? messagesAccessCookie
+    : '';
+
+if (!hasValidRequestedViewerEmail && !hasValidAccessCookie) {
+  const next = encodeURIComponent(`${url.pathname}${url.search}`);
+  return Astro.redirect(`/messages/access?next=${next}`, 302);
+}
+
+if (hasValidRequestedViewerEmail && requestedViewerEmail !== messagesAccessCookie) {
+  Astro.cookies.set('gh_messages_access', requestedViewerEmail, {
+    path: '/messages',
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: Astro.url.protocol === 'https:',
+    maxAge: 60 * 60 * 24 * 14
+  });
+}
+
 const hasViewerEmail = viewerEmail.length > 0;
 const hasValidViewerEmail = EMAIL_PATTERN.test(viewerEmail);
 const hasInvalidViewerEmail = hasViewerEmail && !hasValidViewerEmail;
@@ -665,7 +689,7 @@ for (const message of filteredThreadMessages) {
 }
 ---
 
-<Layout title="Συνομιλία μηνυμάτων | GreekHandy" description="Αναλυτική προβολή thread με moderation badges, reporting εργαλεία και κατάσταση απάντησης.">
+<Layout title="Συνομιλία μηνυμάτων | GreekHandy" description="Αναλυτική προβολή thread με moderation badges, reporting εργαλεία και κατάσταση απάντησης." noindex={true}>
   <main
     class="thread-shell mx-auto max-w-6xl px-4 py-10 md:py-14"
     data-thread-id={threadId || null}
