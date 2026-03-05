@@ -13,4 +13,95 @@ const getError = (field: string) => registerErrors[field] || '';
 if (status === 'invalid' || status === 'error') {
   clearFormFlash(Astro.cookies, 'register');
 }
+---
 
+<Layout
+  title="Εγγραφή Επαγγελματία | GreekHandy"
+  description="Κάντε αίτηση για να προστεθείτε ως επαγγελματίας στη GreekHandy."
+  canonicalUrl="https://greekhandy.gr/professionals/register"
+>
+  <main class="gh-page-shell max-w-4xl">
+    <section class="mb-8">
+      <a href="/professionals" class="text-sm font-semibold text-blue-700 hover:underline">&larr; Επιστροφή στους επαγγελματίες</a>
+      <h1 class="mt-3 text-3xl font-bold text-gray-900 md:text-4xl">Αίτηση Εγγραφής Επαγγελματία</h1>
+      <p class="mt-3 text-gray-700">Συμπληρώστε τα βασικά στοιχεία σας και η ομάδα μας θα επικοινωνήσει μαζί σας για έλεγχο και ενεργοποίηση προφίλ.</p>
+    </section>
+
+    <form action="/api/professionals/register" method="POST" class="gh-panel p-6 md:p-8" data-register-form novalidate>
+      {status === 'invalid' && (
+        <div class="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="alert" aria-live="assertive">
+          <p class="font-semibold">Υπάρχουν πεδία που χρειάζονται διόρθωση.</p>
+          <p class="mt-1">Διορθώστε τα επισημασμένα πεδία και υποβάλετε ξανά.</p>
+        </div>
+      )}
+      {status === 'error' && (
+        <div class="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert" aria-live="assertive">
+          <p class="font-semibold">Η αίτηση δεν στάλθηκε.</p>
+          <p class="mt-1">Δοκιμάστε ξανά σε λίγο.</p>
+        </div>
+      )}
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <div>
+          <label for="name" class="gh-label">Ονοματεπώνυμο *</label>
+          <input id="name" name="name" type="text" required value={getValue('name')} aria-invalid={getError('name') ? 'true' : undefined} class="gh-input" />
+          {getError('name') && <p class="gh-error-text">{getError('name')}</p>}
+        </div>
+        <div>
+          <label for="profession" class="gh-label">Ειδικότητα *</label>
+          <input id="profession" name="profession" type="text" required value={getValue('profession')} aria-invalid={getError('profession') ? 'true' : undefined} class="gh-input" placeholder="π.χ. Υδραυλικός" />
+          {getError('profession') && <p class="gh-error-text">{getError('profession')}</p>}
+        </div>
+        <div>
+          <label for="city" class="gh-label">Κύρια πόλη *</label>
+          <input id="city" name="city" type="text" required value={getValue('city')} aria-invalid={getError('city') ? 'true' : undefined} class="gh-input" />
+          {getError('city') && <p class="gh-error-text">{getError('city')}</p>}
+        </div>
+        <div>
+          <label for="areasServed" class="gh-label">Περιοχές εξυπηρέτησης</label>
+          <input id="areasServed" name="areasServed" type="text" value={getValue('areasServed')} class="gh-input" placeholder="π.χ. Αθήνα, Πειραιάς, Κηφισιά" />
+        </div>
+        <div>
+          <label for="phone" class="gh-label">Τηλέφωνο *</label>
+          <input id="phone" name="phone" type="tel" required value={getValue('phone')} aria-invalid={getError('phone') ? 'true' : undefined} class="gh-input" />
+          {getError('phone') && <p class="gh-error-text">{getError('phone')}</p>}
+        </div>
+        <div>
+          <label for="email" class="gh-label">Email *</label>
+          <input id="email" name="email" type="email" required value={getValue('email')} aria-invalid={getError('email') ? 'true' : undefined} class="gh-input" />
+          {getError('email') && <p class="gh-error-text">{getError('email')}</p>}
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <label for="bio" class="gh-label">Σύντομο βιογραφικό *</label>
+        <textarea id="bio" name="bio" rows="5" required aria-invalid={getError('bio') ? 'true' : undefined} class="gh-textarea" placeholder="Περιγράψτε την εμπειρία και τις υπηρεσίες σας.">{getValue('bio')}</textarea>
+        {getError('bio') && <p class="gh-error-text">{getError('bio')}</p>}
+      </div>
+
+      <div class={`mt-5 rounded-xl border bg-slate-50 p-4 ${getError('gdprConsent') ? 'border-red-300 bg-red-50' : 'border-slate-200'}`} data-consent-field>
+        <label for="gdprConsent" class="flex items-start gap-3 text-sm text-slate-800">
+          <input
+            id="gdprConsent"
+            name="gdprConsent"
+            type="checkbox"
+            required
+            checked={getValue('gdprConsent') === 'on'}
+            aria-invalid={getError('gdprConsent') ? 'true' : undefined}
+            class="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-700 focus:ring-2 focus:ring-blue-200"
+          />
+          <span>
+            Συμφωνώ με την επεξεργασία των προσωπικών μου δεδομένων για την αξιολόγηση της αίτησης,
+            σύμφωνα με την
+            <a href="/politiki-aporritou" class="font-semibold text-blue-700 underline underline-offset-2 hover:text-blue-800">Πολιτική Απορρήτου</a>.
+          </span>
+        </label>
+        <p class="mt-2 text-xs text-slate-600">Χωρίς τη συγκατάθεσή σας δεν μπορούμε να επεξεργαστούμε την αίτηση εγγραφής.</p>
+        {getError('gdprConsent') && <p class="gh-error-text" role="alert">{getError('gdprConsent')}</p>}
+      </div>
+
+      <button type="submit" class="mt-5 inline-flex rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800">Αποστολή Αίτησης</button>
+      <p class="mt-3 text-xs text-gray-500">Τα στοιχεία σας χρησιμοποιούνται μόνο για αξιολόγηση της αίτησης.</p>
+    </form>
+  </main>
+</Layout>
