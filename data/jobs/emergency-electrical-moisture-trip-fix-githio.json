@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-moisture-trip-fix-githio",
+  "slug": "epigousa-episkevi-ptosis-ilektrikou-logo-ygrias-githio",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Ρεύματος λόγω Υγρασίας στο Γύθειο",
+  "nameEn": "Emergency Electrical Moisture Trip Fix in Γύθειο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης ρεύματος λόγω υγρασίας στο Γύθειο με άμεση μόνωση και ασφαλή αποκατάσταση κυκλώματος. SEO intent: «πέφτει ρεύμα με υγρασία Γύθειο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρεύμα με υγρασία Γύθειο",
+    "ηλεκτρολόγος επείγον υγρασία",
+    "διαρροή ρεύματος υγρός τοίχος",
+    "ασφάλειες πέφτουν βροχή",
+    "άμεση ηλεκτρολογική βλάβη"
+  ],
+  "status": "researched"
+}

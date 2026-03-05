@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-drain-clog-clearing-vlasti",
+  "slug": "epigousos-katharismos-voulomenis-aporrois-ac-vlasti",
+  "nameGr": "Επείγων Καθαρισμός Βουλωμένης Απορροής AC στη Βλάστη",
+  "nameEn": "Emergency AC Drain Clog Clearing in Βλάστη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγων καθαρισμός βουλωμένης απορροής AC στη Βλάστη για να σταματήσει το στάξιμο και να λειτουργεί σωστά η μονάδα. SEO intent: «κλιματιστικό στάζει πολύ νερό Βλάστη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-170€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό στάζει πολύ νερό Βλάστη",
+    "βουλωμένη απορροή ac λύση",
+    "τεχνικός ac επείγον νερά",
+    "service drain κλιματιστικού",
+    "επισκευή διαρροής ac"
+  ],
+  "status": "researched"
+}

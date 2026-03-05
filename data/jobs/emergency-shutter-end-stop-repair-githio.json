@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-end-stop-repair-githio",
+  "slug": "epigousa-episkevi-termatikon-rolou-githio",
+  "nameGr": "Επείγουσα Επισκευή Τερματικών Ρολού στο Γύθειο",
+  "nameEn": "Emergency Shutter End-Stop Repair in Γύθειο",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επισκευή τερματικών ρολού στο Γύθειο όταν δεν σταματά σωστά και κινδυνεύει ο μηχανισμός. SEO intent: «ρολό δεν σταματά Γύθειο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "ρολό δεν σταματά Γύθειο",
+    "τεχνικός ρολού τερματικά",
+    "ρύθμιση ορίων ρολού επείγον",
+    "βλάβη μοτέρ ρολού ασφάλεια",
+    "service ρολού κατοικίας"
+  ],
+  "status": "researched"
+}

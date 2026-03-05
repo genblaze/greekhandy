@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-moisture-trip-fix-vlasti",
+  "slug": "epigousa-episkevi-ptosis-ilektrikou-logo-ygrias-vlasti",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Ρεύματος λόγω Υγρασίας στη Βλάστη",
+  "nameEn": "Emergency Electrical Moisture Trip Fix in Βλάστη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης ρεύματος λόγω υγρασίας στη Βλάστη με άμεση μόνωση και ασφαλή αποκατάσταση κυκλώματος. SEO intent: «πέφτει ρεύμα με υγρασία Βλάστη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρεύμα με υγρασία Βλάστη",
+    "ηλεκτρολόγος επείγον υγρασία",
+    "διαρροή ρεύματος υγρός τοίχος",
+    "ασφάλειες πέφτουν βροχή",
+    "άμεση ηλεκτρολογική βλάβη"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-drain-clog-clearing-agios-nikitas",
+  "slug": "epigousos-katharismos-voulomenis-aporrois-ac-agios-nikitas",
+  "nameGr": "Επείγων Καθαρισμός Βουλωμένης Απορροής AC στον Άγιο Νικήτα",
+  "nameEn": "Emergency AC Drain Clog Clearing in Άγιος Νικήτας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγων καθαρισμός βουλωμένης απορροής AC στον Άγιο Νικήτα για να σταματήσει το στάξιμο και να λειτουργεί σωστά η μονάδα. SEO intent: «κλιματιστικό στάζει πολύ νερό Άγιος Νικήτας».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-170€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό στάζει πολύ νερό Άγιος Νικήτας",
+    "βουλωμένη απορροή ac λύση",
+    "τεχνικός ac επείγον νερά",
+    "service drain κλιματιστικού",
+    "επισκευή διαρροής ac"
+  ],
+  "status": "researched"
+}

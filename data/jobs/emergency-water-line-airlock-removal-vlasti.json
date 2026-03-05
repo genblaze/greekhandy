@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-line-airlock-removal-vlasti",
+  "slug": "epigousa-apomakrynsi-aerothylaka-grammis-nerou-vlasti",
+  "nameGr": "Επείγουσα Απομάκρυνση Αεροθύλακα Γραμμής Νερού στη Βλάστη",
+  "nameEn": "Emergency Water Line Airlock Removal in Βλάστη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απομάκρυνση αεροθύλακα στη γραμμή νερού στη Βλάστη για άμεση επαναφορά ροής σε βρύσες και συσκευές. SEO intent: «δεν τρέχει νερό βρύση ξαφνικά Βλάστη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "δεν τρέχει νερό βρύση ξαφνικά Βλάστη",
+    "αεροθύλακας σωληνώσεων λύση",
+    "υδραυλικός επείγον παροχή νερού",
+    "χαμηλή ροή νερού άμεσα",
+    "επισκευή γραμμής νερού"
+  ],
+  "status": "researched"
+}

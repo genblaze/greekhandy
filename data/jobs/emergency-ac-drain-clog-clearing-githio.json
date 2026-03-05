@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-drain-clog-clearing-githio",
+  "slug": "epigousos-katharismos-voulomenis-aporrois-ac-githio",
+  "nameGr": "Επείγων Καθαρισμός Βουλωμένης Απορροής AC στο Γύθειο",
+  "nameEn": "Emergency AC Drain Clog Clearing in Γύθειο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγων καθαρισμός βουλωμένης απορροής AC στο Γύθειο για να σταματήσει το στάξιμο και να λειτουργεί σωστά η μονάδα. SEO intent: «κλιματιστικό στάζει πολύ νερό Γύθειο».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-170€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό στάζει πολύ νερό Γύθειο",
+    "βουλωμένη απορροή ac λύση",
+    "τεχνικός ac επείγον νερά",
+    "service drain κλιματιστικού",
+    "επισκευή διαρροής ac"
+  ],
+  "status": "researched"
+}

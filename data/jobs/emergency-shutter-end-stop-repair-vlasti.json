@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-end-stop-repair-vlasti",
+  "slug": "epigousa-episkevi-termatikon-rolou-vlasti",
+  "nameGr": "Επείγουσα Επισκευή Τερματικών Ρολού στη Βλάστη",
+  "nameEn": "Emergency Shutter End-Stop Repair in Βλάστη",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επισκευή τερματικών ρολού στη Βλάστη όταν δεν σταματά σωστά και κινδυνεύει ο μηχανισμός. SEO intent: «ρολό δεν σταματά Βλάστη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "ρολό δεν σταματά Βλάστη",
+    "τεχνικός ρολού τερματικά",
+    "ρύθμιση ορίων ρολού επείγον",
+    "βλάβη μοτέρ ρολού ασφάλεια",
+    "service ρολού κατοικίας"
+  ],
+  "status": "researched"
+}

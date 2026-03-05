@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-line-airlock-removal-githio",
+  "slug": "epigousa-apomakrynsi-aerothylaka-grammis-nerou-githio",
+  "nameGr": "Επείγουσα Απομάκρυνση Αεροθύλακα Γραμμής Νερού στο Γύθειο",
+  "nameEn": "Emergency Water Line Airlock Removal in Γύθειο",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απομάκρυνση αεροθύλακα στη γραμμή νερού στο Γύθειο για άμεση επαναφορά ροής σε βρύσες και συσκευές. SEO intent: «δεν τρέχει νερό βρύση ξαφνικά Γύθειο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "δεν τρέχει νερό βρύση ξαφνικά Γύθειο",
+    "αεροθύλακας σωληνώσεων λύση",
+    "υδραυλικός επείγον παροχή νερού",
+    "χαμηλή ροή νερού άμεσα",
+    "επισκευή γραμμής νερού"
+  ],
+  "status": "researched"
+}
