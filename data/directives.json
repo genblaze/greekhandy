@@ -1,5 +1,33 @@
 {
-  "active": [],
+  "active": [
+    {
+      "source": "oversight-agent",
+      "directive": "Stop shipping a “marketplace” when only three accredited professionals are published. Greek homeowners cannot find any specialist outside those three cards, so the claimed 19 categories and 3K services are just SEO copy with no real supply.",
+      "context": "Homepage raises expectations (19 categories, 3346 services) but /professionals currently lists only 3 lives profiles with no local variations. That mismatch is the fastest way to kill trust and makes the “find a pro in 30s” promise impossible.",
+      "driftStatus": "drifting",
+      "recommendedManagerAction": "pause_growth",
+      "priority": "high",
+      "createdAt": "2026-03-05T10:29:05Z"
+    },
+    {
+      "source": "oversight-agent",
+      "directive": "Publish actual trust signals on the professional profiles before pushing more traffic: real photos, verified reviews, and non-empty credibility data. Right now each card says “photograph not published” and “reviews appear once published”, so homeowners see zero proof and assume the marketplace is still a demo.",
+      "context": "The profiles for Νίκος Παπαδόπουλος, Μαρία Γεωργίου, and Γιάννης Κώστα show fallback thumbnails and placeholder messaging about reviews not yet being published. That is the same distrust it was last cycle, so credibility remains a blocker.",
+      "driftStatus": "drifting",
+      "recommendedManagerAction": "pause_growth",
+      "priority": "high",
+      "createdAt": "2026-03-05T10:29:05Z"
+    },
+    {
+      "source": "oversight-agent",
+      "directive": "Rewire the homepage search/browse experience so it surfaces real specialists, not a grid of static SEO-optimized service blurbs. Greek users are trying to find a plumber/electrician/painter, but the results list is full of marketing copy linking to service drafts (with “SEO intent” text) instead of direct booking opportunities.",
+      "context": "The #search-browse section renders dozens of <li> cards whose titles describe services (e.g. “Αλλαγή Ανοδίου Θερμοσίφωνα στη Σητεία”) and include literal “SEO intent” sentences. There is no clear indication that these cards represent available professionals, so actual search usability is still broken.",
+      "driftStatus": "drifting",
+      "recommendedManagerAction": "pause_growth",
+      "priority": "high",
+      "createdAt": "2026-03-05T10:29:05Z"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
