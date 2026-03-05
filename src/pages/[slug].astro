@@ -430,9 +430,49 @@ const faqSchema = pageCategory.faq?.length ? {
         const errorState = document.querySelector('[data-subjobs-error]');
         const retryState = document.querySelector('[data-subjobs-retry]');
         const initialLimit = cards.filter((card) => card.getAttribute('data-visible-initial') === '1').length || 12;
+        const allowedValues = {
+          urgency: new Set(['all', 'urgent', 'standard']),
+          city: new Set(['all', 'athina', 'thessaloniki', 'patra', 'irakleio', 'larisa', 'volos', 'ioannina']),
+          budget: new Set(['all', 'low', 'medium', 'high']),
+          availability: new Set(['all', 'asap', 'this-week', 'flexible'])
+        };
+
         let visibleLimit = initialLimit;
         let pageStart = 0;
         let filterTimer = null;
+        let lastSyncQuery = '';
+
+        const getUrlState = () => {
+          const params = new URLSearchParams(window.location.search);
+          return {
+            urgency: allowedValues.urgency.has(params.get('urgency') || '') ? (params.get('urgency') || 'all') : 'all',
+            city: allowedValues.city.has(params.get('city') || '') ? (params.get('city') || 'all') : 'all',
+            budget: allowedValues.budget.has(params.get('budget') || '') ? (params.get('budget') || 'all') : 'all',
+            availability: allowedValues.availability.has(params.get('availability') || '') ? (params.get('availability') || 'all') : 'all',
+            page: Math.max(1, Number.parseInt(params.get('page') || '1', 10) || 1)
+          };
+        };
+
+        const syncUrlState = (state) => {
+          const params = new URLSearchParams(window.location.search);
+          const setOrDelete = (key, value) => {
+            if (!value || value === 'all') params.delete(key);
+            else params.set(key, value);
+          };
+
+          setOrDelete('urgency', state.urgency);
+          setOrDelete('city', state.city);
+          setOrDelete('budget', state.budget);
+          setOrDelete('availability', state.availability);
+          if (state.page && state.page > 1) params.set('page', String(state.page));
+          else params.delete('page');
+
+          const next = params.toString();
+          if (next === lastSyncQuery) return;
+          lastSyncQuery = next;
+          const nextUrl = `${window.location.pathname}${next ? `?${next}` : ''}${window.location.hash}`;
+          window.history.replaceState(null, '', nextUrl);
+        };
 
         const setBusyState = (isBusy) => {
           if (subJobsGrid instanceof HTMLElement) {
@@ -451,6 +491,17 @@ const faqSchema = pageCategory.faq?.length ? {
           if (!(filterState instanceof HTMLElement)) return;
           filterState.dataset.state = tone;
           filterState.textContent = message;
+        };
+
+        const initializeFiltersFromUrl = () => {
+          const state = getUrlState();
+          if (urgency instanceof HTMLSelectElement) urgency.value = state.urgency;
+          if (city instanceof HTMLSelectElement) city.value = state.city;
+          if (budget instanceof HTMLSelectElement) budget.value = state.budget;
+          if (availability instanceof HTMLSelectElement) availability.value = state.availability;
+          pageStart = Math.max(0, (state.page - 1) * visibleLimit);
+          const current = new URLSearchParams(window.location.search).toString();
+          lastSyncQuery = current;
         };
 
         const hideErrorState = () => {
@@ -560,6 +611,15 @@ const faqSchema = pageCategory.faq?.length ? {
             } else {
               setFilterState('ready', `Κανονική προβολή: ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`);
             }
+
+            const currentState = {
+              urgency: urgency instanceof HTMLSelectElement ? urgency.value : 'all',
+              city: city instanceof HTMLSelectElement ? city.value : 'all',
+              budget: budget instanceof HTMLSelectElement ? budget.value : 'all',
+              availability: availability instanceof HTMLSelectElement ? availability.value : 'all',
+              page: matched === 0 ? 1 : Math.floor(pageStart / pageSize) + 1
+            };
+            syncUrlState(currentState);
           } catch {
             if (errorState instanceof HTMLElement) errorState.classList.remove('hidden');
             setFilterState('error', 'Η κατηγοριοποίηση υπηρεσιών δεν ενημερώθηκε. Δοκιμάστε επανάληψη.');
@@ -629,6 +689,12 @@ const faqSchema = pageCategory.faq?.length ? {
           });
         }
 
+        window.addEventListener('popstate', () => {
+          initializeFiltersFromUrl();
+          runFilters();
+        });
+
+        initializeFiltersFromUrl();
         runFilters();
       })();
     </script>
