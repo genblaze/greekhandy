@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-clamp-reset-agios-athanasios-evrytania",
+  "slug": "epigousa-epanafora-sfiktira-oudeterou-kentrikis-paroxis-agios-athanasios-evrytania",
+  "nameGr": "Επείγουσα Επαναφορά Σφιγκτήρα Ουδετέρου Κεντρικής Παροχής στον Άγιο Αθανάσιο Ευρυτανίας",
+  "nameEn": "Emergency Electrical Main Neutral Clamp Reset in Άγιος Αθανάσιος Ευρυτανίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά σφιγκτήρα ουδετέρου κεντρικής παροχής στον Άγιο Αθανάσιο Ευρυτανίας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Αθανάσιος Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-clamp-reset-pyrgos-monemvasias",
+  "slug": "epigousa-epanafora-sfiktira-oudeterou-kentrikis-paroxis-pyrgos-monemvasias",
+  "nameGr": "Επείγουσα Επαναφορά Σφιγκτήρα Ουδετέρου Κεντρικής Παροχής στον Πύργο Μονεμβασιάς",
+  "nameEn": "Emergency Electrical Main Neutral Clamp Reset in Πύργος Μονεμβασιάς",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά σφιγκτήρα ουδετέρου κεντρικής παροχής στον Πύργο Μονεμβασιάς για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πύργος Μονεμβασιάς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

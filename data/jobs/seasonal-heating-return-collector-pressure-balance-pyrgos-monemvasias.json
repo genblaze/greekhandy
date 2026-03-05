@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-collector-pressure-balance-pyrgos-monemvasias",
+  "slug": "epochiaki-eksisorropisi-piesis-syllekti-epistrofis-thermansis-pyrgos-monemvasias",
+  "nameGr": "Εποχική Εξισορρόπηση Πίεσης Συλλέκτη Επιστροφής Θέρμανσης στον Πύργο Μονεμβασιάς",
+  "nameEn": "Seasonal Heating Return Collector Pressure Balance in Πύργος Μονεμβασιάς",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση πίεσης συλλέκτη επιστροφής θέρμανσης στον Πύργο Μονεμβασιάς για σταθερή και αποδοτική λειτουργία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πύργος Μονεμβασιάς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

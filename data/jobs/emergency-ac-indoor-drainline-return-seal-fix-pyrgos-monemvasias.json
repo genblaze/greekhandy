@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-return-seal-fix-pyrgos-monemvasias",
+  "slug": "epigousa-episkevi-steganosis-epistrofis-grammis-aporrois-esoterikou-ac-pyrgos-monemvasias",
+  "nameGr": "Επείγουσα Επισκευή Στεγάνωσης Επιστροφής Γραμμής Απορροής Εσωτερικού AC στον Πύργο Μονεμβασιάς",
+  "nameEn": "Emergency AC Indoor Drainline Return Seal Fix in Πύργος Μονεμβασιάς",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή στεγάνωσης επιστροφής γραμμής απορροής εσωτερικού AC στον Πύργο Μονεμβασιάς για να σταματήσουν οι διαρροές.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Πύργος Μονεμβασιάς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
