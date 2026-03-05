@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-line-reprime-agios-georgios-grevenon",
+  "slug": "epigousa-epanaplirosi-grammis-aporrois-esoterikou-ac-agios-georgios-grevenon",
+  "nameGr": "Επείγουσα Επαναπλήρωση Γραμμής Απορροής Εσωτερικού AC στον Άγιο Γεώργιο Γρεβενών",
+  "nameEn": "Emergency AC Indoor Drain Line Re-prime in Άγιος Γεώργιος Γρεβενών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναπλήρωση γραμμής απορροής εσωτερικού AC στον Άγιο Γεώργιο Γρεβενών για άμεση αποκατάσταση ροής συμπυκνωμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

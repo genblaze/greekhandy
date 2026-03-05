@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-airlock-removal-agios-georgios-grevenon",
+  "slug": "epochiaki-apokatastasi-aerofragis-kyklomatos-thermansis-agios-georgios-grevenon",
+  "nameGr": "Εποχική Αποκατάσταση Αεροφραγής Κυκλώματος Θέρμανσης στον Άγιο Γεώργιο Γρεβενών",
+  "nameEn": "Seasonal Heating Circuit Airlock Removal in Άγιος Γεώργιος Γρεβενών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική αποκατάσταση αεροφραγής κυκλώματος θέρμανσης στον Άγιο Γεώργιο Γρεβενών για καλύτερη κυκλοφορία και απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-airlock-removal-doliana-ioanninon",
+  "slug": "epochiaki-apokatastasi-aerofragis-kyklomatos-thermansis-doliana-ioanninon",
+  "nameGr": "Εποχική Αποκατάσταση Αεροφραγής Κυκλώματος Θέρμανσης στα Δολιανά Ιωαννίνων",
+  "nameEn": "Seasonal Heating Circuit Airlock Removal in Δολιανά Ιωαννίνων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική αποκατάσταση αεροφραγής κυκλώματος θέρμανσης στα Δολιανά Ιωαννίνων για καλύτερη κυκλοφορία και απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δολιανά Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rccb-nuisance-trip-fix-doliana-ioanninon",
+  "slug": "epigousa-episkevi-anepitimytis-ptosis-rccb-doliana-ioanninon",
+  "nameGr": "Επείγουσα Επισκευή Ανεπιθύμητης Πτώσης RCCB στα Δολιανά Ιωαννίνων",
+  "nameEn": "Emergency Electrical RCCB Nuisance Trip Fix in Δολιανά Ιωαννίνων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ανεπιθύμητης πτώσης RCCB στα Δολιανά Ιωαννίνων για σταθερή και ασφαλή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Δολιανά Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

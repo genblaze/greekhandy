@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rccb-nuisance-trip-fix-lagyna-serron",
+  "slug": "epigousa-episkevi-anepitimytis-ptosis-rccb-lagyna-serron",
+  "nameGr": "Επείγουσα Επισκευή Ανεπιθύμητης Πτώσης RCCB στα Λαγυνά Σερρών",
+  "nameEn": "Emergency Electrical RCCB Nuisance Trip Fix in Λαγυνά Σερρών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ανεπιθύμητης πτώσης RCCB στα Λαγυνά Σερρών για σταθερή και ασφαλή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Λαγυνά Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

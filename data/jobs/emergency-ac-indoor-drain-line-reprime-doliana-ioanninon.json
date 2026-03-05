@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-line-reprime-doliana-ioanninon",
+  "slug": "epigousa-epanaplirosi-grammis-aporrois-esoterikou-ac-doliana-ioanninon",
+  "nameGr": "Επείγουσα Επαναπλήρωση Γραμμής Απορροής Εσωτερικού AC στα Δολιανά Ιωαννίνων",
+  "nameEn": "Emergency AC Indoor Drain Line Re-prime in Δολιανά Ιωαννίνων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναπλήρωση γραμμής απορροής εσωτερικού AC στα Δολιανά Ιωαννίνων για άμεση αποκατάσταση ροής συμπυκνωμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Δολιανά Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

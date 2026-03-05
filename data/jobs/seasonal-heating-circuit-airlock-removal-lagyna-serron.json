@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-airlock-removal-lagyna-serron",
+  "slug": "epochiaki-apokatastasi-aerofragis-kyklomatos-thermansis-lagyna-serron",
+  "nameGr": "Εποχική Αποκατάσταση Αεροφραγής Κυκλώματος Θέρμανσης στα Λαγυνά Σερρών",
+  "nameEn": "Seasonal Heating Circuit Airlock Removal in Λαγυνά Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική αποκατάσταση αεροφραγής κυκλώματος θέρμανσης στα Λαγυνά Σερρών για καλύτερη κυκλοφορία και απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λαγυνά Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

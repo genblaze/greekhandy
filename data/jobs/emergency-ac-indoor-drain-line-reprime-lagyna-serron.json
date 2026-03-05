@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-line-reprime-lagyna-serron",
+  "slug": "epigousa-epanaplirosi-grammis-aporrois-esoterikou-ac-lagyna-serron",
+  "nameGr": "Επείγουσα Επαναπλήρωση Γραμμής Απορροής Εσωτερικού AC στα Λαγυνά Σερρών",
+  "nameEn": "Emergency AC Indoor Drain Line Re-prime in Λαγυνά Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναπλήρωση γραμμής απορροής εσωτερικού AC στα Λαγυνά Σερρών για άμεση αποκατάσταση ροής συμπυκνωμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Λαγυνά Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
