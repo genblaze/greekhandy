@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import { readFormFlash, clearFormFlash } from '../../lib/form-flash';
 
+export const prerender = true;
+
 const status = Astro.url.searchParams.get('status') || '';
 const registerFlash = readFormFlash(Astro.cookies, 'register');
 const registerValues = registerFlash.values || {};

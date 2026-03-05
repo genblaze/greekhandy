@@ -17,13 +17,18 @@ if (!target) {
 const size = statSync(target).size;
 const html = readFileSync(target, 'utf8');
 
-if (size < 500 || html.trim().length < 500) {
+if (size < 1000 || html.trim().length < 1000) {
   console.error(`❌ Register route smoke check failed: ${target.replace(`${root}/`, '')} is unexpectedly small/empty.`);
   process.exit(1);
 }
 
-if (!html.includes('<form') || !html.includes('/api/professionals/register')) {
-  console.error('❌ Register route smoke check failed: register form markup missing from rendered HTML.');
+if (!html.includes('<main') || !html.includes('<form') || !html.includes('/api/professionals/register')) {
+  console.error('❌ Register route smoke check failed: register main/form markup missing from rendered HTML.');
+  process.exit(1);
+}
+
+if (!html.includes('Αίτηση Εγγραφής Επαγγελματία')) {
+  console.error('❌ Register route smoke check failed: expected registration heading text not found.');
   process.exit(1);
 }
 
