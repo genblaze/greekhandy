@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-main-isolation-seat-repair-kastaneri",
+  "slug": "epigousa-episkevi-edras-kentrikou-diakopti-apomonosis-nerou-kastaneri",
+  "nameGr": "Επείγουσα Επισκευή Έδρας Κεντρικού Διακόπτη Απομόνωσης Νερού στο Καστανέρι",
+  "nameEn": "Emergency Water Main Isolation Seat Repair in Καστανέρι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή έδρας κεντρικού διακόπτη απομόνωσης νερού στο Καστανέρι για άμεσο έλεγχο διαρροών και παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Καστανέρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

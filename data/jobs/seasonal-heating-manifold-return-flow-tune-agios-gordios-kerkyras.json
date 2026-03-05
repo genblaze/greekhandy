@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-return-flow-tune-agios-gordios-kerkyras",
+  "slug": "epochiaki-rythmisi-rois-epistrofis-syllekti-thermansis-agios-gordios-kerkyras",
+  "nameGr": "Εποχική Ρύθμιση Ροής Επιστροφής Συλλέκτη Θέρμανσης στον Άγιο Γόρδιο Κέρκυρας",
+  "nameEn": "Seasonal Heating Manifold Return Flow Tune in Άγιος Γόρδιος Κέρκυρας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής επιστροφής συλλέκτη θέρμανσης στον Άγιο Γόρδιο Κέρκυρας για ισορροπημένη θέρμανση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γόρδιος Κέρκυρας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

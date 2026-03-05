@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-drain-gradient-fix-kastaneri",
+  "slug": "epigousa-diorthosi-klisis-aporrois-sympyknomaton-esoterikou-ac-kastaneri",
+  "nameGr": "Επείγουσα Διόρθωση Κλίσης Απορροής Συμπυκνωμάτων Εσωτερικού AC στο Καστανέρι",
+  "nameEn": "Emergency AC Indoor Condensate Drain Gradient Fix in Καστανέρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διόρθωση κλίσης απορροής συμπυκνωμάτων εσωτερικού AC στο Καστανέρι για αποτροπή επιστροφής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καστανέρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

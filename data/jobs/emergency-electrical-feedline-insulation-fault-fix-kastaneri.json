@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-feedline-insulation-fault-fix-kastaneri",
+  "slug": "epigousa-episkevi-vlavis-monosis-grammis-trofodosias-kastaneri",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Μόνωσης Γραμμής Τροφοδοσίας στο Καστανέρι",
+  "nameEn": "Emergency Electrical Feedline Insulation Fault Fix in Καστανέρι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βλάβης μόνωσης γραμμής τροφοδοσίας στο Καστανέρι για ασφαλή επαναφορά ρεύματος στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καστανέρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

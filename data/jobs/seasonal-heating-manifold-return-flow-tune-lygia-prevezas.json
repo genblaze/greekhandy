@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-return-flow-tune-lygia-prevezas",
+  "slug": "epochiaki-rythmisi-rois-epistrofis-syllekti-thermansis-lygia-prevezas",
+  "nameGr": "Εποχική Ρύθμιση Ροής Επιστροφής Συλλέκτη Θέρμανσης στη Λυγιά Πρέβεζας",
+  "nameEn": "Seasonal Heating Manifold Return Flow Tune in Λυγιά Πρέβεζας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής επιστροφής συλλέκτη θέρμανσης στη Λυγιά Πρέβεζας για ισορροπημένη θέρμανση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λυγιά Πρέβεζας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

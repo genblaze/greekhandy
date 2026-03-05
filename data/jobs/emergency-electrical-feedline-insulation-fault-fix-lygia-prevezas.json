@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-feedline-insulation-fault-fix-lygia-prevezas",
+  "slug": "epigousa-episkevi-vlavis-monosis-grammis-trofodosias-lygia-prevezas",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Μόνωσης Γραμμής Τροφοδοσίας στη Λυγιά Πρέβεζας",
+  "nameEn": "Emergency Electrical Feedline Insulation Fault Fix in Λυγιά Πρέβεζας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βλάβης μόνωσης γραμμής τροφοδοσίας στη Λυγιά Πρέβεζας για ασφαλή επαναφορά ρεύματος στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Λυγιά Πρέβεζας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

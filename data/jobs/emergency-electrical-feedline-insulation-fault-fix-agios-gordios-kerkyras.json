@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-feedline-insulation-fault-fix-agios-gordios-kerkyras",
+  "slug": "epigousa-episkevi-vlavis-monosis-grammis-trofodosias-agios-gordios-kerkyras",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Μόνωσης Γραμμής Τροφοδοσίας στον Άγιο Γόρδιο Κέρκυρας",
+  "nameEn": "Emergency Electrical Feedline Insulation Fault Fix in Άγιος Γόρδιος Κέρκυρας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βλάβης μόνωσης γραμμής τροφοδοσίας στον Άγιο Γόρδιο Κέρκυρας για ασφαλή επαναφορά ρεύματος στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γόρδιος Κέρκυρας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
