@@ -317,8 +317,12 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
 
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio?.trim() || 'Ο επαγγελματίας είναι διαθέσιμος για ανάθεση υπηρεσιών στην περιοχή του προφίλ.'}</p>
 
+      {portfolioImageSources.length === 0 && (
+        <p class="mt-3 text-xs text-slate-500">Το portfolio θα εμφανιστεί εδώ μόλις προστεθούν φωτογραφίες έργων.</p>
+      )}
+
       <div class="mt-6 rounded-2xl border border-blue-200 bg-white/90 p-4 shadow-sm">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια διαδρομή επικοινωνίας (προτείνεται)</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια διαδρομή επικοινωνίας (μοναδική προτεινόμενη)</p>
         <div class="mt-2 flex flex-wrap items-center gap-2.5">
           <a
             href="#primary-conversion"
@@ -329,7 +333,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             Κύριο CTA: Ζητήστε υπηρεσία
           </a>
         </div>
-        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ξεκινήστε από την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές ανοίγουν προαιρετικά χαμηλότερα, ώστε να παραμένει καθαρή η βασική διαδρομή.</p>
+        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ακολουθήστε πρώτα την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές ανοίγουν προαιρετικά χαμηλότερα, ώστε να μην διασπάται η βασική διαδρομή.</p>
         <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα δείχνει καθαρά τα επόμενα βήματα, ώστε να γνωρίζετε ακριβώς τι ακολουθεί μετά την αποστολή.</p>
         <p class="mt-1 text-xs text-slate-500">
           Δευτερεύουσες επιλογές:
@@ -735,11 +739,11 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
 
       <details id="secondary-actions" class="group mt-5 rounded-2xl border border-slate-200 bg-white p-4 md:p-5" data-secondary-actions-disclosure role="region" aria-label="Δευτερεύουσες επιλογές επικοινωνίας">
         <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900 marker:hidden">
-          Δευτερεύουσες επιλογές (μόνο αν χρειάζονται)
+          Δευτερεύουσες επιλογές (προαιρετικά)
         </summary>
         <div class="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3" role="note" aria-live="polite">
           <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-600">Προτεραιότητα 2-3</p>
-          <p class="mt-1 text-sm text-slate-700">Η κύρια διαδρομή είναι το αίτημα συνεργασίας. Επιλέξτε εναλλακτικές μόνο αν χρειάζεστε επιπλέον διευκρίνιση ή άμεση επαφή.</p>
+          <p class="mt-1 text-sm text-slate-700">Η κύρια διαδρομή είναι το αίτημα συνεργασίας. Επιλέξτε εναλλακτικές μόνο για επιπλέον διευκρίνιση ή άμεση επαφή.</p>
         </div>
         <div class="mt-3 flex flex-wrap gap-2" role="tablist" aria-label="Εναλλακτικές ενέργειες επικοινωνίας">
           <button type="button" role="tab" aria-selected="true" aria-controls="secondary-message-panel" id="secondary-tab-message" data-secondary-tab-target="message" class="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-800">Μήνυμα</button>
