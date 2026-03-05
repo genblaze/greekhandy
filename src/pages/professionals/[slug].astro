@@ -704,8 +704,8 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
             Δεν υπάρχει σύνδεση. Μόλις επανέλθει το δίκτυο, επιλέξτε νέα προσπάθεια.
             <button type="button" data-feedback-retry="booking" class="ml-2 inline-flex rounded-md border border-amber-300 bg-white px-2 py-0.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">Νέα προσπάθεια</button>
           </p>
-          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε στοιχεία επικοινωνίας, προτιμώμενη ημέρα/ώρα και λεπτομέρειες αιτήματος, και υποβάλετε ξανά.</p>
-          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">
+          <p data-feedback-status="invalid" class={`${bookingStatusParam === 'invalid' ? '' : 'hidden'} rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800`}>Ελέγξτε στοιχεία επικοινωνίας, προτιμώμενη ημέρα/ώρα και λεπτομέρειες αιτήματος, και υποβάλετε ξανά.</p>
+          <p data-feedback-status="error" class={`${bookingStatusParam === 'error' ? '' : 'hidden'} rounded-md bg-red-100 px-3 py-2 text-sm text-red-800`}>
             Η αποστολή δεν ολοκληρώθηκε. Τα στοιχεία σας παραμένουν στη φόρμα για άμεση επανάληψη.
             <button type="button" data-feedback-retry="booking" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
           </p>
@@ -809,9 +809,9 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
             Δεν υπάρχει σύνδεση. Μόλις επανέλθει το δίκτυο, επιλέξτε νέα προσπάθεια.
             <button type="button" data-feedback-retry="message" class="ml-2 inline-flex rounded-md border border-amber-300 bg-white px-2 py-0.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">Νέα προσπάθεια</button>
           </p>
-          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία επικοινωνίας και το μήνυμα, και υποβάλετε ξανά.</p>
-          <p data-feedback-status="blocked" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Η συγκεκριμένη συνομιλία δεν είναι διαθέσιμη αυτή τη στιγμή.</p>
-          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">
+          <p data-feedback-status="invalid" class={`${messageStatusParam === 'invalid' ? '' : 'hidden'} rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800`}>Ελέγξτε τα πεδία επικοινωνίας και το μήνυμα, και υποβάλετε ξανά.</p>
+          <p data-feedback-status="blocked" class={`${messageStatusParam === 'blocked' ? '' : 'hidden'} rounded-md bg-red-100 px-3 py-2 text-sm text-red-800`}>Η συγκεκριμένη συνομιλία δεν είναι διαθέσιμη αυτή τη στιγμή.</p>
+          <p data-feedback-status="error" class={`${messageStatusParam === 'error' ? '' : 'hidden'} rounded-md bg-red-100 px-3 py-2 text-sm text-red-800`}>
             Η αποστολή δεν ολοκληρώθηκε. Το κείμενό σας παραμένει στη φόρμα για άμεση επανάληψη.
             <button type="button" data-feedback-retry="message" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
           </p>
