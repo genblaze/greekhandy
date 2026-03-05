@@ -212,4 +212,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log('Nav-link health test passed. Top-nav and promoted routes are healthy in built artifacts.');
+console.log('Nav-link health test passed. Canonical contact IA, top-nav, and promoted routes are healthy in built artifacts.');
