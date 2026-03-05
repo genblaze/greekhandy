@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-trap-vent-reset-kastania-ioanninon",
+  "slug": "epigousa-epanafora-aerismou-pagidas-aporrois-esoterikou-ac-kastania-ioanninon",
+  "nameGr": "Επείγουσα Επαναφορά Αερισμού Παγίδας Απορροής Εσωτερικού AC στην Καστανιά Ιωαννίνων",
+  "nameEn": "Emergency AC Indoor Drain Trap Vent Reset in Καστανιά Ιωαννίνων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά αερισμού παγίδας απορροής εσωτερικού AC στην Καστανιά Ιωαννίνων για να σταματήσουν οι επιστροφές νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καστανιά Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

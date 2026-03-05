@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-runoff-clean-agia-paraskevi-fokidas",
+  "slug": "epochiakos-katharismos-aporrois-katofliou-eisodou-gia-aporroi-agia-paraskevi-fokidas",
+  "nameGr": "Εποχικός Καθαρισμός Απορροής Κατωφλιού Εισόδου για Απορροή στην Αγία Παρασκευή Φωκίδας",
+  "nameEn": "Seasonal Home Entry Threshold Drain Runoff Clean in Αγία Παρασκευή Φωκίδας",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός καθαρισμός απορροής κατωφλιού εισόδου στην Αγία Παρασκευή Φωκίδας για καλύτερη απομάκρυνση νερού και λιγότερη ολισθηρότητα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Παρασκευή Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
