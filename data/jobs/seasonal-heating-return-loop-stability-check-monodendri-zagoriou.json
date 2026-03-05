@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-stability-check-monodendri-zagoriou",
+  "slug": "epochiakos-elegxos-statherotitas-vroxou-epistrofis-thermansis-monodendri-zagoriou",
+  "nameGr": "Εποχικός Έλεγχος Σταθερότητας Βρόχου Επιστροφής Θέρμανσης στο Μονοδένδρι Ζαγορίου",
+  "nameEn": "Seasonal Heating Return Loop Stability Check in Μονοδένδρι Ζαγορίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος σταθερότητας βρόχου επιστροφής θέρμανσης στο Μονοδένδρι Ζαγορίου για ομαλή λειτουργία όλης της εγκατάστασης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μονοδένδρι Ζαγορίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

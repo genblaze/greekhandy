@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-stability-check-levki-serron",
+  "slug": "epochiakos-elegxos-statherotitas-vroxou-epistrofis-thermansis-levki-serron",
+  "nameGr": "Εποχικός Έλεγχος Σταθερότητας Βρόχου Επιστροφής Θέρμανσης στη Λευκή Σερρών",
+  "nameEn": "Seasonal Heating Return Loop Stability Check in Λευκή Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος σταθερότητας βρόχου επιστροφής θέρμανσης στη Λευκή Σερρών για ομαλή λειτουργία όλης της εγκατάστασης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λευκή Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

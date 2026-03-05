@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-lug-reset-agia-varvara-arkadias",
+  "slug": "epigousa-epanafora-akrodexti-oudeterou-kentrikis-trofodosias-agia-varvara-arkadias",
+  "nameGr": "Επείγουσα Επαναφορά Ακροδέκτη Ουδετέρου Κεντρικής Τροφοδοσίας στην Αγία Βαρβάρα Αρκαδίας",
+  "nameEn": "Emergency Electrical Main Neutral Lug Reset in Αγία Βαρβάρα Αρκαδίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ακροδέκτη ουδετέρου κεντρικής τροφοδοσίας στην Αγία Βαρβάρα Αρκαδίας για σταθερή τάση και αποφυγή διακοπών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Βαρβάρα Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

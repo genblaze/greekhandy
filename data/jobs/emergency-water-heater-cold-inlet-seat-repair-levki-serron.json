@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-cold-inlet-seat-repair-levki-serron",
+  "slug": "epigousa-episkevi-edras-kryas-eisodou-thermosifona-levki-serron",
+  "nameGr": "Επείγουσα Επισκευή Έδρας Κρύας Εισόδου Θερμοσίφωνα στη Λευκή Σερρών",
+  "nameEn": "Emergency Water Heater Cold Inlet Seat Repair in Λευκή Σερρών",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή έδρας κρύας εισόδου θερμοσίφωνα στη Λευκή Σερρών για άμεση στεγανοποίηση και ασφαλή παροχή νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Λευκή Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

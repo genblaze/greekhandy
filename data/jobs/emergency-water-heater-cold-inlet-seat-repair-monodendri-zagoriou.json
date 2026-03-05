@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-cold-inlet-seat-repair-monodendri-zagoriou",
+  "slug": "epigousa-episkevi-edras-kryas-eisodou-thermosifona-monodendri-zagoriou",
+  "nameGr": "Επείγουσα Επισκευή Έδρας Κρύας Εισόδου Θερμοσίφωνα στο Μονοδένδρι Ζαγορίου",
+  "nameEn": "Emergency Water Heater Cold Inlet Seat Repair in Μονοδένδρι Ζαγορίου",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή έδρας κρύας εισόδου θερμοσίφωνα στο Μονοδένδρι Ζαγορίου για άμεση στεγανοποίηση και ασφαλή παροχή νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Μονοδένδρι Ζαγορίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

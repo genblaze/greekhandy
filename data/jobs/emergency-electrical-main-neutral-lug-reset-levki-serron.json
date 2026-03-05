@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-lug-reset-levki-serron",
+  "slug": "epigousa-epanafora-akrodexti-oudeterou-kentrikis-trofodosias-levki-serron",
+  "nameGr": "Επείγουσα Επαναφορά Ακροδέκτη Ουδετέρου Κεντρικής Τροφοδοσίας στη Λευκή Σερρών",
+  "nameEn": "Emergency Electrical Main Neutral Lug Reset in Λευκή Σερρών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ακροδέκτη ουδετέρου κεντρικής τροφοδοσίας στη Λευκή Σερρών για σταθερή τάση και αποφυγή διακοπών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Λευκή Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

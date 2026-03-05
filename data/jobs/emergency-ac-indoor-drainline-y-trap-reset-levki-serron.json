@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-y-trap-reset-levki-serron",
+  "slug": "epigousa-epanafora-y-pagidas-grammis-aporrois-esoterikou-ac-levki-serron",
+  "nameGr": "Επείγουσα Επαναφορά Y Παγίδας Γραμμής Απορροής Εσωτερικού AC στη Λευκή Σερρών",
+  "nameEn": "Emergency AC Indoor Drainline Y-Trap Reset in Λευκή Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά Y παγίδας γραμμής απορροής εσωτερικού AC στη Λευκή Σερρών για άμεση αποτροπή υπερχείλισης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Λευκή Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-lug-reset-monodendri-zagoriou",
+  "slug": "epigousa-epanafora-akrodexti-oudeterou-kentrikis-trofodosias-monodendri-zagoriou",
+  "nameGr": "Επείγουσα Επαναφορά Ακροδέκτη Ουδετέρου Κεντρικής Τροφοδοσίας στο Μονοδένδρι Ζαγορίου",
+  "nameEn": "Emergency Electrical Main Neutral Lug Reset in Μονοδένδρι Ζαγορίου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ακροδέκτη ουδετέρου κεντρικής τροφοδοσίας στο Μονοδένδρι Ζαγορίου για σταθερή τάση και αποφυγή διακοπών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μονοδένδρι Ζαγορίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

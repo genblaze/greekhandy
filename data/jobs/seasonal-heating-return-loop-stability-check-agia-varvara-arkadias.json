@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-stability-check-agia-varvara-arkadias",
+  "slug": "epochiakos-elegxos-statherotitas-vroxou-epistrofis-thermansis-agia-varvara-arkadias",
+  "nameGr": "Εποχικός Έλεγχος Σταθερότητας Βρόχου Επιστροφής Θέρμανσης στην Αγία Βαρβάρα Αρκαδίας",
+  "nameEn": "Seasonal Heating Return Loop Stability Check in Αγία Βαρβάρα Αρκαδίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος σταθερότητας βρόχου επιστροφής θέρμανσης στην Αγία Βαρβάρα Αρκαδίας για ομαλή λειτουργία όλης της εγκατάστασης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Βαρβάρα Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
