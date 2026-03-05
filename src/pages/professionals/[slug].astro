@@ -201,9 +201,6 @@ const professionalServiceSchema = {
 const profileMetaTitle = `${profile.name} | ${profile.profession} σε ${profile.city || 'Ελλάδα'} | GreekHandy`;
 const profileMetaDescription = `Επαγγελματικό προφίλ GreekHandy: ${profile.name}, ${profile.profession}${profile.city ? ` στη ${profile.city}` : ''}. Δείτε υπηρεσίες, περιοχές εξυπηρέτησης και αξιολογήσεις πελατών.`;
 
-const reviewStatusParam = (Astro.url.searchParams.get('review') || '').trim();
-const bookingStatusParam = (Astro.url.searchParams.get('booking') || '').trim();
-const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 ---
 
 <Layout
@@ -518,9 +515,6 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δεν χάνονται τα δημόσια δεδομένα· δοκιμάστε ξανά σε λίγο.</p>
           </div>
 
-          {reviewStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Συμπληρώστε βαθμολογία και σχόλιο για να ολοκληρωθεί η κριτική.</p>}
-          {reviewStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η υποβολή δεν ολοκληρώθηκε προσωρινά. Δοκιμάστε ξανά σε λίγο.</p>}
-
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
@@ -603,10 +597,6 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             <button type="button" data-feedback-retry="booking" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
           </p>
         </div>
-
-        {bookingStatusParam === 'submitted' && <p class="mt-2 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800" role="status" aria-live="polite">Η καταχώριση ολοκληρώθηκε επιτυχώς. Χρησιμοποιήστε το link παρακολούθησης που λάβατε για την πορεία του αιτήματος.</p>}
-        {bookingStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του αιτήματος και υποβάλετε ξανά.</p>}
-        {bookingStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά χωρίς να ξαναγράψετε τα στοιχεία.</p>}
 
         <form
           action="/api/bookings/submit"
@@ -705,10 +695,6 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             <button type="button" data-feedback-retry="message" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
           </p>
         </div>
-
-          {messageStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του μηνύματος και υποβάλετε ξανά.</p>}
-          {messageStatusParam === 'blocked' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η συνομιλία δεν είναι διαθέσιμη αυτή τη στιγμή.</p>}
-          {messageStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή μηνύματος δεν ολοκληρώθηκε. Δοκιμάστε ξανά χωρίς απώλεια κειμένου.</p>}
 
           <form
             action="/api/messages/submit"
@@ -826,6 +812,25 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             window.sessionStorage.setItem(key, value);
           } catch {
             // Ignore storage failures (private mode / blocked storage) to keep UX functional.
+          }
+        };
+        const feedbackInteractionFlagKeys = {
+          review: 'profile-feedback-review-interacted',
+          booking: 'profile-feedback-booking-interacted',
+          message: 'profile-feedback-message-interacted'
+        };
+        const hasFeedbackInteraction = (groupName) => {
+          const key = feedbackInteractionFlagKeys[groupName];
+          if (!key) return false;
+          return getSessionFlag(key) === '1';
+        };
+        const markFeedbackInteraction = (groupName) => {
+          const key = feedbackInteractionFlagKeys[groupName];
+          if (!key) return;
+          setSessionFlag(key, '1');
+          if (groupName === 'review') {
+            // Keep compatibility with previous storage key to avoid regressions for ongoing sessions.
+            setSessionFlag('review-submit-attempted', '1');
           }
         };
         const clearPendingTimeout = (form) => {
@@ -1104,14 +1109,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         const applyFeedback = (groupName, queryParam) => {
           const status = params.get(queryParam);
           if (!status) return;
-
-          if (groupName === 'review') {
-            const reviewAttempted = getSessionFlag('review-submit-attempted') === '1';
-            const serverOutcomeStatuses = new Set(['pending', 'approved', 'rejected']);
-            if (!reviewAttempted && !serverOutcomeStatuses.has(status)) {
-              return;
-            }
-          }
+          if (!hasFeedbackInteraction(groupName)) return;
 
           showFeedbackStatus(groupName, status);
         };
@@ -1132,15 +1130,6 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         syncSecondaryAccordion();
         if (!params.get('review')) {
           setReviewListState(initialReviewListState);
-        }
-
-        const reviewForm = document.querySelector('[data-review-form]');
-        if (reviewForm instanceof HTMLFormElement) {
-          const markReviewInteracted = () => setSessionFlag('review-submit-attempted', '1');
-          reviewForm.addEventListener('input', markReviewInteracted, { once: true });
-          reviewForm.addEventListener('submit', () => {
-            markReviewInteracted();
-          });
         }
 
         const setFormPending = (form, isPending) => {
@@ -1266,6 +1255,20 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 
         for (const form of pendingForms) {
           const feedbackGroupName = form.getAttribute('data-feedback-group-name') || '';
+          const trackFeedbackInteraction = (event) => {
+            if (!feedbackGroupName) return;
+            if (!(event.target instanceof HTMLElement)) return;
+            const isFormControl = event.target instanceof HTMLInputElement
+              || event.target instanceof HTMLTextAreaElement
+              || event.target instanceof HTMLSelectElement
+              || event.target instanceof HTMLButtonElement;
+            if (isFormControl) {
+              markFeedbackInteraction(feedbackGroupName);
+            }
+          };
+          form.addEventListener('focusin', trackFeedbackInteraction);
+          form.addEventListener('input', trackFeedbackInteraction);
+          form.addEventListener('change', trackFeedbackInteraction);
           updateTrimRequiredFields(form);
           updateBookingFieldValidity(form);
           form.addEventListener('input', (event) => {
@@ -1301,6 +1304,9 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             });
           }
           form.addEventListener('submit', (event) => {
+            if (feedbackGroupName) {
+              markFeedbackInteraction(feedbackGroupName);
+            }
             if (isOffline()) {
               event.preventDefault();
               if (feedbackGroupName) showFeedbackStatus(feedbackGroupName, 'offline');
