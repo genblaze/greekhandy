@@ -227,7 +227,7 @@ const composerInitialStateLabel = messageStatus === 'submitted'
       ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο σώθηκε ώστε να συνεχίσετε με ασφάλεια από το ίδιο σημείο.'
       : messageStatus === 'blocked'
         ? 'Η αποστολή απενεργοποιήθηκε από moderation.'
-        : 'Η φόρμα απάντησης είναι έτοιμη για αποστολή.';
+        : 'Η φόρμα απάντησης είναι έτοιμη.';
 const composerDraftStorageKey = canLoadThreadData ? `gh:thread-composer-draft:${threadId}:${viewerEmail}` : '';
 const shouldClearComposerDraftOnLoad = messageStatus === 'submitted';
 const composerRetryPanelTitle = messageStatus === 'invalid'
@@ -235,7 +235,7 @@ const composerRetryPanelTitle = messageStatus === 'invalid'
   : 'Η αποστολή διακόπηκε προσωρινά';
 const composerRetryPanelDescription = messageStatus === 'invalid'
   ? 'Διορθώστε το μήνυμα και ξαναστείλτε το από τη φόρμα απάντησης.'
-  : 'Συνεχίστε από τη φόρμα απάντησης μόλις επιβεβαιώσετε σύνδεση και περιεχόμενο.';
+  : 'Συνεχίστε από τη φόρμα απάντησης, αφού ελέγξετε σύνδεση και περιεχόμενο.';
 const composerRetryPanelToneClass = messageStatus === 'invalid'
   ? 'border-amber-300 bg-amber-50 text-amber-900'
   : 'border-rose-300 bg-rose-50 text-rose-900';
@@ -1521,7 +1521,7 @@ for (const message of filteredThreadMessages) {
               data-clear-composer-draft-on-load={shouldClearComposerDraftOnLoad ? 'true' : 'false'}
               data-pending-live-label="Η αποστολή μηνύματος εκτελείται."
               data-pending-timeout-label="Η αποστολή καθυστέρησε. Ελέγξτε το δίκτυο και δοκιμάστε ξανά."
-              data-pending-idle-label="Η φόρμα απάντησης είναι έτοιμη για αποστολή."
+              data-pending-idle-label="Η φόρμα απάντησης είναι έτοιμη."
               data-pending-recovery-label="Η αποστολή επανήλθε. Ελέγξτε το μήνυμα και προσπαθήστε ξανά."
               data-pending-timeout-ms="18000"
               aria-labelledby="thread-composer-title"
@@ -1599,7 +1599,7 @@ for (const message of filteredThreadMessages) {
               <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite" aria-atomic="true"></p>
               <p id="composer-submit-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
               <button type="submit" data-default-label="Αποστολή" data-pending-label="Αποστολή..." disabled class="thread-touch-target mt-3 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-65">Αποστολή</button>
-              <p id="composer-feedback" data-form-feedback class="mt-2 text-[11px] text-slate-600" role="status" aria-live="polite" aria-atomic="true">Η φόρμα απάντησης είναι έτοιμη για αποστολή.</p>
+              <p id="composer-feedback" data-form-feedback class="mt-2 text-[11px] text-slate-600" role="status" aria-live="polite" aria-atomic="true">Η φόρμα απάντησης είναι έτοιμη.</p>
             </form>
           )}
         </section>
@@ -2665,9 +2665,9 @@ for (const message of filteredThreadMessages) {
           if (!isBusy) {
             if (length > 0) {
               preserveInitialComposerFeedback = false;
-              setComposerState('idle', 'Η φόρμα απάντησης είναι έτοιμη για αποστολή.');
+              setComposerState('idle', 'Η φόρμα απάντησης είναι έτοιμη.');
             } else if (!preserveInitialComposerFeedback) {
-              setComposerState('idle', 'Η φόρμα απάντησης είναι έτοιμη για αποστολή.');
+              setComposerState('idle', 'Η φόρμα απάντησης είναι έτοιμη.');
             }
           }
 
