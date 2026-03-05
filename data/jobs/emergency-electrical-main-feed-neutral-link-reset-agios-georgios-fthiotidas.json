@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-link-reset-agios-georgios-fthiotidas",
+  "slug": "epigousa-epanafora-syndesmou-oudeterou-kentrikis-trofodosias-agios-georgios-fthiotidas",
+  "nameGr": "Επείγουσα Επαναφορά Συνδέσμου Ουδετέρου Κεντρικής Τροφοδοσίας στον Άγιο Γεώργιο Φθιώτιδας",
+  "nameEn": "Emergency Electrical Main Feed Neutral Link Reset in Άγιος Γεώργιος Φθιώτιδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά συνδέσμου ουδετέρου κεντρικής τροφοδοσίας στον Άγιο Γεώργιο Φθιώτιδας για σταθερή τάση και ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

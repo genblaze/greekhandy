@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-vent-block-fix-agios-georgios-fthiotidas",
+  "slug": "epigousa-episkevi-emfrazis-aerismou-grammis-aporrois-esoterikou-ac-agios-georgios-fthiotidas",
+  "nameGr": "Επείγουσα Επισκευή Έμφραξης Αερισμού Γραμμής Απορροής Εσωτερικού AC στον Άγιο Γεώργιο Φθιώτιδας",
+  "nameEn": "Emergency AC Indoor Drainline Vent Block Fix in Άγιος Γεώργιος Φθιώτιδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή έμφραξης αερισμού γραμμής απορροής εσωτερικού AC στον Άγιο Γεώργιο Φθιώτιδας για να μην επιστρέφουν νερά.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

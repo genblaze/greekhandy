@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-header-flow-tune-perivolia-grevenon",
+  "slug": "epochiaki-rythmisi-rois-syllekti-epistrofis-thermansis-perivolia-grevenon",
+  "nameGr": "Εποχική Ρύθμιση Ροής Συλλέκτη Επιστροφής Θέρμανσης στα Περιβόλια Γρεβενών",
+  "nameEn": "Seasonal Heating Return Header Flow Tune in Περιβόλια Γρεβενών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής συλλέκτη επιστροφής θέρμανσης στα Περιβόλια Γρεβενών για σταθερή θερμική απόδοση σε όλο το σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Περιβόλια Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

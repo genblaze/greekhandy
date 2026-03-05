@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-header-flow-tune-agios-georgios-fthiotidas",
+  "slug": "epochiaki-rythmisi-rois-syllekti-epistrofis-thermansis-agios-georgios-fthiotidas",
+  "nameGr": "Εποχική Ρύθμιση Ροής Συλλέκτη Επιστροφής Θέρμανσης στον Άγιο Γεώργιο Φθιώτιδας",
+  "nameEn": "Seasonal Heating Return Header Flow Tune in Άγιος Γεώργιος Φθιώτιδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής συλλέκτη επιστροφής θέρμανσης στον Άγιο Γεώργιο Φθιώτιδας για σταθερή θερμική απόδοση σε όλο το σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

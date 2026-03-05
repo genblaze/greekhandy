@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-link-reset-perivolia-grevenon",
+  "slug": "epigousa-epanafora-syndesmou-oudeterou-kentrikis-trofodosias-perivolia-grevenon",
+  "nameGr": "Επείγουσα Επαναφορά Συνδέσμου Ουδετέρου Κεντρικής Τροφοδοσίας στα Περιβόλια Γρεβενών",
+  "nameEn": "Emergency Electrical Main Feed Neutral Link Reset in Περιβόλια Γρεβενών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά συνδέσμου ουδετέρου κεντρικής τροφοδοσίας στα Περιβόλια Γρεβενών για σταθερή τάση και ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Περιβόλια Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

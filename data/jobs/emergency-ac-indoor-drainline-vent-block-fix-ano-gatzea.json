@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-vent-block-fix-ano-gatzea",
+  "slug": "epigousa-episkevi-emfrazis-aerismou-grammis-aporrois-esoterikou-ac-ano-gatzea",
+  "nameGr": "Επείγουσα Επισκευή Έμφραξης Αερισμού Γραμμής Απορροής Εσωτερικού AC στην Άνω Γατζέα",
+  "nameEn": "Emergency AC Indoor Drainline Vent Block Fix in Άνω Γατζέα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή έμφραξης αερισμού γραμμής απορροής εσωτερικού AC στην Άνω Γατζέα για να μην επιστρέφουν νερά.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άνω Γατζέα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
