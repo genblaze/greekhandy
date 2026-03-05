@@ -1,38 +1,53 @@
 #!/usr/bin/env node
-import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 
-const distIndex = join(process.cwd(), 'dist', 'index.html');
-const distExists = existsSync(distIndex);
+const ROOT = process.cwd();
+const DIST_DIR = resolve(ROOT, 'dist');
 
-const patterns = [
+const ATTR_PATTERNS = [
   'data-astro-source-file',
   'data-astro-source-loc',
   'data-astro-source-id',
   'data-astro-source'
 ];
 
-const checkText = (label, text) => {
-  const hits = patterns.filter((p) => text.includes(p));
-  return hits.map((hit) => `${label}: found ${hit}`);
+const issues = [];
+
+const scanHtmlRecursively = (dirPath) => {
+  let entries = [];
+  try {
+    entries = readdirSync(dirPath);
+  } catch {
+    return;
+  }
+
+  for (const entry of entries) {
+    const fullPath = join(dirPath, entry);
+    const stats = statSync(fullPath);
+
+    if (stats.isDirectory()) {
+      scanHtmlRecursively(fullPath);
+      continue;
+    }
+
+    if (!entry.endsWith('.html')) continue;
+
+    const html = readFileSync(fullPath, 'utf8');
+    for (const pattern of ATTR_PATTERNS) {
+      if (html.includes(pattern)) {
+        issues.push(`${fullPath}: found ${pattern}`);
+      }
+    }
+  }
 };
 
-let issues = [];
-
-for (const rel of ['src/layouts/Layout.astro', 'src/pages/index.astro']) {
-  const text = readFileSync(join(process.cwd(), rel), 'utf8');
-  issues.push(...checkText(rel, text));
-}
-
-if (distExists) {
-  const dist = readFileSync(distIndex, 'utf8');
-  issues.push(...checkText('dist/index.html', dist));
-}
+scanHtmlRecursively(DIST_DIR);
 
 if (issues.length > 0) {
-  console.error('❌ Astro source debug attributes detected:');
+  console.error('❌ Astro source/debug attribute leakage detected in production HTML:');
   for (const issue of issues) console.error(` - ${issue}`);
   process.exit(1);
 }
 
-console.log('✅ Astro source debug attributes check passed.');
+console.log('✅ Astro source/debug attribute guard passed (no data-astro-source-* in dist HTML).');
