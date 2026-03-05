@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-thermistor-replacement-kastania-arkadias",
+  "slug": "epigousa-antikatastasi-thermistor-esoterikou-ac-kastania-arkadias",
+  "nameGr": "Επείγουσα Αντικατάσταση Thermistor Εσωτερικού AC στην Καστάνια Αρκαδίας",
+  "nameEn": "Emergency AC Indoor Thermistor Replacement in Καστάνια Αρκαδίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντικατάσταση thermistor εσωτερικού AC στην Καστάνια Αρκαδίας όταν η μονάδα δίνει λανθασμένες θερμοκρασίες και σταματά.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καστάνια Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

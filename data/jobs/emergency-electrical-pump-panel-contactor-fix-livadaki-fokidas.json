@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-pump-panel-contactor-fix-livadaki-fokidas",
+  "slug": "epigousa-episkevi-contactor-pinaka-antlias-livadaki-fokidas",
+  "nameGr": "Επείγουσα Επισκευή Contactor Πίνακα Αντλίας στο Λιβαδάκι Φωκίδας",
+  "nameEn": "Emergency Electrical Pump Panel Contactor Fix in Λιβαδάκι Φωκίδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή contactor πίνακα αντλίας στο Λιβαδάκι Φωκίδας για άμεση επαναφορά ηλεκτροδότησης αντλητικού συστήματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Λιβαδάκι Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

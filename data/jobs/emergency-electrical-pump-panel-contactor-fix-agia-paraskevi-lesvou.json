@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-pump-panel-contactor-fix-agia-paraskevi-lesvou",
+  "slug": "epigousa-episkevi-contactor-pinaka-antlias-agia-paraskevi-lesvou",
+  "nameGr": "Επείγουσα Επισκευή Contactor Πίνακα Αντλίας στην Αγία Παρασκευή Λέσβου",
+  "nameEn": "Emergency Electrical Pump Panel Contactor Fix in Αγία Παρασκευή Λέσβου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή contactor πίνακα αντλίας στην Αγία Παρασκευή Λέσβου για άμεση επαναφορά ηλεκτροδότησης αντλητικού συστήματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Παρασκευή Λέσβου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

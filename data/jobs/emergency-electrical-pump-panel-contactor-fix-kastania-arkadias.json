@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-pump-panel-contactor-fix-kastania-arkadias",
+  "slug": "epigousa-episkevi-contactor-pinaka-antlias-kastania-arkadias",
+  "nameGr": "Επείγουσα Επισκευή Contactor Πίνακα Αντλίας στην Καστάνια Αρκαδίας",
+  "nameEn": "Emergency Electrical Pump Panel Contactor Fix in Καστάνια Αρκαδίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή contactor πίνακα αντλίας στην Καστάνια Αρκαδίας για άμεση επαναφορά ηλεκτροδότησης αντλητικού συστήματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καστάνια Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

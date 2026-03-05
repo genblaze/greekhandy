@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-thermistor-replacement-agia-paraskevi-lesvou",
+  "slug": "epigousa-antikatastasi-thermistor-esoterikou-ac-agia-paraskevi-lesvou",
+  "nameGr": "Επείγουσα Αντικατάσταση Thermistor Εσωτερικού AC στην Αγία Παρασκευή Λέσβου",
+  "nameEn": "Emergency AC Indoor Thermistor Replacement in Αγία Παρασκευή Λέσβου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντικατάσταση thermistor εσωτερικού AC στην Αγία Παρασκευή Λέσβου όταν η μονάδα δίνει λανθασμένες θερμοκρασίες και σταματά.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Παρασκευή Λέσβου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

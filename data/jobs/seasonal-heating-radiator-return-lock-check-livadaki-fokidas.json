@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-return-lock-check-livadaki-fokidas",
+  "slug": "epochiakos-elegxos-kleidomatos-epistrofis-kalorifer-livadaki-fokidas",
+  "nameGr": "Εποχικός Έλεγχος Κλειδώματος Επιστροφής Καλοριφέρ στο Λιβαδάκι Φωκίδας",
+  "nameEn": "Seasonal Heating Radiator Return Lock Check in Λιβαδάκι Φωκίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κλειδώματος επιστροφής καλοριφέρ στο Λιβαδάκι Φωκίδας για σταθερή ροή και καλύτερη θέρμανση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λιβαδάκι Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

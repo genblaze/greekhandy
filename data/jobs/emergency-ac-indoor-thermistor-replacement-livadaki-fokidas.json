@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-thermistor-replacement-livadaki-fokidas",
+  "slug": "epigousa-antikatastasi-thermistor-esoterikou-ac-livadaki-fokidas",
+  "nameGr": "Επείγουσα Αντικατάσταση Thermistor Εσωτερικού AC στο Λιβαδάκι Φωκίδας",
+  "nameEn": "Emergency AC Indoor Thermistor Replacement in Λιβαδάκι Φωκίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντικατάσταση thermistor εσωτερικού AC στο Λιβαδάκι Φωκίδας όταν η μονάδα δίνει λανθασμένες θερμοκρασίες και σταματά.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Λιβαδάκι Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
