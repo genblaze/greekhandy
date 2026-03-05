@@ -145,9 +145,12 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
     <script is:inline>
       (() => {
         const toolbarSelector = '[data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar';
+        const collisionTargetSelector = '[data-gh-widget-avoid], [data-selection-dock], [data-detail-panel], [role="dialog"][aria-modal="true"], [data-mobile-nav-drawer]';
+        const actionableSelector = 'a[href], button:not([disabled]), input:not([type="hidden"]):not([disabled]), select:not([disabled]), textarea:not([disabled]), [role="button"], [tabindex]:not([tabindex="-1"])';
         const root = document.documentElement;
         const dockBindings = new Map();
         let dockCounter = 0;
+        let dockSyncQueued = false;
         const schedule = (callback) => {
           if (typeof window.requestIdleCallback === 'function') {
             window.requestIdleCallback(() => callback(), { timeout: 1200 });
@@ -156,6 +159,41 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           window.setTimeout(callback, 0);
         };
         const getFirstFocusable = (node) => node.querySelector('button, a[href], input, select, textarea, [role="button"], [tabindex]:not([tabindex="-1"])');
+        const parsePx = (value) => {
+          const parsed = Number.parseFloat(value || '');
+          return Number.isFinite(parsed) ? parsed : 0;
+        };
+        const isElementVisible = (node) => {
+          if (!(node instanceof HTMLElement)) return false;
+          if (node.hidden) return false;
+          const style = window.getComputedStyle(node);
+          if (style.display === 'none' || style.visibility === 'hidden' || style.visibility === 'collapse') return false;
+          if (style.opacity === '0') return false;
+          return true;
+        };
+        const isRectVisible = (rect) => rect.width > 0 && rect.height > 0
+          && rect.bottom > 0 && rect.right > 0
+          && rect.top < window.innerHeight && rect.left < window.innerWidth;
+        const intersects = (a, b, margin = 0) => !(
+          a.right < (b.left - margin)
+          || a.left > (b.right + margin)
+          || a.bottom < (b.top - margin)
+          || a.top > (b.bottom + margin)
+        );
+        const hasActionableContent = (node) => {
+          if (!(node instanceof HTMLElement)) return false;
+          if (node.matches(actionableSelector)) return true;
+          return node.querySelector(actionableSelector) instanceof HTMLElement;
+        };
+        const getFloatingContainer = (node) => {
+          let current = node;
+          while (current instanceof HTMLElement && current !== document.body) {
+            const style = window.getComputedStyle(current);
+            if (style.position === 'fixed' || style.position === 'sticky') return current;
+            current = current.parentElement;
+          }
+          return null;
+        };
         const cleanupDetachedToolbars = () => {
           for (const [toolbar, binding] of dockBindings.entries()) {
             if (toolbar instanceof HTMLElement && toolbar.isConnected) continue;
@@ -164,6 +202,96 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
             }
             dockBindings.delete(toolbar);
           }
+        };
+        const getCollisionTargets = () => {
+          const targets = [];
+          const seen = new Set();
+          for (const node of document.querySelectorAll(collisionTargetSelector)) {
+            if (!(node instanceof HTMLElement) || seen.has(node)) continue;
+            seen.add(node);
+            targets.push(node);
+          }
+          for (const control of document.querySelectorAll(actionableSelector)) {
+            if (!(control instanceof HTMLElement)) continue;
+            const floatingContainer = getFloatingContainer(control);
+            if (!(floatingContainer instanceof HTMLElement) || seen.has(floatingContainer)) continue;
+            seen.add(floatingContainer);
+            targets.push(floatingContainer);
+          }
+          return targets;
+        };
+        const syncDockCollisionOffsets = () => {
+          const firstBindingEntry = dockBindings.values().next();
+          const primaryBinding = firstBindingEntry.done ? null : firstBindingEntry.value;
+          if (!primaryBinding?.trigger) {
+            root.style.setProperty('--gh-accessibility-dock-offset-bottom', '0px');
+            root.style.setProperty('--gh-accessibility-dock-offset-right', '0px');
+            return;
+          }
+          root.style.setProperty('--gh-accessibility-dock-offset-bottom', '0px');
+          root.style.setProperty('--gh-accessibility-dock-offset-right', '0px');
+
+          const trigger = primaryBinding.trigger;
+          const triggerRect = trigger.getBoundingClientRect();
+          const triggerStyle = window.getComputedStyle(trigger);
+          const baseRight = parsePx(triggerStyle.right);
+          const baseBottom = parsePx(triggerStyle.bottom);
+          const triggerSize = Math.max(44, Math.round(Math.max(triggerRect.width, triggerRect.height)));
+          const panelWidth = Math.min(352, Math.max(window.innerWidth - 24, triggerSize));
+          const panelHeight = Math.min(Math.max(window.innerHeight * 0.62, 220), 512);
+          const collisionPadding = 10;
+          const targets = getCollisionTargets();
+          let bottomOffset = 0;
+          let rightOffset = 0;
+
+          for (let pass = 0; pass < 3; pass += 1) {
+            let changed = false;
+            const rightEdge = Math.max(0, window.innerWidth - baseRight - rightOffset);
+            const bottomEdge = Math.max(0, window.innerHeight - baseBottom - bottomOffset);
+            const collisionZone = {
+              left: Math.max(0, rightEdge - panelWidth),
+              right: rightEdge,
+              top: Math.max(0, bottomEdge - triggerSize - panelHeight - 10),
+              bottom: bottomEdge
+            };
+
+            for (const target of targets) {
+              if (!(target instanceof HTMLElement)) continue;
+              if (target === trigger || target === primaryBinding.toolbar || primaryBinding.toolbar.contains(target)) continue;
+              if (!isElementVisible(target) || !hasActionableContent(target)) continue;
+
+              const computed = window.getComputedStyle(target);
+              const isExplicitTarget = target.hasAttribute('data-gh-widget-avoid');
+              const isFloatingTarget = computed.position === 'fixed' || computed.position === 'sticky';
+              if (!isExplicitTarget && !isFloatingTarget) continue;
+
+              const rect = target.getBoundingClientRect();
+              if (!isRectVisible(rect) || !intersects(collisionZone, rect, collisionPadding)) continue;
+
+              const verticalPush = Math.max(0, collisionZone.bottom + collisionPadding - rect.top);
+              const horizontalPush = Math.max(0, collisionZone.right + collisionPadding - rect.left);
+              if (verticalPush <= 0 && horizontalPush <= 0) continue;
+
+              if (verticalPush > 0 && (horizontalPush <= 0 || verticalPush <= horizontalPush)) {
+                const nextBottomOffset = Math.min(Math.round(verticalPush), Math.round(window.innerHeight * 0.72));
+                if (nextBottomOffset > bottomOffset) {
+                  bottomOffset = nextBottomOffset;
+                  changed = true;
+                }
+              } else {
+                const nextRightOffset = Math.min(Math.round(horizontalPush), Math.round(window.innerWidth * 0.62));
+                if (nextRightOffset > rightOffset) {
+                  rightOffset = nextRightOffset;
+                  changed = true;
+                }
+              }
+            }
+
+            if (!changed) break;
+          }
+
+          root.style.setProperty('--gh-accessibility-dock-offset-bottom', `${Math.max(0, bottomOffset)}px`);
+          root.style.setProperty('--gh-accessibility-dock-offset-right', `${Math.max(0, rightOffset)}px`);
         };
         const getToolbarSafeInset = (binding) => {
           if (!(binding?.trigger instanceof HTMLElement)) return 0;
@@ -176,12 +304,21 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
         };
         const syncToolbarSafeArea = () => {
           cleanupDetachedToolbars();
+          syncDockCollisionOffsets();
           let nextInset = 0;
           for (const binding of dockBindings.values()) {
             nextInset = Math.max(nextInset, getToolbarSafeInset(binding));
           }
           const resolvedInset = dockBindings.size > 0 ? Math.max(nextInset, 72) : 0;
           root.style.setProperty('--gh-accessibility-toolbar-safe-area', `${resolvedInset}px`);
+        };
+        const queueDockSync = () => {
+          if (dockSyncQueued) return;
+          dockSyncQueued = true;
+          window.requestAnimationFrame(() => {
+            dockSyncQueued = false;
+            schedule(syncToolbarSafeArea);
+          });
         };
         const setDockOpen = (binding, nextOpen, focusPanel = false) => {
           if (!(binding?.toolbar instanceof HTMLElement) || !(binding.trigger instanceof HTMLButtonElement)) return;
@@ -202,7 +339,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
               if (target instanceof HTMLElement) target.focus({ preventScroll: true });
             });
           }
-          schedule(syncToolbarSafeArea);
+          queueDockSync();
         };
         const closeDockedToolbars = (exceptToolbar = null) => {
           for (const [toolbar, binding] of dockBindings.entries()) {
@@ -240,7 +377,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
             trigger.focus({ preventScroll: true });
           });
           const stateObserver = new MutationObserver(() => {
-            schedule(syncToolbarSafeArea);
+            queueDockSync();
           });
           stateObserver.observe(node, {
             attributes: true,
@@ -248,7 +385,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           });
           if (typeof ResizeObserver === 'function') {
             const resizeObserver = new ResizeObserver(() => {
-              schedule(syncToolbarSafeArea);
+              queueDockSync();
             });
             resizeObserver.observe(node);
             resizeObserver.observe(trigger);
@@ -279,8 +416,10 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           window.setTimeout(() => {
             discoveryObserver.disconnect();
           }, 20000);
-          window.addEventListener('resize', () => schedule(syncToolbarSafeArea), { passive: true });
-          window.addEventListener('orientationchange', () => schedule(syncToolbarSafeArea), { passive: true });
+          window.addEventListener('resize', queueDockSync, { passive: true });
+          window.addEventListener('orientationchange', queueDockSync, { passive: true });
+          window.addEventListener('scroll', queueDockSync, { passive: true });
+          document.addEventListener('click', queueDockSync, true);
           document.addEventListener('pointerdown', (event) => {
             const target = event.target;
             if (!(target instanceof Node)) return;
@@ -292,10 +431,12 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
               }
             }
             if (shouldClose) closeDockedToolbars();
+            queueDockSync();
           });
           document.addEventListener('keydown', (event) => {
             if (!(event instanceof KeyboardEvent) || event.key !== 'Escape') return;
             closeDockedToolbars();
+            queueDockSync();
           });
 
           const toggle = document.querySelector('[data-mobile-nav-toggle]');
@@ -361,6 +502,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
               }
               restoreFocusElement = null;
             }
+            queueDockSync();
           };
           const trapDrawerFocus = (event) => {
             if (!navOpen || event.key !== 'Tab') return;
