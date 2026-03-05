@@ -322,7 +322,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
       )}
 
       <div class="mt-6 rounded-2xl border border-blue-200 bg-white/90 p-4 shadow-sm">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια διαδρομή επικοινωνίας (βήμα 1)</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια διαδρομή επικοινωνίας (βήμα 1 από 3)</p>
         <div class="mt-2 flex flex-wrap items-center gap-2.5">
           <a
             href="#primary-conversion"
@@ -334,7 +334,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
           </a>
         </div>
         <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ακολουθήστε πρώτα την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές είναι προαιρετικές και εμφανίζονται χαμηλότερα μόνο όταν τις χρειάζεστε.</p>
-        <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα δείχνει καθαρά τα επόμενα βήματα, ώστε να γνωρίζετε ακριβώς τι ακολουθεί μετά την αποστολή.</p>
+        <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα δείχνει καθαρά τα επόμενα βήματα, ώστε να γνωρίζετε ακριβώς τι ακολουθεί μετά την αποστολή και τον έλεγχο.</p>
         <p class="mt-1 text-xs text-slate-500">
           Δευτερεύουσες επιλογές:
           <a href="#secondary-actions" class="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900">
@@ -364,7 +364,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             ))}
           </div>
           <p data-portfolio-empty class="mt-3 hidden text-sm text-slate-600">
-            Το portfolio θα εμφανιστεί όταν προστεθούν έγκυρες φωτογραφίες.
+            Το portfolio θα εμφανιστεί μόλις προστεθούν έγκυρες φωτογραφίες έργων.
           </p>
         </div>
       )}
@@ -520,7 +520,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
 
           {!hasApprovedReviewsError && reviewsCount === 0 && (
             <div class="rounded-2xl border border-dashed border-blue-200 bg-gradient-to-br from-blue-50 to-sky-50 px-5 py-6 text-sm text-blue-900" role="status" aria-live="polite">
-              <p class="font-semibold">Δεν υπάρχουν ακόμη δημοσιευμένες αξιολογήσεις. Η πρώτη εγκεκριμένη αξιολόγηση θα εμφανιστεί αυτόματα.</p>
+              <p class="font-semibold">Δεν υπάρχουν ακόμη δημοσιευμένες αξιολογήσεις. Μόλις εγκριθεί η πρώτη, θα εμφανιστεί αυτόματα εδώ.</p>
               <p class="mt-1 text-blue-800">Σήμα αξιοπιστίας: ουδέτερο (χωρίς δείγμα). Αυτό δεν υποδηλώνει αρνητική αξιολόγηση.</p>
               <p class="mt-1 text-xs text-blue-700">Τι να περιμένετε: οι νέες κριτικές εμφανίζονται μετά τον απαραίτητο έλεγχο και τότε ενημερώνεται αυτόματα η σύνοψη.</p>
               <a href="#submit-review" class="mt-3 inline-flex rounded-md bg-blue-700 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-800">
@@ -743,7 +743,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
         </summary>
         <div class="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3" role="note" aria-live="polite">
           <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-600">Προτεραιότητα 2-3</p>
-          <p class="mt-1 text-sm text-slate-700">Η κύρια διαδρομή είναι το αίτημα συνεργασίας: υποβολή → επιβεβαίωση → συνέχεια. Οι εναλλακτικές επιλογές εμφανίζονται μόνο για σύντομη διευκρίνιση ή άμεση επαφή.</p>
+          <p class="mt-1 text-sm text-slate-700">Η κύρια διαδρομή είναι το αίτημα συνεργασίας: υποβολή → επιβεβαίωση → απάντηση. Οι εναλλακτικές επιλογές εμφανίζονται μόνο για σύντομη διευκρίνιση ή άμεση επαφή.</p>
         </div>
         <div class="mt-3 flex flex-wrap gap-2" role="tablist" aria-label="Εναλλακτικές ενέργειες επικοινωνίας">
           <button type="button" role="tab" aria-selected="true" aria-controls="secondary-message-panel" id="secondary-tab-message" data-secondary-tab-target="message" class="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-800">Μήνυμα</button>
