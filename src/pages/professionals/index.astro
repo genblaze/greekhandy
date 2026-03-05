@@ -37,6 +37,9 @@ const profilesWithSafeImage = await Promise.all(
     resolvedProfileImage: await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl)
   }))
 );
+
+const professionOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => profile.profession))).sort((a, b) => a.localeCompare(b, 'el'));
+const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => profile.city))).sort((a, b) => a.localeCompare(b, 'el'));
 ---
 
 <Layout
@@ -69,9 +72,39 @@ const profilesWithSafeImage = await Promise.all(
       </section>
     )}
 
-    <section class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+    {profiles.length > 0 && (
+      <section data-prof-filters class="mb-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div class="grid gap-3 md:grid-cols-3">
+          <div>
+            <label for="profession-search" class="text-xs font-semibold uppercase tracking-wide text-slate-600">Αναζήτηση</label>
+            <input id="profession-search" data-filter-search type="search" placeholder="Όνομα, ειδικότητα, πόλη" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900" />
+          </div>
+          <div>
+            <label for="profession-filter" class="text-xs font-semibold uppercase tracking-wide text-slate-600">Ειδικότητα</label>
+            <select id="profession-filter" data-filter-profession class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900">
+              <option value="all">Όλες</option>
+              {professionOptions.map((profession) => <option value={profession}>{profession}</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="city-filter" class="text-xs font-semibold uppercase tracking-wide text-slate-600">Πόλη</label>
+            <select id="city-filter" data-filter-city class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900">
+              <option value="all">Όλες</option>
+              {cityOptions.map((city) => <option value={city}>{city}</option>)}
+            </select>
+          </div>
+        </div>
+        <div class="mt-3 flex flex-wrap items-center gap-2" data-active-filters aria-live="polite"></div>
+        <div class="mt-3 flex items-center justify-between gap-2">
+          <p data-filter-summary class="text-xs text-slate-600">Εμφανίζονται {profiles.length} από {profiles.length} επαγγελματίες.</p>
+          <button type="button" data-reset-filters class="inline-flex rounded-md border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">Καθαρισμός φίλτρων</button>
+        </div>
+      </section>
+    )}
+
+    <section class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" data-profiles-grid>
       {profilesWithSafeImage.map(profile => (
-        <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+        <article data-profile-card data-name={profile.name.toLowerCase()} data-profession={profile.profession} data-city={profile.city} class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm focus-within:ring-2 focus-within:ring-sky-500">
           <div class="mb-4 overflow-hidden rounded-lg border border-slate-200 bg-slate-100 aspect-[4/3]">
             <img
               src={profile.resolvedProfileImage}
@@ -86,9 +119,110 @@ const profilesWithSafeImage = await Promise.all(
           <p class="mt-1 text-sm text-gray-600">{profile.city} • {profile.experienceYears} χρόνια εμπειρίας</p>
           <p class="mt-3 line-clamp-3 text-sm text-gray-700">{profile.bio}</p>
           <p class="mt-3 text-xs uppercase tracking-wide text-gray-500">Περιοχές: {profile.areasServed.join(', ')}</p>
-          <a href={`/professionals/${profile.slug}`} class="mt-4 inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">Προβολή προφίλ</a>
+          <a href={`/professionals/${profile.slug}`} class="mt-4 inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">Προβολή προφίλ</a>
         </article>
       ))}
     </section>
+
+    <section data-no-results class="mt-6 hidden rounded-xl border border-dashed border-slate-300 bg-white px-5 py-6 text-slate-700" role="status" aria-live="polite">
+      <p class="text-lg font-semibold text-slate-900">Δεν βρέθηκαν αποτελέσματα.</p>
+      <p class="mt-1 text-sm">Δοκιμάστε λιγότερα φίλτρα ή πατήστε «Καθαρισμός φίλτρων».</p>
+    </section>
+
+    <script is:inline>
+      (() => {
+        const root = document.querySelector('[data-prof-filters]');
+        const grid = document.querySelector('[data-profiles-grid]');
+        if (!(root instanceof HTMLElement) || !(grid instanceof HTMLElement)) return;
+
+        const search = root.querySelector('[data-filter-search]');
+        const profession = root.querySelector('[data-filter-profession]');
+        const city = root.querySelector('[data-filter-city]');
+        const reset = root.querySelector('[data-reset-filters]');
+        const active = root.querySelector('[data-active-filters]');
+        const summary = root.querySelector('[data-filter-summary]');
+        const noResults = document.querySelector('[data-no-results]');
+        const cards = Array.from(grid.querySelectorAll('[data-profile-card]'));
+
+        const state = { q: '', profession: 'all', city: 'all' };
+
+        const renderChips = () => {
+          if (!(active instanceof HTMLElement)) return;
+          active.innerHTML = '';
+          const chips = [];
+          if (state.q.trim()) chips.push(`Αναζήτηση: ${state.q.trim()}`);
+          if (state.profession !== 'all') chips.push(`Ειδικότητα: ${state.profession}`);
+          if (state.city !== 'all') chips.push(`Πόλη: ${state.city}`);
+          chips.forEach((chip) => {
+            const span = document.createElement('span');
+            span.className = 'rounded-full border border-sky-200 bg-sky-50 px-2.5 py-1 text-xs font-semibold text-sky-900';
+            span.textContent = chip;
+            active.appendChild(span);
+          });
+        };
+
+        const apply = () => {
+          const q = state.q.trim().toLowerCase();
+          let visible = 0;
+          cards.forEach((card) => {
+            if (!(card instanceof HTMLElement)) return;
+            const name = card.dataset.name || '';
+            const p = (card.dataset.profession || '').toLowerCase();
+            const c = card.dataset.city || '';
+            const professionValue = card.dataset.profession || '';
+            const match = (state.profession === 'all' || professionValue === state.profession)
+              && (state.city === 'all' || c === state.city)
+              && (!q || `${name} ${p} ${c.toLowerCase()}`.includes(q));
+            card.hidden = !match;
+            if (match) visible += 1;
+          });
+          renderChips();
+          if (summary instanceof HTMLElement) summary.textContent = `Εμφανίζονται ${visible} από ${cards.length} επαγγελματίες.`;
+          if (noResults instanceof HTMLElement) noResults.classList.toggle('hidden', visible > 0);
+        };
+
+        search?.addEventListener('input', (e) => {
+          const target = e.currentTarget;
+          if (!(target instanceof HTMLInputElement)) return;
+          state.q = target.value;
+          apply();
+        });
+        profession?.addEventListener('change', (e) => {
+          const target = e.currentTarget;
+          if (!(target instanceof HTMLSelectElement)) return;
+          state.profession = target.value;
+          apply();
+        });
+        city?.addEventListener('change', (e) => {
+          const target = e.currentTarget;
+          if (!(target instanceof HTMLSelectElement)) return;
+          state.city = target.value;
+          apply();
+        });
+        reset?.addEventListener('click', () => {
+          state.q = '';
+          state.profession = 'all';
+          state.city = 'all';
+          if (search instanceof HTMLInputElement) search.value = '';
+          if (profession instanceof HTMLSelectElement) profession.value = 'all';
+          if (city instanceof HTMLSelectElement) city.value = 'all';
+          apply();
+          if (search instanceof HTMLInputElement) search.focus();
+        });
+
+        window.addEventListener('keydown', (event) => {
+          if (!(event instanceof KeyboardEvent)) return;
+          if (event.key === '/' && document.activeElement !== search) {
+            event.preventDefault();
+            if (search instanceof HTMLInputElement) search.focus();
+          }
+          if (event.key === 'Escape' && document.activeElement === search) {
+            state.q = '';
+            if (search instanceof HTMLInputElement) search.value = '';
+            apply();
+          }
+        });
+      })();
+    </script>
   </main>
 </Layout>
