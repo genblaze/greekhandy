@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-collector-balance-check-lefkochori-ileias",
+  "slug": "epochiakos-elegxos-eksisorropisis-syllekti-epistrofis-thermansis-lefkochori-ileias",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Συλλέκτη Επιστροφής Θέρμανσης στο Λευκοχώρι Ηλείας",
+  "nameEn": "Seasonal Heating Return Collector Balance Check in Λευκοχώρι Ηλείας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης συλλέκτη επιστροφής θέρμανσης στο Λευκοχώρι Ηλείας για σταθερή θερμική απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λευκοχώρι Ηλείας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

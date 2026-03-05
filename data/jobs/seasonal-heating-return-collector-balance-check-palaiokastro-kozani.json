@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-collector-balance-check-palaiokastro-kozani",
+  "slug": "epochiakos-elegxos-eksisorropisis-syllekti-epistrofis-thermansis-palaiokastro-kozani",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Συλλέκτη Επιστροφής Θέρμανσης στο Παλαιόκαστρο Κοζάνης",
+  "nameEn": "Seasonal Heating Return Collector Balance Check in Παλαιόκαστρο Κοζάνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης συλλέκτη επιστροφής θέρμανσης στο Παλαιόκαστρο Κοζάνης για σταθερή θερμική απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόκαστρο Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

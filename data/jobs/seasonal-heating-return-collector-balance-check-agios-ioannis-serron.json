@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-collector-balance-check-agios-ioannis-serron",
+  "slug": "epochiakos-elegxos-eksisorropisis-syllekti-epistrofis-thermansis-agios-ioannis-serron",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Συλλέκτη Επιστροφής Θέρμανσης στον Άγιο Ιωάννη Σερρών",
+  "nameEn": "Seasonal Heating Return Collector Balance Check in Άγιος Ιωάννης Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης συλλέκτη επιστροφής θέρμανσης στον Άγιο Ιωάννη Σερρών για σταθερή θερμική απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

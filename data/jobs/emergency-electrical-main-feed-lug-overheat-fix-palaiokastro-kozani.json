@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-lug-overheat-fix-palaiokastro-kozani",
+  "slug": "epigousa-episkevi-yperthermansis-lug-kentrikis-trofodosias-palaiokastro-kozani",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Lug Κεντρικής Τροφοδοσίας στο Παλαιόκαστρο Κοζάνης",
+  "nameEn": "Emergency Electrical Main Feed Lug Overheat Fix in Παλαιόκαστρο Κοζάνης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης lug κεντρικής τροφοδοσίας στο Παλαιόκαστρο Κοζάνης για ασφαλή επαναφορά ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιόκαστρο Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

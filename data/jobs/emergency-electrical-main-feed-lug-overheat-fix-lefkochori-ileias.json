@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-lug-overheat-fix-lefkochori-ileias",
+  "slug": "epigousa-episkevi-yperthermansis-lug-kentrikis-trofodosias-lefkochori-ileias",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Lug Κεντρικής Τροφοδοσίας στο Λευκοχώρι Ηλείας",
+  "nameEn": "Emergency Electrical Main Feed Lug Overheat Fix in Λευκοχώρι Ηλείας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης lug κεντρικής τροφοδοσίας στο Λευκοχώρι Ηλείας για ασφαλή επαναφορά ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Λευκοχώρι Ηλείας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

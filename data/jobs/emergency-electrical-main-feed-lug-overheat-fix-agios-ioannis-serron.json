@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-lug-overheat-fix-agios-ioannis-serron",
+  "slug": "epigousa-episkevi-yperthermansis-lug-kentrikis-trofodosias-agios-ioannis-serron",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Lug Κεντρικής Τροφοδοσίας στον Άγιο Ιωάννη Σερρών",
+  "nameEn": "Emergency Electrical Main Feed Lug Overheat Fix in Άγιος Ιωάννης Σερρών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης lug κεντρικής τροφοδοσίας στον Άγιο Ιωάννη Σερρών για ασφαλή επαναφορά ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
