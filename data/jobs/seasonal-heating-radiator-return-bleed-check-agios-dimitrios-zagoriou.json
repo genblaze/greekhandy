@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-return-bleed-check-agios-dimitrios-zagoriou",
+  "slug": "epochiakos-elegxos-exaerosis-epistrofis-kalorifer-agios-dimitrios-zagoriou",
+  "nameGr": "Εποχικός Έλεγχος Εξαέρωσης Επιστροφής Καλοριφέρ στον Άγιο Δημήτριο Ζαγορίου",
+  "nameEn": "Seasonal Heating Radiator Return Bleed Check in Άγιος Δημήτριος Ζαγορίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξαέρωσης επιστροφής καλοριφέρ στον Άγιο Δημήτριο Ζαγορίου για ομοιόμορφη θέρμανση και αποφυγή θορύβων.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Δημήτριος Ζαγορίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

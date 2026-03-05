@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rural-feed-voltage-stabilization-akritochori-serron",
+  "slug": "epigousa-statheropoiisi-tasis-agrotikis-trofodosias-akritochori-serron",
+  "nameGr": "Επείγουσα Σταθεροποίηση Τάσης Αγροτικής Τροφοδοσίας στο Ακριτοχώρι Σερρών",
+  "nameEn": "Emergency Electrical Rural Feed Voltage Stabilization in Ακριτοχώρι Σερρών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα σταθεροποίηση τάσης αγροτικής τροφοδοσίας στο Ακριτοχώρι Σερρών για προστασία οικιακών συσκευών και ασφαλή λειτουργία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ακριτοχώρι Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

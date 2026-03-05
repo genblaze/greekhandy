@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-feed-nipple-leak-fix-mikro-papigo",
+  "slug": "epigousa-episkevi-diarrois-rakor-trofodosias-thermosifona-mikro-papigo",
+  "nameGr": "Επείγουσα Επισκευή Διαρροής Ρακόρ Τροφοδοσίας Θερμοσίφωνα στο Μικρό Πάπιγκο",
+  "nameEn": "Emergency Water Heater Feed Nipple Leak Fix in Μικρό Πάπιγκο",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή διαρροής ρακόρ τροφοδοσίας θερμοσίφωνα στο Μικρό Πάπιγκο για άμεση αποφυγή ζημιών από νερά.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Μικρό Πάπιγκο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

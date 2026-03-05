@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rural-feed-voltage-stabilization-agios-dimitrios-zagoriou",
+  "slug": "epigousa-statheropoiisi-tasis-agrotikis-trofodosias-agios-dimitrios-zagoriou",
+  "nameGr": "Επείγουσα Σταθεροποίηση Τάσης Αγροτικής Τροφοδοσίας στον Άγιο Δημήτριο Ζαγορίου",
+  "nameEn": "Emergency Electrical Rural Feed Voltage Stabilization in Άγιος Δημήτριος Ζαγορίου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα σταθεροποίηση τάσης αγροτικής τροφοδοσίας στον Άγιο Δημήτριο Ζαγορίου για προστασία οικιακών συσκευών και ασφαλή λειτουργία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Δημήτριος Ζαγορίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

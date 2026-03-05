@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-return-bleed-check-akritochori-serron",
+  "slug": "epochiakos-elegxos-exaerosis-epistrofis-kalorifer-akritochori-serron",
+  "nameGr": "Εποχικός Έλεγχος Εξαέρωσης Επιστροφής Καλοριφέρ στο Ακριτοχώρι Σερρών",
+  "nameEn": "Seasonal Heating Radiator Return Bleed Check in Ακριτοχώρι Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξαέρωσης επιστροφής καλοριφέρ στο Ακριτοχώρι Σερρών για ομοιόμορφη θέρμανση και αποφυγή θορύβων.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ακριτοχώρι Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

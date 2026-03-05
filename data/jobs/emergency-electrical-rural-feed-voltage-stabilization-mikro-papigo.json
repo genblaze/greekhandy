@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rural-feed-voltage-stabilization-mikro-papigo",
+  "slug": "epigousa-statheropoiisi-tasis-agrotikis-trofodosias-mikro-papigo",
+  "nameGr": "Επείγουσα Σταθεροποίηση Τάσης Αγροτικής Τροφοδοσίας στο Μικρό Πάπιγκο",
+  "nameEn": "Emergency Electrical Rural Feed Voltage Stabilization in Μικρό Πάπιγκο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα σταθεροποίηση τάσης αγροτικής τροφοδοσίας στο Μικρό Πάπιγκο για προστασία οικιακών συσκευών και ασφαλή λειτουργία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρό Πάπιγκο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
