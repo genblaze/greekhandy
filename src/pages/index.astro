@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { NAV_CLIENT_ALIAS_REDIRECTS } from '../config/navigation';
 
 interface Category {
   id: string;
@@ -415,7 +416,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       </div>
 
       <div class="mx-auto mt-10 max-w-6xl">
-        <nav class="mb-4 flex flex-wrap gap-2" aria-label="Γρήγορη πλοήγηση αρχικής">
+        <nav class="mb-4 hidden flex-wrap gap-2 sm:flex" aria-label="Γρήγορη πλοήγηση αρχικής">
           <a href="#search-browse" class="rounded-full border border-white/55 bg-slate-900/45 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-900/60">Αναζήτηση</a>
           <a href="#trust-layer" class="rounded-full border border-white/55 bg-slate-900/45 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-900/60">Εμπιστοσύνη</a>
           <a href="#services" class="rounded-full border border-white/55 bg-slate-900/45 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-900/60">Κατηγορίες</a>
@@ -842,6 +843,17 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       </div>
     </section>
   </main>
+
+  <script is:inline define:vars={{ navClientAliasRedirects: NAV_CLIENT_ALIAS_REDIRECTS }}>
+    (() => {
+      const normalizePath = (path) => (path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path);
+      const aliasPath = `${normalizePath(window.location.pathname)}${window.location.hash}`;
+      const canonicalContactPath = navClientAliasRedirects[aliasPath];
+      if (typeof canonicalContactPath !== 'string' || canonicalContactPath.length === 0) return;
+      const query = window.location.search || '';
+      window.location.replace(`${canonicalContactPath}${query}`);
+    })();
+  </script>
 
   <script is:inline>
     (() => {
