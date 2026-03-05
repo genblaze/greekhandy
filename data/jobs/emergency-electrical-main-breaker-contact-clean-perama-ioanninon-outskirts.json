@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-breaker-contact-clean-perama-ioanninon-outskirts",
+  "slug": "epigousos-katharismos-epafon-kentrikis-asfaleias-perama-ioanninon-outskirts",
+  "nameGr": "Επείγων Καθαρισμός Επαφών Κεντρικής Ασφάλειας στα περίχωρα Περάματος Ιωαννίνων",
+  "nameEn": "Emergency Electrical Main Breaker Contact Clean in Πέραμα Ιωαννίνων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων καθαρισμός επαφών κεντρικής ασφάλειας στα περίχωρα Περάματος Ιωαννίνων για σταθερή παροχή και μείωση πτώσεων ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πέραμα Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-flow-return-sync-karyes-lakonias",
+  "slug": "epochiakos-sygxronismos-rois-kai-epistrofis-kalorifer-karyes-lakonias",
+  "nameGr": "Εποχικός Συγχρονισμός Ροής και Επιστροφής Καλοριφέρ στις Καρυές Λακωνίας",
+  "nameEn": "Seasonal Heating Radiator Flow/Return Sync in Καρυές Λακωνίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός συγχρονισμός ροής και επιστροφής καλοριφέρ στις Καρυές Λακωνίας για ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καρυές Λακωνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

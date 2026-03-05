@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-breaker-contact-clean-agios-georgios-amfiloxias",
+  "slug": "epigousos-katharismos-epafon-kentrikis-asfaleias-agios-georgios-amfiloxias",
+  "nameGr": "Επείγων Καθαρισμός Επαφών Κεντρικής Ασφάλειας στον Άγιο Γεώργιο Αμφιλοχίας",
+  "nameEn": "Emergency Electrical Main Breaker Contact Clean in Άγιος Γεώργιος Αμφιλοχίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων καθαρισμός επαφών κεντρικής ασφάλειας στον Άγιο Γεώργιο Αμφιλοχίας για σταθερή παροχή και μείωση πτώσεων ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Αμφιλοχίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

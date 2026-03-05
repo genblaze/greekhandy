@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-flow-return-sync-perama-ioanninon-outskirts",
+  "slug": "epochiakos-sygxronismos-rois-kai-epistrofis-kalorifer-perama-ioanninon-outskirts",
+  "nameGr": "Εποχικός Συγχρονισμός Ροής και Επιστροφής Καλοριφέρ στα περίχωρα Περάματος Ιωαννίνων",
+  "nameEn": "Seasonal Heating Radiator Flow/Return Sync in Πέραμα Ιωαννίνων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός συγχρονισμός ροής και επιστροφής καλοριφέρ στα περίχωρα Περάματος Ιωαννίνων για ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πέραμα Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

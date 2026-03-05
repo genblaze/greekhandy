@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-breaker-contact-clean-karyes-lakonias",
+  "slug": "epigousos-katharismos-epafon-kentrikis-asfaleias-karyes-lakonias",
+  "nameGr": "Επείγων Καθαρισμός Επαφών Κεντρικής Ασφάλειας στις Καρυές Λακωνίας",
+  "nameEn": "Emergency Electrical Main Breaker Contact Clean in Καρυές Λακωνίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων καθαρισμός επαφών κεντρικής ασφάλειας στις Καρυές Λακωνίας για σταθερή παροχή και μείωση πτώσεων ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καρυές Λακωνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

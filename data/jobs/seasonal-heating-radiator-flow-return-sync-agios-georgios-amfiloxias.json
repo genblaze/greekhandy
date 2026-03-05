@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-flow-return-sync-agios-georgios-amfiloxias",
+  "slug": "epochiakos-sygxronismos-rois-kai-epistrofis-kalorifer-agios-georgios-amfiloxias",
+  "nameGr": "Εποχικός Συγχρονισμός Ροής και Επιστροφής Καλοριφέρ στον Άγιο Γεώργιο Αμφιλοχίας",
+  "nameEn": "Seasonal Heating Radiator Flow/Return Sync in Άγιος Γεώργιος Αμφιλοχίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός συγχρονισμός ροής και επιστροφής καλοριφέρ στον Άγιο Γεώργιο Αμφιλοχίας για ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Αμφιλοχίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
