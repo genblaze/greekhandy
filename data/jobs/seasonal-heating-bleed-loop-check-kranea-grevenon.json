@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-bleed-loop-check-kranea-grevenon",
+  "slug": "epochiakos-elegxos-vroxou-exaerosis-thermansis-kranea-grevenon",
+  "nameGr": "Εποχικός Έλεγχος Βρόχου Εξαέρωσης Θέρμανσης στην Κρανέα Γρεβενών",
+  "nameEn": "Seasonal Heating Bleed Loop Check in Κρανέα Γρεβενών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος βρόχου εξαέρωσης θέρμανσης στην Κρανέα Γρεβενών για καλύτερη ροή και λιγότερους θορύβους στα σώματα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κρανέα Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

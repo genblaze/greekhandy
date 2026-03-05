@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-backflow-fix-agioi-theodoroi-karditsas",
+  "slug": "epigousa-episkevi-antistrofis-sympyknomaton-esoterikou-ac-agioi-theodoroi-karditsas",
+  "nameGr": "Επείγουσα Επισκευή Αντιστροφής Συμπυκνωμάτων Εσωτερικού AC στους Αγίους Θεοδώρους Καρδίτσας",
+  "nameEn": "Emergency AC Indoor Condensate Backflow Fix in Άγιοι Θεόδωροι Καρδίτσας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αντιστροφής συμπυκνωμάτων εσωτερικού AC στους Αγίους Θεοδώρους Καρδίτσας για αποτροπή επιστροφής νερού στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιοι Θεόδωροι Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

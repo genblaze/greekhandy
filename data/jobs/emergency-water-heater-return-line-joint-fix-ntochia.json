@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-return-line-joint-fix-ntochia",
+  "slug": "epigousa-episkevi-enosis-grammis-epistrofis-thermosifona-ntochia",
+  "nameGr": "Επείγουσα Επισκευή Ένωσης Γραμμής Επιστροφής Θερμοσίφωνα στα Ντόχια",
+  "nameEn": "Emergency Water Heater Return Line Joint Fix in Ντόχια",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ένωσης γραμμής επιστροφής θερμοσίφωνα στα Ντόχια για άμεση διακοπή διαρροής και αποκατάσταση παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Ντόχια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

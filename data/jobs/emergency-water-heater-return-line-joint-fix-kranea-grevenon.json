@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-return-line-joint-fix-kranea-grevenon",
+  "slug": "epigousa-episkevi-enosis-grammis-epistrofis-thermosifona-kranea-grevenon",
+  "nameGr": "Επείγουσα Επισκευή Ένωσης Γραμμής Επιστροφής Θερμοσίφωνα στην Κρανέα Γρεβενών",
+  "nameEn": "Emergency Water Heater Return Line Joint Fix in Κρανέα Γρεβενών",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ένωσης γραμμής επιστροφής θερμοσίφωνα στην Κρανέα Γρεβενών για άμεση διακοπή διαρροής και αποκατάσταση παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κρανέα Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

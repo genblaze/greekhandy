@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-backflow-fix-ntochia",
+  "slug": "epigousa-episkevi-antistrofis-sympyknomaton-esoterikou-ac-ntochia",
+  "nameGr": "Επείγουσα Επισκευή Αντιστροφής Συμπυκνωμάτων Εσωτερικού AC στα Ντόχια",
+  "nameEn": "Emergency AC Indoor Condensate Backflow Fix in Ντόχια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αντιστροφής συμπυκνωμάτων εσωτερικού AC στα Ντόχια για αποτροπή επιστροφής νερού στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ντόχια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

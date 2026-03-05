@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-bleed-loop-check-ntochia",
+  "slug": "epochiakos-elegxos-vroxou-exaerosis-thermansis-ntochia",
+  "nameGr": "Εποχικός Έλεγχος Βρόχου Εξαέρωσης Θέρμανσης στα Ντόχια",
+  "nameEn": "Seasonal Heating Bleed Loop Check in Ντόχια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος βρόχου εξαέρωσης θέρμανσης στα Ντόχια για καλύτερη ροή και λιγότερους θορύβους στα σώματα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ντόχια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

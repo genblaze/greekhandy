@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-meter-neutral-link-fix-agioi-theodoroi-karditsas",
+  "slug": "epigousa-episkevi-link-oudeterou-metriti-agioi-theodoroi-karditsas",
+  "nameGr": "Επείγουσα Επισκευή Link Ουδετέρου Μετρητή στους Αγίους Θεοδώρους Καρδίτσας",
+  "nameEn": "Emergency Electrical Meter Neutral Link Fix in Άγιοι Θεόδωροι Καρδίτσας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή link ουδετέρου μετρητή στους Αγίους Θεοδώρους Καρδίτσας για σταθερή τάση και ασφαλή λειτουργία δικτύου κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιοι Θεόδωροι Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

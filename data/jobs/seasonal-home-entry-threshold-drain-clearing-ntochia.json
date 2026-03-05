@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-clearing-ntochia",
+  "slug": "epochiakos-katharismos-aporrois-katofliou-eisodou-ntochia",
+  "nameGr": "Εποχικός Καθαρισμός Απορροής Κατωφλιού Εισόδου στα Ντόχια",
+  "nameEn": "Seasonal Home Entry Threshold Drain Clearing in Ντόχια",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός καθαρισμός απορροής κατωφλιού εισόδου στα Ντόχια για πρόληψη νερών και ολισθηρών σημείων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ντόχια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

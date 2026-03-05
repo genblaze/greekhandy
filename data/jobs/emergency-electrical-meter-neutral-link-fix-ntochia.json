@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-meter-neutral-link-fix-ntochia",
+  "slug": "epigousa-episkevi-link-oudeterou-metriti-ntochia",
+  "nameGr": "Επείγουσα Επισκευή Link Ουδετέρου Μετρητή στα Ντόχια",
+  "nameEn": "Emergency Electrical Meter Neutral Link Fix in Ντόχια",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή link ουδετέρου μετρητή στα Ντόχια για σταθερή τάση και ασφαλή λειτουργία δικτύου κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ντόχια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

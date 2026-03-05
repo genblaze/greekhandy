@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-clearing-kranea-grevenon",
+  "slug": "epochiakos-katharismos-aporrois-katofliou-eisodou-kranea-grevenon",
+  "nameGr": "Εποχικός Καθαρισμός Απορροής Κατωφλιού Εισόδου στην Κρανέα Γρεβενών",
+  "nameEn": "Seasonal Home Entry Threshold Drain Clearing in Κρανέα Γρεβενών",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός καθαρισμός απορροής κατωφλιού εισόδου στην Κρανέα Γρεβενών για πρόληψη νερών και ολισθηρών σημείων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κρανέα Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-backflow-fix-kranea-grevenon",
+  "slug": "epigousa-episkevi-antistrofis-sympyknomaton-esoterikou-ac-kranea-grevenon",
+  "nameGr": "Επείγουσα Επισκευή Αντιστροφής Συμπυκνωμάτων Εσωτερικού AC στην Κρανέα Γρεβενών",
+  "nameEn": "Emergency AC Indoor Condensate Backflow Fix in Κρανέα Γρεβενών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αντιστροφής συμπυκνωμάτων εσωτερικού AC στην Κρανέα Γρεβενών για αποτροπή επιστροφής νερού στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Κρανέα Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
