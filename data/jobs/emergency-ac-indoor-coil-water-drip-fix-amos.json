@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-coil-water-drip-fix-amos",
+  "slug": "epigousa-episkevi-stagmatos-esoterikou-stoixeiou-ac-amos",
+  "nameGr": "Επείγουσα Επισκευή Στάγματος Εσωτερικού Στοιχείου AC στο Άμος",
+  "nameEn": "Emergency AC Indoor Coil Water Drip Fix in Άμος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή στάγματος εσωτερικού στοιχείου AC στο Άμος για να σταματήσουν άμεσα οι διαρροές στο δωμάτιο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άμος επείγον",
+    "Επείγουσα Άμος",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

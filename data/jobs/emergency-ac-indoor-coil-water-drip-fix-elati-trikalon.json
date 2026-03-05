@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-coil-water-drip-fix-elati-trikalon",
+  "slug": "epigousa-episkevi-stagmatos-esoterikou-stoixeiou-ac-elati-trikalon",
+  "nameGr": "Επείγουσα Επισκευή Στάγματος Εσωτερικού Στοιχείου AC στην Ελάτη Τρικάλων",
+  "nameEn": "Emergency AC Indoor Coil Water Drip Fix in Ελάτη Τρικάλων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή στάγματος εσωτερικού στοιχείου AC στην Ελάτη Τρικάλων για να σταματήσουν άμεσα οι διαρροές στο δωμάτιο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ελάτη Τρικάλων επείγον",
+    "Επείγουσα Ελάτη Τρικάλων",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

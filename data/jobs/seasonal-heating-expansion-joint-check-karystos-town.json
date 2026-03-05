@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-expansion-joint-check-karystos-town",
+  "slug": "epochiakos-elegxos-arthrosis-diastolis-thermansis-karystos-town",
+  "nameGr": "Εποχικός Έλεγχος Άρθρωσης Διαστολής Θέρμανσης στην Κάρυστο",
+  "nameEn": "Seasonal Heating Expansion Joint Check in Κάρυστος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος άρθρωσης διαστολής θέρμανσης στην Κάρυστο για πρόληψη διαρροών και πτώσης πίεσης.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κάρυστος επείγον",
+    "Εποχικός Κάρυστος",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

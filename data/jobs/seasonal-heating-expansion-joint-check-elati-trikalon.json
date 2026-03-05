@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-expansion-joint-check-elati-trikalon",
+  "slug": "epochiakos-elegxos-arthrosis-diastolis-thermansis-elati-trikalon",
+  "nameGr": "Εποχικός Έλεγχος Άρθρωσης Διαστολής Θέρμανσης στην Ελάτη Τρικάλων",
+  "nameEn": "Seasonal Heating Expansion Joint Check in Ελάτη Τρικάλων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος άρθρωσης διαστολής θέρμανσης στην Ελάτη Τρικάλων για πρόληψη διαρροών και πτώσης πίεσης.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ελάτη Τρικάλων επείγον",
+    "Εποχικός Ελάτη Τρικάλων",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

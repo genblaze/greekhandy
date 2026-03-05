@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electric-water-leak-current-check-amos",
+  "slug": "epigousos-elegxos-diarrois-revmatos-logo-nerou-amos",
+  "nameGr": "Επείγων Έλεγχος Διαρροής Ρεύματος λόγω Νερού στο Άμος",
+  "nameEn": "Emergency Electric Water-Leak Current Check in Άμος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος διαρροής ρεύματος λόγω νερού στο Άμος για άμεση ασφάλεια κατοικίας και συσκευών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άμος επείγον",
+    "Επείγων Άμος",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

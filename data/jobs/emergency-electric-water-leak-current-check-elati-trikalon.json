@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electric-water-leak-current-check-elati-trikalon",
+  "slug": "epigousos-elegxos-diarrois-revmatos-logo-nerou-elati-trikalon",
+  "nameGr": "Επείγων Έλεγχος Διαρροής Ρεύματος λόγω Νερού στην Ελάτη Τρικάλων",
+  "nameEn": "Emergency Electric Water-Leak Current Check in Ελάτη Τρικάλων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος διαρροής ρεύματος λόγω νερού στην Ελάτη Τρικάλων για άμεση ασφάλεια κατοικίας και συσκευών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ελάτη Τρικάλων επείγον",
+    "Επείγων Ελάτη Τρικάλων",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

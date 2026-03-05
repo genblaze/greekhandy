@@ -1,0 +1,20 @@
+{
+  "id": "emergency-door-frame-sag-alignment-amos",
+  "slug": "epigousa-eythigrammisi-kasas-portas-apo-kathizisi-amos",
+  "nameGr": "Επείγουσα Ευθυγράμμιση Κάσας Πόρτας από Καθίζηση στο Άμος",
+  "nameEn": "Emergency Door Frame Sag Alignment in Άμος",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα ευθυγράμμιση κάσας πόρτας στο Άμος όταν η πόρτα βρίσκει και δεν κλειδώνει σωστά.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Άμος επείγον",
+    "Επείγουσα Άμος",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

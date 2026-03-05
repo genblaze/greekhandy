@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-reducer-valve-fix-amos",
+  "slug": "epigousa-episkevi-valvidas-meiosis-piesis-nerou-amos",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Μείωσης Πίεσης Νερού στο Άμος",
+  "nameEn": "Emergency Water Pressure Reducer Valve Fix in Άμος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας μείωσης πίεσης νερού στο Άμος για να σταθεροποιηθεί άμεσα η παροχή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Άμος επείγον",
+    "Επείγουσα Άμος",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-reducer-valve-fix-karystos-town",
+  "slug": "epigousa-episkevi-valvidas-meiosis-piesis-nerou-karystos-town",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Μείωσης Πίεσης Νερού στην Κάρυστο",
+  "nameEn": "Emergency Water Pressure Reducer Valve Fix in Κάρυστος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας μείωσης πίεσης νερού στην Κάρυστο για να σταθεροποιηθεί άμεσα η παροχή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κάρυστος επείγον",
+    "Επείγουσα Κάρυστος",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

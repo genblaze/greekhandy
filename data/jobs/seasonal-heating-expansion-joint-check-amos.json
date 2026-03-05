@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-expansion-joint-check-amos",
+  "slug": "epochiakos-elegxos-arthrosis-diastolis-thermansis-amos",
+  "nameGr": "Εποχικός Έλεγχος Άρθρωσης Διαστολής Θέρμανσης στο Άμος",
+  "nameEn": "Seasonal Heating Expansion Joint Check in Άμος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος άρθρωσης διαστολής θέρμανσης στο Άμος για πρόληψη διαρροών και πτώσης πίεσης.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άμος επείγον",
+    "Εποχικός Άμος",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
