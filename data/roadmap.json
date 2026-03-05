@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-8",
+      "name": "QA Critical Fixes (Wave 8)",
+      "description": "Wave 8 QA directives: ship complete mobile navigation (hamburger/drawer) so all primary routes are reachable on 375px; fix broken professional media card/hero for Γιάννης Κώστα with enforced pre-publish image validation + fallback thumbnails; reposition floating accessibility toolbar into a non-blocking edge trigger with collision-safe spacing; replace synthetic/templated category listing content with credible marketplace entries including distinct naming and proof signals; align heating taxonomy consistency so /thermansi slug, H1, metadata, and on-page copy express one coherent intent.",
+      "priority": 1,
+      "status": "in-progress",
+      "estimatedComplexity": "high"
+    },
+    {
       "id": "qa-critical-fixes-wave-7",
       "name": "QA Critical Fixes (Wave 7)",
       "description": "Wave 7 QA directives: fix homepage hero readability/contrast to WCAG-compliant levels and remove haze blur; repair top-nav IA by routing Οδηγοί/Επαγγελματίες to live pages with automated nav-link 200 checks; align service taxonomy and slug routing so promoted categories (e.g. thermansi) never 404; improve category-card trust signals with validated marketplace data/provenance; add GDPR-grade consent + privacy notice and explicit success/failure/response-time expectations on category lead forms.",

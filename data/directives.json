@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Mobile navigation is broken and looks unfinished: on the 375px homepage viewport the header only shows two links ('Οδηγοί', 'Επαγγελματίες') while core routes like 'Αρχική', 'Υπηρεσίες', and 'Επικοινωνία' disappear with no menu toggle. Implement a proper mobile nav (hamburger/drawer) so all primary routes are always reachable.",
-      "addedAt": "2026-03-05T00:02:58Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "/professionals is still shipping a broken profile image card for Γιάννης Κώστα (blank white image block + alt text). This is a direct trust failure. Fix the media source and enforce pre-publish image validation with a real fallback thumbnail.",
-      "addedAt": "2026-03-05T00:02:58Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Floating accessibility toolbar still overlays core content (seen on professionals, blog, and contact pages), including over footer links/text. Reposition it to a non-blocking fixed edge trigger and enforce collision-safe spacing so it never covers actionable UI.",
-      "addedAt": "2026-03-05T00:02:58Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Category listing content still reads like synthetic filler: repeated low-credibility card naming patterns and near-identical snippets make the marketplace feel fake. Replace templated entries with credible provider data (distinct naming, proof signals, realistic service blurbs) before indexing these pages aggressively.",
-      "addedAt": "2026-03-05T00:02:58Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Service taxonomy/copy is still inconsistent: route '/thermansi' renders with title 'Τεχνικοί Κλιματισμού', mixing heating intent with AC branding. Align slug, H1, metadata, and body copy to one clear service intent or users and search engines will treat it as sloppy, mismatched landing-page spam.",
-      "addedAt": "2026-03-05T00:02:58Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -290,6 +264,36 @@
       "addedAt": "2026-03-04T23:32:36Z",
       "source": "qa-agent",
       "processedAt": "2026-03-04T23:35:07Z"
+    },
+    {
+      "directive": "Mobile navigation is broken and looks unfinished: on the 375px homepage viewport the header only shows two links ('Οδηγοί', 'Επαγγελματίες') while core routes like 'Αρχική', 'Υπηρεσίες', and 'Επικοινωνία' disappear with no menu toggle. Implement a proper mobile nav (hamburger/drawer) so all primary routes are always reachable.",
+      "addedAt": "2026-03-05T00:02:58Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T00:04:47Z"
+    },
+    {
+      "directive": "/professionals is still shipping a broken profile image card for Γιάννης Κώστα (blank white image block + alt text). This is a direct trust failure. Fix the media source and enforce pre-publish image validation with a real fallback thumbnail.",
+      "addedAt": "2026-03-05T00:02:58Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T00:04:47Z"
+    },
+    {
+      "directive": "Floating accessibility toolbar still overlays core content (seen on professionals, blog, and contact pages), including over footer links/text. Reposition it to a non-blocking fixed edge trigger and enforce collision-safe spacing so it never covers actionable UI.",
+      "addedAt": "2026-03-05T00:02:58Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T00:04:47Z"
+    },
+    {
+      "directive": "Category listing content still reads like synthetic filler: repeated low-credibility card naming patterns and near-identical snippets make the marketplace feel fake. Replace templated entries with credible provider data (distinct naming, proof signals, realistic service blurbs) before indexing these pages aggressively.",
+      "addedAt": "2026-03-05T00:02:58Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T00:04:47Z"
+    },
+    {
+      "directive": "Service taxonomy/copy is still inconsistent: route '/thermansi' renders with title 'Τεχνικοί Κλιματισμού', mixing heating intent with AC branding. Align slug, H1, metadata, and body copy to one clear service intent or users and search engines will treat it as sloppy, mismatched landing-page spam.",
+      "addedAt": "2026-03-05T00:02:58Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T00:04:47Z"
     }
   ]
 }

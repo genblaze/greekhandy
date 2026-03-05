@@ -24,6 +24,17 @@ const hasThreadId = threadId.length > 0;
 const canLoadThreadData = hasThreadId && hasValidViewerEmail;
 const status = clean(url.searchParams.get('status'));
 const messageStatus = clean(url.searchParams.get('message'));
+const threadSearchQueryRaw = clean(url.searchParams.get('q'));
+const threadSearchQuery = threadSearchQueryRaw.toLowerCase();
+type ThreadVisibilityFilter = 'all' | 'visible' | 'hidden' | 'reportable';
+const isThreadVisibilityFilter = (value: string): value is ThreadVisibilityFilter => (
+  value === 'all' || value === 'visible' || value === 'hidden' || value === 'reportable'
+);
+const requestedThreadVisibilityFilter = clean(url.searchParams.get('visibility')).toLowerCase();
+const threadVisibilityFilter: ThreadVisibilityFilter = isThreadVisibilityFilter(requestedThreadVisibilityFilter)
+  ? requestedThreadVisibilityFilter
+  : 'all';
+const hasUnknownThreadVisibilityFilter = requestedThreadVisibilityFilter !== '' && !isThreadVisibilityFilter(requestedThreadVisibilityFilter);
 const knownThreadStatuses = new Set(['', 'reported', 'report-error', 'report-invalid', 'report-forbidden', 'loading']);
 const knownMessageStatuses = new Set(['', 'submitted', 'invalid', 'error', 'blocked', 'loading']);
 const showLoadingState = status === 'loading' || messageStatus === 'loading';
@@ -42,6 +53,9 @@ const toDomId = (value: string, fallback: string) => {
   const fallbackNormalized = fallback.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   return normalized || fallbackNormalized || 'item';
 };
+const getMessageAnchorHref = (message: MessageSubmission | null) => (
+  message ? `#message-${toDomId(message.id, `message-${message.submittedAt}`)}` : '#thread-history'
+);
 
 let threadLoadError = '';
 const safeReadNdjson = async <T,>(path: string, label: string): Promise<T[]> => {
