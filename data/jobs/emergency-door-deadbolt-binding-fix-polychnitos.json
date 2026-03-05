@@ -1,0 +1,20 @@
+{
+  "id": "emergency-door-deadbolt-binding-fix-polychnitos",
+  "slug": "epigousa-episkevi-kollimatos-syrthriou-asfaleias-portas-polychnitos",
+  "nameGr": "Επείγουσα Επισκευή Κολλήματος Σύρτη Ασφαλείας Πόρτας στον Πολιχνίτο",
+  "nameEn": "Emergency Door Deadbolt Binding Fix in Πολιχνίτος",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα επισκευή κολλήματος σύρτη ασφαλείας πόρτας στον Πολιχνίτο για άμεση αποκατάσταση ασφαλούς κλειδώματος.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "50-170€",
+  "demand": "high",
+  "keywords": [
+    "Πολιχνίτος επείγον",
+    "Επείγουσα Πολιχνίτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

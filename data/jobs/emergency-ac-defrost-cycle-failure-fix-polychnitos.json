@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-defrost-cycle-failure-fix-polychnitos",
+  "slug": "epigousa-episkevi-vlavis-kyklou-apopsyksis-ac-polychnitos",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Κύκλου Απόψυξης AC στον Πολιχνίτο",
+  "nameEn": "Emergency AC Defrost Cycle Failure Fix in Πολιχνίτος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή βλάβης κύκλου απόψυξης AC στον Πολιχνίτο για σταθερή λειτουργία σε χαμηλές θερμοκρασίες.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πολιχνίτος επείγον",
+    "Επείγουσα Πολιχνίτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

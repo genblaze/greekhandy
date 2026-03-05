@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-pipe-airlock-check-myrtos",
+  "slug": "epochiakos-elegxos-aerothylakon-solinoseon-thermansis-myrtos",
+  "nameGr": "Εποχικός Έλεγχος Αεροθύλακων Σωληνώσεων Θέρμανσης στον Μύρτο",
+  "nameEn": "Seasonal Heating Pipe Airlock Check in Μύρτος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος αεροθύλακων στις σωληνώσεις θέρμανσης στον Μύρτο για ομοιόμορφη κυκλοφορία και απόδοση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "Μύρτος επείγον",
+    "Εποχικός Μύρτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-phase-imbalance-check-myrtos",
+  "slug": "epigousos-elegxos-anisorropias-faseon-revmatos-myrtos",
+  "nameGr": "Επείγων Έλεγχος Ανισορροπίας Φάσεων Ρεύματος στον Μύρτο",
+  "nameEn": "Emergency Electrical Phase Imbalance Check in Μύρτος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος ανισορροπίας φάσεων ρεύματος στον Μύρτο για πρόληψη βλαβών σε συσκευές και πίνακα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μύρτος επείγον",
+    "Επείγων Μύρτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-phase-imbalance-check-polychnitos",
+  "slug": "epigousos-elegxos-anisorropias-faseon-revmatos-polychnitos",
+  "nameGr": "Επείγων Έλεγχος Ανισορροπίας Φάσεων Ρεύματος στον Πολιχνίτο",
+  "nameEn": "Emergency Electrical Phase Imbalance Check in Πολιχνίτος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος ανισορροπίας φάσεων ρεύματος στον Πολιχνίτο για πρόληψη βλαβών σε συσκευές και πίνακα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πολιχνίτος επείγον",
+    "Επείγων Πολιχνίτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

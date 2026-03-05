@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-pipe-airlock-check-polychnitos",
+  "slug": "epochiakos-elegxos-aerothylakon-solinoseon-thermansis-polychnitos",
+  "nameGr": "Εποχικός Έλεγχος Αεροθύλακων Σωληνώσεων Θέρμανσης στον Πολιχνίτο",
+  "nameEn": "Seasonal Heating Pipe Airlock Check in Πολιχνίτος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος αεροθύλακων στις σωληνώσεις θέρμανσης στον Πολιχνίτο για ομοιόμορφη κυκλοφορία και απόδοση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "Πολιχνίτος επείγον",
+    "Εποχικός Πολιχνίτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

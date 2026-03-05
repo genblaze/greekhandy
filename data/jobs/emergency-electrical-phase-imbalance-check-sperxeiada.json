@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-phase-imbalance-check-sperxeiada",
+  "slug": "epigousos-elegxos-anisorropias-faseon-revmatos-sperxeiada",
+  "nameGr": "Επείγων Έλεγχος Ανισορροπίας Φάσεων Ρεύματος στη Σπερχειάδα",
+  "nameEn": "Emergency Electrical Phase Imbalance Check in Σπερχειάδα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος ανισορροπίας φάσεων ρεύματος στη Σπερχειάδα για πρόληψη βλαβών σε συσκευές και πίνακα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Σπερχειάδα επείγον",
+    "Επείγων Σπερχειάδα",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

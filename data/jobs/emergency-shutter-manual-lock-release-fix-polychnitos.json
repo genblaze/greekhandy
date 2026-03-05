@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-manual-lock-release-fix-polychnitos",
+  "slug": "epigousa-episkevi-mixanismou-manoual-kleidomatos-rolou-polychnitos",
+  "nameGr": "Επείγουσα Επισκευή Μηχανισμού Manual Κλειδώματος Ρολού στον Πολιχνίτο",
+  "nameEn": "Emergency Shutter Manual Lock Release Fix in Πολιχνίτος",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επισκευή μηχανισμού manual κλειδώματος ρολού στον Πολιχνίτο όταν μπλοκάρει και δεν επιτρέπει πρόσβαση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "Πολιχνίτος επείγον",
+    "Επείγουσα Πολιχνίτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

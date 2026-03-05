@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-pipe-airlock-check-sperxeiada",
+  "slug": "epochiakos-elegxos-aerothylakon-solinoseon-thermansis-sperxeiada",
+  "nameGr": "Εποχικός Έλεγχος Αεροθύλακων Σωληνώσεων Θέρμανσης στη Σπερχειάδα",
+  "nameEn": "Seasonal Heating Pipe Airlock Check in Σπερχειάδα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος αεροθύλακων στις σωληνώσεις θέρμανσης στη Σπερχειάδα για ομοιόμορφη κυκλοφορία και απόδοση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "Σπερχειάδα επείγον",
+    "Εποχικός Σπερχειάδα",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
