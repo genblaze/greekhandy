@@ -254,17 +254,104 @@ for (const message of threadMessages) {
 }
 const counterpartEmail = [...participants].find((email) => email !== viewerEmail) || recipientForReply.toLowerCase();
 const threadListHref = hasValidViewerEmail ? `/messages?viewerEmail=${encodeURIComponent(viewerEmail)}` : '/messages';
-const threadViewHref = canLoadThreadData
-  ? `/messages/thread?threadId=${encodeURIComponent(threadId)}&viewerEmail=${encodeURIComponent(viewerEmail)}`
-  : '/messages/thread';
+
+const buildThreadHref = (options: { q?: string; visibility?: string } = {}) => {
+  const params = new URLSearchParams();
+  if (threadId) params.set('threadId', threadId);
+  if (viewerEmail) params.set('viewerEmail', viewerEmail);
+  const nextQuery = typeof options.q === 'string' ? options.q.trim() : threadSearchQueryRaw;
+  if (nextQuery) params.set('q', nextQuery);
+  const requestedVisibility = typeof options.visibility === 'string' ? options.visibility.trim().toLowerCase() : threadVisibilityFilter;
+  const nextVisibility = isThreadVisibilityFilter(requestedVisibility) ? requestedVisibility : 'all';
+  if (nextVisibility !== 'all') params.set('visibility', nextVisibility);
+  const query = params.toString();
+  return query ? `/messages/thread?${query}` : '/messages/thread';
+};
+
+const threadViewHref = canLoadThreadData ? buildThreadHref() : '/messages/thread';
 const incomingMessagesCount = threadMessages.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail).length;
 const outgoingMessagesCount = Math.max(0, threadMessages.length - incomingMessagesCount);
-const reportableIncomingCount = threadMessages.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail && !hiddenMessageIds.has(message.id)).length;
+const isMessageHidden = (message: MessageSubmission) => hiddenMessageIds.has(message.id);
+const isIncomingMessage = (message: MessageSubmission) => message.senderEmail.toLowerCase() !== viewerEmail;
+const isReportableMessage = (message: MessageSubmission) => isIncomingMessage(message) && !isMessageHidden(message);
+const reportableIncomingCount = threadMessages.filter((message) => isReportableMessage(message)).length;
 const latestVisibleMessage = [...threadMessages].reverse().find((message) => !hiddenMessageIds.has(message.id)) || null;
-const latestVisibleMessageAnchor = latestVisibleMessage
-  ? `message-${toDomId(latestVisibleMessage.id, `message-${latestVisibleMessage.submittedAt}`)}`
-  : '';
-const latestVisibleMessageHref = latestVisibleMessageAnchor ? `#${latestVisibleMessageAnchor}` : '#thread-history';
+const latestVisibleMessageHref = getMessageAnchorHref(latestVisibleMessage);
+
+const matchesThreadVisibilityFilter = (message: MessageSubmission) => {
+  if (threadVisibilityFilter === 'visible') return !isMessageHidden(message);
+  if (threadVisibilityFilter === 'hidden') return isMessageHidden(message);
+  if (threadVisibilityFilter === 'reportable') return isReportableMessage(message);
+  return true;
+};
+const matchesThreadSearchQuery = (message: MessageSubmission) => {
+  if (!threadSearchQuery) return true;
+  const searchIndex = [
+    message.message,
+    message.senderName,
+    message.senderEmail,
+    message.recipientEmail,
+    message.submittedAt,
+    getMessageThreadId(message)
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+  return searchIndex.includes(threadSearchQuery);
+};
+const filteredThreadMessages = threadMessages.filter((message) => (
+  matchesThreadVisibilityFilter(message) && matchesThreadSearchQuery(message)
+));
+const filteredIncomingMessagesCount = filteredThreadMessages.filter((message) => isIncomingMessage(message)).length;
+const filteredOutgoingMessagesCount = Math.max(0, filteredThreadMessages.length - filteredIncomingMessagesCount);
+const filteredHiddenMessagesCount = filteredThreadMessages.filter((message) => isMessageHidden(message)).length;
+const filteredVisibleMessagesCount = Math.max(0, filteredThreadMessages.length - filteredHiddenMessagesCount);
+const filteredReportableIncomingCount = filteredThreadMessages.filter((message) => isReportableMessage(message)).length;
+const latestFilteredVisibleMessage = [...filteredThreadMessages].reverse().find((message) => !hiddenMessageIds.has(message.id)) || null;
+const latestFilteredVisibleMessageHref = getMessageAnchorHref(latestFilteredVisibleMessage);
+const threadFilterCounts = {
+  all: threadMessages.length,
+  visible: visibleMessagesCount,
+  hidden: hiddenMessagesCount,
+  reportable: reportableIncomingCount
+};
+const threadFilterChips: Array<{ value: ThreadVisibilityFilter; label: string; count: number }> = [
+  { value: 'all', label: 'Όλα', count: threadFilterCounts.all },
+  { value: 'visible', label: 'Ορατά', count: threadFilterCounts.visible },
+  { value: 'hidden', label: 'Κρυφά', count: threadFilterCounts.hidden },
+  { value: 'reportable', label: 'Αναφέρσιμα', count: threadFilterCounts.reportable }
+];
+const threadVisibilityFilterLabel = threadVisibilityFilter === 'visible'
+  ? 'Ορατά'
+  : threadVisibilityFilter === 'hidden'
+    ? 'Κρυφά'
+    : threadVisibilityFilter === 'reportable'
+      ? 'Αναφέρσιμα'
+      : 'Όλα';
+const hasThreadFilters = Boolean(threadSearchQueryRaw) || threadVisibilityFilter !== 'all';
+const showHistoryNoMatchState = !showLoadingState && threadMessages.length > 0 && filteredThreadMessages.length === 0 && hasThreadFilters;
+const threadFilterResetHref = buildThreadHref({ q: '', visibility: 'all' });
+const threadFilterSummary = showLoadingState
+  ? 'Τα φίλτρα θα ενημερωθούν μόλις ολοκληρωθεί ο συγχρονισμός.'
+  : showHistoryNoMatchState
+    ? `Δεν υπάρχουν αποτελέσματα για τα φίλτρα (${threadVisibilityFilterLabel}${threadSearchQueryRaw ? ` · αναζήτηση: "${threadSearchQueryRaw}"` : ''}).`
+    : hasThreadFilters
+      ? `Ενεργά φίλτρα: ${filteredThreadMessages.length}/${threadMessages.length} μηνύματα.`
+      : 'Δεν υπάρχουν ενεργά φίλτρα thread.';
+const threadHistoryVisibleMessage = hasThreadFilters ? latestFilteredVisibleMessage : latestVisibleMessage;
+const threadHistoryVisibleMessageHref = hasThreadFilters ? latestFilteredVisibleMessageHref : latestVisibleMessageHref;
+const threadHistoryMessageCountLabel = hasThreadFilters
+  ? `${filteredThreadMessages.length} από ${threadMessages.length} μηνύματα`
+  : `${threadMessages.length} μηνύματα`;
+const threadHistoryIncomingLabel = hasThreadFilters
+  ? `${filteredIncomingMessagesCount} (σύνολο ${incomingMessagesCount})`
+  : `${incomingMessagesCount}`;
+const threadHistoryOutgoingLabel = hasThreadFilters
+  ? `${filteredOutgoingMessagesCount} (σύνολο ${outgoingMessagesCount})`
+  : `${outgoingMessagesCount}`;
+const threadHistoryReportableLabel = hasThreadFilters
+  ? `${filteredReportableIncomingCount} (σύνολο ${reportableIncomingCount})`
+  : `${reportableIncomingCount}`;
 const moderationSendStateLabel = threadBlockedByModeration
   ? 'Κλειδωμένη αποστολή'
   : threadMutedByModeration
@@ -319,76 +406,110 @@ const historyStateSummary = showLoadingState
   ? 'Η συνομιλία φορτώνει. Το ιστορικό ενημερώνεται.'
   : threadLoadError
     ? hasPartialThreadHistory
-      ? `Υπάρχει σφάλμα φόρτωσης, αλλά εμφανίζονται ${threadMessages.length} διαθέσιμα μηνύματα.`
+      ? `Υπάρχει σφάλμα φόρτωσης, αλλά εμφανίζονται ${filteredThreadMessages.length} διαθέσιμα μηνύματα.`
       : 'Υπάρχει σφάλμα φόρτωσης και δεν εμφανίζεται ιστορικό.'
-    : threadMessages.length === 0
-      ? 'Δεν υπάρχουν μηνύματα ακόμη σε αυτό το thread.'
-      : `Το ιστορικό περιλαμβάνει ${threadMessages.length} μηνύματα.`;
+    : showHistoryNoMatchState
+      ? 'Τα φίλτρα δεν επέστρεψαν μήνυμα στο ιστορικό.'
+      : threadMessages.length === 0
+        ? 'Δεν υπάρχουν μηνύματα ακόμη σε αυτό το thread.'
+        : hasThreadFilters
+          ? `Εμφανίζονται ${filteredThreadMessages.length} από ${threadMessages.length} μηνύματα.`
+          : `Το ιστορικό περιλαμβάνει ${threadMessages.length} μηνύματα.`;
 const historyStateTitle = showLoadingState
   ? 'Συγχρονισμός ιστορικού σε εξέλιξη'
   : threadLoadError
     ? 'Αστοχία φόρτωσης ιστορικού'
-    : threadMessages.length === 0
-      ? 'Το thread δεν έχει ακόμη μηνύματα'
-      : 'Το ιστορικό είναι διαθέσιμο';
+    : showHistoryNoMatchState
+      ? 'Δεν βρέθηκε μήνυμα με αυτά τα φίλτρα'
+      : threadMessages.length === 0
+        ? 'Το thread δεν έχει ακόμη μηνύματα'
+        : 'Το ιστορικό είναι διαθέσιμο';
 const historyStateToneClass = showLoadingState
   ? 'border-sky-200 bg-sky-50/80 text-sky-900'
   : threadLoadError
     ? 'border-rose-200 bg-rose-50/80 text-rose-900'
-    : threadMessages.length === 0
-      ? 'border-slate-200 bg-slate-50/80 text-slate-700'
-      : 'border-emerald-200 bg-emerald-50/80 text-emerald-900';
+    : showHistoryNoMatchState
+      ? 'border-amber-200 bg-amber-50/80 text-amber-900'
+      : threadMessages.length === 0
+        ? 'border-slate-200 bg-slate-50/80 text-slate-700'
+        : 'border-emerald-200 bg-emerald-50/80 text-emerald-900';
 const historyStateActionLabel = showLoadingState
   ? 'Αναμονή συγχρονισμού'
   : threadLoadError
     ? 'Επανάληψη φόρτωσης'
-    : threadMessages.length === 0
-      ? 'Μετάβαση στις ενέργειες thread'
-      : 'Μετάβαση στο τελευταίο ορατό';
+    : showHistoryNoMatchState
+      ? 'Καθαρισμός φίλτρων'
+      : threadMessages.length === 0
+        ? 'Μετάβαση στις ενέργειες thread'
+        : threadHistoryVisibleMessage
+          ? 'Μετάβαση στο τελευταίο ορατό'
+          : 'Μετάβαση στα αποτελέσματα';
 const historyStateActionHref = showLoadingState
   ? '#thread-history'
   : threadLoadError
     ? threadViewHref
-    : threadMessages.length === 0
-      ? '#thread-interaction'
-      : latestVisibleMessageHref;
+    : showHistoryNoMatchState
+      ? threadFilterResetHref
+      : threadMessages.length === 0
+        ? '#thread-interaction'
+        : threadHistoryVisibleMessage
+          ? threadHistoryVisibleMessageHref
+          : '#thread-history';
 const historyStateFocusLabel = showLoadingState
   ? 'Συγχρονισμός'
   : threadLoadError
     ? 'Επαναφορά ιστορικού'
-    : threadMessages.length === 0
-      ? 'Εκκίνηση συνομιλίας'
-      : 'Ανάγνωση/triage';
+    : showHistoryNoMatchState
+      ? 'No-match'
+      : threadMessages.length === 0
+        ? 'Εκκίνηση συνομιλίας'
+        : 'Ανάγνωση/triage';
 const historyStateSupportHint = threadLoadError
   ? 'Μπορεί να λείπουν moderation ενδείξεις ή τμήματα ιστορικού μέχρι να επανέλθει η φόρτωση.'
-  : threadMessages.length === 0
-    ? 'Μόλις σταλεί το πρώτο μήνυμα, θα εμφανιστούν αυτόματα ροή, badges και διαθέσιμες ενέργειες moderation.'
-    : `Ορατά: ${visibleMessagesCount} · Κρυφά: ${hiddenMessagesCount} · Εισερχόμενα reportable: ${reportableIncomingCount}.`;
+  : showHistoryNoMatchState
+    ? 'Αλλάξτε scope ή αναζήτηση για να εμφανιστούν μηνύματα από το ίδιο thread.'
+    : threadMessages.length === 0
+      ? 'Μόλις σταλεί το πρώτο μήνυμα, θα εμφανιστούν αυτόματα ροή, badges και διαθέσιμες ενέργειες moderation.'
+      : hasThreadFilters
+        ? `Ορατά: ${filteredVisibleMessagesCount} · Κρυφά: ${filteredHiddenMessagesCount} · Εισερχόμενα reportable: ${filteredReportableIncomingCount}.`
+        : `Ορατά: ${visibleMessagesCount} · Κρυφά: ${hiddenMessagesCount} · Εισερχόμενα reportable: ${reportableIncomingCount}.`;
 const historyStateRecoveryHint = showLoadingState
   ? 'Αν η φόρτωση καθυστερεί, δοκιμάστε άμεση επαναφόρτωση του thread.'
   : threadLoadError
     ? 'Προβάλλεται ό,τι ήταν διαθέσιμο. Κάντε retry για να ανακτηθεί πλήρες ιστορικό.'
-    : threadMessages.length === 0
-      ? 'Το composer παραμένει διαθέσιμο για εκκίνηση της συνομιλίας όταν επιτρέπεται αποστολή.'
-      : 'Η ανάγνωση ιστορικού είναι σταθερή και έτοιμη για επόμενο triage βήμα.';
+    : showHistoryNoMatchState
+      ? 'Καθαρίστε τα φίλτρα ή αλλάξτε λέξη αναζήτησης για να επανέλθει η ροή ιστορικού.'
+      : threadMessages.length === 0
+        ? 'Το composer παραμένει διαθέσιμο για εκκίνηση της συνομιλίας όταν επιτρέπεται αποστολή.'
+        : hasThreadFilters
+          ? 'Η προβολή ιστορικού είναι φιλτραρισμένη. Με τον καθαρισμό φίλτρων εμφανίζεται ξανά ολόκληρο το thread.'
+          : 'Η ανάγνωση ιστορικού είναι σταθερή και έτοιμη για επόμενο triage βήμα.';
 const historyStateAriaRole = threadLoadError && !hasPartialThreadHistory ? 'alert' : 'status';
 const historyStateAriaLive = threadLoadError && !hasPartialThreadHistory ? 'assertive' : 'polite';
 const historyStatePhaseLabel = showLoadingState
   ? 'Loading'
   : threadLoadError
     ? hasPartialThreadHistory ? 'Partial' : 'Error'
-    : threadMessages.length === 0
-      ? 'Empty'
-      : 'Ready';
+    : showHistoryNoMatchState
+      ? 'No-Match'
+      : threadMessages.length === 0
+        ? 'Empty'
+        : hasThreadFilters
+          ? 'Filtered'
+          : 'Ready';
 const historyStatePhaseClass = showLoadingState
   ? 'border-sky-300 bg-sky-100 text-sky-900'
   : threadLoadError
     ? hasPartialThreadHistory
       ? 'border-amber-300 bg-amber-100 text-amber-900'
       : 'border-rose-300 bg-rose-100 text-rose-900'
-    : threadMessages.length === 0
-      ? 'border-slate-300 bg-slate-100 text-slate-700'
-      : 'border-emerald-300 bg-emerald-100 text-emerald-900';
+    : showHistoryNoMatchState
+      ? 'border-amber-300 bg-amber-100 text-amber-900'
+      : threadMessages.length === 0
+        ? 'border-slate-300 bg-slate-100 text-slate-700'
+        : hasThreadFilters
+          ? 'border-indigo-300 bg-indigo-100 text-indigo-900'
+          : 'border-emerald-300 bg-emerald-100 text-emerald-900';
 const threadStatePrimaryActionLabel = hasViewerParamIssue
   ? 'Επιστροφή στη λίστα'
   : hasAccessIssue
@@ -452,15 +573,16 @@ type ThreadHistoryEntry =
   | { kind: 'day'; dayKey: string; dayLabel: string }
   | { kind: 'message'; message: MessageSubmission };
 
-const threadHistory: ThreadHistoryEntry[] = [];
+const filteredThreadHistory: ThreadHistoryEntry[] = [];
+const latestHistoryMessage = filteredThreadMessages.at(-1) || null;
 let lastDayKey = '';
-for (const message of threadMessages) {
+for (const message of filteredThreadMessages) {
   const dayKey = message.submittedAt.slice(0, 10);
   if (dayKey !== lastDayKey) {
-    threadHistory.push({ kind: 'day', dayKey, dayLabel: formatDayLabel(message.submittedAt) });
+    filteredThreadHistory.push({ kind: 'day', dayKey, dayLabel: formatDayLabel(message.submittedAt) });
     lastDayKey = dayKey;
   }
-  threadHistory.push({ kind: 'message', message });
+  filteredThreadHistory.push({ kind: 'message', message });
 }
 ---
 
@@ -622,6 +744,12 @@ for (const message of threadMessages) {
           <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
+      {hasUnknownThreadVisibilityFilter && (
+        <div class="thread-toast thread-toast--slate js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
+          <p class="text-sm font-semibold">Ελήφθη άγνωστο φίλτρο ορατότητας: <code>{requestedThreadVisibilityFilter}</code>.</p>
+          <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
+        </div>
+      )}
       {readStateWriteError && (
         <div class="thread-toast thread-toast--amber js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
           <p class="text-sm font-semibold">{readStateWriteError}</p>
@@ -641,6 +769,7 @@ for (const message of threadMessages) {
     <p id="thread-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
     <p id="thread-focus-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <p id="thread-draft-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    <p id="thread-filter-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true">{threadFilterSummary}</p>
     <div id="thread-offline-alert" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
       <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
       <p class="mt-1 text-xs">Οι αποστολές μηνυμάτων/αναφορών θα μπλοκάρονται προσωρινά μέχρι να επανέλθει το δίκτυο.</p>
@@ -833,20 +962,80 @@ for (const message of threadMessages) {
             </div>
             <div class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-right">
               <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Ροή</p>
-              <p class="mt-1 text-xs font-semibold text-slate-700">{threadMessages.length} μηνύματα</p>
-              <p class="mt-1 text-[11px] text-slate-500">Εισερχόμενα: {incomingMessagesCount} · Εξερχόμενα: {outgoingMessagesCount}</p>
-              <p class="mt-1 text-[11px] text-slate-500">Reportable: {reportableIncomingCount}</p>
-              {latestVisibleMessage && (
-                <a href={latestVisibleMessageHref} class="mt-2 inline-flex rounded-md border border-indigo-300 bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
+              <p class="mt-1 text-xs font-semibold text-slate-700">{threadHistoryMessageCountLabel}</p>
+              <p class="mt-1 text-[11px] text-slate-500">Εισερχόμενα: {threadHistoryIncomingLabel} · Εξερχόμενα: {threadHistoryOutgoingLabel}</p>
+              <p class="mt-1 text-[11px] text-slate-500">Reportable: {threadHistoryReportableLabel}</p>
+              {threadHistoryVisibleMessage && (
+                <a href={threadHistoryVisibleMessageHref} class="mt-2 inline-flex rounded-md border border-indigo-300 bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
                   Μετάβαση στο τελευταίο ορατό
                 </a>
               )}
             </div>
           </div>
+          <form
+            id="thread-filter-controls"
+            class="mt-3 rounded-xl border border-slate-200 bg-white/95 px-3 py-3 shadow-sm"
+            method="GET"
+            action="/messages/thread"
+            aria-labelledby="thread-filter-title"
+            aria-describedby="thread-filter-help thread-filter-live"
+            data-thread-filter-controls
+          >
+            <input type="hidden" name="threadId" value={threadId} />
+            <input type="hidden" name="viewerEmail" value={viewerEmail} />
+            <div class="flex flex-wrap items-end justify-between gap-3">
+              <div class="min-w-[16rem] flex-1">
+                <p id="thread-filter-title" class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Αναζήτηση στο thread</p>
+                <label for="thread-filter-query" class="sr-only">Αναζήτηση σε σώμα μηνύματος, αποστολέα ή email</label>
+                <input
+                  id="thread-filter-query"
+                  name="q"
+                  type="search"
+                  value={threadSearchQueryRaw}
+                  maxlength="200"
+                  inputmode="search"
+                  autocomplete="off"
+                  class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
+                  placeholder="Αναζήτηση σε σώμα μηνύματος, αποστολέα ή email"
+                  aria-label="Αναζήτηση σε μηνύματα thread"
+                  aria-keyshortcuts="Slash Escape"
+                />
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="submit" class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                  Εφαρμογή φίλτρων
+                </button>
+                <a href={threadFilterResetHref} class="inline-flex rounded-lg border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
+                  Καθαρισμός
+                </a>
+              </div>
+            </div>
+            <fieldset class="mt-3">
+              <legend class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Κατάσταση μηνυμάτων</legend>
+              <div class="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label="Επιλογή ορατότητας μηνυμάτων thread">
+                {threadFilterChips.map((chip) => (
+                  <label class={`thread-filter-chip ${threadVisibilityFilter === chip.value ? 'thread-filter-chip--active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="visibility"
+                      value={chip.value}
+                      checked={threadVisibilityFilter === chip.value}
+                      class="thread-filter-chip__input"
+                    />
+                    <span class="thread-filter-chip__label">{chip.label} <span aria-hidden="true">({chip.count})</span></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <p id="thread-filter-help" class="mt-2 text-[11px] text-slate-500">
+              Συντόμευση πληκτρολογίου: πατήστε <span class="font-semibold text-slate-700">/</span> για εστίαση στην αναζήτηση και <span class="font-semibold text-slate-700">Esc</span> για καθαρισμό.
+            </p>
+          </form>
           <div class="thread-history-summary mt-3" role="status" aria-live="polite" aria-atomic="true">
-            <p class="font-semibold text-slate-800">Ανάγνωση ιστορικού: {threadMessages.length} συνολικά</p>
+            <p class="font-semibold text-slate-800">Ανάγνωση ιστορικού: {hasThreadFilters ? `${filteredThreadMessages.length}/${threadMessages.length}` : threadMessages.length} μηνύματα</p>
             <p class="mt-0.5 text-slate-600">Moderation: {threadModerationLabel} · {moderationSeverityLabel}</p>
             <p class="mt-0.5 text-slate-600">Επόμενο triage: {triagePrimaryActionLabel}</p>
+            <p class="mt-0.5 text-slate-600">Φίλτρο: {threadVisibilityFilterLabel}{threadSearchQueryRaw ? ` · Αναζήτηση: "${threadSearchQueryRaw}"` : ''}</p>
             <div class="mt-2 grid gap-2 text-[11px] sm:grid-cols-3">
               <div class="rounded-md border border-slate-200 bg-white/90 px-2.5 py-1.5">
                 <p class="font-semibold uppercase tracking-[0.08em] text-slate-500">Αποστολή</p>
@@ -945,6 +1134,23 @@ for (const message of threadMessages) {
                 </div>
               </div>
             )}
+            {!showLoadingState && showHistoryNoMatchState && (
+              <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-5 py-6 text-amber-900 shadow-sm" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-no-match-title" aria-describedby="thread-history-no-match-description">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-800">Κατάσταση προβολής · No-match</p>
+                <p id="thread-history-no-match-title" class="text-lg font-semibold">Δεν βρέθηκαν μηνύματα με αυτά τα φίλτρα.</p>
+                <p id="thread-history-no-match-description" class="mt-1 text-sm">
+                  Scope: <span class="font-semibold">{threadVisibilityFilterLabel}</span>{threadSearchQueryRaw ? <> · Αναζήτηση: <span class="font-semibold">"{threadSearchQueryRaw}"</span></> : ''}.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-2">
+                  <a href={threadFilterResetHref} class="inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+                    Καθαρισμός φίλτρων
+                  </a>
+                  <a href="#thread-filter-controls" class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                    Επιστροφή στα φίλτρα
+                  </a>
+                </div>
+              </div>
+            )}
             {!showLoadingState && threadLoadError && threadMessages.length === 0 && (
               <div class="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-6 text-rose-900 shadow-sm" role="alert" aria-live="assertive" aria-labelledby="thread-history-error-title" aria-describedby="thread-history-error-description">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-700">Κατάσταση προβολής · Error</p>
@@ -961,7 +1167,7 @@ for (const message of threadMessages) {
               </div>
             )}
 
-            {!showLoadingState && threadHistory.map((entry) => {
+            {!showLoadingState && filteredThreadHistory.map((entry) => {
               if (entry.kind === 'day') {
                 return (
                   <div class="thread-day-divider" role="separator" aria-label={`Ημερομηνία ${entry.dayLabel}`}>
@@ -985,13 +1191,13 @@ for (const message of threadMessages) {
               const messageDirectionId = `message-direction-${messageIdToken}`;
               const reportSummaryId = `report-summary-${messageIdToken}`;
               const reportFeedbackId = `report-feedback-${messageIdToken}`;
-              const isLatestMessage = latest?.id === message.id;
+              const isLatestMessage = latestHistoryMessage?.id === message.id;
               const messageOrder = messageOrderById.get(message.id) ?? 0;
               const messageSenderLabel = own ? 'Εσείς' : (message.senderName || 'Συνεργάτης');
               const messageVisibilityLabel = hidden ? 'Περιορισμένη προβολή moderation' : 'Πλήρως ορατό μήνυμα';
               const messageDirectionLabel = own ? 'Εξερχόμενο μήνυμα' : 'Εισερχόμενο μήνυμα';
               const messageDirectionClass = own ? 'text-sky-700' : 'text-slate-600';
-              const messageA11yLabel = `Μήνυμα ${messageOrder || 'χωρίς σειρά'} από ${threadMessages.length}, αποστολέας ${messageSenderLabel}. ${messageVisibilityLabel}.`;
+              const messageA11yLabel = `Μήνυμα ${messageOrder || 'χωρίς σειρά'} από ${threadMessages.length}, αποστολέας ${messageSenderLabel}. ${messageVisibilityLabel}.${hasThreadFilters ? ` Προβάλλεται σε φιλτραρισμένη λίστα (${filteredThreadMessages.length}/${threadMessages.length}).` : ''}`;
               return (
                 <div class={`flex ${own ? 'justify-end' : 'justify-start'}`} role="none">
                   <article
@@ -1425,6 +1631,46 @@ for (const message of threadMessages) {
       padding: 0.5rem 0.65rem;
     }
 
+    .thread-filter-chip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9999px;
+      border: 1px solid rgb(203 213 225);
+      background: rgb(255 255 255);
+      color: rgb(51 65 85);
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1;
+      transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+    }
+
+    .thread-filter-chip__input {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .thread-filter-chip__label {
+      padding: 0.45rem 0.7rem;
+      border-radius: 9999px;
+      user-select: none;
+    }
+
+    .thread-filter-chip--active {
+      border-color: rgb(125 211 252);
+      background: rgb(224 242 254);
+      color: rgb(12 74 110);
+      box-shadow: 0 0 0 1px rgba(14, 116, 144, 0.12);
+    }
+
+    .thread-filter-chip:focus-within {
+      border-color: rgb(14 116 144);
+      box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.14);
+    }
+
     .thread-loading-card {
       position: relative;
       overflow: hidden;
@@ -1631,9 +1877,15 @@ for (const message of threadMessages) {
     (() => {
       const toasts = Array.from(document.querySelectorAll('.js-thread-toast'));
       const focusLiveRegion = document.querySelector('#thread-focus-live');
+      const filterLiveRegion = document.querySelector('#thread-filter-live');
+      const threadFilterForm = document.querySelector('#thread-filter-controls');
+      const threadFilterQuery = document.querySelector('#thread-filter-query');
       const isCompactViewport = () => typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 640px)').matches;
       const announceFocusState = (message) => {
         if (focusLiveRegion instanceof HTMLElement) focusLiveRegion.textContent = message;
+      };
+      const announceThreadFilterState = (message) => {
+        if (filterLiveRegion instanceof HTMLElement) filterLiveRegion.textContent = message;
       };
       const focusElement = (element, options = {}) => {
         if (!(element instanceof HTMLElement)) return;
@@ -1696,6 +1948,36 @@ for (const message of threadMessages) {
           }));
         }
       }
+      if (threadFilterQuery instanceof HTMLInputElement) {
+        threadFilterQuery.addEventListener('keydown', (event) => {
+          if (event.key !== 'Escape') return;
+          if (!threadFilterQuery.value) return;
+          event.preventDefault();
+          threadFilterQuery.value = '';
+          announceThreadFilterState('Το πεδίο αναζήτησης καθαρίστηκε. Πατήστε Εφαρμογή φίλτρων για νέα προβολή.');
+        });
+      }
+      if (threadFilterForm instanceof HTMLFormElement) {
+        threadFilterForm.addEventListener('submit', () => {
+          announceThreadFilterState('Η προβολή thread ενημερώνεται με τα τρέχοντα φίλτρα.');
+        });
+      }
+      window.addEventListener('keydown', (event) => {
+        if (event.defaultPrevented || event.key !== '/') return;
+        if (!(threadFilterQuery instanceof HTMLInputElement)) return;
+        const target = event.target;
+        const isEditableTarget = target instanceof HTMLInputElement
+          || target instanceof HTMLTextAreaElement
+          || target instanceof HTMLSelectElement
+          || (target instanceof HTMLElement && target.isContentEditable);
+        if (isEditableTarget) return;
+        event.preventDefault();
+        focusElement(threadFilterQuery, {
+          preventScroll: isCompactViewport(),
+          announcement: 'Η εστίαση μεταφέρθηκε στην αναζήτηση thread.'
+        });
+        threadFilterQuery.select();
+      });
 
       const highlightMessageFromHash = () => {
         const hash = window.location.hash;
