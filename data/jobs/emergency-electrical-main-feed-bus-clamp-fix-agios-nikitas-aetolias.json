@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-bus-clamp-fix-agios-nikitas-aetolias",
+  "slug": "epigousa-episkevi-sfiktira-bus-kentrikis-trofodosias-agios-nikitas-aetolias",
+  "nameGr": "Επείγουσα Επισκευή Σφιγκτήρα Bus Κεντρικής Τροφοδοσίας στον Άγιο Νικήτα Αιτωλίας",
+  "nameEn": "Emergency Electrical Main Feed Bus Clamp Fix in Άγιος Νικήτας Αιτωλίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή σφιγκτήρα bus κεντρικής τροφοδοσίας στον Άγιο Νικήτα Αιτωλίας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Νικήτας Αιτωλίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

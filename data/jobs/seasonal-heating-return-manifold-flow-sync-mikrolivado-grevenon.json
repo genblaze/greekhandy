@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-manifold-flow-sync-mikrolivado-grevenon",
+  "slug": "epochiakos-sygxronismos-rois-syllekti-epistrofis-thermansis-mikrolivado-grevenon",
+  "nameGr": "Εποχικός Συγχρονισμός Ροής Συλλέκτη Επιστροφής Θέρμανσης στο Μικρολίβαδο Γρεβενών",
+  "nameEn": "Seasonal Heating Return Manifold Flow Sync in Μικρολίβαδο Γρεβενών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός συγχρονισμός ροής συλλέκτη επιστροφής θέρμανσης στο Μικρολίβαδο Γρεβενών για ομοιόμορφη θερμική άνεση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρολίβαδο Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-bus-clamp-fix-mikrolivado-grevenon",
+  "slug": "epigousa-episkevi-sfiktira-bus-kentrikis-trofodosias-mikrolivado-grevenon",
+  "nameGr": "Επείγουσα Επισκευή Σφιγκτήρα Bus Κεντρικής Τροφοδοσίας στο Μικρολίβαδο Γρεβενών",
+  "nameEn": "Emergency Electrical Main Feed Bus Clamp Fix in Μικρολίβαδο Γρεβενών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή σφιγκτήρα bus κεντρικής τροφοδοσίας στο Μικρολίβαδο Γρεβενών για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρολίβαδο Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
