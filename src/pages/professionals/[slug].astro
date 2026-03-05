@@ -200,6 +200,7 @@ const professionalServiceSchema = {
 
 const profileMetaTitle = `${profile.name} | ${profile.profession} σε ${profile.city || 'Ελλάδα'} | GreekHandy`;
 const profileMetaDescription = `Επαγγελματικό προφίλ GreekHandy: ${profile.name}, ${profile.profession}${profile.city ? ` στη ${profile.city}` : ''}. Δείτε υπηρεσίες, περιοχές εξυπηρέτησης και αξιολογήσεις πελατών.`;
+const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro.url.searchParams.get('status') || '').toLowerCase();
 
 ---
 
@@ -604,6 +605,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
           class="mt-4"
           data-pending-form
           data-booking-form
+          data-booking-draft-key={`booking-draft:${profile.slug}`}
           data-feedback-group-name="booking"
           data-pending-live-label="Η υποβολή του αιτήματος κράτησης είναι σε εξέλιξη."
           data-pending-timeout-label="Η υποβολή καθυστέρησε. Ελέγξτε σύνδεση και χρησιμοποιήστε νέα προσπάθεια."
@@ -653,6 +655,7 @@ const profileMetaDescription = `Επαγγελματικό προφίλ GreekHan
 
           <p class="mt-2 text-xs text-blue-700">Η πορεία του αιτήματος ενημερώνεται βήμα-βήμα: αρχική καταχώριση, έλεγχος και τελική ενημέρωση.</p>
           <p class="mt-1 hidden text-xs text-slate-600" data-booking-validation-summary aria-live="polite">Συμπληρώστε στοιχεία επικοινωνίας και προτιμώμενο πρόγραμμα για ταχύτερη ανάθεση. Αν υπάρχει σφάλμα, διορθώστε και ξαναδοκιμάστε χωρίς απώλεια στοιχείων.</p>
+          <p class="mt-1 text-xs text-slate-700" data-booking-step-state aria-live="polite">{bookingStatusParam === 'submitted' ? 'Βήμα 3/3: Η καταχώριση ολοκληρώθηκε επιτυχώς.' : bookingStatusParam === 'invalid' ? 'Βήμα 2/3: Διορθώστε τα επισημασμένα πεδία και ξαναδοκιμάστε.' : bookingStatusParam === 'error' ? 'Βήμα 2/3: Προσωρινό πρόβλημα αποστολής. Πατήστε «Νέα προσπάθεια».' : 'Βήμα 1/3: Συμπληρώστε τα στοιχεία και συνεχίστε.'}</p>
 
           <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος" data-pending-label="Υποβολή...">Αποστολή αιτήματος</button>
         </form>

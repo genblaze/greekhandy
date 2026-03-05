@@ -275,12 +275,9 @@ type TrustDecisionCardVariant = {
   headingClass: string;
   snippetClass: string;
   signalClass: string;
-  snippetHeading: string;
   laneLabel: string;
   signalLabel: string;
-  signalHint: string;
   metricOrder: Array<CardMetricKey>;
-  decisionHeading: string;
   decisionHint: string;
 };
 type CardMetricKey = 'cost' | 'duration' | 'availability' | 'area';
@@ -293,12 +290,9 @@ const trustDecisionVariantMap = {
       headingClass: 'border-sky-200 bg-sky-100 text-sky-900',
       snippetClass: 'border-sky-200 bg-white',
       signalClass: 'border-sky-300 bg-sky-100/80 text-sky-900',
-      snippetHeading: 'Ticket αιτήματος υδραυλικού',
       laneLabel: 'Ροή διαρροής / αποκατάστασης',
       signalLabel: 'Σήμα: χρόνος απόκρισης',
-      signalHint: 'Ιδανικό όταν το πρώτο ζητούμενο είναι η άμεση προσέλευση και η γρήγορη αποκατάσταση.',
       metricOrder: ['availability', 'cost', 'duration', 'area'],
-      decisionHeading: 'Έλεγχος πριν την επίσκεψη',
       decisionHint: 'Επιβεβαιώστε προσβασιμότητα, πιθανή διακοπή νερού και αν χρειάζονται ανταλλακτικά.'
     },
     {
@@ -306,12 +300,9 @@ const trustDecisionVariantMap = {
       headingClass: 'border-cyan-200 bg-cyan-100/80 text-cyan-900',
       snippetClass: 'border-cyan-200 bg-white',
       signalClass: 'border-cyan-300 bg-cyan-100/80 text-cyan-900',
-      snippetHeading: 'Brief εγκατάστασης/αντικατάστασης',
       laneLabel: 'Ροή εγκατάστασης',
       signalLabel: 'Σήμα: διαφάνεια υλικών',
-      signalHint: 'Ενισχύει τη σύγκριση όταν θέλετε καθαρό διαχωρισμό κόστους εργασίας και υλικών.',
       metricOrder: ['cost', 'area', 'duration', 'availability'],
-      decisionHeading: 'Πώς να συγκρίνετε σωστά',
       decisionHint: 'Συγκρίνετε κόστος μαζί με υλικά που περιλαμβάνονται και επιβεβαιωμένη περιοχή κάλυψης.'
     },
     {
@@ -319,12 +310,9 @@ const trustDecisionVariantMap = {
       headingClass: 'border-teal-200 bg-teal-100/80 text-teal-900',
       snippetClass: 'border-teal-200 bg-white',
       signalClass: 'border-teal-300 bg-teal-100/80 text-teal-900',
-      snippetHeading: 'Σημείωμα συντήρησης δικτύου',
       laneLabel: 'Ροή συντήρησης',
       signalLabel: 'Σήμα: σταθερότητα συντήρησης',
-      signalHint: 'Χρήσιμο για προληπτικές εργασίες όπου προέχει η συνέπεια και η μείωση επαναλαμβανόμενων βλαβών.',
       metricOrder: ['duration', 'cost', 'availability', 'area'],
-      decisionHeading: 'Σήμα αξιοπιστίας',
       decisionHint: 'Δώστε σαφή περιγραφή συμπτωμάτων για ρεαλιστική αρχική διάγνωση και σωστή προτεραιότητα.'
     }
   ],
@@ -334,12 +322,9 @@ const trustDecisionVariantMap = {
       headingClass: 'border-amber-200 bg-amber-100/80 text-amber-900',
       snippetClass: 'border-amber-200 bg-white',
       signalClass: 'border-amber-300 bg-amber-100/80 text-amber-900',
-      snippetHeading: 'Ticket βλάβης ηλεκτρολόγου',
       laneLabel: 'Ροή βλάβης κυκλώματος',
       signalLabel: 'Σήμα: ασφάλεια βλάβης',
-      signalHint: 'Δίνει προτεραιότητα σε ενδείξεις κινδύνου ώστε να κλιμακωθεί σωστά η επίσκεψη.',
       metricOrder: ['availability', 'area', 'cost', 'duration'],
-      decisionHeading: 'Πριν κλείσετε ηλεκτρολόγο',
       decisionHint: 'Δηλώστε αν υπάρχει διακοπή ρεύματος, πίνακας που πέφτει ή οσμή καμένου για σωστή προτεραιοποίηση.'
     },
     {
@@ -347,12 +332,9 @@ const trustDecisionVariantMap = {
       headingClass: 'border-indigo-200 bg-indigo-100/75 text-indigo-900',
       snippetClass: 'border-indigo-200 bg-white',
       signalClass: 'border-indigo-300 bg-indigo-100/80 text-indigo-900',
-      snippetHeading: 'Brief πίνακα / αναβάθμισης',
       laneLabel: 'Ροή αναβάθμισης εγκατάστασης',
       signalLabel: 'Σήμα: σαφές τεχνικό scope',
-      signalHint: 'Κατάλληλο για αποφάσεις αναβάθμισης όταν ζητάτε καθαρό τεχνικό εύρος και χρονοδιάγραμμα.',
       metricOrder: ['cost', 'duration', 'area', 'availability'],
-      decisionHeading: 'Σημεία σύγκρισης προσφορών',
       decisionHint: 'Συγκρίνετε τύπο εργασίας, εκτιμώμενη διάρκεια και εύρος κόστους πριν την τελική επιλογή.'
     },
     {
@@ -360,12 +342,9 @@ const trustDecisionVariantMap = {
       headingClass: 'border-emerald-200 bg-emerald-100/75 text-emerald-900',
       snippetClass: 'border-emerald-200 bg-white',
       signalClass: 'border-emerald-300 bg-emerald-100/80 text-emerald-900',
-      snippetHeading: 'Σενάριο ελέγχου ασφάλειας',
       laneLabel: 'Ροή προληπτικού ελέγχου',
       signalLabel: 'Σήμα: πρόληψη κινδύνου',
-      signalHint: 'Ταιριάζει σε περιοδικούς ελέγχους όπου βασική αξία είναι η τεκμηριωμένη πρόληψη.',
       metricOrder: ['duration', 'area', 'availability', 'cost'],
-      decisionHeading: 'Κριτήριο αξιοπιστίας',
       decisionHint: 'Η πιο ασφαλής απόφαση βασίζεται σε συνδυασμό διαθεσιμότητας, τεκμηρίωσης και σαφούς εύρους κόστους.'
     }
   ]
@@ -388,11 +367,18 @@ const trustDecisionVariants = trustDecisionVariantMap[category.slug as keyof typ
 const trustDecisionReviewContexts = trustDecisionReviewContextMap[category.slug as keyof typeof trustDecisionReviewContextMap] || trustDecisionReviewContextMap.ydravlikoi;
 const SEO_SUBJOB_LINK_COUNT = 16;
 
+const extractEuroValues = (input: string | undefined) => {
+  if (!input) return [];
+  const matches = input.matchAll(/(\d+(?:[.,]\d+)?)\s*€/g);
+  return Array.from(matches, (match) => Number.parseFloat(match[1].replace(',', '.'))).filter((value) => Number.isFinite(value));
+};
+
 const classifyBudget = (priceRange: string | undefined) => {
-  const value = (priceRange || '').toLocaleLowerCase('el-GR');
-  if (!value) return 'unknown';
-  if (value.includes('€200') || value.includes('€300') || value.includes('€400') || value.includes('€500') || value.includes('€1000')) return 'high';
-  if (value.includes('€80') || value.includes('€100') || value.includes('€120') || value.includes('€150')) return 'medium';
+  const parsedValues = extractEuroValues(priceRange);
+  if (!parsedValues.length) return 'unknown';
+  const maxValue = Math.max(...parsedValues);
+  if (maxValue >= 220) return 'high';
+  if (maxValue >= 90) return 'medium';
   return 'low';
 };
 
@@ -789,7 +775,6 @@ const faqSchema = pageCategory.faq?.length ? {
                   const budgetValue = classifyBudget(job.summary?.priceRangeEUR);
                   const availabilityValue = classifyAvailability(job);
                   const variantMeta = trustDecisionVariants[index % trustDecisionVariants.length];
-                  const cityLabel = cityLabelMap[cityValue] || cityLabelMap.all;
                   const serviceArea = cityServiceAreaMap[cityValue] || cityServiceAreaMap.all;
                   const availabilityLabel = availabilityLabelMap[availabilityValue] || availabilityLabelMap.flexible;
                   const budgetLabel = budgetLabelMap[budgetValue] || budgetLabelMap.unknown;
