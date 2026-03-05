@@ -337,7 +337,7 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
         </section>
       )}
 
-      <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[16/9]" data-prof-media-shell>
+      <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[16/9]" data-prof-media-shell data-profile-hero-media>
         <img
           src={profileImageSrc}
           alt={`Φωτογραφία ${profile.name}`}
@@ -346,9 +346,11 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           decoding="async"
           data-prof-media-img
           data-fallback-src={fallbackProfileImage}
-          onerror={`this.onerror=null;this.src='${fallbackProfileImage}';this.dataset.mediaState='fallback'`}
+          data-hero-media="1"
+          onerror={`this.onerror=null;const fallback='${fallbackProfileImage}';if(this.src!==fallback){this.src=fallback;this.dataset.mediaState='fallback';}else{this.closest('[data-profile-hero-media]')?.classList.add('hidden');document.querySelector('[data-profile-hero-media-note]')?.classList.remove('hidden');}`}
         />
       </div>
+      <p data-profile-hero-media-note class="mt-3 hidden rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600">Η φωτογραφία προφίλ δεν είναι προσωρινά διαθέσιμη. Μπορείτε να συνεχίσετε κανονικά με το κύριο αίτημα συνεργασίας.</p>
 
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio?.trim() || 'Ο επαγγελματίας είναι διαθέσιμος για ανάθεση υπηρεσιών στην περιοχή του προφίλ.'}</p>
 
@@ -370,12 +372,12 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
         </div>
         <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ακολουθήστε πρώτα την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές είναι προαιρετικές και εμφανίζονται χαμηλότερα μόνο όταν τις χρειάζεστε.</p>
         <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα δείχνει καθαρά τα επόμενα βήματα, ώστε να γνωρίζετε ακριβώς τι ακολουθεί μετά την αποστολή και τον έλεγχο.</p>
-        <p class="mt-1 text-xs text-slate-500">
-          Εναλλακτικά:
-          <a href="#secondary-actions" class="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900">
-            προαιρετικές επιλογές επικοινωνίας
-          </a>
-        </p>
+        <details class="mt-2 text-xs text-slate-500">
+          <summary class="cursor-pointer font-semibold text-slate-700">Προαιρετικά: άλλες επιλογές επικοινωνίας</summary>
+          <p class="mt-1">Αν δεν θέλετε να ξεκινήσετε με το κύριο αίτημα, μπορείτε να ανοίξετε τις
+            <a href="#secondary-actions" class="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900">δευτερεύουσες επιλογές</a>.
+          </p>
+        </details>
       </div>
 
       {portfolioImageSources.length > 0 && (
@@ -924,17 +926,30 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           for (const img of profileMediaImages) {
             if (!(img instanceof HTMLImageElement)) continue;
             const fallbackSrc = img.dataset.fallbackSrc || '';
+            const hideHeroMediaContainer = () => {
+              if (img.dataset.heroMedia !== '1') return;
+              img.closest('[data-profile-hero-media]')?.classList.add('hidden');
+              const heroMediaNote = document.querySelector('[data-profile-hero-media-note]');
+              if (heroMediaNote instanceof HTMLElement) heroMediaNote.classList.remove('hidden');
+            };
             const ensureFallback = () => {
               if (img.dataset.hideOnError === '1') {
                 img.closest('[data-portfolio-frame]')?.classList.add('hidden');
                 syncPortfolioState();
                 return;
               }
-              if (!fallbackSrc) return;
+              if (!fallbackSrc) {
+                hideHeroMediaContainer();
+                return;
+              }
+              if (img.src === fallbackSrc) {
+                hideHeroMediaContainer();
+                return;
+              }
               img.dataset.mediaState = 'fallback';
               const mediaShell = img.closest('[data-prof-media-shell]');
               if (mediaShell instanceof HTMLElement) mediaShell.dataset.mediaShell = 'fallback';
-              if (img.src !== fallbackSrc) img.src = fallbackSrc;
+              img.src = fallbackSrc;
             };
             img.addEventListener('error', () => { ensureFallback(); syncPortfolioState(); });
             if (img.complete && (!img.naturalWidth || !img.naturalHeight)) ensureFallback();
