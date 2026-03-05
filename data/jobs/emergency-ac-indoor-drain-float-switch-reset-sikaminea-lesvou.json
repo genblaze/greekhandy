@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-float-switch-reset-sikaminea-lesvou",
+  "slug": "epigousa-epanafora-float-switch-aporrois-esoterikou-ac-sikaminea-lesvou",
+  "nameGr": "Επείγουσα Επαναφορά Float Switch Απορροής Εσωτερικού AC στη Σκαμνιά Λέσβου",
+  "nameEn": "Emergency AC Indoor Drain Float Switch Reset in Σκαμνιά Λέσβου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά float switch απορροής εσωτερικού AC στη Σκαμνιά Λέσβου όταν η μονάδα σταματά από υπερχείλιση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Σκαμνιά Λέσβου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}

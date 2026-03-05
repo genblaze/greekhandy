@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-boiler-return-filter-clean-petrota-rodopis",
+  "slug": "epochiakos-katharismos-filtrou-epistrofis-levita-petrota-rodopis",
+  "nameGr": "Εποχικός Καθαρισμός Φίλτρου Επιστροφής Λέβητα στα Πετρωτά Ροδόπης",
+  "nameEn": "Seasonal Heating Boiler Return Filter Clean in Πετρωτά Ροδόπης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός καθαρισμός φίλτρου επιστροφής λέβητα στα Πετρωτά Ροδόπης για πιο αποδοτική θέρμανση και σταθερή ροή.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πετρωτά Ροδόπης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}

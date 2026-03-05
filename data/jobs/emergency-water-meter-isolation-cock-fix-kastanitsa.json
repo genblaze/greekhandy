@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-meter-isolation-cock-fix-kastanitsa",
+  "slug": "epigousa-episkevi-diakopti-apomonosis-ydrometrou-kastanitsa",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Απομόνωσης Υδρομέτρου στην Καστάνιτσα",
+  "nameEn": "Emergency Water Meter Isolation Cock Fix in Καστάνιτσα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή διακόπτη απομόνωσης υδρομέτρου στην Καστάνιτσα για άμεσο έλεγχο παροχής σε διαρροή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Καστάνιτσα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}

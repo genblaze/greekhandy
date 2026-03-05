@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rcd-false-trip-diagnosis-kastanitsa",
+  "slug": "epigousa-diagnosi-psevdous-ptosis-relle-diarrois-kastanitsa",
+  "nameGr": "Επείγουσα Διάγνωση Ψευδούς Πτώσης Ρελέ Διαρροής στην Καστάνιτσα",
+  "nameEn": "Emergency Electrical RCD False-Trip Diagnosis in Καστάνιτσα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση ψευδούς πτώσης ρελέ διαρροής στην Καστάνιτσα για άμεση και ασφαλή αποκατάσταση ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καστάνιτσα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}

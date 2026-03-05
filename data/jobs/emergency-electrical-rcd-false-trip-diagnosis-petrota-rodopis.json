@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rcd-false-trip-diagnosis-petrota-rodopis",
+  "slug": "epigousa-diagnosi-psevdous-ptosis-relle-diarrois-petrota-rodopis",
+  "nameGr": "Επείγουσα Διάγνωση Ψευδούς Πτώσης Ρελέ Διαρροής στα Πετρωτά Ροδόπης",
+  "nameEn": "Emergency Electrical RCD False-Trip Diagnosis in Πετρωτά Ροδόπης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση ψευδούς πτώσης ρελέ διαρροής στα Πετρωτά Ροδόπης για άμεση και ασφαλή αποκατάσταση ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πετρωτά Ροδόπης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}

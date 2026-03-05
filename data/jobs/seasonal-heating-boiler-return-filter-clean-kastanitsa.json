@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-boiler-return-filter-clean-kastanitsa",
+  "slug": "epochiakos-katharismos-filtrou-epistrofis-levita-kastanitsa",
+  "nameGr": "Εποχικός Καθαρισμός Φίλτρου Επιστροφής Λέβητα στην Καστάνιτσα",
+  "nameEn": "Seasonal Heating Boiler Return Filter Clean in Καστάνιτσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός καθαρισμός φίλτρου επιστροφής λέβητα στην Καστάνιτσα για πιο αποδοτική θέρμανση και σταθερή ροή.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καστάνιτσα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}

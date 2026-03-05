@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-float-switch-reset-petrota-rodopis",
+  "slug": "epigousa-epanafora-float-switch-aporrois-esoterikou-ac-petrota-rodopis",
+  "nameGr": "Επείγουσα Επαναφορά Float Switch Απορροής Εσωτερικού AC στα Πετρωτά Ροδόπης",
+  "nameEn": "Emergency AC Indoor Drain Float Switch Reset in Πετρωτά Ροδόπης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά float switch απορροής εσωτερικού AC στα Πετρωτά Ροδόπης όταν η μονάδα σταματά από υπερχείλιση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Πετρωτά Ροδόπης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}

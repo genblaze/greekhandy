@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rcd-false-trip-diagnosis-sikaminea-lesvou",
+  "slug": "epigousa-diagnosi-psevdous-ptosis-relle-diarrois-sikaminea-lesvou",
+  "nameGr": "Επείγουσα Διάγνωση Ψευδούς Πτώσης Ρελέ Διαρροής στη Σκαμνιά Λέσβου",
+  "nameEn": "Emergency Electrical RCD False-Trip Diagnosis in Σκαμνιά Λέσβου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση ψευδούς πτώσης ρελέ διαρροής στη Σκαμνιά Λέσβου για άμεση και ασφαλή αποκατάσταση ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Σκαμνιά Λέσβου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επιδιόρθωση τώρα"
+  ],
+  "status": "researched"
+}
