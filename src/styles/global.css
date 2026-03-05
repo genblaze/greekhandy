@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --gh-accessibility-toolbar-safe-area: 0px;
+  --gh-accessibility-toolbar-safe-area: calc(3.25rem + 1.25rem);
+  --gh-accessibility-dock-gap: 0.75rem;
+  --gh-accessibility-dock-trigger-size: 3.25rem;
   --gh-hero-bg-start: #020817;
   --gh-hero-bg-mid: #0b2a4a;
   --gh-hero-bg-end: #15406f;
@@ -18,40 +20,87 @@ body {
 }
 
 :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
-  position: fixed;
-  right: max(0.75rem, env(safe-area-inset-right));
-  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  position: fixed !important;
+  right: max(var(--gh-accessibility-dock-gap), env(safe-area-inset-right)) !important;
+  bottom: calc(max(var(--gh-accessibility-dock-gap), env(safe-area-inset-bottom)) + var(--gh-accessibility-dock-trigger-size) + 0.65rem) !important;
   top: auto !important;
   left: auto !important;
-  z-index: 45;
-  max-width: min(20rem, calc(100vw - 1.5rem));
-  max-height: min(70vh, 32rem);
+  z-index: 44;
+  width: min(22rem, calc(100vw - 1.5rem));
+  max-height: min(68vh, 32rem);
   overflow: auto;
   overscroll-behavior: contain;
-  contain: paint;
-  pointer-events: auto;
-}
-
-:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[aria-expanded='false'],
-:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar).is-collapsed,
-:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[data-gh-widget-expanded='false'] {
-  overflow: hidden;
-  max-height: 2.75rem;
+  contain: layout paint;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.6rem) scale(0.99);
+  transform-origin: bottom right;
+  transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
 }
 
-:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[data-gh-widget-expanded='false'] :is(button, a, [role='button'], [tabindex]) {
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar)[data-gh-docked-open='true'] {
   pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+:where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar):not([data-gh-docked-open='true']) :is(a, button, input, select, textarea, [role='button'], [tabindex]) {
+  pointer-events: none;
 }
 
 :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) :is(a, button, input, select, textarea) {
   max-width: 100%;
 }
 
+.gh-accessibility-dock-trigger {
+  position: fixed;
+  right: max(var(--gh-accessibility-dock-gap), env(safe-area-inset-right));
+  bottom: max(var(--gh-accessibility-dock-gap), env(safe-area-inset-bottom));
+  z-index: 45;
+  display: inline-flex;
+  min-height: var(--gh-accessibility-dock-trigger-size);
+  width: var(--gh-accessibility-dock-trigger-size);
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgb(148 163 184 / 0.85);
+  background: rgb(15 23 42 / 0.96);
+  color: #fff;
+  box-shadow: 0 12px 28px -14px rgb(15 23 42 / 0.88);
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 150ms ease, border-color 150ms ease;
+}
+
+.gh-accessibility-dock-trigger:hover {
+  transform: translateY(-1px);
+  background: rgb(30 41 59 / 0.98);
+}
+
+.gh-accessibility-dock-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0ea5e9;
+}
+
+.gh-accessibility-dock-trigger[aria-expanded='true'] {
+  border-color: rgb(125 211 252 / 0.95);
+  background: rgb(3 105 161 / 0.95);
+}
+
+.gh-accessibility-dock-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
 @media (max-width: 768px) {
+  :root {
+    --gh-accessibility-dock-gap: 0.5rem;
+  }
+
   :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
     max-width: min(18rem, calc(100vw - 1rem));
-    right: max(0.5rem, env(safe-area-inset-right));
-    bottom: max(0.5rem, env(safe-area-inset-bottom));
+    max-height: min(62vh, 28rem);
   }
 }

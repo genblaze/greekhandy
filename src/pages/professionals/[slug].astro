@@ -565,7 +565,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </p>
           <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το αίτημά σας καταχωρήθηκε και είναι σε αναμονή moderation (pending).</p>
           <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η υποβολή αιτήματος είναι προσωρινά ανενεργή.</p>
-          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε σωστά τα υποχρεωτικά πεδία (υπηρεσία, στοιχεία επικοινωνίας, μήνυμα) και δοκιμάστε ξανά.</p>
+          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία επικοινωνίας και το προτιμώμενο πρόγραμμα (ημέρα/ώρα), και δοκιμάστε ξανά.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
         </div>
 
@@ -598,19 +598,23 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             </div>
             <div>
               <label for="customerName" class="mb-1 block text-sm font-semibold text-gray-800">Ονοματεπώνυμο *</label>
-              <input id="customerName" name="customerName" required maxlength="120" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="customerName" name="customerName" required maxlength="120" data-booking-validate="name" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="customerName-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρο ονοματεπώνυμο (τουλάχιστον 2 χαρακτήρες).</p>
             </div>
             <div>
               <label for="bookingPhone" class="mb-1 block text-sm font-semibold text-gray-800">Τηλέφωνο *</label>
-              <input id="bookingPhone" name="phone" required maxlength="40" pattern="[0-9+()\-\s]{7,20}" title="Συμπληρώστε έγκυρο τηλέφωνο (7-20 χαρακτήρες)." class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="bookingPhone" name="phone" required maxlength="40" pattern="[0-9+()\-\s]{7,20}" title="Συμπληρώστε έγκυρο τηλέφωνο (7-20 χαρακτήρες)." data-booking-validate="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="bookingPhone-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Το τηλέφωνο πρέπει να έχει 7–20 χαρακτήρες (ψηφία ή σύμβολα +()-).</p>
             </div>
             <div>
               <label for="bookingEmail" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>
-              <input id="bookingEmail" name="email" type="email" required maxlength="160" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="bookingEmail" name="email" type="email" required maxlength="160" data-booking-validate="email" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="bookingEmail-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρη διεύθυνση email.</p>
             </div>
             <div class="md:col-span-2">
               <label for="preferredDate" class="mb-1 block text-sm font-semibold text-gray-800">Προτιμώμενο πρόγραμμα (ημερομηνία/ώρα)</label>
-              <input id="preferredDate" name="preferredDate" type="text" maxlength="80" placeholder="π.χ. 12/03 απόγευμα ή Σάββατο πρωί" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="preferredDate" name="preferredDate" type="text" maxlength="80" placeholder="π.χ. 12/03 απόγευμα ή Σάββατο πρωί" data-booking-validate="preferredDate" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="preferredDate-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Προσθέστε σαφή ημέρα/ώρα (π.χ. 12/03 πρωί ή Τρίτη 18:00).</p>
             </div>
           </div>
 
@@ -1028,15 +1032,59 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           }
         };
 
+        const bookingFieldValidators = {
+          name: (value) => value.trim().length >= 2,
+          phone: (value) => /^[0-9+()\-\s]{7,20}$/.test(value.trim()),
+          email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+          preferredDate: (value) => value.trim() === '' || (value.trim().length >= 4 && /\d/.test(value))
+        };
+
+        const updateBookingFieldValidity = (form, forceInvalidState = false) => {
+          if (!form.hasAttribute('data-booking-form')) return;
+          const fields = Array.from(form.querySelectorAll('[data-booking-validate]')).filter((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement);
+          for (const field of fields) {
+            const rule = field.getAttribute('data-booking-validate') || '';
+            const validator = bookingFieldValidators[rule];
+            if (!validator) continue;
+            const isValid = validator(field.value || '');
+            const touched = forceInvalidState || field.getAttribute('data-booking-touched') === 'true';
+            const errorEl = document.getElementById(`${field.id}-error`);
+            if (!isValid && touched) {
+              field.setAttribute('aria-invalid', 'true');
+              if (errorEl instanceof HTMLElement) errorEl.classList.remove('hidden');
+            } else {
+              field.setAttribute('aria-invalid', 'false');
+              if (errorEl instanceof HTMLElement) errorEl.classList.add('hidden');
+            }
+            if (rule === 'preferredDate') {
+              field.setCustomValidity(isValid ? '' : 'Προσθέστε σαφή ημέρα/ώρα.');
+            } else {
+              field.setCustomValidity(isValid ? '' : 'Συμπληρώστε έγκυρη τιμή.');
+            }
+          }
+        };
+
         for (const form of pendingForms) {
           const feedbackGroupName = form.getAttribute('data-feedback-group-name') || '';
           updateTrimRequiredFields(form);
+          updateBookingFieldValidity(form);
           form.addEventListener('input', (event) => {
             if (!(event.target instanceof HTMLElement)) return;
-            if (!event.target.hasAttribute('data-trim-required')) return;
-            event.target.setAttribute('data-trim-touched', 'true');
-            updateTrimRequiredFields(form);
+            if (event.target.hasAttribute('data-trim-required')) {
+              event.target.setAttribute('data-trim-touched', 'true');
+              updateTrimRequiredFields(form);
+            }
+            if (event.target.hasAttribute('data-booking-validate')) {
+              event.target.setAttribute('data-booking-touched', 'true');
+              updateBookingFieldValidity(form);
+            }
           });
+          form.addEventListener('blur', (event) => {
+            if (!(event.target instanceof HTMLElement)) return;
+            if (!event.target.hasAttribute('data-booking-validate')) return;
+            event.target.setAttribute('data-booking-touched', 'true');
+            updateBookingFieldValidity(form);
+          }, true);
           if (form.hasAttribute('data-message-form')) {
             updateMessageFieldValidity(form);
             form.addEventListener('input', (event) => {
@@ -1064,6 +1112,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               updateMessageFieldValidity(form, true);
             }
             updateTrimRequiredFields(form, true);
+            updateBookingFieldValidity(form, true);
 
             if (!form.checkValidity()) {
               event.preventDefault();
@@ -1086,6 +1135,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           for (const form of pendingForms) {
             setFormPending(form, false);
             updateTrimRequiredFields(form);
+            updateBookingFieldValidity(form);
             if (form.hasAttribute('data-message-form')) {
               updateMessageFieldValidity(form);
             }

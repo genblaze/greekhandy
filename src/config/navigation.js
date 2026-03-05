@@ -1,6 +1,7 @@
 export const NAV_TARGETS = Object.freeze({
   guides: '/blog',
-  professionals: '/professionals'
+  professionals: '/professionals',
+  heating: '/thermansi'
 });
 
 export const TOP_NAV_LINKS = Object.freeze([
@@ -20,12 +21,15 @@ export const NAV_ALIAS_REDIRECTS = Object.freeze({
   '/odigoi': NAV_TARGETS.guides,
   '/guides': NAV_TARGETS.guides,
   '/epaggelmaties': NAV_TARGETS.professionals,
-  '/pros': NAV_TARGETS.professionals
+  '/pros': NAV_TARGETS.professionals,
+  '/heating': NAV_TARGETS.heating,
+  '/technikoi-thermansis': NAV_TARGETS.heating,
+  '/techniki-thermansis': NAV_TARGETS.heating
 });
 
 export const NAV_PLACEHOLDER_TEXT = Object.freeze([
   'coming soon',
   'under construction',
-  'placeholder',
+  'work in progress',
   'υπό κατασκευή'
 ]);

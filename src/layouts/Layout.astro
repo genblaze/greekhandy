@@ -126,6 +126,8 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
       (() => {
         const toolbarSelector = '[data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar';
         const root = document.documentElement;
+        const dockBindings = new Map();
+        let dockCounter = 0;
         const schedule = (callback) => {
           if (typeof window.requestIdleCallback === 'function') {
             window.requestIdleCallback(() => callback(), { timeout: 1200 });
@@ -133,46 +135,102 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           }
           window.setTimeout(callback, 0);
         };
-        const getToolbarSafeInset = (toolbar) => {
-          if (!(toolbar instanceof HTMLElement)) return 0;
-          const rect = toolbar.getBoundingClientRect();
-          if (rect.height <= 0 || rect.width <= 0) return 0;
-          const expanded = toolbar.getAttribute('data-gh-widget-expanded') !== 'false';
-          if (!expanded) return Math.round(Math.min(rect.height + 8, 72));
-          return Math.round(Math.min(rect.height + 12, window.innerHeight * 0.6));
+        const getFirstFocusable = (node) => node.querySelector('button, a[href], input, select, textarea, [role="button"], [tabindex]:not([tabindex="-1"])');
+        const cleanupDetachedToolbars = () => {
+          for (const [toolbar, binding] of dockBindings.entries()) {
+            if (toolbar instanceof HTMLElement && toolbar.isConnected) continue;
+            if (binding.trigger instanceof HTMLElement && binding.trigger.isConnected) {
+              binding.trigger.remove();
+            }
+            dockBindings.delete(toolbar);
+          }
+        };
+        const getToolbarSafeInset = (binding) => {
+          if (!(binding?.trigger instanceof HTMLElement)) return 0;
+          const triggerRect = binding.trigger.getBoundingClientRect();
+          const collapsedInset = Math.max(72, Math.round(triggerRect.height + 22));
+          if (!(binding.toolbar instanceof HTMLElement) || binding.open !== true) return collapsedInset;
+          const toolbarRect = binding.toolbar.getBoundingClientRect();
+          if (toolbarRect.height <= 0 || toolbarRect.width <= 0) return collapsedInset;
+          return Math.round(Math.min(collapsedInset + toolbarRect.height + 12, window.innerHeight * 0.78));
         };
         const syncToolbarSafeArea = () => {
+          cleanupDetachedToolbars();
           let nextInset = 0;
-          for (const toolbar of document.querySelectorAll(toolbarSelector)) {
-            if (!(toolbar instanceof HTMLElement)) continue;
-            nextInset = Math.max(nextInset, getToolbarSafeInset(toolbar));
+          for (const binding of dockBindings.values()) {
+            nextInset = Math.max(nextInset, getToolbarSafeInset(binding));
           }
           root.style.setProperty('--gh-accessibility-toolbar-safe-area', `${nextInset}px`);
         };
-        const syncToolbarState = (toolbar) => {
-          const collapsedByAttr = toolbar.getAttribute('aria-expanded') === 'false';
-          const collapsedByClass = toolbar.classList.contains('is-collapsed');
-          toolbar.setAttribute('data-gh-widget-expanded', collapsedByAttr || collapsedByClass ? 'false' : 'true');
+        const setDockOpen = (binding, nextOpen, focusPanel = false) => {
+          if (!(binding?.toolbar instanceof HTMLElement) || !(binding.trigger instanceof HTMLButtonElement)) return;
+          binding.open = nextOpen;
+          binding.toolbar.setAttribute('data-gh-docked-open', nextOpen ? 'true' : 'false');
+          binding.toolbar.setAttribute('data-gh-widget-expanded', nextOpen ? 'true' : 'false');
+          binding.toolbar.setAttribute('aria-hidden', nextOpen ? 'false' : 'true');
+          if ('inert' in binding.toolbar) binding.toolbar.inert = !nextOpen;
+          binding.trigger.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+          binding.trigger.setAttribute('aria-label', nextOpen ? 'Κλείσιμο εργαλείων προσβασιμότητας' : 'Άνοιγμα εργαλείων προσβασιμότητας');
+
+          if (!nextOpen && binding.toolbar.contains(document.activeElement)) {
+            binding.trigger.focus({ preventScroll: true });
+          }
+          if (nextOpen && focusPanel) {
+            schedule(() => {
+              const target = getFirstFocusable(binding.toolbar);
+              if (target instanceof HTMLElement) target.focus({ preventScroll: true });
+            });
+          }
           schedule(syncToolbarSafeArea);
         };
+        const closeDockedToolbars = (exceptToolbar = null) => {
+          for (const [toolbar, binding] of dockBindings.entries()) {
+            if (toolbar === exceptToolbar) continue;
+            if (binding.open) setDockOpen(binding, false);
+          }
+        };
         const attachToolbar = (node) => {
-          if (!(node instanceof HTMLElement) || node.dataset.ghWidgetBound === 'true') return;
+          if (!(node instanceof HTMLElement) || dockBindings.has(node) || node.dataset.ghWidgetBound === 'true') return;
+          dockCounter += 1;
           node.dataset.ghWidgetBound = 'true';
-          syncToolbarState(node);
+          if (!node.id) node.id = `gh-accessibility-toolbar-${dockCounter}`;
+          const trigger = document.createElement('button');
+          trigger.type = 'button';
+          trigger.className = 'gh-accessibility-dock-trigger';
+          trigger.id = `gh-accessibility-trigger-${dockCounter}`;
+          trigger.setAttribute('aria-controls', node.id);
+          trigger.innerHTML = '<span class="gh-accessibility-dock-icon" aria-hidden="true">A11y</span><span class="sr-only">Εργαλεία προσβασιμότητας</span>';
+          document.body.append(trigger);
 
+          const binding = { toolbar: node, trigger, open: false };
+          dockBindings.set(node, binding);
+          setDockOpen(binding, false);
+
+          trigger.addEventListener('click', () => {
+            const willOpen = !binding.open;
+            if (willOpen) closeDockedToolbars(node);
+            setDockOpen(binding, willOpen, willOpen);
+          });
+          node.addEventListener('keydown', (event) => {
+            if (!(event instanceof KeyboardEvent)) return;
+            if (event.key !== 'Escape' || !binding.open) return;
+            event.preventDefault();
+            setDockOpen(binding, false);
+            trigger.focus({ preventScroll: true });
+          });
           const stateObserver = new MutationObserver(() => {
-            syncToolbarState(node);
+            schedule(syncToolbarSafeArea);
           });
           stateObserver.observe(node, {
             attributes: true,
-            attributeFilter: ['aria-expanded', 'class']
+            attributeFilter: ['aria-expanded', 'aria-hidden', 'class', 'style']
           });
-
           if (typeof ResizeObserver === 'function') {
             const resizeObserver = new ResizeObserver(() => {
               schedule(syncToolbarSafeArea);
             });
             resizeObserver.observe(node);
+            resizeObserver.observe(trigger);
           }
         };
         const scanToolbars = () => {
@@ -193,6 +251,22 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           }, 20000);
           window.addEventListener('resize', () => schedule(syncToolbarSafeArea), { passive: true });
           window.addEventListener('orientationchange', () => schedule(syncToolbarSafeArea), { passive: true });
+          document.addEventListener('pointerdown', (event) => {
+            const target = event.target;
+            if (!(target instanceof Node)) return;
+            let shouldClose = true;
+            for (const binding of dockBindings.values()) {
+              if (binding.toolbar.contains(target) || binding.trigger.contains(target)) {
+                shouldClose = false;
+                break;
+              }
+            }
+            if (shouldClose) closeDockedToolbars();
+          });
+          document.addEventListener('keydown', (event) => {
+            if (!(event instanceof KeyboardEvent) || event.key !== 'Escape') return;
+            closeDockedToolbars();
+          });
 
           const toggle = document.querySelector('[data-mobile-nav-toggle]');
           const close = document.querySelector('[data-mobile-nav-close]');
