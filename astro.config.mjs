@@ -33,6 +33,9 @@ export default defineConfig({
     ...NAV_ALIAS_REDIRECTS
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      allowedHosts: ['coder.tailnet-1169.ts.net']
+    }
   }
 });
