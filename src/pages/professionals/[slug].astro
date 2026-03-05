@@ -253,12 +253,15 @@ const professionalServiceSchema = {
 const profileMetaTitle = `${profile.name} | ${profile.profession} σε ${profile.city || 'Ελλάδα'} | GreekHandy`;
 const profileMetaDescription = `Επαγγελματικό προφίλ GreekHandy: ${profile.name}, ${profile.profession}${profile.city ? ` στη ${profile.city}` : ''}. Δείτε υπηρεσίες, περιοχές εξυπηρέτησης και αξιολογήσεις πελατών.`;
 const query = Astro.url.searchParams;
-const bookingStatusParam = (query.get('bookingStatus') || query.get('status') || query.get('booking') || '').toLowerCase();
+const bookingStatusParam = (query.get('bookingStatus') || query.get('booking') || '').toLowerCase();
 const reviewStatusParam = (query.get('review') || '').toLowerCase();
 const messageStatusParam = (query.get('message') || '').toLowerCase();
 const bookingFlash = readFormFlash(Astro.cookies, `booking:${profile.slug}`);
 const reviewFlash = readFormFlash(Astro.cookies, `review:${profile.slug}`);
 const messageFlash = readFormFlash(Astro.cookies, `message:${profile.slug}`);
+const hasBookingFlashErrors = Boolean(bookingFlash.errors && Object.keys(bookingFlash.errors).length > 0);
+const hasReviewFlashErrors = Boolean(reviewFlash.errors && Object.keys(reviewFlash.errors).length > 0);
+const hasMessageFlashErrors = Boolean(messageFlash.errors && Object.keys(messageFlash.errors).length > 0);
 
 const bookingValue = (field: string) => bookingFlash.values?.[field] || '';
 const bookingError = (field: string) => bookingFlash.errors?.[field] || '';
@@ -277,8 +280,9 @@ if (messageStatusParam === 'invalid' || messageStatusParam === 'error') {
 }
 
 const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => {
-  const target = prefix === 'booking' ? bookingFlash.errors : prefix === 'review' ? reviewFlash.errors : messageFlash.errors;
-  return Boolean(target && Object.keys(target).length > 0);
+  if (prefix === 'booking') return hasBookingFlashErrors;
+  if (prefix === 'review') return hasReviewFlashErrors;
+  return hasMessageFlashErrors;
 };
 
 ---
