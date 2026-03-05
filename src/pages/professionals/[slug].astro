@@ -605,7 +605,7 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           </div>
 
           <input type="hidden" name="professionalSlug" value={profile.slug} />
-          <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
+          <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}#submit-review`} />
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
           <div class="mt-4 grid gap-4 md:grid-cols-2">
@@ -704,7 +704,7 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           aria-describedby="booking-feedback submit-feedback-live profile-offline-alert"
         >
           <input type="hidden" name="professionalSlug" value={profile.slug} />
-          <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
+          <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}#primary-conversion`} />
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
           <div class="grid gap-4 md:grid-cols-2">

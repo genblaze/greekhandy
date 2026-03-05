@@ -136,9 +136,11 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   try {
     input = await extractInput(request);
   } catch {
+    const referer = request.headers.get('referer') || '';
+    const safeReturnTo = toSafeReturnTo(referer, '/professionals');
     return asJson
       ? jsonError(400, 'INVALID_BODY', 'Το σώμα του αιτήματος δεν είναι έγκυρο.')
-      : redirect('/professionals?review=invalid', 303);
+      : redirect(withReviewStatus(safeReturnTo, 'invalid', {}, { form: 'Η υποβολή δεν ήταν έγκυρη. Διορθώστε τα πεδία και δοκιμάστε ξανά.' }), 303);
   }
 
   if (input.honeypot) {
