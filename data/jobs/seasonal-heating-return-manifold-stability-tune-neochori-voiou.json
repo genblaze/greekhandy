@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-manifold-stability-tune-neochori-voiou",
+  "slug": "epochiaki-rythmisi-statherotitas-epistrofis-syllekti-thermansis-neochori-voiou",
+  "nameGr": "Εποχική Ρύθμιση Σταθερότητας Επιστροφής Συλλέκτη Θέρμανσης στο Νεοχώρι Βοΐου",
+  "nameEn": "Seasonal Heating Return Manifold Stability Tune in Νεοχώρι Βοΐου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση σταθερότητας επιστροφής συλλέκτη θέρμανσης στο Νεοχώρι Βοΐου για πιο ομοιόμορφη θέρμανση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Νεοχώρι Βοΐου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

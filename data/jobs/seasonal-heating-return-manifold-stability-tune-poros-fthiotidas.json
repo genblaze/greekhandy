@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-manifold-stability-tune-poros-fthiotidas",
+  "slug": "epochiaki-rythmisi-statherotitas-epistrofis-syllekti-thermansis-poros-fthiotidas",
+  "nameGr": "Εποχική Ρύθμιση Σταθερότητας Επιστροφής Συλλέκτη Θέρμανσης στον Πόρο Φθιώτιδας",
+  "nameEn": "Seasonal Heating Return Manifold Stability Tune in Πόρος Φθιώτιδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση σταθερότητας επιστροφής συλλέκτη θέρμανσης στον Πόρο Φθιώτιδας για πιο ομοιόμορφη θέρμανση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πόρος Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

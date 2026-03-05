@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-manifold-stability-tune-anavra-magnisias",
+  "slug": "epochiaki-rythmisi-statherotitas-epistrofis-syllekti-thermansis-anavra-magnisias",
+  "nameGr": "Εποχική Ρύθμιση Σταθερότητας Επιστροφής Συλλέκτη Θέρμανσης στην Ανάβρα Μαγνησίας",
+  "nameEn": "Seasonal Heating Return Manifold Stability Tune in Ανάβρα Μαγνησίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση σταθερότητας επιστροφής συλλέκτη θέρμανσης στην Ανάβρα Μαγνησίας για πιο ομοιόμορφη θέρμανση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ανάβρα Μαγνησίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-return-stop-fix-neochori-voiou",
+  "slug": "epigousa-episkevi-diakopis-epistrofis-sympyknomaton-esoterikou-ac-neochori-voiou",
+  "nameGr": "Επείγουσα Επισκευή Διακοπής Επιστροφής Συμπυκνωμάτων Εσωτερικού AC στο Νεοχώρι Βοΐου",
+  "nameEn": "Emergency AC Indoor Condensate Return Stop Fix in Νεοχώρι Βοΐου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή διακοπής επιστροφής συμπυκνωμάτων εσωτερικού AC στο Νεοχώρι Βοΐου για να μην επιστρέφει νερό στον χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Νεοχώρι Βοΐου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

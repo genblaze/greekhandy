@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-runoff-path-clean-neochori-voiou",
+  "slug": "epochiakos-katharismos-diadromis-aporrois-katofliou-eisodou-katoikias-neochori-voiou",
+  "nameGr": "Εποχικός Καθαρισμός Διαδρομής Απορροής Κατωφλιού Εισόδου Κατοικίας στο Νεοχώρι Βοΐου",
+  "nameEn": "Seasonal Home Entry Threshold Runoff Path Clean in Νεοχώρι Βοΐου",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός καθαρισμός διαδρομής απορροής κατωφλιού εισόδου κατοικίας στο Νεοχώρι Βοΐου για καλύτερη αποστράγγιση και ασφάλεια.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Νεοχώρι Βοΐου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
