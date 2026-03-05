@@ -163,6 +163,49 @@ const trustDecisionCategorySlugs = new Set(['ydravlikoi', 'ilektrologoi']);
 const highVolumeFilterSlugs = new Set(['ydravlikoi', 'ilektrologoi']);
 const enableAdvancedCategoryUX = isCategoryPage && (highVolumeFilterSlugs.has(category.slug) || subJobs.length >= 18);
 const enableTrustDecisionCardUX = isCategoryPage && trustDecisionCategorySlugs.has(category.slug);
+const enableCategoryServiceSelectionClarity = isCategoryPage && trustDecisionCategorySlugs.has(category.slug);
+
+const serviceSelectionGuidanceMap = {
+  ydravlikoi: {
+    badge: 'Plumber clarity flow',
+    title: 'Επιλογή υδραυλικού με σιγουριά σε λίγα βήματα.',
+    intro: 'Ξεκινήστε με σαφές σύμπτωμα, περιοχή και χρονικό παράθυρο για να πάρετε πιο καθαρή πρώτη εκτίμηση.',
+    trustHeading: 'Σήματα εμπιστοσύνης',
+    trustCues: [
+      'Βλέπετε καταχωρίσεις με βασική επαλήθευση στοιχείων συνεργάτη.',
+      'Περιμένετε καθαρή αρχική ανταπόκριση για διαθεσιμότητα και βήματα εργασίας.',
+      'Ζητήστε διαφανή προσφορά με διαχωρισμό εργασίας και υλικών.'
+    ],
+    urgencyHeading: 'Triage προτεραιότητας',
+    urgencyCues: [
+      { label: 'Σήμερα', text: 'για διαρροή ή αιφνίδια βλάβη που επηρεάζει άμεσα τον χώρο.' },
+      { label: '24h', text: 'όταν χρειάζεστε γρήγορη επίσκεψη αλλά όχι άμεση επέμβαση.' },
+      { label: 'Προγραμματισμένο', text: 'για συντήρηση, αντικατάσταση ή προληπτικό έλεγχο.' }
+    ],
+    footer: 'Σωστή προτεραιότητα από την αρχή σημαίνει λιγότερες άσκοπες επικοινωνίες και πιο καθαρή απόφαση.'
+  },
+  ilektrologoi: {
+    badge: 'Electrician clarity flow',
+    title: 'Επιλογή ηλεκτρολόγου με καθαρή εικόνα κινδύνου και κόστους.',
+    intro: 'Δηλώστε από την αρχή ένδειξη βλάβης, πίνακα/κύκλωμα και διαθέσιμο χρόνο για ασφαλέστερη και ταχύτερη ανάθεση.',
+    trustHeading: 'Σήματα εμπιστοσύνης',
+    trustCues: [
+      'Οι εμφανιζόμενες καταχωρίσεις περνούν βασικό έλεγχο στοιχείων.',
+      'Η ποιοτική αρχική απόκριση περιλαμβάνει σαφές επόμενο βήμα και εκτίμηση χρόνου.',
+      'Προτιμήστε διαφανείς προσφορές με ξεκάθαρο εύρος εργασιών και υλικών.'
+    ],
+    urgencyHeading: 'Triage προτεραιότητας',
+    urgencyCues: [
+      { label: 'Σήμερα', text: 'για διακοπή ρεύματος, πίνακα που πέφτει ή ένδειξη κινδύνου.' },
+      { label: '24h', text: 'για βλάβες που χρειάζονται γρήγορη επίσκεψη χωρίς άμεσο ρίσκο.' },
+      { label: 'Προγραμματισμένο', text: 'για αναβαθμίσεις, νέες γραμμές ή προληπτικό έλεγχο.' }
+    ],
+    footer: 'Σαφής περιγραφή σημαίνει καλύτερη προτεραιοποίηση, ασφαλέστερη εκτέλεση και καθαρότερη σύγκριση.'
+  }
+} as const;
+const serviceSelectionGuidance = enableCategoryServiceSelectionClarity
+  ? serviceSelectionGuidanceMap[category.slug as keyof typeof serviceSelectionGuidanceMap]
+  : null;
 const cityTokens = ['athina', 'thessaloniki', 'patra', 'irakleio', 'larisa', 'volos', 'ioannina'];
 const cityLabelMap: Record<string, string> = {
   athina: 'Αθήνα',
@@ -561,13 +604,47 @@ const faqSchema = pageCategory.faq?.length ? {
         <div class="mx-auto max-w-5xl">
           <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Υπηρεσίες σε αυτή την κατηγορία</h2>
 
+          {serviceSelectionGuidance && (
+            <aside class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-6" aria-label="Οδηγός επιλογής υπηρεσίας">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <p class="text-xs font-semibold uppercase tracking-wide text-blue-700">Σαφής επιλογή υπηρεσίας</p>
+                <p class="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">{serviceSelectionGuidance.badge}</p>
+              </div>
+              <h3 class="mt-3 text-xl font-bold text-slate-900 md:text-2xl">{serviceSelectionGuidance.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{serviceSelectionGuidance.intro}</p>
+              <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                <article class="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
+                  <p class="text-sm font-semibold text-emerald-900">{serviceSelectionGuidance.trustHeading}</p>
+                  <ul class="mt-2 space-y-2 text-sm text-emerald-900">
+                    {serviceSelectionGuidance.trustCues.map((cue) => (<li>{cue}</li>))}
+                  </ul>
+                </article>
+                <article class="rounded-xl border border-amber-200 bg-amber-50/70 p-4">
+                  <p class="text-sm font-semibold text-amber-900">{serviceSelectionGuidance.urgencyHeading}</p>
+                  <ul class="mt-2 space-y-2 text-sm text-amber-900">
+                    {serviceSelectionGuidance.urgencyCues.map((cue) => (
+                      <li><span class="font-semibold">{cue.label}:</span> {cue.text}</li>
+                    ))}
+                  </ul>
+                </article>
+              </div>
+              <p class="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-600">{serviceSelectionGuidance.footer}</p>
+            </aside>
+          )}
+
           {enableAdvancedCategoryUX && subJobs.length > 0 && (
             <div class="mt-4 rounded-xl border border-slate-200 bg-white p-4">
               <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Φίλτρα κατηγορίας</p>
               <p id="subjobs-filter-state" data-subjobs-state class="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600" role="status" aria-live="polite" aria-atomic="true">
-                Προετοιμασία κατάταξης υπηρεσιών...
+                {enableCategoryServiceSelectionClarity
+                  ? 'Η λίστα είναι έτοιμη για άμεση και καθαρή σύγκριση.'
+                  : 'Προετοιμασία κατάταξης υπηρεσιών...'}
               </p>
-              <p class="mt-2 text-xs text-slate-600">Χρησιμοποιήστε τα φίλτρα για να περιορίσετε γρήγορα τις επιλογές ανά πόλη, επείγον, budget και διαθεσιμότητα.</p>
+              <p class="mt-2 text-xs text-slate-600">
+                {enableCategoryServiceSelectionClarity
+                  ? 'Επιλέξτε προτεραιότητα, πόλη, budget και διαθεσιμότητα για ταχύτερη απόφαση χωρίς θόρυβο.'
+                  : 'Χρησιμοποιήστε τα φίλτρα για να περιορίσετε γρήγορα τις επιλογές ανά πόλη, επείγον, budget και διαθεσιμότητα.'}
+              </p>
               <p class="mt-1 text-xs text-slate-500" data-active-filter-summary aria-live="polite">Ενεργά φίλτρα: κανένα (εμφανίζονται όλα).</p>
               <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" role="group" aria-label="Φίλτρα υπηρεσιών κατηγορίας">
                 <div>
@@ -620,28 +697,51 @@ const faqSchema = pageCategory.faq?.length ? {
           {subJobs.length > 0 ? (
             <>
               <div class="mt-4 hidden rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-900" data-subjobs-loading role="status" aria-live="polite">
-                <p class="font-semibold">Ενημέρωση λίστας υπηρεσιών...</p>
-                <p class="mt-1 text-xs">Εφαρμόζουμε φίλτρα προτεραιότητας, πόλης, budget και διαθεσιμότητας.</p>
+                <p class="font-semibold">{enableCategoryServiceSelectionClarity ? 'Ετοιμάζουμε τις καλύτερες αντιστοιχίσεις για εσάς.' : 'Ενημέρωση λίστας υπηρεσιών...'}</p>
+                <p class="mt-1 text-xs">
+                  {enableCategoryServiceSelectionClarity
+                    ? 'Σε λίγα δευτερόλεπτα θα δείτε τις πιο σχετικές επιλογές με βάση τα φίλτρα σας.'
+                    : 'Εφαρμόζουμε φίλτρα προτεραιότητας, πόλης, budget και διαθεσιμότητας.'}
+                </p>
               </div>
               <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-subjobs-empty role="status" aria-live="polite">
-                <p class="font-semibold text-orange-900">Δεν βρέθηκαν υπηρεσίες με αυτά τα φίλτρα.</p>
-                <p class="mt-1">Καθαρίστε τα φίλτρα ή δοκιμάστε άλλη πόλη/διαθεσιμότητα. Μπορείτε επίσης να συνεχίσετε από σχετικές υπηρεσίες για να μη χαθεί η ροή ανάθεσης.</p>
+                <p class="font-semibold text-orange-900">
+                  {enableCategoryServiceSelectionClarity
+                    ? 'Δεν εμφανίστηκαν επιλογές για τον τρέχοντα συνδυασμό.'
+                    : 'Δεν βρέθηκαν υπηρεσίες με αυτά τα φίλτρα.'}
+                </p>
+                <p class="mt-1">
+                  {enableCategoryServiceSelectionClarity
+                    ? 'Αλλάξτε ένα φίλτρο για να ανοίξουν άμεσα περισσότερες επιλογές ή συνεχίστε από επαγγελματίες και επικοινωνία.'
+                    : 'Καθαρίστε τα φίλτρα ή δοκιμάστε άλλη πόλη/διαθεσιμότητα. Μπορείτε επίσης να συνεχίσετε από σχετικές υπηρεσίες για να μη χαθεί η ροή ανάθεσης.'}
+                </p>
                 <div class="mt-3 flex flex-wrap gap-2">
                   <button type="button" data-reset-subjob-filters aria-controls="subjobs-grid" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Καθαρισμός φίλτρων</button>
                   <a href={`/${pageCategory.slug}`} class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Όλες οι υπηρεσίες κατηγορίας</a>
+                  {enableCategoryServiceSelectionClarity && <a href="/#services" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Επιστροφή σε κατηγορίες</a>}
                   <a href="/professionals" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Προβολή επαγγελματιών</a>
+                  <a href="/epikoinonia" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Επικοινωνία</a>
                   <a href="#contact" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Ζητήστε προσφορά</a>
                 </div>
               </div>
               <div class="mt-4 hidden rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800" data-subjobs-error role="alert" aria-live="assertive">
-                <p class="font-semibold text-rose-900">Η κατηγοριοποίηση υπηρεσιών δεν ενημερώθηκε.</p>
-                <p class="mt-1">Κάντε επανάληψη για νέα απόπειρα ή συνεχίστε κατευθείαν στην επικοινωνία.</p>
+                <p class="font-semibold text-rose-900">
+                  {enableCategoryServiceSelectionClarity
+                    ? 'Η λίστα δεν ανανεώθηκε αυτή τη στιγμή.'
+                    : 'Η κατηγοριοποίηση υπηρεσιών δεν ενημερώθηκε.'}
+                </p>
+                <p class="mt-1">
+                  {enableCategoryServiceSelectionClarity
+                    ? 'Δοκιμάστε ξανά ή συνεχίστε άμεσα με επαγγελματίες και επικοινωνία.'
+                    : 'Κάντε επανάληψη για νέα απόπειρα ή συνεχίστε κατευθείαν στην επικοινωνία.'}
+                </p>
                 <div class="mt-3 flex flex-wrap gap-2">
                   <button type="button" data-subjobs-retry class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Επανάληψη</button>
+                  {enableCategoryServiceSelectionClarity && <a href="/professionals" class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Προβολή επαγγελματιών</a>}
                   <a href="#contact" class="inline-flex rounded-full border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-800 transition hover:bg-rose-100">Επικοινωνία</a>
                 </div>
               </div>
-              <div id="subjobs-grid" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-subjobs-grid>
+              <div id="subjobs-grid" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-subjobs-grid data-clarity-slice={enableCategoryServiceSelectionClarity ? '1' : '0'}>
                 {renderedSubJobs.map((job: any, index: number) => {
                   const urgencyValue = isUrgentJob(job) ? 'urgent' : 'standard';
                   const cityValue = getJobCity(job);
@@ -798,8 +898,16 @@ const faqSchema = pageCategory.faq?.length ? {
             </>
           ) : (
             <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 text-slate-700 md:p-6">
-              <p class="font-semibold text-slate-900">Δεν υπάρχουν ακόμη διαθέσιμες επιμέρους υπηρεσίες σε αυτή την κατηγορία.</p>
-              <p class="mt-1 text-sm text-slate-600">Η ομάδα GreekHandy επιμελείται συνεχώς νέες καταχωρίσεις, ώστε να διατηρείται υψηλή ποιότητα αντιστοίχισης και σαφήνεια επιλογών.</p>
+              <p class="font-semibold text-slate-900">
+                {enableCategoryServiceSelectionClarity
+                  ? 'Η συγκεκριμένη λίστα εμπλουτίζεται αυτή τη στιγμή.'
+                  : 'Δεν υπάρχουν ακόμη διαθέσιμες επιμέρους υπηρεσίες σε αυτή την κατηγορία.'}
+              </p>
+              <p class="mt-1 text-sm text-slate-600">
+                {enableCategoryServiceSelectionClarity
+                  ? 'Η ομάδα GreekHandy προσθέτει επιπλέον επιλογές με σταθερά κριτήρια ποιότητας, ώστε η απόφασή σας να παραμείνει καθαρή.'
+                  : 'Η ομάδα GreekHandy επιμελείται συνεχώς νέες καταχωρίσεις, ώστε να διατηρείται υψηλή ποιότητα αντιστοίχισης και σαφήνεια επιλογών.'}
+              </p>
               <div class="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/70 px-4 py-3 text-sm text-emerald-900">
                 <p class="font-semibold">Η ροή σας δεν χάνεται.</p>
                 <p class="mt-1 text-emerald-800">Μπορείτε να συνεχίσετε άμεσα από βασικές κατηγορίες, επιβεβαιωμένα προφίλ επαγγελματιών ή απευθείας επικοινωνία.</p>
@@ -841,6 +949,7 @@ const faqSchema = pageCategory.faq?.length ? {
         const emptyState = document.querySelector('[data-subjobs-empty]');
         const errorState = document.querySelector('[data-subjobs-error]');
         const retryState = document.querySelector('[data-subjobs-retry]');
+        const isClaritySlice = subJobsGrid instanceof HTMLElement && subJobsGrid.dataset.claritySlice === '1';
         const initialLimit = cards.filter((card) => card.getAttribute('data-visible-initial') === '1').length || 12;
         const allowedValues = {
           urgency: new Set(['all', 'urgent', 'standard']),
@@ -915,7 +1024,9 @@ const faqSchema = pageCategory.faq?.length ? {
           }
           if (isBusy && filterState instanceof HTMLElement) {
             filterState.dataset.state = 'loading';
-            filterState.textContent = 'Ενημερώνουμε τη λίστα υπηρεσιών με βάση τα φίλτρα...';
+            filterState.textContent = isClaritySlice
+              ? 'Φέρνουμε τις πιο σχετικές επιλογές για τα φίλτρα σας...'
+              : 'Ενημερώνουμε τη λίστα υπηρεσιών με βάση τα φίλτρα...';
           }
         };
 
@@ -988,7 +1099,9 @@ const faqSchema = pageCategory.faq?.length ? {
 
             if (counter instanceof HTMLElement) {
               counter.textContent = matched === 0
-                ? 'Δεν υπάρχουν υπηρεσίες με αυτά τα φίλτρα.'
+                ? (isClaritySlice
+                  ? 'Δεν βρέθηκαν επιλογές για τα φίλτρα που επιλέξατε.'
+                  : 'Δεν υπάρχουν υπηρεσίες με αυτά τα φίλτρα.')
                 : `Εμφανίζονται ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`;
             }
             if (pageIndicator instanceof HTMLElement) {
@@ -998,7 +1111,7 @@ const faqSchema = pageCategory.faq?.length ? {
             }
             if (a11ySummary instanceof HTMLElement) {
               const pageMessage = matched === 0
-                ? 'Καμία υπηρεσία για τα τρέχοντα φίλτρα.'
+                ? (isClaritySlice ? 'Δεν υπάρχουν διαθέσιμες επιλογές για τα τρέχοντα φίλτρα.' : 'Καμία υπηρεσία για τα τρέχοντα φίλτρα.')
                 : `Προβολή ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`;
               a11ySummary.textContent = activeFilterLabels.length > 0
                 ? `${pageMessage} Ενεργά φίλτρα: ${activeFilterLabels.join(', ')}.`
@@ -1030,13 +1143,17 @@ const faqSchema = pageCategory.faq?.length ? {
             }
 
             if (matched === 0 && hasActiveFilters) {
-              setFilterState('no-match', 'Δεν υπάρχουν υπηρεσίες με τον τρέχοντα συνδυασμό φίλτρων.');
+              setFilterState('no-match', isClaritySlice ? 'Δεν βρέθηκαν επιλογές με αυτόν τον συνδυασμό φίλτρων.' : 'Δεν υπάρχουν υπηρεσίες με τον τρέχοντα συνδυασμό φίλτρων.');
             } else if (matched === 0) {
-              setFilterState('empty', 'Δεν υπάρχουν διαθέσιμες υπηρεσίες προς εμφάνιση αυτή τη στιγμή.');
+              setFilterState('empty', isClaritySlice ? 'Δεν υπάρχουν διαθέσιμες επιλογές αυτή τη στιγμή.' : 'Δεν υπάρχουν διαθέσιμες υπηρεσίες προς εμφάνιση αυτή τη στιγμή.');
             } else if (hasActiveFilters) {
-              setFilterState('filtered', `Φιλτραρισμένη προβολή: ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`);
+              setFilterState('filtered', isClaritySlice
+                ? `Φιλτραρισμένη προβολή: ${pageStart + 1}-${pageEnd} από ${matched} επιλογές.`
+                : `Φιλτραρισμένη προβολή: ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`);
             } else {
-              setFilterState('ready', `Κανονική προβολή: ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`);
+              setFilterState('ready', isClaritySlice
+                ? `Έτοιμη προβολή: ${pageStart + 1}-${pageEnd} από ${matched} επιλογές.`
+                : `Κανονική προβολή: ${pageStart + 1}-${pageEnd} από ${matched} υπηρεσίες.`);
             }
 
             const currentState = {
@@ -1049,7 +1166,9 @@ const faqSchema = pageCategory.faq?.length ? {
             syncUrlState(currentState);
           } catch {
             if (errorState instanceof HTMLElement) errorState.classList.remove('hidden');
-            setFilterState('error', 'Η κατηγοριοποίηση υπηρεσιών δεν ενημερώθηκε. Δοκιμάστε επανάληψη.');
+            setFilterState('error', isClaritySlice
+              ? 'Η λίστα δεν ανανεώθηκε. Δοκιμάστε ξανά.'
+              : 'Η κατηγοριοποίηση υπηρεσιών δεν ενημερώθηκε. Δοκιμάστε επανάληψη.');
           } finally {
             setBusyState(false);
           }
@@ -1215,12 +1334,21 @@ const faqSchema = pageCategory.faq?.length ? {
     {isCategoryPage && relatedCategories.length === 0 && subJobs.length > 0 && (
       <section class="bg-slate-50 px-4 py-10">
         <div class="mx-auto max-w-5xl rounded-2xl border border-slate-200 bg-white p-5 text-slate-700 md:p-6">
-          <h2 class="text-xl font-bold text-slate-900">Δεν υπάρχουν ακόμη σχετικές λίστες για αυτή την κατηγορία.</h2>
-          <p class="mt-2 text-sm text-slate-600">Συνεχίστε από τις διαθέσιμες υπηρεσίες παραπάνω ή προχωρήστε σε εναλλακτική ροή επιλογής χωρίς καθυστέρηση.</p>
+          <h2 class="text-xl font-bold text-slate-900">
+            {enableCategoryServiceSelectionClarity
+              ? 'Οι σχετικές επιλογές ανανεώνονται για πιο καθαρή σύγκριση.'
+              : 'Δεν υπάρχουν ακόμη σχετικές λίστες για αυτή την κατηγορία.'}
+          </h2>
+          <p class="mt-2 text-sm text-slate-600">
+            {enableCategoryServiceSelectionClarity
+              ? 'Συνεχίστε με τις διαθέσιμες υπηρεσίες, όλους τους επαγγελματίες ή άμεση επικοινωνία για να κλείσετε γρήγορα την απόφασή σας.'
+              : 'Συνεχίστε από τις διαθέσιμες υπηρεσίες παραπάνω ή προχωρήστε σε εναλλακτική ροή επιλογής χωρίς καθυστέρηση.'}
+          </p>
           <div class="mt-4 flex flex-wrap gap-2">
             <a href="/#services" class="inline-flex rounded-full border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-800 transition hover:bg-slate-50">Επιστροφή σε κατηγορίες</a>
             <a href="/professionals" class="inline-flex rounded-full border border-blue-300 bg-blue-50 px-3.5 py-2 text-xs font-semibold text-blue-900 transition hover:bg-blue-100">Προβολή επαγγελματιών</a>
             <a href="/epikoinonia" class="inline-flex rounded-full border border-cyan-300 bg-cyan-50 px-3.5 py-2 text-xs font-semibold text-cyan-900 transition hover:bg-cyan-100">Επικοινωνία</a>
+            {enableCategoryServiceSelectionClarity && <a href="#contact" class="inline-flex rounded-full border border-slate-300 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-800 transition hover:bg-slate-100">Ζητήστε προσφορά</a>}
           </div>
         </div>
       </section>
