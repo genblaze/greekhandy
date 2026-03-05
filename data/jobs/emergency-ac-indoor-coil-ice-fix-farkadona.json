@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-coil-ice-fix-farkadona",
+  "slug": "epigousa-episkevi-pagwmatos-esoterikou-stoixeiou-ac-farkadona",
+  "nameGr": "Επείγουσα Επισκευή Παγώματος Εσωτερικού Στοιχείου AC στα Φαρκαδόνα",
+  "nameEn": "Emergency AC Indoor Coil Ice Fix in Φαρκαδόνα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση παγώματος εσωτερικού στοιχείου AC στα Φαρκαδόνα για άμεση επιστροφή σωστής ψύξης. SEO intent: «κλιματιστικό παγώνει μέσα Φαρκαδόνα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό παγώνει μέσα Φαρκαδόνα",
+    "ac δεν βγάζει αέρα σωστά",
+    "τεχνικός κλιματισμού πάγος",
+    "επισκευή στοιχείου ac",
+    "service ac επείγον"
+  ],
+  "status": "researched"
+}

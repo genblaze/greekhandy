@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-coil-ice-fix-amfikleia",
+  "slug": "epigousa-episkevi-pagwmatos-esoterikou-stoixeiou-ac-amfikleia",
+  "nameGr": "Επείγουσα Επισκευή Παγώματος Εσωτερικού Στοιχείου AC στην Αμφίκλεια",
+  "nameEn": "Emergency AC Indoor Coil Ice Fix in Αμφίκλεια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση παγώματος εσωτερικού στοιχείου AC στην Αμφίκλεια για άμεση επιστροφή σωστής ψύξης. SEO intent: «κλιματιστικό παγώνει μέσα Αμφίκλεια».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό παγώνει μέσα Αμφίκλεια",
+    "ac δεν βγάζει αέρα σωστά",
+    "τεχνικός κλιματισμού πάγος",
+    "επισκευή στοιχείου ac",
+    "service ac επείγον"
+  ],
+  "status": "researched"
+}

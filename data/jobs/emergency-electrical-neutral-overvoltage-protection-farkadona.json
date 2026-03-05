@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-overvoltage-protection-farkadona",
+  "slug": "epigousa-prostasia-ypertasis-apo-vlavi-oudeterou-farkadona",
+  "nameGr": "Επείγουσα Προστασία Υπέρτασης από Βλάβη Ουδετέρου στα Φαρκαδόνα",
+  "nameEn": "Emergency Electrical Neutral Overvoltage Protection in Φαρκαδόνα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα παρέμβαση για προστασία από υπέρταση λόγω βλάβης ουδετέρου στα Φαρκαδόνα, πριν προκληθούν ζημιές σε συσκευές. SEO intent: «βλάβη ουδετέρου υπέρταση Φαρκαδόνα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "75-260€",
+  "demand": "high",
+  "keywords": [
+    "βλάβη ουδετέρου υπέρταση Φαρκαδόνα",
+    "ηλεκτρολόγος επείγον ουδέτερος",
+    "σώσιμο συσκευών από τάση",
+    "ασφάλεια πίνακα κατοικίας",
+    "διάγνωση ηλεκτρικής ανωμαλίας"
+  ],
+  "status": "researched"
+}

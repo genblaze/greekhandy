@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-water-valve-seize-fix-krestena",
+  "slug": "epigousa-episkevi-kollimenis-kentrikis-valvidas-nerou-krestena",
+  "nameGr": "Επείγουσα Επισκευή Κολλημένης Κεντρικής Βαλβίδας Νερού στα Κρέστενα",
+  "nameEn": "Emergency Main Water Valve Seize Fix in Κρέστενα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή κολλημένης κεντρικής βαλβίδας νερού στα Κρέστενα για άμεσο έλεγχο παροχής σε περίπτωση διαρροής. SEO intent: «κεντρική βαλβίδα δεν κλείνει Κρέστενα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "κεντρική βαλβίδα δεν κλείνει Κρέστενα",
+    "υδραυλικός επείγον βαλβίδα",
+    "διαρροή νερού διακοπή παροχής",
+    "επισκευή κεντρικού διακόπτη νερού",
+    "service βαλβίδας δικτύου"
+  ],
+  "status": "researched"
+}

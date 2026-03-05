@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-emergency-light-check-krestena",
+  "slug": "epochiakos-elegxos-fotismou-ektaktis-anagkis-spitiou-krestena",
+  "nameGr": "Εποχικός Έλεγχος Φωτισμού Έκτακτης Ανάγκης Σπιτιού στα Κρέστενα",
+  "nameEn": "Seasonal Home Emergency Light Check in Κρέστενα",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εποχικός έλεγχος φωτισμού έκτακτης ανάγκης κατοικίας στα Κρέστενα για αξιοπιστία σε διακοπές ρεύματος. SEO intent: «φωτισμός έκτακτης ανάγκης σπίτι Κρέστενα».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "φωτισμός έκτακτης ανάγκης σπίτι Κρέστενα",
+    "έλεγχος emergency light κατοικίας",
+    "ασφάλεια blackout σπίτι",
+    "τεχνικός συστημάτων ασφαλείας σπίτι",
+    "προετοιμασία για διακοπή ρεύματος"
+  ],
+  "status": "researched"
+}

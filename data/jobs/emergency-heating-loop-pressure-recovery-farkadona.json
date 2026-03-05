@@ -1,0 +1,20 @@
+{
+  "id": "emergency-heating-loop-pressure-recovery-farkadona",
+  "slug": "epigousa-epanafora-piesis-kyklomatos-thermansis-farkadona",
+  "nameGr": "Επείγουσα Επαναφορά Πίεσης Κυκλώματος Θέρμανσης στα Φαρκαδόνα",
+  "nameEn": "Emergency Heating Loop Pressure Recovery in Φαρκαδόνα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά πίεσης στο κύκλωμα θέρμανσης στα Φαρκαδόνα για να επανέλθει άμεσα η λειτουργία καλοριφέρ. SEO intent: «πίεση θέρμανσης έπεσε Φαρκαδόνα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "πίεση θέρμανσης έπεσε Φαρκαδόνα",
+    "τεχνικός θέρμανσης επείγον",
+    "λέβητας χαμηλή πίεση λύση",
+    "χωρίς θέρμανση άμεσα",
+    "service κυκλώματος θέρμανσης"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-heating-loop-pressure-recovery-krestena",
+  "slug": "epigousa-epanafora-piesis-kyklomatos-thermansis-krestena",
+  "nameGr": "Επείγουσα Επαναφορά Πίεσης Κυκλώματος Θέρμανσης στα Κρέστενα",
+  "nameEn": "Emergency Heating Loop Pressure Recovery in Κρέστενα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά πίεσης στο κύκλωμα θέρμανσης στα Κρέστενα για να επανέλθει άμεσα η λειτουργία καλοριφέρ. SEO intent: «πίεση θέρμανσης έπεσε Κρέστενα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "πίεση θέρμανσης έπεσε Κρέστενα",
+    "τεχνικός θέρμανσης επείγον",
+    "λέβητας χαμηλή πίεση λύση",
+    "χωρίς θέρμανση άμεσα",
+    "service κυκλώματος θέρμανσης"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-overvoltage-protection-amfikleia",
+  "slug": "epigousa-prostasia-ypertasis-apo-vlavi-oudeterou-amfikleia",
+  "nameGr": "Επείγουσα Προστασία Υπέρτασης από Βλάβη Ουδετέρου στην Αμφίκλεια",
+  "nameEn": "Emergency Electrical Neutral Overvoltage Protection in Αμφίκλεια",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα παρέμβαση για προστασία από υπέρταση λόγω βλάβης ουδετέρου στην Αμφίκλεια, πριν προκληθούν ζημιές σε συσκευές. SEO intent: «βλάβη ουδετέρου υπέρταση Αμφίκλεια».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "75-260€",
+  "demand": "high",
+  "keywords": [
+    "βλάβη ουδετέρου υπέρταση Αμφίκλεια",
+    "ηλεκτρολόγος επείγον ουδέτερος",
+    "σώσιμο συσκευών από τάση",
+    "ασφάλεια πίνακα κατοικίας",
+    "διάγνωση ηλεκτρικής ανωμαλίας"
+  ],
+  "status": "researched"
+}

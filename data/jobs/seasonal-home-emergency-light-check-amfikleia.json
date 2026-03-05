@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-emergency-light-check-amfikleia",
+  "slug": "epochiakos-elegxos-fotismou-ektaktis-anagkis-spitiou-amfikleia",
+  "nameGr": "Εποχικός Έλεγχος Φωτισμού Έκτακτης Ανάγκης Σπιτιού στην Αμφίκλεια",
+  "nameEn": "Seasonal Home Emergency Light Check in Αμφίκλεια",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εποχικός έλεγχος φωτισμού έκτακτης ανάγκης κατοικίας στην Αμφίκλεια για αξιοπιστία σε διακοπές ρεύματος. SEO intent: «φωτισμός έκτακτης ανάγκης σπίτι Αμφίκλεια».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "φωτισμός έκτακτης ανάγκης σπίτι Αμφίκλεια",
+    "έλεγχος emergency light κατοικίας",
+    "ασφάλεια blackout σπίτι",
+    "τεχνικός συστημάτων ασφαλείας σπίτι",
+    "προετοιμασία για διακοπή ρεύματος"
+  ],
+  "status": "researched"
+}

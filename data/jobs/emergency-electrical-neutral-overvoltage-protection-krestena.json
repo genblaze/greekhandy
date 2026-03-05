@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-overvoltage-protection-krestena",
+  "slug": "epigousa-prostasia-ypertasis-apo-vlavi-oudeterou-krestena",
+  "nameGr": "Επείγουσα Προστασία Υπέρτασης από Βλάβη Ουδετέρου στα Κρέστενα",
+  "nameEn": "Emergency Electrical Neutral Overvoltage Protection in Κρέστενα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα παρέμβαση για προστασία από υπέρταση λόγω βλάβης ουδετέρου στα Κρέστενα, πριν προκληθούν ζημιές σε συσκευές. SEO intent: «βλάβη ουδετέρου υπέρταση Κρέστενα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "75-260€",
+  "demand": "high",
+  "keywords": [
+    "βλάβη ουδετέρου υπέρταση Κρέστενα",
+    "ηλεκτρολόγος επείγον ουδέτερος",
+    "σώσιμο συσκευών από τάση",
+    "ασφάλεια πίνακα κατοικίας",
+    "διάγνωση ηλεκτρικής ανωμαλίας"
+  ],
+  "status": "researched"
+}

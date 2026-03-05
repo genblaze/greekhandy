@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-emergency-light-check-farkadona",
+  "slug": "epochiakos-elegxos-fotismou-ektaktis-anagkis-spitiou-farkadona",
+  "nameGr": "Εποχικός Έλεγχος Φωτισμού Έκτακτης Ανάγκης Σπιτιού στα Φαρκαδόνα",
+  "nameEn": "Seasonal Home Emergency Light Check in Φαρκαδόνα",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εποχικός έλεγχος φωτισμού έκτακτης ανάγκης κατοικίας στα Φαρκαδόνα για αξιοπιστία σε διακοπές ρεύματος. SEO intent: «φωτισμός έκτακτης ανάγκης σπίτι Φαρκαδόνα».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "φωτισμός έκτακτης ανάγκης σπίτι Φαρκαδόνα",
+    "έλεγχος emergency light κατοικίας",
+    "ασφάλεια blackout σπίτι",
+    "τεχνικός συστημάτων ασφαλείας σπίτι",
+    "προετοιμασία για διακοπή ρεύματος"
+  ],
+  "status": "researched"
+}

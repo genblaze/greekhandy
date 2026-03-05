@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-water-valve-seize-fix-farkadona",
+  "slug": "epigousa-episkevi-kollimenis-kentrikis-valvidas-nerou-farkadona",
+  "nameGr": "Επείγουσα Επισκευή Κολλημένης Κεντρικής Βαλβίδας Νερού στα Φαρκαδόνα",
+  "nameEn": "Emergency Main Water Valve Seize Fix in Φαρκαδόνα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή κολλημένης κεντρικής βαλβίδας νερού στα Φαρκαδόνα για άμεσο έλεγχο παροχής σε περίπτωση διαρροής. SEO intent: «κεντρική βαλβίδα δεν κλείνει Φαρκαδόνα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "κεντρική βαλβίδα δεν κλείνει Φαρκαδόνα",
+    "υδραυλικός επείγον βαλβίδα",
+    "διαρροή νερού διακοπή παροχής",
+    "επισκευή κεντρικού διακόπτη νερού",
+    "service βαλβίδας δικτύου"
+  ],
+  "status": "researched"
+}

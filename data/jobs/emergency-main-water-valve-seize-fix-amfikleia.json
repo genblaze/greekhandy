@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-water-valve-seize-fix-amfikleia",
+  "slug": "epigousa-episkevi-kollimenis-kentrikis-valvidas-nerou-amfikleia",
+  "nameGr": "Επείγουσα Επισκευή Κολλημένης Κεντρικής Βαλβίδας Νερού στην Αμφίκλεια",
+  "nameEn": "Emergency Main Water Valve Seize Fix in Αμφίκλεια",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή κολλημένης κεντρικής βαλβίδας νερού στην Αμφίκλεια για άμεσο έλεγχο παροχής σε περίπτωση διαρροής. SEO intent: «κεντρική βαλβίδα δεν κλείνει Αμφίκλεια».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "κεντρική βαλβίδα δεν κλείνει Αμφίκλεια",
+    "υδραυλικός επείγον βαλβίδα",
+    "διαρροή νερού διακοπή παροχής",
+    "επισκευή κεντρικού διακόπτη νερού",
+    "service βαλβίδας δικτύου"
+  ],
+  "status": "researched"
+}
