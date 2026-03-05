@@ -1,5 +1,26 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Route alias quality is sloppy: `/epaggelmaties` returns HTTP 200 with effectively the same content as `/professionals` (same title/H1/content, only canonical differs). Stop serving duplicate hubs as indexable 200 pages—301 redirect `/epaggelmaties` to `/professionals` and keep one clean URL.",
+      "addedAt": "2026-03-05T05:33:48Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Form failure UX is still broken and misleading: invalid POSTs to `/api/reviews/submit`, `/api/bookings/submit`, and `/api/messages/submit` 303-redirect users to generic `/professionals?...=invalid` instead of returning to the originating profile section with inline field errors. Keep users in-context, preserve inputs, and show precise error states next to the actual form they submitted.",
+      "addedAt": "2026-03-05T05:33:48Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Public `/messages` flow still leaks internal parameter semantics (`viewerEmail`) into user-facing behavior/state handling. Replace query-param-driven diagnostics with a real entry flow (auth/session-backed inbox or clear handoff), and remove any technical parameter language from public UX.",
+      "addedAt": "2026-03-05T05:33:48Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Response headers are still inconsistent across core routes: homepage `/` is served as `text/html` without `charset=utf-8`, while key inner pages send UTF-8 explicitly. Standardize all HTML responses to `text/html; charset=utf-8` to prevent Greek text decoding regressions and crawler misinterpretation.",
+      "addedAt": "2026-03-05T05:33:48Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
