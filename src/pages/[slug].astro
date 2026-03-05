@@ -813,11 +813,12 @@ const faqSchema = pageCategory.faq?.length ? {
                 </p>
                 <p class="mt-1">
                   {enableCategoryServiceSelectionClarity
-                    ? 'Αλλάξτε ένα φίλτρο για να ανοίξουν άμεσα περισσότερες επιλογές ή συνεχίστε από επαγγελματίες και επικοινωνία.'
-                    : 'Καθαρίστε τα φίλτρα ή δοκιμάστε άλλη πόλη/διαθεσιμότητα. Μπορείτε επίσης να συνεχίσετε από σχετικές υπηρεσίες για να μη χαθεί η ροή ανάθεσης.'}
+                    ? 'Δοκιμάστε διαφορετικό συνδυασμό φίλτρων ή συνεχίστε άμεσα από επαγγελματίες και κατηγορίες.'
+                    : 'Δοκιμάστε πιο γενικά φίλτρα (πόλη, διαθεσιμότητα, budget) για να εμφανιστούν περισσότερες επιλογές.'}
                 </p>
                 <div class="mt-3 flex flex-wrap gap-2">
                   <button type="button" data-reset-subjob-filters aria-controls="subjobs-grid" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Καθαρισμός φίλτρων</button>
+                  <button type="button" data-adjust-subjob-filters aria-controls="subjobs-grid" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Προσαρμογή φίλτρων</button>
                   <a href={`/${pageCategory.slug}`} class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Όλες οι υπηρεσίες κατηγορίας</a>
                   {enableCategoryServiceSelectionClarity && <a href="/#services" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Επιστροφή σε κατηγορίες</a>}
                   <a href="/professionals" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Προβολή επαγγελματιών</a>
@@ -1009,6 +1010,7 @@ const faqSchema = pageCategory.faq?.length ? {
         const resetFilters = document.querySelector('[data-filter-reset]');
         const resetFiltersInline = document.querySelector('[data-filter-reset-inline]');
         const resetFromEmpty = document.querySelector('[data-reset-subjob-filters]');
+        const adjustFromEmpty = document.querySelector('[data-adjust-subjob-filters]');
         const loadMore = document.querySelector('[data-load-more-subjobs]');
         const pagePrev = document.querySelector('[data-page-prev]');
         const pageNext = document.querySelector('[data-page-next]');
@@ -1288,6 +1290,13 @@ const faqSchema = pageCategory.faq?.length ? {
             el.addEventListener('click', resetAllFilters);
           }
         });
+
+        if (adjustFromEmpty instanceof HTMLButtonElement) {
+          adjustFromEmpty.addEventListener('click', () => {
+            if (city instanceof HTMLSelectElement) city.focus();
+            setFilterState('ready', 'Προσαρμόστε πόλη, διαθεσιμότητα ή budget για περισσότερες σχετικές υπηρεσίες.');
+          });
+        }
 
         if (loadMore instanceof HTMLButtonElement) {
           loadMore.addEventListener('click', () => {
