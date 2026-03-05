@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-bar-neutral-fix-agia-marina-karditsas",
+  "slug": "epigousa-episkevi-mparas-oudeterou-kentrikis-trofodosias-revmatos-agia-marina-karditsas",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Κεντρικής Τροφοδοσίας Ρεύματος στην Αγία Μαρίνα Καρδίτσας",
+  "nameEn": "Emergency Electrical Main Feed Bar Neutral Fix in Αγία Μαρίνα Καρδίτσας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου κεντρικής τροφοδοσίας ρεύματος στην Αγία Μαρίνα Καρδίτσας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Μαρίνα Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-bar-neutral-fix-mikri-doxipara",
+  "slug": "epigousa-episkevi-mparas-oudeterou-kentrikis-trofodosias-revmatos-mikri-doxipara",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Κεντρικής Τροφοδοσίας Ρεύματος στη Μικρή Δοξιπάρα",
+  "nameEn": "Emergency Electrical Main Feed Bar Neutral Fix in Μικρή Δοξιπάρα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου κεντρικής τροφοδοσίας ρεύματος στη Μικρή Δοξιπάρα για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Δοξιπάρα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

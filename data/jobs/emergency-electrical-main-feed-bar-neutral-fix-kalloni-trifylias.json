@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-bar-neutral-fix-kalloni-trifylias",
+  "slug": "epigousa-episkevi-mparas-oudeterou-kentrikis-trofodosias-revmatos-kalloni-trifylias",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Κεντρικής Τροφοδοσίας Ρεύματος στην Καλλονή Τριφυλίας",
+  "nameEn": "Emergency Electrical Main Feed Bar Neutral Fix in Καλλονή Τριφυλίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου κεντρικής τροφοδοσίας ρεύματος στην Καλλονή Τριφυλίας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλλονή Τριφυλίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-thermal-balance-mikri-doxipara",
+  "slug": "epochiaki-thermiki-eksisorropisi-vroxou-epistrofis-thermansis-mikri-doxipara",
+  "nameGr": "Εποχική Θερμική Εξισορρόπηση Βρόχου Επιστροφής Θέρμανσης στη Μικρή Δοξιπάρα",
+  "nameEn": "Seasonal Heating Return Loop Thermal Balance in Μικρή Δοξιπάρα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική θερμική εξισορρόπηση βρόχου επιστροφής θέρμανσης στη Μικρή Δοξιπάρα για ομοιόμορφη απόδοση και εξοικονόμηση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Δοξιπάρα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
