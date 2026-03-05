@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-water-heater-anode-check-kantanos",
+  "slug": "epochiakos-elegxos-anodiou-thermosifona-kantanos",
+  "nameGr": "Εποχικός Έλεγχος Ανοδίου Θερμοσίφωνα στην Κάντανο",
+  "nameEn": "Seasonal Water Heater Anode Check in Κάντανος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ανοδίου θερμοσίφωνα στην Κάντανο για πρόληψη διάβρωσης και καλύτερη διάρκεια ζωής. SEO intent: «έλεγχος ανοδίου θερμοσίφωνα Κάντανος».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-150€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος ανοδίου θερμοσίφωνα Κάντανος",
+    "συντήρηση θερμοσίφωνα εποχική",
+    "τεχνικός boiler προληπτικά",
+    "πρόληψη σκουριάς θερμοσίφωνα",
+    "service ζεστού νερού"
+  ],
+  "status": "researched"
+}

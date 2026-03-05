@@ -1,0 +1,20 @@
+{
+  "id": "emergency-neutral-loss-home-check-kantanos",
+  "slug": "epigousos-elegxos-apoleias-oudeterou-katoikias-kantanos",
+  "nameGr": "Επείγων Έλεγχος Απώλειας Ουδετέρου Κατοικίας στην Κάντανο",
+  "nameEn": "Emergency Neutral Loss Home Check in Κάντανος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος απώλειας ουδετέρου στην Κάντανο για αποφυγή υπέρτασης και ζημιάς σε συσκευές. SEO intent: «απώλεια ουδετέρου σπίτι Κάντανος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-240€",
+  "demand": "high",
+  "keywords": [
+    "απώλεια ουδετέρου σπίτι Κάντανος",
+    "ηλεκτρολόγος επείγον ουδέτερος",
+    "τρέμουν φώτα ηλεκτρική βλάβη",
+    "υπέρταση σε συσκευές λύση",
+    "άμεσος ηλεκτρολογικός έλεγχος"
+  ],
+  "status": "researched"
+}

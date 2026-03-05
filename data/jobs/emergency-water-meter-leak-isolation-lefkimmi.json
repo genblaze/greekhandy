@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-meter-leak-isolation-lefkimmi",
+  "slug": "epigousa-aponosi-diarrois-ydrometrou-lefkimmi",
+  "nameGr": "Επείγουσα Απομόνωση Διαρροής Υδρομέτρου στη Λευκίμμη",
+  "nameEn": "Emergency Water Meter Leak Isolation in Λευκίμμη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απομόνωση διαρροής υδρομέτρου στη Λευκίμμη για άμεση διακοπή απώλειας νερού και προστασία χώρου. SEO intent: «διαρροή υδρομέτρου Λευκίμμη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή υδρομέτρου Λευκίμμη",
+    "υδραυλικός επείγον διαρροή",
+    "σπάσιμο υδρομέτρου λύση",
+    "άμεση απομόνωση νερού",
+    "βλάβη παροχής νερού"
+  ],
+  "status": "researched"
+}

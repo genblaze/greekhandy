@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-emergency-kit-home-readiness-check-makrakomi",
+  "slug": "epochiakos-elegxos-etoimotitas-ektaktis-anagkis-spitiou-makrakomi",
+  "nameGr": "Εποχικός Έλεγχος Ετοιμότητας Έκτακτης Ανάγκης Σπιτιού στη Μακρακώμη",
+  "nameEn": "Seasonal Emergency Kit Home Readiness Check in Μακρακώμη",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εποχικός έλεγχος ετοιμότητας έκτακτης ανάγκης κατοικίας στη Μακρακώμη με πρακτικό checklist ασφάλειας/λειτουργικότητας. SEO intent: «έλεγχος ετοιμότητας σπιτιού Μακρακώμη».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος ετοιμότητας σπιτιού Μακρακώμη",
+    "home readiness check Μακρακώμη",
+    "προετοιμασία κατοικίας χειμώνα",
+    "safety checklist κατοικίας",
+    "προληπτικός έλεγχος εξοχικού"
+  ],
+  "status": "researched"
+}

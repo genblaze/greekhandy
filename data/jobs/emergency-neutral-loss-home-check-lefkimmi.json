@@ -1,0 +1,20 @@
+{
+  "id": "emergency-neutral-loss-home-check-lefkimmi",
+  "slug": "epigousos-elegxos-apoleias-oudeterou-katoikias-lefkimmi",
+  "nameGr": "Επείγων Έλεγχος Απώλειας Ουδετέρου Κατοικίας στη Λευκίμμη",
+  "nameEn": "Emergency Neutral Loss Home Check in Λευκίμμη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος απώλειας ουδετέρου στη Λευκίμμη για αποφυγή υπέρτασης και ζημιάς σε συσκευές. SEO intent: «απώλεια ουδετέρου σπίτι Λευκίμμη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-240€",
+  "demand": "high",
+  "keywords": [
+    "απώλεια ουδετέρου σπίτι Λευκίμμη",
+    "ηλεκτρολόγος επείγον ουδέτερος",
+    "τρέμουν φώτα ηλεκτρική βλάβη",
+    "υπέρταση σε συσκευές λύση",
+    "άμεσος ηλεκτρολογικός έλεγχος"
+  ],
+  "status": "researched"
+}

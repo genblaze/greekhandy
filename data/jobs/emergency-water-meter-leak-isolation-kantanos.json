@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-meter-leak-isolation-kantanos",
+  "slug": "epigousa-aponosi-diarrois-ydrometrou-kantanos",
+  "nameGr": "Επείγουσα Απομόνωση Διαρροής Υδρομέτρου στην Κάντανο",
+  "nameEn": "Emergency Water Meter Leak Isolation in Κάντανος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απομόνωση διαρροής υδρομέτρου στην Κάντανο για άμεση διακοπή απώλειας νερού και προστασία χώρου. SEO intent: «διαρροή υδρομέτρου Κάντανος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή υδρομέτρου Κάντανος",
+    "υδραυλικός επείγον διαρροή",
+    "σπάσιμο υδρομέτρου λύση",
+    "άμεση απομόνωση νερού",
+    "βλάβη παροχής νερού"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-capacitor-replacement-lefkimmi",
+  "slug": "epigousa-antikatastasi-pyknoti-klimatistikou-lefkimmi",
+  "nameGr": "Επείγουσα Αντικατάσταση Πυκνωτή Κλιματιστικού στη Λευκίμμη",
+  "nameEn": "Emergency AC Capacitor Replacement in Λευκίμμη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντικατάσταση πυκνωτή κλιματιστικού στη Λευκίμμη όταν η μονάδα δεν ξεκινά σωστά. SEO intent: «κλιματιστικό δεν παίρνει μπρος Λευκίμμη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-230€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό δεν παίρνει μπρος Λευκίμμη",
+    "αντικατάσταση πυκνωτή ac",
+    "τεχνικός κλιματισμού επείγον",
+    "βλάβη εκκίνησης κλιματιστικού",
+    "service ac άμεσα"
+  ],
+  "status": "researched"
+}

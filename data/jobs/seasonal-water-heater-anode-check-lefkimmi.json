@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-water-heater-anode-check-lefkimmi",
+  "slug": "epochiakos-elegxos-anodiou-thermosifona-lefkimmi",
+  "nameGr": "Εποχικός Έλεγχος Ανοδίου Θερμοσίφωνα στη Λευκίμμη",
+  "nameEn": "Seasonal Water Heater Anode Check in Λευκίμμη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ανοδίου θερμοσίφωνα στη Λευκίμμη για πρόληψη διάβρωσης και καλύτερη διάρκεια ζωής. SEO intent: «έλεγχος ανοδίου θερμοσίφωνα Λευκίμμη».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-150€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος ανοδίου θερμοσίφωνα Λευκίμμη",
+    "συντήρηση θερμοσίφωνα εποχική",
+    "τεχνικός boiler προληπτικά",
+    "πρόληψη σκουριάς θερμοσίφωνα",
+    "service ζεστού νερού"
+  ],
+  "status": "researched"
+}

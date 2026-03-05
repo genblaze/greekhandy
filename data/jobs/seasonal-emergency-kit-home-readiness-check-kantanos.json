@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-emergency-kit-home-readiness-check-kantanos",
+  "slug": "epochiakos-elegxos-etoimotitas-ektaktis-anagkis-spitiou-kantanos",
+  "nameGr": "Εποχικός Έλεγχος Ετοιμότητας Έκτακτης Ανάγκης Σπιτιού στην Κάντανο",
+  "nameEn": "Seasonal Emergency Kit Home Readiness Check in Κάντανος",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εποχικός έλεγχος ετοιμότητας έκτακτης ανάγκης κατοικίας στην Κάντανο με πρακτικό checklist ασφάλειας/λειτουργικότητας. SEO intent: «έλεγχος ετοιμότητας σπιτιού Κάντανος».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος ετοιμότητας σπιτιού Κάντανος",
+    "home readiness check Κάντανος",
+    "προετοιμασία κατοικίας χειμώνα",
+    "safety checklist κατοικίας",
+    "προληπτικός έλεγχος εξοχικού"
+  ],
+  "status": "researched"
+}
