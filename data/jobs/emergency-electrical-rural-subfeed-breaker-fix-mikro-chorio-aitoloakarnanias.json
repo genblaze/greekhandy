@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rural-subfeed-breaker-fix-mikro-chorio-aitoloakarnanias",
+  "slug": "epigousa-episkevi-diakopti-ypotrofodosias-agrotikis-paroxis-mikro-chorio-aitoloakarnanias",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Υποτροφοδοσίας Αγροτικής Παροχής στο Μικρό Χωριό Αιτωλοακαρνανίας",
+  "nameEn": "Emergency Electrical Rural Subfeed Breaker Fix in Μικρό Χωριό Αιτωλοακαρνανίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή διακόπτη υποτροφοδοσίας αγροτικής παροχής στο Μικρό Χωριό Αιτωλοακαρνανίας για γρήγορη επαναφορά ρεύματος στο σπίτι.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρό Χωριό Αιτωλοακαρνανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

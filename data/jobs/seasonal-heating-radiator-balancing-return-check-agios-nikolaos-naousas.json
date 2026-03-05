@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-balancing-return-check-agios-nikolaos-naousas",
+  "slug": "epochiakos-elegxos-eksisorropisis-epistrofis-kalorifer-agios-nikolaos-naousas",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Επιστροφής Καλοριφέρ στον Άγιο Νικόλαο Νάουσας",
+  "nameEn": "Seasonal Heating Radiator Balancing Return Check in Άγιος Νικόλαος Νάουσας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης επιστροφής καλοριφέρ στον Άγιο Νικόλαο Νάουσας για πιο ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Νικόλαος Νάουσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

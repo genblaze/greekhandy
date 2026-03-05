@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rural-subfeed-breaker-fix-agios-nikolaos-naousas",
+  "slug": "epigousa-episkevi-diakopti-ypotrofodosias-agrotikis-paroxis-agios-nikolaos-naousas",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Υποτροφοδοσίας Αγροτικής Παροχής στον Άγιο Νικόλαο Νάουσας",
+  "nameEn": "Emergency Electrical Rural Subfeed Breaker Fix in Άγιος Νικόλαος Νάουσας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή διακόπτη υποτροφοδοσίας αγροτικής παροχής στον Άγιο Νικόλαο Νάουσας για γρήγορη επαναφορά ρεύματος στο σπίτι.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Νικόλαος Νάουσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

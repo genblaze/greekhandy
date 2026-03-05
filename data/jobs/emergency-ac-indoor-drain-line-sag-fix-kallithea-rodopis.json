@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-line-sag-fix-kallithea-rodopis",
+  "slug": "epigousa-diorthosi-koilias-grammis-aporrois-esoterikou-ac-kallithea-rodopis",
+  "nameGr": "Επείγουσα Διόρθωση Κοιλιάς Γραμμής Απορροής Εσωτερικού AC στην Καλλιθέα Ροδόπης",
+  "nameEn": "Emergency AC Indoor Drain Line Sag Fix in Καλλιθέα Ροδόπης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διόρθωση κοιλιάς γραμμής απορροής εσωτερικού AC στην Καλλιθέα Ροδόπης για να σταματήσουν τα νερά στον εσωτερικό χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καλλιθέα Ροδόπης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

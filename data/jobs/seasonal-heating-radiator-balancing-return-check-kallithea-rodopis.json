@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-balancing-return-check-kallithea-rodopis",
+  "slug": "epochiakos-elegxos-eksisorropisis-epistrofis-kalorifer-kallithea-rodopis",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Επιστροφής Καλοριφέρ στην Καλλιθέα Ροδόπης",
+  "nameEn": "Seasonal Heating Radiator Balancing Return Check in Καλλιθέα Ροδόπης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης επιστροφής καλοριφέρ στην Καλλιθέα Ροδόπης για πιο ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλλιθέα Ροδόπης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

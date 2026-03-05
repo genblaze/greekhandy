@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-rural-subfeed-breaker-fix-kallithea-rodopis",
+  "slug": "epigousa-episkevi-diakopti-ypotrofodosias-agrotikis-paroxis-kallithea-rodopis",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Υποτροφοδοσίας Αγροτικής Παροχής στην Καλλιθέα Ροδόπης",
+  "nameEn": "Emergency Electrical Rural Subfeed Breaker Fix in Καλλιθέα Ροδόπης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή διακόπτη υποτροφοδοσίας αγροτικής παροχής στην Καλλιθέα Ροδόπης για γρήγορη επαναφορά ρεύματος στο σπίτι.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλλιθέα Ροδόπης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
