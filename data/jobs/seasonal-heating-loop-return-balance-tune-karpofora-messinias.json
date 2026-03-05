@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-return-balance-tune-karpofora-messinias",
+  "slug": "epochiaki-rythmisi-eksisorropisis-epistrofis-vroxou-thermansis-karpofora-messinias",
+  "nameGr": "Εποχική Ρύθμιση Εξισορρόπησης Επιστροφής Βρόχου Θέρμανσης στην Καρποφόρα Μεσσηνίας",
+  "nameEn": "Seasonal Heating Loop Return Balance Tune in Καρποφόρα Μεσσηνίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση εξισορρόπησης επιστροφής βρόχου θέρμανσης στην Καρποφόρα Μεσσηνίας για σταθερή απόδοση και οικονομία ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καρποφόρα Μεσσηνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

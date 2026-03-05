@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-isolator-neutral-fix-mikri-santa-kilkis",
+  "slug": "epigousa-episkevi-oudeterou-apomonoti-kentrikis-paroxis-mikri-santa-kilkis",
+  "nameGr": "Επείγουσα Επισκευή Ουδετέρου Απομονωτή Κεντρικής Παροχής στη Μικρή Σάντα Κιλκίς",
+  "nameEn": "Emergency Electrical Main Isolator Neutral Fix in Μικρή Σάντα Κιλκίς",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ουδετέρου απομονωτή κεντρικής παροχής στη Μικρή Σάντα Κιλκίς για σταθερή τάση και ασφαλή λειτουργία πίνακα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Σάντα Κιλκίς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

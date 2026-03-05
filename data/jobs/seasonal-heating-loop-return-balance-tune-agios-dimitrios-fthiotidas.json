@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-return-balance-tune-agios-dimitrios-fthiotidas",
+  "slug": "epochiaki-rythmisi-eksisorropisis-epistrofis-vroxou-thermansis-agios-dimitrios-fthiotidas",
+  "nameGr": "Εποχική Ρύθμιση Εξισορρόπησης Επιστροφής Βρόχου Θέρμανσης στον Άγιο Δημήτριο Φθιώτιδας",
+  "nameEn": "Seasonal Heating Loop Return Balance Tune in Άγιος Δημήτριος Φθιώτιδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση εξισορρόπησης επιστροφής βρόχου θέρμανσης στον Άγιο Δημήτριο Φθιώτιδας για σταθερή απόδοση και οικονομία ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Δημήτριος Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

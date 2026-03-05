@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-channel-flow-clean-karpofora-messinias",
+  "slug": "epochiakos-katharismos-rois-kanaliou-katofliou-eisodou-karpofora-messinias",
+  "nameGr": "Εποχικός Καθαρισμός Ροής Καναλιού Κατωφλιού Εισόδου στην Καρποφόρα Μεσσηνίας",
+  "nameEn": "Seasonal Home Entry Threshold Channel Flow Clean in Καρποφόρα Μεσσηνίας",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός καθαρισμός ροής καναλιού κατωφλιού εισόδου στην Καρποφόρα Μεσσηνίας για καλύτερη αποστράγγιση και ασφάλεια πρόσβασης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καρποφόρα Μεσσηνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

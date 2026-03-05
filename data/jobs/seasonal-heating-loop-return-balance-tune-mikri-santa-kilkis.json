@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-return-balance-tune-mikri-santa-kilkis",
+  "slug": "epochiaki-rythmisi-eksisorropisis-epistrofis-vroxou-thermansis-mikri-santa-kilkis",
+  "nameGr": "Εποχική Ρύθμιση Εξισορρόπησης Επιστροφής Βρόχου Θέρμανσης στη Μικρή Σάντα Κιλκίς",
+  "nameEn": "Seasonal Heating Loop Return Balance Tune in Μικρή Σάντα Κιλκίς",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση εξισορρόπησης επιστροφής βρόχου θέρμανσης στη Μικρή Σάντα Κιλκίς για σταθερή απόδοση και οικονομία ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Σάντα Κιλκίς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

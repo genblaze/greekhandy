@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-channel-flow-clean-mikri-santa-kilkis",
+  "slug": "epochiakos-katharismos-rois-kanaliou-katofliou-eisodou-mikri-santa-kilkis",
+  "nameGr": "Εποχικός Καθαρισμός Ροής Καναλιού Κατωφλιού Εισόδου στη Μικρή Σάντα Κιλκίς",
+  "nameEn": "Seasonal Home Entry Threshold Channel Flow Clean in Μικρή Σάντα Κιλκίς",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός καθαρισμός ροής καναλιού κατωφλιού εισόδου στη Μικρή Σάντα Κιλκίς για καλύτερη αποστράγγιση και ασφάλεια πρόσβασης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Σάντα Κιλκίς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
