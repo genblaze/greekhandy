@@ -51,9 +51,29 @@ interface ApprovedReview {
 const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 const fallbackProfileImage = getProfessionalFallbackImage();
 const profileImageSrc = await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl);
-const portfolioImageSources = await Promise.all(
-  (profile.portfolioPhotos || []).map((photo) => resolveProfessionalImageForPublishedProfile(photo))
+
+const cleanListText = (value: string) => value.replace(/\s+/g, ' ').replace(/[\u0000-\u001F\u007F]/g, '').trim();
+const safeServices = (profile.services || [])
+  .map((item) => cleanListText(String(item || '')))
+  .filter((item) => item.length >= 2 && item.length <= 120)
+  .slice(0, 24);
+const safeAreasServed = (profile.areasServed || [])
+  .map((item) => cleanListText(String(item || '')))
+  .filter((item) => item.length >= 2 && item.length <= 80)
+  .slice(0, 24);
+
+const rawPortfolioPhotos = (profile.portfolioPhotos || []).map((photo) => String(photo || '').trim()).filter(Boolean);
+const portfolioResolvedEntries = await Promise.all(
+  rawPortfolioPhotos.map(async (photo) => ({
+    original: photo,
+    resolved: await resolveProfessionalImageForPublishedProfile(photo)
+  }))
 );
+const portfolioImageSources = portfolioResolvedEntries
+  .filter((entry) => entry.original.startsWith('/professionals/') || entry.original.startsWith('http://') || entry.original.startsWith('https://'))
+  .map((entry) => entry.resolved)
+  .filter((src, index, arr) => src !== fallbackProfileImage && arr.indexOf(src) === index)
+  .slice(0, 12);
 const reviewBadgeCopy = (reviewBadgeCopyFile.default ?? reviewBadgeCopyFile) as any;
 const verifiedBadgeLabel = reviewBadgeCopy?.publicBadge?.defaultLabel || 'Επιβεβαιωμένη αξιολόγηση';
 const verifiedBadgeTooltip = reviewBadgeCopy?.publicBadge?.tooltip || 'Η αξιολόγηση συνδέεται με πραγματικό αίτημα υπηρεσίας μέσω Greek Handy.';
@@ -303,9 +323,9 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
       <div class="mt-8 grid gap-6 md:grid-cols-2">
         <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
           <h2 class="text-lg font-bold text-slate-900">Υπηρεσίες</h2>
-          {profile.services.length > 0 ? (
+          {safeServices.length > 0 ? (
             <ul class="mt-3 list-disc space-y-1 pl-5 text-slate-700">
-              {profile.services.map((service) => <li>{service}</li>)}
+              {safeServices.map((service) => <li class="break-words">{service}</li>)}
             </ul>
           ) : (
             <p class="mt-3 text-sm text-slate-600">Δεν έχουν δηλωθεί υπηρεσίες ακόμη.</p>
@@ -313,9 +333,9 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
         </div>
         <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
           <h2 class="text-lg font-bold text-slate-900">Περιοχές εξυπηρέτησης</h2>
-          {profile.areasServed.length > 0 ? (
+          {safeAreasServed.length > 0 ? (
             <ul class="mt-3 list-disc space-y-1 pl-5 text-slate-700">
-              {profile.areasServed.map((area) => <li>{area}</li>)}
+              {safeAreasServed.map((area) => <li class="break-words">{area}</li>)}
             </ul>
           ) : (
             <p class="mt-3 text-sm text-slate-600">Δεν έχουν δηλωθεί περιοχές εξυπηρέτησης.</p>
@@ -621,7 +641,9 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
               <label for="bookingService" class="mb-1 block text-sm font-semibold text-gray-800">Υπηρεσία *</label>
               <select id="bookingService" name="service" required data-booking-validate="service" data-field-input="service" class="w-full rounded-lg border border-gray-300 px-3 py-2.5">
                 <option value="">Επιλέξτε υπηρεσία</option>
-                {profile.services.map((service) => <option value={service}>{service}</option>)}
+                {safeServices.length > 0
+                  ? safeServices.map((service) => <option value={service}>{service}</option>)
+                  : <option value={profile.profession}>{profile.profession}</option>}
               </select>
               <p id="bookingService-error" data-field-error-for="service" data-default-error="Επιλέξτε υπηρεσία." class="mt-1 hidden text-xs text-amber-700" role="alert">Επιλέξτε υπηρεσία.</p>
             </div>
