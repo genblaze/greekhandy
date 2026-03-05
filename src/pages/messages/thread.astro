@@ -587,7 +587,7 @@ const threadEntryGuidanceTitle = hasViewerParamIssue
         ? 'Η είσοδος ολοκληρώθηκε, αλλά δεν υπάρχει ακόμη ιστορικό.'
         : 'Η είσοδος thread ολοκληρώθηκε με πλήρες context.';
 const threadEntryGuidanceDescription = hasViewerParamIssue
-  ? 'Ανοίξτε ξανά τη συνομιλία από τα μηνύματα ώστε να περάσουν σωστά τα στοιχεία πρόσβασης.'
+  ? 'Ανοίξτε ξανά τη συνομιλία από τα μηνύματα για ασφαλή συνέχεια.'
   : hasAccessIssue
     ? 'Χρησιμοποιήστε thread στο οποίο συμμετέχετε ή επιστρέψτε στο inbox για νέα επιλογή.'
     : threadLoadError
@@ -596,8 +596,8 @@ const threadEntryGuidanceDescription = hasViewerParamIssue
         ? 'Το ιστορικό θα εμφανιστεί αυτόματα με το πρώτο μήνυμα στο ίδιο thread.'
         : 'Μπορείτε να προχωρήσετε σε ιστορικό, moderation έλεγχο ή αποστολή απάντησης.';
 const threadEntryChecklist: string[] = [];
-threadEntryChecklist.push(hasValidViewerEmail ? `Viewer email: ${viewerEmail}` : 'Στοιχεία χρήστη: μη διαθέσιμα.');
-threadEntryChecklist.push(hasThreadId ? `Thread ID: ${threadId}` : 'Στοιχεία συνομιλίας: μη διαθέσιμα.');
+threadEntryChecklist.push(hasValidViewerEmail ? 'Στοιχεία χρήστη: επιβεβαιωμένα.' : 'Στοιχεία χρήστη: μη διαθέσιμα.');
+threadEntryChecklist.push(hasThreadId ? 'Στοιχεία συνομιλίας: επιβεβαιωμένα.' : 'Στοιχεία συνομιλίας: μη διαθέσιμα.');
 threadEntryChecklist.push(hasListContext ? `Inbox context: ${listContextSummaryLabel}` : 'Inbox context: χωρίς ενεργά φίλτρα.');
 const threadEntryPrimaryHref = threadStatePrimaryActionHref || threadListHref;
 const threadEntryPrimaryLabel = threadStatePrimaryActionLabel || threadListBackLabel;
@@ -730,7 +730,7 @@ for (const message of filteredThreadMessages) {
 
       {threadId && (
         <p class="mt-4 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
-          Κωδικός thread: <span class="font-mono text-slate-800">{threadId}</span>
+          Αναγνωριστικό συνομιλίας διαθέσιμο
         </p>
       )}
       <p class="mt-2 text-xs text-slate-500">Με το άνοιγμα του thread, τα τρέχοντα μηνύματα σημειώνονται ως διαβασμένα για τον χρήστη προβολής.</p>
