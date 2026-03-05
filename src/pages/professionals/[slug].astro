@@ -315,8 +315,8 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           <p class="text-sm font-semibold text-slate-900">{averageRating ? `${averageRating}/5` : 'Χωρίς βαθμολογία ακόμα'}</p>
         </div>
         <div class="rounded-xl border border-emerald-200 bg-white px-3 py-2">
-          <p class="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Επαλήθευση</p>
-          <p class="text-sm font-semibold text-slate-900">{verifiedReviewsCount > 0 ? `${verifiedReviewsCount} επιβεβαιωμένες` : 'Επαληθευμένο προφίλ'}</p>
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Επιβεβαιωμένες κριτικές</p>
+          <p class="text-sm font-semibold text-slate-900">{verifiedReviewsCount > 0 ? `${verifiedReviewsCount} επιβεβαιωμένες` : 'Δεν υπάρχουν επιβεβαιωμένες ακόμη'}</p>
         </div>
         <div class="rounded-xl border border-slate-200 bg-white px-3 py-2">
           <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-600">Περιοχές</p>
@@ -440,7 +440,6 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
         [data-prof-media-shell] { position: relative; }
         [data-prof-media-shell]::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,0.04), rgba(255,255,255,0.3), rgba(255,255,255,0.04)); pointer-events: none; }
         [data-prof-media-img][data-media-state="fallback"] { object-fit: cover; background: radial-gradient(circle at top right, #dbeafe, #e2e8f0 45%, #f8fafc); }
-        [data-prof-media-shell][data-media-shell="fallback"]::before { content: "Επαληθευμένο προφίλ GreekHandy"; position: absolute; left: 0.75rem; bottom: 0.75rem; z-index: 1; border-radius: 9999px; border: 1px solid rgba(15, 23, 42, 0.12); background: rgba(255,255,255,0.92); padding: 0.2rem 0.6rem; font-size: 11px; font-weight: 700; color: #0f172a; letter-spacing: 0.01em; }
       </style>
 
       <div class="mt-10 flex items-center gap-3">
@@ -561,7 +560,7 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           {!hasApprovedReviewsError && reviewsCount === 0 && (
             <div class="rounded-2xl border border-dashed border-blue-200 bg-gradient-to-br from-blue-50 to-sky-50 px-5 py-6 text-sm text-blue-900" role="status" aria-live="polite">
               <p class="font-semibold">Δεν υπάρχουν ακόμη δημοσιευμένες αξιολογήσεις. Η πρώτη εγκεκριμένη αξιολόγηση θα εμφανιστεί αυτόματα εδώ.</p>
-              <p class="mt-1 text-blue-800">Σήμα αξιοπιστίας: ουδέτερο (χωρίς δείγμα). Αυτό δεν υποδηλώνει αρνητική αξιολόγηση.</p>
+              <p class="mt-1 text-blue-800">Δεν υπάρχει ακόμη δείγμα δημοσιευμένων αξιολογήσεων για στατιστική σύνοψη.</p>
               <p class="mt-1 text-xs text-blue-700">Τι να περιμένετε: οι νέες κριτικές εμφανίζονται μετά τον απαραίτητο έλεγχο και τότε ενημερώνεται αυτόματα η σύνοψη.</p>
               <a href="#submit-review" class="mt-3 inline-flex rounded-md bg-blue-700 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-800">
                 Γράψτε κριτική
