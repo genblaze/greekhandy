@@ -23,7 +23,7 @@ const hasServerValidationState = status === 'invalid' || status === 'error';
       {hasServerValidationState && (
         <div class={`mb-4 rounded-lg border px-4 py-3 text-sm ${status === 'error' ? 'border-red-200 bg-red-50 text-red-800' : 'border-amber-200 bg-amber-50 text-amber-800'}`} role="alert" aria-live="assertive">
           <p class="font-semibold">{status === 'error' ? 'Η αίτηση δεν στάλθηκε.' : 'Υπάρχουν πεδία που χρειάζονται διόρθωση.'}</p>
-          <p class="mt-1">{formError || (status === 'error' ? 'Προσπαθήστε ξανά σε λίγο.' : 'Ελέγξτε τα επισημασμένα πεδία και υποβάλετε ξανά.')}</p>
+          <p class="mt-1">{formError || (status === 'error' ? 'Προσπαθήστε ξανά σε λίγο.' : 'Ελέγξτε τα επισημασμένα πεδία και διορθώστε πριν την υποβολή.')}</p>
         </div>
       )}
       <div class="grid gap-4 md:grid-cols-2">
