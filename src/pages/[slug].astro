@@ -171,6 +171,8 @@ const initialVisibleContentSections = 4;
 const initialVisibleRelatedCategories = 8;
 const initialVisibleFaqItems = 6;
 const initialVisibleSubJobs = enableAdvancedCategoryUX ? 6 : 12;
+const serverRenderedSubJobsLimit = enableAdvancedCategoryUX ? 40 : subJobs.length;
+const renderedSubJobs = subJobs.slice(0, serverRenderedSubJobsLimit);
 type TrustDecisionCardVariant = {
   frameClass: string;
   headingClass: string;
