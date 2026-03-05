@@ -584,5 +584,40 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
         start();
       })();
     </script>
+  
+    <script is:inline>
+      (() => {
+        const ATTR_PREFIX = 'data-astro-source';
+        const stripNode = (node) => {
+          if (!(node instanceof Element)) return;
+          for (const attr of Array.from(node.attributes)) {
+            if (attr.name.startsWith(ATTR_PREFIX)) node.removeAttribute(attr.name);
+          }
+          node.querySelectorAll('*').forEach((el) => {
+            for (const attr of Array.from(el.attributes)) {
+              if (attr.name.startsWith(ATTR_PREFIX)) el.removeAttribute(attr.name);
+            }
+          });
+        };
+
+        const run = () => stripNode(document.documentElement);
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', run, { once: true });
+        } else {
+          run();
+        }
+
+        const mo = new MutationObserver((mutations) => {
+          for (const mutation of mutations) {
+            mutation.addedNodes.forEach((node) => stripNode(node));
+            if (mutation.type === 'attributes' && mutation.target instanceof Element) {
+              stripNode(mutation.target);
+            }
+          }
+        });
+        mo.observe(document.documentElement, { childList: true, subtree: true, attributes: true });
+      })();
+    </script>
+
   </body>
 </html>

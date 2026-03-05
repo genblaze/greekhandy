@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  devToolbar: { enabled: false },
   // Keep static prerendering while shipping runtime API routes under /api/*.
   output: 'static',
   adapter: node({ mode: 'standalone' }),
