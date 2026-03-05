@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-pump-thermal-cutout-reset-agia-anna-voreias-evias",
+  "slug": "epigousa-epanafora-thermikis-prostasias-antlias-revmatos-agia-anna-voreias-evias",
+  "nameGr": "Επείγουσα Επαναφορά Θερμικής Προστασίας Αντλίας Ρεύματος στην Αγία Άννα Βόρειας Εύβοιας",
+  "nameEn": "Emergency Electrical Pump Thermal Cutout Reset in Αγία Άννα Βόρειας Εύβοιας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά θερμικής προστασίας αντλίας στην Αγία Άννα Βόρειας Εύβοιας για άμεση αποκατάσταση λειτουργίας χωρίς επικίνδυνη υπερθέρμανση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Βόρειας Εύβοιας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

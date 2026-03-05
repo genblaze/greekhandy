@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-balance-valve-tune-petrokerasa",
+  "slug": "epochiaki-rythmisi-valvidas-eksisorropisis-kalorifer-petrokerasa",
+  "nameGr": "Εποχική Ρύθμιση Βαλβίδας Εξισορρόπησης Καλοριφέρ στα Πετροκέρασα",
+  "nameEn": "Seasonal Heating Radiator Balance Valve Tune in Πετροκέρασα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση βαλβίδας εξισορρόπησης καλοριφέρ στα Πετροκέρασα για σταθερή θερμική απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πετροκέρασα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

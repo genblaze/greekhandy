@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-retune-petrokerasa",
+  "slug": "epochiaki-epanarythmisi-aporrois-katofliou-eisodou-petrokerasa",
+  "nameGr": "Εποχική Επαναρύθμιση Απορροής Κατωφλιού Εισόδου στα Πετροκέρασα",
+  "nameEn": "Seasonal Home Entry Threshold Drain Retune in Πετροκέρασα",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική επαναρύθμιση απορροής κατωφλιού εισόδου στα Πετροκέρασα για μείωση λιμναζόντων νερών και ολισθηρότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πετροκέρασα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

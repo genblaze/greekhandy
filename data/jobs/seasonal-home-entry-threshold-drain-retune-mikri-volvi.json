@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-retune-mikri-volvi",
+  "slug": "epochiaki-epanarythmisi-aporrois-katofliou-eisodou-mikri-volvi",
+  "nameGr": "Εποχική Επαναρύθμιση Απορροής Κατωφλιού Εισόδου στη Μικρή Βόλβη",
+  "nameEn": "Seasonal Home Entry Threshold Drain Retune in Μικρή Βόλβη",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική επαναρύθμιση απορροής κατωφλιού εισόδου στη Μικρή Βόλβη για μείωση λιμναζόντων νερών και ολισθηρότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Βόλβη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

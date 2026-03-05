@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-pump-thermal-cutout-reset-mikri-volvi",
+  "slug": "epigousa-epanafora-thermikis-prostasias-antlias-revmatos-mikri-volvi",
+  "nameGr": "Επείγουσα Επαναφορά Θερμικής Προστασίας Αντλίας Ρεύματος στη Μικρή Βόλβη",
+  "nameEn": "Emergency Electrical Pump Thermal Cutout Reset in Μικρή Βόλβη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά θερμικής προστασίας αντλίας στη Μικρή Βόλβη για άμεση αποκατάσταση λειτουργίας χωρίς επικίνδυνη υπερθέρμανση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Βόλβη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

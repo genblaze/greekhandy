@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pipe-hammer-arrestor-fix-mikri-volvi",
+  "slug": "epigousa-episkevi-antipliktikou-ydravlikou-solina-mikri-volvi",
+  "nameGr": "Επείγουσα Επισκευή Αντιπληκτικού Υδραυλικού Σωλήνα στη Μικρή Βόλβη",
+  "nameEn": "Emergency Water Pipe Hammer Arrestor Fix in Μικρή Βόλβη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή αντιπληκτικού υδραυλικού σωλήνα στη Μικρή Βόλβη για άμεση μείωση υδραυλικών χτυπημάτων και προστασία δικτύου.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Βόλβη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

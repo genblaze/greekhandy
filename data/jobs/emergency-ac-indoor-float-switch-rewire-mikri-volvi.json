@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-float-switch-rewire-mikri-volvi",
+  "slug": "epigousa-epanakalodiosi-float-switch-esoterikou-ac-mikri-volvi",
+  "nameGr": "Επείγουσα Επανακαλωδίωση Float Switch Εσωτερικού AC στη Μικρή Βόλβη",
+  "nameEn": "Emergency AC Indoor Float Switch Rewire in Μικρή Βόλβη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επανακαλωδίωση float switch εσωτερικού AC στη Μικρή Βόλβη για αποφυγή ανεξέλεγκτων διαρροών νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Βόλβη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

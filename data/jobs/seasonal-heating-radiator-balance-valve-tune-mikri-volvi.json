@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-balance-valve-tune-mikri-volvi",
+  "slug": "epochiaki-rythmisi-valvidas-eksisorropisis-kalorifer-mikri-volvi",
+  "nameGr": "Εποχική Ρύθμιση Βαλβίδας Εξισορρόπησης Καλοριφέρ στη Μικρή Βόλβη",
+  "nameEn": "Seasonal Heating Radiator Balance Valve Tune in Μικρή Βόλβη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση βαλβίδας εξισορρόπησης καλοριφέρ στη Μικρή Βόλβη για σταθερή θερμική απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Βόλβη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

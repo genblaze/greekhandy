@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-pump-thermal-cutout-reset-petrokerasa",
+  "slug": "epigousa-epanafora-thermikis-prostasias-antlias-revmatos-petrokerasa",
+  "nameGr": "Επείγουσα Επαναφορά Θερμικής Προστασίας Αντλίας Ρεύματος στα Πετροκέρασα",
+  "nameEn": "Emergency Electrical Pump Thermal Cutout Reset in Πετροκέρασα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά θερμικής προστασίας αντλίας στα Πετροκέρασα για άμεση αποκατάσταση λειτουργίας χωρίς επικίνδυνη υπερθέρμανση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πετροκέρασα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
