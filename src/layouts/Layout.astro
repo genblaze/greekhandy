@@ -1,7 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import '../styles/global.css';
-import { NAV_TARGETS, TOP_NAV_LINKS } from '../config/navigation';
+import { NAV_TARGETS, PRIMARY_NAV_LINKS, TOP_NAV_LINKS } from '../config/navigation';
 
 interface Props {
   title: string;
@@ -43,9 +43,50 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
         </div>
       </nav>
       <div class="border-t border-slate-200/80 md:hidden">
-        <nav class="mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto px-4 py-2 text-sm font-medium text-slate-700">
-          <a href={NAV_TARGETS.guides} class={`rounded-full px-3 py-1.5 transition hover:bg-slate-100 hover:text-slate-900 ${isRouteActive(NAV_TARGETS.guides) ? 'bg-slate-100 text-slate-900' : ''}`}>Οδηγοί</a>
-          <a href={NAV_TARGETS.professionals} class={`rounded-full px-3 py-1.5 transition hover:bg-slate-100 hover:text-slate-900 ${isRouteActive(NAV_TARGETS.professionals) ? 'bg-slate-100 text-slate-900' : ''}`}>Επαγγελματίες</a>
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
+          <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Μενού</p>
+          <button
+            type="button"
+            data-mobile-nav-toggle
+            aria-controls="mobile-nav-drawer"
+            aria-expanded="false"
+            class="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+          >
+            ☰ Μενού
+          </button>
+        </div>
+
+        <div data-mobile-nav-overlay class="fixed inset-0 z-40 hidden bg-slate-900/45" aria-hidden="true"></div>
+        <nav
+          id="mobile-nav-drawer"
+          data-mobile-nav-drawer
+          aria-label="Κύρια πλοήγηση κινητού"
+          aria-hidden="true"
+          class="fixed right-0 top-0 z-50 hidden h-full w-[min(88vw,22rem)] border-l border-slate-200 bg-white p-4 shadow-2xl"
+        >
+          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <p class="text-sm font-semibold text-slate-900">Πλοήγηση</p>
+            <button
+              type="button"
+              data-mobile-nav-close
+              class="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+            >
+              Κλείσιμο
+            </button>
+          </div>
+          <ul class="mt-4 space-y-2">
+            {PRIMARY_NAV_LINKS.map((navLink) => (
+              <li>
+                <a
+                  href={navLink.href}
+                  data-mobile-nav-link
+                  class={`flex min-h-11 items-center rounded-lg px-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 ${isRouteActive(navLink.href) ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'}`}
+                >
+                  {navLink.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
       </div>
     </header>
@@ -152,6 +193,46 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           }, 20000);
           window.addEventListener('resize', () => schedule(syncToolbarSafeArea), { passive: true });
           window.addEventListener('orientationchange', () => schedule(syncToolbarSafeArea), { passive: true });
+
+          const toggle = document.querySelector('[data-mobile-nav-toggle]');
+          const close = document.querySelector('[data-mobile-nav-close]');
+          const drawer = document.querySelector('[data-mobile-nav-drawer]');
+          const overlay = document.querySelector('[data-mobile-nav-overlay]');
+          const links = Array.from(document.querySelectorAll('[data-mobile-nav-link]'));
+
+          if (!(toggle instanceof HTMLButtonElement) || !(drawer instanceof HTMLElement) || !(overlay instanceof HTMLElement)) return;
+
+          const setOpen = (open) => {
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            drawer.classList.toggle('hidden', !open);
+            drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+            overlay.classList.toggle('hidden', !open);
+            overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
+            document.body.classList.toggle('overflow-hidden', open);
+            if (open) {
+              const firstLink = links.find((link) => link instanceof HTMLElement);
+              if (firstLink instanceof HTMLElement) firstLink.focus();
+            } else {
+              toggle.focus();
+            }
+          };
+
+          toggle.addEventListener('click', () => {
+            const open = toggle.getAttribute('aria-expanded') === 'true';
+            setOpen(!open);
+          });
+
+          close?.addEventListener('click', () => setOpen(false));
+          overlay.addEventListener('click', () => setOpen(false));
+          links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
+
+          document.addEventListener('keydown', (event) => {
+            if (!(event instanceof KeyboardEvent)) return;
+            if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+              event.preventDefault();
+              setOpen(false);
+            }
+          });
         };
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', start, { once: true });

@@ -2,15 +2,21 @@ import { access, readdir, readFile } from 'node:fs/promises';
 import { constants as fsConstants } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { NAV_ALIAS_REDIRECTS, NAV_PLACEHOLDER_TEXT, NAV_TARGETS, TOP_NAV_LINKS } from '../src/config/navigation.js';
+import { NAV_ALIAS_REDIRECTS, NAV_PLACEHOLDER_TEXT, NAV_TARGETS, PRIMARY_NAV_LINKS, TOP_NAV_LINKS } from '../src/config/navigation.js';
 
 const distClientDir = resolve(process.cwd(), 'dist', 'client');
 const distServerDir = resolve(process.cwd(), 'dist', 'server');
+
+const primaryNavPaths = PRIMARY_NAV_LINKS.map((navLink) => {
+  const base = (navLink.href.split('#')[0] || '/').replace(/\/+$/, '') || '/';
+  return base;
+});
 
 const requiredStaticRoutes = [
   '/',
   NAV_TARGETS.guides,
   NAV_TARGETS.professionals,
+  ...primaryNavPaths,
   '/ilektrologoi',
   '/ydravlikoi',
   '/elaiokhrwmatistes',
@@ -73,6 +79,15 @@ if (await fileExists(homeHtmlPath)) {
       }
       if (!headerHtml.includes(navLink.label)) {
         issues.push(`/ -> missing top-nav label "${navLink.label}"`);
+      }
+    }
+
+    for (const navLink of PRIMARY_NAV_LINKS) {
+      if (!headerHtml.includes(`href="${navLink.href}"`)) {
+        issues.push(`/ -> missing mobile-primary href ${navLink.href}`);
+      }
+      if (!headerHtml.includes(navLink.label)) {
+        issues.push(`/ -> missing mobile-primary label "${navLink.label}"`);
       }
     }
   }
