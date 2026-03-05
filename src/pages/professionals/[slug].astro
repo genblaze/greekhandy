@@ -624,6 +624,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </div>
 
           <p class="mt-2 text-xs text-blue-700">Καταστάσεις αιτήματος: pending (σε αναμονή) → approved (εγκρίθηκε) ή rejected (απορρίφθηκε).</p>
+          <p class="mt-1 text-xs text-slate-600" data-booking-validation-summary aria-live="polite">Έλεγχος φόρμας: συμπληρώστε στοιχεία επικοινωνίας και προτιμώμενο πρόγραμμα για ταχύτερη ανάθεση.</p>
 
           <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος" data-pending-label="Αποστολή...">Αποστολή αιτήματος</button>
         </form>
@@ -1042,6 +1043,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         const updateBookingFieldValidity = (form, forceInvalidState = false) => {
           if (!form.hasAttribute('data-booking-form')) return;
           const fields = Array.from(form.querySelectorAll('[data-booking-validate]')).filter((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement);
+          const invalidRules = [];
           for (const field of fields) {
             const rule = field.getAttribute('data-booking-validate') || '';
             const validator = bookingFieldValidators[rule];
@@ -1056,10 +1058,27 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               field.setAttribute('aria-invalid', 'false');
               if (errorEl instanceof HTMLElement) errorEl.classList.add('hidden');
             }
+            if (!isValid) invalidRules.push(rule);
             if (rule === 'preferredDate') {
               field.setCustomValidity(isValid ? '' : 'Προσθέστε σαφή ημέρα/ώρα.');
             } else {
               field.setCustomValidity(isValid ? '' : 'Συμπληρώστε έγκυρη τιμή.');
+            }
+          }
+
+          const summary = form.querySelector('[data-booking-validation-summary]');
+          if (summary instanceof HTMLElement) {
+            const mapped = {
+              name: 'ονοματεπώνυμο',
+              phone: 'τηλέφωνο',
+              email: 'email',
+              preferredDate: 'προτιμώμενο πρόγραμμα'
+            };
+            if (invalidRules.length === 0) {
+              summary.textContent = 'Έλεγχος φόρμας: όλα τα βασικά πεδία είναι έγκυρα. Μπορείτε να προχωρήσετε.';
+            } else {
+              const uniqueLabels = [...new Set(invalidRules.map((rule) => mapped[rule] || rule))];
+              summary.textContent = `Έλεγχος φόρμας: χρειάζεται διόρθωση στα πεδία ${uniqueLabels.join(', ')}.`;
             }
           }
         };
