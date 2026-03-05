@@ -147,40 +147,101 @@ const availabilityLabelMap: Record<string, string> = {
 };
 const urgencyKeywords = ['amesi', 'ektakti', 'epeigon'];
 const initialVisibleSubJobs = enableAdvancedCategoryUX ? 9 : 12;
-const cardVariantMeta = [
-  {
-    frameClass: 'border-slate-200 bg-white hover:border-blue-300',
-    headingClass: 'border-blue-200 bg-blue-50 text-blue-800',
-    snippetClass: 'border-slate-200 bg-slate-50',
-    snippetHeading: 'Σενάριο από το αίτημα',
-    primaryMetric: 'cost',
-    decisionHeading: 'Τι να επιβεβαιώσετε',
-    decisionHint: 'Ελέγξτε πρόσβαση στον χώρο, πιθανά υλικά και ακριβές χρονικό παράθυρο.'
-  },
-  {
-    frameClass: 'border-cyan-200 bg-cyan-50/40 hover:border-cyan-300',
-    headingClass: 'border-cyan-200 bg-cyan-100/70 text-cyan-900',
-    snippetClass: 'border-cyan-200 bg-white',
-    snippetHeading: 'Πώς συνήθως περιγράφεται',
-    primaryMetric: 'availability',
-    decisionHeading: 'Πριν κλείσετε ραντεβού',
-    decisionHint: 'Δώστε σύντομη περιγραφή συμπτώματος για πιο ρεαλιστική αρχική εκτίμηση.'
-  },
-  {
-    frameClass: 'border-emerald-200 bg-emerald-50/40 hover:border-emerald-300',
-    headingClass: 'border-emerald-200 bg-emerald-100/70 text-emerald-900',
-    snippetClass: 'border-emerald-200 bg-white',
-    snippetHeading: 'Ρεαλιστικό snippet υπηρεσίας',
-    primaryMetric: 'area',
-    decisionHeading: 'Σήμα αξιοπιστίας',
-    decisionHint: 'Συγκρίνετε εύρος κόστους, διάρκεια και πρόσφατη διαθεσιμότητα πριν αποφασίσετε.'
-  }
-] as const;
-const reviewContextVariants = [
-  'Οι κριτικές συνεργατών εμφανίζονται αφού περάσουν moderation στο GreekHandy.',
-  'Στην επικοινωνία ζητήστε πρόσφατες αξιολογήσεις για παρόμοια εργασία.',
-  'Η τελική επιλογή είναι ασφαλέστερη όταν συνδυάζετε τιμή, διαθεσιμότητα και αξιολογήσεις.'
-];
+type TrustDecisionCardVariant = {
+  frameClass: string;
+  headingClass: string;
+  snippetClass: string;
+  snippetHeading: string;
+  laneLabel: string;
+  metricOrder: Array<CardMetricKey>;
+  decisionHeading: string;
+  decisionHint: string;
+};
+type CardMetricKey = 'cost' | 'duration' | 'availability' | 'area';
+type CardMetric = { key: CardMetricKey; label: string; value: string };
+
+const trustDecisionVariantMap = {
+  ydravlikoi: [
+    {
+      frameClass: 'border-sky-200 bg-sky-50/40 hover:border-sky-300',
+      headingClass: 'border-sky-200 bg-sky-100 text-sky-900',
+      snippetClass: 'border-sky-200 bg-white',
+      snippetHeading: 'Ticket αιτήματος υδραυλικού',
+      laneLabel: 'Ροή διαρροής / αποκατάστασης',
+      metricOrder: ['availability', 'cost', 'duration', 'area'],
+      decisionHeading: 'Έλεγχος πριν την επίσκεψη',
+      decisionHint: 'Επιβεβαιώστε προσβασιμότητα, πιθανή διακοπή νερού και αν χρειάζονται ανταλλακτικά.'
+    },
+    {
+      frameClass: 'border-cyan-200 bg-cyan-50/50 hover:border-cyan-300',
+      headingClass: 'border-cyan-200 bg-cyan-100/80 text-cyan-900',
+      snippetClass: 'border-cyan-200 bg-white',
+      snippetHeading: 'Brief εγκατάστασης/αντικατάστασης',
+      laneLabel: 'Ροή εγκατάστασης',
+      metricOrder: ['cost', 'area', 'duration', 'availability'],
+      decisionHeading: 'Πώς να συγκρίνετε σωστά',
+      decisionHint: 'Συγκρίνετε κόστος μαζί με υλικά που περιλαμβάνονται και επιβεβαιωμένη περιοχή κάλυψης.'
+    },
+    {
+      frameClass: 'border-teal-200 bg-teal-50/40 hover:border-teal-300',
+      headingClass: 'border-teal-200 bg-teal-100/80 text-teal-900',
+      snippetClass: 'border-teal-200 bg-white',
+      snippetHeading: 'Σημείωμα συντήρησης δικτύου',
+      laneLabel: 'Ροή συντήρησης',
+      metricOrder: ['duration', 'cost', 'availability', 'area'],
+      decisionHeading: 'Σήμα αξιοπιστίας',
+      decisionHint: 'Δώστε σαφή περιγραφή συμπτωμάτων για ρεαλιστική αρχική διάγνωση και σωστή προτεραιότητα.'
+    }
+  ],
+  ilektrologoi: [
+    {
+      frameClass: 'border-amber-200 bg-amber-50/50 hover:border-amber-300',
+      headingClass: 'border-amber-200 bg-amber-100/80 text-amber-900',
+      snippetClass: 'border-amber-200 bg-white',
+      snippetHeading: 'Ticket βλάβης ηλεκτρολόγου',
+      laneLabel: 'Ροή βλάβης κυκλώματος',
+      metricOrder: ['availability', 'area', 'cost', 'duration'],
+      decisionHeading: 'Πριν κλείσετε ηλεκτρολόγο',
+      decisionHint: 'Δηλώστε αν υπάρχει διακοπή ρεύματος, πίνακας που πέφτει ή οσμή καμένου για σωστή προτεραιοποίηση.'
+    },
+    {
+      frameClass: 'border-indigo-200 bg-indigo-50/45 hover:border-indigo-300',
+      headingClass: 'border-indigo-200 bg-indigo-100/75 text-indigo-900',
+      snippetClass: 'border-indigo-200 bg-white',
+      snippetHeading: 'Brief πίνακα / αναβάθμισης',
+      laneLabel: 'Ροή αναβάθμισης εγκατάστασης',
+      metricOrder: ['cost', 'duration', 'area', 'availability'],
+      decisionHeading: 'Σημεία σύγκρισης προσφορών',
+      decisionHint: 'Συγκρίνετε τύπο εργασίας, εκτιμώμενη διάρκεια και εύρος κόστους πριν την τελική επιλογή.'
+    },
+    {
+      frameClass: 'border-emerald-200 bg-emerald-50/40 hover:border-emerald-300',
+      headingClass: 'border-emerald-200 bg-emerald-100/75 text-emerald-900',
+      snippetClass: 'border-emerald-200 bg-white',
+      snippetHeading: 'Σενάριο ελέγχου ασφάλειας',
+      laneLabel: 'Ροή προληπτικού ελέγχου',
+      metricOrder: ['duration', 'area', 'availability', 'cost'],
+      decisionHeading: 'Κριτήριο αξιοπιστίας',
+      decisionHint: 'Η πιο ασφαλής απόφαση βασίζεται σε συνδυασμό διαθεσιμότητας, τεκμηρίωσης και σαφούς εύρους κόστους.'
+    }
+  ]
+} as const satisfies Record<'ydravlikoi' | 'ilektrologoi', readonly TrustDecisionCardVariant[]>;
+
+const trustDecisionReviewContextMap = {
+  ydravlikoi: [
+    'Οι αξιολογήσεις δημοσιεύονται αφού περάσουν moderation στο GreekHandy.',
+    'Για υδραυλικά αιτήματα ζητήστε πρόσφατα παραδείγματα σε παρόμοια βλάβη.',
+    'Στα επείγοντα συγκρίνετε πρώτα χρόνο απόκρισης και μετά τιμή.'
+  ],
+  ilektrologoi: [
+    'Οι αξιολογήσεις συνεργατών περνούν έλεγχο πριν εμφανιστούν.',
+    'Σε ηλεκτρολογικές εργασίες ζητήστε αντίστοιχα παραδείγματα σε ίδιο τύπο πίνακα/κυκλώματος.',
+    'Η τελική επιλογή είναι ισχυρότερη όταν συνδυάζετε ασφάλεια, διαθεσιμότητα και κόστος.'
+  ]
+} as const satisfies Record<'ydravlikoi' | 'ilektrologoi', readonly string[]>;
+
+const trustDecisionVariants = trustDecisionVariantMap[category.slug as keyof typeof trustDecisionVariantMap] || trustDecisionVariantMap.ydravlikoi;
+const trustDecisionReviewContexts = trustDecisionReviewContextMap[category.slug as keyof typeof trustDecisionReviewContextMap] || trustDecisionReviewContextMap.ydravlikoi;
 
 const classifyBudget = (priceRange: string | undefined) => {
   const value = (priceRange || '').toLocaleLowerCase('el-GR');
@@ -216,9 +277,16 @@ const buildDecisionSnippet = (job: any) => {
     : source;
   return clipped;
 };
-const formatDecisionSnippet = (job: any) => {
+const formatDecisionSnippetLines = (job: any, cityLabel: string, availabilityLabel: string, urgency: string, laneLabel: string) => {
   const plain = buildDecisionSnippet(job).replace(/^["«]+|["»]+$/g, '').trim();
-  return `«${ensureTerminalPunctuation(plain)}»`;
+  const requestLine = ensureTerminalPunctuation(plain);
+  const urgencyLabel = urgency === 'urgent' ? ' (επείγον)' : '';
+  return [
+    `[${laneLabel}]`,
+    `Αίτημα: ${requestLine}`,
+    `Περιοχή: ${cityLabel}`,
+    `Χρόνος: ${availabilityLabel}${urgencyLabel}`
+  ];
 };
 const getCardProofContext = (job: any, availability: string, budget: string) => {
   if (availability === 'asap' || isUrgentJob(job)) return 'Κατάλληλη για αιτήματα άμεσης επέμβασης με σαφή περιγραφή βλάβης.';
@@ -442,22 +510,32 @@ const faqSchema = pageCategory.faq?.length ? {
                   const cityValue = getJobCity(job);
                   const budgetValue = classifyBudget(job.summary?.priceRangeEUR);
                   const availabilityValue = classifyAvailability(job);
-                  const variantMeta = cardVariantMeta[index % cardVariantMeta.length];
+                  const variantMeta = trustDecisionVariants[index % trustDecisionVariants.length];
                   const cityLabel = cityLabelMap[cityValue] || cityLabelMap.all;
                   const serviceArea = cityServiceAreaMap[cityValue] || cityServiceAreaMap.all;
                   const availabilityLabel = availabilityLabelMap[availabilityValue] || availabilityLabelMap.flexible;
                   const budgetLabel = budgetLabelMap[budgetValue] || budgetLabelMap.unknown;
-                  const reviewContext = reviewContextVariants[index % reviewContextVariants.length];
+                  const reviewContext = trustDecisionReviewContexts[index % trustDecisionReviewContexts.length];
                   const proofContext = getCardProofContext(job, availabilityValue, budgetValue);
-                  const cardMetrics = [
+                  const cardMetrics: CardMetric[] = [
                     { key: 'cost', label: 'Κόστος', value: job.summary?.priceRangeEUR || budgetLabel },
                     { key: 'duration', label: 'Διάρκεια', value: job.summary?.typicalDuration || 'Κατόπιν εκτίμησης' },
                     { key: 'availability', label: 'Διαθεσιμότητα', value: availabilityLabel },
                     { key: 'area', label: 'Περιοχή κάλυψης', value: serviceArea }
                   ];
-                  const orderedMetrics = [
-                    ...cardMetrics.filter((metric) => metric.key === variantMeta.primaryMetric),
-                    ...cardMetrics.filter((metric) => metric.key !== variantMeta.primaryMetric)
+                  const orderedMetrics: CardMetric[] = [
+                    ...variantMeta.metricOrder
+                      .map((key) => cardMetrics.find((metric) => metric.key === key))
+                      .filter((metric): metric is CardMetric => Boolean(metric)),
+                    ...cardMetrics.filter((metric) => !variantMeta.metricOrder.includes(metric.key))
+                  ];
+                  const leadMetric = orderedMetrics[0];
+                  const secondaryMetrics = orderedMetrics.slice(1);
+                  const decisionSnippetLines = formatDecisionSnippetLines(job, cityLabel, availabilityLabel, urgencyValue, variantMeta.laneLabel);
+                  const credibilityCues = [
+                    'Καταχώριση με έλεγχο στοιχείων πριν τη δημοσίευση.',
+                    proofContext,
+                    reviewContext
                   ];
                   const cardClass = enableTrustDecisionCardUX
                     ? variantMeta.frameClass
@@ -477,19 +555,30 @@ const faqSchema = pageCategory.faq?.length ? {
                       {enableTrustDecisionCardUX ? (
                         <>
                           <div class="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold">
-                            <span class={`rounded-full border px-2 py-0.5 ${variantMeta.headingClass}`}>Περιοχή: {cityLabel}</span>
+                            <span class={`rounded-full border px-2 py-0.5 ${variantMeta.headingClass}`}>{variantMeta.laneLabel}</span>
                             <span class="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-slate-700">
-                              {urgencyValue === 'urgent' ? 'Επείγουσα ροή' : 'Προγραμματισμένη ροή'}
+                              {urgencyValue === 'urgent' ? 'Προτεραιότητα: επείγον' : 'Προτεραιότητα: προγραμματισμένο'}
                             </span>
                           </div>
                           <h3 class="mt-3 font-semibold leading-snug text-slate-900">{job.nameGr}</h3>
                           <div class={`mt-3 rounded-lg border p-3 ${variantMeta.snippetClass}`}>
                             <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{variantMeta.snippetHeading}</p>
-                            <p class="mt-1 text-sm leading-relaxed text-slate-700">{formatDecisionSnippet(job)}</p>
+                            <div class="mt-2 space-y-1 font-mono text-[11px] leading-relaxed text-slate-700">
+                              {decisionSnippetLines.map((line) => (
+                                <p class="rounded border border-slate-200 bg-white px-2 py-1">{line}</p>
+                              ))}
+                            </div>
                           </div>
-                          <dl class="mt-3 grid grid-cols-2 gap-2">
-                            {orderedMetrics.map((metric, metricIndex) => (
-                              <div class={`rounded-lg border px-2.5 py-2 ${metricIndex === 0 ? 'border-slate-300 bg-slate-100' : 'border-slate-200 bg-white'}`}>
+                          {leadMetric && (
+                            <div class="mt-3 rounded-lg border border-slate-300 bg-slate-100 px-3 py-2">
+                              <p class="text-[11px] uppercase tracking-wide text-slate-500">Κύριο κριτήριο σύγκρισης</p>
+                              <p class="mt-1 text-[11px] text-slate-600">{leadMetric.label}</p>
+                              <p class="text-sm font-semibold text-slate-900">{leadMetric.value}</p>
+                            </div>
+                          )}
+                          <dl class="mt-2 grid grid-cols-2 gap-2">
+                            {secondaryMetrics.map((metric) => (
+                              <div class="rounded-lg border border-slate-200 bg-white px-2.5 py-2">
                                 <dt class="text-[11px] text-slate-500">{metric.label}</dt>
                                 <dd class="mt-0.5 text-xs font-semibold text-slate-900">{metric.value}</dd>
                               </div>
@@ -499,9 +588,16 @@ const faqSchema = pageCategory.faq?.length ? {
                             <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{variantMeta.decisionHeading}</p>
                             <p class="mt-1 text-xs text-slate-700">{variantMeta.decisionHint}</p>
                           </div>
-                          <div class="mt-2 space-y-1 text-[11px] leading-relaxed text-slate-600" aria-label="Πλαίσιο αξιοπιστίας καταχώρισης">
-                            <p><span class="font-semibold text-slate-800">Πλαίσιο απόφασης:</span> {proofContext}</p>
-                            <p><span class="font-semibold text-slate-800">Πλαίσιο κριτικών:</span> {reviewContext}</p>
+                          <div class="mt-2 rounded-lg border border-slate-200 bg-white px-3 py-2" aria-label="Πλαίσιο αξιοπιστίας καταχώρισης">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Σήματα αξιοπιστίας</p>
+                            <ul class="mt-1 space-y-1 text-[11px] leading-relaxed text-slate-700">
+                              {credibilityCues.map((cue) => (
+                                <li class="flex items-start gap-1.5">
+                                  <span aria-hidden="true" class="mt-[2px] text-slate-400">•</span>
+                                  <span>{cue}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         </>
                       ) : (
