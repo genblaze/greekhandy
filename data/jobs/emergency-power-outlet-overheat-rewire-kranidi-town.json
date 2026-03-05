@@ -1,0 +1,20 @@
+{
+  "id": "emergency-power-outlet-overheat-rewire-kranidi-town",
+  "slug": "epigousa-epanakalodiwsi-yperthermansis-prizas-kranidi-town",
+  "nameGr": "Επείγουσα Επανακαλωδίωση Υπερθέρμανσης Πρίζας στο Κρανίδι",
+  "nameEn": "Emergency Power Outlet Overheat Rewire in Κρανίδι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επανακαλωδίωση υπερθερμασμένης πρίζας στο Κρανίδι για ασφαλή χρήση και πρόληψη βραχυκυκλώματος. SEO intent: «πρίζα καίει μυρίζει Κρανίδι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "πρίζα καίει μυρίζει Κρανίδι",
+    "ηλεκτρολόγος επείγον πρίζα",
+    "υπερθέρμανση πρίζας λύση",
+    "ασφαλής επανακαλωδίωση",
+    "βλάβη ηλεκτρικής παροχής"
+  ],
+  "status": "researched"
+}

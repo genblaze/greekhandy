@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-rental-home-plumbing-readiness-check-paxoi",
+  "slug": "epochiakos-elegxos-ydravlikis-etoimotitas-katalymatos-paxoi",
+  "nameGr": "Εποχικός Έλεγχος Υδραυλικής Ετοιμότητας Καταλύματος στους Παξούς",
+  "nameEn": "Seasonal Rental Home Plumbing Readiness Check in Παξοί",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εποχικός έλεγχος υδραυλικής ετοιμότητας καταλύματος στους Παξούς πριν την περίοδο κρατήσεων για αποφυγή βλαβών. SEO intent: «έλεγχος υδραυλικών Airbnb Παξοί».",
+  "typicalDuration": "1-3 ώρες",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος υδραυλικών Airbnb Παξοί",
+    "προετοιμασία καταλύματος υδραυλικά",
+    "υδραυλικός πριν σεζόν",
+    "service εξοχικού πριν άνοιγμα",
+    "preventive plumbing check"
+  ],
+  "status": "researched"
+}

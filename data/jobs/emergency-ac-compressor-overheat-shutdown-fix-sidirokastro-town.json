@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-compressor-overheat-shutdown-fix-sidirokastro-town",
+  "slug": "epigousa-episkevi-thermikis-prostasias-sympiesti-ac-sidirokastro-town",
+  "nameGr": "Επείγουσα Επισκευή Θερμικής Προστασίας Συμπιεστή AC στο Σιδηρόκαστρο",
+  "nameEn": "Emergency AC Compressor Overheat Shutdown Fix in Σιδηρόκαστρο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή προστασίας υπερθέρμανσης συμπιεστή AC στο Σιδηρόκαστρο για αποφυγή οριστικής βλάβης. SEO intent: «ac κλείνει μόνο του Σιδηρόκαστρο».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "ac κλείνει μόνο του Σιδηρόκαστρο",
+    "συμπιεστής ac υπερθέρμανση",
+    "τεχνικός κλιματισμού επείγον",
+    "βλάβη compressor ac",
+    "άμεσο service κλιματιστικού"
+  ],
+  "status": "researched"
+}

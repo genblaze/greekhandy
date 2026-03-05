@@ -1,0 +1,20 @@
+{
+  "id": "emergency-toilet-fill-valve-repair-paxoi",
+  "slug": "epigousa-episkevi-valvidas-plirwsis-kazanakioy-paxoi",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Πλήρωσης Καζανακίου στους Παξούς",
+  "nameEn": "Emergency Toilet Fill Valve Repair in Παξοί",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας πλήρωσης καζανακίου στους Παξούς για άμεση διακοπή συνεχούς ροής νερού. SEO intent: «καζανάκι τρέχει συνέχεια Παξοί».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "καζανάκι τρέχει συνέχεια Παξοί",
+    "υδραυλικός καζανάκι επείγον",
+    "επισκευή βαλβίδας καζανακίου",
+    "σπατάλη νερού wc λύση",
+    "άμεση επισκευή τουαλέτας"
+  ],
+  "status": "researched"
+}

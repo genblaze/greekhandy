@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-generator-start-test-kranidi-town",
+  "slug": "epochiakos-dokimastikos-elegxos-ekkinisis-gennitrias-spitiou-kranidi-town",
+  "nameGr": "Εποχικός Δοκιμαστικός Έλεγχος Εκκίνησης Γεννήτριας Σπιτιού στο Κρανίδι",
+  "nameEn": "Seasonal Home Generator Start Test in Κρανίδι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Εποχικός δοκιμαστικός έλεγχος εκκίνησης γεννήτριας στο Κρανίδι πριν από καιρικά φαινόμενα και διακοπές ρεύματος. SEO intent: «έλεγχος γεννήτριας σπιτιού Κρανίδι».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "έλεγχος γεννήτριας σπιτιού Κρανίδι",
+    "δοκιμή εκκίνησης γεννήτριας",
+    "ηλεκτρολόγος backup ρεύμα",
+    "προετοιμασία για blackout",
+    "service οικιακής γεννήτριας"
+  ],
+  "status": "researched"
+}

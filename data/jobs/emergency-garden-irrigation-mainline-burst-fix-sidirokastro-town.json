@@ -1,0 +1,20 @@
+{
+  "id": "emergency-garden-irrigation-mainline-burst-fix-sidirokastro-town",
+  "slug": "epigousa-episkevi-sparsimatos-kentrikis-grammis-potismatos-sidirokastro-town",
+  "nameGr": "Επείγουσα Επισκευή Σπασίματος Κεντρικής Γραμμής Ποτίσματος στο Σιδηρόκαστρο",
+  "nameEn": "Emergency Garden Irrigation Mainline Burst Fix in Σιδηρόκαστρο",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Επείγουσα επισκευή σπασμένης κεντρικής γραμμής ποτίσματος στο Σιδηρόκαστρο για άμεση αποφυγή απώλειας νερού. SEO intent: «σπασμένο λάστιχο ποτίσματος κήπου Σιδηρόκαστρο».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "σπασμένο λάστιχο ποτίσματος κήπου Σιδηρόκαστρο",
+    "επισκευή κεντρικής γραμμής άρδευσης",
+    "κηπουρός επείγον διαρροή",
+    "απώλεια νερού κήπου λύση",
+    "service αυτόματου ποτίσματος"
+  ],
+  "status": "researched"
+}

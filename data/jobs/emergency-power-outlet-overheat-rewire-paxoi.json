@@ -1,0 +1,20 @@
+{
+  "id": "emergency-power-outlet-overheat-rewire-paxoi",
+  "slug": "epigousa-epanakalodiwsi-yperthermansis-prizas-paxoi",
+  "nameGr": "Επείγουσα Επανακαλωδίωση Υπερθέρμανσης Πρίζας στους Παξούς",
+  "nameEn": "Emergency Power Outlet Overheat Rewire in Παξοί",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επανακαλωδίωση υπερθερμασμένης πρίζας στους Παξούς για ασφαλή χρήση και πρόληψη βραχυκυκλώματος. SEO intent: «πρίζα καίει μυρίζει Παξοί».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "πρίζα καίει μυρίζει Παξοί",
+    "ηλεκτρολόγος επείγον πρίζα",
+    "υπερθέρμανση πρίζας λύση",
+    "ασφαλής επανακαλωδίωση",
+    "βλάβη ηλεκτρικής παροχής"
+  ],
+  "status": "researched"
+}

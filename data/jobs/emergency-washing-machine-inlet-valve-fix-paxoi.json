@@ -1,0 +1,20 @@
+{
+  "id": "emergency-washing-machine-inlet-valve-fix-paxoi",
+  "slug": "epigousa-episkevi-valvidas-eisodou-plyntiriou-paxoi",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Εισόδου Πλυντηρίου στους Παξούς",
+  "nameEn": "Emergency Washing Machine Inlet Valve Fix in Παξοί",
+  "categoryId": "appliance-technicians",
+  "categorySlug": "techniki-oikiakon-syskevon",
+  "intent": "Επείγουσα επισκευή βαλβίδας εισόδου πλυντηρίου στους Παξούς για να σταματήσει η υπερχείλιση ή η αδυναμία πλήρωσης. SEO intent: «πλυντήριο δεν παίρνει νερό Παξοί».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "πλυντήριο δεν παίρνει νερό Παξοί",
+    "βλάβη βαλβίδας πλυντηρίου",
+    "τεχνικός πλυντηρίου επείγον",
+    "υπερχείλιση πλυντηρίου λύση",
+    "service λευκών συσκευών"
+  ],
+  "status": "researched"
+}
