@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-ac-condensate-pump-service-sitia-town",
+  "slug": "epochiako-service-antlias-sympyknomatos-ac-sitia-town",
+  "nameGr": "Εποχικό Service Αντλίας Συμπυκνώματος AC στη Σητεία",
+  "nameEn": "Seasonal AC Condensate Pump Service in Σητεία",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό service αντλίας συμπυκνώματος AC στη Σητεία για αποφυγή διαρροών και θορύβου κατά την έντονη χρήση. SEO intent: «αντλία συμπυκνώματος ac Σητεία».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "αντλία συμπυκνώματος ac Σητεία",
+    "service κλιματιστικού διαρροή νερού",
+    "τεχνικός ac συντήρηση εποχική",
+    "καθαρισμός αντλίας condensate",
+    "κλιματιστικό στάζει λύση"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-ac-condensate-pump-service-naousa-paros",
+  "slug": "epochiako-service-antlias-sympyknomatos-ac-naousa-paros",
+  "nameGr": "Εποχικό Service Αντλίας Συμπυκνώματος AC στη Νάουσα Πάρου",
+  "nameEn": "Seasonal AC Condensate Pump Service in Νάουσα Πάρου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό service αντλίας συμπυκνώματος AC στη Νάουσα Πάρου για αποφυγή διαρροών και θορύβου κατά την έντονη χρήση. SEO intent: «αντλία συμπυκνώματος ac Νάουσα Πάρου».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "αντλία συμπυκνώματος ac Νάουσα Πάρου",
+    "service κλιματιστικού διαρροή νερού",
+    "τεχνικός ac συντήρηση εποχική",
+    "καθαρισμός αντλίας condensate",
+    "κλιματιστικό στάζει λύση"
+  ],
+  "status": "researched"
+}

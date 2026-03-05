@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-ac-condensate-pump-service-amalias",
+  "slug": "epochiako-service-antlias-sympyknomatos-ac-amalias",
+  "nameGr": "Εποχικό Service Αντλίας Συμπυκνώματος AC στην Αμαλιάδα",
+  "nameEn": "Seasonal AC Condensate Pump Service in Αμαλιάδα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό service αντλίας συμπυκνώματος AC στην Αμαλιάδα για αποφυγή διαρροών και θορύβου κατά την έντονη χρήση. SEO intent: «αντλία συμπυκνώματος ac Αμαλιάδα».",
+  "typicalDuration": "45-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "αντλία συμπυκνώματος ac Αμαλιάδα",
+    "service κλιματιστικού διαρροή νερού",
+    "τεχνικός ac συντήρηση εποχική",
+    "καθαρισμός αντλίας condensate",
+    "κλιματιστικό στάζει λύση"
+  ],
+  "status": "researched"
+}

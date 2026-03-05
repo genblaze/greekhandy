@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-holiday-home-entry-sensor-check-amalias",
+  "slug": "epochiakos-elegxos-aisthitirwn-eisodou-eksaxikis-amalias",
+  "nameGr": "Εποχικός Έλεγχος Αισθητήρων Εισόδου Εξοχικής στην Αμαλιάδα",
+  "nameEn": "Seasonal Holiday Home Entry Sensor Check in Αμαλιάδα",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εποχικός έλεγχος αισθητήρων εισόδου εξοχικής κατοικίας στην Αμαλιάδα για αξιόπιστη ειδοποίηση πριν την περίοδο χρήσης. SEO intent: «αισθητήρας πόρτας συναγερμός βλάβη Αμαλιάδα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-190€",
+  "demand": "high",
+  "keywords": [
+    "αισθητήρας πόρτας συναγερμός βλάβη Αμαλιάδα",
+    "service συναγερμού εξοχικού",
+    "έλεγχος αισθητήρων ασφαλείας",
+    "προετοιμασία συστήματος ασφαλείας",
+    "entry sensor check home"
+  ],
+  "status": "researched"
+}
