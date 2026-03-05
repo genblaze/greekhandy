@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Σελίδα /professionals: οι κάρτες γράφουν ξεκάθαρα 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER'. Αυτό είναι αυτογκόλ αξιοπιστίας και δείχνει demo, όχι marketplace. Αφαίρεσε κάθε placeholder label από public UI και εμφάνισε μόνο πραγματική κατάσταση επαλήθευσης με καθαρό ελληνικό copy.",
-      "addedAt": "2026-03-05T03:03:41Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Σελίδα /professionals: εμφανίζεις 'Δείκτης εμπιστοσύνης 0/100' και 'Εκπαίδευση κριτικών: 0%' σε όλους τους επαγγελματίες. Αυτά μοιάζουν με εσωτερικά QA metrics και καταστρέφουν την εμπιστοσύνη του χρήστη. Κρύψε τα μέχρι να υπάρχουν πραγματικά δεδομένα και κράτα μόνο χρήσιμα δημόσια trust signals.",
-      "addedAt": "2026-03-05T03:03:41Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Σελίδα /professionals/register: η φόρμα εγγραφής επαγγελματία δεν έχει checkbox συναίνεσης ούτε σύνδεσμο σε πολιτική απορρήτου πριν το submit. Πρόσθεσε υποχρεωτή GDPR συναίνεση και σαφή ενημέρωση για χρήση/αποθήκευση στοιχείων πριν το κουμπί 'Αποστολή Αίτησης'.",
-      "addedAt": "2026-03-05T03:03:41Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Σελίδα /messages: στην κατάσταση χωρίς ενεργή συνομιλία δείχνεις παραπλανητικό primary CTA 'Συνέχεια' και δευτερεύον 'Δοκιμή ξανά' που δεν εξηγούν τι θα γίνει. Κράτα ένα ξεκάθαρο action ('Μετάβαση σε Επαγγελματίες') και γράψε ακριβές αποτέλεσμα ανά κουμπί για να μη νιώθει ο χρήστης ότι πατάει τυφλά.",
-      "addedAt": "2026-03-05T03:03:41Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Mobile homepage: το hero badge παραμένει στα αγγλικά ('GREEKHANDY SIGNATURE NETWORK') ενώ το υπόλοιπο UI είναι ελληνικό. Αυτή η γλωσσική ασυνέπεια δείχνει πρόχειρο template. Κάνε πλήρη ελληνική προσαρμογή στο hero (badge, headings, supporting copy) ή πρόσθεσε πραγματικό language switch με συνεπές localization.",
-      "addedAt": "2026-03-05T03:03:41Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -470,6 +444,36 @@
       "addedAt": "2026-03-05T02:33:11Z",
       "source": "qa-agent",
       "processedAt": "2026-03-05T02:35:51Z"
+    },
+    {
+      "directive": "Σελίδα /professionals: οι κάρτες γράφουν ξεκάθαρα 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER'. Αυτό είναι αυτογκόλ αξιοπιστίας και δείχνει demo, όχι marketplace. Αφαίρεσε κάθε placeholder label από public UI και εμφάνισε μόνο πραγματική κατάσταση επαλήθευσης με καθαρό ελληνικό copy.",
+      "addedAt": "2026-03-05T03:03:41Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:05:43Z"
+    },
+    {
+      "directive": "Σελίδα /professionals: εμφανίζεις 'Δείκτης εμπιστοσύνης 0/100' και 'Εκπαίδευση κριτικών: 0%' σε όλους τους επαγγελματίες. Αυτά μοιάζουν με εσωτερικά QA metrics και καταστρέφουν την εμπιστοσύνη του χρήστη. Κρύψε τα μέχρι να υπάρχουν πραγματικά δεδομένα και κράτα μόνο χρήσιμα δημόσια trust signals.",
+      "addedAt": "2026-03-05T03:03:41Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:05:43Z"
+    },
+    {
+      "directive": "Σελίδα /professionals/register: η φόρμα εγγραφής επαγγελματία δεν έχει checkbox συναίνεσης ούτε σύνδεσμο σε πολιτική απορρήτου πριν το submit. Πρόσθεσε υποχρεωτή GDPR συναίνεση και σαφή ενημέρωση για χρήση/αποθήκευση στοιχείων πριν το κουμπί 'Αποστολή Αίτησης'.",
+      "addedAt": "2026-03-05T03:03:41Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:05:43Z"
+    },
+    {
+      "directive": "Σελίδα /messages: στην κατάσταση χωρίς ενεργή συνομιλία δείχνεις παραπλανητικό primary CTA 'Συνέχεια' και δευτερεύον 'Δοκιμή ξανά' που δεν εξηγούν τι θα γίνει. Κράτα ένα ξεκάθαρο action ('Μετάβαση σε Επαγγελματίες') και γράψε ακριβές αποτέλεσμα ανά κουμπί για να μη νιώθει ο χρήστης ότι πατάει τυφλά.",
+      "addedAt": "2026-03-05T03:03:41Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:05:43Z"
+    },
+    {
+      "directive": "Mobile homepage: το hero badge παραμένει στα αγγλικά ('GREEKHANDY SIGNATURE NETWORK') ενώ το υπόλοιπο UI είναι ελληνικό. Αυτή η γλωσσική ασυνέπεια δείχνει πρόχειρο template. Κάνε πλήρη ελληνική προσαρμογή στο hero (badge, headings, supporting copy) ή πρόσθεσε πραγματικό language switch με συνεπές localization.",
+      "addedAt": "2026-03-05T03:03:41Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:05:43Z"
     }
   ]
 }

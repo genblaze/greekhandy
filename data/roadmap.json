@@ -1,6 +1,51 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-14",
+      "title": "QA Critical Fixes Wave 14",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported credibility, compliance, messaging clarity, and localization blockers across professionals, registration, messages, and mobile hero.",
+      "acceptanceCriteria": [
+        "Public professionals cards show only user-meaningful trust states (no placeholder labels or internal metrics).",
+        "Professionals listing hides zero-value/internal QA trust metrics until real data exists.",
+        "Professional registration includes mandatory GDPR consent with privacy-policy link before submit.",
+        "Public /messages empty state has one clear primary action with explicit outcome language.",
+        "Homepage/mobile hero copy is consistently localized in Greek (or controlled by real language switch)."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-14-task-1",
+          "source": "qa-agent",
+          "directive": "Σελίδα /professionals: οι κάρτες γράφουν ξεκάθαρα 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER'. Αυτό είναι αυτογκόλ αξιοπιστίας και δείχνει demo, όχι marketplace. Αφαίρεσε κάθε placeholder label από public UI και εμφάνισε μόνο πραγματική κατάσταση επαλήθευσης με καθαρό ελληνικό copy."
+        },
+        {
+          "id": "qa-critical-fixes-wave-14-task-2",
+          "source": "qa-agent",
+          "directive": "Σελίδα /professionals: εμφανίζεις 'Δείκτης εμπιστοσύνης 0/100' και 'Εκπαίδευση κριτικών: 0%' σε όλους τους επαγγελματίες. Αυτά μοιάζουν με εσωτερικά QA metrics και καταστρέφουν την εμπιστοσύνη του χρήστη. Κρύψε τα μέχρι να υπάρχουν πραγματικά δεδομένα και κράτα μόνο χρήσιμα δημόσια trust signals."
+        },
+        {
+          "id": "qa-critical-fixes-wave-14-task-3",
+          "source": "qa-agent",
+          "directive": "Σελίδα /professionals/register: η φόρμα εγγραφής επαγγελματία δεν έχει checkbox συναίνεσης ούτε σύνδεσμο σε πολιτική απορρήτου πριν το submit. Πρόσθεσε υποχρεωτή GDPR συναίνεση και σαφή ενημέρωση για χρήση/αποθήκευση στοιχείων πριν το κουμπί 'Αποστολή Αίτησης'."
+        },
+        {
+          "id": "qa-critical-fixes-wave-14-task-4",
+          "source": "qa-agent",
+          "directive": "Σελίδα /messages: στην κατάσταση χωρίς ενεργή συνομιλία δείχνεις παραπλανητικό primary CTA 'Συνέχεια' και δευτερεύον 'Δοκιμή ξανά' που δεν εξηγούν τι θα γίνει. Κράτα ένα ξεκάθαρο action ('Μετάβαση σε Επαγγελματίες') και γράψε ακριβές αποτέλεσμα ανά κουμπί για να μη νιώθει ο χρήστης ότι πατάει τυφλά."
+        },
+        {
+          "id": "qa-critical-fixes-wave-14-task-5",
+          "source": "qa-agent",
+          "directive": "Mobile homepage: το hero badge παραμένει στα αγγλικά ('GREEKHANDY SIGNATURE NETWORK') ενώ το υπόλοιπο UI είναι ελληνικό. Αυτή η γλωσσική ασυνέπεια δείχνει πρόχειρο template. Κάνε πλήρη ελληνική προσαρμογή στο hero (badge, headings, supporting copy) ή πρόσθεσε πραγματικό language switch με συνεπές localization."
+        }
+      ],
+      "createdAt": "2026-03-05T03:05:43Z",
+      "updatedAt": "2026-03-05T03:05:43Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-13",
       "title": "QA Critical Fixes Wave 13",
       "pillar": "Product",
