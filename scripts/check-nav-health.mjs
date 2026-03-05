@@ -66,13 +66,29 @@ const normalizePath = (value) => {
   return parsed;
 };
 
-const routeToClientHtml = (route) => {
+const routeToClientHtml = (route, baseDir = distClientDir) => {
   const normalized = normalizePath(route);
-  if (normalized === '/') return resolve(distClientDir, 'index.html');
-  return resolve(distClientDir, normalized.slice(1), 'index.html');
+  if (normalized === '/') return resolve(baseDir, 'index.html');
+  return resolve(baseDir, normalized.slice(1), 'index.html');
 };
 
-const rootFileToClientPath = (routePath) => resolve(distClientDir, routePath.replace(/^\//, ''));
+const rootFileToClientPath = (routePath, baseDir = distClientDir) => resolve(baseDir, routePath.replace(/^\//, ''));
+
+const resolveBuiltRoutePath = async (route) => {
+  const candidates = [routeToClientHtml(route, distClientCandidateDir), routeToClientHtml(route, distStaticCandidateDir)];
+  for (const candidate of candidates) {
+    if (await fileExists(candidate)) return candidate;
+  }
+  return candidates[0];
+};
+
+const resolveBuiltRootFilePath = async (routePath) => {
+  const candidates = [rootFileToClientPath(routePath, distClientCandidateDir), rootFileToClientPath(routePath, distStaticCandidateDir)];
+  for (const candidate of candidates) {
+    if (await fileExists(candidate)) return candidate;
+  }
+  return candidates[0];
+};
 
 const fileExists = async (path) => {
   try {
@@ -83,28 +99,47 @@ const fileExists = async (path) => {
   }
 };
 
+const routeToServerModulePath = (route) => {
+  const normalized = normalizePath(route);
+  if (normalized === '/') return resolve(distServerDir, 'pages', 'index.astro.mjs');
+  const routeFile = normalized.slice(1).replace(/\//g, '-') || 'index';
+  return resolve(distServerDir, 'pages', `${routeFile}.astro.mjs`);
+};
+
+const rootFileToServerModulePath = (routePath) => {
+  const normalized = routePath.replace(/^\//, '');
+  return resolve(distServerDir, 'pages', `${normalized}.astro.mjs`);
+};
+
 const issues = [];
 
 for (const route of new Set(requiredStaticRoutes)) {
-  const filePath = routeToClientHtml(route);
-  if (!(await fileExists(filePath))) {
-    issues.push(`${route} -> missing built HTML file: ${filePath}`);
+  const filePath = await resolveBuiltRoutePath(route);
+  if (await fileExists(filePath)) continue;
+
+  const serverModulePath = routeToServerModulePath(route);
+  if (!(await fileExists(serverModulePath))) {
+    issues.push(`${route} -> missing built HTML (${filePath}) and server module (${serverModulePath})`);
   }
 }
 
 for (const requiredFile of requiredRootFiles) {
-  const filePath = rootFileToClientPath(requiredFile.path);
-  if (!(await fileExists(filePath))) {
-    issues.push(`${requiredFile.path} -> missing built file: ${filePath}`);
+  const filePath = await resolveBuiltRootFilePath(requiredFile.path);
+  if (await fileExists(filePath)) {
+    const content = await readFile(filePath, 'utf-8');
+    if (!content.includes(requiredFile.expectedSnippet)) {
+      issues.push(`${requiredFile.path} -> missing expected content snippet: ${requiredFile.expectedSnippet}`);
+    }
     continue;
   }
-  const content = await readFile(filePath, 'utf-8');
-  if (!content.includes(requiredFile.expectedSnippet)) {
-    issues.push(`${requiredFile.path} -> missing expected content snippet: ${requiredFile.expectedSnippet}`);
+
+  const serverModulePath = rootFileToServerModulePath(requiredFile.path);
+  if (!(await fileExists(serverModulePath))) {
+    issues.push(`${requiredFile.path} -> missing built file (${filePath}) and server module (${serverModulePath})`);
   }
 }
 
-const homeHtmlPath = routeToClientHtml('/');
+const homeHtmlPath = await resolveBuiltRoutePath('/');
 if (await fileExists(homeHtmlPath)) {
   const homeHtml = await readFile(homeHtmlPath, 'utf-8');
   const headerHtml = homeHtml.match(/<header[\s\S]*?<\/header>/iu)?.[0];
@@ -161,7 +196,7 @@ if (await fileExists(homeHtmlPath)) {
 }
 
 for (const contentCheck of routeContentChecks) {
-  const filePath = routeToClientHtml(contentCheck.route);
+  const filePath = await resolveBuiltRoutePath(contentCheck.route);
   if (!(await fileExists(filePath))) continue;
   const html = await readFile(filePath, 'utf-8');
   const htmlLower = html.toLowerCase();

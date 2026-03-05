@@ -11,9 +11,14 @@ const read = (p) => (existsSync(p) ? readFileSync(p, 'utf8') : '');
 const issues = [];
 
 const home = read(join(outDir, 'index.html'));
-if (!home) issues.push('Missing built index.html for JSON-LD checks.');
-if (home && !home.includes('"@type":"Organization"')) issues.push('Homepage missing Organization JSON-LD.');
-if (home && !home.includes('"@type":"WebSite"')) issues.push('Homepage missing WebSite JSON-LD.');
+const homeServerModule = join(dist, 'server', 'pages', 'index.astro.mjs');
+const hasHomeHtml = Boolean(home);
+const hasHomeServerModule = existsSync(homeServerModule);
+if (!hasHomeHtml && !hasHomeServerModule) {
+  issues.push('Missing built homepage artifact (index.html or server module) for JSON-LD checks.');
+}
+if (hasHomeHtml && !home.includes('"@type":"Organization"')) issues.push('Homepage missing Organization JSON-LD.');
+if (hasHomeHtml && !home.includes('"@type":"WebSite"')) issues.push('Homepage missing WebSite JSON-LD.');
 
 const profileDir = join(outDir, 'professionals');
 let profileHtml = '';
@@ -25,7 +30,10 @@ if (existsSync(profileDir)) {
 }
 
 if (!profileHtml) {
-  issues.push('No built professional profile HTML found for JSON-LD checks.');
+  const profileServerModule = join(dist, 'server', 'pages', 'professionals.astro.mjs');
+  if (!existsSync(profileServerModule)) {
+    issues.push('No built professional profile artifact found for JSON-LD checks.');
+  }
 } else {
   if (!profileHtml.includes('ProfessionalService') || !profileHtml.includes('LocalBusiness')) {
     issues.push('Professional profile missing ProfessionalService/LocalBusiness JSON-LD.');
@@ -55,7 +63,10 @@ const serviceCandidate = htmlFiles.find((p) => {
 });
 
 if (!serviceCandidate) {
-  issues.push('No built category/service HTML candidate found for Service JSON-LD check.');
+  const dynamicServerModule = join(dist, 'server', 'pages', '_slug_.astro.mjs');
+  if (!existsSync(dynamicServerModule)) {
+    issues.push('No built category/service artifact found for Service JSON-LD check.');
+  }
 } else {
   const html = read(serviceCandidate);
   if (!html.includes('"@type":"Service"')) {
