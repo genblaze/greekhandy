@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-noise-rattle-fix-konitsa",
+  "slug": "epigousa-episkevi-trigmon-esoterikis-monadas-ac-konitsa",
+  "nameGr": "Επείγουσα Επισκευή Τριγμών Εσωτερικής Μονάδας AC στην Κόνιτσα",
+  "nameEn": "Emergency AC Indoor Noise Rattle Fix in Κόνιτσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή τριγμών εσωτερικής μονάδας AC στην Κόνιτσα για αποφυγή μεγαλύτερης μηχανικής βλάβης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-220€",
+  "demand": "high",
+  "keywords": [
+    "Κόνιτσα επείγον",
+    "Επείγουσα Κόνιτσα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

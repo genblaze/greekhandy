@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-entryway-drain-channel-refresh-konitsa",
+  "slug": "epochiaki-ananeosi-kanaliou-aporrois-eisodou-konitsa",
+  "nameGr": "Εποχική Ανανέωση Καναλιού Απορροής Εισόδου στην Κόνιτσα",
+  "nameEn": "Seasonal Entryway Drain Channel Refresh in Κόνιτσα",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ανανέωση καναλιού απορροής εισόδου στην Κόνιτσα για πρόληψη λιμναζόντων νερών και ολισθηρότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κόνιτσα επείγον",
+    "Εποχική Κόνιτσα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

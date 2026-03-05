@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-partial-blackout-line-fix-apea",
+  "slug": "epigousa-episkevi-merikis-diakopis-revmatos-grammis-apea",
+  "nameGr": "Επείγουσα Επισκευή Μερικής Διακοπής Ρεύματος Γραμμής στην Απέα",
+  "nameEn": "Emergency Electrical Partial Blackout Line Fix in Απέα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μερικής διακοπής ρεύματος γραμμής στην Απέα για ασφαλή επαναφορά τροφοδοσίας σε βασικούς χώρους.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Απέα επείγον",
+    "Επείγουσα Απέα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

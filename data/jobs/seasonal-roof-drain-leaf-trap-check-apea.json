@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-drain-leaf-trap-check-apea",
+  "slug": "epochiakos-elegxos-pagidas-fyllon-aporrois-stegis-apea",
+  "nameGr": "Εποχικός Έλεγχος Παγίδας Φύλλων Απορροής Στέγης στην Απέα",
+  "nameEn": "Seasonal Roof Drain Leaf Trap Check in Απέα",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός έλεγχος παγίδας φύλλων απορροής στέγης στην Απέα για αποφυγή φραγής και υπερχείλισης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Απέα επείγον",
+    "Εποχικός Απέα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

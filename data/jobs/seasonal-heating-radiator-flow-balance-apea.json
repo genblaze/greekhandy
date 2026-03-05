@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-flow-balance-apea",
+  "slug": "epochiaki-eksisorropisi-rois-somaton-kalorifer-apea",
+  "nameGr": "Εποχική Εξισορρόπηση Ροής Σωμάτων Καλοριφέρ στην Απέα",
+  "nameEn": "Seasonal Heating Radiator Flow Balance in Απέα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση ροής σωμάτων καλοριφέρ στην Απέα για ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Απέα επείγον",
+    "Εποχική Απέα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

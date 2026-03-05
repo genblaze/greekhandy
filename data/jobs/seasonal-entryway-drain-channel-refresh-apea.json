@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-entryway-drain-channel-refresh-apea",
+  "slug": "epochiaki-ananeosi-kanaliou-aporrois-eisodou-apea",
+  "nameGr": "Εποχική Ανανέωση Καναλιού Απορροής Εισόδου στην Απέα",
+  "nameEn": "Seasonal Entryway Drain Channel Refresh in Απέα",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ανανέωση καναλιού απορροής εισόδου στην Απέα για πρόληψη λιμναζόντων νερών και ολισθηρότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Απέα επείγον",
+    "Εποχική Απέα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

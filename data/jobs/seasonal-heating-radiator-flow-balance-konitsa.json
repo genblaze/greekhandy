@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-flow-balance-konitsa",
+  "slug": "epochiaki-eksisorropisi-rois-somaton-kalorifer-konitsa",
+  "nameGr": "Εποχική Εξισορρόπηση Ροής Σωμάτων Καλοριφέρ στην Κόνιτσα",
+  "nameEn": "Seasonal Heating Radiator Flow Balance in Κόνιτσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση ροής σωμάτων καλοριφέρ στην Κόνιτσα για ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κόνιτσα επείγον",
+    "Εποχική Κόνιτσα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-strike-tightening-konitsa",
+  "slug": "epigouso-sfiksimo-antikrismatos-portas-eisodou-konitsa",
+  "nameGr": "Επείγον Σφίξιμο Αντικρίσματος Πόρτας Εισόδου στην Κόνιτσα",
+  "nameEn": "Emergency Entry Door Strike Tightening in Κόνιτσα",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγον σφίξιμο αντικρίσματος πόρτας εισόδου στην Κόνιτσα όταν η πόρτα δεν ασφαλίζει σωστά.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "Κόνιτσα επείγον",
+    "Επείγον Κόνιτσα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

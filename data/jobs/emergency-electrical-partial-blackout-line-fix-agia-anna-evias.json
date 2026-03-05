@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-partial-blackout-line-fix-agia-anna-evias",
+  "slug": "epigousa-episkevi-merikis-diakopis-revmatos-grammis-agia-anna-evias",
+  "nameGr": "Επείγουσα Επισκευή Μερικής Διακοπής Ρεύματος Γραμμής στην Αγία Άννα Ευβοίας",
+  "nameEn": "Emergency Electrical Partial Blackout Line Fix in Αγία Άννα Ευβοίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μερικής διακοπής ρεύματος γραμμής στην Αγία Άννα Ευβοίας για ασφαλή επαναφορά τροφοδοσίας σε βασικούς χώρους.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Ευβοίας επείγον",
+    "Επείγουσα Αγία Άννα Ευβοίας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

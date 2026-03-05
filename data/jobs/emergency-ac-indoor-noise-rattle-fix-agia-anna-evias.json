@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-noise-rattle-fix-agia-anna-evias",
+  "slug": "epigousa-episkevi-trigmon-esoterikis-monadas-ac-agia-anna-evias",
+  "nameGr": "Επείγουσα Επισκευή Τριγμών Εσωτερικής Μονάδας AC στην Αγία Άννα Ευβοίας",
+  "nameEn": "Emergency AC Indoor Noise Rattle Fix in Αγία Άννα Ευβοίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή τριγμών εσωτερικής μονάδας AC στην Αγία Άννα Ευβοίας για αποφυγή μεγαλύτερης μηχανικής βλάβης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-220€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Ευβοίας επείγον",
+    "Επείγουσα Αγία Άννα Ευβοίας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

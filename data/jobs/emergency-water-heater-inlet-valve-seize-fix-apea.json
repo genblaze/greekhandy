@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-inlet-valve-seize-fix-apea",
+  "slug": "epigousa-episkevi-kollimenis-valvidas-eisodou-thermosifona-apea",
+  "nameGr": "Επείγουσα Επισκευή Κολλημένης Βαλβίδας Εισόδου Θερμοσίφωνα στην Απέα",
+  "nameEn": "Emergency Water Heater Inlet Valve Seize Fix in Απέα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή κολλημένης βαλβίδας εισόδου θερμοσίφωνα στην Απέα για άμεση επαναφορά ζεστού νερού και έλεγχο διαρροών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Απέα επείγον",
+    "Επείγουσα Απέα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

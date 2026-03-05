@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-noise-rattle-fix-apea",
+  "slug": "epigousa-episkevi-trigmon-esoterikis-monadas-ac-apea",
+  "nameGr": "Επείγουσα Επισκευή Τριγμών Εσωτερικής Μονάδας AC στην Απέα",
+  "nameEn": "Emergency AC Indoor Noise Rattle Fix in Απέα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή τριγμών εσωτερικής μονάδας AC στην Απέα για αποφυγή μεγαλύτερης μηχανικής βλάβης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-220€",
+  "demand": "high",
+  "keywords": [
+    "Απέα επείγον",
+    "Επείγουσα Απέα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

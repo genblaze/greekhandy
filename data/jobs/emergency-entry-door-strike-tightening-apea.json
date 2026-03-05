@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-strike-tightening-apea",
+  "slug": "epigouso-sfiksimo-antikrismatos-portas-eisodou-apea",
+  "nameGr": "Επείγον Σφίξιμο Αντικρίσματος Πόρτας Εισόδου στην Απέα",
+  "nameEn": "Emergency Entry Door Strike Tightening in Απέα",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγον σφίξιμο αντικρίσματος πόρτας εισόδου στην Απέα όταν η πόρτα δεν ασφαλίζει σωστά.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "Απέα επείγον",
+    "Επείγον Απέα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

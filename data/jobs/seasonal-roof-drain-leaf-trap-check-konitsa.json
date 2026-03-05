@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-drain-leaf-trap-check-konitsa",
+  "slug": "epochiakos-elegxos-pagidas-fyllon-aporrois-stegis-konitsa",
+  "nameGr": "Εποχικός Έλεγχος Παγίδας Φύλλων Απορροής Στέγης στην Κόνιτσα",
+  "nameEn": "Seasonal Roof Drain Leaf Trap Check in Κόνιτσα",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός έλεγχος παγίδας φύλλων απορροής στέγης στην Κόνιτσα για αποφυγή φραγής και υπερχείλισης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κόνιτσα επείγον",
+    "Εποχικός Κόνιτσα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

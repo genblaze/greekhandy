@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-flow-balance-agia-anna-evias",
+  "slug": "epochiaki-eksisorropisi-rois-somaton-kalorifer-agia-anna-evias",
+  "nameGr": "Εποχική Εξισορρόπηση Ροής Σωμάτων Καλοριφέρ στην Αγία Άννα Ευβοίας",
+  "nameEn": "Seasonal Heating Radiator Flow Balance in Αγία Άννα Ευβοίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση ροής σωμάτων καλοριφέρ στην Αγία Άννα Ευβοίας για ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Ευβοίας επείγον",
+    "Εποχική Αγία Άννα Ευβοίας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
