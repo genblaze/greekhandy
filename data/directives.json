@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Mobile homepage still looks broken and low-trust: hero copy is nearly invisible (very light text on pale background), so the core value proposition is unreadable on first view. Rebuild mobile hero contrast/typography (background, heading, body, CTA states) to pass WCAG AA and make the message legible instantly.",
+      "addedAt": "2026-03-05T02:03:53Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Mobile header is still shipping duplicated navigation affordances ('ΜΕΝΟΥ' label + separate '☰ Μενού' button). Remove the redundant label and keep one clear, accessible trigger; right now it looks like unfinished UI and wastes above-the-fold space.",
+      "addedAt": "2026-03-05T02:03:53Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional profile page (`/professionals/giannis-kosta-klimatismos`) still shows inline validation error copy before meaningful user interaction (booking section warning text appears in default view). Do not dump error/validation messaging on initial load; trigger validation only after submit/field interaction and show clean user-facing microcopy.",
+      "addedAt": "2026-03-05T02:03:53Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Port strategy is still broken operationally: primary QA endpoint `:4322` is down while site serves on `:4321`. Either make `:4322` reliably live or officially switch all QA/docs/automation to `:4321`; this mismatch keeps generating false outage noise and wasted QA cycles.",
+      "addedAt": "2026-03-05T02:03:53Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Professional listing cards still feel synthetic and low-credibility (initials-only avatar tiles across all featured pros instead of real photos/proof). Upgrade listing trust signals: require real profile photos or branded verified placeholders with clear provenance, plus stronger identity cues (review proof, completed jobs, verification context).",
+      "addedAt": "2026-03-05T02:03:53Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
