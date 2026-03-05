@@ -1081,6 +1081,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
           if (!(form instanceof HTMLFormElement)) return;
           if (isOffline()) {
             showFeedbackStatus(groupName, 'offline');
+            updateBookingStepState(form, 'Βήμα 2/3: Δεν υπάρχει σύνδεση. Θα χρειαστεί νέα προσπάθεια μόλις επανέλθει το δίκτυο.');
             announceSubmitState('Δεν υπάρχει σύνδεση. Η νέα προσπάθεια θα γίνει μόλις επανέλθει το δίκτυο.', 'assertive');
             syncOfflineAlert();
             return;
@@ -1097,6 +1098,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             if (firstInvalid instanceof HTMLElement) {
               firstInvalid.focus();
               showFeedbackStatus(groupName, 'invalid');
+              updateBookingStepState(form, 'Βήμα 1/3: Διορθώστε τα πεδία και ξαναπατήστε αποστολή.');
               announceSubmitState('Ελέγξτε τα επισημασμένα πεδία πριν τη νέα προσπάθεια.', 'assertive');
               return;
             }
@@ -1105,6 +1107,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
           const submitButton = form.querySelector('button[type="submit"]');
           if (!(submitButton instanceof HTMLButtonElement)) return;
           showFeedbackStatus(groupName, 'loading');
+          updateBookingStepState(form, 'Βήμα 3/3: Γίνεται νέα προσπάθεια υποβολής.');
           announceSubmitState('Γίνεται νέα προσπάθεια υποβολής.', 'polite');
           form.requestSubmit(submitButton);
         };
