@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Homepage is leaking internal QA/instructional copy into public UI (e.g. blocks like 'Πρώτη οθόνη με προτεραιότητα στην αναγνωσιμότητα...' under the hero). Remove all editorial/dev-note text from production templates immediately; users should never see implementation commentary.",
-      "addedAt": "2026-03-05T03:33:55Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Homepage hero remains unreadable on real devices: ultra-light heading/body text over pale gray with glow blur makes the core value proposition barely visible. Rebuild hero contrast/typography to WCAG AA and kill the haze effect so the message is legible in under 2 seconds.",
-      "addedAt": "2026-03-05T03:33:55Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "/professionals still screams fake marketplace: profile cards display explicit labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and initials-only avatar tiles. Strip placeholder language from public UI and replace with real media or clearly branded fallback components that don’t look like unfinished demo data.",
-      "addedAt": "2026-03-05T03:33:55Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "/professionals cards are exposing internal trust-framework filler copy ('ΠΛΑΙΣΙΟ ΑΞΙΟΠΙΣΤΙΑΣ' with generic rules text) instead of user-useful proof. Replace this with real credibility signals (verified identity status, real review evidence, completed jobs) or hide the block until genuine data exists.",
-      "addedAt": "2026-03-05T03:33:55Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "/professionals/giannis-kosta-klimatismos ships an empty 'Portfolio' container (large blank media area), which looks broken and unprofessional. If no assets exist, hide the section and show a concise empty-state; do not render dead visual blocks on live profile pages.",
-      "addedAt": "2026-03-05T03:33:55Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -500,6 +474,36 @@
       "addedAt": "2026-03-05T03:03:41Z",
       "source": "qa-agent",
       "processedAt": "2026-03-05T03:05:43Z"
+    },
+    {
+      "directive": "Homepage is leaking internal QA/instructional copy into public UI (e.g. blocks like 'Πρώτη οθόνη με προτεραιότητα στην αναγνωσιμότητα...' under the hero). Remove all editorial/dev-note text from production templates immediately; users should never see implementation commentary.",
+      "addedAt": "2026-03-05T03:33:55Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:35:47Z"
+    },
+    {
+      "directive": "Homepage hero remains unreadable on real devices: ultra-light heading/body text over pale gray with glow blur makes the core value proposition barely visible. Rebuild hero contrast/typography to WCAG AA and kill the haze effect so the message is legible in under 2 seconds.",
+      "addedAt": "2026-03-05T03:33:55Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:35:47Z"
+    },
+    {
+      "directive": "/professionals still screams fake marketplace: profile cards display explicit labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and initials-only avatar tiles. Strip placeholder language from public UI and replace with real media or clearly branded fallback components that don’t look like unfinished demo data.",
+      "addedAt": "2026-03-05T03:33:55Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:35:47Z"
+    },
+    {
+      "directive": "/professionals cards are exposing internal trust-framework filler copy ('ΠΛΑΙΣΙΟ ΑΞΙΟΠΙΣΤΙΑΣ' with generic rules text) instead of user-useful proof. Replace this with real credibility signals (verified identity status, real review evidence, completed jobs) or hide the block until genuine data exists.",
+      "addedAt": "2026-03-05T03:33:55Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:35:47Z"
+    },
+    {
+      "directive": "/professionals/giannis-kosta-klimatismos ships an empty 'Portfolio' container (large blank media area), which looks broken and unprofessional. If no assets exist, hide the section and show a concise empty-state; do not render dead visual blocks on live profile pages.",
+      "addedAt": "2026-03-05T03:33:55Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T03:35:47Z"
     }
   ]
 }

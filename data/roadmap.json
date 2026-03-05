@@ -1,6 +1,51 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-15",
+      "title": "QA Critical Fixes Wave 15",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported public trust, hero readability, and profile credibility blockers across homepage and professionals surfaces.",
+      "acceptanceCriteria": [
+        "Homepage contains no internal QA/dev-note instructional copy in public UI.",
+        "Homepage hero contrast/typography is readable on mobile/desktop and passes WCAG AA.",
+        "/professionals cards contain no placeholder labels and no demo-like avatar treatment.",
+        "/professionals trust blocks expose only meaningful public credibility signals.",
+        "Profile pages hide dead/empty portfolio media containers and show concise empty-state when no assets exist."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-15-task-1",
+          "source": "qa-agent",
+          "directive": "Homepage is leaking internal QA/instructional copy into public UI (e.g. blocks like 'Πρώτη οθόνη με προτεραιότητα στην αναγνωσιμότητα...' under the hero). Remove all editorial/dev-note text from production templates immediately; users should never see implementation commentary."
+        },
+        {
+          "id": "qa-critical-fixes-wave-15-task-2",
+          "source": "qa-agent",
+          "directive": "Homepage hero remains unreadable on real devices: ultra-light heading/body text over pale gray with glow blur makes the core value proposition barely visible. Rebuild hero contrast/typography to WCAG AA and kill the haze effect so the message is legible in under 2 seconds."
+        },
+        {
+          "id": "qa-critical-fixes-wave-15-task-3",
+          "source": "qa-agent",
+          "directive": "/professionals still screams fake marketplace: profile cards display explicit labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and initials-only avatar tiles. Strip placeholder language from public UI and replace with real media or clearly branded fallback components that don’t look like unfinished demo data."
+        },
+        {
+          "id": "qa-critical-fixes-wave-15-task-4",
+          "source": "qa-agent",
+          "directive": "/professionals cards are exposing internal trust-framework filler copy ('ΠΛΑΙΣΙΟ ΑΞΙΟΠΙΣΤΙΑΣ' with generic rules text) instead of user-useful proof. Replace this with real credibility signals (verified identity status, real review evidence, completed jobs) or hide the block until genuine data exists."
+        },
+        {
+          "id": "qa-critical-fixes-wave-15-task-5",
+          "source": "qa-agent",
+          "directive": "/professionals/giannis-kosta-klimatismos ships an empty 'Portfolio' container (large blank media area), which looks broken and unprofessional. If no assets exist, hide the section and show a concise empty-state; do not render dead visual blocks on live profile pages."
+        }
+      ],
+      "createdAt": "2026-03-05T03:35:47Z",
+      "updatedAt": "2026-03-05T03:35:47Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-14",
       "title": "QA Critical Fixes Wave 14",
       "pillar": "Product",
