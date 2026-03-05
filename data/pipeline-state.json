@@ -38,5 +38,26 @@
     "contentPagesBuilt": 201
   },
   "lastDecision": "Cycle run: assessed git/roadmap/leads/directives and active sessions; all 6 agents active on in-scope tasks, so no relaunches triggered.",
-  "blockers": []
+  "blockers": [],
+  "northStar": {
+    "lastManagerRun": "2026-03-05T10:17:03Z",
+    "lastDecision": "Dispatched 3 developer blocker slices; growth agents held due to unresolved north-star blockers",
+    "focusBand": "north_star_blockers",
+    "activeBlockers": [
+      "qa-critical-fixes-wave-23",
+      "qa-critical-fixes-wave-21",
+      "founder-directive-fa17614cfb",
+      "qa-critical-fixes-wave-20",
+      "founder-directive-7cadfea32c",
+      "qa-critical-fixes-wave-19",
+      "qa-critical-fixes-wave-18",
+      "qa-critical-fixes-wave-17",
+      "qa-critical-fixes-wave-16",
+      "qa-critical-fixes-wave-15"
+    ],
+    "activeBlockerSignature": "d95687d01b9868e671e6858fa09c8a943bde31bd",
+    "blockedCycleCount": 0,
+    "founderMode": "none",
+    "founderFeedbackRequested": false
+  }
 }
