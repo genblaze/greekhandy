@@ -130,7 +130,6 @@ const profilesWithSafeImage = await Promise.all(
     const reviewTotal = reviewStats.total;
     const verifiedReviews = reviewStats.verified;
     const serviceAreaSummary = extraAreasCount > 0 ? `${primaryArea} +${extraAreasCount}` : primaryArea;
-    const mediaBadge = usesRealPhoto ? 'Φωτογραφία προφίλ' : 'Ουδέτερο γραφικό προφίλ';
     const mediaNote = usesRealPhoto
       ? 'Χρησιμοποιείται φωτογραφία που έχει δημοσιευθεί στο προφίλ.'
       : 'Δεν έχει δημοσιευθεί φωτογραφία. Εμφανίζεται ουδέτερο γραφικό.';
@@ -144,7 +143,6 @@ const profilesWithSafeImage = await Promise.all(
       reviewTotal,
       verifiedReviews,
       serviceAreaSummary,
-      mediaBadge,
       mediaNote,
       imageAlt,
       cardImageSrc: usesRealPhoto ? resolvedProfileImage : mediaPlaceholderImage,
@@ -224,9 +222,6 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
       {profilesWithSafeImage.map(profile => (
         <article data-profile-card data-name={profile.name.toLowerCase()} data-profession={profile.profession} data-city={profile.city} class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-sky-500 md:p-5">
           <div class="mb-4 overflow-hidden rounded-lg border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[4/3]" data-prof-media-shell>
-            <p class="absolute left-2 top-2 z-10 rounded-full border border-white/60 bg-slate-900/65 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white">
-              {profile.mediaBadge}
-            </p>
             <img
               src={profile.cardImageSrc}
               alt={profile.imageAlt}
@@ -263,7 +258,7 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
             {profile.reviewTotal === 0 && (
               <div class="col-span-2 rounded-md bg-white px-2.5 py-2">
                 <p class="text-[11px] text-slate-500">Κριτικές</p>
-                <p class="mt-0.5 text-sm font-semibold text-slate-900">Δεν υπάρχουν ακόμη δημοσιευμένες κριτικές.</p>
+                <p class="mt-0.5 text-sm font-semibold text-slate-900">Οι κριτικές εμφανίζονται μόλις δημοσιευτούν.</p>
               </div>
             )}
             <div class="rounded-md bg-white px-2.5 py-2">
