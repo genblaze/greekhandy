@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">GreekHandy Fallback Thumbnail</title>
+  <desc id="desc">Branded fallback image for professional profiles.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="600" cy="350" r="128" fill="#93c5fd"/>
+  <rect x="332" y="520" width="536" height="228" rx="114" fill="#bfdbfe"/>
+  <text x="600" y="830" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="44" fill="#0f3b8f">GreekHandy Professional</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Maria Georgiou Thumbnail</title>
+  <desc id="desc">Professional thumbnail for Maria Georgiou profile.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect x="120" y="120" width="960" height="660" rx="36" fill="#ffffff" opacity="0.72"/>
+  <text x="600" y="355" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="120" font-weight="700" fill="#14532d">ΜΓ</text>
+  <text x="600" y="475" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" fill="#1f2937">Μαρία Γεωργίου</text>
+  <text x="600" y="535" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="32" fill="#334155">Υδραυλικός</text>
+</svg>

@@ -51,6 +51,9 @@ interface ApprovedReview {
 const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 const fallbackProfileImage = getProfessionalFallbackImage();
 const profileImageSrc = await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl);
+const portfolioImageSources = await Promise.all(
+  (profile.portfolioPhotos || []).map((photo) => resolveProfessionalImageForPublishedProfile(photo))
+);
 const reviewBadgeCopy = (reviewBadgeCopyFile.default ?? reviewBadgeCopyFile) as any;
 const verifiedBadgeLabel = reviewBadgeCopy?.publicBadge?.defaultLabel || 'Επιβεβαιωμένη αξιολόγηση';
 const verifiedBadgeTooltip = reviewBadgeCopy?.publicBadge?.tooltip || 'Η αξιολόγηση συνδέεται με πραγματικό αίτημα υπηρεσίας μέσω Greek Handy.';
@@ -253,27 +256,30 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             href="#primary-conversion"
             class="inline-flex items-center rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
             aria-describedby="profile-primary-cta-hint profile-primary-cta-proof"
-            aria-label="Βήμα 1: Ζητήστε υπηρεσία"
+            aria-label="Κύριο CTA: Ζητήστε υπηρεσία"
           >
-            1. Ζητήστε υπηρεσία
+            Κύριο CTA: Ζητήστε υπηρεσία
           </a>
           <a href="#secondary-actions" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">
-            2. Μήνυμα
-          </a>
-          <a href="#contact-details" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">
-            3. Στοιχεία επικοινωνίας
+            Δευτερεύουσες επιλογές
           </a>
         </div>
-        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά/ραντεβού προτιμήστε το βήμα 1. Τα βήματα 2-3 είναι βοηθητικές επιλογές όταν δεν θέλετε ακόμη πλήρες αίτημα.</p>
+        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά/ραντεβού προτιμήστε την κύρια φόρμα αιτήματος. Κριτικές, μήνυμα και στοιχεία επικοινωνίας παραμένουν διαθέσιμα ως δευτερεύουσες επιλογές.</p>
         <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα εμφανίζει καθαρά status pending → approved/rejected για μεγαλύτερη διαφάνεια.</p>
       </div>
 
       <div class="mt-8">
         <h2 class="text-lg font-bold text-slate-900">Portfolio</h2>
-        {profile.portfolioPhotos && profile.portfolioPhotos.length > 0 ? (
+        {portfolioImageSources.length > 0 ? (
           <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {profile.portfolioPhotos.map((photo, index) => (
-              <img src={photo} alt={`Portfolio ${profile.name} ${index + 1}`} class="h-48 w-full rounded-xl border border-slate-200 object-cover shadow-sm" loading="lazy" />
+            {portfolioImageSources.map((photo, index) => (
+              <img
+                src={photo}
+                alt={`Portfolio ${profile.name} ${index + 1}`}
+                class="h-48 w-full rounded-xl border border-slate-200 object-cover shadow-sm"
+                loading="lazy"
+                onerror={`this.onerror=null;this.src='${fallbackProfileImage}'`}
+              />
             ))}
           </div>
         ) : (
@@ -312,12 +318,17 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         <span class="h-px flex-1 bg-slate-200"></span>
       </div>
 
-      <section
-        id="reviews"
-        class="mt-4 rounded-2xl border border-slate-200 bg-gradient-to-b from-white via-slate-50/60 to-white p-5 md:p-6"
-        data-review-list-root
-        data-review-list-initial-state={initialReviewListState}
-      >
+      <details class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" data-secondary-reviews-disclosure>
+        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900 marker:hidden">
+          Δευτερεύουσα επιλογή: αξιολογήσεις και υποβολή κριτικής
+        </summary>
+        <p class="mt-2 text-xs text-slate-600">Οι αξιολογήσεις και η φόρμα κριτικής παραμένουν διαθέσιμες εδώ χωρίς να ανταγωνίζονται το κύριο CTA.</p>
+        <section
+          id="reviews"
+          class="mt-4 rounded-2xl border border-slate-200 bg-gradient-to-b from-white via-slate-50/60 to-white p-5 md:p-6"
+          data-review-list-root
+          data-review-list-initial-state={initialReviewListState}
+        >
         <div class="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 class="text-lg font-bold text-gray-900">Αξιολογήσεις</h2>
@@ -532,7 +543,8 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             Αποστολή κριτικής
           </button>
         </form>
-      </section>
+        </section>
+      </details>
 
       <div id="primary-conversion" class="mt-10 flex items-center gap-3">
         <span class="h-px flex-1 bg-slate-200"></span>
@@ -737,6 +749,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         };
         const submitLiveRegion = document.querySelector('#submit-feedback-live');
         const profileOfflineAlert = document.querySelector('#profile-offline-alert');
+        const secondaryReviewsDisclosure = document.querySelector('[data-secondary-reviews-disclosure]');
         const secondaryMessageDisclosure = document.querySelector('[data-secondary-message-disclosure]');
         const secondaryContactDisclosure = document.querySelector('[data-secondary-contact-disclosure]');
         const primaryBookingForm = document.querySelector('[data-booking-form]');
@@ -768,6 +781,9 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           if (submitLiveRegion instanceof HTMLElement) submitLiveRegion.textContent = message;
         };
         const collapseSecondaryActions = () => {
+          if (secondaryReviewsDisclosure instanceof HTMLDetailsElement) {
+            secondaryReviewsDisclosure.open = false;
+          }
           if (secondaryMessageDisclosure instanceof HTMLDetailsElement) {
             secondaryMessageDisclosure.open = false;
           }
@@ -816,6 +832,9 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         };
         const syncSecondaryActionsWithIntent = () => {
           const hash = window.location.hash || '';
+          if (params.get('review') || hash === '#reviews' || hash === '#submit-review') {
+            openDisclosure(secondaryReviewsDisclosure);
+          }
           if (params.get('message') || hash === '#secondary-actions') {
             openDisclosure(secondaryMessageDisclosure);
           }
@@ -1179,7 +1198,6 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             setFormPending(form, false);
             updateTrimRequiredFields(form);
             updateBookingFieldValidity(form);
-            updateBookingStepState(form, 'Βήμα 1/3: Συμπληρώστε στοιχεία και πατήστε «Αποστολή αιτήματος».');
             if (form.hasAttribute('data-message-form')) {
               updateMessageFieldValidity(form);
             }

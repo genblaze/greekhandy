@@ -5,12 +5,12 @@
   --gh-accessibility-dock-gap: 0.75rem;
   --gh-accessibility-dock-trigger-size: 3.25rem;
   --gh-hero-bg-start: #020817;
-  --gh-hero-bg-mid: #0b2a4a;
-  --gh-hero-bg-end: #15406f;
-  --gh-hero-overlay: rgba(2, 6, 23, 0.22);
+  --gh-hero-bg-mid: #0a2644;
+  --gh-hero-bg-end: #123a63;
+  --gh-hero-overlay: rgba(2, 6, 23, 0.34);
   --gh-hero-text: #ffffff;
-  --gh-hero-subtext: #e6eef8;
-  --gh-hero-chip-bg: rgba(2, 6, 23, 0.44);
+  --gh-hero-subtext: #f1f5f9;
+  --gh-hero-chip-bg: rgba(2, 6, 23, 0.6);
 }
 
 body {

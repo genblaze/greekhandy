@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Giannis Kosta Thumbnail</title>
+  <desc id="desc">Professional thumbnail for Giannis Kosta profile.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#c7d2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect x="120" y="120" width="960" height="660" rx="36" fill="#ffffff" opacity="0.7"/>
+  <text x="600" y="355" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="120" font-weight="700" fill="#1e40af">GK</text>
+  <text x="600" y="475" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" fill="#1e3a8a">Γιάννης Κώστα</text>
+  <text x="600" y="535" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="32" fill="#334155">Τεχνικός Κλιματισμού</text>
+</svg>

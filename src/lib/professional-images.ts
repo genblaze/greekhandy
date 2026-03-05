@@ -1,30 +1,25 @@
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const FALLBACK_PROFILE_IMAGE = `data:image/svg+xml;utf8,${encodeURIComponent(
-  `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='900' viewBox='0 0 1200 900'>
-    <defs>
-      <linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>
-        <stop offset='0%' stop-color='#dbeafe'/>
-        <stop offset='100%' stop-color='#e0e7ff'/>
-      </linearGradient>
-    </defs>
-    <rect width='1200' height='900' fill='url(#g)'/>
-    <circle cx='600' cy='350' r='110' fill='#93c5fd'/>
-    <rect x='360' y='500' width='480' height='220' rx='110' fill='#bfdbfe'/>
-    <text x='600' y='810' text-anchor='middle' font-family='Arial, sans-serif' font-size='36' fill='#1e3a8a'>GreekHandy Professional</text>
-  </svg>`
-)}`;
+const FALLBACK_PROFILE_IMAGE = '/images/professionals/fallback-thumbnail.svg';
 
 const validationCache = new Map<string, boolean>();
+const REMOTE_IMAGE_TIMEOUT_MS = 4500;
+const LOCAL_CANDIDATE_PREFIX = '/images/professionals/';
+const IMAGE_CONTENT_TYPE_PATTERN = /^image\//i;
+
+type LocalPublicCandidate = {
+  webPath: string;
+  fsPath: string;
+};
 
 const toLocalPublicCandidates = (value: string) => {
   const cleaned = value.trim().replace(/^\.\//, '');
-  if (!cleaned) return [] as string[];
+  if (!cleaned) return [] as LocalPublicCandidate[];
 
   const webCandidates = cleaned.startsWith('/')
     ? [cleaned]
-    : [`/${cleaned}`, `/images/professionals/${cleaned}`];
+    : [`/${cleaned}`, `${LOCAL_CANDIDATE_PREFIX}${cleaned}`];
 
   return webCandidates.map((webPath) => ({
     webPath,
@@ -53,39 +48,37 @@ export const resolveProfessionalImageForPublishedProfile = async (input?: string
   return valid ? resolveProfessionalImageSrc(input) : FALLBACK_PROFILE_IMAGE;
 };
 
-const REMOTE_IMAGE_HOST_ALLOWLIST = new Set([
-  'images.unsplash.com',
-  'cdn.jsdelivr.net',
-  'i.imgur.com',
-  'res.cloudinary.com'
-]);
-
-const validateRemoteImage = async (url: string) => {
+const fetchWithTimeout = async (url: string, init: RequestInit = {}, timeoutMs = REMOTE_IMAGE_TIMEOUT_MS) => {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 4000);
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const head = await fetch(url, { method: 'HEAD', signal: controller.signal });
-    if (head.ok) return true;
+    return await fetch(url, { ...init, signal: controller.signal });
   } catch {
-    // fall through to GET fallback
+    return null;
   } finally {
     clearTimeout(timer);
   }
+};
 
-  try {
-    const res = await fetch(url, { method: 'GET' });
-    if (res.ok) return true;
-  } catch {
-    // network/cors errors handled by allowlist fallback below
-  }
+const hasImageContentType = (res: Response) => {
+  const contentType = (res.headers.get('content-type') || '').trim();
+  return contentType === '' || IMAGE_CONTENT_TYPE_PATTERN.test(contentType);
+};
 
+const validateRemoteImage = async (url: string) => {
   try {
     const parsed = new URL(url);
-    return REMOTE_IMAGE_HOST_ALLOWLIST.has(parsed.hostname) && parsed.pathname.length > 1;
+    if (!['http:', 'https:'].includes(parsed.protocol)) return false;
   } catch {
     return false;
   }
+
+  const head = await fetchWithTimeout(url, { method: 'HEAD' });
+  if (head?.ok && hasImageContentType(head)) return true;
+
+  const get = await fetchWithTimeout(url, { method: 'GET', headers: { Range: 'bytes=0-0' } });
+  return Boolean(get?.ok && hasImageContentType(get));
 };
 
 export const validateProfessionalPublishedImage = async (input?: string | null) => {
