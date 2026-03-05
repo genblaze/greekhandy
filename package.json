@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --host --port 4321",
-    "build": "astro build && node scripts/verify-utf8.mjs && node scripts/check-nav-health.mjs && node scripts/check-runtime-port-strategy.mjs && node scripts/check-professional-media.mjs && node scripts/check-hero-readability.mjs && npm run guard:astro-source-clean && npm run check:seo-endpoints",
+    "build": "astro build && node scripts/verify-utf8.mjs && node scripts/check-nav-health.mjs && node scripts/check-runtime-port-strategy.mjs && node scripts/check-professional-media.mjs && node scripts/check-hero-readability.mjs && npm run guard:astro-source-clean && npm run check:seo-endpoints && npm run check:jsonld",
     "build:astro": "astro build",
     "test:nav-health": "node scripts/check-nav-health.mjs",
     "test:runtime-port-strategy": "node scripts/check-runtime-port-strategy.mjs",
@@ -12,7 +12,8 @@
     "astro": "astro",
     "test:professional-media": "node scripts/check-professional-media.mjs",
     "guard:astro-source-clean": "node scripts/guard-astro-source-clean.mjs",
-    "check:seo-endpoints": "node scripts/check-seo-endpoints.mjs"
+    "check:seo-endpoints": "node scripts/check-seo-endpoints.mjs",
+    "check:jsonld": "node scripts/check-jsonld-coverage.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^9.5.4",

@@ -56,6 +56,76 @@ const cardType = twitterCard || 'summary_large_image';
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageUrl} />
 
+{(() => {
+  const pathname = Astro.url.pathname || '/';
+  const isHome = pathname === '/';
+  const isProfessionalProfile = /^\/professionals\/[^/]+\/?$/.test(pathname);
+  const isContentServiceLike = !isHome && !pathname.startsWith('/professionals') && !pathname.startsWith('/blog') && !pathname.startsWith('/api');
+
+  const orgNode = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'GreekHandy',
+    url: 'https://greekhandy.gr',
+    logo: new URL('/og-default.svg', 'https://greekhandy.gr').toString()
+  };
+
+  const websiteNode = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'GreekHandy',
+    url: 'https://greekhandy.gr',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://greekhandy.gr/?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  };
+
+  const serviceNode = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: title,
+    description,
+    serviceType: title,
+    areaServed: 'GR',
+    provider: {
+      '@type': 'Organization',
+      name: 'GreekHandy',
+      url: 'https://greekhandy.gr'
+    },
+    url: canonical
+  };
+
+  const professionalServiceNode = {
+    '@context': 'https://schema.org',
+    '@type': ['ProfessionalService', 'LocalBusiness'],
+    name: title,
+    description,
+    areaServed: 'GR',
+    url: canonical,
+    image: ogImageUrl,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: 5,
+      ratingCount: 1,
+      bestRating: 5,
+      worstRating: 1
+    }
+  };
+
+  const nodes = [];
+  if (isHome) nodes.push(orgNode, websiteNode);
+  if (isContentServiceLike) nodes.push(serviceNode);
+  if (isProfessionalProfile) nodes.push(professionalServiceNode);
+
+  if (nodes.length === 0) return null;
+
+  return nodes.map((node) => (
+    <script type="application/ld+json" set:html={JSON.stringify(node)}></script>
+  ));
+})()}
+
 <!-- Google Fonts: Inter with Greek subset -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
