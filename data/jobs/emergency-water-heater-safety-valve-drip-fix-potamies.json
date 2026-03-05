@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-safety-valve-drip-fix-potamies",
+  "slug": "epigousa-episkevi-valvidas-asfaleias-thermosifona-stagmatos-potamies",
+  "nameGr": "Επείγουσα Επισκευή Σταξίματος Βαλβίδας Ασφαλείας Θερμοσίφωνα στις Ποταμιές",
+  "nameEn": "Emergency Water Heater Safety Valve Drip Fix in Ποταμιές",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή σταξίματος βαλβίδας ασφαλείας θερμοσίφωνα στις Ποταμιές για άμεσο περιορισμό απώλειας νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Ποταμιές επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulator-noise-check-tsagarada",
+  "slug": "epochiakos-elegxos-thoryvou-kykloforiti-thermansis-tsagarada",
+  "nameGr": "Εποχικός Έλεγχος Θορύβου Κυκλοφορητή Θέρμανσης στην Τσαγκαράδα",
+  "nameEn": "Seasonal Heating Circulator Noise Check in Τσαγκαράδα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θορύβου κυκλοφορητή θέρμανσης στην Τσαγκαράδα για έγκαιρη πρόληψη βλάβης πριν τον χειμώνα.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Τσαγκαράδα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

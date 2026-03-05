@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulator-noise-check-asprovalta-hinterland",
+  "slug": "epochiakos-elegxos-thoryvou-kykloforiti-thermansis-asprovalta-hinterland",
+  "nameGr": "Εποχικός Έλεγχος Θορύβου Κυκλοφορητή Θέρμανσης στην ενδοχώρα Ασπροβάλτας",
+  "nameEn": "Seasonal Heating Circulator Noise Check in Ασπροβάλτα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θορύβου κυκλοφορητή θέρμανσης στην ενδοχώρα Ασπροβάλτας για έγκαιρη πρόληψη βλάβης πριν τον χειμώνα.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ασπροβάλτα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

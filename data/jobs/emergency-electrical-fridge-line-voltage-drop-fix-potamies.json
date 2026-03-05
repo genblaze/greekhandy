@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-fridge-line-voltage-drop-fix-potamies",
+  "slug": "epigousa-episkevi-ptosis-tasis-grammis-psygeiou-potamies",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Τάσης Γραμμής Ψυγείου στις Ποταμιές",
+  "nameEn": "Emergency Electrical Fridge Line Voltage Drop Fix in Ποταμιές",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης τάσης στη γραμμή ψυγείου στις Ποταμιές για προστασία τροφίμων και συσκευής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Ποταμιές επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

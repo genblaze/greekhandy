@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-drain-slope-correction-tsagarada",
+  "slug": "epochiaki-diorthosi-klisis-aporrois-eisodou-tsagarada",
+  "nameGr": "Εποχική Διόρθωση Κλίσης Απορροής Εισόδου στην Τσαγκαράδα",
+  "nameEn": "Seasonal Home Entry Drain Slope Correction in Τσαγκαράδα",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική διόρθωση κλίσης απορροής εισόδου στην Τσαγκαράδα για να μη λιμνάζουν νερά στο κατώφλι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Τσαγκαράδα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

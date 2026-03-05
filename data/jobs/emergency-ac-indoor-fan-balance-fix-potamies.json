@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-fan-balance-fix-potamies",
+  "slug": "epigousa-episkevi-zygostathmisis-anemistira-esoterikou-ac-potamies",
+  "nameGr": "Επείγουσα Επισκευή Ζυγοστάθμισης Ανεμιστήρα Εσωτερικού AC στις Ποταμιές",
+  "nameEn": "Emergency AC Indoor Fan Balance Fix in Ποταμιές",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή ζυγοστάθμισης ανεμιστήρα εσωτερικού AC στις Ποταμιές για μείωση κραδασμών και θορύβου.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ποταμιές επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

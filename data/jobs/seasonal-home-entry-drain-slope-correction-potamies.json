@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-drain-slope-correction-potamies",
+  "slug": "epochiaki-diorthosi-klisis-aporrois-eisodou-potamies",
+  "nameGr": "Εποχική Διόρθωση Κλίσης Απορροής Εισόδου στις Ποταμιές",
+  "nameEn": "Seasonal Home Entry Drain Slope Correction in Ποταμιές",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική διόρθωση κλίσης απορροής εισόδου στις Ποταμιές για να μη λιμνάζουν νερά στο κατώφλι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Ποταμιές επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

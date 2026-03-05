@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-fan-balance-fix-asprovalta-hinterland",
+  "slug": "epigousa-episkevi-zygostathmisis-anemistira-esoterikou-ac-asprovalta-hinterland",
+  "nameGr": "Επείγουσα Επισκευή Ζυγοστάθμισης Ανεμιστήρα Εσωτερικού AC στην ενδοχώρα Ασπροβάλτας",
+  "nameEn": "Emergency AC Indoor Fan Balance Fix in Ασπροβάλτα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή ζυγοστάθμισης ανεμιστήρα εσωτερικού AC στην ενδοχώρα Ασπροβάλτας για μείωση κραδασμών και θορύβου.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ασπροβάλτα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

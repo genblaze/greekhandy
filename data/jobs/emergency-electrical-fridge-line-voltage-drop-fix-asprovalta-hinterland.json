@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-fridge-line-voltage-drop-fix-asprovalta-hinterland",
+  "slug": "epigousa-episkevi-ptosis-tasis-grammis-psygeiou-asprovalta-hinterland",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Τάσης Γραμμής Ψυγείου στην ενδοχώρα Ασπροβάλτας",
+  "nameEn": "Emergency Electrical Fridge Line Voltage Drop Fix in Ασπροβάλτα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης τάσης στη γραμμή ψυγείου στην ενδοχώρα Ασπροβάλτας για προστασία τροφίμων και συσκευής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Ασπροβάλτα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

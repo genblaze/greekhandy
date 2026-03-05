@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-fan-balance-fix-tsagarada",
+  "slug": "epigousa-episkevi-zygostathmisis-anemistira-esoterikou-ac-tsagarada",
+  "nameGr": "Επείγουσα Επισκευή Ζυγοστάθμισης Ανεμιστήρα Εσωτερικού AC στην Τσαγκαράδα",
+  "nameEn": "Emergency AC Indoor Fan Balance Fix in Τσαγκαράδα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή ζυγοστάθμισης ανεμιστήρα εσωτερικού AC στην Τσαγκαράδα για μείωση κραδασμών και θορύβου.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Τσαγκαράδα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

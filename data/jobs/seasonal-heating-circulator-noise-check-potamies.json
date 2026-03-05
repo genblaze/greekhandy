@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulator-noise-check-potamies",
+  "slug": "epochiakos-elegxos-thoryvou-kykloforiti-thermansis-potamies",
+  "nameGr": "Εποχικός Έλεγχος Θορύβου Κυκλοφορητή Θέρμανσης στις Ποταμιές",
+  "nameEn": "Seasonal Heating Circulator Noise Check in Ποταμιές",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θορύβου κυκλοφορητή θέρμανσης στις Ποταμιές για έγκαιρη πρόληψη βλάβης πριν τον χειμώνα.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ποταμιές επείγον",
+    "άμεση εξυπηρέτηση",
+    "τεχνικός κατοικίας",
+    "τοπικός επαγγελματίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
