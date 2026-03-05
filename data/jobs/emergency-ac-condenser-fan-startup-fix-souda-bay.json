@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-condenser-fan-startup-fix-souda-bay",
+  "slug": "epigousa-episkevi-ekkinisis-anemistira-sympyknoti-ac-souda-bay",
+  "nameGr": "Επείγουσα Επισκευή Εκκίνησης Ανεμιστήρα Συμπυκνωτή AC στον κόλπο της Σούδας",
+  "nameEn": "Emergency AC Condenser Fan Startup Fix in Κόλπος Σούδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή εκκίνησης ανεμιστήρα συμπυκνωτή AC στον κόλπο της Σούδας για αποφυγή υπερθέρμανσης μονάδας. SEO intent: «ανεμιστήρας εξωτερικής μονάδας δεν γυρίζει Κόλπος Σούδας\".",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "75-260€",
+  "demand": "high",
+  "keywords": [
+    "ανεμιστήρας εξωτερικής μονάδας δεν γυρίζει Κόλπος Σούδας",
+    "τεχνικός ac επείγον εξωτερική μονάδα",
+    "συμπυκνωτής ac υπερθερμαίνεται",
+    "επισκευή fan motor ac",
+    "service κλιματιστικού άμεσα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-exit-light-battery-check-filiates",
+  "slug": "epochiakos-elegxos-mpatarias-fotismou-exodou-katoikias-filiates",
+  "nameGr": "Εποχικός Έλεγχος Μπαταρίας Φωτισμού Εξόδου Κατοικίας στους Φιλιάτες",
+  "nameEn": "Seasonal Home Exit Light Battery Check in Φιλιάτες",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εποχικός έλεγχος μπαταρίας φωτισμού εξόδου κατοικίας στους Φιλιάτες για αξιοπιστία σε διακοπές ρεύματος. SEO intent: «φωτιστικό ασφαλείας δεν φορτίζει Φιλιάτες\".",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "φωτιστικό ασφαλείας δεν φορτίζει Φιλιάτες",
+    "έλεγχος μπαταρίας emergency light",
+    "τεχνικός ασφαλείας κατοικίας",
+    "service φωτισμού εξόδου",
+    "προετοιμασία blackout σπιτιού"
+  ],
+  "status": "researched"
+}

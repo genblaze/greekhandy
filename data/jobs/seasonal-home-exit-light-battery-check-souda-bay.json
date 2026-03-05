@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-exit-light-battery-check-souda-bay",
+  "slug": "epochiakos-elegxos-mpatarias-fotismou-exodou-katoikias-souda-bay",
+  "nameGr": "Εποχικός Έλεγχος Μπαταρίας Φωτισμού Εξόδου Κατοικίας στον κόλπο της Σούδας",
+  "nameEn": "Seasonal Home Exit Light Battery Check in Κόλπος Σούδας",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εποχικός έλεγχος μπαταρίας φωτισμού εξόδου κατοικίας στον κόλπο της Σούδας για αξιοπιστία σε διακοπές ρεύματος. SEO intent: «φωτιστικό ασφαλείας δεν φορτίζει Κόλπος Σούδας\".",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "φωτιστικό ασφαλείας δεν φορτίζει Κόλπος Σούδας",
+    "έλεγχος μπαταρίας emergency light",
+    "τεχνικός ασφαλείας κατοικίας",
+    "service φωτισμού εξόδου",
+    "προετοιμασία blackout σπιτιού"
+  ],
+  "status": "researched"
+}
