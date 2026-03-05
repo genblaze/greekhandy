@@ -1,6 +1,51 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-12",
+      "title": "QA Critical Fixes Wave 12",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported mobile hero readability, nav clarity, profile validation UX timing, runtime port consistency, and professional listing trust-signal quality blockers.",
+      "acceptanceCriteria": [
+        "Homepage hero text/CTA contrast and typography are clearly readable on mobile and pass WCAG AA checks.",
+        "Mobile header has one clear navigation trigger with no duplicate menu label artifacts.",
+        "Profile booking/review/message validation errors appear only after interaction/submit with clean Greek microcopy.",
+        "Operational docs/automation/runtime port strategy is consistent and no longer creates 4321/4322 false-down reports.",
+        "Professional cards ship with stronger trust identity signals and deterministic photo/provenance fallback behavior."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-12-task-1",
+          "source": "qa-agent",
+          "directive": "Mobile homepage still looks broken and low-trust: hero copy is nearly invisible (very light text on pale background), so the core value proposition is unreadable on first view. Rebuild mobile hero contrast/typography (background, heading, body, CTA states) to pass WCAG AA and make the message legible instantly."
+        },
+        {
+          "id": "qa-critical-fixes-wave-12-task-2",
+          "source": "qa-agent",
+          "directive": "Mobile header is still shipping duplicated navigation affordances ('ΜΕΝΟΥ' label + separate '☰ Μενού' button). Remove the redundant label and keep one clear, accessible trigger; right now it looks like unfinished UI and wastes above-the-fold space."
+        },
+        {
+          "id": "qa-critical-fixes-wave-12-task-3",
+          "source": "qa-agent",
+          "directive": "Professional profile page (`/professionals/giannis-kosta-klimatismos`) still shows inline validation error copy before meaningful user interaction (booking section warning text appears in default view). Do not dump error/validation messaging on initial load; trigger validation only after submit/field interaction and show clean user-facing microcopy."
+        },
+        {
+          "id": "qa-critical-fixes-wave-12-task-4",
+          "source": "qa-agent",
+          "directive": "Port strategy is still broken operationally: primary QA endpoint `:4322` is down while site serves on `:4321`. Either make `:4322` reliably live or officially switch all QA/docs/automation to `:4321`; this mismatch keeps generating false outage noise and wasted QA cycles."
+        },
+        {
+          "id": "qa-critical-fixes-wave-12-task-5",
+          "source": "qa-agent",
+          "directive": "Professional listing cards still feel synthetic and low-credibility (initials-only avatar tiles across all featured pros instead of real photos/proof). Upgrade listing trust signals: require real profile photos or branded verified placeholders with clear provenance, plus stronger identity cues (review proof, completed jobs, verification context)."
+        }
+      ],
+      "createdAt": "2026-03-05T02:05:41Z",
+      "updatedAt": "2026-03-05T02:05:41Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-9",
       "name": "QA Critical Fixes (Wave 9)",
       "description": "Wave 9 QA directives: remove/replace publicly broken /messages nav entry unless a real inbox entry flow exists; rebuild homepage hero contrast/typography hierarchy for clear WCAG AA readability; canonicalize contact IA by choosing either /epikoinonia or /#contact and redirect duplicate path; enforce hard professional media fallback/validation for broken listing cards (e.g., Giannis Kosta); and simplify professional profile conversion to one dominant CTA with secondary actions behind tabs/accordions.",
