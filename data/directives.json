@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Primary QA endpoint is still broken: port 4322 refuses connections while the site only loads on 4321. Stop the operational chaos—either make 4322 reliably serve the app or update every QA instruction/automation to 4321 immediately.",
-      "addedAt": "2026-03-05T04:34:02Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "You are publishing duplicate guide hub pages: /blog and /odigoi render essentially the same content/title, which creates SEO cannibalization and sloppy IA. Choose one canonical URL, 301 the duplicate, and align nav/sitemap/internal links accordingly.",
-      "addedAt": "2026-03-05T04:34:02Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Homepage still leaks internal editorial/instructional text into public UI (e.g. implementation-style copy blocks under hero). Remove all dev-note/process copy from production templates—users should only see customer-facing content.",
-      "addedAt": "2026-03-05T04:34:02Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "/professionals still looks like fake staging data: cards expose placeholder-style identity/trust elements (e.g. initials tiles + generic 'framework' trust copy + zeroed metrics). Remove synthetic trust widgets from public cards until they are backed by real data and proof.",
-      "addedAt": "2026-03-05T04:34:02Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Professional profile page (/professionals/giannis-kosta-klimatismos) still ships an empty Portfolio container and a cluttered multi-form conversion stack. Hide empty media sections and reduce to one primary contact path instead of dumping competing forms in sequence.",
-      "addedAt": "2026-03-05T04:34:02Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -554,6 +528,36 @@
       "addedAt": "2026-03-05T04:03:52Z",
       "source": "qa-agent",
       "processedAt": "2026-03-05T04:05:47Z"
+    },
+    {
+      "directive": "Primary QA endpoint is still broken: port 4322 refuses connections while the site only loads on 4321. Stop the operational chaos—either make 4322 reliably serve the app or update every QA instruction/automation to 4321 immediately.",
+      "addedAt": "2026-03-05T04:34:02Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T04:35:42Z"
+    },
+    {
+      "directive": "You are publishing duplicate guide hub pages: /blog and /odigoi render essentially the same content/title, which creates SEO cannibalization and sloppy IA. Choose one canonical URL, 301 the duplicate, and align nav/sitemap/internal links accordingly.",
+      "addedAt": "2026-03-05T04:34:02Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T04:35:42Z"
+    },
+    {
+      "directive": "Homepage still leaks internal editorial/instructional text into public UI (e.g. implementation-style copy blocks under hero). Remove all dev-note/process copy from production templates—users should only see customer-facing content.",
+      "addedAt": "2026-03-05T04:34:02Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T04:35:42Z"
+    },
+    {
+      "directive": "/professionals still looks like fake staging data: cards expose placeholder-style identity/trust elements (e.g. initials tiles + generic 'framework' trust copy + zeroed metrics). Remove synthetic trust widgets from public cards until they are backed by real data and proof.",
+      "addedAt": "2026-03-05T04:34:02Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T04:35:42Z"
+    },
+    {
+      "directive": "Professional profile page (/professionals/giannis-kosta-klimatismos) still ships an empty Portfolio container and a cluttered multi-form conversion stack. Hide empty media sections and reduce to one primary contact path instead of dumping competing forms in sequence.",
+      "addedAt": "2026-03-05T04:34:02Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T04:35:42Z"
     }
   ]
 }
