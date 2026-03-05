@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { supabaseServer } from '../../lib/supabase-server';
-import { assertPublishedProfilesHaveValidImages, getProfessionalFallbackImage, resolveProfessionalImageSrc } from '../../lib/professional-images';
+import { assertPublishedProfilesHaveValidImages, getProfessionalFallbackImage, resolveProfessionalImageForPublishedProfile } from '../../lib/professional-images';
 
 export const prerender = true;
 
@@ -50,6 +50,7 @@ interface ApprovedReview {
 
 const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 const fallbackProfileImage = getProfessionalFallbackImage();
+const profileImageSrc = await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl);
 const reviewBadgeCopy = (reviewBadgeCopyFile.default ?? reviewBadgeCopyFile) as any;
 const verifiedBadgeLabel = reviewBadgeCopy?.publicBadge?.defaultLabel || 'Επιβεβαιωμένη αξιολόγηση';
 const verifiedBadgeTooltip = reviewBadgeCopy?.publicBadge?.tooltip || 'Η αξιολόγηση συνδέεται με πραγματικό αίτημα υπηρεσίας μέσω Greek Handy.';
@@ -163,7 +164,7 @@ const professionalServiceSchema = {
   name: profile.name,
   description: profile.bio,
   url: profileUrl,
-  image: resolveProfessionalImageSrc(profile.profilePhotoUrl),
+  image: profileImageSrc,
   telephone: profile.phone || undefined,
   email: profile.email ? `mailto:${profile.email}` : undefined,
   areaServed: (profile.areasServed?.length ? profile.areasServed : [profile.city]).filter(Boolean).map((area) => ({
@@ -236,7 +237,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 
       <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 aspect-[16/9]">
         <img
-          src={resolveProfessionalImageSrc(profile.profilePhotoUrl)}
+          src={profileImageSrc}
           alt={`Φωτογραφία ${profile.name}`}
           class="h-full w-full object-cover"
           onerror={`this.onerror=null;this.src='${fallbackProfileImage}'`}

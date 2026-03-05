@@ -48,6 +48,11 @@ export const resolveProfessionalImageSrc = (input?: string | null) => {
   return FALLBACK_PROFILE_IMAGE;
 };
 
+export const resolveProfessionalImageForPublishedProfile = async (input?: string | null) => {
+  const valid = await validateProfessionalPublishedImage(input);
+  return valid ? resolveProfessionalImageSrc(input) : FALLBACK_PROFILE_IMAGE;
+};
+
 const REMOTE_IMAGE_HOST_ALLOWLIST = new Set([
   'images.unsplash.com',
   'cdn.jsdelivr.net',
