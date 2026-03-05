@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-pipe-temp-check-kalentzi",
+  "slug": "epochiakos-elegxos-thermokrasias-solina-epistrofis-thermansis-kalentzi",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Σωλήνα Επιστροφής Θέρμανσης στο Καλέντζι",
+  "nameEn": "Seasonal Heating Return Pipe Temp Check in Καλέντζι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας σωλήνα επιστροφής θέρμανσης στο Καλέντζι για σταθερή και αποδοτική λειτουργία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι επείγον",
+    "Εποχικός Καλέντζι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-supply-line-air-release-nea-kallikrateia-hinterland",
+  "slug": "epigousa-apoebrwsi-aera-grammis-paroxis-nerou-nea-kallikrateia-hinterland",
+  "nameGr": "Επείγουσα Απελευθέρωση Αέρα Γραμμής Παροχής Νερού στην ενδοχώρα Νέας Καλλικράτειας",
+  "nameEn": "Emergency Water Supply Line Air Release in Νέα Καλλικράτεια",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απελευθέρωση παγιδευμένου αέρα στη γραμμή παροχής νερού στην ενδοχώρα Νέας Καλλικράτειας για άμεση επαναφορά ροής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-210€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Καλλικράτεια επείγον",
+    "Επείγουσα Νέα Καλλικράτεια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

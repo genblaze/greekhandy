@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-humidity-sensor-fix-nea-kallikrateia-hinterland",
+  "slug": "epigousa-episkevi-aisthitira-ygrasias-esoterikou-ac-nea-kallikrateia-hinterland",
+  "nameGr": "Επείγουσα Επισκευή Αισθητήρα Υγρασίας Εσωτερικού AC στην ενδοχώρα Νέας Καλλικράτειας",
+  "nameEn": "Emergency AC Indoor Humidity Sensor Fix in Νέα Καλλικράτεια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αισθητήρα υγρασίας εσωτερικού AC στην ενδοχώρα Νέας Καλλικράτειας για σωστή λειτουργία και αποφυγή διακοπών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Καλλικράτεια επείγον",
+    "Επείγουσα Νέα Καλλικράτεια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

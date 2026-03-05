@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-pipe-temp-check-agios-georgios-nilias",
+  "slug": "epochiakos-elegxos-thermokrasias-solina-epistrofis-thermansis-agios-georgios-nilias",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Σωλήνα Επιστροφής Θέρμανσης στον Άγιο Γεώργιο Νηλείας",
+  "nameEn": "Seasonal Heating Return Pipe Temp Check in Άγιος Γεώργιος Νηλείας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας σωλήνα επιστροφής θέρμανσης στον Άγιο Γεώργιο Νηλείας για σταθερή και αποδοτική λειτουργία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Νηλείας επείγον",
+    "Εποχικός Άγιος Γεώργιος Νηλείας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

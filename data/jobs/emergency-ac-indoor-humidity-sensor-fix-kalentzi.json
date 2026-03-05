@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-humidity-sensor-fix-kalentzi",
+  "slug": "epigousa-episkevi-aisthitira-ygrasias-esoterikou-ac-kalentzi",
+  "nameGr": "Επείγουσα Επισκευή Αισθητήρα Υγρασίας Εσωτερικού AC στο Καλέντζι",
+  "nameEn": "Emergency AC Indoor Humidity Sensor Fix in Καλέντζι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αισθητήρα υγρασίας εσωτερικού AC στο Καλέντζι για σωστή λειτουργία και αποφυγή διακοπών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι επείγον",
+    "Επείγουσα Καλέντζι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

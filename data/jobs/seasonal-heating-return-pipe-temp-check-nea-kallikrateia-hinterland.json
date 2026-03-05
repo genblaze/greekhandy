@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-pipe-temp-check-nea-kallikrateia-hinterland",
+  "slug": "epochiakos-elegxos-thermokrasias-solina-epistrofis-thermansis-nea-kallikrateia-hinterland",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Σωλήνα Επιστροφής Θέρμανσης στην ενδοχώρα Νέας Καλλικράτειας",
+  "nameEn": "Seasonal Heating Return Pipe Temp Check in Νέα Καλλικράτεια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας σωλήνα επιστροφής θέρμανσης στην ενδοχώρα Νέας Καλλικράτειας για σταθερή και αποδοτική λειτουργία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Καλλικράτεια επείγον",
+    "Εποχικός Νέα Καλλικράτεια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

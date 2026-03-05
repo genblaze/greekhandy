@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-threshold-drainage-tune-nea-kallikrateia-hinterland",
+  "slug": "epochiaki-rythmisi-aporrois-katofliou-katoikias-nea-kallikrateia-hinterland",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Κατωφλιού Κατοικίας στην ενδοχώρα Νέας Καλλικράτειας",
+  "nameEn": "Seasonal Home Threshold Drainage Tune in Νέα Καλλικράτεια",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής κατωφλιού κατοικίας στην ενδοχώρα Νέας Καλλικράτειας για πρόληψη υγρασίας και λιμναζόντων νερών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Καλλικράτεια επείγον",
+    "Εποχική Νέα Καλλικράτεια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

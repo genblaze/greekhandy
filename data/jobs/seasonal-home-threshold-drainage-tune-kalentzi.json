@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-threshold-drainage-tune-kalentzi",
+  "slug": "epochiaki-rythmisi-aporrois-katofliou-katoikias-kalentzi",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Κατωφλιού Κατοικίας στο Καλέντζι",
+  "nameEn": "Seasonal Home Threshold Drainage Tune in Καλέντζι",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής κατωφλιού κατοικίας στο Καλέντζι για πρόληψη υγρασίας και λιμναζόντων νερών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι επείγον",
+    "Εποχική Καλέντζι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-breaker-reset-diagnosis-agios-georgios-nilias",
+  "slug": "epigousa-diagnosi-synexous-ptosis-kentrikis-asfaleias-agios-georgios-nilias",
+  "nameGr": "Επείγουσα Διάγνωση Συνεχούς Πτώσης Κεντρικής Ασφάλειας στον Άγιο Γεώργιο Νηλείας",
+  "nameEn": "Emergency Electrical Main Breaker Reset Diagnosis in Άγιος Γεώργιος Νηλείας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση συνεχούς πτώσης κεντρικής ασφάλειας στον Άγιο Γεώργιο Νηλείας για ασφαλή αποκατάσταση τροφοδοσίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Νηλείας επείγον",
+    "Επείγουσα Άγιος Γεώργιος Νηλείας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

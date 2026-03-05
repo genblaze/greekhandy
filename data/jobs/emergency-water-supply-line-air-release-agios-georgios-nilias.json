@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-supply-line-air-release-agios-georgios-nilias",
+  "slug": "epigousa-apoebrwsi-aera-grammis-paroxis-nerou-agios-georgios-nilias",
+  "nameGr": "Επείγουσα Απελευθέρωση Αέρα Γραμμής Παροχής Νερού στον Άγιο Γεώργιο Νηλείας",
+  "nameEn": "Emergency Water Supply Line Air Release in Άγιος Γεώργιος Νηλείας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απελευθέρωση παγιδευμένου αέρα στη γραμμή παροχής νερού στον Άγιο Γεώργιο Νηλείας για άμεση επαναφορά ροής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-210€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Νηλείας επείγον",
+    "Επείγουσα Άγιος Γεώργιος Νηλείας",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

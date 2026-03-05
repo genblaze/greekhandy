@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-breaker-reset-diagnosis-kalentzi",
+  "slug": "epigousa-diagnosi-synexous-ptosis-kentrikis-asfaleias-kalentzi",
+  "nameGr": "Επείγουσα Διάγνωση Συνεχούς Πτώσης Κεντρικής Ασφάλειας στο Καλέντζι",
+  "nameEn": "Emergency Electrical Main Breaker Reset Diagnosis in Καλέντζι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση συνεχούς πτώσης κεντρικής ασφάλειας στο Καλέντζι για ασφαλή αποκατάσταση τροφοδοσίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι επείγον",
+    "Επείγουσα Καλέντζι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

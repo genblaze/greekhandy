@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-runoff-edge-cleanup-kalentzi",
+  "slug": "epochiakos-katharismos-akmis-aporrois-stegis-kalentzi",
+  "nameGr": "Εποχικός Καθαρισμός Ακμής Απορροής Στέγης στο Καλέντζι",
+  "nameEn": "Seasonal Roof Runoff Edge Cleanup in Καλέντζι",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός καθαρισμός ακμής απορροής στέγης στο Καλέντζι για αποφυγή επιστροφής νερού στις όψεις.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι επείγον",
+    "Εποχικός Καλέντζι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

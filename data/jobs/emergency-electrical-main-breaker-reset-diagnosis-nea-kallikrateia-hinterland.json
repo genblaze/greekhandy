@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-breaker-reset-diagnosis-nea-kallikrateia-hinterland",
+  "slug": "epigousa-diagnosi-synexous-ptosis-kentrikis-asfaleias-nea-kallikrateia-hinterland",
+  "nameGr": "Επείγουσα Διάγνωση Συνεχούς Πτώσης Κεντρικής Ασφάλειας στην ενδοχώρα Νέας Καλλικράτειας",
+  "nameEn": "Emergency Electrical Main Breaker Reset Diagnosis in Νέα Καλλικράτεια",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση συνεχούς πτώσης κεντρικής ασφάλειας στην ενδοχώρα Νέας Καλλικράτειας για ασφαλή αποκατάσταση τροφοδοσίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Καλλικράτεια επείγον",
+    "Επείγουσα Νέα Καλλικράτεια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
