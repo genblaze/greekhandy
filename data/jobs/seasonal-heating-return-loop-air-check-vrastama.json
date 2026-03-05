@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-air-check-vrastama",
+  "slug": "epochiakos-elegxos-aera-vroxou-epistrofis-thermansis-vrastama",
+  "nameGr": "Εποχικός Έλεγχος Αέρα Βρόχου Επιστροφής Θέρμανσης στα Βραστάμα",
+  "nameEn": "Seasonal Heating Return Loop Air Check in Βραστάμα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος αέρα βρόχου επιστροφής θέρμανσης στα Βραστάμα για αποφυγή θορύβων και ανισοκατανομής θερμότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βραστάμα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

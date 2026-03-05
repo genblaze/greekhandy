@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-joint-reseal-vrastama",
+  "slug": "epigousa-epanasteganosi-enosis-aporrois-esoterikou-ac-vrastama",
+  "nameGr": "Επείγουσα Επαναστεγάνωση Ένωσης Απορροής Εσωτερικού AC στα Βραστάμα",
+  "nameEn": "Emergency AC Indoor Drain Joint Reseal in Βραστάμα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναστεγάνωση ένωσης απορροής εσωτερικού AC στα Βραστάμα για άμεση διακοπή σταξιμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Βραστάμα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

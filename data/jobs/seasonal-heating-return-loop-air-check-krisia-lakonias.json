@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-air-check-krisia-lakonias",
+  "slug": "epochiakos-elegxos-aera-vroxou-epistrofis-thermansis-krisia-lakonias",
+  "nameGr": "Εποχικός Έλεγχος Αέρα Βρόχου Επιστροφής Θέρμανσης στην Κρισιά Λακωνίας",
+  "nameEn": "Seasonal Heating Return Loop Air Check in Κρισιά Λακωνίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος αέρα βρόχου επιστροφής θέρμανσης στην Κρισιά Λακωνίας για αποφυγή θορύβων και ανισοκατανομής θερμότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κρισιά Λακωνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

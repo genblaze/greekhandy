@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-joint-reseal-agia-mavra-fokidas",
+  "slug": "epigousa-epanasteganosi-enosis-aporrois-esoterikou-ac-agia-mavra-fokidas",
+  "nameGr": "Επείγουσα Επαναστεγάνωση Ένωσης Απορροής Εσωτερικού AC στην Αγία Μαύρα Φωκίδας",
+  "nameEn": "Emergency AC Indoor Drain Joint Reseal in Αγία Μαύρα Φωκίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναστεγάνωση ένωσης απορροής εσωτερικού AC στην Αγία Μαύρα Φωκίδας για άμεση διακοπή σταξιμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Μαύρα Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-mcb-terminal-overheat-fix-vrastama",
+  "slug": "epigousa-episkevi-yperthermansis-akrodexti-mcb-vrastama",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Ακροδέκτη MCB στα Βραστάμα",
+  "nameEn": "Emergency Electrical MCB Terminal Overheat Fix in Βραστάμα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης ακροδέκτη MCB στα Βραστάμα για ασφαλή σταθεροποίηση ηλεκτρικού πίνακα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Βραστάμα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

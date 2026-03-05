@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-feed-stopcock-repair-vrastama",
+  "slug": "epigousa-episkevi-diakopti-trofodosias-thermosifona-vrastama",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Τροφοδοσίας Θερμοσίφωνα στα Βραστάμα",
+  "nameEn": "Emergency Water Heater Feed Stopcock Repair in Βραστάμα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή διακόπτη τροφοδοσίας θερμοσίφωνα στα Βραστάμα για άμεσο έλεγχο παροχής και αποφυγή διαρροών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Βραστάμα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

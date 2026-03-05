@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-feed-stopcock-repair-krisia-lakonias",
+  "slug": "epigousa-episkevi-diakopti-trofodosias-thermosifona-krisia-lakonias",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Τροφοδοσίας Θερμοσίφωνα στην Κρισιά Λακωνίας",
+  "nameEn": "Emergency Water Heater Feed Stopcock Repair in Κρισιά Λακωνίας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή διακόπτη τροφοδοσίας θερμοσίφωνα στην Κρισιά Λακωνίας για άμεσο έλεγχο παροχής και αποφυγή διαρροών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κρισιά Λακωνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
