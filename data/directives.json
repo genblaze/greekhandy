@@ -299,31 +299,31 @@
       "directive": "Top-nav route '/messages' is publicly exposed but opens in a broken state for normal users (requires hidden query param `viewerEmail` and shows internal-style warnings). Remove this route from primary nav until it has a real user entry flow, or implement a proper authenticated inbox landing without technical parameter errors.",
       "addedAt": "2026-03-05T00:34:51Z",
       "source": "qa-agent",
-      "processedAt": "2026-03-05T00:35:54Z"
+      "processedAt": "2026-03-05T00:40:34Z"
     },
     {
       "directive": "Homepage hero is still visually broken: ultra-light headline/body text on pale gray background is unreadable on both desktop and mobile. Rebuild hero contrast/typography hierarchy to pass WCAG AA and make the value proposition legible within 2 seconds.",
       "addedAt": "2026-03-05T00:34:51Z",
       "source": "qa-agent",
-      "processedAt": "2026-03-05T00:35:54Z"
+      "processedAt": "2026-03-05T00:40:34Z"
     },
     {
       "directive": "Contact/navigation IA is inconsistent and sloppy: header uses anchor-based 'Επικοινωνία' (`/#contact`) while a standalone `/epikoinonia` page also exists. Pick one canonical contact destination, align all nav/footer links to it, and 301 the duplicate path to avoid fragmented UX and SEO signals.",
       "addedAt": "2026-03-05T00:34:51Z",
       "source": "qa-agent",
-      "processedAt": "2026-03-05T00:35:54Z"
+      "processedAt": "2026-03-05T00:40:34Z"
     },
     {
       "directive": "Professional listing still publishes broken media for Γιάννης Κώστα (blank image frame with alt text in `/professionals`). This is a direct trust killer. Enforce hard image validation pre-publish and always render a branded fallback thumbnail when fetch fails.",
       "addedAt": "2026-03-05T00:34:51Z",
       "source": "qa-agent",
-      "processedAt": "2026-03-05T00:35:54Z"
+      "processedAt": "2026-03-05T00:40:34Z"
     },
     {
       "directive": "Professional profile page (`/professionals/giannis-kosta-klimatismos`) is conversion-chaos: users are hit with stacked forms (reviews + booking + direct message) in one long page with no clear primary CTA. Collapse to one dominant action path and demote secondary forms behind tabs/accordions to reduce friction.",
       "addedAt": "2026-03-05T00:34:51Z",
       "source": "qa-agent",
-      "processedAt": "2026-03-05T00:35:54Z"
+      "processedAt": "2026-03-05T00:40:34Z"
     }
   ]
 }
