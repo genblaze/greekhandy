@@ -224,7 +224,7 @@ const composerInitialStateLabel = messageStatus === 'submitted'
   : messageStatus === 'invalid'
     ? 'Η αποστολή απέτυχε λόγω μη έγκυρου περιεχομένου. Το πρόχειρο διατηρήθηκε για διόρθωση στη φόρμα απάντησης.'
     : messageStatus === 'error'
-      ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο σώθηκε για να δοκιμάσετε ξανά χωρίς απώλειες.'
+      ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο σώθηκε ώστε να συνεχίσετε με ασφάλεια από το ίδιο σημείο.'
       : messageStatus === 'blocked'
         ? 'Η αποστολή απενεργοποιήθηκε από moderation.'
         : 'Η φόρμα απάντησης είναι έτοιμη για αποστολή.';
@@ -235,7 +235,7 @@ const composerRetryPanelTitle = messageStatus === 'invalid'
   : 'Η αποστολή διακόπηκε προσωρινά';
 const composerRetryPanelDescription = messageStatus === 'invalid'
   ? 'Διορθώστε το μήνυμα και ξαναστείλτε το από τη φόρμα απάντησης.'
-  : 'Επαναλάβετε από τη φόρμα απάντησης μόλις επιβεβαιώσετε σύνδεση και περιεχόμενο.';
+  : 'Συνεχίστε από τη φόρμα απάντησης μόλις επιβεβαιώσετε σύνδεση και περιεχόμενο.';
 const composerRetryPanelToneClass = messageStatus === 'invalid'
   ? 'border-amber-300 bg-amber-50 text-amber-900'
   : 'border-rose-300 bg-rose-50 text-rose-900';
