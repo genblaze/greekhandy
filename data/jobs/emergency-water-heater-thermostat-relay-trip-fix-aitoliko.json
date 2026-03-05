@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-thermostat-relay-trip-fix-aitoliko",
+  "slug": "epigousa-episkevi-rele-thermostati-thermosifona-aitoliko",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Θερμοστάτη Θερμοσίφωνα στο Αιτωλικό",
+  "nameEn": "Emergency Water Heater Thermostat Relay Trip Fix in Αιτωλικό",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ρελέ θερμοστάτη θερμοσίφωνα στο Αιτωλικό για άμεση επαναφορά ζεστού νερού με ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Αιτωλικό",
+    "Αιτωλικό τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}

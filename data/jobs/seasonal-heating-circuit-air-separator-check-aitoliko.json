@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-air-separator-check-aitoliko",
+  "slug": "epochiakos-elegxos-diaxoristi-aera-kyklomatos-thermansis-aitoliko",
+  "nameGr": "Εποχικός Έλεγχος Διαχωριστή Αέρα Κυκλώματος Θέρμανσης στο Αιτωλικό",
+  "nameEn": "Seasonal Heating Circuit Air Separator Check in Αιτωλικό",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος διαχωριστή αέρα κυκλώματος θέρμανσης στο Αιτωλικό για πιο σταθερή λειτουργία και λιγότερους θορύβους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Αιτωλικό",
+    "Αιτωλικό τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}

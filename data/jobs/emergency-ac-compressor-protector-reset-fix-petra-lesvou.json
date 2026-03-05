@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-compressor-protector-reset-fix-petra-lesvou",
+  "slug": "epigousa-episkevi-thermikis-prostasias-sympiesti-ac-petra-lesvou",
+  "nameGr": "Επείγουσα Επισκευή Θερμικής Προστασίας Συμπιεστή AC στην Πέτρα Λέσβου",
+  "nameEn": "Emergency AC Compressor Protector Reset Fix in Πέτρα Λέσβου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αποκατάσταση θερμικής προστασίας συμπιεστή AC στην Πέτρα Λέσβου όταν η μονάδα δεν εκκινεί μετά από υπερθέρμανση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Πέτρα Λέσβου",
+    "Πέτρα Λέσβου τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-thermostat-relay-trip-fix-steni-evias",
+  "slug": "epigousa-episkevi-rele-thermostati-thermosifona-steni-evias",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Θερμοστάτη Θερμοσίφωνα στη Στενή Ευβοίας",
+  "nameEn": "Emergency Water Heater Thermostat Relay Trip Fix in Στενή Ευβοίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ρελέ θερμοστάτη θερμοσίφωνα στη Στενή Ευβοίας για άμεση επαναφορά ζεστού νερού με ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Στενή Ευβοίας",
+    "Στενή Ευβοίας τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}

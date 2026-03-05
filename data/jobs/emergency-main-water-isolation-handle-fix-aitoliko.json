@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-water-isolation-handle-fix-aitoliko",
+  "slug": "epigousa-episkevi-lavis-apomonosis-kentrikou-nerou-aitoliko",
+  "nameGr": "Επείγουσα Επισκευή Λαβής Απομόνωσης Κεντρικού Νερού στο Αιτωλικό",
+  "nameEn": "Emergency Main Water Isolation Handle Fix in Αιτωλικό",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή λαβής απομόνωσης κεντρικού νερού στο Αιτωλικό για άμεσο κλείσιμο παροχής σε διαρροή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-210€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Αιτωλικό",
+    "Αιτωλικό τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-thermostat-relay-trip-fix-petra-lesvou",
+  "slug": "epigousa-episkevi-rele-thermostati-thermosifona-petra-lesvou",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Θερμοστάτη Θερμοσίφωνα στην Πέτρα Λέσβου",
+  "nameEn": "Emergency Water Heater Thermostat Relay Trip Fix in Πέτρα Λέσβου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ρελέ θερμοστάτη θερμοσίφωνα στην Πέτρα Λέσβου για άμεση επαναφορά ζεστού νερού με ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Πέτρα Λέσβου",
+    "Πέτρα Λέσβου τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}

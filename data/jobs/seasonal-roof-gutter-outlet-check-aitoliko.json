@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-gutter-outlet-check-aitoliko",
+  "slug": "epochiakos-elegxos-ekroxon-ydroorron-stegis-aitoliko",
+  "nameGr": "Εποχικός Έλεγχος Εκροών Υδρορροών Στέγης στο Αιτωλικό",
+  "nameEn": "Seasonal Roof Gutter Outlet Check in Αιτωλικό",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός έλεγχος εκροών υδρορροών στέγης στο Αιτωλικό για να μη φράζουν στις πρώτες έντονες βροχές.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Αιτωλικό",
+    "Αιτωλικό τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}

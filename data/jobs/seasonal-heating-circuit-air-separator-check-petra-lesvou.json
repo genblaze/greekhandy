@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-air-separator-check-petra-lesvou",
+  "slug": "epochiakos-elegxos-diaxoristi-aera-kyklomatos-thermansis-petra-lesvou",
+  "nameGr": "Εποχικός Έλεγχος Διαχωριστή Αέρα Κυκλώματος Θέρμανσης στην Πέτρα Λέσβου",
+  "nameEn": "Seasonal Heating Circuit Air Separator Check in Πέτρα Λέσβου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος διαχωριστή αέρα κυκλώματος θέρμανσης στην Πέτρα Λέσβου για πιο σταθερή λειτουργία και λιγότερους θορύβους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "επείγον Πέτρα Λέσβου",
+    "Πέτρα Λέσβου τεχνικός",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τοπική υποστήριξη"
+  ],
+  "status": "researched"
+}
