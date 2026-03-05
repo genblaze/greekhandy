@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-return-temp-balance-agia-varvara-serron",
+  "slug": "epochiaki-eksisorropisi-thermokrasias-epistrofis-vroxou-thermansis-agia-varvara-serron",
+  "nameGr": "Εποχική Εξισορρόπηση Θερμοκρασίας Επιστροφής Βρόχου Θέρμανσης στην Αγία Βαρβάρα Σερρών",
+  "nameEn": "Seasonal Heating Loop Return Temp Balance in Αγία Βαρβάρα Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση θερμοκρασίας επιστροφής βρόχου θέρμανσης στην Αγία Βαρβάρα Σερρών για ομοιόμορφη απόδοση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Βαρβάρα Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
