@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-pressure-sync-mikri-kerasia-pellas",
+  "slug": "epochiakos-sygxronismos-piesis-vroxou-epistrofis-thermansis-mikri-kerasia-pellas",
+  "nameGr": "Εποχικός Συγχρονισμός Πίεσης Βρόχου Επιστροφής Θέρμανσης στη Μικρή Κερασιά Πέλλας",
+  "nameEn": "Seasonal Heating Return Loop Pressure Sync in Μικρή Κερασιά Πέλλας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός συγχρονισμός πίεσης βρόχου επιστροφής θέρμανσης στη Μικρή Κερασιά Πέλλας για πιο ομοιόμορφη απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Κερασιά Πέλλας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

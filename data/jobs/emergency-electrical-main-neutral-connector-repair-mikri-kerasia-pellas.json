@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-connector-repair-mikri-kerasia-pellas",
+  "slug": "epigousa-episkevi-syndesmou-oudeterou-kentrikis-paroxis-mikri-kerasia-pellas",
+  "nameGr": "Επείγουσα Επισκευή Συνδέσμου Ουδετέρου Κεντρικής Παροχής στη Μικρή Κερασιά Πέλλας",
+  "nameEn": "Emergency Electrical Main Neutral Connector Repair in Μικρή Κερασιά Πέλλας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή συνδέσμου ουδετέρου κεντρικής παροχής στη Μικρή Κερασιά Πέλλας για σταθερή τάση και αξιόπιστη τροφοδότηση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Κερασιά Πέλλας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

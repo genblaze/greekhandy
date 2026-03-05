@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-pressure-sync-petra-zagoriou",
+  "slug": "epochiakos-sygxronismos-piesis-vroxou-epistrofis-thermansis-petra-zagoriou",
+  "nameGr": "Εποχικός Συγχρονισμός Πίεσης Βρόχου Επιστροφής Θέρμανσης στην Πέτρα Ζαγορίου",
+  "nameEn": "Seasonal Heating Return Loop Pressure Sync in Πέτρα Ζαγορίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός συγχρονισμός πίεσης βρόχου επιστροφής θέρμανσης στην Πέτρα Ζαγορίου για πιο ομοιόμορφη απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πέτρα Ζαγορίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

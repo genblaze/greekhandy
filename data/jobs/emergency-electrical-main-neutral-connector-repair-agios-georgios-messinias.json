@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-connector-repair-agios-georgios-messinias",
+  "slug": "epigousa-episkevi-syndesmou-oudeterou-kentrikis-paroxis-agios-georgios-messinias",
+  "nameGr": "Επείγουσα Επισκευή Συνδέσμου Ουδετέρου Κεντρικής Παροχής στον Άγιο Γεώργιο Μεσσηνίας",
+  "nameEn": "Emergency Electrical Main Neutral Connector Repair in Άγιος Γεώργιος Μεσσηνίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή συνδέσμου ουδετέρου κεντρικής παροχής στον Άγιο Γεώργιο Μεσσηνίας για σταθερή τάση και αξιόπιστη τροφοδότηση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Μεσσηνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

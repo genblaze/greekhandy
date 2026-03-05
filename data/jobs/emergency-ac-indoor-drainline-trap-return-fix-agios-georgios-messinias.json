@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-trap-return-fix-agios-georgios-messinias",
+  "slug": "epigousa-episkevi-epistrofis-pagidas-grammis-aporrois-esoterikou-ac-agios-georgios-messinias",
+  "nameGr": "Επείγουσα Επισκευή Επιστροφής Παγίδας Γραμμής Απορροής Εσωτερικού AC στον Άγιο Γεώργιο Μεσσηνίας",
+  "nameEn": "Emergency AC Indoor Drainline Trap Return Fix in Άγιος Γεώργιος Μεσσηνίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή επιστροφής παγίδας γραμμής απορροής εσωτερικού AC στον Άγιο Γεώργιο Μεσσηνίας για να σταματήσουν οι διαρροές.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Μεσσηνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
