@@ -278,7 +278,9 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
             <p class="mt-1 text-[11px] text-slate-600">{profile.proofSummary}</p>
           </div>
 
-          <p class="mt-2 text-xs font-medium text-slate-600">{profile.trustSignals > 0 ? `${profile.trustSignals} διαθέσιμα σήματα αξιοπιστίας` : 'Βασικό δημόσιο προφίλ'}</p>
+          {profile.trustSignals > 0 && (
+            <p class="mt-2 text-xs font-medium text-slate-600">{profile.trustSignals} διαθέσιμα σήματα αξιοπιστίας</p>
+          )}
           <p class="mt-2 line-clamp-3 text-sm text-gray-700">{profile.bio?.trim() || 'Επαγγελματικό προφίλ διαθέσιμο για ανάθεση έργων στην περιοχή σας.'}</p>
           <div class="mt-3 flex flex-wrap gap-1.5" aria-label="Σήματα αξιοπιστίας επαγγελματία">
             <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-800">
@@ -301,7 +303,7 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
             <p class="mt-1 text-xs text-slate-700"><span class="font-semibold">Ιστορικό έργων:</span> {profile.jobsProvenance}</p>
           </div>
           <p class="mt-3 text-xs uppercase tracking-wide text-gray-500">Περιοχές: {profile.serviceAreas.join(', ')}</p>
-          <a href={`/professionals/${profile.slug}`} class="mt-4 inline-flex w-full justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 sm:w-auto">Προβολή προφίλ</a>
+          <a href={`/professionals/${profile.slug}`} aria-label={`Προβολή πλήρους προφίλ ${profile.name}`} class="mt-4 inline-flex w-full justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 sm:w-auto">Προβολή προφίλ</a>
         </article>
       ))}
     </section>
