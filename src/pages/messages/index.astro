@@ -62,27 +62,27 @@ const statusToneClass = statusRaw === 'error' || statusRaw === 'forbidden'
       : 'border-slate-200 bg-slate-50 text-slate-800';
 
 const statusTitle = statusRaw === 'error'
-  ? 'Προσωρινή αποτυχία φόρτωσης inbox.'
+  ? 'Προσωρινό πρόβλημα φόρτωσης μηνυμάτων.'
   : statusRaw === 'forbidden'
-    ? 'Η πρόσβαση στη συγκεκριμένη συνομιλία απορρίφθηκε.'
+    ? 'Δεν ήταν δυνατή η πρόσβαση στη συνομιλία.'
     : statusRaw === 'invalid'
-      ? 'Ο σύνδεσμος εισόδου δεν ήταν πλήρης.'
+      ? 'Ο σύνδεσμος δεν ήταν πλήρης.'
       : statusRaw === 'loading'
-        ? 'Ο συγχρονισμός inbox βρίσκεται σε εξέλιξη.'
+        ? 'Γίνεται φόρτωση των μηνυμάτων σας.'
         : hasUnknownStatus
-          ? 'Εμφανίστηκε άγνωστη κατάσταση στο inbox.'
+          ? 'Η σελίδα χρειάζεται ανανέωση.'
           : '';
 
 const statusDescription = statusRaw === 'error'
-  ? 'Δοκιμάστε ξανά το άνοιγμα thread ή επιστρέψτε στη ροή επαγγελματιών.'
+  ? 'Δοκιμάστε ξανά σε λίγο ή μπείτε από τη λίστα επαγγελματιών.'
   : statusRaw === 'forbidden'
-    ? 'Ανοίξτε thread στο οποίο συμμετέχετε με το σωστό email προβολής.'
+    ? 'Ανοίξτε τη συνομιλία από το λογαριασμό που τη δημιούργησε.'
     : statusRaw === 'invalid'
-      ? 'Ελέγξτε ότι υπάρχουν και τα δύο στοιχεία: threadId και viewerEmail.'
+      ? 'Ανοίξτε ξανά από το σημείο όπου ξεκινήσατε την επικοινωνία.'
       : statusRaw === 'loading'
-        ? 'Αν η φόρτωση κολλήσει, χρησιμοποιήστε άμεση επανάληψη.'
+        ? 'Αν καθυστερεί, κάντε νέα προσπάθεια.'
         : hasUnknownStatus
-          ? 'Κάντε ανανέωση ή ανοίξτε ξανά τη συνομιλία από έγκυρη ροή.'
+          ? 'Κάντε ανανέωση και δοκιμάστε ξανά.'
           : '';
 
 const entryToneClass = hasValidThreadContext
@@ -92,32 +92,32 @@ const entryToneClass = hasValidThreadContext
     : 'border-slate-200 bg-slate-50/80 text-slate-700';
 
 const entryTitle = hasValidThreadContext
-  ? 'Το thread είναι έτοιμο για άνοιγμα.'
+  ? 'Η συνομιλία σας είναι έτοιμη.'
   : hasPartialThreadContext
-    ? 'Χρειάζονται επιπλέον στοιχεία για άνοιγμα thread.'
-    : 'Επιλέξτε συνομιλία από το inbox για ασφαλή είσοδο.';
+    ? 'Χρειάζεται επιβεβαίωση για είσοδο στα μηνύματα.'
+    : 'Συνδεθείτε για να δείτε τα μηνύματά σας.';
 
 const entryDescription = hasValidThreadContext
-  ? 'Υπάρχει πλήρες context εισόδου. Μπορείτε να συνεχίσετε κατευθείαν στο thread.'
+  ? 'Μπορείτε να συνεχίσετε απευθείας στη συνομιλία σας.'
   : hasPartialThreadContext
-    ? 'Λείπει ή δεν είναι έγκυρο μέρος του context (threadId/viewerEmail).'
-    : 'Η δημόσια είσοδος μηνυμάτων υποστηρίζει μόνο τις έγκυρες ροές thread.';
+    ? 'Ο σύνδεσμος δεν περιέχει όλα τα απαραίτητα στοιχεία για άμεση είσοδο.'
+    : 'Για προστασία των συνομιλιών, η πρόσβαση γίνεται μόνο μέσω λογαριασμού ή έγκυρου συνδέσμου.';
 
-const threadEntryActionLabel = hasValidThreadContext ? 'Άνοιγμα thread τώρα' : 'Άνοιγμα σελίδας thread';
-const threadRetryActionLabel = hasValidThreadContext ? 'Άνοιγμα με loading state' : 'Έλεγχος φόρτωσης thread';
+const threadEntryActionLabel = hasValidThreadContext ? 'Άνοιγμα συνομιλίας' : 'Συνέχεια στη συνομιλία';
+const threadRetryActionLabel = hasValidThreadContext ? 'Νέα προσπάθεια φόρτωσης' : 'Έλεγχος σύνδεσης';
 ---
 
 <Layout
   title="Inbox Μηνυμάτων | GreekHandy"
-  description="Οδηγός ασφαλούς εισόδου inbox/thread με ανθεκτικές καταστάσεις φόρτωσης και καθαρό context."
+  description="Καθαρή και ασφαλής είσοδος στα μηνύματα GreekHandy, με σαφή καθοδήγηση και αξιόπιστες καταστάσεις φόρτωσης."
   canonicalUrl="https://greekhandy.gr/messages"
 >
   <main class="messages-shell mx-auto max-w-4xl px-4 py-10 md:px-6 md:py-14">
     <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.5)] md:p-8">
-      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">Messaging Entry</p>
-      <h1 class="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">Inbox και thread είσοδος</h1>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">Μηνύματα GreekHandy</p>
+      <h1 class="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">Είσοδος στα μηνύματα</h1>
       <p class="mt-3 text-sm leading-6 text-slate-700">
-        Η πρόσβαση στα μηνύματα γίνεται από έγκυρο context συνομιλίας, χωρίς hidden ή παρωχημένες URL παραμέτρους.
+        Για να δείτε τις συνομιλίες σας, μπείτε από τον λογαριασμό σας ή συνεχίστε από ενεργό αίτημα/επαγγελματία.
       </p>
 
       {(statusTitle || hasLegacyParams) && (
@@ -126,7 +126,7 @@ const threadRetryActionLabel = hasValidThreadContext ? 'Άνοιγμα με load
           {statusDescription && <p class="mt-1">{statusDescription}</p>}
           {hasLegacyParams && (
             <p class="mt-1 text-xs">
-              Εντοπίστηκε legacy παράμετρος σύνδεσης. Χρησιμοποιήστε τα κουμπιά εισόδου παρακάτω για ασφαλές thread context.
+              Εντοπίστηκε παλιός σύνδεσμος. Χρησιμοποιήστε τα κουμπιά παρακάτω για σωστή είσοδο.
             </p>
           )}
         </div>
@@ -135,21 +135,14 @@ const threadRetryActionLabel = hasValidThreadContext ? 'Άνοιγμα με load
       <section id="thread-entry-guide" class={`mt-5 rounded-2xl border px-4 py-4 text-sm ${entryToneClass}`} aria-labelledby="thread-entry-guide-title" aria-describedby="thread-entry-guide-description">
         <p id="thread-entry-guide-title" class="font-semibold">{entryTitle}</p>
         <p id="thread-entry-guide-description" class="mt-1">{entryDescription}</p>
-        <dl class="mt-3 grid gap-2 text-xs sm:grid-cols-2" aria-label="Δεδομένα εισόδου thread">
-          <div class="rounded-lg border border-current/20 bg-white/75 px-3 py-2">
-            <dt class="font-semibold uppercase tracking-[0.08em] opacity-80">Viewer Email</dt>
-            <dd class="mt-1 break-all font-medium">{hasViewerEmail ? viewerEmail : 'Δεν δόθηκε'}</dd>
-            {!hasViewerEmail && <p class="mt-1 text-[11px] opacity-90">Απαιτείται για participant έλεγχο.</p>}
-            {hasViewerEmail && !hasValidViewerEmail && <p class="mt-1 text-[11px] opacity-90">Μη έγκυρη μορφή email.</p>}
-          </div>
-          <div class="rounded-lg border border-current/20 bg-white/75 px-3 py-2">
-            <dt class="font-semibold uppercase tracking-[0.08em] opacity-80">Thread ID</dt>
-            <dd class="mt-1 break-all font-medium">{hasThreadId ? threadId : 'Δεν δόθηκε'}</dd>
-            {!hasThreadId && <p class="mt-1 text-[11px] opacity-90">Απαιτείται για φόρτωση ιστορικού.</p>}
-            {hasThreadId && !hasValidThreadId && <p class="mt-1 text-[11px] opacity-90">Μη έγκυρο thread identifier.</p>}
-          </div>
-        </dl>
-        <p class="mt-2 text-[11px] font-medium">Context inbox: {listContextLabel}</p>
+        <div class="mt-3 rounded-lg border border-current/20 bg-white/75 px-3 py-3 text-xs leading-5">
+          {hasValidThreadContext
+            ? 'Η πρόσβαση επιβεβαιώθηκε και η συνομιλία μπορεί να ανοίξει κανονικά.'
+            : hasPartialThreadContext
+              ? 'Ο σύνδεσμος φαίνεται ελλιπής. Επιλέξτε «Συνέχεια στη συνομιλία» ή ανοίξτε την επικοινωνία από το προφίλ επαγγελματία.'
+              : 'Δεν βρέθηκε ενεργή σύνδεση συνομιλίας. Συνδεθείτε ή ξεκινήστε επικοινωνία από τον κατάλογο επαγγελματιών.'}
+        </div>
+        <p class="mt-2 text-[11px] font-medium">Κατάσταση φίλτρων: {listContextLabel}</p>
       </section>
 
       <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -188,7 +181,7 @@ const threadRetryActionLabel = hasValidThreadContext ? 'Άνοιγμα με load
       </section>
 
       <p class="mt-5 text-xs text-slate-500">
-        Αν αντιμετωπίζετε σταθερά πρόβλημα πρόσβασης, χρησιμοποιήστε τη φόρμα στην ενότητα «Επικοινωνία» για υποστήριξη.
+        Αν συνεχίσει το πρόβλημα, επικοινωνήστε με την ομάδα GreekHandy από τη σελίδα «Επικοινωνία».
       </p>
     </section>
   </main>
