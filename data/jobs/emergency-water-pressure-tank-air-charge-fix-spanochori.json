@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-tank-air-charge-fix-spanochori",
+  "slug": "epigousa-episkevi-fortisis-aera-doxeioy-piesis-nerou-spanochori",
+  "nameGr": "Επείγουσα Επισκευή Φόρτισης Αέρα Δοχείου Πίεσης Νερού στο Σπανοχώρι",
+  "nameEn": "Emergency Water Pressure Tank Air Charge Fix in Σπανοχώρι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή φόρτισης αέρα δοχείου πίεσης νερού στο Σπανοχώρι για άμεση σταθεροποίηση παροχής στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Σπανοχώρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

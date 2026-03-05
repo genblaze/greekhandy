@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-return-balancing-agios-georgios-sykeon",
+  "slug": "epochiaki-eksisorropisi-epistrofis-kyklomatos-thermansis-agios-georgios-sykeon",
+  "nameGr": "Εποχική Εξισορρόπηση Επιστροφής Κυκλώματος Θέρμανσης στον Άγιο Γεώργιο Συκεών",
+  "nameEn": "Seasonal Heating Circuit Return Balancing in Άγιος Γεώργιος Συκεών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση επιστροφής κυκλώματος θέρμανσης στον Άγιο Γεώργιο Συκεών για πιο ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Συκεών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

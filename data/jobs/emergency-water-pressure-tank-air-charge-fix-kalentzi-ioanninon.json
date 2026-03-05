@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-tank-air-charge-fix-kalentzi-ioanninon",
+  "slug": "epigousa-episkevi-fortisis-aera-doxeioy-piesis-nerou-kalentzi-ioanninon",
+  "nameGr": "Επείγουσα Επισκευή Φόρτισης Αέρα Δοχείου Πίεσης Νερού στο Καλέντζι Ιωαννίνων",
+  "nameEn": "Emergency Water Pressure Tank Air Charge Fix in Καλέντζι Ιωαννίνων",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή φόρτισης αέρα δοχείου πίεσης νερού στο Καλέντζι Ιωαννίνων για άμεση σταθεροποίηση παροχής στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

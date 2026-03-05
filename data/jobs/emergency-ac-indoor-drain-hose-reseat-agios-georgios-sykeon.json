@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-hose-reseat-agios-georgios-sykeon",
+  "slug": "epigousa-epanafora-solina-aporrois-esoterikou-ac-agios-georgios-sykeon",
+  "nameGr": "Επείγουσα Επαναφορά Σωλήνα Απορροής Εσωτερικού AC στον Άγιο Γεώργιο Συκεών",
+  "nameEn": "Emergency AC Indoor Drain Hose Reseat in Άγιος Γεώργιος Συκεών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά σωλήνα απορροής εσωτερικού AC στον Άγιο Γεώργιο Συκεών για άμεση διακοπή διαρροών νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Συκεών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

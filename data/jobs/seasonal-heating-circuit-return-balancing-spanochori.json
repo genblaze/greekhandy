@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-return-balancing-spanochori",
+  "slug": "epochiaki-eksisorropisi-epistrofis-kyklomatos-thermansis-spanochori",
+  "nameGr": "Εποχική Εξισορρόπηση Επιστροφής Κυκλώματος Θέρμανσης στο Σπανοχώρι",
+  "nameEn": "Seasonal Heating Circuit Return Balancing in Σπανοχώρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση επιστροφής κυκλώματος θέρμανσης στο Σπανοχώρι για πιο ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Σπανοχώρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

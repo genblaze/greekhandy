@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-water-runoff-correction-spanochori",
+  "slug": "epochiaki-diorthosi-aporrois-nerou-eisodou-katoikias-spanochori",
+  "nameGr": "Εποχική Διόρθωση Απορροής Νερού Εισόδου Κατοικίας στο Σπανοχώρι",
+  "nameEn": "Seasonal Home Entry Water Runoff Correction in Σπανοχώρι",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική διόρθωση απορροής νερού εισόδου κατοικίας στο Σπανοχώρι για αποφυγή λιμναζόντων νερών και υγρασίας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Σπανοχώρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

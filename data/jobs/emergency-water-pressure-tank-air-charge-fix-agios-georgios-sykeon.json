@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-tank-air-charge-fix-agios-georgios-sykeon",
+  "slug": "epigousa-episkevi-fortisis-aera-doxeioy-piesis-nerou-agios-georgios-sykeon",
+  "nameGr": "Επείγουσα Επισκευή Φόρτισης Αέρα Δοχείου Πίεσης Νερού στον Άγιο Γεώργιο Συκεών",
+  "nameEn": "Emergency Water Pressure Tank Air Charge Fix in Άγιος Γεώργιος Συκεών",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή φόρτισης αέρα δοχείου πίεσης νερού στον Άγιο Γεώργιο Συκεών για άμεση σταθεροποίηση παροχής στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Συκεών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

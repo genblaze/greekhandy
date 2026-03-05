@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circuit-return-balancing-kalentzi-ioanninon",
+  "slug": "epochiaki-eksisorropisi-epistrofis-kyklomatos-thermansis-kalentzi-ioanninon",
+  "nameGr": "Εποχική Εξισορρόπηση Επιστροφής Κυκλώματος Θέρμανσης στο Καλέντζι Ιωαννίνων",
+  "nameEn": "Seasonal Heating Circuit Return Balancing in Καλέντζι Ιωαννίνων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση επιστροφής κυκλώματος θέρμανσης στο Καλέντζι Ιωαννίνων για πιο ομοιόμορφη απόδοση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι Ιωαννίνων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
