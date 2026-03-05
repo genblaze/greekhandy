@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-collector-pressure-tune-vovousa",
+  "slug": "epochiaki-rythmisi-piesis-syllekti-epistrofis-thermansis-vovousa",
+  "nameGr": "Εποχική Ρύθμιση Πίεσης Συλλέκτη Επιστροφής Θέρμανσης στη Βοβούσα",
+  "nameEn": "Seasonal Heating Return Collector Pressure Tune in Βοβούσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση πίεσης συλλέκτη επιστροφής θέρμανσης στη Βοβούσα για σταθερή και οικονομική λειτουργία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βοβούσα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-clamp-fix-mega-dendro-aitoloakarnanias",
+  "slug": "epigousa-episkevi-sfiktira-oudeterou-kentrikis-trofodosias-mega-dendro-aitoloakarnanias",
+  "nameGr": "Επείγουσα Επισκευή Σφιγκτήρα Ουδετέρου Κεντρικής Τροφοδοσίας στο Μεγάλο Δένδρο Αιτωλοακαρνανίας",
+  "nameEn": "Emergency Electrical Main Feed Neutral Clamp Fix in Μεγάλο Δένδρο Αιτωλοακαρνανίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή σφιγκτήρα ουδετέρου κεντρικής τροφοδοσίας στο Μεγάλο Δένδρο Αιτωλοακαρνανίας για σταθερή τάση και ασφαλή λειτουργία πίνακα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μεγάλο Δένδρο Αιτωλοακαρνανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

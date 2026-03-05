@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-collector-pressure-tune-palia-episkopi-chanion",
+  "slug": "epochiaki-rythmisi-piesis-syllekti-epistrofis-thermansis-palia-episkopi-chanion",
+  "nameGr": "Εποχική Ρύθμιση Πίεσης Συλλέκτη Επιστροφής Θέρμανσης στην Παλιά Επισκοπή Χανίων",
+  "nameEn": "Seasonal Heating Return Collector Pressure Tune in Παλιά Επισκοπή Χανίων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση πίεσης συλλέκτη επιστροφής θέρμανσης στην Παλιά Επισκοπή Χανίων για σταθερή και οικονομική λειτουργία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Παλιά Επισκοπή Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

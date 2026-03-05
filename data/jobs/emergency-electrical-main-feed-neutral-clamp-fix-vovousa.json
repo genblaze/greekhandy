@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-clamp-fix-vovousa",
+  "slug": "epigousa-episkevi-sfiktira-oudeterou-kentrikis-trofodosias-vovousa",
+  "nameGr": "Επείγουσα Επισκευή Σφιγκτήρα Ουδετέρου Κεντρικής Τροφοδοσίας στη Βοβούσα",
+  "nameEn": "Emergency Electrical Main Feed Neutral Clamp Fix in Βοβούσα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή σφιγκτήρα ουδετέρου κεντρικής τροφοδοσίας στη Βοβούσα για σταθερή τάση και ασφαλή λειτουργία πίνακα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Βοβούσα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

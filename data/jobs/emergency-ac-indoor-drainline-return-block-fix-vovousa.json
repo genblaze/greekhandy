@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-return-block-fix-vovousa",
+  "slug": "epigousa-episkevi-empodismenis-epistrofis-grammis-aporrois-esoterikou-ac-vovousa",
+  "nameGr": "Επείγουσα Επισκευή Εμποδισμένης Επιστροφής Γραμμής Απορροής Εσωτερικού AC στη Βοβούσα",
+  "nameEn": "Emergency AC Indoor Drainline Return Block Fix in Βοβούσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή εμποδισμένης επιστροφής γραμμής απορροής εσωτερικού AC στη Βοβούσα για να σταματήσουν τα νερά στον χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Βοβούσα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

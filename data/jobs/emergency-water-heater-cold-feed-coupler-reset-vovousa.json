@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-cold-feed-coupler-reset-vovousa",
+  "slug": "epigousa-epanafora-syndesmou-kryas-trofodosias-thermosifona-vovousa",
+  "nameGr": "Επείγουσα Επαναφορά Συνδέσμου Κρύας Τροφοδοσίας Θερμοσίφωνα στη Βοβούσα",
+  "nameEn": "Emergency Water Heater Cold Feed Coupler Reset in Βοβούσα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επαναφορά συνδέσμου κρύας τροφοδοσίας θερμοσίφωνα στη Βοβούσα για άμεση διακοπή διαρροών και ασφαλή παροχή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Βοβούσα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
