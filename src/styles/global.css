@@ -4,6 +4,8 @@
   --gh-accessibility-toolbar-safe-area: calc(3.25rem + 1.25rem);
   --gh-accessibility-dock-gap: 0.75rem;
   --gh-accessibility-dock-trigger-size: 3.25rem;
+  --gh-accessibility-dock-offset-bottom: 0px;
+  --gh-accessibility-dock-offset-right: 0px;
   --gh-hero-bg-start: #020817;
   --gh-hero-bg-mid: #0a2644;
   --gh-hero-bg-end: #123a63;
@@ -15,14 +17,14 @@
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  padding-bottom: max(env(safe-area-inset-bottom), var(--gh-accessibility-toolbar-safe-area));
-  scroll-padding-bottom: calc(var(--gh-accessibility-toolbar-safe-area) + 1rem);
+  padding-bottom: max(env(safe-area-inset-bottom), calc(var(--gh-accessibility-toolbar-safe-area) + var(--gh-accessibility-dock-offset-bottom)));
+  scroll-padding-bottom: calc(var(--gh-accessibility-toolbar-safe-area) + var(--gh-accessibility-dock-offset-bottom) + 1rem);
 }
 
 :where([data-accessibility-toolbar], .accessibility-toolbar, #accessibility-toolbar) {
   position: fixed !important;
-  right: max(var(--gh-accessibility-dock-gap), env(safe-area-inset-right)) !important;
-  bottom: calc(max(var(--gh-accessibility-dock-gap), env(safe-area-inset-bottom)) + var(--gh-accessibility-dock-trigger-size) + 0.65rem) !important;
+  right: calc(max(var(--gh-accessibility-dock-gap), env(safe-area-inset-right)) + var(--gh-accessibility-dock-offset-right)) !important;
+  bottom: calc(max(var(--gh-accessibility-dock-gap), env(safe-area-inset-bottom)) + var(--gh-accessibility-dock-offset-bottom) + var(--gh-accessibility-dock-trigger-size) + 0.65rem) !important;
   top: auto !important;
   left: auto !important;
   z-index: 44;
@@ -57,8 +59,8 @@ body {
 
 .gh-accessibility-dock-trigger {
   position: fixed;
-  right: max(var(--gh-accessibility-dock-gap), env(safe-area-inset-right));
-  bottom: max(var(--gh-accessibility-dock-gap), env(safe-area-inset-bottom));
+  right: calc(max(var(--gh-accessibility-dock-gap), env(safe-area-inset-right)) + var(--gh-accessibility-dock-offset-right));
+  bottom: calc(max(var(--gh-accessibility-dock-gap), env(safe-area-inset-bottom)) + var(--gh-accessibility-dock-offset-bottom));
   z-index: 45;
   display: inline-flex;
   min-height: var(--gh-accessibility-dock-trigger-size);

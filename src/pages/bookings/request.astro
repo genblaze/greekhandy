@@ -328,7 +328,7 @@ const supportMailTo = `mailto:info@greekhandy.gr?subject=${encodeURIComponent(`G
 
         <div class="mt-6 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-700" role="note">Κύρια ενέργεια: κρατήστε αυτό το link για παρακολούθηση κατάστασης. Δευτερεύουσες ενέργειες εμφανίζονται μόνο όταν είναι ασφαλείς.</div>
 
-        <div class="mt-3 flex flex-wrap gap-3" role="group" aria-label="Ενέργειες αιτήματος κράτησης" aria-describedby="booking-actions-guardrail-help">
+        <div data-gh-widget-avoid class="mt-3 flex flex-wrap gap-3" role="group" aria-label="Ενέργειες αιτήματος κράτησης" aria-describedby="booking-actions-guardrail-help">
           {canOpenProfessionalProfile && (
             <a href={`/professionals/${professionalSlug}`} class="inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800" aria-label="Προβολή σελίδας επαγγελματία">
               Προβολή επαγγελματία
