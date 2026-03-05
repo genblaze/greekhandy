@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-header-balance-check-agios-ioannis-katerinis",
+  "slug": "epochiakos-elegxos-eksisorropisis-epistrofis-syllekti-thermansis-agios-ioannis-katerinis",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Επιστροφής Συλλέκτη Θέρμανσης στον Άγιο Ιωάννη Κατερίνης",
+  "nameEn": "Seasonal Heating Return Header Balance Check in Άγιος Ιωάννης Κατερίνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης επιστροφής συλλέκτη θέρμανσης στον Άγιο Ιωάννη Κατερίνης για ομοιόμορφη θερμική απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Κατερίνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

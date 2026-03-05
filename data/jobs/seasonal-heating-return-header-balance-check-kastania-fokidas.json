@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-header-balance-check-kastania-fokidas",
+  "slug": "epochiakos-elegxos-eksisorropisis-epistrofis-syllekti-thermansis-kastania-fokidas",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Επιστροφής Συλλέκτη Θέρμανσης στην Καστανιά Φωκίδας",
+  "nameEn": "Seasonal Heating Return Header Balance Check in Καστανιά Φωκίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης επιστροφής συλλέκτη θέρμανσης στην Καστανιά Φωκίδας για ομοιόμορφη θερμική απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καστανιά Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

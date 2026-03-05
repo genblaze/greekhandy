@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-checkvalve-unblock-agios-ioannis-katerinis",
+  "slug": "epigousa-apofraxi-valvidas-aporrois-esoterikou-ac-agios-ioannis-katerinis",
+  "nameGr": "Επείγουσα Απόφραξη Βαλβίδας Απορροής Εσωτερικού AC στον Άγιο Ιωάννη Κατερίνης",
+  "nameEn": "Emergency AC Indoor Drain Check-Valve Unblock in Άγιος Ιωάννης Κατερίνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα απόφραξη βαλβίδας απορροής εσωτερικού AC στον Άγιο Ιωάννη Κατερίνης για αποτροπή επιστροφής νερού στον χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Κατερίνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

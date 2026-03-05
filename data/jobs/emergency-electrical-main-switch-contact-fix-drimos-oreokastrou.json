@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-switch-contact-fix-drimos-oreokastrou",
+  "slug": "epigousa-episkevi-epafon-kentrikou-diakopti-revmatos-drimos-oreokastrou",
+  "nameGr": "Επείγουσα Επισκευή Επαφών Κεντρικού Διακόπτη Ρεύματος στον Δρυμό Ωραιοκάστρου",
+  "nameEn": "Emergency Electrical Main Switch Contact Fix in Δρυμός Ωραιοκάστρου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή επαφών κεντρικού διακόπτη ρεύματος στον Δρυμό Ωραιοκάστρου για σταθερή και ασφαλή τροφοδοσία κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Δρυμός Ωραιοκάστρου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

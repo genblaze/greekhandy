@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-switch-contact-fix-agios-ioannis-katerinis",
+  "slug": "epigousa-episkevi-epafon-kentrikou-diakopti-revmatos-agios-ioannis-katerinis",
+  "nameGr": "Επείγουσα Επισκευή Επαφών Κεντρικού Διακόπτη Ρεύματος στον Άγιο Ιωάννη Κατερίνης",
+  "nameEn": "Emergency Electrical Main Switch Contact Fix in Άγιος Ιωάννης Κατερίνης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή επαφών κεντρικού διακόπτη ρεύματος στον Άγιο Ιωάννη Κατερίνης για σταθερή και ασφαλή τροφοδοσία κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Κατερίνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-header-balance-check-drimos-oreokastrou",
+  "slug": "epochiakos-elegxos-eksisorropisis-epistrofis-syllekti-thermansis-drimos-oreokastrou",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Επιστροφής Συλλέκτη Θέρμανσης στον Δρυμό Ωραιοκάστρου",
+  "nameEn": "Seasonal Heating Return Header Balance Check in Δρυμός Ωραιοκάστρου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης επιστροφής συλλέκτη θέρμανσης στον Δρυμό Ωραιοκάστρου για ομοιόμορφη θερμική απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δρυμός Ωραιοκάστρου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

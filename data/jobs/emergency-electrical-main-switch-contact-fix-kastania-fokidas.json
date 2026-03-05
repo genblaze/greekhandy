@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-switch-contact-fix-kastania-fokidas",
+  "slug": "epigousa-episkevi-epafon-kentrikou-diakopti-revmatos-kastania-fokidas",
+  "nameGr": "Επείγουσα Επισκευή Επαφών Κεντρικού Διακόπτη Ρεύματος στην Καστανιά Φωκίδας",
+  "nameEn": "Emergency Electrical Main Switch Contact Fix in Καστανιά Φωκίδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή επαφών κεντρικού διακόπτη ρεύματος στην Καστανιά Φωκίδας για σταθερή και ασφαλή τροφοδοσία κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καστανιά Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
