@@ -77,7 +77,8 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
         <div class="grid gap-3 md:grid-cols-3">
           <div>
             <label for="profession-search" class="text-xs font-semibold uppercase tracking-wide text-slate-600">Αναζήτηση</label>
-            <input id="profession-search" data-filter-search type="search" placeholder="Όνομα, ειδικότητα, πόλη" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900" />
+            <input id="profession-search" data-filter-search type="search" aria-describedby="profession-search-help" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900" />
+            <p id="profession-search-help" class="mt-1 text-xs text-slate-500">Αναζητήστε με όνομα, ειδικότητα ή πόλη.</p>
           </div>
           <div>
             <label for="profession-filter" class="text-xs font-semibold uppercase tracking-wide text-slate-600">Ειδικότητα</label>

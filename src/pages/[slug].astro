@@ -39,10 +39,75 @@ const canonicalUrl = new URL(`/${category.slug}`, Astro.site).toString();
 
 // Determine if this is a job page (has categorySlug) or category page
 const isJobPage = !!category.categorySlug;
+const isHeatingIntentLanding = !isJobPage && category.slug === 'techniki-klimatismou';
 const parentCategory = isJobPage ? categories.find((c: any) => c.id === category.categoryId || c.slug === category.categorySlug) : null;
+const heatingIntentTokens = ['thermans', 'thermosifon', 'thermotit', 'levita', 'endodaped', 'kalorifer', 'thermostat'];
+const isHeatingIntentJob = (job: any) => {
+  const corpus = `${job.slug || ''} ${job.nameGr || ''} ${job.h1 || ''}`.toLocaleLowerCase('el-GR');
+  return heatingIntentTokens.some((token) => corpus.includes(token));
+};
 
 // Find sub-jobs for category pages
-const subJobs = !isJobPage ? Object.values(allContent).filter((p: any) => p.categoryId === category.id || p.categorySlug === category.slug) : [];
+const subJobs = !isJobPage
+  ? Object.values(allContent)
+      .filter((p: any) => p.categoryId === category.id || p.categorySlug === category.slug)
+      .filter((job: any) => !isHeatingIntentLanding || isHeatingIntentJob(job))
+  : [];
+
+const pageCategory = isHeatingIntentLanding
+  ? {
+      ...category,
+      nameGr: 'Τεχνικοί Θέρμανσης',
+      h1: 'Τεχνικοί Θέρμανσης στην Ελλάδα',
+      metaTitle: 'Τεχνικοί Θέρμανσης | Κόστος, συντήρηση και επισκευές',
+      metaDescription: 'Υπηρεσίες θέρμανσης για λέβητες, θερμοσίφωνες, αντλίες θερμότητας και κυκλώματα καλοριφέρ. Δείτε τιμές, διάρκεια και σωστή προετοιμασία αιτήματος.',
+      heroText: 'Οδηγός αποκλειστικά για ανάγκες θέρμανσης: συντήρηση και επισκευές λεβήτων, θερμοσίφωνες, αντλίες θερμότητας και ρυθμίσεις θερμοστατών, με έμφαση στην ασφάλεια και στην ενεργειακή απόδοση.',
+      summary: {
+        ...category.summary,
+        priceRangeEUR: '50-260€ (ανά εργασία)',
+        typicalDuration: '45 λεπτά - 4 ώρες'
+      },
+      cta: {
+        heading: 'Χρειάζεστε τεχνικό θέρμανσης;',
+        text: 'Στείλτε περιγραφή συστήματος και συμπτώματος για να λάβετε στοχευμένες προσφορές από διαθέσιμους τεχνικούς θέρμανσης.',
+        buttonText: 'Ζητήστε προσφορά θέρμανσης'
+      },
+      sections: [
+        {
+          heading: 'Τι περιλαμβάνει η υπηρεσία θέρμανσης',
+          content: 'Η κατηγορία καλύπτει λέβητες, θερμοσίφωνες, αντλίες θερμότητας, καυστήρες και κυκλώματα καλοριφέρ. Στόχος είναι ασφαλής λειτουργία, σταθερή απόδοση και σαφές πλάνο κόστους/χρόνου πριν από κάθε ανάθεση.'
+        },
+        {
+          heading: 'Συντήρηση λέβητα και καυστήρα',
+          content: 'Καθαρισμός, ρυθμίσεις καύσης, έλεγχος ασφαλιστικών διατάξεων και μετρήσεις απόδοσης πριν την έντονη χειμερινή χρήση.',
+          priceRange: '60-150€'
+        },
+        {
+          heading: 'Θερμοσίφωνες και αντλίες θερμότητας',
+          content: 'Έλεγχος αντιστάσεων, βαλβίδων, ανοδίων, αυτοματισμών και βελτιστοποίηση λειτουργίας για σταθερό ζεστό νερό και χαμηλότερη κατανάλωση.',
+          priceRange: '50-260€'
+        },
+        {
+          heading: 'Πώς να προετοιμάσετε σωστά το αίτημά σας',
+          content: 'Αναφέρετε τύπο συστήματος, ηλικία εγκατάστασης, περιγραφή συμπτώματος, περιοχή και επιθυμητό χρόνο επίσκεψης. Με αυτά τα στοιχεία η αρχική εκτίμηση γίνεται πιο αξιόπιστη.'
+        }
+      ],
+      faq: [
+        {
+          question: 'Πόσο κοστίζουν συνήθως οι υπηρεσίες θέρμανσης;',
+          answer: 'Το κόστος εξαρτάται από τον τύπο συστήματος και τη βλάβη. Συνήθεις εργασίες κινούνται ενδεικτικά μεταξύ 50€ και 260€.'
+        },
+        {
+          question: 'Πότε απαιτείται άμεση επίσκεψη;',
+          answer: 'Άμεση παρέμβαση χρειάζεται όταν υπάρχει διαρροή, έντονη οσμή, καπνός, πτώση πίεσης ή πλήρης διακοπή θέρμανσης/ζεστού νερού.'
+        },
+        {
+          question: 'Τι πληροφορίες βοηθούν σε ακριβέστερη προσφορά;',
+          answer: 'Μοντέλο και τύπος συστήματος, ηλικία εξοπλισμού, περιγραφή συμπτώματος, φωτογραφίες όπου είναι εφικτό και επιθυμητό χρονικό παράθυρο επίσκεψης.'
+        }
+      ]
+    }
+  : category;
 
 const highVolumeFilterSlugs = new Set(['ydravlikoi', 'ilektrologoi']);
 const enableAdvancedCategoryUX = !isJobPage && (highVolumeFilterSlugs.has(category.slug) || subJobs.length >= 18);
@@ -68,7 +133,7 @@ const classifyAvailability = (job: any) => {
 };
 
 // Resolve related category names
-const relatedCategories = (category.relatedCategories || []).map((slug: string) => ({
+const relatedCategories = (pageCategory.relatedCategories || []).map((slug: string) => ({
   slug,
   nameGr: allContent[slug]?.nameGr ?? slug
 })).filter((r: any) => allContent[r.slug]);
@@ -80,9 +145,9 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': `${canonicalUrl}#service`,
-  name: category.nameGr,
+  name: pageCategory.nameGr,
   url: canonicalUrl,
-  description: category.metaDescription,
+  description: pageCategory.metaDescription,
   areaServed: { '@type': 'Country', name: 'Greece' },
   provider: {
     '@type': 'Organization',
@@ -108,7 +173,7 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: isJobPage && parentCategory ? 3 : 2,
-      name: category.nameGr,
+      name: pageCategory.nameGr,
       item: canonicalUrl
     }
   ]
@@ -118,7 +183,7 @@ const itemListSchema = !isJobPage && subJobs.length > 0
   ? {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: `Υπηρεσίες κατηγορίας ${category.nameGr}`,
+      name: `Υπηρεσίες κατηγορίας ${pageCategory.nameGr}`,
       itemListElement: subJobs.slice(0, 40).map((job: any, index: number) => ({
         '@type': 'ListItem',
         position: index + 1,
@@ -128,10 +193,10 @@ const itemListSchema = !isJobPage && subJobs.length > 0
     }
   : null;
 
-const faqSchema = category.faq?.length ? {
+const faqSchema = pageCategory.faq?.length ? {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: category.faq.map((item: any) => ({
+  mainEntity: pageCategory.faq.map((item: any) => ({
     '@type': 'Question',
     name: item.question,
     acceptedAnswer: { '@type': 'Answer', text: item.answer }
@@ -139,7 +204,7 @@ const faqSchema = category.faq?.length ? {
 } : null;
 ---
 
-<Layout title={category.metaTitle} description={category.metaDescription} canonicalUrl={canonicalUrl}>
+<Layout title={pageCategory.metaTitle} description={pageCategory.metaDescription} canonicalUrl={canonicalUrl}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -157,10 +222,10 @@ const faqSchema = category.faq?.length ? {
           <>
             <a href={`/${parentCategory.slug}`} class="hover:text-blue-700">{parentCategory.nameGr}</a>
             <span>&rsaquo;</span>
-            <span class="text-gray-900">{category.nameGr}</span>
+            <span class="text-gray-900">{pageCategory.nameGr}</span>
           </>
         ) : (
-          <span class="text-gray-900">{category.nameGr}</span>
+          <span class="text-gray-900">{pageCategory.nameGr}</span>
         )}
       </div>
     </nav>
@@ -168,16 +233,16 @@ const faqSchema = category.faq?.length ? {
     <!-- Hero -->
     <section class="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-600 px-4 py-16 text-white md:py-20">
       <div class="mx-auto max-w-5xl">
-        <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-5xl">{category.h1}</h1>
-        <p class="mt-6 max-w-4xl text-lg leading-relaxed text-blue-100">{category.heroText}</p>
-        {category.summary && (
+        <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-5xl">{pageCategory.h1}</h1>
+        <p class="mt-6 max-w-4xl text-lg leading-relaxed text-blue-100">{pageCategory.heroText}</p>
+        {pageCategory.summary && (
           <div class="mt-6 flex flex-wrap gap-4 text-sm">
-            {category.summary.priceRangeEUR && <span class="bg-blue-800 px-3 py-1 rounded-full">Κόστος: {category.summary.priceRangeEUR}</span>}
-            {category.summary.typicalDuration && <span class="bg-blue-800 px-3 py-1 rounded-full">Διάρκεια: {category.summary.typicalDuration}</span>}
+            {pageCategory.summary.priceRangeEUR && <span class="bg-blue-800 px-3 py-1 rounded-full">Κόστος: {pageCategory.summary.priceRangeEUR}</span>}
+            {pageCategory.summary.typicalDuration && <span class="bg-blue-800 px-3 py-1 rounded-full">Διάρκεια: {pageCategory.summary.typicalDuration}</span>}
           </div>
         )}
         <a href="#contact" class="mt-8 inline-flex rounded-full bg-white px-6 py-3 font-semibold text-blue-700 shadow-sm transition hover:bg-blue-50">
-          {category.cta?.buttonText || 'Ζητήστε Προσφορά'}
+          {pageCategory.cta?.buttonText || 'Ζητήστε Προσφορά'}
         </a>
       </div>
     </section>
@@ -185,8 +250,8 @@ const faqSchema = category.faq?.length ? {
     <!-- Content Sections -->
     <section class="px-4 py-12 md:py-16">
       <div class="mx-auto max-w-5xl space-y-6">
-        {category.sections?.length > 0 ? (
-          category.sections.map((section: any) => (
+        {pageCategory.sections?.length > 0 ? (
+          pageCategory.sections.map((section: any) => (
             <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
               <h2 class="text-2xl font-bold text-slate-900">{section.heading}</h2>
               <p class="mt-4 leading-relaxed text-slate-700">{section.content}</p>
@@ -265,7 +330,7 @@ const faqSchema = category.faq?.length ? {
                 <p class="mt-1">Καθαρίστε τα φίλτρα ή δοκιμάστε άλλη πόλη/διαθεσιμότητα. Μπορείτε επίσης να συνεχίσετε από σχετικές υπηρεσίες για να μη χαθεί η ροή ανάθεσης.</p>
                 <div class="mt-3 flex flex-wrap gap-2">
                   <button type="button" data-reset-subjob-filters aria-controls="subjobs-grid" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Καθαρισμός φίλτρων</button>
-                  <a href={`/${category.slug}`} class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Όλες οι υπηρεσίες κατηγορίας</a>
+                  <a href={`/${pageCategory.slug}`} class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Όλες οι υπηρεσίες κατηγορίας</a>
                   <a href="#contact" class="inline-flex rounded-full border border-orange-300 bg-white px-3 py-1.5 text-xs font-semibold text-orange-800 transition hover:bg-orange-100">Ζητήστε προσφορά</a>
                 </div>
               </div>
@@ -592,12 +657,12 @@ const faqSchema = category.faq?.length ? {
     </section>
 
     <!-- FAQ -->
-    {category.faq?.length > 0 && (
+    {pageCategory.faq?.length > 0 && (
       <section id="faq" class="px-4 py-12 md:py-16">
         <div class="mx-auto max-w-5xl">
           <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Συχνές Ερωτήσεις</h2>
           <div class="mt-6 space-y-4">
-            {category.faq.map((item: any) => (
+            {pageCategory.faq.map((item: any) => (
               <details class="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-blue-200">
                 <summary class="cursor-pointer text-lg font-semibold text-slate-900 marker:text-blue-700">{item.question}</summary>
                 <p class="mt-3 leading-relaxed text-slate-700">{item.answer}</p>
@@ -612,8 +677,8 @@ const faqSchema = category.faq?.length ? {
     <section id="contact" class="bg-blue-700 px-4 py-12 text-white md:py-16">
       <div class="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2 lg:items-start">
         <div>
-          <h2 class="text-2xl font-bold md:text-3xl">{category.cta?.heading || 'Χρειάζεστε Επαγγελματία;'}</h2>
-          <p class="mt-4 max-w-2xl text-blue-100">{category.cta?.text || 'Στείλτε μας το αίτημά σας και λάβετε δωρεάν προσφορές.'}</p>
+          <h2 class="text-2xl font-bold md:text-3xl">{pageCategory.cta?.heading || 'Χρειάζεστε Επαγγελματία;'}</h2>
+          <p class="mt-4 max-w-2xl text-blue-100">{pageCategory.cta?.text || 'Στείλτε μας το αίτημά σας και λάβετε δωρεάν προσφορές.'}</p>
           <ul class="mt-6 space-y-2 text-sm text-blue-100">
             <li>✓ Δωρεάν αίτημα προσφοράς</li>
             <li>✓ Επικοινωνία από την ομάδα GreekHandy</li>
@@ -621,12 +686,12 @@ const faqSchema = category.faq?.length ? {
           </ul>
         </div>
 
-        <form id="contact-form" class="rounded-2xl bg-white p-6 text-gray-900 shadow-xl md:p-8">
-          <input type="hidden" name="serviceSlug" value={category.slug} />
-          <input type="hidden" name="serviceName" value={category.nameGr} />
+        <form id="contact-form" class="rounded-2xl bg-white p-6 text-gray-900 shadow-xl md:p-8" novalidate aria-describedby="lead-consent-help lead-validation-summary">
+          <input type="hidden" name="serviceSlug" value={pageCategory.slug} />
+          <input type="hidden" name="serviceName" value={pageCategory.nameGr} />
           <input type="hidden" name="pageUrl" value={canonicalUrl} />
 
-          <h3 class="text-xl font-bold text-gray-900">{category.cta?.buttonText || 'Ζητήστε Προσφορά'}</h3>
+          <h3 class="text-xl font-bold text-gray-900">{pageCategory.cta?.buttonText || 'Ζητήστε Προσφορά'}</h3>
           <p class="mt-1 text-sm text-gray-600">Συμπληρώστε τα στοιχεία σας και θα σας καλέσουμε σύντομα.</p>
 
           <div id="form-loading" class="hidden rounded-lg border border-blue-200 bg-blue-50 p-4 text-blue-800" role="status" aria-live="polite" aria-atomic="true">
@@ -642,11 +707,13 @@ const faqSchema = category.faq?.length ? {
           <div id="form-fields" class="mt-5 grid gap-4">
             <div>
               <label for="lead-name" class="mb-1 block text-sm font-semibold text-gray-800">Όνομα *</label>
-              <input id="lead-name" name="name" type="text" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <input id="lead-name" name="name" type="text" required aria-describedby="lead-name-error" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <p id="lead-name-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε ονοματεπώνυμο (τουλάχιστον 2 χαρακτήρες).</p>
             </div>
             <div>
               <label for="lead-phone" class="mb-1 block text-sm font-semibold text-gray-800">Τηλέφωνο *</label>
-              <input id="lead-phone" name="phone" type="tel" required pattern="[0-9+()\-\s]{7,20}" title="Χρησιμοποιήστε έγκυρο αριθμό τηλεφώνου" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <input id="lead-phone" name="phone" type="tel" required pattern="[0-9+()\-\s]{7,20}" title="Χρησιμοποιήστε έγκυρο αριθμό τηλεφώνου" aria-describedby="lead-phone-error" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <p id="lead-phone-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρο τηλέφωνο (7–20 χαρακτήρες).</p>
             </div>
             <div>
               <label for="lead-email" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>

@@ -160,7 +160,8 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           for (const binding of dockBindings.values()) {
             nextInset = Math.max(nextInset, getToolbarSafeInset(binding));
           }
-          root.style.setProperty('--gh-accessibility-toolbar-safe-area', `${nextInset}px`);
+          const resolvedInset = dockBindings.size > 0 ? Math.max(nextInset, 72) : 0;
+          root.style.setProperty('--gh-accessibility-toolbar-safe-area', `${resolvedInset}px`);
         };
         const setDockOpen = (binding, nextOpen, focusPanel = false) => {
           if (!(binding?.toolbar instanceof HTMLElement) || !(binding.trigger instanceof HTMLButtonElement)) return;
