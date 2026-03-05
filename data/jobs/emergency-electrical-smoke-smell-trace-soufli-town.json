@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-smoke-smell-trace-soufli-town",
+  "slug": "epigousos-entopismos-osmis-kapnou-ilektrika-soufli-town",
+  "nameGr": "Επείγων Εντοπισμός Οσμής Καπνού στα Ηλεκτρικά στο Σουφλί",
+  "nameEn": "Emergency Electrical Smoke Smell Trace in Σουφλί",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων εντοπισμός οσμής καπνού στα ηλεκτρικά στο Σουφλί για αποτροπή επικίνδυνης βλάβης. SEO intent: «μυρίζει καπνός από ρεύμα Σουφλί».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "μυρίζει καπνός από ρεύμα Σουφλί",
+    "ηλεκτρολόγος επείγον καπνός",
+    "οσμή καμένου ηλεκτρικά λύση",
+    "κίνδυνος ηλεκτρικής πυρκαγιάς",
+    "άμεσος έλεγχος πίνακα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-smoke-smell-trace-karditsa-town",
+  "slug": "epigousos-entopismos-osmis-kapnou-ilektrika-karditsa-town",
+  "nameGr": "Επείγων Εντοπισμός Οσμής Καπνού στα Ηλεκτρικά στην Καρδίτσα",
+  "nameEn": "Emergency Electrical Smoke Smell Trace in Καρδίτσα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων εντοπισμός οσμής καπνού στα ηλεκτρικά στην Καρδίτσα για αποτροπή επικίνδυνης βλάβης. SEO intent: «μυρίζει καπνός από ρεύμα Καρδίτσα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "μυρίζει καπνός από ρεύμα Καρδίτσα",
+    "ηλεκτρολόγος επείγον καπνός",
+    "οσμή καμένου ηλεκτρικά λύση",
+    "κίνδυνος ηλεκτρικής πυρκαγιάς",
+    "άμεσος έλεγχος πίνακα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-water-splash-indoor-fix-soufli-town",
+  "slug": "epigousa-episkevi-pitilis-monas-esoterikou-ac-soufli-town",
+  "nameGr": "Επείγουσα Επισκευή Πιτσιλίσματος Εσωτερικής Μονάδας AC στο Σουφλί",
+  "nameEn": "Emergency AC Water Splash Indoor Fix in Σουφλί",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή πιτσιλίσματος νερού από εσωτερική μονάδα AC στο Σουφλί για αποφυγή ζημιών σε τοίχους και έπιπλα. SEO intent: «ac πετάει νερά μέσα Σουφλί».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "ac πετάει νερά μέσα Σουφλί",
+    "τεχνικός κλιματισμού διαρροή νερού",
+    "service εσωτερικής μονάδας ac",
+    "επισκευή αποχέτευσης ac",
+    "κλιματιστικό στάζει έντονα"
+  ],
+  "status": "researched"
+}

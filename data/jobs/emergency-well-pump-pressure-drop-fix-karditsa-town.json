@@ -1,0 +1,20 @@
+{
+  "id": "emergency-well-pump-pressure-drop-fix-karditsa-town",
+  "slug": "epigousa-episkevi-ptosis-piesis-antlias-geotrisis-karditsa-town",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Πίεσης Αντλίας Γεώτρησης στην Καρδίτσα",
+  "nameEn": "Emergency Well Pump Pressure Drop Fix in Καρδίτσα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή πτώσης πίεσης αντλίας γεώτρησης στην Καρδίτσα για άμεση αποκατάσταση παροχής νερού. SEO intent: «αντλία γεώτρησης χωρίς πίεση Καρδίτσα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "αντλία γεώτρησης χωρίς πίεση Καρδίτσα",
+    "υδραυλικός αντλία νερού επείγον",
+    "πτώση πίεσης νερού σπίτι",
+    "επισκευή πιεστικού γεώτρησης",
+    "service αντλίας παροχής"
+  ],
+  "status": "researched"
+}

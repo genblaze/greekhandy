@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-water-splash-indoor-fix-karditsa-town",
+  "slug": "epigousa-episkevi-pitilis-monas-esoterikou-ac-karditsa-town",
+  "nameGr": "Επείγουσα Επισκευή Πιτσιλίσματος Εσωτερικής Μονάδας AC στην Καρδίτσα",
+  "nameEn": "Emergency AC Water Splash Indoor Fix in Καρδίτσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή πιτσιλίσματος νερού από εσωτερική μονάδα AC στην Καρδίτσα για αποφυγή ζημιών σε τοίχους και έπιπλα. SEO intent: «ac πετάει νερά μέσα Καρδίτσα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "ac πετάει νερά μέσα Καρδίτσα",
+    "τεχνικός κλιματισμού διαρροή νερού",
+    "service εσωτερικής μονάδας ac",
+    "επισκευή αποχέτευσης ac",
+    "κλιματιστικό στάζει έντονα"
+  ],
+  "status": "researched"
+}

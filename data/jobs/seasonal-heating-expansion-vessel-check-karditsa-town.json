@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-expansion-vessel-check-karditsa-town",
+  "slug": "epochiakos-elegxos-doxeiou-diastolis-thermansis-karditsa-town",
+  "nameGr": "Εποχικός Έλεγχος Δοχείου Διαστολής Θέρμανσης στην Καρδίτσα",
+  "nameEn": "Seasonal Heating Expansion Vessel Check in Καρδίτσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος δοχείου διαστολής θέρμανσης στην Καρδίτσα για σταθερή πίεση και ασφαλή λειτουργία. SEO intent: «δοχείο διαστολής βλάβη Καρδίτσα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "δοχείο διαστολής βλάβη Καρδίτσα",
+    "service θέρμανσης πίεση",
+    "τεχνικός καυστήρα έλεγχος δοχείου",
+    "προληπτική συντήρηση λέβητα",
+    "θέρμανση πίεση πέφτει"
+  ],
+  "status": "researched"
+}

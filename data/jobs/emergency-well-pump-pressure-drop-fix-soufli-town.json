@@ -1,0 +1,20 @@
+{
+  "id": "emergency-well-pump-pressure-drop-fix-soufli-town",
+  "slug": "epigousa-episkevi-ptosis-piesis-antlias-geotrisis-soufli-town",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Πίεσης Αντλίας Γεώτρησης στο Σουφλί",
+  "nameEn": "Emergency Well Pump Pressure Drop Fix in Σουφλί",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή πτώσης πίεσης αντλίας γεώτρησης στο Σουφλί για άμεση αποκατάσταση παροχής νερού. SEO intent: «αντλία γεώτρησης χωρίς πίεση Σουφλί».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "αντλία γεώτρησης χωρίς πίεση Σουφλί",
+    "υδραυλικός αντλία νερού επείγον",
+    "πτώση πίεσης νερού σπίτι",
+    "επισκευή πιεστικού γεώτρησης",
+    "service αντλίας παροχής"
+  ],
+  "status": "researched"
+}
