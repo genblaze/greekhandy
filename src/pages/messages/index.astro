@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 
 const url = new URL(Astro.request.url);
-const viewerEmail = (url.searchParams.get('viewerEmail') || '').trim().toLowerCase();
+const requestedViewerEmail = (url.searchParams.get('viewerEmail') || '').trim().toLowerCase();
 const συνομιλίαId = (url.searchParams.get('συνομιλίαId') || url.searchParams.get('συνομιλία') || '').trim();
 const statusRaw = (url.searchParams.get('status') || '').trim().toLowerCase();
 const listQuery = (url.searchParams.get('q') || '').trim();
@@ -17,6 +17,30 @@ const hasLegacyParams = url.searchParams.has('professional')
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const THREAD_PATTERN = /^[a-z0-9|@._-]{1,220}$/;
 const KNOWN_STATUSES = new Set(['', 'loading', 'invalid', 'forbidden', 'error']);
+
+const messagesAccessCookie = (Astro.cookies.get('gh_messages_access')?.value || '').trim().toLowerCase();
+const hasValidAccessCookie = EMAIL_PATTERN.test(messagesAccessCookie);
+const hasValidRequestedViewerEmail = EMAIL_PATTERN.test(requestedViewerEmail);
+const viewerEmail = hasValidRequestedViewerEmail
+  ? requestedViewerEmail
+  : hasValidAccessCookie
+    ? messagesAccessCookie
+    : '';
+
+if (!hasValidRequestedViewerEmail && !hasValidAccessCookie) {
+  const next = encodeURIComponent(`${url.pathname}${url.search}`);
+  return Astro.redirect(`/messages/access?next=${next}`, 302);
+}
+
+if (hasValidRequestedViewerEmail && requestedViewerEmail !== messagesAccessCookie) {
+  Astro.cookies.set('gh_messages_access', requestedViewerEmail, {
+    path: '/messages',
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: Astro.url.protocol === 'https:',
+    maxAge: 60 * 60 * 24 * 14
+  });
+}
 
 const hasViewerEmail = viewerEmail.length > 0;
 const hasValidViewerEmail = EMAIL_PATTERN.test(viewerEmail);
@@ -111,6 +135,7 @@ const συνομιλίαRetryActionLabel = 'Επανέλεγχος πρόσβα�
   title="Inbox Μηνυμάτων | GreekHandy"
   description="Καθαρή και ασφαλής είσοδος στα μηνύματα GreekHandy, με σαφή καθοδήγηση και αξιόπιστες καταστάσεις φόρτωσης."
   canonicalUrl="https://greekhandy.gr/messages"
+  noindex={true}
 >
   <main class="messages-shell mx-auto max-w-4xl px-4 py-10 md:px-6 md:py-14">
     <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.5)] md:p-8">
