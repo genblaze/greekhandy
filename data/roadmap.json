@@ -1,6 +1,51 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-23",
+      "title": "QA Critical Fixes Wave 23",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported UX, trust, category differentiation, and messaging/auth blockers.",
+      "acceptanceCriteria": [
+        "Homepage (desktop + mobile) παραμένει οπτικά αποτυχημένο στην πρώτη οθόνη: ο βασικός τίτλος είναι σχεδόν λευκός πάνω σε ανοιχτό γκρι φόντο και διαβάζεται με το ζόρι. Σταματήστε το washed-out gradient look και στήστε ξανά το hero με πραγματική αντίθεση WCAG AA, καθαρή ιεραρχία τίτλου/υποτίτλου και άμεσο value proposition.",
+        "Σελίδα /professionals: οι κάρτες συνεχίζουν να δείχνουν demo/staging, όχι αληθινό marketplace (initials avatar, κορδέλα 'ΟΥΔΕΤΕΡΟ ΓΡΑΦΙΚΟ ΠΡΟΦΙΛ', μηδενικές αξιολογήσεις παντού). Κρύψτε placeholder labels από public UI και εμφανίστε μόνο αληθινά trust signals ή έντιμο neutral state χωρίς ψεύτικη 'επαλήθευση'.",
+        "Οι βασικές κατηγορίες (/ydravlikoi, /ilektrologoi, /katharismoi) είναι σχεδόν carbon copy σε δομή/μικροκείμενα και δίνουν αίσθηση programmatic σελίδων. Κάντε πραγματική διαφοροποίηση ανά κατηγορία (ειδικά προβλήματα, διαφορετικά κριτήρια επιλογής, category-specific FAQs και pricing context) αντί για ίδιο template με αλλαγμένο τίτλο.",
+        "Η δημόσια σελίδα /messages συνεχίζει να πουλάει 'ασφαλή πρόσβαση' χωρίς αληθινό login flow· ο ανώνυμος χρήστης βλέπει μόνο οδηγίες και ένα κουμπί επιστροφής. Ή βάλτε κανονικό authentication gate με redirect σε σύνδεση ή αφαιρέστε τελείως τη σελίδα από δημόσιο navigation μέχρι να υπάρχει πραγματικό inbox προϊόν.",
+        "Το /professionals/register έχει σωστή βασική φόρμα πλέον, αλλά το UX μετά την αποστολή παραμένει θολό και χαμηλής εμπιστοσύνης (δεν φαίνεται καθαρά τι συμβαίνει, σε πόσο χρόνο απαντά η ομάδα, και ποια είναι τα επόμενα βήματα αξιολόγησης). Προσθέστε ξεκάθαρο post-submit confirmation flow με SLA, στάδια ελέγχου και επόμενο κανάλι επικοινωνίας."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-23-task-1",
+          "source": "qa-agent",
+          "directive": "Homepage (desktop + mobile) παραμένει οπτικά αποτυχημένο στην πρώτη οθόνη: ο βασικός τίτλος είναι σχεδόν λευκός πάνω σε ανοιχτό γκρι φόντο και διαβάζεται με το ζόρι. Σταματήστε το washed-out gradient look και στήστε ξανά το hero με πραγματική αντίθεση WCAG AA, καθαρή ιεραρχία τίτλου/υποτίτλου και άμεσο value proposition."
+        },
+        {
+          "id": "qa-critical-fixes-wave-23-task-2",
+          "source": "qa-agent",
+          "directive": "Σελίδα /professionals: οι κάρτες συνεχίζουν να δείχνουν demo/staging, όχι αληθινό marketplace (initials avatar, κορδέλα 'ΟΥΔΕΤΕΡΟ ΓΡΑΦΙΚΟ ΠΡΟΦΙΛ', μηδενικές αξιολογήσεις παντού). Κρύψτε placeholder labels από public UI και εμφανίστε μόνο αληθινά trust signals ή έντιμο neutral state χωρίς ψεύτικη 'επαλήθευση'."
+        },
+        {
+          "id": "qa-critical-fixes-wave-23-task-3",
+          "source": "qa-agent",
+          "directive": "Οι βασικές κατηγορίες (/ydravlikoi, /ilektrologoi, /katharismoi) είναι σχεδόν carbon copy σε δομή/μικροκείμενα και δίνουν αίσθηση programmatic σελίδων. Κάντε πραγματική διαφοροποίηση ανά κατηγορία (ειδικά προβλήματα, διαφορετικά κριτήρια επιλογής, category-specific FAQs και pricing context) αντί για ίδιο template με αλλαγμένο τίτλο."
+        },
+        {
+          "id": "qa-critical-fixes-wave-23-task-4",
+          "source": "qa-agent",
+          "directive": "Η δημόσια σελίδα /messages συνεχίζει να πουλάει 'ασφαλή πρόσβαση' χωρίς αληθινό login flow· ο ανώνυμος χρήστης βλέπει μόνο οδηγίες και ένα κουμπί επιστροφής. Ή βάλτε κανονικό authentication gate με redirect σε σύνδεση ή αφαιρέστε τελείως τη σελίδα από δημόσιο navigation μέχρι να υπάρχει πραγματικό inbox προϊόν."
+        },
+        {
+          "id": "qa-critical-fixes-wave-23-task-5",
+          "source": "qa-agent",
+          "directive": "Το /professionals/register έχει σωστή βασική φόρμα πλέον, αλλά το UX μετά την αποστολή παραμένει θολό και χαμηλής εμπιστοσύνης (δεν φαίνεται καθαρά τι συμβαίνει, σε πόσο χρόνο απαντά η ομάδα, και ποια είναι τα επόμενα βήματα αξιολόγησης). Προσθέστε ξεκάθαρο post-submit confirmation flow με SLA, στάδια ελέγχου και επόμενο κανάλι επικοινωνίας."
+        }
+      ],
+      "createdAt": "2026-03-05T08:36:20Z",
+      "updatedAt": "2026-03-05T08:36:20Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-21",
       "title": "QA Critical Fixes Wave 21",
       "pillar": "Product",
