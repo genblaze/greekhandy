@@ -31,11 +31,37 @@ try {
 await assertPublishedProfilesHaveValidMedia(profiles);
 
 const fallbackProfileImage = getProfessionalFallbackImage();
+type ReviewRecord = { professionalSlug?: string; status?: string; verified?: boolean };
+let approvedReviewsBySlug = new Map<string, { total: number; verified: number }>();
+try {
+  const reviewsFile = await import('../../../data/reviews.json');
+  const reviews = ((reviewsFile.default ?? reviewsFile) as ReviewRecord[])
+    .filter((review) => review.status === 'approved' && typeof review.professionalSlug === 'string');
+  for (const review of reviews) {
+    const key = (review.professionalSlug || '').trim();
+    if (!key) continue;
+    const current = approvedReviewsBySlug.get(key) || { total: 0, verified: 0 };
+    current.total += 1;
+    if (review.verified) current.verified += 1;
+    approvedReviewsBySlug.set(key, current);
+  }
+} catch {
+  approvedReviewsBySlug = new Map();
+}
+
 const profilesWithSafeImage = await Promise.all(
-  profiles.map(async (profile) => ({
-    ...profile,
-    resolvedProfileImage: await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl)
-  }))
+  profiles.map(async (profile) => {
+    const reviewStats = approvedReviewsBySlug.get(profile.slug) || { total: 0, verified: 0 };
+    const serviceAreas = Array.isArray(profile.areasServed) && profile.areasServed.length > 0
+      ? profile.areasServed
+      : [profile.city].filter(Boolean);
+    return {
+      ...profile,
+      reviewStats,
+      serviceAreas,
+      resolvedProfileImage: await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl)
+    };
+  })
 );
 
 const professionOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => profile.profession))).sort((a, b) => a.localeCompare(b, 'el'));

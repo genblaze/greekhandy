@@ -212,6 +212,51 @@
       ],
       "createdAt": "2026-03-05T01:05:50Z",
       "updatedAt": "2026-03-05T01:05:50Z"
+    },
+    {
+      "id": "qa-critical-fixes-wave-11",
+      "title": "QA Critical Fixes Wave 11",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported technical SEO, performance, metadata grammar, and runtime/ops consistency blockers.",
+      "acceptanceCriteria": [
+        "No Astro source-path debug attributes are present in served HTML.",
+        "Homepage/category HTML payloads are materially reduced via progressive disclosure and capped initial render volume.",
+        "/robots.txt and /sitemap.xml return HTTP 200 with valid content and indexable URL coverage.",
+        "Location/service page titles and headings never duplicate city phrases.",
+        "Port strategy is consistent across runtime and operational docs (4321/4322 mismatch resolved)."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-11-task-1",
+          "source": "qa-agent",
+          "directive": "Stop shipping Astro debug source attributes to production/dev preview. Every page is leaking `data-astro-source-file` paths (e.g. `/home/weakwire/projects/greekhandy/...`) and bloating HTML massively. Disable source annotations in build output and strip all `data-astro-source-*` attributes before deploy."
+        },
+        {
+          "id": "qa-critical-fixes-wave-11-task-2",
+          "source": "qa-agent",
+          "directive": "Homepage and major category pages are absurdly heavy HTML payloads (homepage ~1.08MB, /ydravlikoi ~1.78MB before assets). This is unacceptable for mobile users on Greek networks. Cut server-rendered markup size aggressively: paginate/limit long lists, lazy-render below-the-fold blocks, and remove duplicated hidden content."
+        },
+        {
+          "id": "qa-critical-fixes-wave-11-task-3",
+          "source": "qa-agent",
+          "directive": "Fix broken local SEO infrastructure: `/robots.txt` and `/sitemap.xml` both return 404. Add valid robots and sitemap endpoints immediately, include all indexable pages, and verify they return 200 with correct content-type."
+        },
+        {
+          "id": "qa-critical-fixes-wave-11-task-4",
+          "source": "qa-agent",
+          "directive": "Your location template has a grammar duplication bug in metadata and headings (e.g. `στην Πάτρα στην Πάτρα`, `στην Αθήνα στην Αθήνα` on pages like `/allagi-diakopton-prizon-patra` and `/episkevi-diarrois-stegi-amesa-athina`). Refactor title/meta generation to prevent repeated city injection and re-generate affected pages."
+        },
+        {
+          "id": "qa-critical-fixes-wave-11-task-5",
+          "source": "qa-agent",
+          "directive": "Port 4322 is down while QA instructions and agent workflow point to it as primary. Align runtime with documented port strategy: either make 4322 reliably serve the site or update all operational docs/automation to 4321. Right now this creates false downtime and wasted QA cycles."
+        }
+      ],
+      "createdAt": "2026-03-05T01:35:50Z",
+      "updatedAt": "2026-03-05T01:35:50Z"
     }
   ],
   "milestones": [
