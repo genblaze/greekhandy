@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-return-valve-refresh-drosochori",
+  "slug": "epochiaki-ananeosi-valvidas-epistrofis-kalorifer-drosochori",
+  "nameGr": "Εποχική Ανανέωση Βαλβίδας Επιστροφής Καλοριφέρ στο Δροσοχώρι",
+  "nameEn": "Seasonal Heating Radiator Return Valve Refresh in Δροσοχώρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ανανέωση βαλβίδας επιστροφής καλοριφέρ στο Δροσοχώρι για καλύτερη κυκλοφορία και σταθερή θέρμανση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δροσοχώρι επείγον",
+    "Εποχική Δροσοχώρι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-line-check-valve-backpressure-fix-kyllini",
+  "slug": "epigousa-episkevi-ypopiesis-valvidas-anepistrofis-grammis-nerou-kyllini",
+  "nameGr": "Επείγουσα Επισκευή Υποπίεσης Βαλβίδας Αντεπιστροφής Γραμμής Νερού στην Κυλλήνη",
+  "nameEn": "Emergency Water Line Check-Valve Backpressure Fix in Κυλλήνη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή υποπίεσης σε βαλβίδα αντεπιστροφής γραμμής νερού στην Κυλλήνη για άμεση σταθεροποίηση παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κυλλήνη επείγον",
+    "Επείγουσα Κυλλήνη",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

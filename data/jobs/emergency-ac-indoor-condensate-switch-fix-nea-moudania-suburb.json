@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-switch-fix-nea-moudania-suburb",
+  "slug": "epigousa-episkevi-diakopti-sympyknomatos-esoterikou-ac-nea-moudania-suburb",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Συμπυκνώματος Εσωτερικού AC στα περίχωρα Νέων Μουδανιών",
+  "nameEn": "Emergency AC Indoor Condensate Switch Fix in Νέα Μουδανιά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή διακόπτη συμπυκνώματος εσωτερικού AC στα περίχωρα Νέων Μουδανιών για άμεση διακοπή διαρροών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Μουδανιά επείγον",
+    "Επείγουσα Νέα Μουδανιά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-switch-fix-kyllini",
+  "slug": "epigousa-episkevi-diakopti-sympyknomatos-esoterikou-ac-kyllini",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Συμπυκνώματος Εσωτερικού AC στην Κυλλήνη",
+  "nameEn": "Emergency AC Indoor Condensate Switch Fix in Κυλλήνη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή διακόπτη συμπυκνώματος εσωτερικού AC στην Κυλλήνη για άμεση διακοπή διαρροών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Κυλλήνη επείγον",
+    "Επείγουσα Κυλλήνη",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

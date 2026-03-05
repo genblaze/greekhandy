@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-switch-fix-drosochori",
+  "slug": "epigousa-episkevi-diakopti-sympyknomatos-esoterikou-ac-drosochori",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Συμπυκνώματος Εσωτερικού AC στο Δροσοχώρι",
+  "nameEn": "Emergency AC Indoor Condensate Switch Fix in Δροσοχώρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή διακόπτη συμπυκνώματος εσωτερικού AC στο Δροσοχώρι για άμεση διακοπή διαρροών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Δροσοχώρι επείγον",
+    "Επείγουσα Δροσοχώρι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-kitchen-neutral-drop-fix-drosochori",
+  "slug": "epigousa-episkevi-ptosis-oudeterou-grammis-kouzinas-drosochori",
+  "nameGr": "Επείγουσα Επισκευή Πτώσης Ουδετέρου Γραμμής Κουζίνας στο Δροσοχώρι",
+  "nameEn": "Emergency Electrical Kitchen Neutral Drop Fix in Δροσοχώρι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πτώσης ουδετέρου στη γραμμή κουζίνας στο Δροσοχώρι για αποφυγή βλάβης σε συσκευές.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Δροσοχώρι επείγον",
+    "Επείγουσα Δροσοχώρι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

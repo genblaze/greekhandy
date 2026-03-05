@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-line-check-valve-backpressure-fix-nea-moudania-suburb",
+  "slug": "epigousa-episkevi-ypopiesis-valvidas-anepistrofis-grammis-nerou-nea-moudania-suburb",
+  "nameGr": "Επείγουσα Επισκευή Υποπίεσης Βαλβίδας Αντεπιστροφής Γραμμής Νερού στα περίχωρα Νέων Μουδανιών",
+  "nameEn": "Emergency Water Line Check-Valve Backpressure Fix in Νέα Μουδανιά",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή υποπίεσης σε βαλβίδα αντεπιστροφής γραμμής νερού στα περίχωρα Νέων Μουδανιών για άμεση σταθεροποίηση παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Μουδανιά επείγον",
+    "Επείγουσα Νέα Μουδανιά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

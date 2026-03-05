@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-line-check-valve-backpressure-fix-drosochori",
+  "slug": "epigousa-episkevi-ypopiesis-valvidas-anepistrofis-grammis-nerou-drosochori",
+  "nameGr": "Επείγουσα Επισκευή Υποπίεσης Βαλβίδας Αντεπιστροφής Γραμμής Νερού στο Δροσοχώρι",
+  "nameEn": "Emergency Water Line Check-Valve Backpressure Fix in Δροσοχώρι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή υποπίεσης σε βαλβίδα αντεπιστροφής γραμμής νερού στο Δροσοχώρι για άμεση σταθεροποίηση παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Δροσοχώρι επείγον",
+    "Επείγουσα Δροσοχώρι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
