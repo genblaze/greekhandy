@@ -810,7 +810,7 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
           >
           <input type="hidden" name="professionalSlug" value={profile.slug} />
           <input type="hidden" name="recipientEmail" value={profile.email} />
-          <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}`} />
+          <input type="hidden" name="returnTo" value={`/professionals/${profile.slug}#secondary-message-panel`} />
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
           <div class="grid gap-4 md:grid-cols-2">
