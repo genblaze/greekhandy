@@ -622,7 +622,7 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
             <p data-feedback-status="rejected" class="hidden rounded-md bg-slate-100 px-3 py-2 text-sm text-slate-800">Η κριτική δεν δημοσιεύτηκε. Μπορείτε να υποβάλετε νέα, πιο συγκεκριμένη εμπειρία.</p>
             <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η υποβολή κριτικής είναι προσωρινά ανενεργή.</p>
             <p data-feedback-status="invalid" class={`${reviewStatusParam === 'invalid' ? '' : 'hidden'} rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800`}>Διορθώστε τα επισημασμένα πεδία για να συνεχίσετε.</p>
-            <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δεν χάνονται τα δημόσια δεδομένα· δοκιμάστε ξανά σε λίγο.</p>
+            <p data-feedback-status="error" class={`${reviewStatusParam === 'error' ? '' : 'hidden'} rounded-md bg-red-100 px-3 py-2 text-sm text-red-800`}>Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
           </div>
 
           <input type="hidden" name="professionalSlug" value={profile.slug} />

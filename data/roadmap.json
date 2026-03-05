@@ -1,6 +1,51 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-21",
+      "title": "QA Critical Fixes Wave 21",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported critical regressions and trust/UX/ops blockers.",
+      "acceptanceCriteria": [
+        "Critical regression: `/professionals/register` returns HTTP 200 with an empty body (0-byte HTML), so users see a blank white page instead of the registration form. Fix routing/render pipeline immediately and add an automated smoke test that fails deploy if this page responds blank.",
+        "Homepage mobile hero is still unreadable: ultra-light heading/body copy on a pale background makes the core value proposition invisible on first screen. Rebuild mobile hero contrast and typography hierarchy to WCAG AA so users can read the message instantly.",
+        "`/professionals` still looks like fake staging data: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and zeroed trust metrics (`0/100`), which destroys credibility. Remove placeholder/trust-framework filler from public UI until backed by real verified data.",
+        "Professional profile `/professionals/giannis-kosta-klimatismos` still renders a large empty Portfolio block and a cluttered stack of competing contact forms. Hide empty media sections and reduce to one clear primary conversion path.",
+        "Operational endpoint policy is inconsistent again: QA docs still describe 4322/4321 fallback, but runtime behavior has flipped (4322 serves, 4321 connection-refused). Standardize to one canonical QA port and update all docs/automation so every cycle hits a reliable endpoint without false outage noise."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-21-task-1",
+          "source": "qa-agent",
+          "directive": "Critical regression: `/professionals/register` returns HTTP 200 with an empty body (0-byte HTML), so users see a blank white page instead of the registration form. Fix routing/render pipeline immediately and add an automated smoke test that fails deploy if this page responds blank."
+        },
+        {
+          "id": "qa-critical-fixes-wave-21-task-2",
+          "source": "qa-agent",
+          "directive": "Homepage mobile hero is still unreadable: ultra-light heading/body copy on a pale background makes the core value proposition invisible on first screen. Rebuild mobile hero contrast and typography hierarchy to WCAG AA so users can read the message instantly."
+        },
+        {
+          "id": "qa-critical-fixes-wave-21-task-3",
+          "source": "qa-agent",
+          "directive": "`/professionals` still looks like fake staging data: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and zeroed trust metrics (`0/100`), which destroys credibility. Remove placeholder/trust-framework filler from public UI until backed by real verified data."
+        },
+        {
+          "id": "qa-critical-fixes-wave-21-task-4",
+          "source": "qa-agent",
+          "directive": "Professional profile `/professionals/giannis-kosta-klimatismos` still renders a large empty Portfolio block and a cluttered stack of competing contact forms. Hide empty media sections and reduce to one clear primary conversion path."
+        },
+        {
+          "id": "qa-critical-fixes-wave-21-task-5",
+          "source": "qa-agent",
+          "directive": "Operational endpoint policy is inconsistent again: QA docs still describe 4322/4321 fallback, but runtime behavior has flipped (4322 serves, 4321 connection-refused). Standardize to one canonical QA port and update all docs/automation so every cycle hits a reliable endpoint without false outage noise."
+        }
+      ],
+      "createdAt": "2026-03-05T06:35:46Z",
+      "updatedAt": "2026-03-05T06:35:46Z"
+    },
+    {
       "id": "founder-directive-fa17614cfb",
       "title": "Founder Directive: Search No-Results UX + Hero Contrast",
       "pillar": "Product",
