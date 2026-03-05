@@ -55,6 +55,7 @@ interface ApprovedReview {
 const { profile } = Astro.props as { profile: (typeof profiles)[number] };
 const fallbackProfileImage = getProfessionalFallbackImage();
 const profileImageSrc = await resolveProfessionalImageForPublishedProfile(profile.profilePhotoUrl);
+const hasHeroMedia = Boolean(profileImageSrc && profileImageSrc !== fallbackProfileImage);
 
 const cleanListText = (value: string) => value.replace(/\s+/g, ' ').replace(/[\u0000-\u001F\u007F]/g, '').trim();
 const safeServices = (profile.services || [])
@@ -337,20 +338,22 @@ const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => 
         </section>
       )}
 
-      <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[16/9]" data-prof-media-shell data-profile-hero-media>
-        <img
-          src={profileImageSrc}
-          alt={`Φωτογραφία ${profile.name}`}
-          class="h-full w-full object-cover transition-opacity duration-300"
-          loading="eager"
-          decoding="async"
-          data-prof-media-img
-          data-fallback-src={fallbackProfileImage}
-          data-hero-media="1"
-          onerror={`this.onerror=null;const fallback='${fallbackProfileImage}';if(this.src!==fallback){this.src=fallback;this.dataset.mediaState='fallback';}else{this.closest('[data-profile-hero-media]')?.classList.add('hidden');document.querySelector('[data-profile-hero-media-note]')?.classList.remove('hidden');}`}
-        />
-      </div>
-      <p data-profile-hero-media-note class="mt-3 hidden rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600">Η φωτογραφία προφίλ δεν είναι προσωρινά διαθέσιμη. Μπορείτε να συνεχίσετε κανονικά με το κύριο αίτημα συνεργασίας.</p>
+      {hasHeroMedia ? (
+        <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[16/9]" data-prof-media-shell data-profile-hero-media>
+          <img
+            src={profileImageSrc}
+            alt={`Φωτογραφία ${profile.name}`}
+            class="h-full w-full object-cover transition-opacity duration-300"
+            loading="eager"
+            decoding="async"
+            data-prof-media-img
+            data-fallback-src={fallbackProfileImage}
+            data-hero-media="1"
+            onerror={`this.onerror=null;const fallback='${fallbackProfileImage}';if(this.src!==fallback){this.src=fallback;this.dataset.mediaState='fallback';}else{this.closest('[data-profile-hero-media]')?.classList.add('hidden');document.querySelector('[data-profile-hero-media-note]')?.classList.remove('hidden');}`}
+          />
+        </div>
+      ) : null}
+      <p data-profile-hero-media-note class={`mt-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600 ${hasHeroMedia ? 'hidden' : ''}`}>Η φωτογραφία προφίλ δεν είναι προσωρινά διαθέσιμη. Μπορείτε να συνεχίσετε κανονικά με το κύριο αίτημα συνεργασίας.</p>
 
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio?.trim() || 'Ο επαγγελματίας είναι διαθέσιμος για ανάθεση υπηρεσιών στην περιοχή του προφίλ.'}</p>
 
