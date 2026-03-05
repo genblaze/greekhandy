@@ -3,11 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build && node scripts/verify-utf8.mjs && node scripts/check-nav-health.mjs && node scripts/check-professional-media.mjs && node scripts/check-hero-readability.mjs && npm run guard:astro-source-clean",
+    "dev": "astro dev --host --port 4321",
+    "build": "astro build && node scripts/verify-utf8.mjs && node scripts/check-nav-health.mjs && node scripts/check-runtime-port-strategy.mjs && node scripts/check-professional-media.mjs && node scripts/check-hero-readability.mjs && npm run guard:astro-source-clean",
     "build:astro": "astro build",
     "test:nav-health": "node scripts/check-nav-health.mjs",
-    "preview": "astro preview",
+    "test:runtime-port-strategy": "node scripts/check-runtime-port-strategy.mjs",
+    "preview": "astro preview --host --port 4321",
     "astro": "astro",
     "test:professional-media": "node scripts/check-professional-media.mjs",
     "guard:astro-source-clean": "node scripts/guard-astro-source-clean.mjs"

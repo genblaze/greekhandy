@@ -4,8 +4,21 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { NAV_ALIAS_REDIRECTS, NAV_CLIENT_ALIAS_REDIRECTS, NAV_PLACEHOLDER_TEXT, NAV_TARGETS, PRIMARY_NAV_LINKS, TOP_NAV_LINKS } from '../src/config/navigation.js';
 
-const distClientDir = resolve(process.cwd(), 'dist', 'client');
+const distClientCandidateDir = resolve(process.cwd(), 'dist', 'client');
+const distStaticCandidateDir = resolve(process.cwd(), 'dist');
 const distServerDir = resolve(process.cwd(), 'dist', 'server');
+
+const candidateClientDirs = [distClientCandidateDir, distStaticCandidateDir];
+let distClientDir = distClientCandidateDir;
+for (const candidate of candidateClientDirs) {
+  try {
+    await access(candidate, fsConstants.R_OK);
+    distClientDir = candidate;
+    break;
+  } catch {
+    // keep trying
+  }
+}
 
 const primaryNavPaths = PRIMARY_NAV_LINKS.map((navLink) => {
   const base = (navLink.href.split('#')[0] || '/').replace(/\/+$/, '') || '/';

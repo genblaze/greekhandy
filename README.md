@@ -68,6 +68,11 @@ npm install
 npm run dev
 ```
 
+Canonical local app URL: `http://localhost:4321`
+
+- QA and automation should target **4321** only.
+- Port **4322** is deprecated for this app and should not appear in runbooks or checks.
+
 ## Build
 
 ```bash
