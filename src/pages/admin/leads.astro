@@ -278,6 +278,7 @@ const hasLeads = directoryData.leads.length > 0;
                   <button type="button" data-bulk-outreach-undo aria-label="Αναίρεση τελευταίας μαζικής ενημέρωσης επικοινωνίας" aria-keyshortcuts="Alt+Z" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Αναίρεση outreach</button>
                   <button type="button" data-shortcuts-help aria-label="Εμφάνιση λίστας συντομεύσεων πληκτρολογίου" aria-keyshortcuts="Shift+?" class="inline-flex min-h-8 items-center rounded-md border border-slate-300 bg-white px-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">Συντομεύσεις</button>
                   <p id="leads-selection-summary" data-selection-summary class="text-xs font-medium text-slate-600" role="status" aria-live="polite" aria-atomic="true">0 επιλεγμένα</p>
+                  <p data-operation-feedback class="text-[11px] text-slate-600" role="status" aria-live="polite">Καμία πρόσφατη ενέργεια.</p>
                   <p data-bulk-impact-preview class="text-[11px] text-slate-500" aria-live="polite">Impact preview: 0 για outreach/segment/follow-up.</p>
                   <p data-bulk-action-preview class="text-[11px] text-slate-500" aria-live="polite">Προεπισκόπηση ενεργειών: outreach 0 • segment 0 • follow-up 0</p>
                   <p data-bulk-confirmation-preview class="text-[11px] text-slate-500" aria-live="polite">Επιβεβαίωση: μονή επιβεβαίωση (low-volume).</p>
@@ -586,6 +587,7 @@ const hasLeads = directoryData.leads.length > 0;
         const bulkOutreachUndo = root.querySelector('[data-bulk-outreach-undo]');
         const shortcutsHelpButton = root.querySelector('[data-shortcuts-help]');
         const selectionSummary = root.querySelector('[data-selection-summary]');
+        const operationFeedback = root.querySelector('[data-operation-feedback]');
         const bulkImpactPreview = root.querySelector('[data-bulk-impact-preview]');
         const bulkActionPreview = root.querySelector('[data-bulk-action-preview]');
         const bulkConfirmationPreview = root.querySelector('[data-bulk-confirmation-preview]');
@@ -649,6 +651,7 @@ const hasLeads = directoryData.leads.length > 0;
         const SEGMENT_STORAGE_KEY = 'admin-leads-segment-v1';
         const NOTES_STORAGE_KEY = 'admin-leads-notes-v1';
         const NEXT_ACTION_STORAGE_KEY = 'admin-leads-next-action-v1';
+        const SELECTION_STORAGE_KEY = 'admin-leads-selection-v1';
         const CONTACTED_FILTER_VALUES = ['all', 'contacted', 'not-contacted'];
         const CONTACTED_FILTER_LABELS = {
           all: 'Όλα',
@@ -714,6 +717,16 @@ const hasLeads = directoryData.leads.length > 0;
           if (selectionLastAction instanceof HTMLElement) {
             selectionLastAction.textContent = `Τελευταία ενέργεια: ${message}`;
           }
+        };
+
+        const setOperationFeedback = (type, message) => {
+          if (!(operationFeedback instanceof HTMLElement)) return;
+          operationFeedback.textContent = message;
+          operationFeedback.classList.remove('text-slate-600', 'text-emerald-700', 'text-rose-700', 'text-amber-700');
+          if (type === 'success') operationFeedback.classList.add('text-emerald-700');
+          else if (type === 'error') operationFeedback.classList.add('text-rose-700');
+          else if (type === 'warn') operationFeedback.classList.add('text-amber-700');
+          else operationFeedback.classList.add('text-slate-600');
         };
 
         const toMaybeTimestamp = (value) => {
@@ -785,6 +798,23 @@ const hasLeads = directoryData.leads.length > 0;
         let nextActionState = readMapState(NEXT_ACTION_STORAGE_KEY);
         const selectedLeadIds = new Set();
 
+        const readStoredSelection = () => {
+          try {
+            const parsed = JSON.parse(sessionStorage.getItem(SELECTION_STORAGE_KEY) || '[]');
+            return Array.isArray(parsed) ? parsed : [];
+          } catch {
+            return [];
+          }
+        };
+
+        const persistSelection = () => {
+          try {
+            sessionStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(Array.from(selectedLeadIds).slice(0, 500)));
+          } catch {
+            // ignore storage errors
+          }
+        };
+
         const parsedCards = cards
           .filter((card) => card instanceof HTMLElement)
           .map((card) => {
@@ -843,6 +873,11 @@ const hasLeads = directoryData.leads.length > 0;
               nextAction
             };
           });
+
+        const existingLeadIds = new Set(parsedCards.map((entry) => entry.id).filter(Boolean));
+        readStoredSelection().forEach((id) => {
+          if (typeof id === 'string' && existingLeadIds.has(id)) selectedLeadIds.add(id);
+        });
 
         const categoryLabelByValue = new Map();
         categoryTabs.forEach((tab) => {
@@ -1209,6 +1244,7 @@ const hasLeads = directoryData.leads.length > 0;
             announceState(`Υψηλός όγκος επιλογής: ${count} leads. Οι bulk ενέργειες θα ζητούν διπλή επιβεβαίωση για ασφάλεια.`);
           }
           previousSelectionCount = count;
+          persistSelection();
         };
 
         const renderStatusChip = (entry) => {
@@ -2133,6 +2169,7 @@ const hasLeads = directoryData.leads.length > 0;
           });
           renderSelectionState();
           if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Επιλέχθηκαν ${selectedLeadIds.size} leads.`;
+          setOperationFeedback('success', `Επιλογή ενημερώθηκε: ${selectedLeadIds.size} leads.`);
         });
 
         selectSegmentVisibleButtons.forEach((button) => {
@@ -2157,11 +2194,13 @@ const hasLeads = directoryData.leads.length > 0;
         clearSelectionButton?.addEventListener('click', () => {
           selectedLeadIds.clear();
           renderSelectionState();
+          setOperationFeedback('neutral', 'Η επιλογή καθαρίστηκε.');
         });
 
         selectionDockClear?.addEventListener('click', () => {
           selectedLeadIds.clear();
           renderSelectionState();
+          setOperationFeedback('neutral', 'Η επιλογή καθαρίστηκε από το dock.');
         });
 
         const applyBulkOutreach = (targetContacted) => {
@@ -2172,6 +2211,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (impacted === 0) {
             if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Δεν απαιτείται αλλαγή: όλα τα επιλεγμένα leads είναι ήδη σε κατάσταση "${nextLabel}".`;
             setLastActionNote(`Καμία αλλαγή: outreach ήδη σε "${nextLabel}"`);
+            setOperationFeedback('warn', `Καμία αλλαγή: outreach ήδη σε "${nextLabel}".`);
             return;
           }
 
@@ -2216,6 +2256,9 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ενημερώθηκαν ${changed} leads σε "${nextLabel}". Η αναίρεση παραμένει διαθέσιμη για ${BULK_UNDO_WINDOW_MINUTES} λεπτά.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk ενέργεια.';
           }
+          setOperationFeedback(changed > 0 ? 'success' : 'warn', changed > 0
+            ? `Bulk outreach επιτυχές: ${changed} leads σε "${nextLabel}".`
+            : 'Δεν εκτελέστηκε bulk outreach: μηδενική επιλογή.');
           if (changed > 0) {
             const undoUntil = new Date(Date.now() + BULK_UNDO_WINDOW_MS).toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' });
             setLastActionNote(`Bulk outreach → ${nextLabel} (${changed} leads, αναίρεση έως ${undoUntil})`);

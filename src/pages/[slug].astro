@@ -717,11 +717,13 @@ const faqSchema = pageCategory.faq?.length ? {
             </div>
             <div>
               <label for="lead-email" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>
-              <input id="lead-email" name="email" type="email" required autocomplete="email" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <input id="lead-email" name="email" type="email" required autocomplete="email" aria-describedby="lead-email-error" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <p id="lead-email-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρο email επικοινωνίας.</p>
             </div>
             <div>
               <label for="lead-description" class="mb-1 block text-sm font-semibold text-gray-800">Περιγραφή εργασίας *</label>
-              <textarea id="lead-description" name="description" rows="4" minlength="15" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Περιγράψτε συνοπτικά τι χρειάζεστε..."></textarea>
+              <textarea id="lead-description" name="description" rows="4" minlength="15" required aria-describedby="lead-description-error" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Περιγράψτε συνοπτικά τι χρειάζεστε..."></textarea>
+              <p id="lead-description-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Προσθέστε σύντομη περιγραφή (τουλάχιστον 15 χαρακτήρες).</p>
             </div>
 
             <div class="hidden" aria-hidden="true">
@@ -732,9 +734,10 @@ const faqSchema = pageCategory.faq?.length ? {
 
           <div class="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-3">
             <label for="lead-consent" class="flex items-start gap-2 text-sm text-slate-700">
-              <input id="lead-consent" name="consent" type="checkbox" required class="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700 focus:ring-blue-500" />
-              <span>Συμφωνώ με την επεξεργασία των στοιχείων μου για επικοινωνία σχετικά με το αίτημα. Διαβάστε την <a href="/politiki-aporritou" class="font-semibold text-blue-700 underline underline-offset-2">Πολιτική Απορρήτου</a>.</span>
+              <input id="lead-consent" name="consent" type="checkbox" required aria-describedby="lead-consent-help lead-consent-error" class="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700 focus:ring-blue-500" />
+              <span id="lead-consent-help">Συμφωνώ με την επεξεργασία των στοιχείων μου για επικοινωνία σχετικά με το αίτημα. Διαβάστε την <a href="/politiki-aporritou" class="font-semibold text-blue-700 underline underline-offset-2">Πολιτική Απορρήτου</a>.</span>
             </label>
+            <p id="lead-consent-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Απαιτείται συγκατάθεση για την αποστολή του αιτήματος.</p>
           </div>
 
           <button id="form-submit" type="submit" class="mt-5 w-full rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">
