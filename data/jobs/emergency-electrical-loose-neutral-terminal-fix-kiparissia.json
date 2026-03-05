@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-loose-neutral-terminal-fix-kiparissia",
+  "slug": "epigousa-episkevi-xalarou-oudeterou-ston-pinaka-kiparissia",
+  "nameGr": "Επείγουσα Επισκευή Χαλαρού Ουδετέρου στον Πίνακα στην Κυπαρισσία",
+  "nameEn": "Emergency Electrical Loose Neutral Terminal Fix in Κυπαρισσία",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή χαλαρού ουδετέρου στον πίνακα στην Κυπαρισσία για σταθεροποίηση τάσης και αποφυγή ζημιών. SEO intent: «αστάθεια τάσης σπίτι Κυπαρισσία».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "αστάθεια τάσης σπίτι Κυπαρισσία",
+    "χαλαρός ουδέτερος πίνακας",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "σκαμπανεβάσματα ρεύματος λύση",
+    "επισκευή κεντρικού πίνακα"
+  ],
+  "status": "researched"
+}

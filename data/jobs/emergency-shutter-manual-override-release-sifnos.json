@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-manual-override-release-sifnos",
+  "slug": "epigousa-apasfalisi-manoual-rolou-sifnos",
+  "nameGr": "Επείγουσα Απασφάλιση Manual Ρολού στη Σίφνο",
+  "nameEn": "Emergency Shutter Manual Override Release in Σίφνος",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα απασφάλιση manual ρολού στη Σίφνο όταν το μοτέρ δεν αποκρίνεται και απαιτείται άμεση πρόσβαση. SEO intent: «ρολό δεν ανοίγει καθόλου Σίφνος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "ρολό δεν ανοίγει καθόλου Σίφνος",
+    "manual override ρολού",
+    "τεχνικός ρολών επείγον",
+    "απασφάλιση μοτέρ ρολού",
+    "service ρολού άμεσα"
+  ],
+  "status": "researched"
+}

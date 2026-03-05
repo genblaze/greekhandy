@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-drain-trap-unblock-kalampaki",
+  "slug": "epigousa-apofraxi-pagidas-aporrois-ac-kalampaki",
+  "nameGr": "Επείγουσα Απόφραξη Παγίδας Απορροής AC στο Καλαμπάκι",
+  "nameEn": "Emergency AC Drain Trap Unblock in Καλαμπάκι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα απόφραξη παγίδας απορροής AC στο Καλαμπάκι για να σταματήσει η επιστροφή νερών στην εσωτερική μονάδα. SEO intent: «ac επιστρέφει νερά Καλαμπάκι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "ac επιστρέφει νερά Καλαμπάκι",
+    "απόφραξη απορροής κλιματιστικού",
+    "τεχνικός ac επείγον",
+    "service drain trap ac",
+    "διαρροή εσωτερικής μονάδας λύση"
+  ],
+  "status": "researched"
+}

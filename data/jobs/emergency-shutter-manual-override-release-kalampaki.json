@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-manual-override-release-kalampaki",
+  "slug": "epigousa-apasfalisi-manoual-rolou-kalampaki",
+  "nameGr": "Επείγουσα Απασφάλιση Manual Ρολού στο Καλαμπάκι",
+  "nameEn": "Emergency Shutter Manual Override Release in Καλαμπάκι",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα απασφάλιση manual ρολού στο Καλαμπάκι όταν το μοτέρ δεν αποκρίνεται και απαιτείται άμεση πρόσβαση. SEO intent: «ρολό δεν ανοίγει καθόλου Καλαμπάκι».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "ρολό δεν ανοίγει καθόλου Καλαμπάκι",
+    "manual override ρολού",
+    "τεχνικός ρολών επείγον",
+    "απασφάλιση μοτέρ ρολού",
+    "service ρολού άμεσα"
+  ],
+  "status": "researched"
+}

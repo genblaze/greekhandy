@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-loose-neutral-terminal-fix-sifnos",
+  "slug": "epigousa-episkevi-xalarou-oudeterou-ston-pinaka-sifnos",
+  "nameGr": "Επείγουσα Επισκευή Χαλαρού Ουδετέρου στον Πίνακα στη Σίφνο",
+  "nameEn": "Emergency Electrical Loose Neutral Terminal Fix in Σίφνος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή χαλαρού ουδετέρου στον πίνακα στη Σίφνο για σταθεροποίηση τάσης και αποφυγή ζημιών. SEO intent: «αστάθεια τάσης σπίτι Σίφνος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "αστάθεια τάσης σπίτι Σίφνος",
+    "χαλαρός ουδέτερος πίνακας",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "σκαμπανεβάσματα ρεύματος λύση",
+    "επισκευή κεντρικού πίνακα"
+  ],
+  "status": "researched"
+}

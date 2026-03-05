@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-rainwater-first-flush-clean-sifnos",
+  "slug": "epochiakos-katharismos-first-flush-vroxinou-nerou-sifnos",
+  "nameGr": "Εποχικός Καθαρισμός First-Flush Βρόχινου Νερού στη Σίφνο",
+  "nameEn": "Seasonal Rainwater First-Flush Clean in Σίφνος",
+  "categoryId": "gardeners",
+  "categorySlug": "kipouroi",
+  "intent": "Εποχικός καθαρισμός συστήματος first-flush στη Σίφνο για καλύτερη ποιότητα συλλεγόμενου βρόχινου νερού. SEO intent: «first flush καθαρισμός Σίφνος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "first flush καθαρισμός Σίφνος",
+    "συλλογή βρόχινου νερού συντήρηση",
+    "τεχνικός δεξαμενής κήπου",
+    "καθαρισμός φίλτρων βρόχινου",
+    "seasonal rainwater service"
+  ],
+  "status": "researched"
+}
