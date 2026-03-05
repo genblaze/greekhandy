@@ -119,18 +119,18 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
           <div>
             <h3 class="mb-3 text-lg font-semibold text-slate-900">Δημοφιλείς Υπηρεσίες</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href={NAV_TARGETS.guides} class="transition hover:text-slate-900">Οδηγοί GreekHandy</a></li>
-              <li><a href="/ilektrologoi" class="transition hover:text-slate-900">Ηλεκτρολόγοι</a></li>
-              <li><a href="/ydravlikoi" class="transition hover:text-slate-900">Υδραυλικοί</a></li>
-              <li><a href="/elaiokhrwmatistes" class="transition hover:text-slate-900">Ελαιοχρωματιστές</a></li>
-              <li><a href="/katharismoi" class="transition hover:text-slate-900">Καθαρισμοί</a></li>
-              <li><a href="/techniki-klimatismou" class="transition hover:text-slate-900">Κλιματισμός</a></li>
+              <li>{isRouteActive(NAV_TARGETS.guides) ? <span class="text-slate-900" aria-current="page">Οδηγοί GreekHandy</span> : <a href={NAV_TARGETS.guides} class="transition hover:text-slate-900">Οδηγοί GreekHandy</a>}</li>
+              <li>{isRouteActive('/ilektrologoi') ? <span class="text-slate-900" aria-current="page">Ηλεκτρολόγοι</span> : <a href="/ilektrologoi" class="transition hover:text-slate-900">Ηλεκτρολόγοι</a>}</li>
+              <li>{isRouteActive('/ydravlikoi') ? <span class="text-slate-900" aria-current="page">Υδραυλικοί</span> : <a href="/ydravlikoi" class="transition hover:text-slate-900">Υδραυλικοί</a>}</li>
+              <li>{isRouteActive('/elaiokhrwmatistes') ? <span class="text-slate-900" aria-current="page">Ελαιοχρωματιστές</span> : <a href="/elaiokhrwmatistes" class="transition hover:text-slate-900">Ελαιοχρωματιστές</a>}</li>
+              <li>{isRouteActive('/katharismoi') ? <span class="text-slate-900" aria-current="page">Καθαρισμοί</span> : <a href="/katharismoi" class="transition hover:text-slate-900">Καθαρισμοί</a>}</li>
+              <li>{isRouteActive('/techniki-klimatismou') ? <span class="text-slate-900" aria-current="page">Κλιματισμός</span> : <a href="/techniki-klimatismou" class="transition hover:text-slate-900">Κλιματισμός</a>}</li>
             </ul>
           </div>
           <div>
             <h3 class="mb-3 text-lg font-semibold text-slate-900">Επικοινωνία</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href={NAV_TARGETS.contact} class="transition hover:text-slate-900">Σελίδα επικοινωνίας</a></li>
+              <li>{isRouteActive(NAV_TARGETS.contact) ? <span class="text-slate-900" aria-current="page">Σελίδα επικοινωνίας</span> : <a href={NAV_TARGETS.contact} class="transition hover:text-slate-900">Σελίδα επικοινωνίας</a>}</li>
               <li><a href="mailto:info@greekhandy.gr" class="transition hover:text-slate-900">info@greekhandy.gr</a></li>
             </ul>
           </div>
