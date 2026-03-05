@@ -14,6 +14,7 @@ type RegistrationInput = {
   email: string;
   areasServed: string;
   bio: string;
+  gdprConsent?: string;
 };
 
 const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
@@ -33,6 +34,22 @@ const jsonError = (status: number, code: string, message: string, fieldErrors?: 
     headers: { 'content-type': 'application/json; charset=utf-8' }
   });
 
+const buildRegisterRedirect = (status: 'invalid' | 'error', input: Partial<RegistrationInput> = {}, fieldErrors: Record<string, string> = {}) => {
+  const search = new URLSearchParams({ status });
+  const allowedFields: Array<keyof RegistrationInput> = ['name', 'profession', 'city', 'phone', 'email', 'areasServed', 'bio'];
+
+  for (const key of allowedFields) {
+    const value = clean(input[key]);
+    if (value) search.set(`v_${key}`, value);
+  }
+
+  for (const [key, value] of Object.entries(fieldErrors)) {
+    if (value) search.set(`e_${key}`, value);
+  }
+
+  return `/professionals/register?${search.toString()}`;
+};
+
 const extractInput = async (request: Request): Promise<RegistrationInput> => {
   const contentType = request.headers.get('content-type') || '';
 
@@ -45,7 +62,8 @@ const extractInput = async (request: Request): Promise<RegistrationInput> => {
       phone: max(clean(body.phone), 40),
       email: max(clean(body.email).toLowerCase(), 160),
       areasServed: max(clean(body.areasServed), 300),
-      bio: max(clean(body.bio), 2000)
+      bio: max(clean(body.bio), 2000),
+      gdprConsent: clean(body.gdprConsent)
     };
   }
 
@@ -58,7 +76,8 @@ const extractInput = async (request: Request): Promise<RegistrationInput> => {
       phone: max(clean(params.get('phone')), 40),
       email: max(clean(params.get('email')).toLowerCase(), 160),
       areasServed: max(clean(params.get('areasServed')), 300),
-      bio: max(clean(params.get('bio')), 2000)
+      bio: max(clean(params.get('bio')), 2000),
+      gdprConsent: clean(params.get('gdprConsent'))
     };
   }
 
@@ -70,7 +89,8 @@ const extractInput = async (request: Request): Promise<RegistrationInput> => {
     phone: max(clean(formData.get('phone')), 40),
     email: max(clean(formData.get('email')).toLowerCase(), 160),
     areasServed: max(clean(formData.get('areasServed')), 300),
-    bio: max(clean(formData.get('bio')), 2000)
+    bio: max(clean(formData.get('bio')), 2000),
+    gdprConsent: clean(formData.get('gdprConsent'))
   };
 };
 
@@ -83,6 +103,7 @@ const validateInput = (input: RegistrationInput) => {
   if (!input.email) fieldErrors.email = 'Το email είναι υποχρεωτικό.';
   else if (!isValidEmail(input.email)) fieldErrors.email = 'Το email δεν είναι έγκυρο.';
   if (!input.bio) fieldErrors.bio = 'Το βιογραφικό είναι υποχρεωτικό.';
+  if (!input.gdprConsent) fieldErrors.gdprConsent = 'Χρειάζεται αποδοχή της Πολιτικής Απορρήτου.';
   return fieldErrors;
 };
 
@@ -129,17 +150,26 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   } catch {
     return asJson
       ? jsonError(400, 'INVALID_BODY', 'Το σώμα του αιτήματος δεν είναι έγκυρο.')
-      : redirect('/professionals/thank-you?status=invalid', 303);
+      : redirect(buildRegisterRedirect('invalid', {}, { form: 'Η υποβολή δεν ήταν έγκυρη. Ελέγξτε τα πεδία και δοκιμάστε ξανά.' }), 303);
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect('/professionals/thank-you?status=invalid', 303);
+      : redirect(buildRegisterRedirect('invalid', input, fieldErrors), 303);
   }
 
-  const registration = { ...input, submittedAt: new Date().toISOString() };
+  const registration = {
+    name: input.name,
+    profession: input.profession,
+    city: input.city,
+    phone: input.phone,
+    email: input.email,
+    areasServed: input.areasServed,
+    bio: input.bio,
+    submittedAt: new Date().toISOString()
+  };
 
   try {
     await mkdir(dirname(REGISTRATIONS_FILE_PATH), { recursive: true });
@@ -153,6 +183,6 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     console.error(`[professional-registration] failed: ${message}`);
     return asJson
       ? jsonError(500, 'REGISTRATION_FAILED', 'Αδυναμία αποθήκευσης εγγραφής αυτή τη στιγμή.')
-      : redirect('/professionals/thank-you?status=error', 303);
+      : redirect(buildRegisterRedirect('error', input, { form: 'Δεν ολοκληρώθηκε η αποστολή. Προσπαθήστε ξανά.' }), 303);
   }
 };
