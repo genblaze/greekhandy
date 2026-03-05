@@ -23,7 +23,6 @@ export const PRIMARY_NAV_LINKS = Object.freeze([
 ]);
 
 export const NAV_ALIAS_REDIRECTS = Object.freeze({
-  '/odigoi': NAV_TARGETS.guides,
   '/guides': NAV_TARGETS.guides,
   '/epaggelmaties': NAV_TARGETS.professionals,
   '/pros': NAV_TARGETS.professionals,
