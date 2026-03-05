@@ -555,7 +555,7 @@ const faqSchema = pageCategory.faq?.length ? {
                 </div>
               </div>
               <div id="subjobs-grid" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-subjobs-grid>
-                {subJobs.map((job: any, index: number) => {
+                {renderedSubJobs.map((job: any, index: number) => {
                   const urgencyValue = isUrgentJob(job) ? 'urgent' : 'standard';
                   const cityValue = getJobCity(job);
                   const budgetValue = classifyBudget(job.summary?.priceRangeEUR);
@@ -671,9 +671,9 @@ const faqSchema = pageCategory.faq?.length ? {
                 })}
               </div>
 
-              {subJobs.length > initialVisibleSubJobs && (
+              {renderedSubJobs.length > initialVisibleSubJobs && (
                 <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
-                  <p class="text-sm text-slate-600" data-subjobs-count aria-live="polite">Εμφανίζονται {initialVisibleSubJobs} από {subJobs.length} υπηρεσίες.</p>
+                  <p class="text-sm text-slate-600" data-subjobs-count aria-live="polite">Εμφανίζονται {Math.min(initialVisibleSubJobs, renderedSubJobs.length)} από {renderedSubJobs.length} υπηρεσίες.</p>
                   <p class="text-xs text-slate-500" data-page-indicator aria-live="polite">Σελίδα 1</p>
                   <p class="sr-only" data-subjobs-a11y-summary aria-live="polite" aria-atomic="true"></p>
                   <div class="flex items-center gap-2">
@@ -685,6 +685,10 @@ const faqSchema = pageCategory.faq?.length ? {
                 <noscript>
                   <p class="mt-2 text-sm text-slate-600">Για πλήρη εξερεύνηση όλων των υπηρεσιών χωρίς φίλτρα JavaScript, χρησιμοποιήστε τα links της σελίδας κατηγορίας και τις επιμέρους υπηρεσίες παρακάτω.</p>
                 </noscript>
+              )}
+
+              {serverRenderedSubJobsLimit < subJobs.length && (
+                <p class="mt-3 text-xs text-slate-500">Για ταχύτερη φόρτωση εμφανίζεται επιλεγμένο υποσύνολο υπηρεσιών ({renderedSubJobs.length}/{subJobs.length}). Χρησιμοποιήστε τα φίλτρα για πιο στοχευμένη επιλογή.</p>
               )}
 
               <nav class="sr-only" aria-label="Κατάλογος βασικών υπηρεσιών για SEO crawlability">
