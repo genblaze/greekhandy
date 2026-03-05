@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-zone-pressure-check-paleokklisi-thesprotias",
+  "slug": "epochiakos-elegxos-piesis-zonis-epistrofis-thermansis-paleokklisi-thesprotias",
+  "nameGr": "Εποχικός Έλεγχος Πίεσης Ζώνης Επιστροφής Θέρμανσης στο Παλαιοκκλήσι Θεσπρωτίας",
+  "nameEn": "Seasonal Heating Return Zone Pressure Check in Παλαιοκκλήσι Θεσπρωτίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος πίεσης ζώνης επιστροφής θέρμανσης στο Παλαιοκκλήσι Θεσπρωτίας για ισορροπημένη λειτουργία και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιοκκλήσι Θεσπρωτίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

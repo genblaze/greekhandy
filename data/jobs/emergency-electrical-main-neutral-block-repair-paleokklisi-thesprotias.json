@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-block-repair-paleokklisi-thesprotias",
+  "slug": "epigousa-episkevi-block-oudeterou-kentrikis-paroxis-paleokklisi-thesprotias",
+  "nameGr": "Επείγουσα Επισκευή Block Ουδετέρου Κεντρικής Παροχής στο Παλαιοκκλήσι Θεσπρωτίας",
+  "nameEn": "Emergency Electrical Main Neutral Block Repair in Παλαιοκκλήσι Θεσπρωτίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή block ουδετέρου κεντρικής παροχής στο Παλαιοκκλήσι Θεσπρωτίας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Παλαιοκκλήσι Θεσπρωτίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-zone-pressure-check-agioi-theodoroi-fthiotidas",
+  "slug": "epochiakos-elegxos-piesis-zonis-epistrofis-thermansis-agioi-theodoroi-fthiotidas",
+  "nameGr": "Εποχικός Έλεγχος Πίεσης Ζώνης Επιστροφής Θέρμανσης στους Αγίους Θεοδώρους Φθιώτιδας",
+  "nameEn": "Seasonal Heating Return Zone Pressure Check in Άγιοι Θεόδωροι Φθιώτιδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος πίεσης ζώνης επιστροφής θέρμανσης στους Αγίους Θεοδώρους Φθιώτιδας για ισορροπημένη λειτουργία και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιοι Θεόδωροι Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

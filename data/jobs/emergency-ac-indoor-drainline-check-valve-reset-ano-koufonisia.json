@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-check-valve-reset-ano-koufonisia",
+  "slug": "epigousa-epanafora-valvidas-elegxou-grammis-aporrois-esoterikou-ac-ano-koufonisia",
+  "nameGr": "Επείγουσα Επαναφορά Βαλβίδας Ελέγχου Γραμμής Απορροής Εσωτερικού AC στα Άνω Κουφονήσια",
+  "nameEn": "Emergency AC Indoor Drainline Check Valve Reset in Άνω Κουφονήσια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά βαλβίδας ελέγχου γραμμής απορροής εσωτερικού AC στα Άνω Κουφονήσια για αποφυγή επιστροφής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άνω Κουφονήσια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

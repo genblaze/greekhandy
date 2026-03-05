@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-block-repair-agioi-theodoroi-fthiotidas",
+  "slug": "epigousa-episkevi-block-oudeterou-kentrikis-paroxis-agioi-theodoroi-fthiotidas",
+  "nameGr": "Επείγουσα Επισκευή Block Ουδετέρου Κεντρικής Παροχής στους Αγίους Θεοδώρους Φθιώτιδας",
+  "nameEn": "Emergency Electrical Main Neutral Block Repair in Άγιοι Θεόδωροι Φθιώτιδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή block ουδετέρου κεντρικής παροχής στους Αγίους Θεοδώρους Φθιώτιδας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιοι Θεόδωροι Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

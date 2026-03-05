@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-zone-pressure-check-ano-koufonisia",
+  "slug": "epochiakos-elegxos-piesis-zonis-epistrofis-thermansis-ano-koufonisia",
+  "nameGr": "Εποχικός Έλεγχος Πίεσης Ζώνης Επιστροφής Θέρμανσης στα Άνω Κουφονήσια",
+  "nameEn": "Seasonal Heating Return Zone Pressure Check in Άνω Κουφονήσια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος πίεσης ζώνης επιστροφής θέρμανσης στα Άνω Κουφονήσια για ισορροπημένη λειτουργία και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άνω Κουφονήσια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
