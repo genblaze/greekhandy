@@ -1,6 +1,51 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-13",
+      "title": "QA Critical Fixes Wave 13",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA blockers on hero readability, professionals trust credibility, broken profile service/portfolio UI blocks, and public messaging flow language/auth gating.",
+      "acceptanceCriteria": [
+        "Homepage hero typography/colors pass WCAG AA and core value proposition is readable on desktop+mobile in first view.",
+        "/professionals cards avoid synthetic placeholder feel by using credible media fallbacks and stronger trust proof cues.",
+        "Profile service section UI corruption/overflow is removed and core service details are legible.",
+        "Profile portfolio section only renders valid media; empty/broken showcase states are hidden or replaced safely.",
+        "Public /messages no longer exposes internal jargon/diagnostics and uses clean Greek user-facing flow (or auth gate)."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-13-task-1",
+          "source": "qa-agent",
+          "directive": "Homepage hero is still visually broken on desktop and mobile: primary headline/body text is nearly invisible against the pale background, so users cannot read the core value proposition. Rebuild the hero color/typography system to pass WCAG AA contrast and make the message readable in under 2 seconds."
+        },
+        {
+          "id": "qa-critical-fixes-wave-13-task-2",
+          "source": "qa-agent",
+          "directive": "The /professionals grid still looks fake and templated: every card shows 'VERIFIED PLACEHOLDER' with initials-only avatars instead of credible identity. Replace synthetic placeholder presentation with real profile media or clearly branded fallback assets, and surface stronger trust proof (real review evidence, verification context, completed jobs)."
+        },
+        {
+          "id": "qa-critical-fixes-wave-13-task-3",
+          "source": "qa-agent",
+          "directive": "Professional profile page /professionals/giannis-kosta-klimatismos has a broken UI block in 'ΒΑΣΙΚΕΣ ΥΠΗΡΕΣΙΕΣ ΠΡΟΦΙΛ' (oversized blue pill/overlay with unreadable content). Fix layout/styles so service info is actually legible and remove any overflow artifact that makes the section look corrupted."
+        },
+        {
+          "id": "qa-critical-fixes-wave-13-task-4",
+          "source": "qa-agent",
+          "directive": "Same profile page ships unfinished portfolio visuals (empty/broken media blocks and generic placeholder avatar panel), which kills credibility for a paid marketplace. Require real portfolio assets per pro or hide the section until valid media exists; do not publish half-empty showcase components."
+        },
+        {
+          "id": "qa-critical-fixes-wave-13-task-5",
+          "source": "qa-agent",
+          "directive": "Public /messages page still exposes internal thread jargon and mixed-language UX ('MESSAGING ENTRY', 'thread id', 'viewer email δεν δόθηκε') to anonymous users. Replace this with a clean Greek user-facing flow (or gate behind authentication) and remove technical diagnostics from public copy."
+        }
+      ],
+      "createdAt": "2026-03-05T02:35:51Z",
+      "updatedAt": "2026-03-05T02:35:51Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-12",
       "title": "QA Critical Fixes Wave 12",
       "pillar": "Product",

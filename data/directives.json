@@ -1,31 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Homepage hero is still visually broken on desktop and mobile: primary headline/body text is nearly invisible against the pale background, so users cannot read the core value proposition. Rebuild the hero color/typography system to pass WCAG AA contrast and make the message readable in under 2 seconds.",
-      "addedAt": "2026-03-05T02:33:11Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "The /professionals grid still looks fake and templated: every card shows 'VERIFIED PLACEHOLDER' with initials-only avatars instead of credible identity. Replace synthetic placeholder presentation with real profile media or clearly branded fallback assets, and surface stronger trust proof (real review evidence, verification context, completed jobs).",
-      "addedAt": "2026-03-05T02:33:11Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Professional profile page /professionals/giannis-kosta-klimatismos has a broken UI block in 'ΒΑΣΙΚΕΣ ΥΠΗΡΕΣΙΕΣ ΠΡΟΦΙΛ' (oversized blue pill/overlay with unreadable content). Fix layout/styles so service info is actually legible and remove any overflow artifact that makes the section look corrupted.",
-      "addedAt": "2026-03-05T02:33:11Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Same profile page ships unfinished portfolio visuals (empty/broken media blocks and generic placeholder avatar panel), which kills credibility for a paid marketplace. Require real portfolio assets per pro or hide the section until valid media exists; do not publish half-empty showcase components.",
-      "addedAt": "2026-03-05T02:33:11Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Public /messages page still exposes internal thread jargon and mixed-language UX ('MESSAGING ENTRY', 'thread id', 'viewer email δεν δόθηκε') to anonymous users. Replace this with a clean Greek user-facing flow (or gate behind authentication) and remove technical diagnostics from public copy.",
-      "addedAt": "2026-03-05T02:33:11Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -440,6 +414,36 @@
       "addedAt": "2026-03-05T02:03:53Z",
       "source": "qa-agent",
       "processedAt": "2026-03-05T02:05:41Z"
+    },
+    {
+      "directive": "Homepage hero is still visually broken on desktop and mobile: primary headline/body text is nearly invisible against the pale background, so users cannot read the core value proposition. Rebuild the hero color/typography system to pass WCAG AA contrast and make the message readable in under 2 seconds.",
+      "addedAt": "2026-03-05T02:33:11Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T02:35:51Z"
+    },
+    {
+      "directive": "The /professionals grid still looks fake and templated: every card shows 'VERIFIED PLACEHOLDER' with initials-only avatars instead of credible identity. Replace synthetic placeholder presentation with real profile media or clearly branded fallback assets, and surface stronger trust proof (real review evidence, verification context, completed jobs).",
+      "addedAt": "2026-03-05T02:33:11Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T02:35:51Z"
+    },
+    {
+      "directive": "Professional profile page /professionals/giannis-kosta-klimatismos has a broken UI block in 'ΒΑΣΙΚΕΣ ΥΠΗΡΕΣΙΕΣ ΠΡΟΦΙΛ' (oversized blue pill/overlay with unreadable content). Fix layout/styles so service info is actually legible and remove any overflow artifact that makes the section look corrupted.",
+      "addedAt": "2026-03-05T02:33:11Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T02:35:51Z"
+    },
+    {
+      "directive": "Same profile page ships unfinished portfolio visuals (empty/broken media blocks and generic placeholder avatar panel), which kills credibility for a paid marketplace. Require real portfolio assets per pro or hide the section until valid media exists; do not publish half-empty showcase components.",
+      "addedAt": "2026-03-05T02:33:11Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T02:35:51Z"
+    },
+    {
+      "directive": "Public /messages page still exposes internal thread jargon and mixed-language UX ('MESSAGING ENTRY', 'thread id', 'viewer email δεν δόθηκε') to anonymous users. Replace this with a clean Greek user-facing flow (or gate behind authentication) and remove technical diagnostics from public copy.",
+      "addedAt": "2026-03-05T02:33:11Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T02:35:51Z"
     }
   ]
 }
