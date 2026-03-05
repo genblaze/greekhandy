@@ -1,6 +1,51 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-18",
+      "title": "QA Critical Fixes Wave 18",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported credibility, duplicate-content, encoding-header consistency, and profile/homepage trust blockers across homepage, professionals, guides, and HTML response handling.",
+      "acceptanceCriteria": [
+        "Homepage hero copy/contrast is clearly readable on mobile and desktop and passes WCAG AA.",
+        "/professionals cards expose no placeholder labels or zero-value synthetic trust metrics.",
+        "Professional profile pages hide empty portfolio sections and show compact empty-state when no media exists.",
+        "Guide hub has one canonical URL with 301 redirect from duplicate path and aligned internal links.",
+        "All HTML routes return text/html; charset=utf-8 consistently."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-18-task-1",
+          "source": "qa-agent",
+          "directive": "Mobile homepage hero still fails basic readability: the main headline/body text is too low-contrast against the pale background and looks washed out on first screen. Rework mobile hero colors + typography to pass WCAG AA and make the value proposition instantly legible."
+        },
+        {
+          "id": "qa-critical-fixes-wave-18-task-2",
+          "source": "qa-agent",
+          "directive": "/professionals still reads like fake staging data: cards expose 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' plus zeroed trust metrics (0/100), which destroys marketplace credibility. Remove placeholder labels/metrics from public UI until backed by real verified data."
+        },
+        {
+          "id": "qa-critical-fixes-wave-18-task-3",
+          "source": "qa-agent",
+          "directive": "Professional profile page (/professionals/giannis-kosta-klimatismos) still renders a large empty Portfolio block. Hide the portfolio section when no assets exist and show a compact empty-state instead of a dead gray container."
+        },
+        {
+          "id": "qa-critical-fixes-wave-18-task-4",
+          "source": "qa-agent",
+          "directive": "You are serving duplicate guide hubs as separate indexable URLs: /blog and /odigoi both return 200 with effectively identical content while canonical points to /blog. 301 redirect /odigoi to /blog (or differentiate content) to stop duplicate-content cannibalization."
+        },
+        {
+          "id": "qa-critical-fixes-wave-18-task-5",
+          "source": "qa-agent",
+          "directive": "Response headers are inconsistent and sloppy: homepage `/` is still served as `text/html` without `charset=utf-8`, while other pages include UTF-8. Enforce `text/html; charset=utf-8` on every HTML route to prevent Greek encoding regressions in crawlers/clients."
+        }
+      ],
+      "createdAt": "2026-03-05T05:05:39Z",
+      "updatedAt": "2026-03-05T05:05:39Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-17",
       "title": "QA Critical Fixes Wave 17",
       "pillar": "Product",
