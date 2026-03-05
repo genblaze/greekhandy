@@ -13,7 +13,7 @@ import Layout from '../../layouts/Layout.astro';
       <p class="mt-3 text-gray-700">Συμπληρώστε τα βασικά στοιχεία σας και η ομάδα μας θα επικοινωνήσει μαζί σας για έλεγχο και ενεργοποίηση προφίλ.</p>
     </section>
 
-    <form action="/api/professionals/register" method="POST" class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+    <form action="/api/professionals/register" method="POST" class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8" data-register-form novalidate>
       <div class="grid gap-4 md:grid-cols-2">
         <div>
           <label for="name" class="mb-1 block text-sm font-semibold text-gray-800">Ονοματεπώνυμο *</label>
@@ -46,8 +46,68 @@ import Layout from '../../layouts/Layout.astro';
         <textarea id="bio" name="bio" rows="5" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Περιγράψτε την εμπειρία και τις υπηρεσίες σας."></textarea>
       </div>
 
+      <div class="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4" data-consent-field>
+        <label for="gdprConsent" class="flex items-start gap-3 text-sm text-slate-800">
+          <input
+            id="gdprConsent"
+            name="gdprConsent"
+            type="checkbox"
+            required
+            aria-describedby="gdprConsent-help gdprConsent-error"
+            class="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-700 focus:ring-2 focus:ring-blue-200"
+          />
+          <span>
+            Συμφωνώ με την επεξεργασία των προσωπικών μου δεδομένων για την αξιολόγηση της αίτησης,
+            σύμφωνα με την
+            <a href="/politiki-aporritou" class="font-semibold text-blue-700 underline underline-offset-2 hover:text-blue-800">Πολιτική Απορρήτου</a>.
+          </span>
+        </label>
+        <p id="gdprConsent-help" class="mt-2 text-xs text-slate-600">Χωρίς τη συγκατάθεσή σας δεν μπορούμε να επεξεργαστούμε την αίτηση εγγραφής.</p>
+        <p id="gdprConsent-error" class="mt-2 hidden text-xs font-medium text-red-700" role="alert" aria-live="assertive">Για να συνεχίσετε, χρειάζεται να αποδεχτείτε την Πολιτική Απορρήτου.</p>
+      </div>
+
       <button type="submit" class="mt-5 inline-flex rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800">Αποστολή Αίτησης</button>
       <p class="mt-3 text-xs text-gray-500">Τα στοιχεία σας χρησιμοποιούνται μόνο για αξιολόγηση της αίτησης.</p>
     </form>
   </main>
+
+  <script is:inline>
+    (() => {
+      const form = document.querySelector('[data-register-form]');
+      if (!(form instanceof HTMLFormElement)) return;
+
+      const consent = form.querySelector('#gdprConsent');
+      const consentError = form.querySelector('#gdprConsent-error');
+      const consentField = form.querySelector('[data-consent-field]');
+
+      if (!(consent instanceof HTMLInputElement)) return;
+
+      const showConsentError = () => {
+        if (consentError instanceof HTMLElement) consentError.classList.remove('hidden');
+        if (consentField instanceof HTMLElement) consentField.classList.add('border-red-300', 'bg-red-50');
+        consent.setAttribute('aria-invalid', 'true');
+      };
+
+      const clearConsentError = () => {
+        if (consentError instanceof HTMLElement) consentError.classList.add('hidden');
+        if (consentField instanceof HTMLElement) consentField.classList.remove('border-red-300', 'bg-red-50');
+        consent.removeAttribute('aria-invalid');
+      };
+
+      consent.addEventListener('change', () => {
+        if (consent.checked) clearConsentError();
+      });
+
+      form.addEventListener('submit', (event) => {
+        if (!consent.checked) {
+          event.preventDefault();
+          showConsentError();
+          consent.focus();
+          return;
+        }
+
+        clearConsentError();
+      });
+    })();
+  </script>
 </Layout>
