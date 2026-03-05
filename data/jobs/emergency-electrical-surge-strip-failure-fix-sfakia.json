@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-surge-strip-failure-fix-sfakia",
+  "slug": "epigousa-episkevi-vlavis-prostasiakou-ypertasis-sfakia",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Προστασίας Υπέρτασης στα Σφακιά",
+  "nameEn": "Emergency Electrical Surge Strip Failure Fix in Σφακιά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βλάβης προστασίας υπέρτασης στα Σφακιά για αποφυγή ζημιών σε οικιακές συσκευές. SEO intent: «προστατευτικό υπέρτασης χάλασε Σφακιά».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "προστατευτικό υπέρτασης χάλασε Σφακιά",
+    "ηλεκτρολόγος υπέρταση επείγον",
+    "συσκευές καίγονται από τάση",
+    "service surge protection",
+    "ασφάλεια ρεύματος κατοικίας"
+  ],
+  "status": "researched"
+}

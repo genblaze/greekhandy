@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-valve-seal-check-sfakia",
+  "slug": "epochiakos-elegxos-steganotitas-valvidas-kalorifer-sfakia",
+  "nameGr": "Εποχικός Έλεγχος Στεγανότητας Βαλβίδας Καλοριφέρ στα Σφακιά",
+  "nameEn": "Seasonal Radiator Valve Seal Check in Σφακιά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος στεγανότητας βαλβίδας καλοριφέρ στα Σφακιά για πρόληψη διαρροών πριν τη χειμερινή χρήση. SEO intent: «βαλβίδα καλοριφέρ στάζει Σφακιά».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "βαλβίδα καλοριφέρ στάζει Σφακιά",
+    "έλεγχος στεγανότητας θέρμανσης",
+    "τεχνικός καλοριφέρ service",
+    "συντήρηση βαλβίδων θέρμανσης",
+    "προληπτικός έλεγχος σώματος"
+  ],
+  "status": "researched"
+}

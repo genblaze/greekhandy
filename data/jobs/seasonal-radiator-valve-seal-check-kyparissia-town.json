@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-valve-seal-check-kyparissia-town",
+  "slug": "epochiakos-elegxos-steganotitas-valvidas-kalorifer-kyparissia-town",
+  "nameGr": "Εποχικός Έλεγχος Στεγανότητας Βαλβίδας Καλοριφέρ στην Κυπαρισσία",
+  "nameEn": "Seasonal Radiator Valve Seal Check in Κυπαρισσία",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος στεγανότητας βαλβίδας καλοριφέρ στην Κυπαρισσία για πρόληψη διαρροών πριν τη χειμερινή χρήση. SEO intent: «βαλβίδα καλοριφέρ στάζει Κυπαρισσία».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "βαλβίδα καλοριφέρ στάζει Κυπαρισσία",
+    "έλεγχος στεγανότητας θέρμανσης",
+    "τεχνικός καλοριφέρ service",
+    "συντήρηση βαλβίδων θέρμανσης",
+    "προληπτικός έλεγχος σώματος"
+  ],
+  "status": "researched"
+}

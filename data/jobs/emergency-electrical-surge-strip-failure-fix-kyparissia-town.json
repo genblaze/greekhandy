@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-surge-strip-failure-fix-kyparissia-town",
+  "slug": "epigousa-episkevi-vlavis-prostasiakou-ypertasis-kyparissia-town",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Προστασίας Υπέρτασης στην Κυπαρισσία",
+  "nameEn": "Emergency Electrical Surge Strip Failure Fix in Κυπαρισσία",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βλάβης προστασίας υπέρτασης στην Κυπαρισσία για αποφυγή ζημιών σε οικιακές συσκευές. SEO intent: «προστατευτικό υπέρτασης χάλασε Κυπαρισσία».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "προστατευτικό υπέρτασης χάλασε Κυπαρισσία",
+    "ηλεκτρολόγος υπέρταση επείγον",
+    "συσκευές καίγονται από τάση",
+    "service surge protection",
+    "ασφάλεια ρεύματος κατοικίας"
+  ],
+  "status": "researched"
+}
