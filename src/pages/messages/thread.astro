@@ -291,7 +291,7 @@ const buildThreadListHref = () => {
 };
 const threadListHref = buildThreadListHref();
 
-const buildThreadHref = (options: { q?: string; visibility?: string } = {}) => {
+const buildThreadHref = (options: { q?: string; visibility?: string; status?: 'loading' } = {}) => {
   const params = new URLSearchParams();
   if (threadId) params.set('threadId', threadId);
   if (viewerEmail) params.set('viewerEmail', viewerEmail);
@@ -300,12 +300,14 @@ const buildThreadHref = (options: { q?: string; visibility?: string } = {}) => {
   const requestedVisibility = typeof options.visibility === 'string' ? options.visibility.trim().toLowerCase() : threadVisibilityFilter;
   const nextVisibility = isThreadVisibilityFilter(requestedVisibility) ? requestedVisibility : 'all';
   if (nextVisibility !== 'all') params.set('visibility', nextVisibility);
+  if (options.status === 'loading') params.set('status', 'loading');
   appendListContextParams(params);
   const query = params.toString();
   return query ? `/messages/thread?${query}` : '/messages/thread';
 };
 
 const threadViewHref = canLoadThreadData ? buildThreadHref() : '/messages/thread';
+const threadRetryHref = canLoadThreadData ? buildThreadHref({ status: 'loading' }) : threadViewHref;
 const incomingMessagesCount = threadMessages.filter((message) => message.senderEmail.toLowerCase() !== viewerEmail).length;
 const outgoingMessagesCount = Math.max(0, threadMessages.length - incomingMessagesCount);
 const isMessageHidden = (message: MessageSubmission) => hiddenMessageIds.has(message.id);
@@ -490,7 +492,7 @@ const historyStateActionLabel = showLoadingState
 const historyStateActionHref = showLoadingState
   ? '#thread-history'
   : threadLoadError
-    ? threadViewHref
+    ? threadRetryHref
     : showHistoryNoMatchState
       ? threadFilterResetHref
       : threadMessages.length === 0
@@ -503,7 +505,7 @@ const historyStateFocusLabel = showLoadingState
   : threadLoadError
     ? 'Επαναφορά ιστορικού'
     : showHistoryNoMatchState
-      ? 'No-match'
+      ? 'Φίλτρα thread'
       : threadMessages.length === 0
         ? 'Εκκίνηση συνομιλίας'
         : 'Ανάγνωση/triage';
@@ -534,7 +536,7 @@ const historyStatePhaseLabel = showLoadingState
   : threadLoadError
     ? hasPartialThreadHistory ? 'Partial' : 'Error'
     : showHistoryNoMatchState
-      ? 'No-Match'
+      ? 'Filtered'
       : threadMessages.length === 0
         ? 'Empty'
         : hasThreadFilters
@@ -565,7 +567,7 @@ const threadStatePrimaryActionHref = hasViewerParamIssue
   : hasAccessIssue
     ? threadListHref
     : threadLoadError
-      ? threadViewHref
+      ? threadRetryHref
       : '';
 const moderationConsequences: string[] = [];
 if (threadBlockedByModeration) moderationConsequences.push('Δεν επιτρέπεται αποστολή νέου μηνύματος μέχρι να αρθεί το μπλοκάρισμα.');
@@ -868,10 +870,10 @@ for (const message of filteredThreadMessages) {
         <p id="thread-load-error-description" class="mt-1 text-sm">{threadLoadError}</p>
         <p class="mt-1 text-xs">Ενδέχεται να λείπουν moderation indicators ή ιστορικό μέχρι να αποκατασταθεί η φόρτωση. {hasPartialThreadHistory ? 'Εμφανίζονται διαθέσιμα μηνύματα με πιθανές ελλείψεις.' : 'Το thread δεν μπόρεσε να αποδοθεί.'}</p>
         <div class="mt-2 flex flex-wrap items-center gap-2">
-          <a href={threadStatePrimaryActionHref || threadViewHref} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+          <a href={threadStatePrimaryActionHref || threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης thread." class="thread-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
             {threadStatePrimaryActionLabel || 'Επανάληψη φόρτωσης'}
           </a>
-          <a href={threadListHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+          <a href={threadListHref} data-thread-filter-action="Επιστροφή στη λίστα συνομιλιών μετά από σφάλμα φόρτωσης thread." class="thread-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
             Πίσω στη λίστα
           </a>
         </div>
@@ -1133,12 +1135,22 @@ for (const message of filteredThreadMessages) {
             <p id="thread-history-state-support" class="mt-1 text-[11px] font-medium opacity-90">{historyStateSupportHint}</p>
             <p class="mt-1 text-[11px] font-medium opacity-90">{threadFilterScopeLabel}</p>
             <p id="thread-history-state-recovery" class="mt-1 text-[11px] opacity-90">{historyStateRecoveryHint}</p>
-            {!showLoadingState && (
-              <a href={historyStateActionHref} data-thread-filter-action={historyStateActionLabel} class="thread-touch-target mt-2 inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
-                {historyStateActionLabel}
+            <div class="thread-state-actions" role="group" aria-label="Ενέργειες αξιοπιστίας ιστορικού">
+              <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης ιστορικού thread." class="thread-touch-target inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+                Επανάληψη τώρα
               </a>
-            )}
-            {showLoadingState && <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.08em]">Αναμονή συγχρονισμού</p>}
+              {!showLoadingState && historyStateActionHref !== threadRetryHref && (
+                <a href={historyStateActionHref} data-thread-filter-action={historyStateActionLabel} class="thread-touch-target inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+                  {historyStateActionLabel}
+                </a>
+              )}
+              {hasThreadFilters && historyStateActionHref !== threadFilterResetHref && (
+                <a href={threadFilterResetHref} data-thread-filter-action="Καθαρισμός φίλτρων thread από κάρτα κατάστασης." class="thread-touch-target inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+                  Καθαρισμός φίλτρων
+                </a>
+              )}
+            </div>
+            {showLoadingState && <p class="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em]">Αναμονή συγχρονισμού</p>}
           </div>
 
           <div class="mt-4 space-y-3" aria-describedby="thread-history-description" role="region" aria-label="Ροή ιστορικού και καταστάσεων thread">
@@ -1148,8 +1160,8 @@ for (const message of filteredThreadMessages) {
                 <p id="thread-history-loading-title" class="font-semibold">Το ιστορικό συγχρονίζεται αυτή τη στιγμή.</p>
                 <p id="thread-history-loading-description" class="mt-1">Αν η φόρτωση παραμείνει στάσιμη, επαναφορτώστε το thread για νέα απόπειρα ανάκτησης.</p>
                 <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
-                <a href={threadViewHref} data-thread-filter-action="Επαναφόρτωση thread κατά την κατάσταση loading." class="thread-touch-target mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
-                  Επαναφόρτωση thread
+                <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης κατά την κατάσταση loading." class="thread-touch-target mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                  Επανάληψη τώρα
                 </a>
               </div>
             )}
@@ -1174,7 +1186,7 @@ for (const message of filteredThreadMessages) {
                 <p id="thread-history-partial-title" class="font-semibold">Το ιστορικό φορτώθηκε μερικώς.</p>
                 <p id="thread-history-partial-description" class="mt-1 text-xs">Ορισμένα μηνύματα ή moderation στοιχεία μπορεί να λείπουν μέχρι να ολοκληρωθεί επιτυχής επανάκτηση.</p>
                 <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
-                <a href={threadViewHref} data-thread-filter-action="Επανάληψη φόρτωσης thread μετά από μερικό αποτέλεσμα." class="thread-touch-target mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+                <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης thread μετά από μερικό αποτέλεσμα." class="thread-touch-target mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
                   Επανάληψη φόρτωσης ιστορικού
                 </a>
               </div>
@@ -1190,10 +1202,13 @@ for (const message of filteredThreadMessages) {
                   {canReply ? 'Το composer είναι διαθέσιμο για το πρώτο μήνυμα.' : `Το composer δεν είναι διαθέσιμο: ${moderationSendStateLabel}.`}
                 </p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
-                  <a href={threadListHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                  <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση ανανέωσης thread από empty state." class="thread-touch-target inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                    Ανανέωση thread
+                  </a>
+                  <a href={threadListHref} data-thread-filter-action="Επιστροφή στη λίστα συνομιλιών." class="thread-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
                     Επιστροφή στη λίστα
                   </a>
-                  <a href="#thread-interaction" class="inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                  <a href="#thread-interaction" data-thread-filter-action="Μετάβαση στις ενέργειες thread από empty state." class="thread-touch-target inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
                     Μετάβαση στο composer
                   </a>
                 </div>
@@ -1201,13 +1216,16 @@ for (const message of filteredThreadMessages) {
             )}
             {!showLoadingState && showHistoryNoMatchState && (
               <div class="rounded-2xl border border-amber-200 bg-amber-50/80 px-5 py-6 text-amber-900 shadow-sm" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-no-match-title" aria-describedby="thread-history-no-match-description">
-                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-800">Κατάσταση προβολής · No-match</p>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-800">Κατάσταση προβολής · Filtered</p>
                 <p id="thread-history-no-match-title" class="text-lg font-semibold">Δεν βρέθηκαν μηνύματα με αυτά τα φίλτρα.</p>
                 <p id="thread-history-no-match-description" class="mt-1 text-sm">
                   Scope: <span class="font-semibold">{threadVisibilityFilterLabel}</span>{threadSearchQueryRaw ? <> · Αναζήτηση: <span class="font-semibold">"{threadSearchQueryRaw}"</span></> : ''}.
                 </p>
                 <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
+                  <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης με τα τρέχοντα φίλτρα thread." class="thread-touch-target inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                    Επανάληψη τώρα
+                  </a>
                   <a href={threadFilterResetHref} data-thread-filter-action="Καθαρισμός φίλτρων για εμφάνιση όλων των μηνυμάτων." class="thread-touch-target inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
                     Καθαρισμός φίλτρων
                   </a>
@@ -1224,7 +1242,7 @@ for (const message of filteredThreadMessages) {
                 <p id="thread-history-error-description" class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση μηνυμάτων για το thread.</p>
                 <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
-                  <a href={threadViewHref} data-thread-filter-action="Επανάληψη φόρτωσης ιστορικού μετά από σφάλμα." class="thread-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+                  <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης ιστορικού μετά από σφάλμα." class="thread-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
                     Επανάληψη φόρτωσης
                   </a>
                   <a href={threadListHref} data-thread-filter-action="Επιστροφή στη λίστα συνομιλιών." class="thread-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
@@ -1699,6 +1717,14 @@ for (const message of filteredThreadMessages) {
       line-height: 1.45;
     }
 
+    .thread-state-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.65rem;
+    }
+
     .thread-history-legend {
       border: 1px dashed rgb(203 213 225);
       border-radius: 0.8rem;
@@ -1939,6 +1965,15 @@ for (const message of filteredThreadMessages) {
         justify-content: center;
       }
 
+      .thread-state-actions {
+        width: 100%;
+      }
+
+      .thread-state-actions > .thread-touch-target {
+        width: 100%;
+        justify-content: center;
+      }
+
       .thread-toast {
         padding: 0.85rem;
       }
@@ -1973,6 +2008,7 @@ for (const message of filteredThreadMessages) {
       const threadFilterForm = document.querySelector('#thread-filter-controls');
       const threadFilterQuery = document.querySelector('#thread-filter-query');
       const threadFilterActions = Array.from(document.querySelectorAll('[data-thread-filter-action]')).filter((item) => item instanceof HTMLElement);
+      const threadRetryLinks = Array.from(document.querySelectorAll('[data-thread-retry-now]')).filter((item) => item instanceof HTMLAnchorElement);
       const threadShell = document.querySelector('.thread-shell');
       const isCompactViewport = () => typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 640px)').matches;
       const getSafeThreadStorage = () => {
@@ -2032,6 +2068,14 @@ for (const message of filteredThreadMessages) {
           announceFocusState(options.announcement);
         }
       };
+      const isVisibleRetryLink = (link) => (
+        link instanceof HTMLAnchorElement
+        && !link.hidden
+        && link.offsetParent !== null
+      );
+      const getFirstVisibleRetryLink = () => (
+        threadRetryLinks.find((link) => isVisibleRetryLink(link)) || null
+      );
       const dismissToast = (toast) => {
         if (!(toast instanceof HTMLElement) || toast.dataset.removed === 'true') return;
         toast.dataset.removed = 'true';
@@ -2097,6 +2141,17 @@ for (const message of filteredThreadMessages) {
           announceThreadFilterState(message);
         });
       }
+      for (const retryLink of threadRetryLinks) {
+        if (!(retryLink instanceof HTMLAnchorElement)) continue;
+        retryLink.addEventListener('click', (event) => {
+          if (isOffline()) {
+            event.preventDefault();
+            announceThreadFilterState('Δεν υπάρχει σύνδεση. Η επανάληψη φόρτωσης thread θα ενεργοποιηθεί μόλις επανέλθει το δίκτυο.');
+            return;
+          }
+          announceThreadFilterState(retryLink.dataset.threadFilterAction || 'Εκκίνηση άμεσης επανάληψης φόρτωσης thread.');
+        });
+      }
       window.addEventListener('keydown', (event) => {
         if (event.defaultPrevented || event.key !== '/') return;
         if (!(threadFilterQuery instanceof HTMLInputElement)) return;
@@ -2112,6 +2167,20 @@ for (const message of filteredThreadMessages) {
           announcement: 'Η εστίαση μεταφέρθηκε στην αναζήτηση thread.'
         });
         threadFilterQuery.select();
+      });
+      window.addEventListener('keydown', (event) => {
+        if (event.defaultPrevented || event.key.toLowerCase() !== 'r') return;
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
+        const target = event.target;
+        const isEditableTarget = target instanceof HTMLInputElement
+          || target instanceof HTMLTextAreaElement
+          || target instanceof HTMLSelectElement
+          || (target instanceof HTMLElement && target.isContentEditable);
+        if (isEditableTarget) return;
+        const retryLink = getFirstVisibleRetryLink();
+        if (!(retryLink instanceof HTMLAnchorElement)) return;
+        event.preventDefault();
+        retryLink.click();
       });
 
       const highlightMessageFromHash = () => {

@@ -61,6 +61,7 @@ type ListHrefOptions = {
   blocked?: boolean;
   reported?: boolean;
   sort?: 'recent' | 'unread';
+  status?: 'loading';
 };
 
 const buildListHref = (options: ListHrefOptions = {}) => {
@@ -71,6 +72,7 @@ const buildListHref = (options: ListHrefOptions = {}) => {
   if (options.blocked) params.set('blocked', '1');
   if (options.reported) params.set('reported', '1');
   if (options.sort === 'unread') params.set('sort', 'unread');
+  if (options.status === 'loading') params.set('status', 'loading');
   const query = params.toString();
   return query ? `/messages?${query}` : '/messages';
 };
@@ -468,6 +470,22 @@ const currentViewHref = buildListHref({
   reported: showReportedOnly,
   sort: sortMode
 });
+const retryCurrentViewHref = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: showReportedOnly,
+  sort: sortMode,
+  status: 'loading'
+});
+const coldStartRetryHref = buildListHref({
+  q: searchQueryRaw,
+  unread: showUnreadOnly,
+  blocked: showBlockedOnly,
+  reported: showReportedOnly,
+  sort: 'recent',
+  status: 'loading'
+});
 const listReturnTo = buildListHref({
   q: searchQueryRaw,
   unread: showUnreadOnly,
@@ -598,9 +616,9 @@ const listStateActionHref = !hasViewerEmail || !hasValidViewerEmail
   : showLoadingState
     ? ''
     : listLoadError
-      ? currentViewHref
+      ? retryCurrentViewHref
       : threads.length === 0
-        ? buildListHref({ sort: 'recent' })
+        ? coldStartRetryHref
         : hasFilteredResults
           ? (nextTriageHref || '#messages-controls')
           : clearFiltersHref;
@@ -861,10 +879,10 @@ const inboxReadinessHint = listLoadError
         <p class="mt-1 text-sm">{listLoadError}</p>
         <p class="mt-1 text-xs">Μπορεί να λείπουν badges/moderation ενδείξεις μέχρι να επανέλθει η ανάγνωση δεδομένων. {hasPartialResults ? 'Προβάλλονται όσα στοιχεία ήταν διαθέσιμα.' : 'Δεν βρέθηκαν ανακτήσιμα στοιχεία.'}</p>
         <div class="mt-3 flex flex-wrap items-center gap-2">
-          <a href={currentViewHref} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+          <a href={retryCurrentViewHref} data-retry-now data-filter-action-label="Εκκίνηση άμεσης επανάληψης φόρτωσης λίστας από banner σφάλματος." class="messages-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
             Επανάληψη φόρτωσης
           </a>
-          <a href={clearFiltersHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+          <a href={clearFiltersHref} data-filter-action-label="Καθαρισμός φίλτρων μετά από σφάλμα φόρτωσης λίστας." class="messages-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
             Καθαρισμός φίλτρων
           </a>
         </div>
@@ -1122,11 +1140,26 @@ const inboxReadinessHint = listLoadError
           <p id="messages-list-state-support" class="mt-1 text-[11px] font-medium opacity-90">{listStateSupportHint}</p>
           <p id="messages-list-state-scope" class="mt-1 text-[11px] font-medium opacity-90">{listFilterScopeSummary}</p>
           <p id="messages-list-state-recovery" class="mt-1 text-[11px] opacity-90">{listStateRecoveryHint}</p>
-          {listStateActionHref && listStateActionLabel && (
-            <a href={listStateActionHref} data-filter-action-label={listStateActionLabel} class="messages-touch-target mt-2 inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
-              {listStateActionLabel}
+          <div class="messages-state-actions" role="group" aria-label="Ενέργειες αξιοπιστίας λίστας">
+            <a
+              href={retryCurrentViewHref}
+              data-retry-now
+              data-filter-action-label="Εκκίνηση άμεσης επανάληψης φόρτωσης λίστας."
+              class="messages-touch-target inline-flex rounded-md border border-current/30 bg-white/85 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white"
+            >
+              Επανάληψη τώρα
             </a>
-          )}
+            {listStateActionHref && listStateActionLabel && listStateActionHref !== retryCurrentViewHref && (
+              <a href={listStateActionHref} data-filter-action-label={listStateActionLabel} class="messages-touch-target inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+                {listStateActionLabel}
+              </a>
+            )}
+            {hasListFilters && (
+              <a href={clearFiltersHref} data-filter-action-label="Καθαρισμός φίλτρων λίστας." class="messages-touch-target inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+                Καθαρισμός φίλτρων
+              </a>
+            )}
+          </div>
         </div>
         {showLoadingState && (
           <div class="rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-sm text-sky-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="messages-list-loading-title" aria-describedby="messages-list-loading-description">
@@ -1134,8 +1167,8 @@ const inboxReadinessHint = listLoadError
             <p id="messages-list-loading-title" class="font-semibold">Η λίστα συγχρονίζεται τώρα.</p>
             <p id="messages-list-loading-description" class="mt-1 text-xs">Φορτώνουμε δείκτες προτεραιότητας, unread counts και moderation states ώστε να εμφανιστεί καθαρή ουρά triage.</p>
             <p class="mt-1 text-[11px] font-medium">Τρέχον φίλτρο: {listFilterScopeLabel}.</p>
-            <a href={currentViewHref} data-filter-action-label="Επανάληψη φόρτωσης λίστας συνομιλιών." class="messages-touch-target mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
-              Επαναφόρτωση αν καθυστερεί
+            <a href={retryCurrentViewHref} data-retry-now data-filter-action-label="Εκκίνηση άμεσης επανάληψης φόρτωσης λίστας." class="messages-touch-target mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+              Επανάληψη τώρα
             </a>
           </div>
         )}
@@ -1146,7 +1179,7 @@ const inboxReadinessHint = listLoadError
             <p id="messages-list-partial-description" class="mt-1 text-xs">Μερικά δεδομένα λείπουν λόγω σφάλματος φόρτωσης. Τα αποτελέσματα μπορεί να είναι ελλιπή μέχρι την επόμενη επιτυχημένη ανάκτηση.</p>
             <p class="mt-1 text-[11px] font-medium">Τρέχον φίλτρο: {listFilterScopeLabel}.</p>
             <div class="mt-2 flex flex-wrap items-center gap-2">
-              <a href={currentViewHref} data-filter-action-label="Επανάληψη φόρτωσης λίστας με τα τρέχοντα φίλτρα." class="messages-touch-target inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+              <a href={retryCurrentViewHref} data-retry-now data-filter-action-label="Εκκίνηση άμεσης επανάληψης φόρτωσης λίστας με τα τρέχοντα φίλτρα." class="messages-touch-target inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
                 Επανάληψη φόρτωσης
               </a>
               <a href={clearFiltersHref} data-filter-action-label="Καθαρισμός φίλτρων μετά από μερική φόρτωση." class="messages-touch-target inline-flex rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
@@ -1181,7 +1214,7 @@ const inboxReadinessHint = listLoadError
             <p id="messages-error-description" class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση threads από την πηγή δεδομένων.</p>
             <p class="mt-1 text-[11px] font-medium">Τρέχον φίλτρο: {listFilterScopeLabel}.</p>
             <div class="mt-3 flex flex-wrap items-center gap-2">
-              <a href={currentViewHref} data-filter-action-label="Επανάληψη φόρτωσης μετά από σφάλμα λίστας." class="messages-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+              <a href={retryCurrentViewHref} data-retry-now data-filter-action-label="Εκκίνηση άμεσης επανάληψης φόρτωσης μετά από σφάλμα λίστας." class="messages-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
                 Επανάληψη φόρτωσης
               </a>
               <a href={clearFiltersHref} data-filter-action-label="Καθαρισμός φίλτρων μετά από σφάλμα λίστας." class="messages-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
@@ -1199,7 +1232,7 @@ const inboxReadinessHint = listLoadError
             <p id="messages-empty-support" class="mt-2 text-xs text-slate-500">Θα προστεθεί αυτόματα και στην παραπάνω triage σύνοψη για γρήγορη αξιολόγηση.</p>
             <p class="mt-1 text-[11px] font-medium text-slate-500">Τρέχον φίλτρο: {listFilterScopeLabel}.</p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
-              <a href={buildListHref({ sort: 'recent' })} data-filter-action-label="Ανανέωση λίστας συνομιλιών." class="messages-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Ανανέωση λίστας</a>
+              <a href={coldStartRetryHref} data-retry-now data-filter-action-label="Εκκίνηση ανανέωσης λίστας συνομιλιών." class="messages-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Ανανέωση λίστας</a>
               <a href={unreadQueueHref} data-filter-action-label="Μετάβαση στην ουρά προτεραιότητας μη αναγνωσμένων." class="messages-touch-target inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">Ουρά προτεραιότητας</a>
             </div>
           </div>
@@ -1207,12 +1240,13 @@ const inboxReadinessHint = listLoadError
 
         {!showLoadingState && !listLoadError && threads.length > 0 && !hasFilteredResults && (
           <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/80 to-amber-50/40 px-5 py-6 shadow-sm" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="messages-no-match-title" aria-describedby="messages-no-match-description messages-no-match-support">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Καμία αντιστοίχιση</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Κατάσταση προβολής · Filtered</p>
             <p id="messages-no-match-title" class="mt-1 text-lg font-semibold text-slate-900">Δεν βρέθηκαν συνομιλίες με αυτά τα φίλτρα.</p>
             <p id="messages-no-match-description" class="mt-2 text-sm text-slate-600">Δοκιμάστε διαφορετική αναζήτηση ή αφαιρέστε ένα φίλτρο για να επαναφέρετε την πλήρη ουρά.</p>
             <p id="messages-no-match-support" class="mt-2 text-xs text-slate-500">Ενεργά φίλτρα: <span class="font-semibold text-slate-700">{activeFilterCount}</span>{searchQueryRaw ? <span> · Αναζήτηση: <span class="font-semibold text-slate-700">{searchQueryRaw}</span></span> : null}</p>
             <p class="mt-1 text-[11px] font-medium text-slate-500">Τρέχον scope: {listFilterScopeLabel}.</p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
+              <a href={retryCurrentViewHref} data-retry-now data-filter-action-label="Εκκίνηση άμεσης επανάληψης φόρτωσης με τα τρέχοντα φίλτρα." class="messages-touch-target inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">Επανάληψη τώρα</a>
               <a href={clearFiltersHref} data-filter-action-label="Καθαρισμός φίλτρων για επαναφορά αποτελεσμάτων." class="messages-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">Καθαρισμός φίλτρων</a>
               <a href={unreadQueueHref} data-filter-action-label="Ενεργοποίηση ουράς μόνο μη αναγνωσμένων." class="messages-touch-target inline-flex rounded-lg border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">Μόνο μη αναγνωσμένα</a>
               <a href={reportedQueueHref} data-filter-action-label="Ενεργοποίηση ουράς αναφορών moderation." class="messages-touch-target inline-flex rounded-lg border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">Αναφορές moderation</a>
@@ -1652,6 +1686,14 @@ const inboxReadinessHint = listLoadError
       letter-spacing: 0.01em;
     }
 
+    .messages-state-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.65rem;
+    }
+
     @keyframes thread-loading-shimmer {
       100% {
         transform: translateX(100%);
@@ -1863,6 +1905,15 @@ const inboxReadinessHint = listLoadError
         min-width: 100%;
       }
 
+      .messages-state-actions {
+        width: 100%;
+      }
+
+      .messages-state-actions > .messages-touch-target {
+        width: 100%;
+        justify-content: center;
+      }
+
       .messages-touch-target,
       .messages-shell :where(.thread-card__actions a, .thread-card__actions button) {
         min-height: 2.75rem;
@@ -1943,6 +1994,7 @@ const inboxReadinessHint = listLoadError
       const messagesFilterForm = document.querySelector('#messages-filter-form');
       const threadSearchField = document.querySelector('#thread-search');
       const filterActionLinks = Array.from(document.querySelectorAll('[data-filter-action-label]')).filter((link) => link instanceof HTMLAnchorElement);
+      const retryNowLinks = Array.from(document.querySelectorAll('[data-retry-now]')).filter((link) => link instanceof HTMLAnchorElement);
       const offlineAlert = document.querySelector('#messages-offline-alert');
       const threadOpenLinks = Array.from(document.querySelectorAll('[data-thread-link]')).filter((link) => link instanceof HTMLAnchorElement);
       const resumeThreadPanel = document.querySelector('[data-resume-thread]');
@@ -2079,6 +2131,14 @@ const inboxReadinessHint = listLoadError
           announceFocusState(options.announcement);
         }
       };
+      const isVisibleActionLink = (link) => (
+        link instanceof HTMLAnchorElement
+        && !link.hidden
+        && link.offsetParent !== null
+      );
+      const getFirstVisibleRetryLink = () => (
+        retryNowLinks.find((link) => isVisibleActionLink(link)) || null
+      );
       if (threadSearchField instanceof HTMLInputElement) {
         threadSearchField.addEventListener('keydown', (event) => {
           if (event.key !== 'Escape') return;
@@ -2100,6 +2160,17 @@ const inboxReadinessHint = listLoadError
           announceFilterState(message);
         });
       }
+      for (const link of retryNowLinks) {
+        if (!(link instanceof HTMLAnchorElement)) continue;
+        link.addEventListener('click', (event) => {
+          if (isOffline()) {
+            event.preventDefault();
+            announceFilterState('Δεν υπάρχει σύνδεση. Η επανάληψη φόρτωσης θα ενεργοποιηθεί μόλις επανέλθει το δίκτυο.');
+            return;
+          }
+          announceFilterState(link.dataset.filterActionLabel || 'Εκκίνηση άμεσης επανάληψης φόρτωσης λίστας.');
+        });
+      }
       window.addEventListener('keydown', (event) => {
         if (event.defaultPrevented || event.key !== '/') return;
         if (!(threadSearchField instanceof HTMLInputElement)) return;
@@ -2115,6 +2186,20 @@ const inboxReadinessHint = listLoadError
           announcement: 'Η εστίαση μεταφέρθηκε στην αναζήτηση inbox.'
         });
         threadSearchField.select();
+      });
+      window.addEventListener('keydown', (event) => {
+        if (event.defaultPrevented || event.key.toLowerCase() !== 'r') return;
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
+        const target = event.target;
+        const isEditableTarget = target instanceof HTMLInputElement
+          || target instanceof HTMLTextAreaElement
+          || target instanceof HTMLSelectElement
+          || (target instanceof HTMLElement && target.isContentEditable);
+        if (isEditableTarget) return;
+        const retryLink = getFirstVisibleRetryLink();
+        if (!(retryLink instanceof HTMLAnchorElement)) return;
+        event.preventDefault();
+        retryLink.click();
       });
       const setFormFeedback = (form, message, tone = 'neutral') => {
         const feedback = form.querySelector('[data-form-feedback]');
