@@ -5,6 +5,10 @@ export const NAV_TARGETS = Object.freeze({
   contact: '/epikoinonia'
 });
 
+export const NAV_CLIENT_ALIAS_REDIRECTS = Object.freeze({
+  '/#contact': NAV_TARGETS.contact
+});
+
 export const TOP_NAV_LINKS = Object.freeze([
   { label: 'Οδηγοί', href: NAV_TARGETS.guides },
   { label: 'Επαγγελματίες', href: NAV_TARGETS.professionals }

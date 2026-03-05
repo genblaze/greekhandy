@@ -2,7 +2,7 @@ import { access, readdir, readFile } from 'node:fs/promises';
 import { constants as fsConstants } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { NAV_ALIAS_REDIRECTS, NAV_PLACEHOLDER_TEXT, NAV_TARGETS, PRIMARY_NAV_LINKS, TOP_NAV_LINKS } from '../src/config/navigation.js';
+import { NAV_ALIAS_REDIRECTS, NAV_CLIENT_ALIAS_REDIRECTS, NAV_PLACEHOLDER_TEXT, NAV_TARGETS, PRIMARY_NAV_LINKS, TOP_NAV_LINKS } from '../src/config/navigation.js';
 
 const distClientDir = resolve(process.cwd(), 'dist', 'client');
 const distServerDir = resolve(process.cwd(), 'dist', 'server');
@@ -16,6 +16,7 @@ const requiredStaticRoutes = [
   '/',
   NAV_TARGETS.guides,
   NAV_TARGETS.professionals,
+  NAV_TARGETS.contact,
   ...primaryNavPaths,
   '/ilektrologoi',
   '/ydravlikoi',
@@ -32,6 +33,11 @@ const routeContentChecks = [
   {
     route: NAV_TARGETS.professionals,
     requiredSnippets: ['<h1', 'Επαγγελματίες', 'href="/professionals/register"']
+  },
+  {
+    route: NAV_TARGETS.contact,
+    requiredSnippets: ['<h1', 'Επικοινωνία', 'info@greekhandy.gr'],
+    forbiddenSnippets: ['href="/#contact"']
   }
 ];
 
@@ -73,6 +79,13 @@ if (await fileExists(homeHtmlPath)) {
   if (!headerHtml) {
     issues.push('/ -> top header block not found');
   } else {
+    if (!headerHtml.includes(`href="${NAV_TARGETS.contact}"`)) {
+      issues.push(`/ -> missing canonical header contact href ${NAV_TARGETS.contact}`);
+    }
+    if (headerHtml.includes('href="/#contact"')) {
+      issues.push('/ -> legacy header contact href /#contact is still present');
+    }
+
     for (const navLink of TOP_NAV_LINKS) {
       if (!headerHtml.includes(`href="${navLink.href}"`)) {
         issues.push(`/ -> missing top-nav href ${navLink.href}`);
@@ -89,6 +102,28 @@ if (await fileExists(homeHtmlPath)) {
       if (!headerHtml.includes(navLink.label)) {
         issues.push(`/ -> missing mobile-primary label "${navLink.label}"`);
       }
+    }
+  }
+
+  const footerHtml = homeHtml.match(/<footer[\s\S]*?<\/footer>/iu)?.[0];
+  if (!footerHtml) {
+    issues.push('/ -> footer block not found');
+  } else {
+    if (!footerHtml.includes(`href="${NAV_TARGETS.contact}"`)) {
+      issues.push(`/ -> missing canonical footer contact href ${NAV_TARGETS.contact}`);
+    }
+    if (footerHtml.includes('href="/#contact"')) {
+      issues.push('/ -> legacy footer contact href /#contact is still present');
+    }
+  }
+
+  for (const [aliasRoute, expectedTarget] of Object.entries(NAV_CLIENT_ALIAS_REDIRECTS)) {
+    const expectedPath = normalizePath(expectedTarget);
+    if (!homeHtml.includes(aliasRoute)) {
+      issues.push(`/ -> missing client alias redirect marker for ${aliasRoute}`);
+    }
+    if (!homeHtml.includes(expectedPath)) {
+      issues.push(`/ -> missing client alias redirect target ${expectedPath}`);
     }
   }
 }
@@ -108,6 +143,12 @@ for (const contentCheck of routeContentChecks) {
   for (const placeholderText of NAV_PLACEHOLDER_TEXT) {
     if (htmlLower.includes(placeholderText.toLowerCase())) {
       issues.push(`${contentCheck.route} -> contains placeholder marker: "${placeholderText}"`);
+    }
+  }
+
+  for (const forbiddenSnippet of contentCheck.forbiddenSnippets ?? []) {
+    if (html.includes(forbiddenSnippet)) {
+      issues.push(`${contentCheck.route} -> contains forbidden snippet: ${forbiddenSnippet}`);
     }
   }
 }
@@ -140,7 +181,7 @@ if (!manifestFileName) {
       }
     }
 
-    for (const canonicalRoute of [NAV_TARGETS.guides, NAV_TARGETS.professionals]) {
+    for (const canonicalRoute of [NAV_TARGETS.guides, NAV_TARGETS.professionals, NAV_TARGETS.contact]) {
       const routeType = manifestRoutes.get(normalizePath(canonicalRoute));
       if (routeType !== 'page') {
         issues.push(`${canonicalRoute} -> expected page route in manifest, got ${routeType ?? 'missing'}`);
