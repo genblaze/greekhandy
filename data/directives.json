@@ -1,26 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Blog IA is misleading: the 'Οδηγοί' cards on /blog look like article posts but most links dump users back to generic category pages (e.g. /ydravlikoi) instead of dedicated guide URLs. Publish real article detail pages with unique slugs/content (e.g. /odigoi/...) or relabel the section so users don’t feel bait-and-switched.",
-      "addedAt": "2026-03-05T06:03:39Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "You are inlining ~130KB of Tailwind/CSS inside each HTML response (/, /blog, /ydravlikoi, /professionals/register), inflating document size and hurting repeat-load performance. Extract shared CSS into cacheable static assets and stop shipping a giant inline stylesheet on every page render.",
-      "addedAt": "2026-03-05T06:03:39Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Form validation flow is still leaking raw error payloads into redirect URLs (e.g. /api/bookings/submit and /api/messages/submit redirect to /professionals?be_* / me_* query params with full error text). Keep validation state server-side/session-flash and show inline field errors in-page; don’t expose internal field keys and long encoded diagnostics in the URL bar.",
-      "addedAt": "2026-03-05T06:03:39Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Primary QA endpoint remains broken: http://100.95.148.70:4322 still refuses connections while the app is only available on :4321. Fix the runtime port mismatch immediately (serve app on 4322 or update all QA automation/docs) to stop false outage noise every cycle.",
-      "addedAt": "2026-03-05T06:03:39Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -639,6 +618,30 @@
       "addedAt": "2026-03-05T05:36:16Z",
       "source": "slack",
       "processedAt": "2026-03-05T05:40:59Z"
+    },
+    {
+      "directive": "Blog IA is misleading: the 'Οδηγοί' cards on /blog look like article posts but most links dump users back to generic category pages (e.g. /ydravlikoi) instead of dedicated guide URLs. Publish real article detail pages with unique slugs/content (e.g. /odigoi/...) or relabel the section so users don’t feel bait-and-switched.",
+      "addedAt": "2026-03-05T06:03:39Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T06:10:56Z"
+    },
+    {
+      "directive": "You are inlining ~130KB of Tailwind/CSS inside each HTML response (/, /blog, /ydravlikoi, /professionals/register), inflating document size and hurting repeat-load performance. Extract shared CSS into cacheable static assets and stop shipping a giant inline stylesheet on every page render.",
+      "addedAt": "2026-03-05T06:03:39Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T06:10:56Z"
+    },
+    {
+      "directive": "Form validation flow is still leaking raw error payloads into redirect URLs (e.g. /api/bookings/submit and /api/messages/submit redirect to /professionals?be_* / me_* query params with full error text). Keep validation state server-side/session-flash and show inline field errors in-page; don’t expose internal field keys and long encoded diagnostics in the URL bar.",
+      "addedAt": "2026-03-05T06:03:39Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T06:10:56Z"
+    },
+    {
+      "directive": "Primary QA endpoint remains broken: http://100.95.148.70:4322 still refuses connections while the app is only available on :4321. Fix the runtime port mismatch immediately (serve app on 4322 or update all QA automation/docs) to stop false outage noise every cycle.",
+      "addedAt": "2026-03-05T06:03:39Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T06:10:56Z"
     }
   ]
 }
