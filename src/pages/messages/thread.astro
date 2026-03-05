@@ -587,7 +587,7 @@ const threadEntryGuidanceTitle = hasViewerParamIssue
         ? 'Η είσοδος ολοκληρώθηκε, αλλά δεν υπάρχει ακόμη ιστορικό.'
         : 'Η είσοδος thread ολοκληρώθηκε με πλήρες context.';
 const threadEntryGuidanceDescription = hasViewerParamIssue
-  ? 'Ανοίξτε ξανά τη συνομιλία από το inbox ώστε να περάσουν σωστά τα στοιχεία threadId και viewerEmail.'
+  ? 'Ανοίξτε ξανά τη συνομιλία από τα μηνύματα ώστε να περάσουν σωστά τα στοιχεία πρόσβασης.'
   : hasAccessIssue
     ? 'Χρησιμοποιήστε thread στο οποίο συμμετέχετε ή επιστρέψτε στο inbox για νέα επιλογή.'
     : threadLoadError
@@ -596,8 +596,8 @@ const threadEntryGuidanceDescription = hasViewerParamIssue
         ? 'Το ιστορικό θα εμφανιστεί αυτόματα με το πρώτο μήνυμα στο ίδιο thread.'
         : 'Μπορείτε να προχωρήσετε σε ιστορικό, moderation έλεγχο ή αποστολή απάντησης.';
 const threadEntryChecklist: string[] = [];
-threadEntryChecklist.push(hasValidViewerEmail ? `Viewer email: ${viewerEmail}` : 'Viewer email: μη έγκυρο ή λείπει.');
-threadEntryChecklist.push(hasThreadId ? `Thread ID: ${threadId}` : 'Thread ID: δεν δόθηκε.');
+threadEntryChecklist.push(hasValidViewerEmail ? `Viewer email: ${viewerEmail}` : 'Στοιχεία χρήστη: μη διαθέσιμα.');
+threadEntryChecklist.push(hasThreadId ? `Thread ID: ${threadId}` : 'Στοιχεία συνομιλίας: μη διαθέσιμα.');
 threadEntryChecklist.push(hasListContext ? `Inbox context: ${listContextSummaryLabel}` : 'Inbox context: χωρίς ενεργά φίλτρα.');
 const threadEntryPrimaryHref = threadStatePrimaryActionHref || threadListHref;
 const threadEntryPrimaryLabel = threadStatePrimaryActionLabel || threadListBackLabel;
