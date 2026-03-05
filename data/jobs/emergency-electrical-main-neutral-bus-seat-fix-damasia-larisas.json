@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-bus-seat-fix-damasia-larisas",
+  "slug": "epigousa-episkevi-edras-bus-oudeterou-kentrikis-paroxis-damasia-larisas",
+  "nameGr": "Επείγουσα Επισκευή Έδρας Bus Ουδετέρου Κεντρικής Παροχής στη Δαμασιά Λάρισας",
+  "nameEn": "Emergency Electrical Main Neutral Bus Seat Fix in Δαμασιά Λάρισας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή έδρας bus ουδετέρου κεντρικής παροχής στη Δαμασιά Λάρισας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Δαμασιά Λάρισας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

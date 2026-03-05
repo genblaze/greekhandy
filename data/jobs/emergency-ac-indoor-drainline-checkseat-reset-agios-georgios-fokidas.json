@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-checkseat-reset-agios-georgios-fokidas",
+  "slug": "epigousa-epanafora-checkseat-grammis-aporrois-esoterikou-ac-agios-georgios-fokidas",
+  "nameGr": "Επείγουσα Επαναφορά Checkseat Γραμμής Απορροής Εσωτερικού AC στον Άγιο Γεώργιο Φωκίδας",
+  "nameEn": "Emergency AC Indoor Drainline Checkseat Reset in Άγιος Γεώργιος Φωκίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά checkseat γραμμής απορροής εσωτερικού AC στον Άγιο Γεώργιο Φωκίδας για να σταματήσουν οι διαρροές στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

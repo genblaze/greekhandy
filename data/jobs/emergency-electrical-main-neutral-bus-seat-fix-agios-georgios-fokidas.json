@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-bus-seat-fix-agios-georgios-fokidas",
+  "slug": "epigousa-episkevi-edras-bus-oudeterou-kentrikis-paroxis-agios-georgios-fokidas",
+  "nameGr": "Επείγουσα Επισκευή Έδρας Bus Ουδετέρου Κεντρικής Παροχής στον Άγιο Γεώργιο Φωκίδας",
+  "nameEn": "Emergency Electrical Main Neutral Bus Seat Fix in Άγιος Γεώργιος Φωκίδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή έδρας bus ουδετέρου κεντρικής παροχής στον Άγιο Γεώργιο Φωκίδας για σταθερή τάση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Γεώργιος Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

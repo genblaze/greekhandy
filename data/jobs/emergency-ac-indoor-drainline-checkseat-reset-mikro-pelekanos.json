@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-checkseat-reset-mikro-pelekanos",
+  "slug": "epigousa-epanafora-checkseat-grammis-aporrois-esoterikou-ac-mikro-pelekanos",
+  "nameGr": "Επείγουσα Επαναφορά Checkseat Γραμμής Απορροής Εσωτερικού AC στο Μικρό Πελεκάνο",
+  "nameEn": "Emergency AC Indoor Drainline Checkseat Reset in Μικρός Πελεκάνος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά checkseat γραμμής απορροής εσωτερικού AC στο Μικρό Πελεκάνο για να σταματήσουν οι διαρροές στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μικρός Πελεκάνος επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

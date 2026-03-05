@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-checkseat-reset-damasia-larisas",
+  "slug": "epigousa-epanafora-checkseat-grammis-aporrois-esoterikou-ac-damasia-larisas",
+  "nameGr": "Επείγουσα Επαναφορά Checkseat Γραμμής Απορροής Εσωτερικού AC στη Δαμασιά Λάρισας",
+  "nameEn": "Emergency AC Indoor Drainline Checkseat Reset in Δαμασιά Λάρισας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά checkseat γραμμής απορροής εσωτερικού AC στη Δαμασιά Λάρισας για να σταματήσουν οι διαρροές στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Δαμασιά Λάρισας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

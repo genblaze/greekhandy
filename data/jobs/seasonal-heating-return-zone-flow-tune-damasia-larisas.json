@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-zone-flow-tune-damasia-larisas",
+  "slug": "epochiaki-rythmisi-rois-zonis-epistrofis-thermansis-damasia-larisas",
+  "nameGr": "Εποχική Ρύθμιση Ροής Ζώνης Επιστροφής Θέρμανσης στη Δαμασιά Λάρισας",
+  "nameEn": "Seasonal Heating Return Zone Flow Tune in Δαμασιά Λάρισας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής ζώνης επιστροφής θέρμανσης στη Δαμασιά Λάρισας για ομοιόμορφη θέρμανση και καλύτερη απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δαμασιά Λάρισας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
