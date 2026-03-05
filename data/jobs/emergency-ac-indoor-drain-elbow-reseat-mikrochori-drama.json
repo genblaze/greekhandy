@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-elbow-reseat-mikrochori-drama",
+  "slug": "epigousa-epanafora-gonias-aporrois-esoterikou-ac-mikrochori-drama",
+  "nameGr": "Επείγουσα Επαναφορά Γωνίας Απορροής Εσωτερικού AC στο Μικροχώρι Δράμας",
+  "nameEn": "Emergency AC Indoor Drain Elbow Reseat in Μικροχώρι Δράμας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά γωνίας απορροής εσωτερικού AC στο Μικροχώρι Δράμας για άμεση διακοπή επιστροφής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μικροχώρι Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

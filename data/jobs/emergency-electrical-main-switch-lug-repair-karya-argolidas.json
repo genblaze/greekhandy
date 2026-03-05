@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-switch-lug-repair-karya-argolidas",
+  "slug": "epigousa-episkevi-akrodexti-kentrikou-diakopti-karya-argolidas",
+  "nameGr": "Επείγουσα Επισκευή Ακροδέκτη Κεντρικού Διακόπτη στην Καρυά Αργολίδας",
+  "nameEn": "Emergency Electrical Main Switch Lug Repair in Καρυά Αργολίδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ακροδέκτη κεντρικού διακόπτη στην Καρυά Αργολίδας για ασφαλή και σταθερή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καρυά Αργολίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

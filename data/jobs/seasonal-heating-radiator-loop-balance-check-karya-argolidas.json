@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-loop-balance-check-karya-argolidas",
+  "slug": "epochiakos-elegxos-eksisorropisis-vroxou-kalorifer-karya-argolidas",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Βρόχου Καλοριφέρ στην Καρυά Αργολίδας",
+  "nameEn": "Seasonal Heating Radiator Loop Balance Check in Καρυά Αργολίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης βρόχου καλοριφέρ στην Καρυά Αργολίδας για ομοιόμορφη θέρμανση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καρυά Αργολίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

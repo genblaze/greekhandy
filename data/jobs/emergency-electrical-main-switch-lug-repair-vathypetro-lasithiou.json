@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-switch-lug-repair-vathypetro-lasithiou",
+  "slug": "epigousa-episkevi-akrodexti-kentrikou-diakopti-vathypetro-lasithiou",
+  "nameGr": "Επείγουσα Επισκευή Ακροδέκτη Κεντρικού Διακόπτη στο Βαθύπετρο Λασιθίου",
+  "nameEn": "Emergency Electrical Main Switch Lug Repair in Βαθύπετρο Λασιθίου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ακροδέκτη κεντρικού διακόπτη στο Βαθύπετρο Λασιθίου για ασφαλή και σταθερή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύπετρο Λασιθίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

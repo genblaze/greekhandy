@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-inlet-stop-valve-fix-vathypetro-lasithiou",
+  "slug": "epigousa-episkevi-valvidas-apomonosis-eisodou-thermosifona-vathypetro-lasithiou",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Απομόνωσης Εισόδου Θερμοσίφωνα στο Βαθύπετρο Λασιθίου",
+  "nameEn": "Emergency Water Heater Inlet Stop Valve Fix in Βαθύπετρο Λασιθίου",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας απομόνωσης εισόδου θερμοσίφωνα στο Βαθύπετρο Λασιθίου για άμεσο έλεγχο παροχής και αποφυγή διαρροών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύπετρο Λασιθίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-elbow-reseat-vathypetro-lasithiou",
+  "slug": "epigousa-epanafora-gonias-aporrois-esoterikou-ac-vathypetro-lasithiou",
+  "nameGr": "Επείγουσα Επαναφορά Γωνίας Απορροής Εσωτερικού AC στο Βαθύπετρο Λασιθίου",
+  "nameEn": "Emergency AC Indoor Drain Elbow Reseat in Βαθύπετρο Λασιθίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά γωνίας απορροής εσωτερικού AC στο Βαθύπετρο Λασιθίου για άμεση διακοπή επιστροφής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύπετρο Λασιθίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

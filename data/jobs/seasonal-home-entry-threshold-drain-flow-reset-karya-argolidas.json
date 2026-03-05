@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-flow-reset-karya-argolidas",
+  "slug": "epochiaki-epanafora-rois-aporrois-katofliou-eisodou-karya-argolidas",
+  "nameGr": "Εποχική Επαναφορά Ροής Απορροής Κατωφλιού Εισόδου στην Καρυά Αργολίδας",
+  "nameEn": "Seasonal Home Entry Threshold Drain Flow Reset in Καρυά Αργολίδας",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική επαναφορά ροής απορροής κατωφλιού εισόδου στην Καρυά Αργολίδας για λιγότερα στάσιμα νερά και καλύτερη ασφάλεια.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καρυά Αργολίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

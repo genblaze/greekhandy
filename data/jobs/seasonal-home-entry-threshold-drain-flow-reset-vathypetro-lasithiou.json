@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-flow-reset-vathypetro-lasithiou",
+  "slug": "epochiaki-epanafora-rois-aporrois-katofliou-eisodou-vathypetro-lasithiou",
+  "nameGr": "Εποχική Επαναφορά Ροής Απορροής Κατωφλιού Εισόδου στο Βαθύπετρο Λασιθίου",
+  "nameEn": "Seasonal Home Entry Threshold Drain Flow Reset in Βαθύπετρο Λασιθίου",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική επαναφορά ροής απορροής κατωφλιού εισόδου στο Βαθύπετρο Λασιθίου για λιγότερα στάσιμα νερά και καλύτερη ασφάλεια.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύπετρο Λασιθίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

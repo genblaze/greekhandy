@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-loop-balance-check-mikrochori-drama",
+  "slug": "epochiakos-elegxos-eksisorropisis-vroxou-kalorifer-mikrochori-drama",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Βρόχου Καλοριφέρ στο Μικροχώρι Δράμας",
+  "nameEn": "Seasonal Heating Radiator Loop Balance Check in Μικροχώρι Δράμας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης βρόχου καλοριφέρ στο Μικροχώρι Δράμας για ομοιόμορφη θέρμανση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικροχώρι Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

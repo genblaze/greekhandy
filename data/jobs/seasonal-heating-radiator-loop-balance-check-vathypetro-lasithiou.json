@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-loop-balance-check-vathypetro-lasithiou",
+  "slug": "epochiakos-elegxos-eksisorropisis-vroxou-kalorifer-vathypetro-lasithiou",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Βρόχου Καλοριφέρ στο Βαθύπετρο Λασιθίου",
+  "nameEn": "Seasonal Heating Radiator Loop Balance Check in Βαθύπετρο Λασιθίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης βρόχου καλοριφέρ στο Βαθύπετρο Λασιθίου για ομοιόμορφη θέρμανση σε όλους τους χώρους.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βαθύπετρο Λασιθίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

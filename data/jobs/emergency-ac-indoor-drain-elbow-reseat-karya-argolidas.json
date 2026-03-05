@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-elbow-reseat-karya-argolidas",
+  "slug": "epigousa-epanafora-gonias-aporrois-esoterikou-ac-karya-argolidas",
+  "nameGr": "Επείγουσα Επαναφορά Γωνίας Απορροής Εσωτερικού AC στην Καρυά Αργολίδας",
+  "nameEn": "Emergency AC Indoor Drain Elbow Reseat in Καρυά Αργολίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά γωνίας απορροής εσωτερικού AC στην Καρυά Αργολίδας για άμεση διακοπή επιστροφής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καρυά Αργολίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-switch-lug-repair-mikrochori-drama",
+  "slug": "epigousa-episkevi-akrodexti-kentrikou-diakopti-mikrochori-drama",
+  "nameGr": "Επείγουσα Επισκευή Ακροδέκτη Κεντρικού Διακόπτη στο Μικροχώρι Δράμας",
+  "nameEn": "Emergency Electrical Main Switch Lug Repair in Μικροχώρι Δράμας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ακροδέκτη κεντρικού διακόπτη στο Μικροχώρι Δράμας για ασφαλή και σταθερή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικροχώρι Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
