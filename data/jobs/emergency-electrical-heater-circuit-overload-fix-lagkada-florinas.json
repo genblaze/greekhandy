@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-heater-circuit-overload-fix-lagkada-florinas",
+  "slug": "epigousa-episkevi-yperfortosis-kyklomatos-thermantikou-lagkada-florinas",
+  "nameGr": "Επείγουσα Επισκευή Υπερφόρτωσης Κυκλώματος Θερμαντικού στη Λαγκάδα Φλώρινας",
+  "nameEn": "Emergency Electrical Heater Circuit Overload Fix in Λαγκάδα Φλώρινας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερφόρτωσης κυκλώματος θέρμανσης στη Λαγκάδα Φλώρινας για ασφαλή αποκατάσταση ρεύματος χωρίς διακοπές.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδα Φλώρινας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

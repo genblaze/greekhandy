@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-endstop-reset-astrochori",
+  "slug": "epigousa-epanafora-termatismou-rolou-astrochori",
+  "nameGr": "Επείγουσα Επαναφορά Τερματισμού Ρολού στο Αστροχώρι",
+  "nameEn": "Emergency Shutter Endstop Reset in Αστροχώρι",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επαναφορά τερματισμού ρολού στο Αστροχώρι όταν το ρολό δεν σταματά σωστά και καταπονείται ο μηχανισμός.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Αστροχώρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

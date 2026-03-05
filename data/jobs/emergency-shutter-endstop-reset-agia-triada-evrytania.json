@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-endstop-reset-agia-triada-evrytania",
+  "slug": "epigousa-epanafora-termatismou-rolou-agia-triada-evrytania",
+  "nameGr": "Επείγουσα Επαναφορά Τερματισμού Ρολού στην Αγία Τριάδα Ευρυτανίας",
+  "nameEn": "Emergency Shutter Endstop Reset in Αγία Τριάδα Ευρυτανίας",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επαναφορά τερματισμού ρολού στην Αγία Τριάδα Ευρυτανίας όταν το ρολό δεν σταματά σωστά και καταπονείται ο μηχανισμός.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Τριάδα Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

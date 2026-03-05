@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-distribution-flow-check-agia-triada-evrytania",
+  "slug": "epochiakos-elegxos-rois-diktyou-thermansis-agia-triada-evrytania",
+  "nameGr": "Εποχικός Έλεγχος Ροής Δικτύου Θέρμανσης στην Αγία Τριάδα Ευρυτανίας",
+  "nameEn": "Seasonal Heating Distribution Flow Check in Αγία Τριάδα Ευρυτανίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ροής δικτύου θέρμανσης στην Αγία Τριάδα Ευρυτανίας για ισορροπημένη απόδοση και εξοικονόμηση ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Τριάδα Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

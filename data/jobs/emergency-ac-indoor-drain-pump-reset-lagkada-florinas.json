@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-pump-reset-lagkada-florinas",
+  "slug": "epigousa-epanafora-antlias-apoxeteusis-esoterikou-ac-lagkada-florinas",
+  "nameGr": "Επείγουσα Επαναφορά Αντλίας Αποχέτευσης Εσωτερικού AC στη Λαγκάδα Φλώρινας",
+  "nameEn": "Emergency AC Indoor Drain Pump Reset in Λαγκάδα Φλώρινας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά αντλίας αποχέτευσης εσωτερικού AC στη Λαγκάδα Φλώρινας για άμεση αποφυγή υπερχείλισης νερών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδα Φλώρινας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

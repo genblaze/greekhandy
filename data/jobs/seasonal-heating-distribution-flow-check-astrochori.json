@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-distribution-flow-check-astrochori",
+  "slug": "epochiakos-elegxos-rois-diktyou-thermansis-astrochori",
+  "nameGr": "Εποχικός Έλεγχος Ροής Δικτύου Θέρμανσης στο Αστροχώρι",
+  "nameEn": "Seasonal Heating Distribution Flow Check in Αστροχώρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ροής δικτύου θέρμανσης στο Αστροχώρι για ισορροπημένη απόδοση και εξοικονόμηση ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αστροχώρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

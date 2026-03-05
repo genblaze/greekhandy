@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-booster-relay-restart-fix-agia-triada-evrytania",
+  "slug": "epigousa-episkevi-rele-ekkinisis-piestikou-nerou-agia-triada-evrytania",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Εκκίνησης Πιεστικού Νερού στην Αγία Τριάδα Ευρυτανίας",
+  "nameEn": "Emergency Water Booster Relay Restart Fix in Αγία Τριάδα Ευρυτανίας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ρελέ εκκίνησης πιεστικού νερού στην Αγία Τριάδα Ευρυτανίας για άμεση επαναφορά πίεσης στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Τριάδα Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

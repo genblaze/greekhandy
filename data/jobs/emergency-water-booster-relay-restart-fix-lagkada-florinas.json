@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-booster-relay-restart-fix-lagkada-florinas",
+  "slug": "epigousa-episkevi-rele-ekkinisis-piestikou-nerou-lagkada-florinas",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Εκκίνησης Πιεστικού Νερού στη Λαγκάδα Φλώρινας",
+  "nameEn": "Emergency Water Booster Relay Restart Fix in Λαγκάδα Φλώρινας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ρελέ εκκίνησης πιεστικού νερού στη Λαγκάδα Φλώρινας για άμεση επαναφορά πίεσης στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδα Φλώρινας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

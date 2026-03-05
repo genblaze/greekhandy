@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-booster-relay-restart-fix-astrochori",
+  "slug": "epigousa-episkevi-rele-ekkinisis-piestikou-nerou-astrochori",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Εκκίνησης Πιεστικού Νερού στο Αστροχώρι",
+  "nameEn": "Emergency Water Booster Relay Restart Fix in Αστροχώρι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ρελέ εκκίνησης πιεστικού νερού στο Αστροχώρι για άμεση επαναφορά πίεσης στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αστροχώρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

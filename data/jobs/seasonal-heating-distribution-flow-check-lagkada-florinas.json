@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-distribution-flow-check-lagkada-florinas",
+  "slug": "epochiakos-elegxos-rois-diktyou-thermansis-lagkada-florinas",
+  "nameGr": "Εποχικός Έλεγχος Ροής Δικτύου Θέρμανσης στη Λαγκάδα Φλώρινας",
+  "nameEn": "Seasonal Heating Distribution Flow Check in Λαγκάδα Φλώρινας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ροής δικτύου θέρμανσης στη Λαγκάδα Φλώρινας για ισορροπημένη απόδοση και εξοικονόμηση ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδα Φλώρινας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

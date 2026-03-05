@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-heater-circuit-overload-fix-agia-triada-evrytania",
+  "slug": "epigousa-episkevi-yperfortosis-kyklomatos-thermantikou-agia-triada-evrytania",
+  "nameGr": "Επείγουσα Επισκευή Υπερφόρτωσης Κυκλώματος Θερμαντικού στην Αγία Τριάδα Ευρυτανίας",
+  "nameEn": "Emergency Electrical Heater Circuit Overload Fix in Αγία Τριάδα Ευρυτανίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερφόρτωσης κυκλώματος θέρμανσης στην Αγία Τριάδα Ευρυτανίας για ασφαλή αποκατάσταση ρεύματος χωρίς διακοπές.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Τριάδα Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

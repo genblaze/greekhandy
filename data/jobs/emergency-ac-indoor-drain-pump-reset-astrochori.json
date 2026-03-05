@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-pump-reset-astrochori",
+  "slug": "epigousa-epanafora-antlias-apoxeteusis-esoterikou-ac-astrochori",
+  "nameGr": "Επείγουσα Επαναφορά Αντλίας Αποχέτευσης Εσωτερικού AC στο Αστροχώρι",
+  "nameEn": "Emergency AC Indoor Drain Pump Reset in Αστροχώρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά αντλίας αποχέτευσης εσωτερικού AC στο Αστροχώρι για άμεση αποφυγή υπερχείλισης νερών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αστροχώρι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
