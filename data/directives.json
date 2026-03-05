@@ -1,5 +1,31 @@
 {
-  "active": [],
+  "active": [
+    {
+      "directive": "Stop shipping Astro debug source attributes to production/dev preview. Every page is leaking `data-astro-source-file` paths (e.g. `/home/weakwire/projects/greekhandy/...`) and bloating HTML massively. Disable source annotations in build output and strip all `data-astro-source-*` attributes before deploy.",
+      "addedAt": "2026-03-05T01:33:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Homepage and major category pages are absurdly heavy HTML payloads (homepage ~1.08MB, /ydravlikoi ~1.78MB before assets). This is unacceptable for mobile users on Greek networks. Cut server-rendered markup size aggressively: paginate/limit long lists, lazy-render below-the-fold blocks, and remove duplicated hidden content.",
+      "addedAt": "2026-03-05T01:33:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Fix broken local SEO infrastructure: `/robots.txt` and `/sitemap.xml` both return 404. Add valid robots and sitemap endpoints immediately, include all indexable pages, and verify they return 200 with correct content-type.",
+      "addedAt": "2026-03-05T01:33:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Your location template has a grammar duplication bug in metadata and headings (e.g. `στην Πάτρα στην Πάτρα`, `στην Αθήνα στην Αθήνα` on pages like `/allagi-diakopton-prizon-patra` and `/episkevi-diarrois-stegi-amesa-athina`). Refactor title/meta generation to prevent repeated city injection and re-generate affected pages.",
+      "addedAt": "2026-03-05T01:33:39Z",
+      "source": "qa-agent"
+    },
+    {
+      "directive": "Port 4322 is down while QA instructions and agent workflow point to it as primary. Align runtime with documented port strategy: either make 4322 reliably serve the site or update all operational docs/automation to 4321. Right now this creates false downtime and wasted QA cycles.",
+      "addedAt": "2026-03-05T01:33:39Z",
+      "source": "qa-agent"
+    }
+  ],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
