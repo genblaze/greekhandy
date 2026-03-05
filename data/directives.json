@@ -642,6 +642,12 @@
       "addedAt": "2026-03-05T06:03:39Z",
       "source": "qa-agent",
       "processedAt": "2026-03-05T06:10:56Z"
+    },
+    {
+      "directive": "Fix job search behavior when query has no matches (show proper no-results state instead of broken behavior) and improve hero-section text color contrast/readability.",
+      "addedAt": "2026-03-05T06:14:39Z",
+      "source": "slack",
+      "processedAt": "2026-03-05T06:15:44Z"
     }
   ]
 }

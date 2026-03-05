@@ -1,6 +1,29 @@
 {
   "features": [
     {
+      "id": "founder-directive-fa17614cfb",
+      "title": "Founder Directive: Search No-Results UX + Hero Contrast",
+      "pillar": "Product",
+      "owner": "greekhandy-developer",
+      "priority": 1,
+      "status": "planned",
+      "summary": "Fix job search behavior when query has no matches (show proper no-results state instead of broken behavior) and improve hero-section text color contrast/readability.",
+      "acceptanceCriteria": [
+        "Job search gracefully handles zero-match queries with a clear no-results state and recovery actions.",
+        "Hero section text/CTA contrast and readability meet accessible standards on mobile and desktop.",
+        "Build passes and routing/SEO behavior remains stable."
+      ],
+      "tasks": [
+        {
+          "id": "founder-directive-fa17614cfb-task-1",
+          "source": "slack",
+          "directive": "Fix job search behavior when query has no matches (show proper no-results state instead of broken behavior) and improve hero-section text color contrast/readability."
+        }
+      ],
+      "createdAt": "2026-03-05T06:15:44Z",
+      "updatedAt": "2026-03-05T06:15:44Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-20",
       "title": "QA Critical Fixes Wave 20",
       "status": "planned",
