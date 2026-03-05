@@ -94,6 +94,33 @@ body {
   line-height: 1;
 }
 
+/* Consistent conversion/focus treatment for CTA controls sitewide */
+:where(a, button, input[type='submit'], input[type='button']) {
+  transition: box-shadow 140ms ease, transform 140ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+:where(a, button, input[type='submit'], input[type='button']):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0284c7;
+}
+
+:where(.gh-primary-cta, .bg-blue-700, .bg-emerald-700, .bg-rose-700, .bg-violet-700):focus-visible {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0ea5e9;
+}
+
+:where(.bg-blue-700, .bg-emerald-700, .bg-rose-700, .bg-violet-700) {
+  color: #fff;
+}
+
+:where(.bg-blue-700):hover { background-color: #1d4ed8; }
+:where(.bg-emerald-700):hover { background-color: #047857; }
+:where(.bg-rose-700):hover { background-color: #be123c; }
+:where(.bg-violet-700):hover { background-color: #6d28d9; }
+
+:where(.border-slate-300, .border-gray-300):hover {
+  border-color: #64748b;
+}
+
 @media (max-width: 768px) {
   :root {
     --gh-accessibility-dock-gap: 0.5rem;
