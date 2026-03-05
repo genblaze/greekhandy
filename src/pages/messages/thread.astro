@@ -1136,7 +1136,7 @@ for (const message of filteredThreadMessages) {
             <p class="mt-1 text-[11px] font-medium opacity-90">{threadFilterScopeLabel}</p>
             <p id="thread-history-state-recovery" class="mt-1 text-[11px] opacity-90">{historyStateRecoveryHint}</p>
             <div class="thread-state-actions" role="group" aria-label="Ενέργειες αξιοπιστίας ιστορικού">
-              <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης ιστορικού thread." class="thread-touch-target inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+              <a href={threadRetryHref} data-thread-retry-now aria-keyshortcuts="R" data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης ιστορικού thread." class="thread-touch-target inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
                 Επανάληψη τώρα
               </a>
               {!showLoadingState && historyStateActionHref !== threadRetryHref && (
