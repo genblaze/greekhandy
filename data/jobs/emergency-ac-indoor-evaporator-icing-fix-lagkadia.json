@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-evaporator-icing-fix-lagkadia",
+  "slug": "epigousa-episkevi-pagomatos-eksatmisti-esoterikou-ac-lagkadia",
+  "nameGr": "Επείγουσα Επισκευή Παγώματος Εξατμιστή Εσωτερικού AC στα Λαγκάδια",
+  "nameEn": "Emergency AC Indoor Evaporator Icing Fix in Λαγκάδια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή παγώματος εξατμιστή εσωτερικού AC στα Λαγκάδια για άμεση αποκατάσταση απόδοσης ψύξης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

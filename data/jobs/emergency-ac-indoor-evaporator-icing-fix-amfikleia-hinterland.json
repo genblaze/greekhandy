@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-evaporator-icing-fix-amfikleia-hinterland",
+  "slug": "epigousa-episkevi-pagomatos-eksatmisti-esoterikou-ac-amfikleia-hinterland",
+  "nameGr": "Επείγουσα Επισκευή Παγώματος Εξατμιστή Εσωτερικού AC στην ενδοχώρα Αμφίκλειας",
+  "nameEn": "Emergency AC Indoor Evaporator Icing Fix in Αμφίκλεια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή παγώματος εξατμιστή εσωτερικού AC στην ενδοχώρα Αμφίκλειας για άμεση αποκατάσταση απόδοσης ψύξης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αμφίκλεια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

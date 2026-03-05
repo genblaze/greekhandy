@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-meter-board-burnt-terminal-fix-amfikleia-hinterland",
+  "slug": "epigousa-episkevi-kamenou-akrodekti-pinaka-metriti-amfikleia-hinterland",
+  "nameGr": "Επείγουσα Επισκευή Καμένου Ακροδέκτη Πίνακα Μετρητή στην ενδοχώρα Αμφίκλειας",
+  "nameEn": "Emergency Electrical Meter Board Burnt Terminal Fix in Αμφίκλεια",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή καμένου ακροδέκτη πίνακα μετρητή στην ενδοχώρα Αμφίκλειας για άμεση ασφαλή επαναφορά ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αμφίκλεια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

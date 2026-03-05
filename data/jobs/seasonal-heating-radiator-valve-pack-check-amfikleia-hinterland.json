@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-valve-pack-check-amfikleia-hinterland",
+  "slug": "epochiakos-elegxos-paking-valvidas-kalorifer-amfikleia-hinterland",
+  "nameGr": "Εποχικός Έλεγχος Πακίνγκ Βαλβίδας Καλοριφέρ στην ενδοχώρα Αμφίκλειας",
+  "nameEn": "Seasonal Heating Radiator Valve Packing Check in Αμφίκλεια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος πακίνγκ βαλβίδας καλοριφέρ στην ενδοχώρα Αμφίκλειας για πρόληψη μικροδιαρροών πριν τον χειμώνα.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αμφίκλεια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

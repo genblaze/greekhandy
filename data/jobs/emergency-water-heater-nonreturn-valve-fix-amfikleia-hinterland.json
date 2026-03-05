@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-nonreturn-valve-fix-amfikleia-hinterland",
+  "slug": "epigousa-episkevi-valvidas-antepistrofis-thermosifona-amfikleia-hinterland",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Αντεπιστροφής Θερμοσίφωνα στην ενδοχώρα Αμφίκλειας",
+  "nameEn": "Emergency Water Heater Non-return Valve Fix in Αμφίκλεια",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας αντεπιστροφής θερμοσίφωνα στην ενδοχώρα Αμφίκλειας για αποφυγή διαρροών και σταθερή παροχή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αμφίκλεια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

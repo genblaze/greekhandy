@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-meter-board-burnt-terminal-fix-lagkadia",
+  "slug": "epigousa-episkevi-kamenou-akrodekti-pinaka-metriti-lagkadia",
+  "nameGr": "Επείγουσα Επισκευή Καμένου Ακροδέκτη Πίνακα Μετρητή στα Λαγκάδια",
+  "nameEn": "Emergency Electrical Meter Board Burnt Terminal Fix in Λαγκάδια",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή καμένου ακροδέκτη πίνακα μετρητή στα Λαγκάδια για άμεση ασφαλή επαναφορά ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

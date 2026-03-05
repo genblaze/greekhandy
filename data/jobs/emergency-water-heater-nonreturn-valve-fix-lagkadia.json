@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-nonreturn-valve-fix-lagkadia",
+  "slug": "epigousa-episkevi-valvidas-antepistrofis-thermosifona-lagkadia",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Αντεπιστροφής Θερμοσίφωνα στα Λαγκάδια",
+  "nameEn": "Emergency Water Heater Non-return Valve Fix in Λαγκάδια",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας αντεπιστροφής θερμοσίφωνα στα Λαγκάδια για αποφυγή διαρροών και σταθερή παροχή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

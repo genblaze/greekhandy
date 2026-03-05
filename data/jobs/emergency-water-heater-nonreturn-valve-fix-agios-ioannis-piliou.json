@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-nonreturn-valve-fix-agios-ioannis-piliou",
+  "slug": "epigousa-episkevi-valvidas-antepistrofis-thermosifona-agios-ioannis-piliou",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Αντεπιστροφής Θερμοσίφωνα στον Άγιο Ιωάννη Πηλίου",
+  "nameEn": "Emergency Water Heater Non-return Valve Fix in Άγιος Ιωάννης Πηλίου",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας αντεπιστροφής θερμοσίφωνα στον Άγιο Ιωάννη Πηλίου για αποφυγή διαρροών και σταθερή παροχή.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Πηλίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

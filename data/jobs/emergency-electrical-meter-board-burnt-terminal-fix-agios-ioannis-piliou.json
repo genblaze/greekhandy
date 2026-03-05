@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-meter-board-burnt-terminal-fix-agios-ioannis-piliou",
+  "slug": "epigousa-episkevi-kamenou-akrodekti-pinaka-metriti-agios-ioannis-piliou",
+  "nameGr": "Επείγουσα Επισκευή Καμένου Ακροδέκτη Πίνακα Μετρητή στον Άγιο Ιωάννη Πηλίου",
+  "nameEn": "Emergency Electrical Meter Board Burnt Terminal Fix in Άγιος Ιωάννης Πηλίου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή καμένου ακροδέκτη πίνακα μετρητή στον Άγιο Ιωάννη Πηλίου για άμεση ασφαλή επαναφορά ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Πηλίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-evaporator-icing-fix-agios-ioannis-piliou",
+  "slug": "epigousa-episkevi-pagomatos-eksatmisti-esoterikou-ac-agios-ioannis-piliou",
+  "nameGr": "Επείγουσα Επισκευή Παγώματος Εξατμιστή Εσωτερικού AC στον Άγιο Ιωάννη Πηλίου",
+  "nameEn": "Emergency AC Indoor Evaporator Icing Fix in Άγιος Ιωάννης Πηλίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή παγώματος εξατμιστή εσωτερικού AC στον Άγιο Ιωάννη Πηλίου για άμεση αποκατάσταση απόδοσης ψύξης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Πηλίου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

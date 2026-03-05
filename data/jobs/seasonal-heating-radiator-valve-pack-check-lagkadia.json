@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-valve-pack-check-lagkadia",
+  "slug": "epochiakos-elegxos-paking-valvidas-kalorifer-lagkadia",
+  "nameGr": "Εποχικός Έλεγχος Πακίνγκ Βαλβίδας Καλοριφέρ στα Λαγκάδια",
+  "nameEn": "Seasonal Heating Radiator Valve Packing Check in Λαγκάδια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος πακίνγκ βαλβίδας καλοριφέρ στα Λαγκάδια για πρόληψη μικροδιαρροών πριν τον χειμώνα.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδια επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
