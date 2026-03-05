@@ -240,6 +240,7 @@ const composerAriaDescribedBy = [
   'composer-error',
   'composer-count',
   'composer-live',
+  'composer-feedback',
   'composer-submit-live',
   'thread-offline-alert',
   hasFailedSendStatus ? 'composer-retry-panel' : ''
@@ -329,6 +330,12 @@ const threadVisibilityFilterLabel = threadVisibilityFilter === 'visible'
       ? 'Αναφέρσιμα'
       : 'Όλα';
 const hasThreadFilters = Boolean(threadSearchQueryRaw) || threadVisibilityFilter !== 'all';
+const threadFilterScopeParts: string[] = [];
+if (threadVisibilityFilter !== 'all') threadFilterScopeParts.push(`Scope: ${threadVisibilityFilterLabel}`);
+if (threadSearchQueryRaw) threadFilterScopeParts.push(`Αναζήτηση: "${threadSearchQueryRaw}"`);
+const threadFilterScopeLabel = threadFilterScopeParts.length > 0
+  ? threadFilterScopeParts.join(' · ')
+  : 'Scope: Όλα τα μηνύματα χωρίς επιπλέον φίλτρο';
 const showHistoryNoMatchState = !showLoadingState && threadMessages.length > 0 && filteredThreadMessages.length === 0 && hasThreadFilters;
 const threadFilterResetHref = buildThreadHref({ q: '', visibility: 'all' });
 const threadFilterSummary = showLoadingState
@@ -987,9 +994,9 @@ for (const message of filteredThreadMessages) {
               <div class="min-w-[16rem] flex-1">
                 <p id="thread-filter-title" class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Αναζήτηση στο thread</p>
                 <label for="thread-filter-query" class="sr-only">Αναζήτηση σε σώμα μηνύματος, αποστολέα ή email</label>
-                <input
-                  id="thread-filter-query"
-                  name="q"
+                  <input
+                    id="thread-filter-query"
+                    name="q"
                   type="search"
                   value={threadSearchQueryRaw}
                   maxlength="200"
@@ -997,19 +1004,19 @@ for (const message of filteredThreadMessages) {
                   autocomplete="off"
                   class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                   placeholder="Αναζήτηση σε σώμα μηνύματος, αποστολέα ή email"
-                  aria-label="Αναζήτηση σε μηνύματα thread"
-                  aria-keyshortcuts="Slash Escape"
-                />
+                    aria-label="Αναζήτηση σε μηνύματα thread"
+                    aria-keyshortcuts="Slash Escape"
+                  />
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="submit" data-thread-filter-action="Εφαρμογή φίλτρων thread." class="thread-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                    Εφαρμογή φίλτρων
+                  </button>
+                  <a href={threadFilterResetHref} data-thread-filter-action="Καθαρισμός φίλτρων thread." class="thread-touch-target inline-flex rounded-lg border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
+                    Καθαρισμός
+                  </a>
+                </div>
               </div>
-              <div class="flex flex-wrap items-center gap-2">
-                <button type="submit" class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
-                  Εφαρμογή φίλτρων
-                </button>
-                <a href={threadFilterResetHref} class="inline-flex rounded-lg border border-indigo-300 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-900 transition hover:border-indigo-400 hover:bg-indigo-100">
-                  Καθαρισμός
-                </a>
-              </div>
-            </div>
             <fieldset class="mt-3">
               <legend class="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">Κατάσταση μηνυμάτων</legend>
               <div class="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label="Επιλογή ορατότητας μηνυμάτων thread">
@@ -1030,6 +1037,7 @@ for (const message of filteredThreadMessages) {
             <p id="thread-filter-help" class="mt-2 text-[11px] text-slate-500">
               Συντόμευση πληκτρολογίου: πατήστε <span class="font-semibold text-slate-700">/</span> για εστίαση στην αναζήτηση και <span class="font-semibold text-slate-700">Esc</span> για καθαρισμό.
             </p>
+            <p class="mt-1 text-[11px] text-slate-500">{threadFilterScopeLabel}</p>
           </form>
           <div class="thread-history-summary mt-3" role="status" aria-live="polite" aria-atomic="true">
             <p class="font-semibold text-slate-800">Ανάγνωση ιστορικού: {hasThreadFilters ? `${filteredThreadMessages.length}/${threadMessages.length}` : threadMessages.length} μηνύματα</p>
@@ -1069,9 +1077,10 @@ for (const message of filteredThreadMessages) {
             <p class="mt-1 text-sm font-semibold">{historyStateTitle}</p>
             <p id="thread-history-state-summary" class="mt-1">{historyStateSummary}</p>
             <p id="thread-history-state-support" class="mt-1 text-[11px] font-medium opacity-90">{historyStateSupportHint}</p>
+            <p class="mt-1 text-[11px] font-medium opacity-90">{threadFilterScopeLabel}</p>
             <p id="thread-history-state-recovery" class="mt-1 text-[11px] opacity-90">{historyStateRecoveryHint}</p>
             {!showLoadingState && (
-              <a href={historyStateActionHref} class="mt-2 inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
+              <a href={historyStateActionHref} data-thread-filter-action={historyStateActionLabel} class="thread-touch-target mt-2 inline-flex rounded-md border border-current/30 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white">
                 {historyStateActionLabel}
               </a>
             )}
@@ -1084,7 +1093,8 @@ for (const message of filteredThreadMessages) {
                 <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-800">Κατάσταση προβολής · Loading</p>
                 <p id="thread-history-loading-title" class="font-semibold">Το ιστορικό συγχρονίζεται αυτή τη στιγμή.</p>
                 <p id="thread-history-loading-description" class="mt-1">Αν η φόρτωση παραμείνει στάσιμη, επαναφορτώστε το thread για νέα απόπειρα ανάκτησης.</p>
-                <a href={threadViewHref} class="mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
+                <a href={threadViewHref} data-thread-filter-action="Επαναφόρτωση thread κατά την κατάσταση loading." class="thread-touch-target mt-2 inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
                   Επαναφόρτωση thread
                 </a>
               </div>
@@ -1109,7 +1119,8 @@ for (const message of filteredThreadMessages) {
                 <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-800">Κατάσταση προβολής · Partial</p>
                 <p id="thread-history-partial-title" class="font-semibold">Το ιστορικό φορτώθηκε μερικώς.</p>
                 <p id="thread-history-partial-description" class="mt-1 text-xs">Ορισμένα μηνύματα ή moderation στοιχεία μπορεί να λείπουν μέχρι να ολοκληρωθεί επιτυχής επανάκτηση.</p>
-                <a href={threadViewHref} class="mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+                <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
+                <a href={threadViewHref} data-thread-filter-action="Επανάληψη φόρτωσης thread μετά από μερικό αποτέλεσμα." class="thread-touch-target mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
                   Επανάληψη φόρτωσης ιστορικού
                 </a>
               </div>
@@ -1141,11 +1152,12 @@ for (const message of filteredThreadMessages) {
                 <p id="thread-history-no-match-description" class="mt-1 text-sm">
                   Scope: <span class="font-semibold">{threadVisibilityFilterLabel}</span>{threadSearchQueryRaw ? <> · Αναζήτηση: <span class="font-semibold">"{threadSearchQueryRaw}"</span></> : ''}.
                 </p>
+                <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
-                  <a href={threadFilterResetHref} class="inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
+                  <a href={threadFilterResetHref} data-thread-filter-action="Καθαρισμός φίλτρων για εμφάνιση όλων των μηνυμάτων." class="thread-touch-target inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
                     Καθαρισμός φίλτρων
                   </a>
-                  <a href="#thread-filter-controls" class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                  <a href="#thread-filter-controls" data-thread-filter-action="Μεταφορά στα φίλτρα thread για νέα αναζήτηση." class="thread-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
                     Επιστροφή στα φίλτρα
                   </a>
                 </div>
@@ -1156,11 +1168,12 @@ for (const message of filteredThreadMessages) {
                 <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-700">Κατάσταση προβολής · Error</p>
                 <p id="thread-history-error-title" class="text-lg font-semibold">Το ιστορικό δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
                 <p id="thread-history-error-description" class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση μηνυμάτων για το thread.</p>
+                <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
-                  <a href={threadViewHref} class="inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
+                  <a href={threadViewHref} data-thread-filter-action="Επανάληψη φόρτωσης ιστορικού μετά από σφάλμα." class="thread-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
                     Επανάληψη φόρτωσης
                   </a>
-                  <a href={threadListHref} class="inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                  <a href={threadListHref} data-thread-filter-action="Επιστροφή στη λίστα συνομιλιών." class="thread-touch-target inline-flex rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
                     Πίσω στη λίστα
                   </a>
                 </div>
@@ -1388,18 +1401,23 @@ for (const message of filteredThreadMessages) {
                   <p class="font-semibold">{composerRetryPanelTitle}</p>
                   <p class="mt-1">{composerRetryPanelDescription}</p>
                   <p class="mt-1 text-[11px] font-medium">Το πρόχειρο αποθηκεύεται αυτόματα ανά thread και επαναφέρεται μετά από ανανέωση.</p>
+                  <p id="composer-retry-actions-hint" class="mt-1 text-[11px]">Το retry χρησιμοποιεί το τρέχον κείμενο ή το αποθηκευμένο πρόχειρο αν το πεδίο είναι κενό.</p>
                   <div class="mt-2 flex flex-wrap gap-2">
                     <button
                       type="button"
                       data-retry-send
-                      class="inline-flex rounded-md border border-current/40 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white"
+                      aria-controls="composer-message"
+                      aria-describedby="composer-retry-actions-hint composer-submit-live"
+                      class="thread-touch-target inline-flex rounded-md border border-current/40 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white"
                     >
                       Επανάληψη αποστολής
                     </button>
                     <button
                       type="button"
                       data-restore-draft
-                      class="inline-flex rounded-md border border-current/40 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white"
+                      aria-controls="composer-message"
+                      aria-describedby="composer-retry-actions-hint composer-submit-live"
+                      class="thread-touch-target inline-flex rounded-md border border-current/40 bg-white/80 px-2.5 py-1 text-[11px] font-semibold transition hover:bg-white"
                     >
                       Επαναφορά πρόχειρου
                     </button>
@@ -1434,7 +1452,8 @@ for (const message of filteredThreadMessages) {
               </div>
               <p id="composer-live" class="mt-1 text-xs font-medium text-slate-600" aria-live="polite" aria-atomic="true"></p>
               <p id="composer-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
-              <button type="submit" data-default-label="Αποστολή" data-pending-label="Αποστολή..." disabled class="mt-3 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-65">Αποστολή</button>
+              <button type="submit" data-default-label="Αποστολή" data-pending-label="Αποστολή..." disabled class="thread-touch-target mt-3 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-65">Αποστολή</button>
+              <p id="composer-feedback" data-form-feedback class="mt-2 text-[11px] text-slate-600" role="status" aria-live="polite" aria-atomic="true">Το composer είναι έτοιμο για αποστολή.</p>
             </form>
           )}
         </section>
@@ -1565,10 +1584,12 @@ for (const message of filteredThreadMessages) {
       border-radius: 0.6rem;
       border: 1px solid currentColor;
       background: rgba(255, 255, 255, 0.72);
-      padding: 0.25rem 0.55rem;
+      padding: 0.45rem 0.7rem;
       font-size: 0.7rem;
       font-weight: 700;
       line-height: 1;
+      min-height: 2.35rem;
+      touch-action: manipulation;
     }
 
     .thread-toast__dismiss:hover {
@@ -1851,6 +1872,23 @@ for (const message of filteredThreadMessages) {
         width: auto;
       }
 
+      .thread-touch-target,
+      #thread-composer :where(button, a),
+      #thread-filter-controls :where(button, a),
+      #thread-history :where(button, a, summary) {
+        min-height: 2.75rem;
+        touch-action: manipulation;
+      }
+
+      #composer-retry-panel .thread-touch-target {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .thread-toast {
+        padding: 0.85rem;
+      }
+
       .thread-skip-link--moderation {
         top: 2.1rem;
       }
@@ -1880,6 +1918,7 @@ for (const message of filteredThreadMessages) {
       const filterLiveRegion = document.querySelector('#thread-filter-live');
       const threadFilterForm = document.querySelector('#thread-filter-controls');
       const threadFilterQuery = document.querySelector('#thread-filter-query');
+      const threadFilterActions = Array.from(document.querySelectorAll('[data-thread-filter-action]')).filter((item) => item instanceof HTMLElement);
       const isCompactViewport = () => typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 640px)').matches;
       const announceFocusState = (message) => {
         if (focusLiveRegion instanceof HTMLElement) focusLiveRegion.textContent = message;
@@ -1960,6 +1999,13 @@ for (const message of filteredThreadMessages) {
       if (threadFilterForm instanceof HTMLFormElement) {
         threadFilterForm.addEventListener('submit', () => {
           announceThreadFilterState('Η προβολή thread ενημερώνεται με τα τρέχοντα φίλτρα.');
+        });
+      }
+      for (const action of threadFilterActions) {
+        if (!(action instanceof HTMLElement)) continue;
+        action.addEventListener('click', () => {
+          const message = action.dataset.threadFilterAction || 'Η προβολή thread ενημερώνεται.';
+          announceThreadFilterState(message);
         });
       }
       window.addEventListener('keydown', (event) => {
@@ -2109,11 +2155,12 @@ for (const message of filteredThreadMessages) {
       const setFormFeedback = (form, message, tone = 'neutral') => {
         const feedback = form.querySelector('[data-form-feedback]');
         if (!(feedback instanceof HTMLElement)) return;
+        const neutralToneClass = form.classList.contains('js-composer-form') ? 'text-slate-600' : 'text-amber-900';
         const toneClass = tone === 'error'
           ? 'text-rose-700'
           : tone === 'pending'
             ? 'text-sky-700'
-            : 'text-amber-900';
+            : neutralToneClass;
         feedback.className = `text-[11px] ${toneClass}`;
         feedback.textContent = message;
       };
@@ -2219,6 +2266,7 @@ for (const message of filteredThreadMessages) {
         submitButton.removeAttribute('aria-busy');
         if (!submitButton.disabled) submitButton.removeAttribute('aria-disabled');
         syncOfflineSubmitAvailability();
+        if (form.classList.contains('js-composer-form')) refreshComposerAvailability();
       };
 
       for (const form of pendingForms) {
@@ -2273,6 +2321,22 @@ for (const message of filteredThreadMessages) {
           composerState.textContent = message;
           form.setAttribute('data-composer-state', state);
         };
+        const syncComposerRetryActions = () => {
+          if (!isComposerForm) return;
+          const isBusy = form.getAttribute('aria-busy') === 'true';
+          const offline = isOffline();
+          const textValue = textarea instanceof HTMLTextAreaElement ? textarea.value.trim() : '';
+          const storedDraft = getDraftRecord(draftKey).value.trim();
+          const hasRetrySource = textValue.length > 0 || storedDraft.length > 0;
+          if (retrySendButton instanceof HTMLButtonElement) {
+            retrySendButton.disabled = isBusy || offline || !hasRetrySource;
+            retrySendButton.setAttribute('aria-disabled', retrySendButton.disabled ? 'true' : 'false');
+          }
+          if (restoreDraftButton instanceof HTMLButtonElement) {
+            restoreDraftButton.disabled = isBusy || offline || storedDraft.length === 0;
+            restoreDraftButton.setAttribute('aria-disabled', restoreDraftButton.disabled ? 'true' : 'false');
+          }
+        };
 
         const syncComposer = () => {
           if (!(textarea instanceof HTMLTextAreaElement)) return;
@@ -2313,6 +2377,7 @@ for (const message of filteredThreadMessages) {
               live.textContent = '';
             }
           }
+          syncComposerRetryActions();
         };
 
         if (textarea instanceof HTMLTextAreaElement) {
@@ -2476,6 +2541,7 @@ for (const message of filteredThreadMessages) {
         }
         if (globalSubmitLive instanceof HTMLElement) globalSubmitLive.textContent = '';
         announceFocusState('');
+        announceThreadFilterState('');
         const composerTextarea = document.querySelector('#composer-message');
         if (composerTextarea instanceof HTMLTextAreaElement) {
           composerTextarea.dispatchEvent(new Event('input', { bubbles: true }));
