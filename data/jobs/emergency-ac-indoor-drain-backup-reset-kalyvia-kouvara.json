@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-backup-reset-kalyvia-kouvara",
+  "slug": "epigousa-epanafora-emfrazis-aporrois-esoterikou-ac-kalyvia-kouvara",
+  "nameGr": "Επείγουσα Επαναφορά Έμφραξης Απορροής Εσωτερικού AC στα Καλύβια Κουβαρά",
+  "nameEn": "Emergency AC Indoor Drain Backup Reset in Καλύβια Κουβαρά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά έμφραξης απορροής εσωτερικού AC στα Καλύβια Κουβαρά για αποφυγή διαρροών και υγρασίας στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καλύβια Κουβαρά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

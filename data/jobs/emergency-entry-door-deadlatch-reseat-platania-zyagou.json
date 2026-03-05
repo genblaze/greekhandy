@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-deadlatch-reseat-platania-zyagou",
+  "slug": "epigousa-epanafora-deadlatch-portas-eisodou-platania-zyagou",
+  "nameGr": "Επείγουσα Επαναφορά Deadlatch Πόρτας Εισόδου στα Πλατάνια Ζυγού",
+  "nameEn": "Emergency Entry Door Deadlatch Reseat in Πλατάνια Ζυγού",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα επαναφορά deadlatch πόρτας εισόδου στα Πλατάνια Ζυγού για αξιόπιστο κλείδωμα χωρίς μπλοκαρίσματα.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνια Ζυγού επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

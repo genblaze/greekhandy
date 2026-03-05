@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-regulator-bypass-fix-platania-zyagou",
+  "slug": "epigousa-episkevi-bypass-rythmisti-piesis-nerou-platania-zyagou",
+  "nameGr": "Επείγουσα Επισκευή Bypass Ρυθμιστή Πίεσης Νερού στα Πλατάνια Ζυγού",
+  "nameEn": "Emergency Water Pressure Regulator Bypass Fix in Πλατάνια Ζυγού",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή bypass ρυθμιστή πίεσης νερού στα Πλατάνια Ζυγού για σταθερή παροχή και άμεσο περιορισμό απότομων μεταβολών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνια Ζυγού επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

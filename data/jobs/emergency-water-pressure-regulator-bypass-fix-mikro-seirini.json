@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-regulator-bypass-fix-mikro-seirini",
+  "slug": "epigousa-episkevi-bypass-rythmisti-piesis-nerou-mikro-seirini",
+  "nameGr": "Επείγουσα Επισκευή Bypass Ρυθμιστή Πίεσης Νερού στη Μικρή Σειρήνη",
+  "nameEn": "Emergency Water Pressure Regulator Bypass Fix in Μικρή Σειρήνη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή bypass ρυθμιστή πίεσης νερού στη Μικρή Σειρήνη για σταθερή παροχή και άμεσο περιορισμό απότομων μεταβολών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Σειρήνη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

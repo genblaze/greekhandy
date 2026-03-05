@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-purge-check-kalyvia-kouvara",
+  "slug": "epochiakos-elegxos-ekkenosis-syllekti-thermansis-kalyvia-kouvara",
+  "nameGr": "Εποχικός Έλεγχος Εκκένωσης Συλλέκτη Θέρμανσης στα Καλύβια Κουβαρά",
+  "nameEn": "Seasonal Heating Manifold Purge Check in Καλύβια Κουβαρά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εκκένωσης συλλέκτη θέρμανσης στα Καλύβια Κουβαρά για απομάκρυνση εγκλωβισμένου αέρα και σταθερή απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλύβια Κουβαρά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

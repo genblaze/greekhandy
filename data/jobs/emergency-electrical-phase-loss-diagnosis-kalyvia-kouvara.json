@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-phase-loss-diagnosis-kalyvia-kouvara",
+  "slug": "epigousa-diagnosi-apoleias-fasis-pinaka-kalyvia-kouvara",
+  "nameGr": "Επείγουσα Διάγνωση Απώλειας Φάσης Πίνακα στα Καλύβια Κουβαρά",
+  "nameEn": "Emergency Electrical Phase Loss Diagnosis in Καλύβια Κουβαρά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση απώλειας φάσης πίνακα στα Καλύβια Κουβαρά για γρήγορη αποκατάσταση ρεύματος σε κρίσιμους χώρους.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλύβια Κουβαρά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

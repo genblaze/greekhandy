@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressure-regulator-bypass-fix-kalyvia-kouvara",
+  "slug": "epigousa-episkevi-bypass-rythmisti-piesis-nerou-kalyvia-kouvara",
+  "nameGr": "Επείγουσα Επισκευή Bypass Ρυθμιστή Πίεσης Νερού στα Καλύβια Κουβαρά",
+  "nameEn": "Emergency Water Pressure Regulator Bypass Fix in Καλύβια Κουβαρά",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή bypass ρυθμιστή πίεσης νερού στα Καλύβια Κουβαρά για σταθερή παροχή και άμεσο περιορισμό απότομων μεταβολών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Καλύβια Κουβαρά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

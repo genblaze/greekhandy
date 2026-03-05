@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-backup-reset-platania-zyagou",
+  "slug": "epigousa-epanafora-emfrazis-aporrois-esoterikou-ac-platania-zyagou",
+  "nameGr": "Επείγουσα Επαναφορά Έμφραξης Απορροής Εσωτερικού AC στα Πλατάνια Ζυγού",
+  "nameEn": "Emergency AC Indoor Drain Backup Reset in Πλατάνια Ζυγού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά έμφραξης απορροής εσωτερικού AC στα Πλατάνια Ζυγού για αποφυγή διαρροών και υγρασίας στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνια Ζυγού επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

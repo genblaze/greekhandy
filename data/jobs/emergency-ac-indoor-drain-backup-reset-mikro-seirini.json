@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-backup-reset-mikro-seirini",
+  "slug": "epigousa-epanafora-emfrazis-aporrois-esoterikou-ac-mikro-seirini",
+  "nameGr": "Επείγουσα Επαναφορά Έμφραξης Απορροής Εσωτερικού AC στη Μικρή Σειρήνη",
+  "nameEn": "Emergency AC Indoor Drain Backup Reset in Μικρή Σειρήνη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά έμφραξης απορροής εσωτερικού AC στη Μικρή Σειρήνη για αποφυγή διαρροών και υγρασίας στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Σειρήνη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

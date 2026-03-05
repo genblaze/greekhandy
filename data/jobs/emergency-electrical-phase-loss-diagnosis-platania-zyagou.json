@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-phase-loss-diagnosis-platania-zyagou",
+  "slug": "epigousa-diagnosi-apoleias-fasis-pinaka-platania-zyagou",
+  "nameGr": "Επείγουσα Διάγνωση Απώλειας Φάσης Πίνακα στα Πλατάνια Ζυγού",
+  "nameEn": "Emergency Electrical Phase Loss Diagnosis in Πλατάνια Ζυγού",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση απώλειας φάσης πίνακα στα Πλατάνια Ζυγού για γρήγορη αποκατάσταση ρεύματος σε κρίσιμους χώρους.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνια Ζυγού επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-deadlatch-reseat-mikro-seirini",
+  "slug": "epigousa-epanafora-deadlatch-portas-eisodou-mikro-seirini",
+  "nameGr": "Επείγουσα Επαναφορά Deadlatch Πόρτας Εισόδου στη Μικρή Σειρήνη",
+  "nameEn": "Emergency Entry Door Deadlatch Reseat in Μικρή Σειρήνη",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα επαναφορά deadlatch πόρτας εισόδου στη Μικρή Σειρήνη για αξιόπιστο κλείδωμα χωρίς μπλοκαρίσματα.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Σειρήνη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

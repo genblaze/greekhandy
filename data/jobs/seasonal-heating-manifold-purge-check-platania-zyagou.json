@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-purge-check-platania-zyagou",
+  "slug": "epochiakos-elegxos-ekkenosis-syllekti-thermansis-platania-zyagou",
+  "nameGr": "Εποχικός Έλεγχος Εκκένωσης Συλλέκτη Θέρμανσης στα Πλατάνια Ζυγού",
+  "nameEn": "Seasonal Heating Manifold Purge Check in Πλατάνια Ζυγού",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εκκένωσης συλλέκτη θέρμανσης στα Πλατάνια Ζυγού για απομάκρυνση εγκλωβισμένου αέρα και σταθερή απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνια Ζυγού επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

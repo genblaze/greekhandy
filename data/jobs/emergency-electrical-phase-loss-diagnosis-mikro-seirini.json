@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-phase-loss-diagnosis-mikro-seirini",
+  "slug": "epigousa-diagnosi-apoleias-fasis-pinaka-mikro-seirini",
+  "nameGr": "Επείγουσα Διάγνωση Απώλειας Φάσης Πίνακα στη Μικρή Σειρήνη",
+  "nameEn": "Emergency Electrical Phase Loss Diagnosis in Μικρή Σειρήνη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα διάγνωση απώλειας φάσης πίνακα στη Μικρή Σειρήνη για γρήγορη αποκατάσταση ρεύματος σε κρίσιμους χώρους.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μικρή Σειρήνη επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
