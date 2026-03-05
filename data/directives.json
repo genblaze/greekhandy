@@ -1,56 +1,5 @@
 {
-  "active": [
-    {
-      "directive": "Homepage mobile hero is still unreadable: the main heading/body blend into the pale background and look washed out on first screen. Rework mobile hero contrast + typography (background, heading, supporting text, CTA states) to pass WCAG AA and make the value proposition legible immediately.",
-      "addedAt": "2026-03-05T07:33:28Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "/professionals still looks like demo data, not a trustworthy marketplace: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and zero-value trust stats (0/100). Remove placeholder/internal trust-framework language from public UI until real verified data exists.",
-      "addedAt": "2026-03-05T07:33:28Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Professional profile page (/professionals/giannis-kosta-klimatismos) still ships broken visual hierarchy: a large empty/near-empty hero media block with a floating dark control pill on top makes the profile look corrupted. Remove overlay artifacts and hide media containers when no valid asset is available.",
-      "addedAt": "2026-03-05T07:33:28Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Contact page (/epikoinonia) is functionally weak and confusing: the top actions are generic tiles (e.g. 'Βρίσκεστε ήδη στην κεντρική σελίδα επικοινωνίας') without a clear support form, SLA, or next-step flow. Replace with one explicit contact journey (form + expected response time + support scope) instead of dead-end buttons.",
-      "addedAt": "2026-03-05T07:33:28Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Blog IA still feels bait-and-switch: guide cards on /blog present as articles but route users to broad service category pages instead of dedicated article detail URLs. Publish real article pages with unique slugs/content or relabel these cards as category shortcuts so users aren’t misled.",
-      "addedAt": "2026-03-05T07:33:28Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "The /messages page is publicly indexable (200 OK with canonical + no robots restrictions) even though it represents a private inbox flow. Lock it down: require auth redirect for unauthenticated users and add noindex,nofollow so Google never indexes account/message surfaces.",
-      "addedAt": "2026-03-05T08:04:44Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "The /professionals/register lead form is indexable and treated like SEO content, but it is a transactional funnel step with thin copy. Mark it noindex, remove it from sitemap, and keep organic landing traffic on conversion-ready category/professional pages instead of exposing a weak standalone form URL.",
-      "addedAt": "2026-03-05T08:04:44Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Homepage desktop above-the-fold is still a contrast failure: headline/supporting text sits on a pale background and reads washed-out, not premium. Rebuild hero contrast system (background tone, text colors, CTA emphasis) to pass WCAG AA and stop looking like low-opacity placeholder copy.",
-      "addedAt": "2026-03-05T08:04:44Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Professional listing cards still look fabricated instead of trustworthy: generic gradient avatar tiles with initials, zero social proof, and synthetic trust microcopy make the marketplace feel fake. Replace pseudo-profile visuals with real photos/logos (or honest neutral placeholders), hide trust scores until populated, and surface real verification signals only.",
-      "addedAt": "2026-03-05T08:04:44Z",
-      "source": "qa-agent"
-    },
-    {
-      "directive": "Fix Greek language quality issues in SEO snippets and UI microcopy (example: 'στη Πάτρα' on professional profile metadata is grammatically wrong; use 'στην Πάτρα'). Run a full native Greek copy QA pass across titles/descriptions/forms to remove machine-translated phrasing.",
-      "addedAt": "2026-03-05T08:04:44Z",
-      "source": "qa-agent"
-    }
-  ],
+  "active": [],
   "history": [
     {
       "directive": "Focus priorities: (1) continuously test and improve the site (functionality, features, look & feel), (2) continuously find new worker leads, (3) prioritize top-notch SEO across the site.",
@@ -729,6 +678,66 @@
       "addedAt": "2026-03-05T06:33:32Z",
       "source": "qa-agent",
       "processedAt": "2026-03-05T06:35:46Z"
+    },
+    {
+      "directive": "Homepage mobile hero is still unreadable: the main heading/body blend into the pale background and look washed out on first screen. Rework mobile hero contrast + typography (background, heading, supporting text, CTA states) to pass WCAG AA and make the value proposition legible immediately.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "/professionals still looks like demo data, not a trustworthy marketplace: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and zero-value trust stats (0/100). Remove placeholder/internal trust-framework language from public UI until real verified data exists.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "Professional profile page (/professionals/giannis-kosta-klimatismos) still ships broken visual hierarchy: a large empty/near-empty hero media block with a floating dark control pill on top makes the profile look corrupted. Remove overlay artifacts and hide media containers when no valid asset is available.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "Contact page (/epikoinonia) is functionally weak and confusing: the top actions are generic tiles (e.g. 'Βρίσκεστε ήδη στην κεντρική σελίδα επικοινωνίας') without a clear support form, SLA, or next-step flow. Replace with one explicit contact journey (form + expected response time + support scope) instead of dead-end buttons.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "Blog IA still feels bait-and-switch: guide cards on /blog present as articles but route users to broad service category pages instead of dedicated article detail URLs. Publish real article pages with unique slugs/content or relabel these cards as category shortcuts so users aren’t misled.",
+      "addedAt": "2026-03-05T07:33:28Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "The /messages page is publicly indexable (200 OK with canonical + no robots restrictions) even though it represents a private inbox flow. Lock it down: require auth redirect for unauthenticated users and add noindex,nofollow so Google never indexes account/message surfaces.",
+      "addedAt": "2026-03-05T08:04:44Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "The /professionals/register lead form is indexable and treated like SEO content, but it is a transactional funnel step with thin copy. Mark it noindex, remove it from sitemap, and keep organic landing traffic on conversion-ready category/professional pages instead of exposing a weak standalone form URL.",
+      "addedAt": "2026-03-05T08:04:44Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "Homepage desktop above-the-fold is still a contrast failure: headline/supporting text sits on a pale background and reads washed-out, not premium. Rebuild hero contrast system (background tone, text colors, CTA emphasis) to pass WCAG AA and stop looking like low-opacity placeholder copy.",
+      "addedAt": "2026-03-05T08:04:44Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "Professional listing cards still look fabricated instead of trustworthy: generic gradient avatar tiles with initials, zero social proof, and synthetic trust microcopy make the marketplace feel fake. Replace pseudo-profile visuals with real photos/logos (or honest neutral placeholders), hide trust scores until populated, and surface real verification signals only.",
+      "addedAt": "2026-03-05T08:04:44Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
+    },
+    {
+      "directive": "Fix Greek language quality issues in SEO snippets and UI microcopy (example: 'στη Πάτρα' on professional profile metadata is grammatically wrong; use 'στην Πάτρα'). Run a full native Greek copy QA pass across titles/descriptions/forms to remove machine-translated phrasing.",
+      "addedAt": "2026-03-05T08:04:44Z",
+      "source": "qa-agent",
+      "processedAt": "2026-03-05T08:26:16Z"
     }
   ]
 }

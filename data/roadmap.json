@@ -729,6 +729,77 @@
       ],
       "createdAt": "2026-03-05T01:35:50Z",
       "updatedAt": "2026-03-05T01:35:50Z"
+    },
+    {
+      "id": "qa-critical-fixes-wave-22",
+      "title": "QA Critical Fixes Wave 22",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported UX, trust, indexing, copy quality, and conversion blockers across public marketplace surfaces.",
+      "acceptanceCriteria": [
+        "Homepage hero contrast/typography is clearly legible across mobile and desktop and meets WCAG AA.",
+        "Public marketplace cards and profile surfaces no longer expose placeholder or fabricated trust language/signals.",
+        "Empty/invalid media containers and overlay artifacts are hidden from profile UIs.",
+        "Contact and blog journeys have clear honest user intent paths (no dead-end or misleading IA).",
+        "Private/transactional surfaces are properly gated from indexing and auth-protected where appropriate.",
+        "Greek microcopy and metadata are grammatically correct and native-quality across audited surfaces."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-22-task-1",
+          "source": "qa-agent",
+          "directive": "Homepage mobile hero is still unreadable: the main heading/body blend into the pale background and look washed out on first screen. Rework mobile hero contrast + typography (background, heading, supporting text, CTA states) to pass WCAG AA and make the value proposition legible immediately."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-2",
+          "source": "qa-agent",
+          "directive": "/professionals still looks like demo data, not a trustworthy marketplace: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and zero-value trust stats (0/100). Remove placeholder/internal trust-framework language from public UI until real verified data exists."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-3",
+          "source": "qa-agent",
+          "directive": "Professional profile page (/professionals/giannis-kosta-klimatismos) still ships broken visual hierarchy: a large empty/near-empty hero media block with a floating dark control pill on top makes the profile look corrupted. Remove overlay artifacts and hide media containers when no valid asset is available."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-4",
+          "source": "qa-agent",
+          "directive": "Contact page (/epikoinonia) is functionally weak and confusing: the top actions are generic tiles (e.g. 'Βρίσκεστε ήδη στην κεντρική σελίδα επικοινωνίας') without a clear support form, SLA, or next-step flow. Replace with one explicit contact journey (form + expected response time + support scope) instead of dead-end buttons."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-5",
+          "source": "qa-agent",
+          "directive": "Blog IA still feels bait-and-switch: guide cards on /blog present as articles but route users to broad service category pages instead of dedicated article detail URLs. Publish real article pages with unique slugs/content or relabel these cards as category shortcuts so users aren’t misled."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-6",
+          "source": "qa-agent",
+          "directive": "The /messages page is publicly indexable (200 OK with canonical + no robots restrictions) even though it represents a private inbox flow. Lock it down: require auth redirect for unauthenticated users and add noindex,nofollow so Google never indexes account/message surfaces."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-7",
+          "source": "qa-agent",
+          "directive": "The /professionals/register lead form is indexable and treated like SEO content, but it is a transactional funnel step with thin copy. Mark it noindex, remove it from sitemap, and keep organic landing traffic on conversion-ready category/professional pages instead of exposing a weak standalone form URL."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-8",
+          "source": "qa-agent",
+          "directive": "Homepage desktop above-the-fold is still a contrast failure: headline/supporting text sits on a pale background and reads washed-out, not premium. Rebuild hero contrast system (background tone, text colors, CTA emphasis) to pass WCAG AA and stop looking like low-opacity placeholder copy."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-9",
+          "source": "qa-agent",
+          "directive": "Professional listing cards still look fabricated instead of trustworthy: generic gradient avatar tiles with initials, zero social proof, and synthetic trust microcopy make the marketplace feel fake. Replace pseudo-profile visuals with real photos/logos (or honest neutral placeholders), hide trust scores until populated, and surface real verification signals only."
+        },
+        {
+          "id": "qa-critical-fixes-wave-22-task-10",
+          "source": "qa-agent",
+          "directive": "Fix Greek language quality issues in SEO snippets and UI microcopy (example: 'στη Πάτρα' on professional profile metadata is grammatically wrong; use 'στην Πάτρα'). Run a full native Greek copy QA pass across titles/descriptions/forms to remove machine-translated phrasing."
+        }
+      ],
+      "createdAt": "2026-03-05T08:26:16Z",
+      "updatedAt": "2026-03-05T08:26:16Z"
     }
   ],
   "milestones": [

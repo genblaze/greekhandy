@@ -72,7 +72,7 @@ Canonical local app URL: `http://localhost:4322`
 QA endpoint: `http://localhost:4322`
 
 - QA and automation should target **4322** only.
-- Port **4321** is deprecated for this app and should not appear in runbooks or checks.
+- Port **4321** is not supported for this app and must not appear in runbooks, automation, or QA checks.
 
 ## Build
 
