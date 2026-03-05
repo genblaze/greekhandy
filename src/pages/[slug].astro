@@ -112,7 +112,11 @@ const pageCategory = isHeatingIntentLanding
 const collapseDuplicateLocationPhrase = (input?: string) => {
   if (!input) return '';
   let text = input.replace(/\s+/g, ' ').trim();
-  const pattern = /(στην|στη|στον|στο|σε)\s+([A-Za-zΑ-ΩΆ-Ώα-ωά-ώ0-9\-]+(?:\s+[A-Za-zΑ-ΩΆ-Ώα-ωά-ώ0-9\-]+){0,2})\s+\1\s+\2/giu;
+  const wordPattern = '[A-Za-zΑ-ΩΆ-Ώα-ωά-ώ0-9\\-]+';
+  const pattern = new RegExp(
+    `(στην|στη|στον|στο|σε)\\s+(${wordPattern}(?:\\s+${wordPattern}){0,2})(?:\\s*(?:,|-|–|—)?\\s*(?:\\1\\s+)?\\2)+`,
+    'giu'
+  );
   for (let i = 0; i < 4; i += 1) {
     const next = text.replace(pattern, '$1 $2');
     if (next === text) break;
@@ -121,13 +125,37 @@ const collapseDuplicateLocationPhrase = (input?: string) => {
   return text;
 };
 
+const normalizeMetaTitle = (input: string | undefined, fallback: string) => {
+  const collapsed = collapseDuplicateLocationPhrase(input)
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\s*[|:–—-]\s*$/, '')
+    .trim();
+  return collapsed || fallback;
+};
+
+const normalizeMetaDescription = (input: string | undefined, fallback: string) => {
+  const collapsed = collapseDuplicateLocationPhrase(input)
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\s*[|:–—-]\s*$/, '')
+    .trim();
+  return collapsed || fallback;
+};
+
+const normalizedName = collapseDuplicateLocationPhrase(pageCategory.nameGr);
+const normalizedH1 = collapseDuplicateLocationPhrase(pageCategory.h1);
+const normalizedHeroText = collapseDuplicateLocationPhrase(pageCategory.heroText);
+const fallbackMetaTitle = normalizedName ? `${normalizedName} | GreekHandy` : 'GreekHandy';
+const fallbackMetaDescription = normalizedHeroText || normalizedName || 'Βρείτε αξιόπιστους επαγγελματίες και ζητήστε προσφορά στο GreekHandy.';
+
 const normalizedPageCategory = {
   ...pageCategory,
-  nameGr: collapseDuplicateLocationPhrase(pageCategory.nameGr),
-  h1: collapseDuplicateLocationPhrase(pageCategory.h1),
-  heroText: collapseDuplicateLocationPhrase(pageCategory.heroText),
-  metaTitle: collapseDuplicateLocationPhrase(pageCategory.metaTitle),
-  metaDescription: collapseDuplicateLocationPhrase(pageCategory.metaDescription)
+  nameGr: normalizedName,
+  h1: normalizedH1,
+  heroText: normalizedHeroText,
+  metaTitle: normalizeMetaTitle(pageCategory.metaTitle, fallbackMetaTitle),
+  metaDescription: normalizeMetaDescription(pageCategory.metaDescription, fallbackMetaDescription)
 };
 
 const trustDecisionCategorySlugs = new Set(['ydravlikoi', 'ilektrologoi']);

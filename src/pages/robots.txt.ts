@@ -3,13 +3,14 @@ import type { APIRoute } from 'astro';
 export const prerender = true;
 
 export const GET: APIRoute = async () => {
-  const site = 'https://greekhandy.gr';
+  const site = new URL('https://greekhandy.gr');
+  const sitemapUrl = new URL('/sitemap.xml', site).toString();
   const body = [
     'User-agent: *',
     'Allow: /',
     '',
-    `Sitemap: ${site}/sitemap.xml`
-  ].join('\n');
+    `Sitemap: ${sitemapUrl}`
+  ].join('\n').concat('\n');
 
   return new Response(body, {
     status: 200,

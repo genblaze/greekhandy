@@ -2,14 +2,26 @@ import type { APIRoute } from 'astro';
 
 export const prerender = true;
 
+const site = new URL('https://greekhandy.gr');
+
 const toIso = (value?: string) => {
   const d = value ? new Date(value) : new Date();
   return Number.isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
 };
 
-export const GET: APIRoute = async () => {
-  const site = 'https://greekhandy.gr';
+const toAbsoluteUrl = (pathname: string) => {
+  const prefixedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return new URL(encodeURI(prefixedPath), site).toString();
+};
 
+const escapeXml = (value: string) => value
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&apos;');
+
+export const GET: APIRoute = async () => {
   const staticRoutes = ['/', '/blog', '/epikoinonia', '/professionals', '/politiki-aporritou'];
 
   const contentFiles = import.meta.glob('../../data/content/*.json', { eager: true });
@@ -17,7 +29,7 @@ export const GET: APIRoute = async () => {
     .map((mod: any) => mod.default ?? mod)
     .filter((entry: any) => typeof entry?.slug === 'string')
     .map((entry: any) => ({
-      loc: `${site}/${entry.slug}`,
+      loc: toAbsoluteUrl(entry.slug),
       lastmod: toIso(entry.updatedAt || entry.createdAt)
     }));
 
@@ -28,7 +40,7 @@ export const GET: APIRoute = async () => {
     professionalRoutes = professionals
       .filter((p) => p?.approved === true && p?.published === true && typeof p?.slug === 'string')
       .map((p) => ({
-        loc: `${site}/professionals/${p.slug}`,
+        loc: toAbsoluteUrl(`professionals/${p.slug}`),
         lastmod: toIso(p.updatedAt || p.createdAt)
       }));
   } catch {
@@ -36,7 +48,7 @@ export const GET: APIRoute = async () => {
   }
 
   const allRoutes = [
-    ...staticRoutes.map((route) => ({ loc: `${site}${route}`, lastmod: toIso() })),
+    ...staticRoutes.map((route) => ({ loc: toAbsoluteUrl(route), lastmod: toIso() })),
     ...contentRoutes,
     ...professionalRoutes
   ];
@@ -49,8 +61,8 @@ export const GET: APIRoute = async () => {
   const urls = [...unique.values()]
     .map(({ loc, lastmod }) => [
       '<url>',
-      `  <loc>${loc}</loc>`,
-      `  <lastmod>${lastmod}</lastmod>`,
+      `  <loc>${escapeXml(loc)}</loc>`,
+      `  <lastmod>${escapeXml(lastmod)}</lastmod>`,
       '</url>'
     ].join('\n'))
     .join('\n');
