@@ -1,0 +1,20 @@
+{
+  "id": "emergency-radiator-leak-isolation-polykastro",
+  "slug": "epigousa-aponosi-diarrois-somatos-kalorifer-polykastro",
+  "nameGr": "Επείγουσα Απομόνωση Διαρροής Σώματος Καλοριφέρ στο Πολύκαστρο",
+  "nameEn": "Emergency Radiator Leak Isolation in Πολύκαστρο",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απομόνωση διαρροής σώματος καλοριφέρ στο Πολύκαστρο για άμεση αποτροπή ζημιών και απώλειας θέρμανσης. SEO intent: «τρέχει το καλοριφέρ Πολύκαστρο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-210€",
+  "demand": "high",
+  "keywords": [
+    "τρέχει το καλοριφέρ Πολύκαστρο",
+    "υδραυλικός επείγον θέρμανση",
+    "διαρροή σώματος καλοριφέρ",
+    "άμεση απομόνωση θέρμανσης",
+    "service θέρμανσης τώρα"
+  ],
+  "status": "researched"
+}

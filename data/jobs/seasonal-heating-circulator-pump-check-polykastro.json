@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulator-pump-check-polykastro",
+  "slug": "epochiakos-elegxos-kykloforiti-thermansis-polykastro",
+  "nameGr": "Εποχικός Έλεγχος Κυκλοφορητή Θέρμανσης στο Πολύκαστρο",
+  "nameEn": "Seasonal Heating Circulator Pump Check in Πολύκαστρο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κυκλοφορητή θέρμανσης στο Πολύκαστρο για σταθερή ροή και αποφυγή βλαβών μέσα στον χειμώνα. SEO intent: «κυκλοφορητής δεν δουλεύει Πολύκαστρο».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "κυκλοφορητής δεν δουλεύει Πολύκαστρο",
+    "service κυκλοφορητή θέρμανσης",
+    "τεχνικός θέρμανσης εποχικό",
+    "συντήρηση λέβητα και κυκλοφορητή",
+    "πρόληψη βλάβης θέρμανσης"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulator-pump-check-galaxidi",
+  "slug": "epochiakos-elegxos-kykloforiti-thermansis-galaxidi",
+  "nameGr": "Εποχικός Έλεγχος Κυκλοφορητή Θέρμανσης στο Γαλαξίδι",
+  "nameEn": "Seasonal Heating Circulator Pump Check in Γαλαξίδι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κυκλοφορητή θέρμανσης στο Γαλαξίδι για σταθερή ροή και αποφυγή βλαβών μέσα στον χειμώνα. SEO intent: «κυκλοφορητής δεν δουλεύει Γαλαξίδι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "κυκλοφορητής δεν δουλεύει Γαλαξίδι",
+    "service κυκλοφορητή θέρμανσης",
+    "τεχνικός θέρμανσης εποχικό",
+    "συντήρηση λέβητα και κυκλοφορητή",
+    "πρόληψη βλάβης θέρμανσης"
+  ],
+  "status": "researched"
+}

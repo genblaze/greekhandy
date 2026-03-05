@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-switch-overheat-check-polykastro",
+  "slug": "epigousos-elegxos-yperthermansis-kentrikou-diakopti-polykastro",
+  "nameGr": "Επείγων Έλεγχος Υπερθέρμανσης Κεντρικού Διακόπτη στο Πολύκαστρο",
+  "nameEn": "Emergency Main Switch Overheat Check in Πολύκαστρο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος υπερθέρμανσης κεντρικού διακόπτη στο Πολύκαστρο για αποφυγή σοβαρής ηλεκτρικής βλάβης. SEO intent: «ζεσταίνεται ο γενικός διακόπτης Πολύκαστρο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-230€",
+  "demand": "high",
+  "keywords": [
+    "ζεσταίνεται ο γενικός διακόπτης Πολύκαστρο",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "κίνδυνος πίνακα ρεύματος",
+    "έλεγχος ηλεκτρικής ασφάλειας",
+    "διάγνωση υπερφόρτωσης"
+  ],
+  "status": "researched"
+}

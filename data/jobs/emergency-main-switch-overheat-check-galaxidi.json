@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-switch-overheat-check-galaxidi",
+  "slug": "epigousos-elegxos-yperthermansis-kentrikou-diakopti-galaxidi",
+  "nameGr": "Επείγων Έλεγχος Υπερθέρμανσης Κεντρικού Διακόπτη στο Γαλαξίδι",
+  "nameEn": "Emergency Main Switch Overheat Check in Γαλαξίδι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος υπερθέρμανσης κεντρικού διακόπτη στο Γαλαξίδι για αποφυγή σοβαρής ηλεκτρικής βλάβης. SEO intent: «ζεσταίνεται ο γενικός διακόπτης Γαλαξίδι».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-230€",
+  "demand": "high",
+  "keywords": [
+    "ζεσταίνεται ο γενικός διακόπτης Γαλαξίδι",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "κίνδυνος πίνακα ρεύματος",
+    "έλεγχος ηλεκτρικής ασφάλειας",
+    "διάγνωση υπερφόρτωσης"
+  ],
+  "status": "researched"
+}

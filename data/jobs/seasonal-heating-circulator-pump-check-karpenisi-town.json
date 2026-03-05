@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulator-pump-check-karpenisi-town",
+  "slug": "epochiakos-elegxos-kykloforiti-thermansis-karpenisi-town",
+  "nameGr": "Εποχικός Έλεγχος Κυκλοφορητή Θέρμανσης στο Καρπενήσι",
+  "nameEn": "Seasonal Heating Circulator Pump Check in Καρπενήσι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κυκλοφορητή θέρμανσης στο Καρπενήσι για σταθερή ροή και αποφυγή βλαβών μέσα στον χειμώνα. SEO intent: «κυκλοφορητής δεν δουλεύει Καρπενήσι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "κυκλοφορητής δεν δουλεύει Καρπενήσι",
+    "service κυκλοφορητή θέρμανσης",
+    "τεχνικός θέρμανσης εποχικό",
+    "συντήρηση λέβητα και κυκλοφορητή",
+    "πρόληψη βλάβης θέρμανσης"
+  ],
+  "status": "researched"
+}

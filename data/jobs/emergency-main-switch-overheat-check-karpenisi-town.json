@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-switch-overheat-check-karpenisi-town",
+  "slug": "epigousos-elegxos-yperthermansis-kentrikou-diakopti-karpenisi-town",
+  "nameGr": "Επείγων Έλεγχος Υπερθέρμανσης Κεντρικού Διακόπτη στο Καρπενήσι",
+  "nameEn": "Emergency Main Switch Overheat Check in Καρπενήσι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος υπερθέρμανσης κεντρικού διακόπτη στο Καρπενήσι για αποφυγή σοβαρής ηλεκτρικής βλάβης. SEO intent: «ζεσταίνεται ο γενικός διακόπτης Καρπενήσι».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-230€",
+  "demand": "high",
+  "keywords": [
+    "ζεσταίνεται ο γενικός διακόπτης Καρπενήσι",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "κίνδυνος πίνακα ρεύματος",
+    "έλεγχος ηλεκτρικής ασφάλειας",
+    "διάγνωση υπερφόρτωσης"
+  ],
+  "status": "researched"
+}
