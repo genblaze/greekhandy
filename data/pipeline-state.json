@@ -40,8 +40,8 @@
   "lastDecision": "Cycle run: assessed git/roadmap/leads/directives and active sessions; all 6 agents active on in-scope tasks, so no relaunches triggered.",
   "blockers": [],
   "northStar": {
-    "lastManagerRun": "2026-03-05T10:20:49Z",
-    "lastDecision": "requested founder feedback after blocker stall; held growth dispatches and kept blocker-first developer focus",
+    "lastManagerRun": "2026-03-05T10:22:53Z",
+    "lastDecision": "requested founder feedback after 3 stalled blocker cycles; held growth dispatches and relaunched only developer blocker slices",
     "focusBand": "north_star_blockers",
     "activeBlockers": [
       "qa-critical-fixes-wave-23",
@@ -66,7 +66,7 @@
       "premium-sitewide-design-system"
     ],
     "activeBlockerSignature": "d95687d01b9868e671e6858fa09c8a943bde31bd",
-    "blockedCycleCount": 2,
+    "blockedCycleCount": 3,
     "founderMode": "none",
     "founderFeedbackRequested": true
   }
