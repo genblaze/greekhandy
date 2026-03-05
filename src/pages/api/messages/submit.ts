@@ -41,9 +41,29 @@ const jsonError = (status: number, code: string, message: string, fieldErrors?: 
     headers: { 'content-type': 'application/json; charset=utf-8' }
   });
 
-const withMessageStatus = (returnTo: string, status: 'submitted' | 'invalid' | 'blocked' | 'error') => {
-  const separator = returnTo.includes('?') ? '&' : '?';
-  return `${returnTo}${separator}message=${status}`;
+const withMessageStatus = (
+  returnTo: string,
+  status: 'submitted' | 'invalid' | 'blocked' | 'error',
+  values: Partial<MessageInput> = {},
+  fieldErrors: Record<string, string> = {}
+) => {
+  const url = new URL(returnTo, 'https://greekhandy.local');
+  url.searchParams.set('message', status);
+
+  const valueFields: Array<keyof MessageInput> = ['senderName', 'senderEmail', 'senderPhone', 'messageBody'];
+  for (const key of valueFields) {
+    const value = clean((values as any)[key] ?? '');
+    if (value) {
+      const mappedKey = key === 'messageBody' ? 'message' : key;
+      url.searchParams.set(`mv_${mappedKey}`, value);
+    }
+  }
+
+  for (const [field, message] of Object.entries(fieldErrors)) {
+    if (message) url.searchParams.set(`me_${field}`, message);
+  }
+
+  return `${url.pathname}${url.search}`;
 };
 
 const toSafeReturnTo = (candidate: string, fallback: string) => {
@@ -211,21 +231,21 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   if (input.honeypot) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Το αίτημα απορρίφθηκε ως μη έγκυρο.', { website: 'Μη επιτρεπτό πεδίο.' })
-      : redirect(withMessageStatus(input.returnTo, 'invalid'), 303);
+      : redirect(withMessageStatus(input.returnTo, 'invalid', input, { website: 'Μη επιτρεπτό πεδίο.' }), 303);
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect(withMessageStatus(input.returnTo, 'invalid'), 303);
+      : redirect(withMessageStatus(input.returnTo, 'invalid', input, fieldErrors), 303);
   }
 
   const canonicalThreadId = normalizeConversationId(input.professionalSlug, input.senderEmail, input.recipientEmail);
   if (input.incomingThreadId && input.incomingThreadId !== canonicalThreadId) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Μη έγκυρο thread identifier.', { threadId: 'Το thread δεν αντιστοιχεί στους συμμετέχοντες.' })
-      : redirect(withMessageStatus(input.returnTo, 'invalid'), 303);
+      : redirect(withMessageStatus(input.returnTo, 'invalid', input, { threadId: 'Το thread δεν αντιστοιχεί στους συμμετέχοντες.' }), 303);
   }
 
   try {
@@ -236,7 +256,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       if (!participants.has(input.senderEmail) || !participants.has(input.recipientEmail)) {
         return asJson
           ? jsonError(422, 'VALIDATION_ERROR', 'Το thread δεν επιτρέπει αυτούς τους συμμετέχοντες.', { threadId: 'Μη έγκυροι συμμετέχοντες.' })
-          : redirect(withMessageStatus(input.returnTo, 'invalid'), 303);
+          : redirect(withMessageStatus(input.returnTo, 'invalid', input, { threadId: 'Μη έγκυροι συμμετέχοντες.' }), 303);
       }
     }
 
@@ -278,6 +298,6 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
     return asJson
       ? jsonError(500, 'MESSAGE_SUBMIT_FAILED', 'Αδυναμία υποβολής μηνύματος αυτή τη στιγμή.')
-      : redirect(withMessageStatus(input.returnTo, 'error'), 303);
+      : redirect(withMessageStatus(input.returnTo, 'error', input, { form: 'Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά.' }), 303);
   }
 };

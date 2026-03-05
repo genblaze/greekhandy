@@ -34,9 +34,26 @@ const toSafeLogMessage = (error: unknown) => {
   return 'unknown-error';
 };
 
-const withBookingStatus = (returnTo: string, status: 'invalid' | 'error') => {
-  const separator = returnTo.includes('?') ? '&' : '?';
-  return `${returnTo}${separator}booking=${status}`;
+const withBookingStatus = (
+  returnTo: string,
+  status: 'invalid' | 'error',
+  values: Partial<BookingInput> = {},
+  fieldErrors: Record<string, string> = {}
+) => {
+  const url = new URL(returnTo, 'https://greekhandy.local');
+  url.searchParams.set('booking', status);
+
+  const valueFields: Array<keyof BookingInput> = ['service', 'customerName', 'phone', 'email', 'preferredDate', 'message'];
+  for (const key of valueFields) {
+    const value = clean((values as any)[key] ?? null);
+    if (value) url.searchParams.set(`bv_${key}`, value);
+  }
+
+  for (const [field, message] of Object.entries(fieldErrors)) {
+    if (message) url.searchParams.set(`be_${field}`, message);
+  }
+
+  return `${url.pathname}${url.search}`;
 };
 
 const toSafeReturnTo = (candidate: string, fallback: string) => {
@@ -156,14 +173,14 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   if (input.honeypot) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Το αίτημα απορρίφθηκε ως μη έγκυρο.', { website: 'Μη επιτρεπτό πεδίο.' })
-      : redirect(withBookingStatus(input.returnTo, 'invalid'), 303);
+      : redirect(withBookingStatus(input.returnTo, 'invalid', input, { website: 'Μη επιτρεπτό πεδίο.' }), 303);
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect(withBookingStatus(input.returnTo, 'invalid'), 303);
+      : redirect(withBookingStatus(input.returnTo, 'invalid', input, fieldErrors), 303);
   }
 
   const submission = {
@@ -205,6 +222,6 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     console.error(`[booking-submit] failed: ${toSafeLogMessage(error)}`);
     return asJson
       ? jsonError(500, 'BOOKING_SUBMIT_FAILED', 'Αδυναμία υποβολής αιτήματος αυτή τη στιγμή.')
-      : redirect(withBookingStatus(input.returnTo, 'error'), 303);
+      : redirect(withBookingStatus(input.returnTo, 'error', input, { form: 'Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά.' }), 303);
   }
 };

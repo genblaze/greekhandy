@@ -248,7 +248,21 @@ const professionalServiceSchema = {
 
 const profileMetaTitle = `${profile.name} | ${profile.profession} σε ${profile.city || 'Ελλάδα'} | GreekHandy`;
 const profileMetaDescription = `Επαγγελματικό προφίλ GreekHandy: ${profile.name}, ${profile.profession}${profile.city ? ` στη ${profile.city}` : ''}. Δείτε υπηρεσίες, περιοχές εξυπηρέτησης και αξιολογήσεις πελατών.`;
-const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro.url.searchParams.get('status') || '').toLowerCase();
+const query = Astro.url.searchParams;
+const bookingStatusParam = (query.get('bookingStatus') || query.get('status') || query.get('booking') || '').toLowerCase();
+const reviewStatusParam = (query.get('review') || '').toLowerCase();
+const messageStatusParam = (query.get('message') || '').toLowerCase();
+const bookingValue = (field: string) => query.get(`bv_${field}`) || '';
+const bookingError = (field: string) => query.get(`be_${field}`) || '';
+const reviewValue = (field: string) => query.get(`rv_${field}`) || '';
+const reviewError = (field: string) => query.get(`re_${field}`) || '';
+const messageValue = (field: string) => query.get(`mv_${field}`) || '';
+const messageError = (field: string) => query.get(`me_${field}`) || '';
+const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => {
+  const entries = [...query.keys()];
+  const marker = prefix === 'booking' ? 'be_' : prefix === 'review' ? 're_' : 'me_';
+  return entries.some((key) => key.startsWith(marker));
+};
 
 ---
 
@@ -586,7 +600,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             <p data-feedback-status="approved" class="hidden rounded-md bg-emerald-100 px-3 py-2 text-sm text-emerald-800">Η κριτική σας είναι πλέον δημόσια και υπολογίζεται στη συνολική εικόνα.</p>
             <p data-feedback-status="rejected" class="hidden rounded-md bg-slate-100 px-3 py-2 text-sm text-slate-800">Η κριτική δεν δημοσιεύτηκε. Μπορείτε να υποβάλετε νέα, πιο συγκεκριμένη εμπειρία.</p>
             <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η υποβολή κριτικής είναι προσωρινά ανενεργή.</p>
-            <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Συμπληρώστε βαθμολογία και σχόλιο.</p>
+            <p data-feedback-status="invalid" class={`${reviewStatusParam === 'invalid' ? '' : 'hidden'} rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800`}>Διορθώστε τα επισημασμένα πεδία για να συνεχίσετε.</p>
             <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δεν χάνονται τα δημόσια δεδομένα· δοκιμάστε ξανά σε λίγο.</p>
           </div>
 
@@ -597,22 +611,25 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
           <div class="mt-4 grid gap-4 md:grid-cols-2">
             <div>
               <label for="reviewerName" class="mb-1 block text-sm font-semibold text-gray-800">Όνομα</label>
-              <input id="reviewerName" name="reviewerName" type="text" maxlength="80" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="reviewerName" name="reviewerName" type="text" maxlength="80" value={reviewValue('reviewerName')} aria-invalid={reviewError('reviewerName') ? 'true' : undefined} class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              {reviewError('reviewerName') && <p class="mt-1 text-xs text-amber-700" role="alert">{reviewError('reviewerName')}</p>}
             </div>
             <div>
               <label for="reviewerEmail" class="mb-1 block text-sm font-semibold text-gray-800">Email (προαιρετικό)</label>
-              <input id="reviewerEmail" name="reviewerEmail" type="email" maxlength="160" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="reviewerEmail" name="reviewerEmail" type="email" maxlength="160" value={reviewValue('reviewerEmail')} aria-invalid={reviewError('reviewerEmail') ? 'true' : undefined} class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              {reviewError('reviewerEmail') && <p class="mt-1 text-xs text-amber-700" role="alert">{reviewError('reviewerEmail')}</p>}
             </div>
             <div class="md:col-span-2">
               <label for="rating" class="mb-1 block text-sm font-semibold text-gray-800">Βαθμολογία (1-5) *</label>
-              <select id="rating" name="rating" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5">
-                <option value="">Επιλέξτε</option>
-                <option value="5">5 - Εξαιρετικά</option>
-                <option value="4">4 - Πολύ καλά</option>
-                <option value="3">3 - Καλά</option>
-                <option value="2">2 - Μέτρια</option>
-                <option value="1">1 - Χρειάζεται βελτίωση</option>
+              <select id="rating" name="rating" required aria-invalid={reviewError('rating') ? 'true' : undefined} class="w-full rounded-lg border border-gray-300 px-3 py-2.5">
+                <option value="" selected={reviewValue('rating') === ''}>Επιλέξτε</option>
+                <option value="5" selected={reviewValue('rating') === '5'}>5 - Εξαιρετικά</option>
+                <option value="4" selected={reviewValue('rating') === '4'}>4 - Πολύ καλά</option>
+                <option value="3" selected={reviewValue('rating') === '3'}>3 - Καλά</option>
+                <option value="2" selected={reviewValue('rating') === '2'}>2 - Μέτρια</option>
+                <option value="1" selected={reviewValue('rating') === '1'}>1 - Χρειάζεται βελτίωση</option>
               </select>
+              {reviewError('rating') && <p class="mt-1 text-xs text-amber-700" role="alert">{reviewError('rating')}</p>}
             </div>
           </div>
 

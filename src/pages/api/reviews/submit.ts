@@ -34,15 +34,55 @@ type ReviewInput = {
   comment: string;
 };
 
+const toSafeReturnTo = (candidate: string, fallback: string) => {
+  if (!candidate || !candidate.startsWith('/') || candidate.startsWith('//')) return fallback;
+  try {
+    const url = new URL(candidate, 'https://greekhandy.local');
+    if (url.origin !== 'https://greekhandy.local') return fallback;
+    return `${url.pathname}${url.search}`;
+  } catch {
+    return fallback;
+  }
+};
+
+const withReviewStatus = (
+  returnTo: string,
+  status: 'invalid' | 'error' | 'submitted',
+  values: Partial<ReviewInput> = {},
+  fieldErrors: Record<string, string> = {}
+) => {
+  const url = new URL(returnTo, 'https://greekhandy.local');
+  url.searchParams.set('review', status);
+
+  const ratingValue = typeof values.rating === 'number' && values.rating > 0 ? String(values.rating) : '';
+  const valueMap: Record<string, string> = {
+    reviewerName: clean(values.reviewerName),
+    reviewerEmail: clean(values.reviewerEmail),
+    rating: ratingValue,
+    comment: clean(values.comment)
+  };
+
+  for (const [field, value] of Object.entries(valueMap)) {
+    if (value) url.searchParams.set(`rv_${field}`, value);
+  }
+
+  for (const [field, message] of Object.entries(fieldErrors)) {
+    if (message) url.searchParams.set(`re_${field}`, message);
+  }
+
+  return `${url.pathname}${url.search}`;
+};
+
 const extractInput = async (request: Request): Promise<ReviewInput> => {
   const contentType = request.headers.get('content-type') || '';
 
   if (contentType.includes('application/json')) {
     const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
     const professionalSlug = max(clean(body.professionalSlug), 120);
+    const fallbackReturnTo = professionalSlug ? `/professionals/${professionalSlug}` : '/professionals';
     return {
       professionalSlug,
-      returnTo: clean(body.returnTo) || `/professionals/${professionalSlug}`,
+      returnTo: toSafeReturnTo(clean(body.returnTo), fallbackReturnTo),
       honeypot: clean(body.website),
       reviewerName: max(clean(body.reviewerName), 80) || 'Ανώνυμος Πελάτης',
       reviewerEmail: max(clean(body.reviewerEmail).toLowerCase(), 160),
@@ -54,9 +94,10 @@ const extractInput = async (request: Request): Promise<ReviewInput> => {
   if (contentType.includes('application/x-www-form-urlencoded')) {
     const params = new URLSearchParams(await request.text());
     const professionalSlug = max(clean(params.get('professionalSlug')), 120);
+    const fallbackReturnTo = professionalSlug ? `/professionals/${professionalSlug}` : '/professionals';
     return {
       professionalSlug,
-      returnTo: clean(params.get('returnTo')) || `/professionals/${professionalSlug}`,
+      returnTo: toSafeReturnTo(clean(params.get('returnTo')), fallbackReturnTo),
       honeypot: clean(params.get('website')),
       reviewerName: max(clean(params.get('reviewerName')), 80) || 'Ανώνυμος Πελάτης',
       reviewerEmail: max(clean(params.get('reviewerEmail')).toLowerCase(), 160),
@@ -67,9 +108,10 @@ const extractInput = async (request: Request): Promise<ReviewInput> => {
 
   const formData = await request.formData();
   const professionalSlug = max(clean(formData.get('professionalSlug')), 120);
+  const fallbackReturnTo = professionalSlug ? `/professionals/${professionalSlug}` : '/professionals';
   return {
     professionalSlug,
-    returnTo: clean(formData.get('returnTo')) || `/professionals/${professionalSlug}`,
+    returnTo: toSafeReturnTo(clean(formData.get('returnTo')), fallbackReturnTo),
     honeypot: clean(formData.get('website')),
     reviewerName: max(clean(formData.get('reviewerName')), 80) || 'Ανώνυμος Πελάτης',
     reviewerEmail: max(clean(formData.get('reviewerEmail')).toLowerCase(), 160),
@@ -102,14 +144,14 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   if (input.honeypot) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Το αίτημα απορρίφθηκε ως μη έγκυρο.', { website: 'Μη επιτρεπτό πεδίο.' })
-      : redirect(`${input.returnTo}?review=invalid`, 303);
+      : redirect(withReviewStatus(input.returnTo, 'invalid', input, { website: 'Μη επιτρεπτό πεδίο.' }), 303);
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect(`${input.returnTo}?review=invalid`, 303);
+      : redirect(withReviewStatus(input.returnTo, 'invalid', input, fieldErrors), 303);
   }
 
   const { error } = await supabaseServer.from('reviews').insert({
@@ -127,10 +169,10 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     console.error(`[review-submit] failed: ${message}`);
     return asJson
       ? jsonError(500, 'REVIEW_SUBMIT_FAILED', 'Αδυναμία υποβολής κριτικής αυτή τη στιγμή.')
-      : redirect(`${input.returnTo}?review=error`, 303);
+      : redirect(withReviewStatus(input.returnTo, 'error', input, { form: 'Η υποβολή δεν ολοκληρώθηκε. Προσπαθήστε ξανά.' }), 303);
   }
 
   return asJson
     ? new Response(JSON.stringify({ ok: true, status: 'pending' }), { status: 201, headers: { 'content-type': 'application/json; charset=utf-8' } })
-    : redirect(`${input.returnTo}?review=submitted`, 303);
+    : redirect(withReviewStatus(input.returnTo, 'submitted'), 303);
 };
