@@ -4,6 +4,7 @@ export const prerender = false;
 import { appendFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { BOOKING_SUBMISSIONS_FILE_PATH, getBookingStatusPath } from '../../../lib/bookings';
+import { writeFormFlash } from '../../../lib/form-flash';
 
 const clean = (value: FormDataEntryValue | null) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
@@ -34,25 +35,9 @@ const toSafeLogMessage = (error: unknown) => {
   return 'unknown-error';
 };
 
-const withBookingStatus = (
-  returnTo: string,
-  status: 'invalid' | 'error',
-  values: Partial<BookingInput> = {},
-  fieldErrors: Record<string, string> = {}
-) => {
+const withBookingStatus = (returnTo: string, status: 'invalid' | 'error') => {
   const url = new URL(returnTo, 'https://greekhandy.local');
   url.searchParams.set('booking', status);
-
-  const valueFields: Array<keyof BookingInput> = ['service', 'customerName', 'phone', 'email', 'preferredDate', 'message'];
-  for (const key of valueFields) {
-    const value = clean((values as any)[key] ?? null);
-    if (value) url.searchParams.set(`bv_${key}`, value);
-  }
-
-  for (const [field, message] of Object.entries(fieldErrors)) {
-    if (message) url.searchParams.set(`be_${field}`, message);
-  }
-
   return `${url.pathname}${url.search}`;
 };
 
@@ -158,7 +143,7 @@ const validateInput = (input: BookingInput) => {
   return fieldErrors;
 };
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const asJson = wantsJson(request);
   let input: BookingInput;
 
@@ -169,20 +154,20 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const safeReturnTo = toSafeReturnTo(referer, '/professionals');
     return asJson
       ? jsonError(400, 'INVALID_BODY', 'Το σώμα του αιτήματος δεν είναι έγκυρο.')
-      : redirect(withBookingStatus(safeReturnTo, 'invalid', {}, { form: 'Η υποβολή δεν ήταν έγκυρη. Διορθώστε τα πεδία και δοκιμάστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, `booking:${input?.professionalSlug || 'unknown'}`, { errors: { form: 'Η υποβολή δεν ήταν έγκυρη. Διορθώστε τα πεδία και δοκιμάστε ξανά.' } }), redirect(withBookingStatus(safeReturnTo, 'invalid'), 303));
   }
 
   if (input.honeypot) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Το αίτημα απορρίφθηκε ως μη έγκυρο.', { website: 'Μη επιτρεπτό πεδίο.' })
-      : redirect(withBookingStatus(input.returnTo, 'invalid', input, { website: 'Μη επιτρεπτό πεδίο.' }), 303);
+      : (writeFormFlash(cookies, `booking:${input.professionalSlug}`, { values: { service: input.service, customerName: input.customerName, phone: input.phone, email: input.email, preferredDate: input.preferredDate, message: input.message }, errors: { website: 'Μη επιτρεπτό πεδίο.' } }), redirect(withBookingStatus(input.returnTo, 'invalid'), 303));
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect(withBookingStatus(input.returnTo, 'invalid', input, fieldErrors), 303);
+      : (writeFormFlash(cookies, `booking:${input.professionalSlug}`, { values: { service: input.service, customerName: input.customerName, phone: input.phone, email: input.email, preferredDate: input.preferredDate, message: input.message }, errors: fieldErrors }), redirect(withBookingStatus(input.returnTo, 'invalid'), 303));
   }
 
   const submission = {
@@ -224,6 +209,6 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     console.error(`[booking-submit] failed: ${toSafeLogMessage(error)}`);
     return asJson
       ? jsonError(500, 'BOOKING_SUBMIT_FAILED', 'Αδυναμία υποβολής αιτήματος αυτή τη στιγμή.')
-      : redirect(withBookingStatus(input.returnTo, 'error', input, { form: 'Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, `booking:${input.professionalSlug}`, { values: { service: input.service, customerName: input.customerName, phone: input.phone, email: input.email, preferredDate: input.preferredDate, message: input.message }, errors: { form: 'Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά.' } }), redirect(withBookingStatus(input.returnTo, 'error'), 303));
   }
 };

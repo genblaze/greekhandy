@@ -11,6 +11,7 @@ import {
   type MessageSubmission
 } from '../../../lib/messaging';
 import { supabaseServer } from '../../../lib/supabase-server';
+import { writeFormFlash } from '../../../lib/form-flash';
 
 export const prerender = false;
 
@@ -41,28 +42,9 @@ const jsonError = (status: number, code: string, message: string, fieldErrors?: 
     headers: { 'content-type': 'application/json; charset=utf-8' }
   });
 
-const withMessageStatus = (
-  returnTo: string,
-  status: 'submitted' | 'invalid' | 'blocked' | 'error',
-  values: Partial<MessageInput> = {},
-  fieldErrors: Record<string, string> = {}
-) => {
+const withMessageStatus = (returnTo: string, status: 'submitted' | 'invalid' | 'blocked' | 'error') => {
   const url = new URL(returnTo, 'https://greekhandy.local');
   url.searchParams.set('message', status);
-
-  const valueFields: Array<keyof MessageInput> = ['senderName', 'senderEmail', 'senderPhone', 'messageBody'];
-  for (const key of valueFields) {
-    const value = clean((values as any)[key] ?? '');
-    if (value) {
-      const mappedKey = key === 'messageBody' ? 'message' : key;
-      url.searchParams.set(`mv_${mappedKey}`, value);
-    }
-  }
-
-  for (const [field, message] of Object.entries(fieldErrors)) {
-    if (message) url.searchParams.set(`me_${field}`, message);
-  }
-
   return `${url.pathname}${url.search}`;
 };
 
@@ -216,7 +198,7 @@ const isThreadBlocked = async (threadId: string, senderEmail: string) => {
   return false;
 };
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const asJson = wantsJson(request);
 
   let input: MessageInput;
@@ -227,27 +209,27 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const safeReturnTo = toSafeReturnTo(referer, '/professionals');
     return asJson
       ? jsonError(400, 'INVALID_BODY', 'Το σώμα του αιτήματος δεν είναι έγκυρο.')
-      : redirect(withMessageStatus(safeReturnTo, 'invalid', {}, { form: 'Η υποβολή δεν ήταν έγκυρη. Διορθώστε τα πεδία και δοκιμάστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, 'message:unknown', { errors: { form: 'Η υποβολή δεν ήταν έγκυρη. Διορθώστε τα πεδία και δοκιμάστε ξανά.' } }), redirect(withMessageStatus(safeReturnTo, 'invalid'), 303));
   }
 
   if (input.honeypot) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Το αίτημα απορρίφθηκε ως μη έγκυρο.', { website: 'Μη επιτρεπτό πεδίο.' })
-      : redirect(withMessageStatus(input.returnTo, 'invalid', input, { website: 'Μη επιτρεπτό πεδίο.' }), 303);
+      : (writeFormFlash(cookies, `message:${input.professionalSlug}`, { values: { senderName: input.senderName, senderEmail: input.senderEmail, senderPhone: input.senderPhone, message: input.messageBody }, errors: { website: 'Μη επιτρεπτό πεδίο.' } }), redirect(withMessageStatus(input.returnTo, 'invalid'), 303));
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect(withMessageStatus(input.returnTo, 'invalid', input, fieldErrors), 303);
+      : (writeFormFlash(cookies, `message:${input.professionalSlug}`, { values: { senderName: input.senderName, senderEmail: input.senderEmail, senderPhone: input.senderPhone, message: input.messageBody }, errors: fieldErrors }), redirect(withMessageStatus(input.returnTo, 'invalid'), 303));
   }
 
   const canonicalThreadId = normalizeConversationId(input.professionalSlug, input.senderEmail, input.recipientEmail);
   if (input.incomingThreadId && input.incomingThreadId !== canonicalThreadId) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Μη έγκυρο thread identifier.', { threadId: 'Το thread δεν αντιστοιχεί στους συμμετέχοντες.' })
-      : redirect(withMessageStatus(input.returnTo, 'invalid', input, { threadId: 'Το thread δεν αντιστοιχεί στους συμμετέχοντες.' }), 303);
+      : (writeFormFlash(cookies, `message:${input.professionalSlug}`, { values: { senderName: input.senderName, senderEmail: input.senderEmail, senderPhone: input.senderPhone, message: input.messageBody }, errors: { threadId: 'Το thread δεν αντιστοιχεί στους συμμετέχοντες.' } }), redirect(withMessageStatus(input.returnTo, 'invalid'), 303));
   }
 
   try {
@@ -258,7 +240,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       if (!participants.has(input.senderEmail) || !participants.has(input.recipientEmail)) {
         return asJson
           ? jsonError(422, 'VALIDATION_ERROR', 'Το thread δεν επιτρέπει αυτούς τους συμμετέχοντες.', { threadId: 'Μη έγκυροι συμμετέχοντες.' })
-          : redirect(withMessageStatus(input.returnTo, 'invalid', input, { threadId: 'Μη έγκυροι συμμετέχοντες.' }), 303);
+          : (writeFormFlash(cookies, `message:${input.professionalSlug}`, { values: { senderName: input.senderName, senderEmail: input.senderEmail, senderPhone: input.senderPhone, message: input.messageBody }, errors: { threadId: 'Μη έγκυροι συμμετέχοντες.' } }), redirect(withMessageStatus(input.returnTo, 'invalid'), 303));
       }
     }
 
@@ -300,6 +282,6 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
     return asJson
       ? jsonError(500, 'MESSAGE_SUBMIT_FAILED', 'Αδυναμία υποβολής μηνύματος αυτή τη στιγμή.')
-      : redirect(withMessageStatus(input.returnTo, 'error', input, { form: 'Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, `message:${input.professionalSlug}`, { values: { senderName: input.senderName, senderEmail: input.senderEmail, senderPhone: input.senderPhone, message: input.messageBody }, errors: { form: 'Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά.' } }), redirect(withMessageStatus(input.returnTo, 'error'), 303));
   }
 };

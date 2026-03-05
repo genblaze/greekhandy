@@ -1,5 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import {
+  readFormFlash,
+  clearFormFlash
+} from '../../lib/form-flash';
 import { supabaseServer } from '../../lib/supabase-server';
 import { assertPublishedProfilesHaveValidMedia, getProfessionalFallbackImage, resolveProfessionalImageForPublishedProfile } from '../../lib/professional-images';
 
@@ -252,12 +256,16 @@ const query = Astro.url.searchParams;
 const bookingStatusParam = (query.get('bookingStatus') || query.get('status') || query.get('booking') || '').toLowerCase();
 const reviewStatusParam = (query.get('review') || '').toLowerCase();
 const messageStatusParam = (query.get('message') || '').toLowerCase();
-const bookingValue = (field: string) => query.get(`bv_${field}`) || '';
-const bookingError = (field: string) => query.get(`be_${field}`) || '';
-const reviewValue = (field: string) => query.get(`rv_${field}`) || '';
-const reviewError = (field: string) => query.get(`re_${field}`) || '';
-const messageValue = (field: string) => query.get(`mv_${field}`) || '';
-const messageError = (field: string) => query.get(`me_${field}`) || '';
+const bookingFlash = readFormFlash(Astro.cookies, `booking:${profile.slug}`);
+const reviewFlash = readFormFlash(Astro.cookies, `review:${profile.slug}`);
+const messageFlash = readFormFlash(Astro.cookies, `message:${profile.slug}`);
+
+const bookingValue = (field: string) => bookingFlash.values?.[field] || '';
+const bookingError = (field: string) => bookingFlash.errors?.[field] || '';
+const reviewValue = (field: string) => reviewFlash.values?.[field] || '';
+const reviewError = (field: string) => reviewFlash.errors?.[field] || '';
+const messageValue = (field: string) => messageFlash.values?.[field] || '';
+const messageError = (field: string) => messageFlash.errors?.[field] || '';
 const hasServerValidationErrors = (prefix: 'booking' | 'review' | 'message') => {
   const entries = [...query.keys()];
   const marker = prefix === 'booking' ? 'be_' : prefix === 'review' ? 're_' : 'me_';

@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { appendFile, mkdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import nodemailer from 'nodemailer';
+import { writeFormFlash } from '../../../lib/form-flash';
 
 const ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL || 'info@greekhandy.gr';
 const REGISTRATIONS_FILE_PATH = resolve(process.cwd(), 'data', 'professional-registrations.ndjson');
@@ -34,21 +35,7 @@ const jsonError = (status: number, code: string, message: string, fieldErrors?: 
     headers: { 'content-type': 'application/json; charset=utf-8' }
   });
 
-const buildRegisterRedirect = (status: 'invalid' | 'error', input: Partial<RegistrationInput> = {}, fieldErrors: Record<string, string> = {}) => {
-  const search = new URLSearchParams({ status });
-  const allowedFields: Array<keyof RegistrationInput> = ['name', 'profession', 'city', 'phone', 'email', 'areasServed', 'bio'];
-
-  for (const key of allowedFields) {
-    const value = clean(input[key]);
-    if (value) search.set(`v_${key}`, value);
-  }
-
-  for (const [key, value] of Object.entries(fieldErrors)) {
-    if (value) search.set(`e_${key}`, value);
-  }
-
-  return `/professionals/register?${search.toString()}`;
-};
+const buildRegisterRedirect = (status: 'invalid' | 'error') => `/professionals/register?status=${status}`;
 
 const extractInput = async (request: Request): Promise<RegistrationInput> => {
   const contentType = request.headers.get('content-type') || '';
@@ -141,7 +128,7 @@ const sendAdminEmail = async (registration: Record<string, string>) => {
   });
 };
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const asJson = wantsJson(request);
 
   let input: RegistrationInput;
@@ -150,14 +137,19 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   } catch {
     return asJson
       ? jsonError(400, 'INVALID_BODY', 'Το σώμα του αιτήματος δεν είναι έγκυρο.')
-      : redirect(buildRegisterRedirect('invalid', {}, { form: 'Η υποβολή δεν ήταν έγκυρη. Ελέγξτε τα πεδία και δοκιμάστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, 'register', { errors: { form: 'Η υποβολή δεν ήταν έγκυρη. Ελέγξτε τα πεδία και δοκιμάστε ξανά.' } }), redirect(buildRegisterRedirect('invalid'), 303));
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect(buildRegisterRedirect('invalid', input, fieldErrors), 303);
+      : (writeFormFlash(cookies, 'register', {
+        values: {
+          name: input.name, profession: input.profession, city: input.city, phone: input.phone, email: input.email, areasServed: input.areasServed, bio: input.bio
+        },
+        errors: fieldErrors
+      }), redirect(buildRegisterRedirect('invalid'), 303));
   }
 
   const registration = {
@@ -183,6 +175,9 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     console.error(`[professional-registration] failed: ${message}`);
     return asJson
       ? jsonError(500, 'REGISTRATION_FAILED', 'Αδυναμία αποθήκευσης εγγραφής αυτή τη στιγμή.')
-      : redirect(buildRegisterRedirect('error', input, { form: 'Δεν ολοκληρώθηκε η αποστολή. Προσπαθήστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, 'register', {
+        values: { name: input.name, profession: input.profession, city: input.city, phone: input.phone, email: input.email, areasServed: input.areasServed, bio: input.bio },
+        errors: { form: 'Δεν ολοκληρώθηκε η αποστολή. Προσπαθήστε ξανά.' }
+      }), redirect(buildRegisterRedirect('error'), 303));
   }
 };

@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { supabaseServer } from '../../../lib/supabase-server';
+import { writeFormFlash } from '../../../lib/form-flash';
 
 const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 const max = (value: string, limit: number) => value.slice(0, limit);
@@ -45,31 +46,9 @@ const toSafeReturnTo = (candidate: string, fallback: string) => {
   }
 };
 
-const withReviewStatus = (
-  returnTo: string,
-  status: 'invalid' | 'error' | 'submitted',
-  values: Partial<ReviewInput> = {},
-  fieldErrors: Record<string, string> = {}
-) => {
+const withReviewStatus = (returnTo: string, status: 'invalid' | 'error' | 'submitted') => {
   const url = new URL(returnTo, 'https://greekhandy.local');
   url.searchParams.set('review', status);
-
-  const ratingValue = typeof values.rating === 'number' && values.rating > 0 ? String(values.rating) : '';
-  const valueMap: Record<string, string> = {
-    reviewerName: clean(values.reviewerName),
-    reviewerEmail: clean(values.reviewerEmail),
-    rating: ratingValue,
-    comment: clean(values.comment)
-  };
-
-  for (const [field, value] of Object.entries(valueMap)) {
-    if (value) url.searchParams.set(`rv_${field}`, value);
-  }
-
-  for (const [field, message] of Object.entries(fieldErrors)) {
-    if (message) url.searchParams.set(`re_${field}`, message);
-  }
-
   return `${url.pathname}${url.search}`;
 };
 
@@ -129,7 +108,7 @@ const validateInput = (input: ReviewInput) => {
   return fieldErrors;
 };
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const asJson = wantsJson(request);
 
   let input: ReviewInput;
@@ -140,20 +119,20 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const safeReturnTo = toSafeReturnTo(referer, '/professionals');
     return asJson
       ? jsonError(400, 'INVALID_BODY', 'Το σώμα του αιτήματος δεν είναι έγκυρο.')
-      : redirect(withReviewStatus(safeReturnTo, 'invalid', {}, { form: 'Η υποβολή δεν ήταν έγκυρη. Διορθώστε τα πεδία και δοκιμάστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, 'review:register', { errors: { form: 'Η υποβολή δεν ήταν έγκυρη. Διορθώστε τα πεδία και δοκιμάστε ξανά.' } }), redirect(withReviewStatus(safeReturnTo, 'invalid'), 303));
   }
 
   if (input.honeypot) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Το αίτημα απορρίφθηκε ως μη έγκυρο.', { website: 'Μη επιτρεπτό πεδίο.' })
-      : redirect(withReviewStatus(input.returnTo, 'invalid', input, { website: 'Μη επιτρεπτό πεδίο.' }), 303);
+      : (writeFormFlash(cookies, `review:${input.professionalSlug}`, { values: { reviewerName: input.reviewerName, reviewerEmail: input.reviewerEmail, rating: String(input.rating || ''), comment: input.comment }, errors: { website: 'Μη επιτρεπτό πεδίο.' } }), redirect(withReviewStatus(input.returnTo, 'invalid'), 303));
   }
 
   const fieldErrors = validateInput(input);
   if (Object.keys(fieldErrors).length > 0) {
     return asJson
       ? jsonError(422, 'VALIDATION_ERROR', 'Υπάρχουν σφάλματα σε πεδία.', fieldErrors)
-      : redirect(withReviewStatus(input.returnTo, 'invalid', input, fieldErrors), 303);
+      : (writeFormFlash(cookies, `review:${input.professionalSlug}`, { values: { reviewerName: input.reviewerName, reviewerEmail: input.reviewerEmail, rating: String(input.rating || ''), comment: input.comment }, errors: fieldErrors }), redirect(withReviewStatus(input.returnTo, 'invalid'), 303));
   }
 
   const { error } = await supabaseServer.from('reviews').insert({
@@ -171,7 +150,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     console.error(`[review-submit] failed: ${message}`);
     return asJson
       ? jsonError(500, 'REVIEW_SUBMIT_FAILED', 'Αδυναμία υποβολής κριτικής αυτή τη στιγμή.')
-      : redirect(withReviewStatus(input.returnTo, 'error', input, { form: 'Η υποβολή δεν ολοκληρώθηκε. Προσπαθήστε ξανά.' }), 303);
+      : (writeFormFlash(cookies, `review:${input.professionalSlug}`, { values: { reviewerName: input.reviewerName, reviewerEmail: input.reviewerEmail, rating: String(input.rating || ''), comment: input.comment }, errors: { form: 'Η υποβολή δεν ολοκληρώθηκε. Προσπαθήστε ξανά.' } }), redirect(withReviewStatus(input.returnTo, 'error'), 303));
   }
 
   return asJson
