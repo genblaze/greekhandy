@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-stability-tune-palia-kavala",
+  "slug": "epochiaki-rythmisi-statherotitas-vroxou-epistrofis-thermansis-palia-kavala",
+  "nameGr": "Εποχική Ρύθμιση Σταθερότητας Βρόχου Επιστροφής Θέρμανσης στην Παλιά Καβάλα",
+  "nameEn": "Seasonal Heating Return Loop Stability Tune in Παλιά Καβάλα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση σταθερότητας βρόχου επιστροφής θέρμανσης στην Παλιά Καβάλα για ομαλή, αποδοτική θέρμανση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Παλιά Καβάλα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

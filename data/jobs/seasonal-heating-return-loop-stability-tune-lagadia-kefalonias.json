@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-stability-tune-lagadia-kefalonias",
+  "slug": "epochiaki-rythmisi-statherotitas-vroxou-epistrofis-thermansis-lagadia-kefalonias",
+  "nameGr": "Εποχική Ρύθμιση Σταθερότητας Βρόχου Επιστροφής Θέρμανσης στα Λαγκάδια Κεφαλονιάς",
+  "nameEn": "Seasonal Heating Return Loop Stability Tune in Λαγκάδια Κεφαλονιάς",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση σταθερότητας βρόχου επιστροφής θέρμανσης στα Λαγκάδια Κεφαλονιάς για ομαλή, αποδοτική θέρμανση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λαγκάδια Κεφαλονιάς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

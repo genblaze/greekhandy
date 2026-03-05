@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-neutral-rail-fix-kato-loutraki-pellas",
+  "slug": "epigousa-episkevi-rail-oudeterou-kentrikis-paroxis-kato-loutraki-pellas",
+  "nameGr": "Επείγουσα Επισκευή Rail Ουδετέρου Κεντρικής Παροχής στο Κάτω Λουτράκι Πέλλας",
+  "nameEn": "Emergency Electrical Main Neutral Rail Fix in Κάτω Λουτράκι Πέλλας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή rail ουδετέρου κεντρικής παροχής στο Κάτω Λουτράκι Πέλλας για σταθερή τάση και ασφαλή ηλεκτροδότηση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Κάτω Λουτράκι Πέλλας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
