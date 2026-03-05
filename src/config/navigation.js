@@ -24,7 +24,6 @@ export const PRIMARY_NAV_LINKS = Object.freeze([
 
 export const NAV_ALIAS_REDIRECTS = Object.freeze({
   '/guides': NAV_TARGETS.guides,
-  '/epaggelmaties': NAV_TARGETS.professionals,
   '/pros': NAV_TARGETS.professionals,
   '/heating': NAV_TARGETS.heating,
   '/technikoi-thermansis': NAV_TARGETS.heating,

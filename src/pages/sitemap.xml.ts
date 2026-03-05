@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { NAV_TARGETS } from '../config/navigation';
 
 export const prerender = true;
 
@@ -22,7 +23,7 @@ const escapeXml = (value: string) => value
   .replaceAll("'", '&apos;');
 
 export const GET: APIRoute = async () => {
-  const staticRoutes = ['/', '/blog', '/epikoinonia', '/professionals', '/politiki-aporritou'];
+  const staticRoutes = ['/', NAV_TARGETS.guides, NAV_TARGETS.contact, NAV_TARGETS.professionals, '/politiki-aporritou'];
 
   const contentFiles = import.meta.glob('../../data/content/*.json', { eager: true });
   const contentRoutes = Object.values(contentFiles)
@@ -47,11 +48,16 @@ export const GET: APIRoute = async () => {
     professionalRoutes = [];
   }
 
+  const disallowedAliasPaths = new Set(['/epaggelmaties']);
+
   const allRoutes = [
     ...staticRoutes.map((route) => ({ loc: toAbsoluteUrl(route), lastmod: toIso() })),
     ...contentRoutes,
     ...professionalRoutes
-  ];
+  ].filter((route) => {
+    const path = new URL(route.loc).pathname.replace(/\/$/, '') || '/';
+    return !disallowedAliasPaths.has(path);
+  });
 
   const unique = new Map<string, { loc: string; lastmod: string }>();
   for (const route of allRoutes) {
