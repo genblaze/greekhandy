@@ -1,0 +1,20 @@
+{
+  "id": "emergency-home-alarm-siren-silence-fix-gastouni",
+  "slug": "epigousa-episkevi-sirinas-synagermou-pou-den-stamata-gastouni",
+  "nameGr": "Επείγουσα Επισκευή Σειρήνας Συναγερμού που Δεν Σταματά στη Γαστούνη",
+  "nameEn": "Emergency Home Alarm Siren Silence Fix in Γαστούνη",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα επισκευή σειρήνας συναγερμού στη Γαστούνη όταν ενεργοποιείται συνεχώς χωρίς διακοπή. SEO intent: «συναγερμός χτυπάει συνέχεια Γαστούνη».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "συναγερμός χτυπάει συνέχεια Γαστούνη",
+    "τεχνικός συναγερμού επείγον",
+    "σειρήνα συναγερμού δεν σταματά",
+    "άμεση απενεργοποίηση alarm",
+    "service security system τώρα"
+  ],
+  "status": "researched"
+}

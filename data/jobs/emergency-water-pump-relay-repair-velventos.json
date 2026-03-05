@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pump-relay-repair-velventos",
+  "slug": "epigousa-episkevi-rele-antlias-nerou-velventos",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Αντλίας Νερού στο Βελβεντό",
+  "nameEn": "Emergency Water Pump Relay Repair in Βελβεντό",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ρελέ αντλίας νερού στο Βελβεντό για άμεση αποκατάσταση παροχής σε κατοικία. SEO intent: «αντλία νερού δεν ξεκινά Βελβεντό».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "αντλία νερού δεν ξεκινά Βελβεντό",
+    "υδραυλικός αντλία ρελέ βλάβη",
+    "επισκευή πιεστικού επείγον",
+    "χωρίς νερό στο σπίτι λύση",
+    "service αντλίας νερού"
+  ],
+  "status": "researched"
+}

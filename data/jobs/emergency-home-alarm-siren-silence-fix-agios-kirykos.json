@@ -1,0 +1,20 @@
+{
+  "id": "emergency-home-alarm-siren-silence-fix-agios-kirykos",
+  "slug": "epigousa-episkevi-sirinas-synagermou-pou-den-stamata-agios-kirykos",
+  "nameGr": "Επείγουσα Επισκευή Σειρήνας Συναγερμού που Δεν Σταματά στον Άγιο Κήρυκο",
+  "nameEn": "Emergency Home Alarm Siren Silence Fix in Άγιος Κήρυκος",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα επισκευή σειρήνας συναγερμού στον Άγιο Κήρυκο όταν ενεργοποιείται συνεχώς χωρίς διακοπή. SEO intent: «συναγερμός χτυπάει συνέχεια Άγιος Κήρυκος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "συναγερμός χτυπάει συνέχεια Άγιος Κήρυκος",
+    "τεχνικός συναγερμού επείγον",
+    "σειρήνα συναγερμού δεν σταματά",
+    "άμεση απενεργοποίηση alarm",
+    "service security system τώρα"
+  ],
+  "status": "researched"
+}

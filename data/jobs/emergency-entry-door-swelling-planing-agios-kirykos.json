@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-swelling-planing-agios-kirykos",
+  "slug": "epigouso-planysma-portas-eisodou-apo-ygrasia-agios-kirykos",
+  "nameGr": "Επείγον Πλάνισμα Πόρτας Εισόδου από Υγρασία στον Άγιο Κήρυκο",
+  "nameEn": "Emergency Entry Door Swelling Planing in Άγιος Κήρυκος",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επείγον πλάνισμα πόρτας εισόδου στον Άγιο Κήρυκο όταν φουσκώνει από υγρασία και δεν ανοίγει/κλείνει σωστά. SEO intent: «πόρτα φούσκωσε δεν κλείνει Άγιος Κήρυκος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "πόρτα φούσκωσε δεν κλείνει Άγιος Κήρυκος",
+    "ξυλουργός πόρτα εισόδου επείγον",
+    "πλάνισμα πόρτας υγρασία",
+    "επισκευή ξύλινης πόρτας κλείσιμο",
+    "άμεση αποκατάσταση πόρτας"
+  ],
+  "status": "researched"
+}

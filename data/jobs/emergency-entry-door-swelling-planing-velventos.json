@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-swelling-planing-velventos",
+  "slug": "epigouso-planysma-portas-eisodou-apo-ygrasia-velventos",
+  "nameGr": "Επείγον Πλάνισμα Πόρτας Εισόδου από Υγρασία στο Βελβεντό",
+  "nameEn": "Emergency Entry Door Swelling Planing in Βελβεντό",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επείγον πλάνισμα πόρτας εισόδου στο Βελβεντό όταν φουσκώνει από υγρασία και δεν ανοίγει/κλείνει σωστά. SEO intent: «πόρτα φούσκωσε δεν κλείνει Βελβεντό».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "πόρτα φούσκωσε δεν κλείνει Βελβεντό",
+    "ξυλουργός πόρτα εισόδου επείγον",
+    "πλάνισμα πόρτας υγρασία",
+    "επισκευή ξύλινης πόρτας κλείσιμο",
+    "άμεση αποκατάσταση πόρτας"
+  ],
+  "status": "researched"
+}

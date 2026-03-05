@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pump-relay-repair-gastouni",
+  "slug": "epigousa-episkevi-rele-antlias-nerou-gastouni",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Αντλίας Νερού στη Γαστούνη",
+  "nameEn": "Emergency Water Pump Relay Repair in Γαστούνη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ρελέ αντλίας νερού στη Γαστούνη για άμεση αποκατάσταση παροχής σε κατοικία. SEO intent: «αντλία νερού δεν ξεκινά Γαστούνη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "αντλία νερού δεν ξεκινά Γαστούνη",
+    "υδραυλικός αντλία ρελέ βλάβη",
+    "επισκευή πιεστικού επείγον",
+    "χωρίς νερό στο σπίτι λύση",
+    "service αντλίας νερού"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pump-relay-repair-agios-kirykos",
+  "slug": "epigousa-episkevi-rele-antlias-nerou-agios-kirykos",
+  "nameGr": "Επείγουσα Επισκευή Ρελέ Αντλίας Νερού στον Άγιο Κήρυκο",
+  "nameEn": "Emergency Water Pump Relay Repair in Άγιος Κήρυκος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ρελέ αντλίας νερού στον Άγιο Κήρυκο για άμεση αποκατάσταση παροχής σε κατοικία. SEO intent: «αντλία νερού δεν ξεκινά Άγιος Κήρυκος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "αντλία νερού δεν ξεκινά Άγιος Κήρυκος",
+    "υδραυλικός αντλία ρελέ βλάβη",
+    "επισκευή πιεστικού επείγον",
+    "χωρίς νερό στο σπίτι λύση",
+    "service αντλίας νερού"
+  ],
+  "status": "researched"
+}

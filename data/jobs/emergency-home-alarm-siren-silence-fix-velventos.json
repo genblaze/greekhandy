@@ -1,0 +1,20 @@
+{
+  "id": "emergency-home-alarm-siren-silence-fix-velventos",
+  "slug": "epigousa-episkevi-sirinas-synagermou-pou-den-stamata-velventos",
+  "nameGr": "Επείγουσα Επισκευή Σειρήνας Συναγερμού που Δεν Σταματά στο Βελβεντό",
+  "nameEn": "Emergency Home Alarm Siren Silence Fix in Βελβεντό",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Επείγουσα επισκευή σειρήνας συναγερμού στο Βελβεντό όταν ενεργοποιείται συνεχώς χωρίς διακοπή. SEO intent: «συναγερμός χτυπάει συνέχεια Βελβεντό».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "συναγερμός χτυπάει συνέχεια Βελβεντό",
+    "τεχνικός συναγερμού επείγον",
+    "σειρήνα συναγερμού δεν σταματά",
+    "άμεση απενεργοποίηση alarm",
+    "service security system τώρα"
+  ],
+  "status": "researched"
+}

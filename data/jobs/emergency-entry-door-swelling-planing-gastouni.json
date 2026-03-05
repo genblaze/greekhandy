@@ -1,0 +1,20 @@
+{
+  "id": "emergency-entry-door-swelling-planing-gastouni",
+  "slug": "epigouso-planysma-portas-eisodou-apo-ygrasia-gastouni",
+  "nameGr": "Επείγον Πλάνισμα Πόρτας Εισόδου από Υγρασία στη Γαστούνη",
+  "nameEn": "Emergency Entry Door Swelling Planing in Γαστούνη",
+  "categoryId": "carpenters",
+  "categorySlug": "ksyloyrgoi",
+  "intent": "Επείγον πλάνισμα πόρτας εισόδου στη Γαστούνη όταν φουσκώνει από υγρασία και δεν ανοίγει/κλείνει σωστά. SEO intent: «πόρτα φούσκωσε δεν κλείνει Γαστούνη».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-260€",
+  "demand": "high",
+  "keywords": [
+    "πόρτα φούσκωσε δεν κλείνει Γαστούνη",
+    "ξυλουργός πόρτα εισόδου επείγον",
+    "πλάνισμα πόρτας υγρασία",
+    "επισκευή ξύλινης πόρτας κλείσιμο",
+    "άμεση αποκατάσταση πόρτας"
+  ],
+  "status": "researched"
+}
