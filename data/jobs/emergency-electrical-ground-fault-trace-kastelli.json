@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-ground-fault-trace-kastelli",
+  "slug": "epigousos-entopismos-sfalmatos-geiosis-kastelli",
+  "nameGr": "Επείγων Εντοπισμός Σφάλματος Γείωσης στο Καστέλλι",
+  "nameEn": "Emergency Electrical Ground Fault Trace in Καστέλλι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων εντοπισμός σφάλματος γείωσης στο Καστέλλι για ασφαλή επαναφορά κυκλωμάτων χωρίς κινδύνους. SEO intent: «διαρροή ρεύματος γείωση Καστέλλι».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή ρεύματος γείωση Καστέλλι",
+    "ηλεκτρολόγος σφάλμα γείωσης",
+    "ρελέ διαρροής πέφτει συνεχώς",
+    "εντοπισμός ηλεκτρικής διαρροής",
+    "άμεση ηλεκτρολογική βλάβη"
+  ],
+  "status": "researched"
+}

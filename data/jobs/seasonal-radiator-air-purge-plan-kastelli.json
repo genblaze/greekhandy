@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-air-purge-plan-kastelli",
+  "slug": "epochiako-plano-exaerosis-somaton-kalorifer-kastelli",
+  "nameGr": "Εποχικό Πλάνο Εξαέρωσης Σωμάτων Καλοριφέρ στο Καστέλλι",
+  "nameEn": "Seasonal Radiator Air Purge Plan in Καστέλλι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό πλάνο εξαέρωσης σωμάτων καλοριφέρ στο Καστέλλι για ομοιόμορφη θέρμανση και μείωση θορύβων. SEO intent: «καλοριφέρ κάνει θόρυβο αέρα Καστέλλι».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "καλοριφέρ κάνει θόρυβο αέρα Καστέλλι",
+    "εξαέρωση σωμάτων θέρμανσης",
+    "service καλοριφέρ χειμώνα",
+    "τεχνικός θέρμανσης εποχικά",
+    "βελτίωση απόδοσης καλοριφέρ"
+  ],
+  "status": "researched"
+}

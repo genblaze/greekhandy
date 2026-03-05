@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-control-board-reset-repair-avlonas",
+  "slug": "epigousa-episkevi-plaketas-elegxou-ac-avlonas",
+  "nameGr": "Επείγουσα Επισκευή Πλακέτας Ελέγχου AC στον Αυλώνα",
+  "nameEn": "Emergency AC Control Board Reset Repair in Αυλώνας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή πλακέτας ελέγχου AC στον Αυλώνα όταν η μονάδα κολλάει σε σφάλμα και δεν λειτουργεί. SEO intent: «κλιματιστικό error πλακέτα Αυλώνας».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό error πλακέτα Αυλώνας",
+    "τεχνικός ac πλακέτα επείγον",
+    "ac δεν ανταποκρίνεται χειριστήριο",
+    "επισκευή control board ac",
+    "service κλιματισμού άμεσα"
+  ],
+  "status": "researched"
+}

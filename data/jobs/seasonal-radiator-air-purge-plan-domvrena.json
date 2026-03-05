@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-air-purge-plan-domvrena",
+  "slug": "epochiako-plano-exaerosis-somaton-kalorifer-domvrena",
+  "nameGr": "Εποχικό Πλάνο Εξαέρωσης Σωμάτων Καλοριφέρ στα Δομβραίνα",
+  "nameEn": "Seasonal Radiator Air Purge Plan in Δομβραίνα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό πλάνο εξαέρωσης σωμάτων καλοριφέρ στα Δομβραίνα για ομοιόμορφη θέρμανση και μείωση θορύβων. SEO intent: «καλοριφέρ κάνει θόρυβο αέρα Δομβραίνα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "καλοριφέρ κάνει θόρυβο αέρα Δομβραίνα",
+    "εξαέρωση σωμάτων θέρμανσης",
+    "service καλοριφέρ χειμώνα",
+    "τεχνικός θέρμανσης εποχικά",
+    "βελτίωση απόδοσης καλοριφέρ"
+  ],
+  "status": "researched"
+}

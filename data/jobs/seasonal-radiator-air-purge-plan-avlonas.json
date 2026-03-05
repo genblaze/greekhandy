@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-air-purge-plan-avlonas",
+  "slug": "epochiako-plano-exaerosis-somaton-kalorifer-avlonas",
+  "nameGr": "Εποχικό Πλάνο Εξαέρωσης Σωμάτων Καλοριφέρ στον Αυλώνα",
+  "nameEn": "Seasonal Radiator Air Purge Plan in Αυλώνας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικό πλάνο εξαέρωσης σωμάτων καλοριφέρ στον Αυλώνα για ομοιόμορφη θέρμανση και μείωση θορύβων. SEO intent: «καλοριφέρ κάνει θόρυβο αέρα Αυλώνας».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "καλοριφέρ κάνει θόρυβο αέρα Αυλώνας",
+    "εξαέρωση σωμάτων θέρμανσης",
+    "service καλοριφέρ χειμώνα",
+    "τεχνικός θέρμανσης εποχικά",
+    "βελτίωση απόδοσης καλοριφέρ"
+  ],
+  "status": "researched"
+}

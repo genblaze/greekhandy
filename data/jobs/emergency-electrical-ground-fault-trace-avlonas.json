@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-ground-fault-trace-avlonas",
+  "slug": "epigousos-entopismos-sfalmatos-geiosis-avlonas",
+  "nameGr": "Επείγων Εντοπισμός Σφάλματος Γείωσης στον Αυλώνα",
+  "nameEn": "Emergency Electrical Ground Fault Trace in Αυλώνας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων εντοπισμός σφάλματος γείωσης στον Αυλώνα για ασφαλή επαναφορά κυκλωμάτων χωρίς κινδύνους. SEO intent: «διαρροή ρεύματος γείωση Αυλώνας».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή ρεύματος γείωση Αυλώνας",
+    "ηλεκτρολόγος σφάλμα γείωσης",
+    "ρελέ διαρροής πέφτει συνεχώς",
+    "εντοπισμός ηλεκτρικής διαρροής",
+    "άμεση ηλεκτρολογική βλάβη"
+  ],
+  "status": "researched"
+}

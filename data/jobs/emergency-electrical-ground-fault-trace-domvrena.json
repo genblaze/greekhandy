@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-ground-fault-trace-domvrena",
+  "slug": "epigousos-entopismos-sfalmatos-geiosis-domvrena",
+  "nameGr": "Επείγων Εντοπισμός Σφάλματος Γείωσης στα Δομβραίνα",
+  "nameEn": "Emergency Electrical Ground Fault Trace in Δομβραίνα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων εντοπισμός σφάλματος γείωσης στα Δομβραίνα για ασφαλή επαναφορά κυκλωμάτων χωρίς κινδύνους. SEO intent: «διαρροή ρεύματος γείωση Δομβραίνα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "διαρροή ρεύματος γείωση Δομβραίνα",
+    "ηλεκτρολόγος σφάλμα γείωσης",
+    "ρελέ διαρροής πέφτει συνεχώς",
+    "εντοπισμός ηλεκτρικής διαρροής",
+    "άμεση ηλεκτρολογική βλάβη"
+  ],
+  "status": "researched"
+}

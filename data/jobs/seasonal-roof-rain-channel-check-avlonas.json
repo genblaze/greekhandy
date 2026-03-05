@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-rain-channel-check-avlonas",
+  "slug": "epochiakos-elegxos-kanaliou-vroxis-stegis-avlonas",
+  "nameGr": "Εποχικός Έλεγχος Καναλιού Βροχής Στέγης στον Αυλώνα",
+  "nameEn": "Seasonal Roof Rain Channel Check in Αυλώνας",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός έλεγχος καναλιού βροχής στέγης στον Αυλώνα για πρόληψη υπερχείλισης και τοπικών εισροών. SEO intent: «κανάλι βροχής στέγης βουλωμένο Αυλώνας».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "κανάλι βροχής στέγης βουλωμένο Αυλώνας",
+    "έλεγχος απορροής οροφής",
+    "τεχνικός στέγης προληπτικό check",
+    "συντήρηση καναλιών βροχής",
+    "service roof drainage"
+  ],
+  "status": "researched"
+}

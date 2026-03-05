@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-control-board-reset-repair-domvrena",
+  "slug": "epigousa-episkevi-plaketas-elegxou-ac-domvrena",
+  "nameGr": "Επείγουσα Επισκευή Πλακέτας Ελέγχου AC στα Δομβραίνα",
+  "nameEn": "Emergency AC Control Board Reset Repair in Δομβραίνα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή πλακέτας ελέγχου AC στα Δομβραίνα όταν η μονάδα κολλάει σε σφάλμα και δεν λειτουργεί. SEO intent: «κλιματιστικό error πλακέτα Δομβραίνα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "80-280€",
+  "demand": "high",
+  "keywords": [
+    "κλιματιστικό error πλακέτα Δομβραίνα",
+    "τεχνικός ac πλακέτα επείγον",
+    "ac δεν ανταποκρίνεται χειριστήριο",
+    "επισκευή control board ac",
+    "service κλιματισμού άμεσα"
+  ],
+  "status": "researched"
+}
