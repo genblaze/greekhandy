@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-return-purge-agia-kyriaki-trikalon",
+  "slug": "epochiaki-ekkenosi-epistrofis-vroxou-thermansis-agia-kyriaki-trikalon",
+  "nameGr": "Εποχική Εκκένωση Επιστροφής Βρόχου Θέρμανσης στην Αγία Κυριακή Τρικάλων",
+  "nameEn": "Seasonal Heating Loop Return Purge in Αγία Κυριακή Τρικάλων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εκκένωση επιστροφής βρόχου θέρμανσης στην Αγία Κυριακή Τρικάλων για καλύτερη κυκλοφορία και εξοικονόμηση ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Κυριακή Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

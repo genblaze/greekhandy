@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-house-feed-connector-fix-agia-kyriaki-trikalon",
+  "slug": "epigousa-episkevi-syndesmou-trofodosias-katoikias-agia-kyriaki-trikalon",
+  "nameGr": "Επείγουσα Επισκευή Συνδέσμου Τροφοδοσίας Κατοικίας στην Αγία Κυριακή Τρικάλων",
+  "nameEn": "Emergency Electrical House Feed Connector Fix in Αγία Κυριακή Τρικάλων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή συνδέσμου τροφοδοσίας κατοικίας στην Αγία Κυριακή Τρικάλων για γρήγορη και ασφαλή αποκατάσταση ρεύματος.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Κυριακή Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

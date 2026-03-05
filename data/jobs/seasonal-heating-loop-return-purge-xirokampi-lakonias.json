@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-return-purge-xirokampi-lakonias",
+  "slug": "epochiaki-ekkenosi-epistrofis-vroxou-thermansis-xirokampi-lakonias",
+  "nameGr": "Εποχική Εκκένωση Επιστροφής Βρόχου Θέρμανσης στο Ξηροκάμπι Λακωνίας",
+  "nameEn": "Seasonal Heating Loop Return Purge in Ξηροκάμπι Λακωνίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εκκένωση επιστροφής βρόχου θέρμανσης στο Ξηροκάμπι Λακωνίας για καλύτερη κυκλοφορία και εξοικονόμηση ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ξηροκάμπι Λακωνίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

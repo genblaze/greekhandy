@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-return-purge-vlasti-kozanis",
+  "slug": "epochiaki-ekkenosi-epistrofis-vroxou-thermansis-vlasti-kozanis",
+  "nameGr": "Εποχική Εκκένωση Επιστροφής Βρόχου Θέρμανσης στη Βλάστη Κοζάνης",
+  "nameEn": "Seasonal Heating Loop Return Purge in Βλάστη Κοζάνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εκκένωση επιστροφής βρόχου θέρμανσης στη Βλάστη Κοζάνης για καλύτερη κυκλοφορία και εξοικονόμηση ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βλάστη Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

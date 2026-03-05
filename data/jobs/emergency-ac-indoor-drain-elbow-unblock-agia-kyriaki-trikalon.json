@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-elbow-unblock-agia-kyriaki-trikalon",
+  "slug": "epigousa-apofraxi-gonias-aporrois-esoterikou-ac-agia-kyriaki-trikalon",
+  "nameGr": "Επείγουσα Απόφραξη Γωνίας Απορροής Εσωτερικού AC στην Αγία Κυριακή Τρικάλων",
+  "nameEn": "Emergency AC Indoor Drain Elbow Unblock in Αγία Κυριακή Τρικάλων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα απόφραξη γωνίας απορροής εσωτερικού AC στην Αγία Κυριακή Τρικάλων για να σταματήσει άμεσα η επιστροφή νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Κυριακή Τρικάλων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
