@@ -318,7 +318,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         <span class="h-px flex-1 bg-slate-200"></span>
       </div>
 
-      <details class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" data-secondary-reviews-disclosure>
+      <details id="secondary-reviews" class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" data-secondary-reviews-disclosure>
         <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900 marker:hidden">
           Δευτερεύουσα επιλογή: αξιολογήσεις και υποβολή κριτικής
         </summary>
@@ -832,7 +832,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         };
         const syncSecondaryActionsWithIntent = () => {
           const hash = window.location.hash || '';
-          if (params.get('review') || hash === '#reviews' || hash === '#submit-review') {
+          if (params.get('review') || hash === '#reviews' || hash === '#submit-review' || hash === '#secondary-reviews') {
             openDisclosure(secondaryReviewsDisclosure);
           }
           if (params.get('message') || hash === '#secondary-actions') {
