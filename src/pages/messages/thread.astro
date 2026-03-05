@@ -224,7 +224,7 @@ const composerInitialStateLabel = messageStatus === 'submitted'
   : messageStatus === 'invalid'
     ? 'Η αποστολή απέτυχε λόγω μη έγκυρου περιεχομένου. Το πρόχειρο διατηρήθηκε για διόρθωση στη φόρμα απάντησης.'
     : messageStatus === 'error'
-      ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο σώθηκε ώστε να συνεχίσετε με ασφάλεια από το ίδιο σημείο.'
+      ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο σώθηκε ώστε να συνεχίσετε από το ίδιο σημείο χωρίς απώλεια κειμένου.'
       : messageStatus === 'blocked'
         ? 'Η αποστολή απενεργοποιήθηκε από moderation.'
         : 'Η φόρμα απάντησης είναι έτοιμη.';
@@ -2672,7 +2672,7 @@ for (const message of filteredThreadMessages) {
           }
 
           if (live) {
-            if (length === 0 && live.textContent === 'Γράψτε πρώτα το μήνυμά σας και μετά πατήστε αποστολή.') return;
+            if (length === 0 && live.textContent === 'Γράψτε πρώτα το μήνυμά σας και έπειτα πατήστε «Αποστολή».') return;
             if (remaining <= 200 && length > 0) {
               live.textContent = remaining === 0 ? 'Φτάσατε το όριο χαρακτήρων.' : `Απομένουν ${remaining} χαρακτήρες.`;
               return;
@@ -2711,12 +2711,12 @@ for (const message of filteredThreadMessages) {
             const length = textarea.value.trim().length;
             if (length === 0) {
               if (error) error.classList.remove('hidden');
-              if (live) live.textContent = 'Γράψτε πρώτα το μήνυμά σας και μετά πατήστε αποστολή.';
+              if (live) live.textContent = 'Γράψτε πρώτα το μήνυμά σας και έπειτα πατήστε «Αποστολή».';
               submitButton.disabled = true;
               textarea.setAttribute('aria-invalid', 'true');
               setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
-              announcePendingState(form, 'Γράψτε πρώτα το μήνυμά σας και μετά πατήστε αποστολή.');
-              setFormFeedback(form, 'Γράψτε πρώτα το μήνυμά σας και μετά πατήστε αποστολή.', 'error');
+              announcePendingState(form, 'Γράψτε πρώτα το μήνυμά σας και έπειτα πατήστε «Αποστολή».');
+              setFormFeedback(form, 'Γράψτε πρώτα το μήνυμά σας και έπειτα πατήστε «Αποστολή».', 'error');
               textarea.reportValidity();
               focusElement(textarea, {
                 preventScroll: isCompactViewport(),
@@ -2822,11 +2822,11 @@ for (const message of filteredThreadMessages) {
           if (textarea instanceof HTMLTextAreaElement && textarea.value.trim().length === 0) {
             event.preventDefault();
             if (error) error.classList.remove('hidden');
-            if (live) live.textContent = 'Γράψτε πρώτα το μήνυμά σας και μετά πατήστε αποστολή.';
+            if (live) live.textContent = 'Γράψτε πρώτα το μήνυμά σας και έπειτα πατήστε «Αποστολή».';
             textarea.setAttribute('aria-invalid', 'true');
             setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
-            announcePendingState(form, 'Γράψτε πρώτα το μήνυμά σας και μετά πατήστε αποστολή.', 'assertive');
-            setFormFeedback(form, 'Γράψτε πρώτα το μήνυμά σας και μετά πατήστε αποστολή.', 'error');
+            announcePendingState(form, 'Γράψτε πρώτα το μήνυμά σας και έπειτα πατήστε «Αποστολή».', 'assertive');
+            setFormFeedback(form, 'Γράψτε πρώτα το μήνυμά σας και έπειτα πατήστε «Αποστολή».', 'error');
             textarea.reportValidity();
             focusElement(textarea, {
               preventScroll: isCompactViewport(),
