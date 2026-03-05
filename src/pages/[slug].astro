@@ -740,6 +740,7 @@ const faqSchema = pageCategory.faq?.length ? {
             <p id="lead-consent-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Απαιτείται συγκατάθεση για την αποστολή του αιτήματος.</p>
           </div>
 
+          <p id="lead-validation-summary" class="mt-2 text-xs text-slate-600" aria-live="polite">Έλεγχος φόρμας: συμπληρώστε τα υποχρεωτικά πεδία για ασφαλή καταχώρηση.</p>
           <button id="form-submit" type="submit" class="mt-5 w-full rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800">
             Αποστολή Αιτήματος
           </button>
@@ -758,14 +759,86 @@ const faqSchema = pageCategory.faq?.length ? {
           const successState = document.getElementById('form-success');
           const errorState = document.getElementById('form-error');
           const fieldsState = document.getElementById('form-fields');
+          const validationSummary = document.getElementById('lead-validation-summary');
           const REQUEST_TIMEOUT_MS = 12000;
           let isSubmitting = false;
+
+          const fieldRules = {
+            'lead-name': (value) => value.trim().length >= 2,
+            'lead-phone': (value) => /^[0-9+()\-\s]{7,20}$/.test(value.trim()),
+            'lead-email': (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+            'lead-description': (value) => value.trim().length >= 15,
+            'lead-consent': (value) => value === true
+          };
+
+          const updateFieldState = (fieldId, isValid, touched = false) => {
+            const input = document.getElementById(fieldId);
+            const error = document.getElementById(`${fieldId}-error`);
+            if (input instanceof HTMLElement) {
+              input.setAttribute('aria-invalid', !isValid && touched ? 'true' : 'false');
+            }
+            if (error instanceof HTMLElement) {
+              error.classList.toggle('hidden', isValid || !touched);
+            }
+          };
+
+          const validateLeadForm = (forceTouched = false) => {
+            const leadNameInput = document.getElementById('lead-name');
+            const leadPhoneInput = document.getElementById('lead-phone');
+            const leadEmailInput = document.getElementById('lead-email');
+            const leadDescriptionInput = document.getElementById('lead-description');
+            const leadConsentInput = document.getElementById('lead-consent');
+
+            const values = {
+              'lead-name': leadNameInput instanceof HTMLInputElement ? leadNameInput.value : '',
+              'lead-phone': leadPhoneInput instanceof HTMLInputElement ? leadPhoneInput.value : '',
+              'lead-email': leadEmailInput instanceof HTMLInputElement ? leadEmailInput.value : '',
+              'lead-description': leadDescriptionInput instanceof HTMLTextAreaElement ? leadDescriptionInput.value : '',
+              'lead-consent': leadConsentInput instanceof HTMLInputElement ? leadConsentInput.checked === true : false
+            };
+
+            const invalid = [];
+            for (const [id, rule] of Object.entries(fieldRules)) {
+              const touched = forceTouched || ((document.getElementById(id)?.getAttribute('data-touched') || '') === '1');
+              const isValid = rule(values[id]);
+              if (!isValid) invalid.push(id);
+              updateFieldState(id, isValid, touched);
+            }
+
+            if (validationSummary instanceof HTMLElement) {
+              const labelMap = {
+                'lead-name': 'όνομα',
+                'lead-phone': 'τηλέφωνο',
+                'lead-email': 'email',
+                'lead-description': 'περιγραφή',
+                'lead-consent': 'συγκατάθεση'
+              };
+              validationSummary.textContent = invalid.length
+                ? `Έλεγχος φόρμας: απαιτείται διόρθωση στα πεδία ${[...new Set(invalid.map((i) => labelMap[i]))].join(', ')}.`
+                : 'Έλεγχος φόρμας: όλα τα υποχρεωτικά πεδία είναι έγκυρα.';
+            }
+
+            return invalid.length === 0;
+          };
 
           const setErrorState = (message) => {
             if (!(errorState instanceof HTMLElement)) return;
             errorState.textContent = message;
             errorState.classList.remove('hidden');
           };
+
+          ['lead-name', 'lead-phone', 'lead-email', 'lead-description', 'lead-consent'].forEach((id) => {
+            const el = document.getElementById(id);
+            if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement)) return;
+            el.addEventListener('input', () => {
+              el.setAttribute('data-touched', '1');
+              validateLeadForm();
+            });
+            el.addEventListener('blur', () => {
+              el.setAttribute('data-touched', '1');
+              validateLeadForm();
+            });
+          });
 
           form?.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -778,6 +851,12 @@ const faqSchema = pageCategory.faq?.length ? {
             const fd = new FormData(form);
             // Honeypot check
             if (fd.get('website')) return;
+
+            const formValid = validateLeadForm(true);
+            if (!formValid) {
+              setErrorState('Ελέγξτε τα επισημασμένα πεδία και δοκιμάστε ξανά.');
+              return;
+            }
 
             const consentGiven = fd.get('consent') === 'on';
             if (!consentGiven) {
