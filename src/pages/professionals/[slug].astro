@@ -318,7 +318,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio?.trim() || 'Ο επαγγελματίας είναι διαθέσιμος για ανάθεση υπηρεσιών στην περιοχή του προφίλ.'}</p>
 
       <div class="mt-6 rounded-2xl border border-blue-200 bg-white/90 p-4 shadow-sm">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Ιεραρχία ενεργειών προφίλ</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια διαδρομή επικοινωνίας προφίλ</p>
         <div class="mt-2 flex flex-wrap items-center gap-2.5">
           <a
             href="#primary-conversion"
@@ -329,10 +329,10 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             Κύριο CTA: Ζητήστε υπηρεσία
           </a>
         </div>
-        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά/ραντεβού προτιμήστε την κύρια φόρμα αιτήματος. Κριτικές, μήνυμα και στοιχεία επικοινωνίας παραμένουν διαθέσιμα ως δευτερεύουσες επιλογές σε accordion ενότητες χαμηλότερα.</p>
-        <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα δείχνει καθαρά την πορεία του αιτήματος, ώστε να γνωρίζετε πάντα τι ακολουθεί.</p>
+        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ακολουθήστε πρώτα την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές παραμένουν διαθέσιμες χαμηλότερα ως δευτερεύουσες ενέργειες.</p>
+        <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα εμφανίζει καθαρά την πορεία του αιτήματος, ώστε να γνωρίζετε κάθε επόμενο βήμα.</p>
         <p class="mt-1 text-xs text-slate-500">
-          Εναλλακτικά:
+          Δευτερεύουσες επιλογές:
           <a href="#secondary-actions" class="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900">
             δευτερεύουσες επιλογές επικοινωνίας
           </a>
@@ -750,7 +750,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
           <summary class="cursor-pointer list-none text-sm font-semibold text-indigo-900 marker:hidden">
             Δευτερεύουσα επιλογή: ξεκινήστε συζήτηση με μήνυμα
           </summary>
-          <p class="mt-2 text-sm text-indigo-800">Χρησιμοποιήστε τη συνομιλία όταν δεν χρειάζεστε ακόμη πλήρες αίτημα κράτησης.</p>
+          <p class="mt-2 text-sm text-indigo-800">Χρησιμοποιήστε τη συνομιλία όταν θέλετε πρώτα σύντομη διευκρίνιση πριν από πλήρες αίτημα.</p>
 
           <div class="mt-3 space-y-2" data-feedback-group="message" id="message-feedback" role="status" aria-live="polite" aria-atomic="true" aria-relevant="additions text">
           <p data-feedback-status="loading" class="hidden rounded-md border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm text-indigo-800">
