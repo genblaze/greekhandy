@@ -5,9 +5,10 @@ interface Props {
   canonicalUrl?: string;
   ogImage?: string;
   twitterCard?: 'summary' | 'summary_large_image';
+  noindex?: boolean;
 }
 
-const { title, description, canonicalUrl, ogImage, twitterCard } = Astro.props;
+const { title, description, canonicalUrl, ogImage, twitterCard, noindex = false } = Astro.props;
 const CANONICAL_ORIGIN = 'https://greekhandy.gr';
 
 const toCanonicalUrl = (value?: string) => {
@@ -35,6 +36,7 @@ const cardType = twitterCard || 'summary_large_image';
 <!-- SEO -->
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonical} />
 <link rel="alternate" hreflang="el" href={canonical} />
 

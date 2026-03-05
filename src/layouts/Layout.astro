@@ -9,9 +9,10 @@ interface Props {
   canonicalUrl?: string;
   ogImage?: string;
   twitterCard?: 'summary' | 'summary_large_image';
+  noindex?: boolean;
 }
 
-const { title, description, canonicalUrl, ogImage, twitterCard } = Astro.props;
+const { title, description, canonicalUrl, ogImage, twitterCard, noindex = false } = Astro.props;
 Astro.response.headers.set('Content-Type', 'text/html; charset=UTF-8');
 const normalizePath = (path: string) => (path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path);
 const currentPath = normalizePath(Astro.url.pathname);
@@ -21,7 +22,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
 <!doctype html>
 <html lang="el">
   <head>
-    <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage} twitterCard={twitterCard} />
+    <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage} twitterCard={twitterCard} noindex={noindex} />
     <slot name="head" />
   </head>
   <body class="bg-slate-50 font-sans text-slate-900 antialiased">
