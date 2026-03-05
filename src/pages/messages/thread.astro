@@ -1221,13 +1221,13 @@ for (const message of filteredThreadMessages) {
               <div class="rounded-xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-xs text-sky-900" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-loading-title" aria-describedby="thread-history-loading-description">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-800">Κατάσταση προβολής · Loading</p>
                 <p id="thread-history-loading-title" class="font-semibold">Το ιστορικό συγχρονίζεται αυτή τη στιγμή.</p>
-                <p id="thread-history-loading-description" class="mt-1">Αν η φόρτωση παραμείνει στάσιμη, επαναφορτώστε το thread για νέα απόπειρα ανάκτησης.</p>
+                <p id="thread-history-loading-description" class="mt-1">Αν η φόρτωση καθυστερεί, ανανεώστε τη σελίδα για νέα προσπάθεια.</p>
                 <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
                 <div class="mt-2 flex flex-wrap items-center gap-2">
-                  <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης κατά την κατάσταση loading." class="thread-touch-target inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
+                  <a href={threadRetryHref} data-thread-retry-now data-thread-filter-action="Άμεση επανάληψη φόρτωσης συνομιλίας." class="thread-touch-target inline-flex rounded-md border border-sky-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-sky-900 transition hover:border-sky-400 hover:bg-sky-100">
                     Επανάληψη τώρα
                   </a>
-                  <a href="#thread-entry-guidance" data-thread-filter-action="Μετάβαση στον οδηγό εισόδου thread από loading κατάσταση." class="thread-touch-target inline-flex rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+                  <a href="#thread-entry-guidance" data-thread-filter-action="Μετάβαση στον οδηγό ασφαλούς εισόδου συνομιλίας." class="thread-touch-target inline-flex rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
                     Οδηγός εισόδου
                   </a>
                 </div>
@@ -1236,7 +1236,7 @@ for (const message of filteredThreadMessages) {
             {showLoadingState && (
               <div class="space-y-3" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="thread-history-skeleton-title" aria-describedby="thread-history-skeleton-description">
                 <p id="thread-history-skeleton-title" class="text-[11px] font-semibold uppercase tracking-[0.1em] text-slate-500">Προσωρινά μηνύματα φόρτωσης</p>
-                <p id="thread-history-skeleton-description" class="text-xs text-slate-500">Τα placeholders θα αντικατασταθούν αυτόματα μόλις έρθει το ιστορικό.</p>
+                <p id="thread-history-skeleton-description" class="text-xs text-slate-500">Η προεπισκόπηση θα ενημερωθεί αυτόματα μόλις φορτωθεί το ιστορικό.</p>
                 {THREAD_LOADING_SKELETON_ROWS.map((item) => (
                   <article class="thread-loading-card rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" aria-hidden="true">
                     <div class="h-3 w-24 rounded bg-slate-200"></div>
