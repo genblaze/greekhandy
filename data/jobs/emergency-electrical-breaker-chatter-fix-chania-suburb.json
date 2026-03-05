@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-breaker-chatter-fix-chania-suburb",
+  "slug": "epigousa-episkevi-tremouliazmatos-asfaleias-pinaka-chania-suburb",
+  "nameGr": "Επείγουσα Επισκευή Τρεμουλιάσματος Ασφάλειας Πίνακα στα περίχωρα Χανίων",
+  "nameEn": "Emergency Electrical Breaker Chatter Fix in Χανιά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ασφάλειας πίνακα στα περίχωρα Χανίων όταν τρεμοπαίζει/βομβεί για αποφυγή επικίνδυνης βλάβης. SEO intent: «ασφάλεια πίνακα κάνει θόρυβο Χανιά».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "ασφάλεια πίνακα κάνει θόρυβο Χανιά",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "βλάβη διακόπτη ασφαλείας",
+    "booming breaker λύση",
+    "άμεση ηλεκτρική αποκατάσταση"
+  ],
+  "status": "researched"
+}

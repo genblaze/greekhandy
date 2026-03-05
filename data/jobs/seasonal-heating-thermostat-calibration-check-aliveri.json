@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-thermostat-calibration-check-aliveri",
+  "slug": "epochiakos-elegxos-rythmisis-thermostati-thermansis-aliveri",
+  "nameGr": "Εποχικός Έλεγχος Ρύθμισης Θερμοστάτη Θέρμανσης στο Αλιβέρι",
+  "nameEn": "Seasonal Heating Thermostat Calibration Check in Αλιβέρι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος βαθμονόμησης θερμοστάτη θέρμανσης στο Αλιβέρι για ακριβή θερμοκρασία και οικονομία κατανάλωσης. SEO intent: «θερμοστάτης δείχνει λάθος Αλιβέρι».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "θερμοστάτης δείχνει λάθος Αλιβέρι",
+    "ρύθμιση θερμοστάτη θέρμανσης",
+    "τεχνικός θέρμανσης βαθμονόμηση",
+    "service thermostat εποχικό",
+    "μείωση κατανάλωσης θέρμανσης"
+  ],
+  "status": "researched"
+}

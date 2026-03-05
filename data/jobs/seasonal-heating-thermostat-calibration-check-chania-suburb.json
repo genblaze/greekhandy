@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-thermostat-calibration-check-chania-suburb",
+  "slug": "epochiakos-elegxos-rythmisis-thermostati-thermansis-chania-suburb",
+  "nameGr": "Εποχικός Έλεγχος Ρύθμισης Θερμοστάτη Θέρμανσης στα περίχωρα Χανίων",
+  "nameEn": "Seasonal Heating Thermostat Calibration Check in Χανιά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος βαθμονόμησης θερμοστάτη θέρμανσης στα περίχωρα Χανίων για ακριβή θερμοκρασία και οικονομία κατανάλωσης. SEO intent: «θερμοστάτης δείχνει λάθος Χανιά».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "θερμοστάτης δείχνει λάθος Χανιά",
+    "ρύθμιση θερμοστάτη θέρμανσης",
+    "τεχνικός θέρμανσης βαθμονόμηση",
+    "service thermostat εποχικό",
+    "μείωση κατανάλωσης θέρμανσης"
+  ],
+  "status": "researched"
+}

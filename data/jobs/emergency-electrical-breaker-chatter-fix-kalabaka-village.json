@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-breaker-chatter-fix-kalabaka-village",
+  "slug": "epigousa-episkevi-tremouliazmatos-asfaleias-pinaka-kalabaka-village",
+  "nameGr": "Επείγουσα Επισκευή Τρεμουλιάσματος Ασφάλειας Πίνακα σε χωριό της Καλαμπάκας",
+  "nameEn": "Emergency Electrical Breaker Chatter Fix in Καλαμπάκα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ασφάλειας πίνακα σε χωριό της Καλαμπάκας όταν τρεμοπαίζει/βομβεί για αποφυγή επικίνδυνης βλάβης. SEO intent: «ασφάλεια πίνακα κάνει θόρυβο Καλαμπάκα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "ασφάλεια πίνακα κάνει θόρυβο Καλαμπάκα",
+    "ηλεκτρολόγος επείγον πίνακας",
+    "βλάβη διακόπτη ασφαλείας",
+    "booming breaker λύση",
+    "άμεση ηλεκτρική αποκατάσταση"
+  ],
+  "status": "researched"
+}

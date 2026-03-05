@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-thermostat-calibration-check-kalabaka-village",
+  "slug": "epochiakos-elegxos-rythmisis-thermostati-thermansis-kalabaka-village",
+  "nameGr": "Εποχικός Έλεγχος Ρύθμισης Θερμοστάτη Θέρμανσης σε χωριό της Καλαμπάκας",
+  "nameEn": "Seasonal Heating Thermostat Calibration Check in Καλαμπάκα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος βαθμονόμησης θερμοστάτη θέρμανσης σε χωριό της Καλαμπάκας για ακριβή θερμοκρασία και οικονομία κατανάλωσης. SEO intent: «θερμοστάτης δείχνει λάθος Καλαμπάκα».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "θερμοστάτης δείχνει λάθος Καλαμπάκα",
+    "ρύθμιση θερμοστάτη θέρμανσης",
+    "τεχνικός θέρμανσης βαθμονόμηση",
+    "service thermostat εποχικό",
+    "μείωση κατανάλωσης θέρμανσης"
+  ],
+  "status": "researched"
+}
