@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressurizer-check-valve-repair-platana-evias",
+  "slug": "epigousa-episkevi-valvidas-anepistrofis-piestikou-nerou-platana-evias",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Αντεπιστροφής Πιεστικού Νερού στα Πλατάνα Ευβοίας",
+  "nameEn": "Emergency Water Pressurizer Check Valve Repair in Πλατάνα Ευβοίας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας αντεπιστροφής πιεστικού νερού στα Πλατάνα Ευβοίας για σταθερή πίεση και άμεση αποκατάσταση παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνα Ευβοίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

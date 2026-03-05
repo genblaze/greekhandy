@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulation-balance-check-anilio-metsovou",
+  "slug": "epochiakos-elegxos-eksisorropisis-kykloforias-thermansis-anilio-metsovou",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Κυκλοφορίας Θέρμανσης στο Ανήλιο Μετσόβου",
+  "nameEn": "Seasonal Heating Circulation Balance Check in Ανήλιο Μετσόβου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης κυκλοφορίας θέρμανσης στο Ανήλιο Μετσόβου για αποδοτική λειτουργία και ομοιόμορφη θέρμανση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ανήλιο Μετσόβου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

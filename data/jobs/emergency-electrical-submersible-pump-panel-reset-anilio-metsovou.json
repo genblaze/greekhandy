@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-submersible-pump-panel-reset-anilio-metsovou",
+  "slug": "epigousa-epanafora-pinaka-ypovryxias-antlias-anilio-metsovou",
+  "nameGr": "Επείγουσα Επαναφορά Πίνακα Υποβρύχιας Αντλίας στο Ανήλιο Μετσόβου",
+  "nameEn": "Emergency Electrical Submersible Pump Panel Reset in Ανήλιο Μετσόβου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά πίνακα υποβρύχιας αντλίας στο Ανήλιο Μετσόβου για άμεση ηλεκτρική αποκατάσταση και τροφοδοσία νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ανήλιο Μετσόβου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

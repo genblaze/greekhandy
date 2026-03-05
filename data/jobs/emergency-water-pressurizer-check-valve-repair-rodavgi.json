@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pressurizer-check-valve-repair-rodavgi",
+  "slug": "epigousa-episkevi-valvidas-anepistrofis-piestikou-nerou-rodavgi",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Αντεπιστροφής Πιεστικού Νερού στη Ροδαυγή",
+  "nameEn": "Emergency Water Pressurizer Check Valve Repair in Ροδαυγή",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας αντεπιστροφής πιεστικού νερού στη Ροδαυγή για σταθερή πίεση και άμεση αποκατάσταση παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Ροδαυγή επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

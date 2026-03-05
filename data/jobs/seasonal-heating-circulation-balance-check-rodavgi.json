@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulation-balance-check-rodavgi",
+  "slug": "epochiakos-elegxos-eksisorropisis-kykloforias-thermansis-rodavgi",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Κυκλοφορίας Θέρμανσης στη Ροδαυγή",
+  "nameEn": "Seasonal Heating Circulation Balance Check in Ροδαυγή",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης κυκλοφορίας θέρμανσης στη Ροδαυγή για αποδοτική λειτουργία και ομοιόμορφη θέρμανση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ροδαυγή επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

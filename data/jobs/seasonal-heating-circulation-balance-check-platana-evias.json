@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-circulation-balance-check-platana-evias",
+  "slug": "epochiakos-elegxos-eksisorropisis-kykloforias-thermansis-platana-evias",
+  "nameGr": "Εποχικός Έλεγχος Εξισορρόπησης Κυκλοφορίας Θέρμανσης στα Πλατάνα Ευβοίας",
+  "nameEn": "Seasonal Heating Circulation Balance Check in Πλατάνα Ευβοίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξισορρόπησης κυκλοφορίας θέρμανσης στα Πλατάνα Ευβοίας για αποδοτική λειτουργία και ομοιόμορφη θέρμανση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνα Ευβοίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

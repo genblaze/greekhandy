@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-submersible-pump-panel-reset-platana-evias",
+  "slug": "epigousa-epanafora-pinaka-ypovryxias-antlias-platana-evias",
+  "nameGr": "Επείγουσα Επαναφορά Πίνακα Υποβρύχιας Αντλίας στα Πλατάνα Ευβοίας",
+  "nameEn": "Emergency Electrical Submersible Pump Panel Reset in Πλατάνα Ευβοίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά πίνακα υποβρύχιας αντλίας στα Πλατάνα Ευβοίας για άμεση ηλεκτρική αποκατάσταση και τροφοδοσία νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πλατάνα Ευβοίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
