@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-well-pump-circuit-recovery-agia-theodora-arkadias",
+  "slug": "epigousa-apokatastasi-kyklomatos-antlias-geotrisis-agia-theodora-arkadias",
+  "nameGr": "Επείγουσα Αποκατάσταση Κυκλώματος Αντλίας Γεώτρησης στην Αγία Θεοδώρα Αρκαδίας",
+  "nameEn": "Emergency Electrical Well Pump Circuit Recovery in Αγία Θεοδώρα Αρκαδίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση κυκλώματος αντλίας γεώτρησης στην Αγία Θεοδώρα Αρκαδίας για άμεση επαναφορά ηλεκτροδότησης και παροχής νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Θεοδώρα Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

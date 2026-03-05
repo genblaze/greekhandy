@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-overflow-cutoff-fix-dafni-fthiotidas",
+  "slug": "epigousa-episkevi-diakopis-yperxeilisis-dexamenis-nerou-dafni-fthiotidas",
+  "nameGr": "Επείγουσα Επισκευή Διακοπής Υπερχείλισης Δεξαμενής Νερού στη Δάφνη Φθιώτιδας",
+  "nameEn": "Emergency Water Tank Overflow Cutoff Fix in Δάφνη Φθιώτιδας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή μηχανισμού διακοπής υπερχείλισης δεξαμενής νερού στη Δάφνη Φθιώτιδας για άμεση αποτροπή απώλειας νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Δάφνη Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

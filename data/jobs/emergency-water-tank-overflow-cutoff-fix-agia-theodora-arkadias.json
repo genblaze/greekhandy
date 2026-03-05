@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-overflow-cutoff-fix-agia-theodora-arkadias",
+  "slug": "epigousa-episkevi-diakopis-yperxeilisis-dexamenis-nerou-agia-theodora-arkadias",
+  "nameGr": "Επείγουσα Επισκευή Διακοπής Υπερχείλισης Δεξαμενής Νερού στην Αγία Θεοδώρα Αρκαδίας",
+  "nameEn": "Emergency Water Tank Overflow Cutoff Fix in Αγία Θεοδώρα Αρκαδίας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή μηχανισμού διακοπής υπερχείλισης δεξαμενής νερού στην Αγία Θεοδώρα Αρκαδίας για άμεση αποτροπή απώλειας νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Θεοδώρα Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

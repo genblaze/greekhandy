@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-zonal-valve-motion-check-agia-theodora-arkadias",
+  "slug": "epochiakos-elegxos-kinisis-zonikis-valvidas-thermansis-agia-theodora-arkadias",
+  "nameGr": "Εποχικός Έλεγχος Κίνησης Ζωνικής Βαλβίδας Θέρμανσης στην Αγία Θεοδώρα Αρκαδίας",
+  "nameEn": "Seasonal Heating Zonal Valve Motion Check in Αγία Θεοδώρα Αρκαδίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κίνησης ζωνικής βαλβίδας θέρμανσης στην Αγία Θεοδώρα Αρκαδίας για ομαλή εναλλαγή ζωνών και οικονομία ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Θεοδώρα Αρκαδίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

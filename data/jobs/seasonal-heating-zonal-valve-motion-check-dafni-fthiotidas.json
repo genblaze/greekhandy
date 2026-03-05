@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-zonal-valve-motion-check-dafni-fthiotidas",
+  "slug": "epochiakos-elegxos-kinisis-zonikis-valvidas-thermansis-dafni-fthiotidas",
+  "nameGr": "Εποχικός Έλεγχος Κίνησης Ζωνικής Βαλβίδας Θέρμανσης στη Δάφνη Φθιώτιδας",
+  "nameEn": "Seasonal Heating Zonal Valve Motion Check in Δάφνη Φθιώτιδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κίνησης ζωνικής βαλβίδας θέρμανσης στη Δάφνη Φθιώτιδας για ομαλή εναλλαγή ζωνών και οικονομία ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δάφνη Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-overflow-cutoff-fix-agios-athanasios-dramas",
+  "slug": "epigousa-episkevi-diakopis-yperxeilisis-dexamenis-nerou-agios-athanasios-dramas",
+  "nameGr": "Επείγουσα Επισκευή Διακοπής Υπερχείλισης Δεξαμενής Νερού στον Άγιο Αθανάσιο Δράμας",
+  "nameEn": "Emergency Water Tank Overflow Cutoff Fix in Άγιος Αθανάσιος Δράμας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή μηχανισμού διακοπής υπερχείλισης δεξαμενής νερού στον Άγιο Αθανάσιο Δράμας για άμεση αποτροπή απώλειας νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Αθανάσιος Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

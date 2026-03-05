@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-well-pump-circuit-recovery-dafni-fthiotidas",
+  "slug": "epigousa-apokatastasi-kyklomatos-antlias-geotrisis-dafni-fthiotidas",
+  "nameGr": "Επείγουσα Αποκατάσταση Κυκλώματος Αντλίας Γεώτρησης στη Δάφνη Φθιώτιδας",
+  "nameEn": "Emergency Electrical Well Pump Circuit Recovery in Δάφνη Φθιώτιδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση κυκλώματος αντλίας γεώτρησης στη Δάφνη Φθιώτιδας για άμεση επαναφορά ηλεκτροδότησης και παροχής νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Δάφνη Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

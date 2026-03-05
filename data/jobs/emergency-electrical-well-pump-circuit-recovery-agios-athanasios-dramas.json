@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-well-pump-circuit-recovery-agios-athanasios-dramas",
+  "slug": "epigousa-apokatastasi-kyklomatos-antlias-geotrisis-agios-athanasios-dramas",
+  "nameGr": "Επείγουσα Αποκατάσταση Κυκλώματος Αντλίας Γεώτρησης στον Άγιο Αθανάσιο Δράμας",
+  "nameEn": "Emergency Electrical Well Pump Circuit Recovery in Άγιος Αθανάσιος Δράμας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση κυκλώματος αντλίας γεώτρησης στον Άγιο Αθανάσιο Δράμας για άμεση επαναφορά ηλεκτροδότησης και παροχής νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Αθανάσιος Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

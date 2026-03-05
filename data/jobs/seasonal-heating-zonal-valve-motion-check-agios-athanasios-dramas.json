@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-zonal-valve-motion-check-agios-athanasios-dramas",
+  "slug": "epochiakos-elegxos-kinisis-zonikis-valvidas-thermansis-agios-athanasios-dramas",
+  "nameGr": "Εποχικός Έλεγχος Κίνησης Ζωνικής Βαλβίδας Θέρμανσης στον Άγιο Αθανάσιο Δράμας",
+  "nameEn": "Seasonal Heating Zonal Valve Motion Check in Άγιος Αθανάσιος Δράμας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος κίνησης ζωνικής βαλβίδας θέρμανσης στον Άγιο Αθανάσιο Δράμας για ομαλή εναλλαγή ζωνών και οικονομία ενέργειας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Αθανάσιος Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
