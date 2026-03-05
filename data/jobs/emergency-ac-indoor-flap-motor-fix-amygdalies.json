@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-flap-motor-fix-amygdalies",
+  "slug": "epigousa-episkevi-moter-perisrofis-ptygiou-ac-amygdalies",
+  "nameGr": "Επείγουσα Επισκευή Μοτέρ Πτερυγίου AC στις Αμυγδαλιές",
+  "nameEn": "Emergency AC Indoor Flap Motor Fix in Αμυγδαλιές",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή μοτέρ πτερυγίου εσωτερικής μονάδας AC στις Αμυγδαλιές για σωστή κατεύθυνση αέρα και άμεση άνεση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αμυγδαλιές επείγον τεχνικός",
+    "Επείγουσα Αμυγδαλιές",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

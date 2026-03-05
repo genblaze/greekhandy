@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-flap-motor-fix-kissamos",
+  "slug": "epigousa-episkevi-moter-perisrofis-ptygiou-ac-kissamos",
+  "nameGr": "Επείγουσα Επισκευή Μοτέρ Πτερυγίου AC στο Καστέλι Κισσάμου",
+  "nameEn": "Emergency AC Indoor Flap Motor Fix in Κίσσαμος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή μοτέρ πτερυγίου εσωτερικής μονάδας AC στο Καστέλι Κισσάμου για σωστή κατεύθυνση αέρα και άμεση άνεση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Κίσσαμος επείγον τεχνικός",
+    "Επείγουσα Κίσσαμος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

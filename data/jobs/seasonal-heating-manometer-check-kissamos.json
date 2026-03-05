@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manometer-check-kissamos",
+  "slug": "epochiakos-elegxos-manometrou-thermansis-kissamos",
+  "nameGr": "Εποχικός Έλεγχος Μανόμετρου Θέρμανσης στο Καστέλι Κισσάμου",
+  "nameEn": "Seasonal Heating Manometer Check in Κίσσαμος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος μανόμετρου θέρμανσης στο Καστέλι Κισσάμου για σταθερή πίεση λειτουργίας και πρόληψη αιφνίδιων διακοπών.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Κίσσαμος επείγον τεχνικός",
+    "Εποχικός Κίσσαμος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manometer-check-amygdalies",
+  "slug": "epochiakos-elegxos-manometrou-thermansis-amygdalies",
+  "nameGr": "Εποχικός Έλεγχος Μανόμετρου Θέρμανσης στις Αμυγδαλιές",
+  "nameEn": "Seasonal Heating Manometer Check in Αμυγδαλιές",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος μανόμετρου θέρμανσης στις Αμυγδαλιές για σταθερή πίεση λειτουργίας και πρόληψη αιφνίδιων διακοπών.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Αμυγδαλιές επείγον τεχνικός",
+    "Εποχικός Αμυγδαλιές",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

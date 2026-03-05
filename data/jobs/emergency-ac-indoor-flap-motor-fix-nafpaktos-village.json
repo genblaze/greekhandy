@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-flap-motor-fix-nafpaktos-village",
+  "slug": "epigousa-episkevi-moter-perisrofis-ptygiou-ac-nafpaktos-village",
+  "nameGr": "Επείγουσα Επισκευή Μοτέρ Πτερυγίου AC σε χωριό της Ναυπάκτου",
+  "nameEn": "Emergency AC Indoor Flap Motor Fix in Ναύπακτος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή μοτέρ πτερυγίου εσωτερικής μονάδας AC σε χωριό της Ναυπάκτου για σωστή κατεύθυνση αέρα και άμεση άνεση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ναύπακτος επείγον τεχνικός",
+    "Επείγουσα Ναύπακτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

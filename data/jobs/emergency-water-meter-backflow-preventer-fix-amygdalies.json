@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-meter-backflow-preventer-fix-amygdalies",
+  "slug": "epigousa-episkevi-antirrois-ydrometrou-amygdalies",
+  "nameGr": "Επείγουσα Επισκευή Αντιρροής Υδρομέτρου στις Αμυγδαλιές",
+  "nameEn": "Emergency Water Meter Backflow Preventer Fix in Αμυγδαλιές",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή συστήματος αντιρροής υδρομέτρου στις Αμυγδαλιές για να αποτραπεί επιστροφή νερού και αστοχία δικτύου.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αμυγδαλιές επείγον τεχνικός",
+    "Επείγουσα Αμυγδαλιές",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

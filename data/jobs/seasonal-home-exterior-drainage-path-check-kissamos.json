@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-exterior-drainage-path-check-kissamos",
+  "slug": "epochiakos-elegxos-diadrmis-eksoterikis-aporrois-katoikias-kissamos",
+  "nameGr": "Εποχικός Έλεγχος Διαδρομής Εξωτερικής Απορροής Κατοικίας στο Καστέλι Κισσάμου",
+  "nameEn": "Seasonal Home Exterior Drainage Path Check in Κίσσαμος",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός έλεγχος διαδρομής εξωτερικής απορροής στο Καστέλι Κισσάμου για αποφυγή συγκέντρωσης νερού σε εισόδους και αυλές.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κίσσαμος επείγον τεχνικός",
+    "Εποχικός Κίσσαμος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

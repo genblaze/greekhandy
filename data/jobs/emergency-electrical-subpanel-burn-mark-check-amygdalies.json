@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-subpanel-burn-mark-check-amygdalies",
+  "slug": "epigousos-elegxos-ichnon-kafsis-ypopinaka-amygdalies",
+  "nameGr": "Επείγων Έλεγχος Ιχνών Καύσης Υποπίνακα στις Αμυγδαλιές",
+  "nameEn": "Emergency Electrical Subpanel Burn Mark Check in Αμυγδαλιές",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος ιχνών καύσης σε υποπίνακα στις Αμυγδαλιές για άμεση πρόληψη σοβαρής ηλεκτρολογικής ζημιάς.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αμυγδαλιές επείγον τεχνικός",
+    "Επείγων Αμυγδαλιές",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

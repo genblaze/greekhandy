@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-subpanel-burn-mark-check-kissamos",
+  "slug": "epigousos-elegxos-ichnon-kafsis-ypopinaka-kissamos",
+  "nameGr": "Επείγων Έλεγχος Ιχνών Καύσης Υποπίνακα στο Καστέλι Κισσάμου",
+  "nameEn": "Emergency Electrical Subpanel Burn Mark Check in Κίσσαμος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος ιχνών καύσης σε υποπίνακα στο Καστέλι Κισσάμου για άμεση πρόληψη σοβαρής ηλεκτρολογικής ζημιάς.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Κίσσαμος επείγον τεχνικός",
+    "Επείγων Κίσσαμος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

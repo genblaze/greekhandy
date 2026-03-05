@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-exterior-drainage-path-check-nafpaktos-village",
+  "slug": "epochiakos-elegxos-diadrmis-eksoterikis-aporrois-katoikias-nafpaktos-village",
+  "nameGr": "Εποχικός Έλεγχος Διαδρομής Εξωτερικής Απορροής Κατοικίας σε χωριό της Ναυπάκτου",
+  "nameEn": "Seasonal Home Exterior Drainage Path Check in Ναύπακτος",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός έλεγχος διαδρομής εξωτερικής απορροής σε χωριό της Ναυπάκτου για αποφυγή συγκέντρωσης νερού σε εισόδους και αυλές.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ναύπακτος επείγον τεχνικός",
+    "Εποχικός Ναύπακτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

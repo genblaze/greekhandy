@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-meter-backflow-preventer-fix-kissamos",
+  "slug": "epigousa-episkevi-antirrois-ydrometrou-kissamos",
+  "nameGr": "Επείγουσα Επισκευή Αντιρροής Υδρομέτρου στο Καστέλι Κισσάμου",
+  "nameEn": "Emergency Water Meter Backflow Preventer Fix in Κίσσαμος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή συστήματος αντιρροής υδρομέτρου στο Καστέλι Κισσάμου για να αποτραπεί επιστροφή νερού και αστοχία δικτύου.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κίσσαμος επείγον τεχνικός",
+    "Επείγουσα Κίσσαμος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}

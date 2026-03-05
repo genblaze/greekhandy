@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manometer-check-nafpaktos-village",
+  "slug": "epochiakos-elegxos-manometrou-thermansis-nafpaktos-village",
+  "nameGr": "Εποχικός Έλεγχος Μανόμετρου Θέρμανσης σε χωριό της Ναυπάκτου",
+  "nameEn": "Seasonal Heating Manometer Check in Ναύπακτος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος μανόμετρου θέρμανσης σε χωριό της Ναυπάκτου για σταθερή πίεση λειτουργίας και πρόληψη αιφνίδιων διακοπών.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Ναύπακτος επείγον τεχνικός",
+    "Εποχικός Ναύπακτος",
+    "άμεση αποκατάσταση",
+    "service κατοικίας",
+    "τεχνική υποστήριξη"
+  ],
+  "status": "researched"
+}
