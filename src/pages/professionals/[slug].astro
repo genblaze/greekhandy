@@ -283,6 +283,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             class="inline-flex items-center rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
             aria-describedby="profile-primary-cta-hint profile-primary-cta-proof"
             aria-label="Κύριο CTA: Ζητήστε υπηρεσία"
+          >
             Κύριο CTA: Ζητήστε υπηρεσία
           </a>
         </div>
@@ -301,16 +302,19 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
         {portfolioImageSources.length > 0 ? (
           <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {portfolioImageSources.map((photo, index) => (
-              <img
-                src={photo}
-                alt={`Portfolio ${profile.name} ${index + 1}`}
-                class="h-48 w-full rounded-xl border border-slate-200 object-cover shadow-sm transition-opacity duration-300"
-                loading="lazy"
-                decoding="async"
-                data-prof-media-img
-                data-fallback-src={fallbackProfileImage}
-                onerror={`this.onerror=null;this.src='${fallbackProfileImage}';this.dataset.mediaState='fallback'`}
-              />
+              <figure class="aspect-[4/3] overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-sm" data-portfolio-frame>
+                <img
+                  src={photo}
+                  alt={`Portfolio ${profile.name} ${index + 1}`}
+                  class="h-full w-full object-cover transition-opacity duration-300"
+                  loading="lazy"
+                  decoding="async"
+                  data-prof-media-img
+                  data-fallback-src={fallbackProfileImage}
+                  data-hide-on-error="1"
+                  onerror="this.closest('[data-portfolio-frame]')?.classList.add('hidden');"
+                />
+              </figure>
             ))}
           </div>
         ) : (
@@ -321,14 +325,18 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
       </div>
 
       <div class="mt-8 grid gap-6 md:grid-cols-2">
-        <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
-          <h2 class="text-lg font-bold text-slate-900">Υπηρεσίες</h2>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-5" aria-labelledby="profile-core-services-heading">
+          <h2 id="profile-core-services-heading" class="text-lg font-bold uppercase tracking-[0.08em] text-slate-900">Βασικές υπηρεσίες προφίλ</h2>
           {safeServices.length > 0 ? (
-            <ul class="mt-3 list-disc space-y-1 pl-5 text-slate-700">
-              {safeServices.map((service) => <li class="break-words">{service}</li>)}
+            <ul class="mt-3 grid gap-2" aria-label="Λίστα βασικών υπηρεσιών προφίλ">
+              {safeServices.map((service) => (
+                <li class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium leading-relaxed text-slate-700 break-words [overflow-wrap:anywhere]">
+                  {service}
+                </li>
+              ))}
             </ul>
           ) : (
-            <p class="mt-3 text-sm text-slate-600">Δεν έχουν δηλωθεί υπηρεσίες ακόμη.</p>
+            <p class="mt-3 rounded-lg border border-dashed border-slate-300 bg-white px-3 py-2 text-sm text-slate-600">Δεν έχουν δηλωθεί βασικές υπηρεσίες ακόμη.</p>
           )}
         </div>
         <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
@@ -815,6 +823,10 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             if (!(img instanceof HTMLImageElement)) continue;
             const fallbackSrc = img.dataset.fallbackSrc || '';
             const ensureFallback = () => {
+              if (img.dataset.hideOnError === '1') {
+                img.closest('[data-portfolio-frame]')?.classList.add('hidden');
+                return;
+              }
               if (!fallbackSrc) return;
               img.dataset.mediaState = 'fallback';
               if (img.src !== fallbackSrc) img.src = fallbackSrc;
