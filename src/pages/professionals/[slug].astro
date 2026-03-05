@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { supabaseServer } from '../../lib/supabase-server';
-import { assertPublishedProfilesHaveValidImages, getProfessionalFallbackImage, resolveProfessionalImageForPublishedProfile } from '../../lib/professional-images';
+import { assertPublishedProfilesHaveValidMedia, getProfessionalFallbackImage, resolveProfessionalImageForPublishedProfile } from '../../lib/professional-images';
 
 export const prerender = true;
 
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
   const publishedProfiles = profiles
     .filter((profile) => profile.approved === true && profile.published === true);
 
-  await assertPublishedProfilesHaveValidImages(publishedProfiles);
+  await assertPublishedProfilesHaveValidMedia(publishedProfiles);
 
   return publishedProfiles.map((profile) => ({
     params: { slug: profile.slug },
@@ -238,12 +238,16 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         </div>
       </div>
 
-      <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 aspect-[16/9]">
+      <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[16/9]" data-prof-media-shell>
         <img
           src={profileImageSrc}
           alt={`Φωτογραφία ${profile.name}`}
-          class="h-full w-full object-cover"
-          onerror={`this.onerror=null;this.src='${fallbackProfileImage}'`}
+          class="h-full w-full object-cover transition-opacity duration-300"
+          loading="eager"
+          decoding="async"
+          data-prof-media-img
+          data-fallback-src={fallbackProfileImage}
+          onerror={`this.onerror=null;this.src='${fallbackProfileImage}';this.dataset.mediaState='fallback'`}
         />
       </div>
 
@@ -257,7 +261,6 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             class="inline-flex items-center rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
             aria-describedby="profile-primary-cta-hint profile-primary-cta-proof"
             aria-label="Κύριο CTA: Ζητήστε υπηρεσία"
-          >
             Κύριο CTA: Ζητήστε υπηρεσία
           </a>
           <a href="#secondary-actions" class="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100">
@@ -276,9 +279,12 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               <img
                 src={photo}
                 alt={`Portfolio ${profile.name} ${index + 1}`}
-                class="h-48 w-full rounded-xl border border-slate-200 object-cover shadow-sm"
+                class="h-48 w-full rounded-xl border border-slate-200 object-cover shadow-sm transition-opacity duration-300"
                 loading="lazy"
-                onerror={`this.onerror=null;this.src='${fallbackProfileImage}'`}
+                decoding="async"
+                data-prof-media-img
+                data-fallback-src={fallbackProfileImage}
+                onerror={`this.onerror=null;this.src='${fallbackProfileImage}';this.dataset.mediaState='fallback'`}
               />
             ))}
           </div>
@@ -311,6 +317,12 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           )}
         </div>
       </div>
+
+      <style>
+        [data-prof-media-shell] { position: relative; }
+        [data-prof-media-shell]::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,0.04), rgba(255,255,255,0.3), rgba(255,255,255,0.04)); pointer-events: none; }
+        [data-prof-media-img][data-media-state="fallback"] { object-fit: contain; background: linear-gradient(135deg, #e2e8f0, #f8fafc); padding: 0.75rem; }
+      </style>
 
       <div class="mt-10 flex items-center gap-3">
         <span class="h-px flex-1 bg-slate-200"></span>
@@ -753,9 +765,25 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         const secondaryMessageDisclosure = document.querySelector('[data-secondary-message-disclosure]');
         const secondaryContactDisclosure = document.querySelector('[data-secondary-contact-disclosure]');
         const primaryBookingForm = document.querySelector('[data-booking-form]');
+        const profileMediaImages = Array.from(document.querySelectorAll('[data-prof-media-img]')).filter((item) => item instanceof HTMLImageElement);
         const pendingForms = Array.from(document.querySelectorAll('[data-pending-form]')).filter((form) => form instanceof HTMLFormElement);
         const pendingTimeouts = new WeakMap();
         const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
+        const hardenProfileMedia = () => {
+          for (const img of profileMediaImages) {
+            if (!(img instanceof HTMLImageElement)) continue;
+            const fallbackSrc = img.dataset.fallbackSrc || '';
+            const ensureFallback = () => {
+              if (!fallbackSrc) return;
+              img.dataset.mediaState = 'fallback';
+              if (img.src !== fallbackSrc) img.src = fallbackSrc;
+            };
+            img.addEventListener('error', ensureFallback);
+            if (img.complete && (!img.naturalWidth || !img.naturalHeight)) ensureFallback();
+          }
+        };
+        hardenProfileMedia();
+
         const getSessionFlag = (key) => {
           try {
             return window.sessionStorage.getItem(key);

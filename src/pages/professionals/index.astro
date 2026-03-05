@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { assertPublishedProfilesHaveValidImages, getProfessionalFallbackImage, resolveProfessionalImageForPublishedProfile } from '../../lib/professional-images';
+import { assertPublishedProfilesHaveValidMedia, getProfessionalFallbackImage, resolveProfessionalImageForPublishedProfile } from '../../lib/professional-images';
 
 type ProfessionalProfile = {
   slug: string;
@@ -28,7 +28,7 @@ try {
   profilesLoadError = 'Η λίστα επαγγελματιών δεν μπόρεσε να φορτωθεί πλήρως αυτή τη στιγμή.';
 }
 
-await assertPublishedProfilesHaveValidImages(profiles);
+await assertPublishedProfilesHaveValidMedia(profiles);
 
 const fallbackProfileImage = getProfessionalFallbackImage();
 const profilesWithSafeImage = await Promise.all(
@@ -106,13 +106,16 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
     <section class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" data-profiles-grid>
       {profilesWithSafeImage.map(profile => (
         <article data-profile-card data-name={profile.name.toLowerCase()} data-profession={profile.profession} data-city={profile.city} class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm focus-within:ring-2 focus-within:ring-sky-500">
-          <div class="mb-4 overflow-hidden rounded-lg border border-slate-200 bg-slate-100 aspect-[4/3]">
+          <div class="mb-4 overflow-hidden rounded-lg border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 aspect-[4/3]" data-prof-media-shell>
             <img
               src={profile.resolvedProfileImage}
               alt={`Φωτογραφία ${profile.name}`}
-              class="h-full w-full object-cover"
+              class="h-full w-full object-cover transition-opacity duration-300"
               loading="lazy"
-              onerror={`this.onerror=null;this.src='${fallbackProfileImage}'`}
+              decoding="async"
+              data-prof-media-img
+              data-fallback-src={fallbackProfileImage}
+              onerror={`this.onerror=null;this.src='${fallbackProfileImage}';this.dataset.mediaState='fallback'`}
             />
           </div>
           <p class="text-sm font-semibold text-blue-700">{profile.profession}</p>
@@ -130,6 +133,12 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
       <p class="mt-1 text-sm">Δοκιμάστε λιγότερα φίλτρα ή πατήστε «Καθαρισμός φίλτρων».</p>
     </section>
 
+    <style>
+      [data-prof-media-shell] { position: relative; }
+      [data-prof-media-shell]::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,0.04), rgba(255,255,255,0.3), rgba(255,255,255,0.04)); pointer-events: none; }
+      [data-prof-media-img][data-media-state="fallback"] { object-fit: contain; background: linear-gradient(135deg, #e2e8f0, #f8fafc); padding: 0.75rem; }
+    </style>
+
     <script is:inline>
       (() => {
         const root = document.querySelector('[data-prof-filters]');
@@ -144,8 +153,24 @@ const cityOptions = Array.from(new Set(profilesWithSafeImage.map((profile) => pr
         const summary = root.querySelector('[data-filter-summary]');
         const noResults = document.querySelector('[data-no-results]');
         const cards = Array.from(grid.querySelectorAll('[data-profile-card]'));
+        const mediaImages = Array.from(grid.querySelectorAll('[data-prof-media-img]')).filter((item) => item instanceof HTMLImageElement);
 
         const state = { q: '', profession: 'all', city: 'all' };
+        const hardenMedia = () => {
+          for (const img of mediaImages) {
+            if (!(img instanceof HTMLImageElement)) continue;
+            const fallbackSrc = img.dataset.fallbackSrc || '';
+            const ensureFallback = () => {
+              if (!fallbackSrc) return;
+              img.dataset.mediaState = 'fallback';
+              if (img.src !== fallbackSrc) img.src = fallbackSrc;
+            };
+            img.addEventListener('error', ensureFallback);
+            if (img.complete && (!img.naturalWidth || !img.naturalHeight)) ensureFallback();
+          }
+        };
+        hardenMedia();
+
 
         const renderChips = () => {
           if (!(active instanceof HTMLElement)) return;

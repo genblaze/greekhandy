@@ -110,3 +110,31 @@ export const assertPublishedProfilesHaveValidImages = async (
     }
   }
 };
+
+
+export const assertPublishedProfilesHaveValidMedia = async (
+  profiles: Array<{
+    slug: string;
+    approved?: boolean;
+    published?: boolean;
+    profilePhotoUrl?: string;
+    portfolioPhotos?: string[];
+  }>
+) => {
+  const published = profiles.filter((p) => p.approved === true && p.published === true);
+
+  for (const profile of published) {
+    const hasValidPrimary = await validateProfessionalPublishedImage(profile.profilePhotoUrl);
+    if (!hasValidPrimary) {
+      throw new Error(`[publish-media-gate] Profile ${profile.slug} has invalid primary image URL: ${profile.profilePhotoUrl || '(empty)'}`);
+    }
+
+    const portfolio = Array.isArray(profile.portfolioPhotos) ? profile.portfolioPhotos : [];
+    for (const photo of portfolio) {
+      const isValidPortfolioPhoto = await validateProfessionalPublishedImage(photo);
+      if (!isValidPortfolioPhoto) {
+        console.warn(`[publish-media-gate] Profile ${profile.slug} has non-renderable portfolio image; runtime fallback will be used: ${photo || '(empty)'}`);
+      }
+    }
+  }
+};
