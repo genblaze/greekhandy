@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-trap-airlock-reset-kato-verbena",
+  "slug": "epigousa-epanafora-aerofragis-pagidas-aporrois-esoterikou-ac-kato-verbena",
+  "nameGr": "Επείγουσα Επαναφορά Αεροφραγής Παγίδας Απορροής Εσωτερικού AC στην Κάτω Βέρβενα",
+  "nameEn": "Emergency AC Indoor Drain Trap Airlock Reset in Κάτω Βέρβενα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά αεροφραγής παγίδας απορροής εσωτερικού AC στην Κάτω Βέρβενα για να σταματήσουν οι επιστροφές νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Κάτω Βέρβενα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

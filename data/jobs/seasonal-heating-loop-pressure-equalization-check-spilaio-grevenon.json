@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-pressure-equalization-check-spilaio-grevenon",
+  "slug": "epochiakos-elegxos-eksisosis-piesis-vroxou-thermansis-spilaio-grevenon",
+  "nameGr": "Εποχικός Έλεγχος Εξίσωσης Πίεσης Βρόχου Θέρμανσης στο Σπήλαιο Γρεβενών",
+  "nameEn": "Seasonal Heating Loop Pressure Equalization Check in Σπήλαιο Γρεβενών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξίσωσης πίεσης βρόχου θέρμανσης στο Σπήλαιο Γρεβενών για σταθερή απόδοση και πρόληψη βλαβών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Σπήλαιο Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

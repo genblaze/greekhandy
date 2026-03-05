@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-isolator-terminal-fix-kato-verbena",
+  "slug": "epigousa-episkevi-akrodexti-apomonosis-kentrikis-trofodosias-kato-verbena",
+  "nameGr": "Επείγουσα Επισκευή Ακροδέκτη Απομόνωσης Κεντρικής Τροφοδοσίας στην Κάτω Βέρβενα",
+  "nameEn": "Emergency Electrical Main Feed Isolator Terminal Fix in Κάτω Βέρβενα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ακροδέκτη απομόνωσης κεντρικής τροφοδοσίας στην Κάτω Βέρβενα για ασφαλή επαναφορά ηλεκτροδότησης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Κάτω Βέρβενα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

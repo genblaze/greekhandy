@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-isolator-terminal-fix-spilaio-grevenon",
+  "slug": "epigousa-episkevi-akrodexti-apomonosis-kentrikis-trofodosias-spilaio-grevenon",
+  "nameGr": "Επείγουσα Επισκευή Ακροδέκτη Απομόνωσης Κεντρικής Τροφοδοσίας στο Σπήλαιο Γρεβενών",
+  "nameEn": "Emergency Electrical Main Feed Isolator Terminal Fix in Σπήλαιο Γρεβενών",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ακροδέκτη απομόνωσης κεντρικής τροφοδοσίας στο Σπήλαιο Γρεβενών για ασφαλή επαναφορά ηλεκτροδότησης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Σπήλαιο Γρεβενών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

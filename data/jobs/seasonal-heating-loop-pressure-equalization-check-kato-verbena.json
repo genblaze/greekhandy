@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-pressure-equalization-check-kato-verbena",
+  "slug": "epochiakos-elegxos-eksisosis-piesis-vroxou-thermansis-kato-verbena",
+  "nameGr": "Εποχικός Έλεγχος Εξίσωσης Πίεσης Βρόχου Θέρμανσης στην Κάτω Βέρβενα",
+  "nameEn": "Seasonal Heating Loop Pressure Equalization Check in Κάτω Βέρβενα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξίσωσης πίεσης βρόχου θέρμανσης στην Κάτω Βέρβενα για σταθερή απόδοση και πρόληψη βλαβών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κάτω Βέρβενα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
