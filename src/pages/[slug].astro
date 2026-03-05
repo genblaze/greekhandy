@@ -1012,20 +1012,88 @@ const faqSchema = pageCategory.faq?.length ? {
       })();
     </script>
 
+    <script is:inline>
+      (() => {
+        const revealButtons = Array.from(document.querySelectorAll('[data-progressive-toggle]'));
+        if (!revealButtons.length) return;
+
+        revealButtons.forEach((button) => {
+          if (!(button instanceof HTMLButtonElement)) return;
+          const group = button.dataset.progressiveToggle || '';
+          if (!group) return;
+
+          const items = Array.from(document.querySelectorAll(`[data-progressive-item="${group}"]`));
+          if (!items.length) return;
+          const summary = document.querySelector(`[data-progressive-summary="${group}"]`);
+          const noun = button.dataset.progressiveNoun || 'καταχωρήσεις';
+          const initialVisible = Math.max(1, Number.parseInt(button.dataset.initialVisible || '1', 10) || 1);
+          let expanded = false;
+
+          const updateView = () => {
+            const visibleCount = expanded ? items.length : Math.min(initialVisible, items.length);
+            items.forEach((item, index) => item.classList.toggle('hidden', index >= visibleCount));
+            button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            button.textContent = expanded
+              ? 'Εμφάνιση λιγότερων'
+              : `Εμφάνιση περισσότερων (${Math.max(items.length - visibleCount, 0)})`;
+
+            if (summary instanceof HTMLElement) {
+              summary.textContent = `Εμφανίζονται ${visibleCount} από ${items.length} ${noun}.`;
+            }
+          };
+
+          if (items.length <= initialVisible) {
+            button.classList.add('hidden');
+            if (summary instanceof HTMLElement) {
+              summary.textContent = `Εμφανίζονται ${items.length} από ${items.length} ${noun}.`;
+            }
+            return;
+          }
+
+          button.addEventListener('click', () => {
+            expanded = !expanded;
+            updateView();
+          });
+
+          updateView();
+        });
+      })();
+    </script>
+
     <!-- Related Categories -->
     {relatedCategories.length > 0 && (
       <section class="bg-slate-50 px-4 py-12 md:py-16">
         <div class="mx-auto max-w-5xl">
           <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Σχετικές Υπηρεσίες</h2>
-          <ul class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {relatedCategories.map((rel: any) => (
-              <li>
+          <ul id="related-categories-list" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {relatedCategories.map((rel: any, index: number) => (
+              <li data-progressive-item="related-categories" class={index >= initialVisibleRelatedCategories ? 'hidden' : ''}>
                 <a href={`/${rel.slug}`} class="block rounded-xl border border-slate-200 bg-white px-5 py-4 font-medium text-blue-700 shadow-sm transition hover:border-blue-300 hover:shadow-md">
                   {rel.nameGr}
                 </a>
               </li>
             ))}
           </ul>
+          {relatedCategories.length > initialVisibleRelatedCategories && (
+            <div class="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-3">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <p class="text-xs text-slate-600" data-progressive-summary="related-categories" role="status" aria-live="polite">
+                  Εμφανίζονται {Math.min(initialVisibleRelatedCategories, relatedCategories.length)} από {relatedCategories.length} σχετικές υπηρεσίες.
+                </p>
+                <button
+                  type="button"
+                  data-progressive-toggle="related-categories"
+                  data-progressive-noun="σχετικές υπηρεσίες"
+                  data-initial-visible={initialVisibleRelatedCategories}
+                  aria-controls="related-categories-list"
+                  aria-expanded="false"
+                  class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+                >
+                  Εμφάνιση περισσότερων σχετικών υπηρεσιών
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     )}
@@ -1035,14 +1103,34 @@ const faqSchema = pageCategory.faq?.length ? {
       <section id="faq" class="px-4 py-12 md:py-16">
         <div class="mx-auto max-w-5xl">
           <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Συχνές Ερωτήσεις</h2>
-          <div class="mt-6 space-y-4">
-            {pageCategory.faq.map((item: any) => (
-              <details class="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-blue-200">
+          <div id="faq-list" class="mt-6 space-y-4">
+            {pageCategory.faq.map((item: any, index: number) => (
+              <details data-progressive-item="faq-items" class={`group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-blue-200 ${index >= initialVisibleFaqItems ? 'hidden' : ''}`}>
                 <summary class="cursor-pointer text-lg font-semibold text-slate-900 marker:text-blue-700">{item.question}</summary>
                 <p class="mt-3 leading-relaxed text-slate-700">{item.answer}</p>
               </details>
             ))}
           </div>
+          {pageCategory.faq.length > initialVisibleFaqItems && (
+            <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <p class="text-xs text-slate-600" data-progressive-summary="faq-items" role="status" aria-live="polite">
+                  Εμφανίζονται {Math.min(initialVisibleFaqItems, pageCategory.faq.length)} από {pageCategory.faq.length} ερωτήσεις.
+                </p>
+                <button
+                  type="button"
+                  data-progressive-toggle="faq-items"
+                  data-progressive-noun="ερωτήσεις"
+                  data-initial-visible={initialVisibleFaqItems}
+                  aria-controls="faq-list"
+                  aria-expanded="false"
+                  class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+                >
+                  Εμφάνιση περισσότερων ερωτήσεων
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     )}

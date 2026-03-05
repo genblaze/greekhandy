@@ -303,11 +303,14 @@ const processSteps = [
   }
 ];
 
-const INITIAL_CATEGORY_GRID_COUNT = 12;
-const INITIAL_JOBS_PER_CATEGORY = 8;
-const INITIAL_SEARCH_RESULTS_COUNT = 80;
-const INITIAL_CATALOG_CATEGORY_COUNT = 10;
-const CATALOG_QUICK_NAV_COUNT = 16;
+const INITIAL_CATEGORY_GRID_COUNT = 8;
+const INITIAL_VISIBLE_CATEGORY_GRID_COUNT = 4;
+const INITIAL_JOBS_PER_CATEGORY = 4;
+const INITIAL_SEARCH_RESULTS_COUNT = 36;
+const INITIAL_VISIBLE_SEARCH_RESULTS_COUNT = 12;
+const INITIAL_CATALOG_CATEGORY_COUNT = 6;
+const INITIAL_VISIBLE_CATALOG_CATEGORY_COUNT = 3;
+const CATALOG_QUICK_NAV_COUNT = 10;
 const SEO_CATEGORY_JOB_LINK_COUNT = 2;
 
 const socialProofItems = [
@@ -521,7 +524,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           </nav>
         )}
 
-        <p id="search-results-count" class="mt-4 text-sm text-slate-700" data-results-count role="status" aria-live="polite" aria-atomic="true">{homepageSearchItems.length > 0 ? `Εμφανίζονται ${homepageSearchItems.length} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.` : 'Προσωρινά δεν υπάρχει διαθέσιμο δείγμα αναζήτησης. Συνεχίστε από τις κατηγορίες παρακάτω.'}</p>
+        <p id="search-results-count" class="mt-4 text-sm text-slate-700" data-results-count role="status" aria-live="polite" aria-atomic="true">{homepageSearchItems.length > 0 ? `Βρέθηκαν ${homepageSearchItems.length} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.` : 'Προσωρινά δεν υπάρχει διαθέσιμο δείγμα αναζήτησης. Συνεχίστε από τις κατηγορίες παρακάτω.'}</p>
         <p id="search-results-state" class="mt-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2 text-xs text-slate-600" data-search-state role="status" aria-live="polite" aria-atomic="true">
           Η αναζήτηση είναι έτοιμη.
         </p>
@@ -546,13 +549,13 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           </div>
         </div>
 
-        <ul id="search-results-list" class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list aria-busy="false" aria-describedby="search-results-count search-results-state search-browse-guidance">
-          {homepageSearchItems.map(item => (
+        <ul id="search-results-list" class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2" data-results-list data-initial-visible={INITIAL_VISIBLE_SEARCH_RESULTS_COUNT} aria-busy="false" aria-describedby="search-results-count search-results-state search-browse-guidance">
+          {homepageSearchItems.map((item, index) => (
             <li
               data-search-item
               data-search-text={item.searchText}
               data-cities={item.cities.join('|')}
-              class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-md"
+              class={`rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-md ${index >= INITIAL_VISIBLE_SEARCH_RESULTS_COUNT ? 'hidden' : ''}`}
             >
               <a href={item.href} class="block rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
                 <div class="flex items-start gap-3">
@@ -570,6 +573,23 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
             </li>
           ))}
         </ul>
+
+        {homepageSearchItems.length > INITIAL_VISIBLE_SEARCH_RESULTS_COUNT && (
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <p class="text-xs text-slate-600" data-search-reveal-summary role="status" aria-live="polite">
+              Εμφανίζονται {Math.min(INITIAL_VISIBLE_SEARCH_RESULTS_COUNT, homepageSearchItems.length)} από {homepageSearchItems.length} αποτελέσματα.
+            </p>
+            <button
+              type="button"
+              data-search-reveal-toggle
+              aria-controls="search-results-list"
+              aria-expanded="false"
+              class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+            >
+              Εμφάνιση περισσότερων αποτελεσμάτων
+            </button>
+          </div>
+        )}
 
         <div class="mt-4 hidden rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800" data-empty-state>
           <p class="font-semibold text-orange-900">Δεν βρέθηκαν αποτελέσματα με αυτά τα φίλτρα.</p>
@@ -652,7 +672,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           <h2 class="gh-display mt-2 text-3xl text-slate-900 md:text-4xl">Κατηγορίες υπηρεσιών με ισχυρή πλοήγηση</h2>
           <p class="mt-2 text-sm text-slate-600">Κάθε κατηγορία έχει ξεκάθαρο scope, συγκεκριμένες υπηρεσίες και απευθείας μετάβαση στην πληροφορία που χρειάζεστε.</p>
           {hasServiceCatalog && (
-            <p class="mt-2 text-xs text-slate-500">Προβάλλονται αρχικά {Math.min(INITIAL_CATEGORY_GRID_COUNT, categoriesWithJobs.length)} από {categoriesWithJobs.length} κατηγορίες με ενεργές υπηρεσίες για ισορροπία αναγνωσιμότητας και ταχύτητας.</p>
+            <p class="mt-2 text-xs text-slate-500">Προβάλλονται αρχικά {Math.min(INITIAL_VISIBLE_CATEGORY_GRID_COUNT, featuredCategoryEntries.length)} από {featuredCategoryEntries.length} βασικές κάρτες κατηγοριών για ταχύτερη αρχική φόρτωση.</p>
           )}
         </div>
         <a href="#search-browse" class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Προηγμένη αναζήτηση</a>
@@ -665,11 +685,15 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
         </div>
       )}
 
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featuredCategoryEntries.map(({ category: cat, jobs: catJobs }) => {
+      <div id="services-cards-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {featuredCategoryEntries.map(({ category: cat, jobs: catJobs }, index) => {
           const cityLabels = getCitiesForCategory(cat).map(city => cityLabelByValue[city]).filter(Boolean);
           return (
-            <a href={`/${cat.slug}`} class="group block rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-lg">
+            <a
+              href={`/${cat.slug}`}
+              data-progressive-item="homepage-categories"
+              class={`group block rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-lg ${index >= INITIAL_VISIBLE_CATEGORY_GRID_COUNT ? 'hidden' : ''}`}
+            >
               <span class="text-3xl" aria-hidden="true">{getCategoryIcon(cat)}</span>
               <h3 class="mt-3 text-xl font-bold text-slate-900">{cat.nameGr}</h3>
               <p class="mt-2 text-sm leading-6 text-slate-600">{cat.description}</p>
@@ -681,6 +705,25 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           );
         })}
       </div>
+
+      {featuredCategoryEntries.length > INITIAL_VISIBLE_CATEGORY_GRID_COUNT && (
+        <div class="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
+          <p class="text-xs text-slate-600" data-progressive-summary="homepage-categories" role="status" aria-live="polite">
+            Εμφανίζονται {Math.min(INITIAL_VISIBLE_CATEGORY_GRID_COUNT, featuredCategoryEntries.length)} από {featuredCategoryEntries.length} κατηγορίες.
+          </p>
+          <button
+            type="button"
+            data-progressive-toggle="homepage-categories"
+            data-initial-visible={INITIAL_VISIBLE_CATEGORY_GRID_COUNT}
+            data-progressive-noun="κατηγορίες"
+            aria-controls="services-cards-grid"
+            aria-expanded="false"
+            class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+          >
+            Εμφάνιση περισσότερων κατηγοριών
+          </button>
+        </div>
+      )}
 
       {overflowCategoryEntries.length > 0 && (
         <details class="mt-6 rounded-2xl border border-slate-200 bg-white p-4">
@@ -725,7 +768,7 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           <p class="mt-3 text-xs text-slate-500">Η γρήγορη πλοήγηση δείχνει τις πρώτες {CATALOG_QUICK_NAV_COUNT} κατηγορίες για πιο ελαφρύ αρχικό DOM.</p>
         )}
 
-        <div class="mt-6 space-y-4">
+        <div id="catalog-cards-list" class="mt-6 space-y-4">
           {categoriesWithJobs.length === 0 && (
             <div class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-6 text-slate-700">
               <p class="font-semibold text-slate-900">Ο κατάλογος υπηρεσιών ενημερώνεται αυτή τη στιγμή.</p>
@@ -740,7 +783,12 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
           {primaryCatalogCategories.map(({ category, jobs }, index) => {
             const defaultOpen = index === 0;
             return (
-              <details id={`catalog-${category.slug}`} class="group rounded-2xl border border-slate-200 bg-slate-50/50 p-5 transition open:border-slate-300 open:bg-white" open={defaultOpen}>
+              <details
+                id={`catalog-${category.slug}`}
+                data-progressive-item="homepage-catalog"
+                class={`group rounded-2xl border border-slate-200 bg-slate-50/50 p-5 transition open:border-slate-300 open:bg-white ${index >= INITIAL_VISIBLE_CATALOG_CATEGORY_COUNT ? 'hidden' : ''}`}
+                open={defaultOpen && index < INITIAL_VISIBLE_CATALOG_CATEGORY_COUNT}
+              >
                 <summary class="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
                   <div class="min-w-0">
                     <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Κατηγορία</p>
@@ -780,6 +828,27 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
               </details>
             );
           })}
+
+          {primaryCatalogCategories.length > INITIAL_VISIBLE_CATALOG_CATEGORY_COUNT && (
+            <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <p class="text-xs text-slate-600" data-progressive-summary="homepage-catalog" role="status" aria-live="polite">
+                  Εμφανίζονται {Math.min(INITIAL_VISIBLE_CATALOG_CATEGORY_COUNT, primaryCatalogCategories.length)} από {primaryCatalogCategories.length} κατηγορίες καταλόγου.
+                </p>
+                <button
+                  type="button"
+                  data-progressive-toggle="homepage-catalog"
+                  data-initial-visible={INITIAL_VISIBLE_CATALOG_CATEGORY_COUNT}
+                  data-progressive-noun="κατηγορίες καταλόγου"
+                  aria-controls="catalog-cards-list"
+                  aria-expanded="false"
+                  class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+                >
+                  Εμφάνιση περισσότερων κατηγοριών καταλόγου
+                </button>
+              </div>
+            </div>
+          )}
 
           {deferredCatalogCategories.length > 0 && (
             <details class="rounded-2xl border border-slate-200 bg-white p-5">
@@ -879,6 +948,8 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       const emptyResetButton = document.querySelector('[data-empty-reset]');
       const resultsList = document.querySelector('[data-results-list]');
       const searchState = document.querySelector('[data-search-state]');
+      const searchRevealToggle = document.querySelector('[data-search-reveal-toggle]');
+      const searchRevealSummary = document.querySelector('[data-search-reveal-summary]');
       const applySetupFallbackState = () => {
         if (loadingState instanceof HTMLElement) loadingState.classList.add('hidden');
         if (errorState instanceof HTMLElement) {
@@ -914,8 +985,10 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
         cities: (card.dataset.cities || '').split('|').filter(Boolean)
       }));
       const totalItems = parsedCards.length;
+      const initialVisibleResultLimit = Number.parseInt(resultsList.dataset.initialVisible || '12', 10) || 12;
       const SEARCH_DEBOUNCE_MS = 110;
       let updateTimer = null;
+      let searchRevealExpanded = false;
 
       const getCityLabel = () => {
         const selectedOption = cityFilter.options[cityFilter.selectedIndex];
@@ -962,16 +1035,20 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
 
           const keyword = normalizeText(searchInput.value);
           const selectedCity = cityFilter.value;
-          let visibleItems = 0;
-
-          for (const item of parsedCards) {
+          const matchedCards = parsedCards.filter((item) => {
             const keywordMatch = !keyword || item.searchText.includes(keyword);
             const cityMatch = !selectedCity || item.cities.includes(selectedCity);
-            const isVisible = keywordMatch && cityMatch;
+            return keywordMatch && cityMatch;
+          });
+          const matchedItems = matchedCards.length;
 
-            item.card.classList.toggle('hidden', !isVisible);
-            if (isVisible) visibleItems += 1;
-          }
+          if (matchedItems <= initialVisibleResultLimit) searchRevealExpanded = false;
+          const visibleItems = searchRevealExpanded
+            ? matchedItems
+            : Math.min(matchedItems, initialVisibleResultLimit);
+
+          parsedCards.forEach((item) => item.card.classList.add('hidden'));
+          matchedCards.slice(0, visibleItems).forEach((item) => item.card.classList.remove('hidden'));
 
           if (!totalItems) {
             resultsCount.textContent = 'Προσωρινά δεν υπάρχει διαθέσιμο δείγμα αναζήτησης. Συνεχίστε από τις κατηγορίες παρακάτω.';
@@ -982,18 +1059,34 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
 
           const cityLabel = selectedCity ? getCityLabel() : '';
           if (!keyword && !selectedCity) {
-            resultsCount.textContent = `Εμφανίζονται ${visibleItems} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.`;
+            resultsCount.textContent = `Βρέθηκαν ${matchedItems} διαθέσιμες υπηρεσίες, κατηγορίες και επαγγελματίες.`;
           } else if (cityLabel && keyword) {
-            resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}» στην ${cityLabel}.`;
+            resultsCount.textContent = `${matchedItems} αποτελέσματα για «${searchInput.value.trim()}» στην ${cityLabel}.`;
           } else if (cityLabel) {
-            resultsCount.textContent = `${visibleItems} αποτελέσματα στην ${cityLabel}.`;
+            resultsCount.textContent = `${matchedItems} αποτελέσματα στην ${cityLabel}.`;
           } else {
-            resultsCount.textContent = `${visibleItems} αποτελέσματα για «${searchInput.value.trim()}».`;
+            resultsCount.textContent = `${matchedItems} αποτελέσματα για «${searchInput.value.trim()}».`;
           }
 
-          emptyState.classList.toggle('hidden', visibleItems > 0);
-          if (visibleItems > 0) {
-            setSearchState('ready', `Η αναζήτηση είναι διαθέσιμη με ${visibleItems} ταιριαστά αποτελέσματα.`);
+          if (searchRevealSummary instanceof HTMLElement) {
+            searchRevealSummary.textContent = matchedItems === 0
+              ? 'Δεν υπάρχουν διαθέσιμα αποτελέσματα για εμφάνιση.'
+              : `Εμφανίζονται ${visibleItems} από ${matchedItems} αποτελέσματα.`;
+          }
+          if (searchRevealToggle instanceof HTMLButtonElement) {
+            const hasOverflow = matchedItems > initialVisibleResultLimit;
+            searchRevealToggle.classList.toggle('hidden', !hasOverflow);
+            searchRevealToggle.setAttribute('aria-expanded', searchRevealExpanded ? 'true' : 'false');
+            if (hasOverflow) {
+              searchRevealToggle.textContent = searchRevealExpanded
+                ? 'Εμφάνιση λιγότερων αποτελεσμάτων'
+                : `Εμφάνιση περισσότερων αποτελεσμάτων (${Math.max(matchedItems - visibleItems, 0)})`;
+            }
+          }
+
+          emptyState.classList.toggle('hidden', matchedItems > 0);
+          if (matchedItems > 0) {
+            setSearchState('ready', `Η αναζήτηση είναι διαθέσιμη με ${matchedItems} ταιριαστά αποτελέσματα.`);
           } else {
             setSearchState('no-match', 'Δεν βρέθηκαν αποτελέσματα για τον τρέχοντα συνδυασμό φίλτρων.');
           }
@@ -1017,9 +1110,16 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
       resetButton.addEventListener('click', () => {
         searchInput.value = '';
         cityFilter.value = '';
+        searchRevealExpanded = false;
         scheduleUpdate();
         searchInput.focus();
       });
+      if (searchRevealToggle instanceof HTMLButtonElement) {
+        searchRevealToggle.addEventListener('click', () => {
+          searchRevealExpanded = !searchRevealExpanded;
+          applyResults();
+        });
+      }
       if (retryButton instanceof HTMLButtonElement) {
         retryButton.addEventListener('click', () => {
           scheduleUpdate();
@@ -1030,12 +1130,61 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
         emptyResetButton.addEventListener('click', () => {
           searchInput.value = '';
           cityFilter.value = '';
+          searchRevealExpanded = false;
           scheduleUpdate();
           searchInput.focus();
         });
       }
 
       scheduleUpdate();
+    })();
+  </script>
+
+  <script is:inline>
+    (() => {
+      const revealButtons = Array.from(document.querySelectorAll('[data-progressive-toggle]'));
+      if (!revealButtons.length) return;
+
+      revealButtons.forEach((button) => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const group = button.dataset.progressiveToggle || '';
+        if (!group) return;
+
+        const items = Array.from(document.querySelectorAll(`[data-progressive-item="${group}"]`));
+        if (!items.length) return;
+        const summary = document.querySelector(`[data-progressive-summary="${group}"]`);
+        const noun = button.dataset.progressiveNoun || 'καταχωρήσεις';
+        const initialVisible = Math.max(1, Number.parseInt(button.dataset.initialVisible || '1', 10) || 1);
+        let expanded = false;
+
+        const updateView = () => {
+          const visibleCount = expanded ? items.length : Math.min(initialVisible, items.length);
+          items.forEach((item, index) => item.classList.toggle('hidden', index >= visibleCount));
+          button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          button.textContent = expanded
+            ? 'Εμφάνιση λιγότερων'
+            : `Εμφάνιση περισσότερων (${Math.max(items.length - visibleCount, 0)})`;
+
+          if (summary instanceof HTMLElement) {
+            summary.textContent = `Εμφανίζονται ${visibleCount} από ${items.length} ${noun}.`;
+          }
+        };
+
+        if (items.length <= initialVisible) {
+          button.classList.add('hidden');
+          if (summary instanceof HTMLElement) {
+            summary.textContent = `Εμφανίζονται ${items.length} από ${items.length} ${noun}.`;
+          }
+          return;
+        }
+
+        button.addEventListener('click', () => {
+          expanded = !expanded;
+          updateView();
+        });
+
+        updateView();
+      });
     })();
   </script>
 
