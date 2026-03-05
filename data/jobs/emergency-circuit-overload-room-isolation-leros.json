@@ -1,0 +1,20 @@
+{
+  "id": "emergency-circuit-overload-room-isolation-leros",
+  "slug": "epigousa-apomonosi-yperfortomenou-kyklomatos-domatiou-leros",
+  "nameGr": "Επείγουσα Απομόνωση Υπερφορτωμένου Κυκλώματος Δωματίου στη Λέρο",
+  "nameEn": "Emergency Circuit Overload Room Isolation in Λέρος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα απομόνωση υπερφορτωμένου κυκλώματος στη Λέρο για ασφαλή λειτουργία μέχρι οριστική επισκευή. SEO intent: «πέφτει ρεύμα σε ένα δωμάτιο Λέρος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρεύμα σε ένα δωμάτιο Λέρος",
+    "ηλεκτρολόγος υπερφόρτωση κυκλώματος",
+    "ασφάλεια πέφτει συνέχεια σπίτι",
+    "επείγουσα απομόνωση κυκλώματος",
+    "βλάβη πίνακα τοπική γραμμή"
+  ],
+  "status": "researched"
+}

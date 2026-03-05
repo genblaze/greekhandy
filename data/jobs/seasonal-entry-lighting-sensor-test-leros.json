@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-entry-lighting-sensor-test-leros",
+  "slug": "epochiakos-elegxos-aisthitira-fotismou-eisodou-leros",
+  "nameGr": "Εποχικός Έλεγχος Αισθητήρα Φωτισμού Εισόδου στη Λέρο",
+  "nameEn": "Seasonal Entry Lighting Sensor Test in Λέρος",
+  "categoryId": "security-systems",
+  "categorySlug": "systimata-asfaleias",
+  "intent": "Εποχικός έλεγχος αισθητήρα φωτισμού εισόδου στη Λέρο για αξιόπιστη νυχτερινή ασφάλεια κατοικίας. SEO intent: «αισθητήρας φωτός εισόδου δεν δουλεύει Λέρος».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "αισθητήρας φωτός εισόδου δεν δουλεύει Λέρος",
+    "έλεγχος φωτισμού ασφαλείας κατοικίας",
+    "τεχνικός αισθητήρων εισόδου",
+    "service sensor φωτισμού",
+    "ασφάλεια εισόδου νύχτα"
+  ],
+  "status": "researched"
+}

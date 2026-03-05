@@ -1,0 +1,20 @@
+{
+  "id": "emergency-circuit-overload-room-isolation-nafpaktos-town",
+  "slug": "epigousa-apomonosi-yperfortomenou-kyklomatos-domatiou-nafpaktos-town",
+  "nameGr": "Επείγουσα Απομόνωση Υπερφορτωμένου Κυκλώματος Δωματίου στη Ναύπακτο",
+  "nameEn": "Emergency Circuit Overload Room Isolation in Ναύπακτος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα απομόνωση υπερφορτωμένου κυκλώματος στη Ναύπακτο για ασφαλή λειτουργία μέχρι οριστική επισκευή. SEO intent: «πέφτει ρεύμα σε ένα δωμάτιο Ναύπακτος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρεύμα σε ένα δωμάτιο Ναύπακτος",
+    "ηλεκτρολόγος υπερφόρτωση κυκλώματος",
+    "ασφάλεια πέφτει συνέχεια σπίτι",
+    "επείγουσα απομόνωση κυκλώματος",
+    "βλάβη πίνακα τοπική γραμμή"
+  ],
+  "status": "researched"
+}

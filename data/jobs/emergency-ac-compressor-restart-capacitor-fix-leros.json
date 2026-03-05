@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-compressor-restart-capacitor-fix-leros",
+  "slug": "epigousa-episkevi-pyknoti-epanekkinisis-sympiesti-ac-leros",
+  "nameGr": "Επείγουσα Επισκευή Πυκνωτή Επανεκκίνησης Συμπιεστή AC στη Λέρο",
+  "nameEn": "Emergency AC Compressor Restart Capacitor Fix in Λέρος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή πυκνωτή επανεκκίνησης συμπιεστή AC στη Λέρο όταν η εξωτερική μονάδα δεν παίρνει μπρος. SEO intent: «ac εξωτερική μονάδα δεν ξεκινά Λέρος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "75-260€",
+  "demand": "high",
+  "keywords": [
+    "ac εξωτερική μονάδα δεν ξεκινά Λέρος",
+    "πυκνωτής συμπιεστή ac βλάβη",
+    "τεχνικός κλιματισμού επείγον",
+    "επισκευή εκκίνησης compressor",
+    "service ac άμεσα"
+  ],
+  "status": "researched"
+}

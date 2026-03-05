@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-return-line-check-leros",
+  "slug": "epochiakos-elegxos-grammis-epistrofis-kalorifer-leros",
+  "nameGr": "Εποχικός Έλεγχος Γραμμής Επιστροφής Καλοριφέρ στη Λέρο",
+  "nameEn": "Seasonal Radiator Return Line Check in Λέρος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος γραμμής επιστροφής καλοριφέρ στη Λέρο για σταθερή κυκλοφορία και καλύτερη θέρμανση. SEO intent: «καλοριφέρ δεν κυκλοφορεί σωστά Λέρος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "καλοριφέρ δεν κυκλοφορεί σωστά Λέρος",
+    "έλεγχος γραμμής επιστροφής θέρμανσης",
+    "τεχνικός θέρμανσης εποχικό service",
+    "service καλοριφέρ ροή νερού",
+    "προετοιμασία θέρμανσης χειμώνα"
+  ],
+  "status": "researched"
+}

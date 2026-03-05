@@ -1,0 +1,20 @@
+{
+  "id": "emergency-circuit-overload-room-isolation-sarantaporo",
+  "slug": "epigousa-apomonosi-yperfortomenou-kyklomatos-domatiou-sarantaporo",
+  "nameGr": "Επείγουσα Απομόνωση Υπερφορτωμένου Κυκλώματος Δωματίου στο Σαραντάπορο",
+  "nameEn": "Emergency Circuit Overload Room Isolation in Σαραντάπορο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα απομόνωση υπερφορτωμένου κυκλώματος στο Σαραντάπορο για ασφαλή λειτουργία μέχρι οριστική επισκευή. SEO intent: «πέφτει ρεύμα σε ένα δωμάτιο Σαραντάπορο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "πέφτει ρεύμα σε ένα δωμάτιο Σαραντάπορο",
+    "ηλεκτρολόγος υπερφόρτωση κυκλώματος",
+    "ασφάλεια πέφτει συνέχεια σπίτι",
+    "επείγουσα απομόνωση κυκλώματος",
+    "βλάβη πίνακα τοπική γραμμή"
+  ],
+  "status": "researched"
+}

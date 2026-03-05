@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-return-line-check-sarantaporo",
+  "slug": "epochiakos-elegxos-grammis-epistrofis-kalorifer-sarantaporo",
+  "nameGr": "Εποχικός Έλεγχος Γραμμής Επιστροφής Καλοριφέρ στο Σαραντάπορο",
+  "nameEn": "Seasonal Radiator Return Line Check in Σαραντάπορο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος γραμμής επιστροφής καλοριφέρ στο Σαραντάπορο για σταθερή κυκλοφορία και καλύτερη θέρμανση. SEO intent: «καλοριφέρ δεν κυκλοφορεί σωστά Σαραντάπορο».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "καλοριφέρ δεν κυκλοφορεί σωστά Σαραντάπορο",
+    "έλεγχος γραμμής επιστροφής θέρμανσης",
+    "τεχνικός θέρμανσης εποχικό service",
+    "service καλοριφέρ ροή νερού",
+    "προετοιμασία θέρμανσης χειμώνα"
+  ],
+  "status": "researched"
+}

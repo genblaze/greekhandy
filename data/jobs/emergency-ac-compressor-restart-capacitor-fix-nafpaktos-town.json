@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-compressor-restart-capacitor-fix-nafpaktos-town",
+  "slug": "epigousa-episkevi-pyknoti-epanekkinisis-sympiesti-ac-nafpaktos-town",
+  "nameGr": "Επείγουσα Επισκευή Πυκνωτή Επανεκκίνησης Συμπιεστή AC στη Ναύπακτο",
+  "nameEn": "Emergency AC Compressor Restart Capacitor Fix in Ναύπακτος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή πυκνωτή επανεκκίνησης συμπιεστή AC στη Ναύπακτο όταν η εξωτερική μονάδα δεν παίρνει μπρος. SEO intent: «ac εξωτερική μονάδα δεν ξεκινά Ναύπακτος».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "75-260€",
+  "demand": "high",
+  "keywords": [
+    "ac εξωτερική μονάδα δεν ξεκινά Ναύπακτος",
+    "πυκνωτής συμπιεστή ac βλάβη",
+    "τεχνικός κλιματισμού επείγον",
+    "επισκευή εκκίνησης compressor",
+    "service ac άμεσα"
+  ],
+  "status": "researched"
+}

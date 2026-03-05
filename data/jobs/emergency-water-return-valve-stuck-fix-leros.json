@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-return-valve-stuck-fix-leros",
+  "slug": "epigousa-episkevi-kollimenis-valvidas-anepistrofis-nerou-leros",
+  "nameGr": "Επείγουσα Επισκευή Κολλημένης Βαλβίδας Αντεπιστροφής Νερού στη Λέρο",
+  "nameEn": "Emergency Water Return Valve Stuck Fix in Λέρος",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή κολλημένης βαλβίδας αντεπιστροφής νερού στη Λέρο για αποφυγή επιστροφής νερού και πίεσης στο δίκτυο. SEO intent: «βαλβίδα αντεπιστροφής βλάβη Λέρος».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "βαλβίδα αντεπιστροφής βλάβη Λέρος",
+    "υδραυλικός επιστροφή νερού",
+    "επισκευή βαλβίδας δικτύου",
+    "πίεση σωληνώσεων πρόβλημα",
+    "επείγουσα υδραυλική αποκατάσταση"
+  ],
+  "status": "researched"
+}
