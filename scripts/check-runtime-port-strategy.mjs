@@ -12,15 +12,15 @@ const SCAN_DIRS = [
 ];
 const SCAN_FILE_EXTENSIONS = new Set(['.js', '.mjs', '.ts', '.md', '.json']);
 
-const CANONICAL_PORT = 4321;
-const LEGACY_PORT = 4322;
+const CANONICAL_PORT = 4322;
+const LEGACY_PORT = 4321;
 
 const fail = (message) => {
   console.error(`❌ Runtime port strategy check failed: ${message}`);
   process.exit(1);
 };
 
-const LEGACY_RUNTIME_PATTERN = /localhost:\s*4322|127\.0\.0\.1:\s*4322|--port\s+4322|:\s*4322\//i;
+const LEGACY_RUNTIME_PATTERN = /localhost:\s*4321|127\.0\.0\.1:\s*4321|--port\s+4321|:\s*4321\//i;
 
 const walkFiles = async (dir) => {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -45,12 +45,12 @@ const [astroConfig, readme, packageRaw] = await Promise.all([
   readFile(PACKAGE_PATH, 'utf8')
 ]);
 
-if (!/server\s*:\s*\{[\s\S]*?port\s*:\s*4321[\s\S]*?\}/m.test(astroConfig)) {
-  fail('astro.config.mjs must define server.port = 4321.');
+if (!/server\s*:\s*\{[\s\S]*?port\s*:\s*4322[\s\S]*?\}/m.test(astroConfig)) {
+  fail('astro.config.mjs must define server.port = 4322.');
 }
 
 if (astroConfig.includes(String(LEGACY_PORT))) {
-  fail('astro.config.mjs still references legacy port 4322.');
+  fail('astro.config.mjs still references legacy port 4321.');
 }
 
 if (!readme.includes(`http://localhost:${CANONICAL_PORT}`)) {
@@ -58,25 +58,25 @@ if (!readme.includes(`http://localhost:${CANONICAL_PORT}`)) {
 }
 
 if (LEGACY_RUNTIME_PATTERN.test(readme)) {
-  fail('README.md still points to legacy runtime URL/port 4322.');
+  fail('README.md still points to legacy runtime URL/port 4321.');
 }
 
-if (!readme.includes('QA endpoint: `http://localhost:4321`')) {
-  fail('README.md must declare QA endpoint: http://localhost:4321');
+if (!readme.includes('QA endpoint: `http://localhost:4322`')) {
+  fail('README.md must declare QA endpoint: http://localhost:4322');
 }
 
 const pkg = JSON.parse(packageRaw);
 const scripts = pkg?.scripts || {};
 if (typeof scripts.dev !== 'string' || !scripts.dev.includes(`--port ${CANONICAL_PORT}`)) {
-  fail('package.json script "dev" must include --port 4321.');
+  fail('package.json script "dev" must include --port 4322.');
 }
 if (typeof scripts.preview !== 'string' || !scripts.preview.includes(`--port ${CANONICAL_PORT}`)) {
-  fail('package.json script "preview" must include --port 4321.');
+  fail('package.json script "preview" must include --port 4322.');
 }
 
 for (const [name, value] of Object.entries(scripts)) {
   if (typeof value === 'string' && value.includes(String(LEGACY_PORT))) {
-    fail(`package.json script "${name}" still references legacy port 4322.`);
+    fail(`package.json script "${name}" still references legacy port 4321.`);
   }
 }
 
@@ -86,9 +86,9 @@ for (const dir of SCAN_DIRS) {
     if (file.endsWith('check-runtime-port-strategy.mjs')) continue;
     const source = await readFile(file, 'utf8');
     if (LEGACY_RUNTIME_PATTERN.test(source)) {
-      fail(`${file.replace(`${ROOT}/`, '')} still references legacy runtime endpoint/port 4322.`);
+      fail(`${file.replace(`${ROOT}/`, '')} still references legacy runtime endpoint/port 4321.`);
     }
   }
 }
 
-console.log('Runtime port strategy check passed. Canonical port 4321 is aligned across config/docs/scripts.');
+console.log('Runtime port strategy check passed. Canonical port 4322 is aligned across config/docs/scripts.');

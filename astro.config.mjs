@@ -10,7 +10,7 @@ export default defineConfig({
   devToolbar: { enabled: false },
   server: {
     host: true,
-    port: 4321
+    port: 4322
   },
   // Keep static prerendering while shipping runtime API routes under /api/*.
   output: 'static',
