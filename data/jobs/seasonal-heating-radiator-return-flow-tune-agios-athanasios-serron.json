@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-return-flow-tune-agios-athanasios-serron",
+  "slug": "epochiaki-rythmisi-rois-epistrofis-kalorifer-agios-athanasios-serron",
+  "nameGr": "Εποχική Ρύθμιση Ροής Επιστροφής Καλοριφέρ στον Άγιο Αθανάσιο Σερρών",
+  "nameEn": "Seasonal Heating Radiator Return Flow Tune in Άγιος Αθανάσιος Σερρών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής επιστροφής καλοριφέρ στον Άγιο Αθανάσιο Σερρών για πιο ισορροπημένη θέρμανση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Αθανάσιος Σερρών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

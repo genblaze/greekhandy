@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-elbow-reseal-kato-vlaxia",
+  "slug": "epigousa-epanasteganosi-gonias-sympyknomaton-esoterikou-ac-kato-vlaxia",
+  "nameGr": "Επείγουσα Επαναστεγάνωση Γωνίας Συμπυκνωμάτων Εσωτερικού AC στην Κάτω Βλαχιά",
+  "nameEn": "Emergency AC Indoor Condensate Elbow Reseal in Κάτω Βλαχιά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναστεγάνωση γωνίας συμπυκνωμάτων εσωτερικού AC στην Κάτω Βλαχιά για άμεση αποφυγή σταξιμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Κάτω Βλαχιά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

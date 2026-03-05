@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-return-flow-tune-chrysochori-kavalas",
+  "slug": "epochiaki-rythmisi-rois-epistrofis-kalorifer-chrysochori-kavalas",
+  "nameGr": "Εποχική Ρύθμιση Ροής Επιστροφής Καλοριφέρ στο Χρυσοχώρι Καβάλας",
+  "nameEn": "Seasonal Heating Radiator Return Flow Tune in Χρυσοχώρι Καβάλας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής επιστροφής καλοριφέρ στο Χρυσοχώρι Καβάλας για πιο ισορροπημένη θέρμανση στο σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Χρυσοχώρι Καβάλας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-disconnector-fix-kato-vlaxia",
+  "slug": "epigousa-episkevi-kentrikou-apozeykti-revmatos-kato-vlaxia",
+  "nameGr": "Επείγουσα Επισκευή Κεντρικού Αποζεύκτη Ρεύματος στην Κάτω Βλαχιά",
+  "nameEn": "Emergency Electrical Main Disconnector Fix in Κάτω Βλαχιά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή κεντρικού αποζεύκτη ρεύματος στην Κάτω Βλαχιά για γρήγορη αποκατάσταση ασφαλούς ηλεκτροδότησης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Κάτω Βλαχιά επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

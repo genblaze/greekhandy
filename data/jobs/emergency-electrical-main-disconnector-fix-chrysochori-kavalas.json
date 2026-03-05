@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-disconnector-fix-chrysochori-kavalas",
+  "slug": "epigousa-episkevi-kentrikou-apozeykti-revmatos-chrysochori-kavalas",
+  "nameGr": "Επείγουσα Επισκευή Κεντρικού Αποζεύκτη Ρεύματος στο Χρυσοχώρι Καβάλας",
+  "nameEn": "Emergency Electrical Main Disconnector Fix in Χρυσοχώρι Καβάλας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή κεντρικού αποζεύκτη ρεύματος στο Χρυσοχώρι Καβάλας για γρήγορη αποκατάσταση ασφαλούς ηλεκτροδότησης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Χρυσοχώρι Καβάλας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
