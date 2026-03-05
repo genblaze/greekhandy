@@ -582,24 +582,30 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         </div>
         <p class="mt-3 rounded-lg border border-blue-200 bg-white px-3 py-2 text-xs text-blue-800">Η πορεία του αιτήματος ενημερώνεται σταδιακά: πρώτα σε αναμονή και έπειτα ολοκληρώνεται με τελική απόφαση.</p>
 
-        <div class="mt-3 space-y-2" data-feedback-group="booking" id="booking-feedback" role="status" aria-live="polite" aria-atomic="true">
+        <div class="mt-3 space-y-2" data-feedback-group="booking" id="booking-feedback" role="status" aria-live="polite" aria-atomic="true" aria-relevant="additions text">
           <p data-feedback-status="loading" class="hidden rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-blue-800">
             <span class="inline-flex items-center gap-2">
               <svg class="h-4 w-4 animate-spin text-blue-700" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" class="opacity-25" stroke="currentColor" stroke-width="3"></circle>
                 <path d="M21 12a9 9 0 0 0-9-9" class="opacity-90" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
               </svg>
-              Αποστολή αιτήματος κράτησης...
+              Η υποβολή του αιτήματος κράτησης είναι σε εξέλιξη...
             </span>
           </p>
-          <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το αίτημά σας καταχωρήθηκε επιτυχώς και εξετάζεται. Θα λάβετε ενημέρωση μόλις υπάρξει εξέλιξη.</p>
-          <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η υποβολή αιτήματος είναι προσωρινά ανενεργή.</p>
-          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία επικοινωνίας και το προτιμώμενο πρόγραμμα (ημέρα/ώρα), και δοκιμάστε ξανά.</p>
-          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
+          <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το αίτημά σας καταχωρήθηκε και προωθήθηκε για έλεγχο. Θα ενημερωθείτε μόλις υπάρξει εξέλιξη.</p>
+          <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+            Δεν υπάρχει σύνδεση. Μόλις επανέλθει το δίκτυο, επιλέξτε νέα προσπάθεια.
+            <button type="button" data-feedback-retry="booking" class="ml-2 inline-flex rounded-md border border-amber-300 bg-white px-2 py-0.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">Νέα προσπάθεια</button>
+          </p>
+          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε στοιχεία επικοινωνίας, προτιμώμενη ημέρα/ώρα και λεπτομέρειες αιτήματος, και υποβάλετε ξανά.</p>
+          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">
+            Η αποστολή δεν ολοκληρώθηκε. Τα στοιχεία σας παραμένουν στη φόρμα.
+            <button type="button" data-feedback-retry="booking" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
+          </p>
         </div>
 
-        {bookingStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του αιτήματος και δοκιμάστε ξανά.</p>}
-        {bookingStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή δεν ολοκληρώθηκε προσωρινά. Δοκιμάστε ξανά σε λίγο.</p>}
+        {bookingStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του αιτήματος και υποβάλετε ξανά.</p>}
+        {bookingStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά χωρίς να ξαναγράψετε τα στοιχεία.</p>}
 
         <form
           action="/api/bookings/submit"
@@ -608,8 +614,8 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           data-pending-form
           data-booking-form
           data-feedback-group-name="booking"
-          data-pending-live-label="Η αποστολή αιτήματος κράτησης εκτελείται."
-          data-pending-timeout-label="Η υποβολή του αιτήματος καθυστέρησε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
+          data-pending-live-label="Η υποβολή του αιτήματος κράτησης είναι σε εξέλιξη."
+          data-pending-timeout-label="Η υποβολή καθυστέρησε. Ελέγξτε σύνδεση και χρησιμοποιήστε νέα προσπάθεια."
           data-pending-timeout-ms="18000"
           aria-describedby="booking-feedback submit-feedback-live profile-offline-alert"
         >
@@ -657,7 +663,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           <p class="mt-2 text-xs text-blue-700">Η πορεία του αιτήματος ενημερώνεται βήμα-βήμα: αρχική καταχώριση, έλεγχος και τελική ενημέρωση.</p>
           <p class="mt-1 hidden text-xs text-slate-600" data-booking-validation-summary aria-live="polite">Συμπληρώστε στοιχεία επικοινωνίας και προτιμώμενο πρόγραμμα για ταχύτερη ανάθεση. Αν υπάρχει σφάλμα, διορθώστε και ξαναδοκιμάστε χωρίς απώλεια στοιχείων.</p>
 
-          <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος" data-pending-label="Αποστολή...">Αποστολή αιτήματος</button>
+          <button type="submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή αιτήματος" data-pending-label="Υποβολή...">Αποστολή αιτήματος</button>
         </form>
       </section>
 
@@ -676,26 +682,32 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </summary>
           <p class="mt-2 text-sm text-indigo-800">Χρησιμοποιήστε τη συνομιλία όταν δεν χρειάζεστε ακόμη πλήρες αίτημα κράτησης.</p>
 
-          <div class="mt-3 space-y-2" data-feedback-group="message" id="message-feedback" role="status" aria-live="polite" aria-atomic="true">
+          <div class="mt-3 space-y-2" data-feedback-group="message" id="message-feedback" role="status" aria-live="polite" aria-atomic="true" aria-relevant="additions text">
           <p data-feedback-status="loading" class="hidden rounded-md border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm text-indigo-800">
             <span class="inline-flex items-center gap-2">
               <svg class="h-4 w-4 animate-spin text-indigo-700" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" class="opacity-25" stroke="currentColor" stroke-width="3"></circle>
                 <path d="M21 12a9 9 0 0 0-9-9" class="opacity-90" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
               </svg>
-              Αποστολή μηνύματος...
+              Η αποστολή του μηνύματος είναι σε εξέλιξη...
             </span>
           </p>
-          <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το μήνυμά σας στάλθηκε επιτυχώς.</p>
-          <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">Δεν υπάρχει σύνδεση. Η αποστολή μηνύματος είναι προσωρινά ανενεργή.</p>
-          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία και δοκιμάστε ξανά.</p>
+          <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το μήνυμά σας στάλθηκε. Μπορείτε να συνεχίσετε από τη σελίδα συνομιλίας.</p>
+          <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+            Δεν υπάρχει σύνδεση. Μόλις επανέλθει το δίκτυο, επιλέξτε νέα προσπάθεια.
+            <button type="button" data-feedback-retry="message" class="ml-2 inline-flex rounded-md border border-amber-300 bg-white px-2 py-0.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">Νέα προσπάθεια</button>
+          </p>
+          <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία επικοινωνίας και το μήνυμα, και υποβάλετε ξανά.</p>
           <p data-feedback-status="blocked" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Η συγκεκριμένη συνομιλία δεν είναι διαθέσιμη αυτή τη στιγμή.</p>
-          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Παρουσιάστηκε προσωρινό πρόβλημα υποβολής. Δοκιμάστε ξανά σε λίγο.</p>
+          <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">
+            Η αποστολή δεν ολοκληρώθηκε. Το κείμενό σας παραμένει στη φόρμα.
+            <button type="button" data-feedback-retry="message" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
+          </p>
         </div>
 
-          {messageStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του μηνύματος και δοκιμάστε ξανά.</p>}
+          {messageStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του μηνύματος και υποβάλετε ξανά.</p>}
           {messageStatusParam === 'blocked' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η συνομιλία δεν είναι διαθέσιμη αυτή τη στιγμή.</p>}
-          {messageStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή μηνύματος δεν ολοκληρώθηκε προσωρινά. Δοκιμάστε ξανά σε λίγο.</p>}
+          {messageStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή μηνύματος δεν ολοκληρώθηκε. Δοκιμάστε ξανά χωρίς απώλεια κειμένου.</p>}
 
           <form
             action="/api/messages/submit"
@@ -704,8 +716,8 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             data-pending-form
             data-message-form
             data-feedback-group-name="message"
-            data-pending-live-label="Η αποστολή μηνύματος εκτελείται."
-            data-pending-timeout-label="Η αποστολή μηνύματος καθυστέρησε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
+            data-pending-live-label="Η υποβολή του μηνύματος είναι σε εξέλιξη."
+            data-pending-timeout-label="Η υποβολή καθυστέρησε. Ελέγξτε σύνδεση και χρησιμοποιήστε νέα προσπάθεια."
             data-pending-timeout-ms="18000"
             aria-describedby="message-feedback message-moderation-hint submit-feedback-live profile-offline-alert"
           >
@@ -740,7 +752,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </div>
           <p id="message-moderation-hint" class="mt-2 text-xs text-indigo-800">Το μήνυμα ελέγχεται για ασφαλή επικοινωνία και προωθείται στον επαγγελματία.</p>
 
-            <button type="submit" class="mt-4 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή μηνύματος" data-pending-label="Αποστολή...">Αποστολή μηνύματος</button>
+            <button type="submit" class="mt-4 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-70" data-default-label="Αποστολή μηνύματος" data-pending-label="Υποβολή...">Αποστολή μηνύματος</button>
           </form>
         </details>
 
@@ -760,7 +772,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         <p class="font-semibold">Εντοπίστηκε απώλεια σύνδεσης.</p>
         <p class="mt-1 text-xs">Οι υποβολές κριτικής/αιτήματος/μηνύματος μπλοκάρονται προσωρινά μέχρι να επανέλθει το δίκτυο.</p>
       </div>
-      <p id="submit-feedback-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
+      <p id="submit-feedback-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     </section>
 
     <script is:inline>
@@ -821,8 +833,11 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           }
           pendingTimeouts.delete(form);
         };
-        const announceSubmitState = (message) => {
-          if (submitLiveRegion instanceof HTMLElement) submitLiveRegion.textContent = message;
+        const announceSubmitState = (message, politeness = 'polite') => {
+          if (!(submitLiveRegion instanceof HTMLElement)) return;
+          submitLiveRegion.setAttribute('role', politeness === 'assertive' ? 'alert' : 'status');
+          submitLiveRegion.setAttribute('aria-live', politeness === 'assertive' ? 'assertive' : 'polite');
+          submitLiveRegion.textContent = message;
         };
         const collapseSecondaryActions = () => {
           if (secondaryActionsDisclosure instanceof HTMLDetailsElement) {
@@ -870,7 +885,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             ) submitLiveRegion.textContent = '';
             return;
           }
-          announceSubmitState('Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.');
+          announceSubmitState('Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.', 'assertive');
         };
         const openDisclosure = (element) => {
           if (element instanceof HTMLDetailsElement) {
@@ -1010,6 +1025,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
 
           const messages = Array.from(group.querySelectorAll('[data-feedback-status]'));
           let activeMessage = null;
+          let activeMessageAssertive = false;
           for (const message of messages) {
             const currentStatus = message.getAttribute('data-feedback-status');
             const isVisible = currentStatus === normalizedStatus;
@@ -1018,6 +1034,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             if (isVisible) {
               activeMessage = message;
               const assertive = normalizedStatus === 'invalid' || normalizedStatus === 'error' || normalizedStatus === 'blocked' || normalizedStatus === 'offline';
+              activeMessageAssertive = assertive;
               message.setAttribute('role', assertive ? 'alert' : 'status');
               message.setAttribute('aria-live', assertive ? 'assertive' : 'polite');
               message.setAttribute('aria-atomic', 'true');
@@ -1032,16 +1049,41 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             group.setAttribute('role', assertiveGroup ? 'alert' : 'status');
             group.setAttribute('aria-live', assertiveGroup ? 'assertive' : 'polite');
             group.setAttribute('aria-atomic', 'true');
+            group.setAttribute('aria-relevant', 'additions text');
             group.setAttribute('data-feedback-active-status', normalizedStatus);
           }
           if (activeMessage instanceof HTMLElement) {
             const plainText = (activeMessage.textContent || '').replace(/\s+/g, ' ').trim();
-            if (plainText) announceSubmitState(plainText);
+            if (plainText) announceSubmitState(plainText, activeMessageAssertive ? 'assertive' : 'polite');
           }
 
           if (groupName === 'review') {
             syncReviewListStateWithReviewFeedback(normalizedStatus);
           }
+        };
+        const pendingFormsByGroup = new Map();
+        for (const form of pendingForms) {
+          const groupName = form.getAttribute('data-feedback-group-name');
+          if (groupName) pendingFormsByGroup.set(groupName, form);
+        }
+        const retryFeedbackSubmission = (groupName) => {
+          const form = pendingFormsByGroup.get(groupName);
+          if (!(form instanceof HTMLFormElement)) return;
+          if (isOffline()) {
+            showFeedbackStatus(groupName, 'offline');
+            announceSubmitState('Δεν υπάρχει σύνδεση. Η νέα προσπάθεια θα γίνει μόλις επανέλθει το δίκτυο.', 'assertive');
+            syncOfflineAlert();
+            return;
+          }
+          if (form.getAttribute('aria-busy') === 'true') {
+            announceSubmitState('Η υποβολή βρίσκεται ήδη σε εξέλιξη.', 'polite');
+            return;
+          }
+          const submitButton = form.querySelector('button[type="submit"]');
+          if (!(submitButton instanceof HTMLButtonElement)) return;
+          showFeedbackStatus(groupName, 'loading');
+          announceSubmitState('Γίνεται νέα προσπάθεια υποβολής.', 'polite');
+          form.requestSubmit(submitButton);
         };
 
         const applyFeedback = (groupName, queryParam) => {
@@ -1062,6 +1104,14 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         applyFeedback('review', 'review');
         applyFeedback('booking', 'booking');
         applyFeedback('message', 'message');
+        const retryButtons = Array.from(document.querySelectorAll('[data-feedback-retry]')).filter((button) => button instanceof HTMLButtonElement);
+        for (const button of retryButtons) {
+          const groupName = button.getAttribute('data-feedback-retry') || '';
+          if (!groupName) continue;
+          button.addEventListener('click', () => {
+            retryFeedbackSubmission(groupName);
+          });
+        }
         syncSecondaryActionsWithIntent();
         syncPrimaryCtaFocus();
         syncSecondaryAccordion();
@@ -1105,7 +1155,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               const timeoutId = window.setTimeout(() => {
                 if (form.getAttribute('aria-busy') !== 'true') return;
                 setFormPending(form, false);
-                announceSubmitState(form.getAttribute('data-pending-timeout-label') || 'Η υποβολή καθυστέρησε. Δοκιμάστε ξανά.');
+                announceSubmitState(form.getAttribute('data-pending-timeout-label') || 'Η υποβολή καθυστέρησε. Δοκιμάστε ξανά.', 'assertive');
                 const feedbackGroup = form.getAttribute('data-feedback-group-name');
                 if (feedbackGroup) showFeedbackStatus(feedbackGroup, 'error');
               }, timeoutMs);
@@ -1233,13 +1283,13 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             if (isOffline()) {
               event.preventDefault();
               if (feedbackGroupName) showFeedbackStatus(feedbackGroupName, 'offline');
-              announceSubmitState('Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.');
+              announceSubmitState('Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.', 'assertive');
               syncOfflineAlert();
               return;
             }
             if (form.getAttribute('aria-busy') === 'true') {
               event.preventDefault();
-              announceSubmitState('Η υποβολή βρίσκεται ήδη σε εξέλιξη.');
+              announceSubmitState('Η υποβολή βρίσκεται ήδη σε εξέλιξη.', 'polite');
               return;
             }
 
@@ -1253,7 +1303,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               event.preventDefault();
               if (feedbackGroupName) showFeedbackStatus(feedbackGroupName, 'invalid');
               form.reportValidity();
-              announceSubmitState('Ελέγξτε τα πεδία και δοκιμάστε ξανά.');
+              announceSubmitState('Ελέγξτε τα πεδία και δοκιμάστε ξανά.', 'assertive');
               return;
             }
 
@@ -1261,7 +1311,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               showFeedbackStatus(feedbackGroupName, 'loading');
             }
 
-            announceSubmitState(form.getAttribute('data-pending-live-label') || 'Η υποβολή εκτελείται.');
+            announceSubmitState(form.getAttribute('data-pending-live-label') || 'Η υποβολή εκτελείται.', 'polite');
             setFormPending(form, true);
           });
         }

@@ -224,7 +224,7 @@ const composerInitialStateLabel = messageStatus === 'submitted'
   : messageStatus === 'invalid'
     ? 'Η αποστολή απέτυχε λόγω μη έγκυρου περιεχομένου. Το πρόχειρο διατηρήθηκε για διόρθωση.'
     : messageStatus === 'error'
-      ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο διατηρήθηκε για άμεσο retry.'
+      ? 'Η αποστολή δεν ολοκληρώθηκε. Το πρόχειρο διατηρήθηκε για άμεση επανάληψη.'
       : messageStatus === 'blocked'
         ? 'Η αποστολή απενεργοποιήθηκε από moderation.'
         : 'Το composer είναι έτοιμο για αποστολή.';
@@ -235,7 +235,7 @@ const composerRetryPanelTitle = messageStatus === 'invalid'
   : 'Η αποστολή διακόπηκε προσωρινά';
 const composerRetryPanelDescription = messageStatus === 'invalid'
   ? 'Διορθώστε το μήνυμα και ξαναστείλτε το από τον composer.'
-  : 'Δοκιμάστε ξανά από τον composer μόλις επιβεβαιώσετε σύνδεση και περιεχόμενο.';
+  : 'Επαναλάβετε από τον composer μόλις επιβεβαιώσετε σύνδεση και περιεχόμενο.';
 const composerRetryPanelToneClass = messageStatus === 'invalid'
   ? 'border-amber-300 bg-amber-50 text-amber-900'
   : 'border-rose-300 bg-rose-50 text-rose-900';
@@ -730,8 +730,8 @@ for (const message of filteredThreadMessages) {
 
     {hasViewerParamIssue && (
       <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="alert" aria-live="assertive" aria-atomic="true">
-        <p class="font-semibold">Η φόρτωση thread χρειάζεται έγκυρα `threadId` και `viewerEmail`.</p>
-        <p class="mt-1">Παράδειγμα: <code>/messages/thread?threadId=...&viewerEmail=name@example.com</code>.</p>
+        <p class="font-semibold">Ο σύνδεσμος συνομιλίας δεν είναι πλήρης.</p>
+        <p class="mt-1">Επιστρέψτε στη λίστα συνομιλιών και ανοίξτε ξανά τη συνομιλία.</p>
       </div>
     )}
 
@@ -744,7 +744,7 @@ for (const message of filteredThreadMessages) {
       )}
       {messageStatus === 'invalid' && (
         <div class="thread-toast thread-toast--amber js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
-          <p class="text-sm font-semibold">Μη έγκυρα στοιχεία μηνύματος. Το πρόχειρο διατηρήθηκε και μπορείτε να δοκιμάσετε ξανά από τον composer.</p>
+          <p class="text-sm font-semibold">Μη έγκυρο μήνυμα. Το πρόχειρο διατηρήθηκε και μπορείτε να συνεχίσετε από τον composer.</p>
           <a href="#thread-interaction" class="mt-2 inline-flex rounded-md border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-amber-900 transition hover:border-amber-400 hover:bg-amber-100">
             Άνοιγμα composer για διόρθωση
           </a>
@@ -753,9 +753,9 @@ for (const message of filteredThreadMessages) {
       )}
       {messageStatus === 'error' && (
         <div class="thread-toast thread-toast--rose js-thread-toast" role="alert" tabindex="-1" data-focus-on-load="true">
-          <p class="text-sm font-semibold">Δεν ήταν δυνατή η αποστολή μηνύματος. Το πρόχειρο διατηρήθηκε για άμεσο retry.</p>
+          <p class="text-sm font-semibold">Δεν ήταν δυνατή η αποστολή μηνύματος. Το πρόχειρο διατηρήθηκε για άμεση επανάληψη.</p>
           <a href="#thread-interaction" class="mt-2 inline-flex rounded-md border border-rose-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-rose-900 transition hover:border-rose-400 hover:bg-rose-100">
-            Άνοιγμα composer για retry
+            Άνοιγμα composer για επανάληψη
           </a>
           <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
@@ -792,19 +792,19 @@ for (const message of filteredThreadMessages) {
       )}
       {hasUnknownStatus && (
         <div class="thread-toast thread-toast--slate js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
-          <p class="text-sm font-semibold">Ελήφθη άγνωστη κατάσταση thread: <code>{status}</code>.</p>
+          <p class="text-sm font-semibold">Προέκυψε μη αναμενόμενη ενημέρωση κατάστασης. Κάντε ανανέωση και δοκιμάστε ξανά.</p>
           <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
       {hasUnknownMessageStatus && (
         <div class="thread-toast thread-toast--slate js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
-          <p class="text-sm font-semibold">Ελήφθη άγνωστη κατάσταση μηνύματος: <code>{messageStatus}</code>.</p>
+          <p class="text-sm font-semibold">Η ενημέρωση αποστολής δεν ολοκληρώθηκε καθαρά. Κάντε ανανέωση και ελέγξτε ξανά.</p>
           <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
       {hasUnknownThreadVisibilityFilter && (
         <div class="thread-toast thread-toast--slate js-thread-toast" role="status" aria-live="polite" tabindex="-1" data-focus-on-load="true">
-          <p class="text-sm font-semibold">Ελήφθη άγνωστο φίλτρο ορατότητας: <code>{requestedThreadVisibilityFilter}</code>.</p>
+          <p class="text-sm font-semibold">Η προβολή φίλτρου δεν ήταν διαθέσιμη. Επαναφέρετε τα φίλτρα και δοκιμάστε ξανά.</p>
           <button type="button" class="thread-toast__dismiss" data-toast-dismiss aria-label="Κλείσιμο ειδοποίησης">Κλείσιμο</button>
         </div>
       )}
@@ -824,7 +824,7 @@ for (const message of filteredThreadMessages) {
         </div>
       )}
     </section>
-    <p id="thread-submit-live" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></p>
+    <p id="thread-submit-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <p id="thread-focus-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <p id="thread-draft-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <p id="thread-filter-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true">{threadFilterSummary}</p>
@@ -836,8 +836,8 @@ for (const message of filteredThreadMessages) {
     {hasMissingParams && (
       <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-missing-params-title" aria-describedby="thread-missing-params-description">
         <p id="thread-missing-params-title" class="font-semibold">Δεν μπορέσαμε να ανοίξουμε τη συνομιλία.</p>
-        <p id="thread-missing-params-description" class="mt-1 text-sm">Λείπουν τα απαραίτητα στοιχεία <code>threadId</code> ή <code>viewerEmail</code>.</p>
-        <p class="mt-2 text-xs">Παράδειγμα: <code>/messages/thread?threadId=...&viewerEmail=name@example.com</code></p>
+        <p id="thread-missing-params-description" class="mt-1 text-sm">Ο σύνδεσμος φαίνεται ελλιπής ή έχει λήξει.</p>
+        <p class="mt-2 text-xs">Ανοίξτε ξανά τη συνομιλία από τη λίστα μηνυμάτων.</p>
         {threadStatePrimaryActionHref && (
           <a href={threadStatePrimaryActionHref} class="mt-2 inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">
             {threadStatePrimaryActionLabel}
@@ -847,8 +847,8 @@ for (const message of filteredThreadMessages) {
     )}
     {hasInvalidViewerEmail && (
       <div class="thread-alert thread-alert--amber mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-invalid-viewer-title" aria-describedby="thread-invalid-viewer-description">
-        <p id="thread-invalid-viewer-title" class="font-semibold">Το `viewerEmail` δεν είναι έγκυρο.</p>
-        <p id="thread-invalid-viewer-description" class="mt-1 text-sm">Χρησιμοποιήστε πλήρη διεύθυνση email (π.χ. <code>name@example.com</code>) και ανοίξτε ξανά το thread.</p>
+        <p id="thread-invalid-viewer-title" class="font-semibold">Ο σύνδεσμος συνομιλίας δεν αναγνωρίστηκε.</p>
+        <p id="thread-invalid-viewer-description" class="mt-1 text-sm">Ανοίξτε ξανά τη συνομιλία από τη λίστα σας.</p>
         <a href={threadListHref} class="mt-2 inline-flex rounded-lg border border-amber-300 bg-white px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">
           Επιστροφή στη λίστα
         </a>
@@ -867,7 +867,7 @@ for (const message of filteredThreadMessages) {
     {threadLoadError && (
       <div class="thread-alert thread-alert--rose mt-5" role="alert" aria-live="assertive" aria-atomic="true" aria-labelledby="thread-load-error-title" aria-describedby="thread-load-error-description">
         <p id="thread-load-error-title" class="font-semibold">Δεν ήταν δυνατή η πλήρης φόρτωση της συνομιλίας.</p>
-        <p id="thread-load-error-description" class="mt-1 text-sm">{threadLoadError}</p>
+        <p id="thread-load-error-description" class="mt-1 text-sm">Η συνομιλία δεν συγχρονίστηκε πλήρως αυτή τη στιγμή.</p>
         <p class="mt-1 text-xs">Ενδέχεται να λείπουν moderation indicators ή ιστορικό μέχρι να αποκατασταθεί η φόρτωση. {hasPartialThreadHistory ? 'Εμφανίζονται διαθέσιμα μηνύματα με πιθανές ελλείψεις.' : 'Το thread δεν μπόρεσε να αποδοθεί.'}</p>
         <div class="mt-2 flex flex-wrap items-center gap-2">
           <a href={threadStatePrimaryActionHref || threadRetryHref} data-thread-retry-now data-thread-filter-action="Εκκίνηση άμεσης επανάληψης φόρτωσης thread." class="thread-touch-target inline-flex rounded-lg border border-rose-300 bg-white px-3 py-1.5 text-xs font-semibold text-rose-900 transition hover:bg-rose-100">
@@ -1237,7 +1237,7 @@ for (const message of filteredThreadMessages) {
             )}
             {!showLoadingState && threadLoadError && threadMessages.length === 0 && (
               <div class="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-6 text-rose-900 shadow-sm" role="alert" aria-live="assertive" aria-labelledby="thread-history-error-title" aria-describedby="thread-history-error-description">
-                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-700">Κατάσταση προβολής · Error</p>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-700">Κατάσταση προβολής · Προσωρινή δυσκολία</p>
                 <p id="thread-history-error-title" class="text-lg font-semibold">Το ιστορικό δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
                 <p id="thread-history-error-description" class="mt-1 text-sm">Δεν ήταν δυνατή η ανάκτηση μηνυμάτων για το thread.</p>
                 <p class="mt-1 text-[11px] font-medium">{threadFilterScopeLabel}</p>
@@ -1473,7 +1473,7 @@ for (const message of filteredThreadMessages) {
                   <p class="font-semibold">{composerRetryPanelTitle}</p>
                   <p class="mt-1">{composerRetryPanelDescription}</p>
                   <p class="mt-1 text-[11px] font-medium">Το πρόχειρο αποθηκεύεται αυτόματα ανά thread και επαναφέρεται μετά από ανανέωση.</p>
-                  <p id="composer-retry-actions-hint" class="mt-1 text-[11px]">Το retry χρησιμοποιεί το τρέχον κείμενο ή το αποθηκευμένο πρόχειρο αν το πεδίο είναι κενό.</p>
+                  <p id="composer-retry-actions-hint" class="mt-1 text-[11px]">Η επανάληψη χρησιμοποιεί το τρέχον κείμενο ή το αποθηκευμένο πρόχειρο αν το πεδίο είναι κενό.</p>
                   <div class="mt-2 flex flex-wrap gap-2">
                     <button
                       type="button"
@@ -2305,10 +2305,19 @@ for (const message of filteredThreadMessages) {
         }
         pendingTimeouts.delete(form);
       };
-      const announcePendingState = (form, message) => {
+      const announcePendingState = (form, message, politeness = 'polite') => {
         const scopedLiveRegion = form.querySelector('#composer-submit-live');
-        if (scopedLiveRegion instanceof HTMLElement) scopedLiveRegion.textContent = message;
-        if (globalSubmitLive instanceof HTMLElement) globalSubmitLive.textContent = message;
+        const role = politeness === 'assertive' ? 'alert' : 'status';
+        if (scopedLiveRegion instanceof HTMLElement) {
+          scopedLiveRegion.setAttribute('role', role);
+          scopedLiveRegion.setAttribute('aria-live', politeness === 'assertive' ? 'assertive' : 'polite');
+          scopedLiveRegion.textContent = message;
+        }
+        if (globalSubmitLive instanceof HTMLElement) {
+          globalSubmitLive.setAttribute('role', role);
+          globalSubmitLive.setAttribute('aria-live', politeness === 'assertive' ? 'assertive' : 'polite');
+          globalSubmitLive.textContent = message;
+        }
       };
       const setFormFeedback = (form, message, tone = 'neutral') => {
         const feedback = form.querySelector('[data-form-feedback]');
@@ -2319,7 +2328,11 @@ for (const message of filteredThreadMessages) {
           : tone === 'pending'
             ? 'text-sky-700'
             : neutralToneClass;
+        const assertive = tone === 'error';
         feedback.className = `text-[11px] ${toneClass}`;
+        feedback.setAttribute('role', assertive ? 'alert' : 'status');
+        feedback.setAttribute('aria-live', assertive ? 'assertive' : 'polite');
+        feedback.setAttribute('aria-atomic', 'true');
         feedback.textContent = message;
       };
       const resetFormFeedback = (form) => {
@@ -2348,7 +2361,7 @@ for (const message of filteredThreadMessages) {
           return;
         }
         for (const form of pendingForms) {
-          announcePendingState(form, 'Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.');
+          announcePendingState(form, 'Δεν υπάρχει σύνδεση. Οι υποβολές είναι προσωρινά ανενεργές.', 'assertive');
           if (form.getAttribute('aria-busy') !== 'true') {
             setFormFeedback(form, 'Δεν υπάρχει σύνδεση. Η φόρμα θα ενεργοποιηθεί όταν επανέλθει το δίκτυο.', 'error');
           }
@@ -2384,7 +2397,7 @@ for (const message of filteredThreadMessages) {
               setFormPending(form, false);
               const timeoutLabel = form.getAttribute('data-pending-timeout-label') || 'Η υποβολή καθυστέρησε. Δοκιμάστε ξανά.';
               const recoveryLabel = form.getAttribute('data-pending-recovery-label') || 'Η φόρμα επανήλθε. Μπορείτε να δοκιμάσετε ξανά.';
-              announcePendingState(form, timeoutLabel);
+              announcePendingState(form, timeoutLabel, 'assertive');
               setFormFeedback(form, `${timeoutLabel} ${recoveryLabel}`, 'error');
               if (form.classList.contains('js-composer-form')) {
                 const composerState = form.querySelector('#composer-state');
@@ -2587,9 +2600,9 @@ for (const message of filteredThreadMessages) {
             retrySendButton.addEventListener('click', () => {
               if (form.getAttribute('aria-busy') === 'true') return;
               if (isOffline()) {
-                announcePendingState(form, 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου για retry.');
-                setFormFeedback(form, 'Δεν υπάρχει σύνδεση. Το retry θα είναι διαθέσιμο όταν επανέλθει το δίκτυο.', 'error');
-                setComposerState('error', 'Δεν υπάρχει σύνδεση για retry αποστολής.');
+                announcePendingState(form, 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου για επανάληψη.', 'assertive');
+                setFormFeedback(form, 'Δεν υπάρχει σύνδεση. Η επανάληψη θα είναι διαθέσιμη όταν επανέλθει το δίκτυο.', 'error');
+                setComposerState('error', 'Δεν υπάρχει σύνδεση για επανάληψη αποστολής.');
                 if (live) live.textContent = 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου.';
                 return;
               }
@@ -2597,15 +2610,22 @@ for (const message of filteredThreadMessages) {
                 const restored = restoreDraft({ force: true });
                 if (restored) {
                   syncComposer();
-                  if (live) live.textContent = 'Επαναφέρθηκε πρόχειρο. Πατήστε ξανά επανάληψη αποστολής.';
+                  if (textarea.value.trim().length > 0) {
+                    setComposerState('submitting', 'Επανάληψη αποστολής σε εξέλιξη...');
+                    if (live) live.textContent = 'Επανάληψη αποστολής...';
+                    persistDraft(textarea.value);
+                    form.requestSubmit(submitButton);
+                    return;
+                  }
+                  if (live) live.textContent = 'Επαναφέρθηκε πρόχειρο. Μπορείτε να το ελέγξετε πριν την αποστολή.';
                 } else {
                   if (error) error.classList.remove('hidden');
-                  setComposerState('error', 'Δεν υπάρχει διαθέσιμο πρόχειρο για retry.');
+                  setComposerState('error', 'Δεν υπάρχει διαθέσιμο πρόχειρο για επανάληψη.');
                   if (live) live.textContent = 'Δεν υπάρχει διαθέσιμο πρόχειρο για επανάληψη αποστολής.';
                 }
                 focusElement(textarea, {
                   preventScroll: isCompactViewport(),
-                  announcement: 'Η εστίαση μεταφέρθηκε στο πεδίο μηνύματος για retry.'
+                  announcement: 'Η εστίαση μεταφέρθηκε στο πεδίο μηνύματος για επανάληψη.'
                 });
                 return;
               }
@@ -2637,7 +2657,7 @@ for (const message of filteredThreadMessages) {
         form.addEventListener('submit', (event) => {
           if (isOffline()) {
             event.preventDefault();
-            announcePendingState(form, 'Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.');
+            announcePendingState(form, 'Δεν υπάρχει σύνδεση. Δοκιμάστε ξανά μόλις επανέλθει το δίκτυο.', 'assertive');
             setFormFeedback(form, 'Δεν υπάρχει σύνδεση. Περιμένετε επαναφορά δικτύου και δοκιμάστε ξανά.', 'error');
             if (isComposerForm) {
               setComposerState('error', 'Δεν υπάρχει σύνδεση για αποστολή.');
@@ -2648,7 +2668,7 @@ for (const message of filteredThreadMessages) {
           }
           if (form.getAttribute('aria-busy') === 'true') {
             event.preventDefault();
-            announcePendingState(form, 'Η υποβολή βρίσκεται ήδη σε εξέλιξη.');
+            announcePendingState(form, 'Η υποβολή βρίσκεται ήδη σε εξέλιξη.', 'polite');
             setFormFeedback(form, 'Η υποβολή βρίσκεται ήδη σε εξέλιξη.', 'error');
             return;
           }
@@ -2662,7 +2682,7 @@ for (const message of filteredThreadMessages) {
               });
             }
             form.reportValidity();
-            announcePendingState(form, 'Ελέγξτε τα πεδία και προσπαθήστε ξανά.');
+            announcePendingState(form, 'Ελέγξτε τα πεδία και προσπαθήστε ξανά.', 'assertive');
             setFormFeedback(form, 'Ελέγξτε τα πεδία και δοκιμάστε ξανά.', 'error');
             return;
           }
@@ -2672,7 +2692,7 @@ for (const message of filteredThreadMessages) {
             if (live) live.textContent = 'Πληκτρολογήστε μήνυμα πριν την αποστολή.';
             textarea.setAttribute('aria-invalid', 'true');
             setComposerState('error', 'Δεν ήταν δυνατή η αποστολή: κενό μήνυμα.');
-            announcePendingState(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.');
+            announcePendingState(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.', 'assertive');
             setFormFeedback(form, 'Πληκτρολογήστε μήνυμα πριν την αποστολή.', 'error');
             textarea.reportValidity();
             focusElement(textarea, {

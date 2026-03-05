@@ -146,7 +146,7 @@ const availabilityLabelMap: Record<string, string> = {
   flexible: 'Ευέλικτο ραντεβού'
 };
 const urgencyKeywords = ['amesi', 'ektakti', 'epeigon'];
-const initialVisibleSubJobs = enableAdvancedCategoryUX ? 9 : 12;
+const initialVisibleSubJobs = enableAdvancedCategoryUX ? 6 : 12;
 type TrustDecisionCardVariant = {
   frameClass: string;
   headingClass: string;
@@ -242,6 +242,7 @@ const trustDecisionReviewContextMap = {
 
 const trustDecisionVariants = trustDecisionVariantMap[category.slug as keyof typeof trustDecisionVariantMap] || trustDecisionVariantMap.ydravlikoi;
 const trustDecisionReviewContexts = trustDecisionReviewContextMap[category.slug as keyof typeof trustDecisionReviewContextMap] || trustDecisionReviewContextMap.ydravlikoi;
+const SEO_SUBJOB_LINK_COUNT = 24;
 
 const classifyBudget = (priceRange: string | undefined) => {
   const value = (priceRange || '').toLocaleLowerCase('el-GR');
@@ -637,9 +638,9 @@ const faqSchema = pageCategory.faq?.length ? {
                 </noscript>
               )}
 
-              <nav class="sr-only" aria-label="Πλήρης κατάλογος υπηρεσιών για SEO crawlability">
+              <nav class="sr-only" aria-label="Κατάλογος βασικών υπηρεσιών για SEO crawlability">
                 <ul>
-                  {subJobs.map((job: any) => (<li><a href={`/${job.slug}`}>{job.nameGr}</a></li>))}
+                  {subJobs.slice(0, SEO_SUBJOB_LINK_COUNT).map((job: any) => (<li><a href={`/${job.slug}`}>{job.nameGr}</a></li>))}
                 </ul>
               </nav>
             </>
