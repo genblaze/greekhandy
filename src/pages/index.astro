@@ -359,20 +359,20 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
 
       <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
         <div>
-          <p class="inline-flex items-center rounded-full border border-white/60 bg-slate-950/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
+          <p class="inline-flex items-center rounded-full border border-cyan-200/70 bg-slate-950/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
             GreekHandy Signature Network
           </p>
-          <h1 class="gh-display mt-4 max-w-3xl text-[2.2rem] leading-[1.12] tracking-tight text-white md:mt-5 md:text-[4rem]">
-            Η ποιοτική επιλογή επαγγελματία,
-            <span class="block text-cyan-100">με σαφήνεια από το πρώτο λεπτό.</span>
+          <h1 class="gh-display mt-4 max-w-3xl text-[2.2rem] leading-[1.1] tracking-tight text-white md:mt-5 md:text-[4rem]">
+            Βρείτε σωστό επαγγελματία
+            <span class="block text-cyan-100">γρήγορα και με σιγουριά.</span>
           </h1>
-          <p class="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-slate-100 md:mt-4 md:max-w-2xl md:text-[1.28rem]">
-            Το GreekHandy μετατρέπει την αναζήτηση τεχνικού σε στρατηγική απόφαση: ορατές επιλογές,
-            καθαρή πληροφορία και ουσιαστική σύγκριση για να κλείνετε σωστό συνεργάτη χωρίς χάσιμο χρόνου.
+          <p class="mt-3 max-w-2xl text-[1.04rem] leading-relaxed text-slate-50 md:mt-4 md:text-[1.22rem]">
+            Το GreekHandy οργανώνει την επιλογή σας με καθαρά κριτήρια, αξιόπιστα προφίλ και πρακτική σύγκριση,
+            ώστε να περνάτε από αναζήτηση σε ανάθεση χωρίς αβεβαιότητα.
           </p>
 
           <div class="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#search-browse" class="gh-primary-cta inline-flex min-h-11 items-center rounded-full bg-white px-7 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-sm transition hover:bg-slate-100">
+            <a href="#search-browse" class="gh-primary-cta inline-flex min-h-11 items-center rounded-full bg-cyan-300 px-7 py-3 text-sm font-bold uppercase tracking-wide text-slate-950 shadow-sm transition hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
               Ξεκινήστε Αναζήτηση
             </a>
             <a href="/professionals/register" class="text-sm font-semibold text-cyan-100 underline decoration-cyan-200/80 underline-offset-4 transition hover:text-white">
@@ -380,9 +380,9 @@ const homeMetaDescription = 'Η πλατφόρμα GreekHandy σάς βοηθά 
             </a>
           </div>
 
-          <ul class="mt-8 grid gap-2 text-sm text-slate-100 md:grid-cols-2">
+          <ul class="mt-8 grid gap-2 text-sm text-slate-100 md:grid-cols-2" aria-label="Σήματα εμπιστοσύνης αρχικής σελίδας">
             {heroHighlights.map(item => (
-              <li class="rounded-xl border border-white/30 bg-slate-900/30 px-4 py-3">{item}</li>
+              <li class="rounded-xl border border-white/35 bg-slate-900/55 px-4 py-3">{item}</li>
             ))}
           </ul>
         </div>
