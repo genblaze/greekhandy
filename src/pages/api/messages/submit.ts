@@ -261,12 +261,18 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
     await appendNdjson(MESSAGE_SUBMISSIONS_FILE_PATH, submission);
 
+    const redirectTo = withMessageStatus(input.returnTo, 'submitted');
     return asJson
-      ? new Response(JSON.stringify({ ok: true, threadId: canonicalThreadId, status: 'pending' }), {
+      ? new Response(JSON.stringify({
+        ok: true,
+        status: 'submitted',
+        threadId: canonicalThreadId,
+        redirectTo
+      }), {
         status: 201,
         headers: { 'content-type': 'application/json; charset=utf-8' }
       })
-      : redirect(withMessageStatus(input.returnTo, 'submitted'), 303);
+      : redirect(redirectTo, 303);
   } catch (error) {
     console.error(`[message-submit] failed: ${toSafeLogMessage(error)}`);
 

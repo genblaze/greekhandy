@@ -616,36 +616,38 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           <div class="grid gap-4 md:grid-cols-2">
             <div>
               <label for="bookingService" class="mb-1 block text-sm font-semibold text-gray-800">Υπηρεσία *</label>
-              <select id="bookingService" name="service" required class="w-full rounded-lg border border-gray-300 px-3 py-2.5">
+              <select id="bookingService" name="service" required data-booking-validate="service" data-field-input="service" class="w-full rounded-lg border border-gray-300 px-3 py-2.5">
                 <option value="">Επιλέξτε υπηρεσία</option>
                 {profile.services.map((service) => <option value={service}>{service}</option>)}
               </select>
+              <p id="bookingService-error" data-field-error-for="service" data-default-error="Επιλέξτε υπηρεσία." class="mt-1 hidden text-xs text-amber-700" role="alert">Επιλέξτε υπηρεσία.</p>
             </div>
             <div>
               <label for="customerName" class="mb-1 block text-sm font-semibold text-gray-800">Ονοματεπώνυμο *</label>
-              <input id="customerName" name="customerName" required maxlength="120" data-booking-validate="name" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
-              <p id="customerName-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρο ονοματεπώνυμο (τουλάχιστον 2 χαρακτήρες).</p>
+              <input id="customerName" name="customerName" required maxlength="120" data-booking-validate="name" data-field-input="customerName" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="customerName-error" data-field-error-for="customerName" data-default-error="Συμπληρώστε έγκυρο ονοματεπώνυμο (τουλάχιστον 2 χαρακτήρες)." class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρο ονοματεπώνυμο (τουλάχιστον 2 χαρακτήρες).</p>
             </div>
             <div>
               <label for="bookingPhone" class="mb-1 block text-sm font-semibold text-gray-800">Τηλέφωνο *</label>
-              <input id="bookingPhone" name="phone" required maxlength="40" pattern="[0-9+()\-\s]{7,20}" title="Συμπληρώστε έγκυρο τηλέφωνο (7-20 χαρακτήρες)." data-booking-validate="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
-              <p id="bookingPhone-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Το τηλέφωνο πρέπει να έχει 7–20 χαρακτήρες (ψηφία ή σύμβολα +()-).</p>
+              <input id="bookingPhone" name="phone" required maxlength="40" pattern="[0-9+()\-\s]{7,20}" title="Συμπληρώστε έγκυρο τηλέφωνο (7-20 χαρακτήρες)." data-booking-validate="phone" data-field-input="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="bookingPhone-error" data-field-error-for="phone" data-default-error="Το τηλέφωνο πρέπει να έχει 7–20 χαρακτήρες (ψηφία ή σύμβολα +()-)." class="mt-1 hidden text-xs text-amber-700" role="alert">Το τηλέφωνο πρέπει να έχει 7–20 χαρακτήρες (ψηφία ή σύμβολα +()-).</p>
             </div>
             <div>
               <label for="bookingEmail" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>
-              <input id="bookingEmail" name="email" type="email" required maxlength="160" data-booking-validate="email" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
-              <p id="bookingEmail-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρη διεύθυνση email.</p>
+              <input id="bookingEmail" name="email" type="email" required maxlength="160" data-booking-validate="email" data-field-input="email" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="bookingEmail-error" data-field-error-for="email" data-default-error="Συμπληρώστε έγκυρη διεύθυνση email." class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρη διεύθυνση email.</p>
             </div>
             <div class="md:col-span-2">
               <label for="preferredDate" class="mb-1 block text-sm font-semibold text-gray-800">Προτιμώμενο πρόγραμμα (ημερομηνία/ώρα)</label>
-              <input id="preferredDate" name="preferredDate" type="text" maxlength="80" placeholder="π.χ. 12/03 απόγευμα ή Σάββατο πρωί" data-booking-validate="preferredDate" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
-              <p id="preferredDate-error" class="mt-1 hidden text-xs text-amber-700" role="alert">Προσθέστε σαφή ημέρα/ώρα (π.χ. 12/03 πρωί ή Τρίτη 18:00).</p>
+              <input id="preferredDate" name="preferredDate" type="text" maxlength="80" placeholder="π.χ. 12/03 απόγευμα ή Σάββατο πρωί" data-booking-validate="preferredDate" data-field-input="preferredDate" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="preferredDate-error" data-field-error-for="preferredDate" data-default-error="Προσθέστε σαφή ημέρα/ώρα (π.χ. 12/03 πρωί ή Τρίτη 18:00)." class="mt-1 hidden text-xs text-amber-700" role="alert">Προσθέστε σαφή ημέρα/ώρα (π.χ. 12/03 πρωί ή Τρίτη 18:00).</p>
             </div>
           </div>
 
           <div class="mt-4">
             <label for="bookingMessage" class="mb-1 block text-sm font-semibold text-gray-800">Λεπτομέρειες αιτήματος *</label>
-            <textarea id="bookingMessage" name="message" rows="4" required maxlength="2000" data-trim-required class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
+            <textarea id="bookingMessage" name="message" rows="4" required maxlength="2000" data-trim-required data-booking-validate="message" data-field-input="message" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
+            <p id="bookingMessage-error" data-field-error-for="message" data-default-error="Συμπληρώστε λεπτομέρειες για το αίτημά σας." class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε λεπτομέρειες για το αίτημά σας.</p>
           </div>
 
           <p class="mt-2 text-xs text-blue-700">Η πορεία του αιτήματος ενημερώνεται βήμα-βήμα: αρχική καταχώριση, έλεγχος και τελική ενημέρωση.</p>
@@ -711,22 +713,26 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           <div class="grid gap-4 md:grid-cols-2">
             <div>
               <label for="senderName" class="mb-1 block text-sm font-semibold text-gray-800">Ονοματεπώνυμο *</label>
-              <input id="senderName" name="senderName" required maxlength="120" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="senderName" name="senderName" required maxlength="120" data-message-validate="senderName" data-field-input="senderName" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="senderName-error" data-field-error-for="senderName" data-default-error="Συμπληρώστε έγκυρο ονοματεπώνυμο." class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρο ονοματεπώνυμο.</p>
             </div>
             <div>
               <label for="senderEmail" class="mb-1 block text-sm font-semibold text-gray-800">Email *</label>
-              <input id="senderEmail" name="senderEmail" type="email" required maxlength="160" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <input id="senderEmail" name="senderEmail" type="email" required maxlength="160" data-message-validate="senderEmail" data-field-input="senderEmail" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+              <p id="senderEmail-error" data-field-error-for="senderEmail" data-default-error="Συμπληρώστε έγκυρη διεύθυνση email." class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε έγκυρη διεύθυνση email.</p>
             </div>
           </div>
 
           <div class="mt-4">
             <label for="senderPhone" class="mb-1 block text-sm font-semibold text-gray-800">Τηλέφωνο (προαιρετικό)</label>
-            <input id="senderPhone" name="senderPhone" maxlength="40" pattern="[0-9+()\-\s]{7,20}" title="Αν συμπληρωθεί, το τηλέφωνο πρέπει να έχει 7-20 χαρακτήρες." class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+            <input id="senderPhone" name="senderPhone" maxlength="40" pattern="[0-9+()\-\s]{7,20}" title="Αν συμπληρωθεί, το τηλέφωνο πρέπει να έχει 7-20 χαρακτήρες." data-message-validate="senderPhone" data-field-input="senderPhone" class="w-full rounded-lg border border-gray-300 px-3 py-2.5" />
+            <p id="senderPhone-error" data-field-error-for="senderPhone" data-default-error="Αν συμπληρωθεί, το τηλέφωνο πρέπει να έχει 7–20 χαρακτήρες." class="mt-1 hidden text-xs text-amber-700" role="alert">Αν συμπληρωθεί, το τηλέφωνο πρέπει να έχει 7–20 χαρακτήρες.</p>
           </div>
 
           <div class="mt-4">
             <label for="initialMessage" class="mb-1 block text-sm font-semibold text-gray-800">Μήνυμα *</label>
-            <textarea id="initialMessage" name="message" rows="4" required maxlength="2000" data-trim-required aria-describedby="message-moderation-hint submit-feedback-live" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
+            <textarea id="initialMessage" name="message" rows="4" required maxlength="2000" data-trim-required data-message-validate="message" data-field-input="message" aria-describedby="message-moderation-hint submit-feedback-live" class="w-full rounded-lg border border-gray-300 px-3 py-2.5"></textarea>
+            <p id="initialMessage-error" data-field-error-for="message" data-default-error="Συμπληρώστε μήνυμα." class="mt-1 hidden text-xs text-amber-700" role="alert">Συμπληρώστε μήνυμα.</p>
           </div>
           <p id="message-moderation-hint" class="mt-2 text-xs text-indigo-800">Το μήνυμα ελέγχεται για ασφαλή επικοινωνία και προωθείται στον επαγγελματία.</p>
 
