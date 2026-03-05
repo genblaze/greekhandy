@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-rinse-nea-vrasna",
+  "slug": "epochiako-xeplyma-aporrois-katofliou-eisodou-nea-vrasna",
+  "nameGr": "Εποχικό Ξέπλυμα Απορροής Κατωφλιού Εισόδου στα Νέα Βρασνά",
+  "nameEn": "Seasonal Home Entry Threshold Drain Rinse in Νέα Βρασνά",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικό ξέπλυμα απορροής κατωφλιού εισόδου στα Νέα Βρασνά για αποφυγή φραγών και λιμναζόντων νερών.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Βρασνά επείγον",
+    "Εποχικό Νέα Βρασνά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

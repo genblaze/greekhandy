@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-bleed-nipple-check-makrinitsa",
+  "slug": "epochiakos-elegxos-rafinou-exaerosis-kalorifer-makrinitsa",
+  "nameGr": "Εποχικός Έλεγχος Ρακόρ Εξαέρωσης Καλοριφέρ στη Μακρινίτσα",
+  "nameEn": "Seasonal Heating Radiator Bleed Nipple Check in Μακρινίτσα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ρακόρ εξαέρωσης καλοριφέρ στη Μακρινίτσα για αποφυγή μικροδιαρροών και σωστή κυκλοφορία θέρμανσης.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Μακρινίτσα επείγον",
+    "Εποχικός Μακρινίτσα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

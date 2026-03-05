@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-terminal-tighten-makrinitsa",
+  "slug": "epigouso-sfiksimo-akrodekti-oudeterou-pinaka-makrinitsa",
+  "nameGr": "Επείγον Σφίξιμο Ακροδέκτη Ουδετέρου Πίνακα στη Μακρινίτσα",
+  "nameEn": "Emergency Electrical Neutral Terminal Tighten in Μακρινίτσα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγον σφίξιμο ακροδέκτη ουδετέρου πίνακα στη Μακρινίτσα για σταθερότητα τάσης και αποφυγή επικίνδυνων πτώσεων.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μακρινίτσα επείγον",
+    "Επείγον Μακρινίτσα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-bleed-nipple-check-kranidi-inland",
+  "slug": "epochiakos-elegxos-rafinou-exaerosis-kalorifer-kranidi-inland",
+  "nameGr": "Εποχικός Έλεγχος Ρακόρ Εξαέρωσης Καλοριφέρ στην ενδοχώρα Κρανιδίου",
+  "nameEn": "Seasonal Heating Radiator Bleed Nipple Check in Κρανίδι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ρακόρ εξαέρωσης καλοριφέρ στην ενδοχώρα Κρανιδίου για αποφυγή μικροδιαρροών και σωστή κυκλοφορία θέρμανσης.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Κρανίδι επείγον",
+    "Εποχικός Κρανίδι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

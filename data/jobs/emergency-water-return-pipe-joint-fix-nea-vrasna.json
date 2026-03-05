@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-return-pipe-joint-fix-nea-vrasna",
+  "slug": "epigousa-episkevi-enosis-solina-epistrofis-nerou-nea-vrasna",
+  "nameGr": "Επείγουσα Επισκευή Ένωσης Σωλήνα Επιστροφής Νερού στα Νέα Βρασνά",
+  "nameEn": "Emergency Water Return Pipe Joint Fix in Νέα Βρασνά",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ένωσης σωλήνα επιστροφής νερού στα Νέα Βρασνά για άμεση διακοπή διαρροής και αποκατάσταση πίεσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Βρασνά επείγον",
+    "Επείγουσα Νέα Βρασνά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-fan-capacitor-swap-nea-vrasna",
+  "slug": "epigousa-antikatastasi-pyknoti-anemistira-ac-nea-vrasna",
+  "nameGr": "Επείγουσα Αντικατάσταση Πυκνωτή Ανεμιστήρα AC στα Νέα Βρασνά",
+  "nameEn": "Emergency AC Fan Capacitor Swap in Νέα Βρασνά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντικατάσταση πυκνωτή ανεμιστήρα AC στα Νέα Βρασνά όταν η μονάδα δεν ξεκινά ή δουλεύει με διακοπές.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Βρασνά επείγον",
+    "Επείγουσα Νέα Βρασνά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

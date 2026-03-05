@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-drain-rinse-kranidi-inland",
+  "slug": "epochiako-xeplyma-aporrois-katofliou-eisodou-kranidi-inland",
+  "nameGr": "Εποχικό Ξέπλυμα Απορροής Κατωφλιού Εισόδου στην ενδοχώρα Κρανιδίου",
+  "nameEn": "Seasonal Home Entry Threshold Drain Rinse in Κρανίδι",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικό ξέπλυμα απορροής κατωφλιού εισόδου στην ενδοχώρα Κρανιδίου για αποφυγή φραγών και λιμναζόντων νερών.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Κρανίδι επείγον",
+    "Εποχικό Κρανίδι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

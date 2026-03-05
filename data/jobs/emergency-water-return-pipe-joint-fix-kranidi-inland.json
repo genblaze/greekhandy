@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-return-pipe-joint-fix-kranidi-inland",
+  "slug": "epigousa-episkevi-enosis-solina-epistrofis-nerou-kranidi-inland",
+  "nameGr": "Επείγουσα Επισκευή Ένωσης Σωλήνα Επιστροφής Νερού στην ενδοχώρα Κρανιδίου",
+  "nameEn": "Emergency Water Return Pipe Joint Fix in Κρανίδι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή ένωσης σωλήνα επιστροφής νερού στην ενδοχώρα Κρανιδίου για άμεση διακοπή διαρροής και αποκατάσταση πίεσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κρανίδι επείγον",
+    "Επείγουσα Κρανίδι",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

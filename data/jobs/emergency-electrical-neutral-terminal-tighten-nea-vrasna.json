@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-neutral-terminal-tighten-nea-vrasna",
+  "slug": "epigouso-sfiksimo-akrodekti-oudeterou-pinaka-nea-vrasna",
+  "nameGr": "Επείγον Σφίξιμο Ακροδέκτη Ουδετέρου Πίνακα στα Νέα Βρασνά",
+  "nameEn": "Emergency Electrical Neutral Terminal Tighten in Νέα Βρασνά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγον σφίξιμο ακροδέκτη ουδετέρου πίνακα στα Νέα Βρασνά για σταθερότητα τάσης και αποφυγή επικίνδυνων πτώσεων.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Νέα Βρασνά επείγον",
+    "Επείγον Νέα Βρασνά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
