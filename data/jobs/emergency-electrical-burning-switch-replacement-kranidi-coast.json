@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-burning-switch-replacement-kranidi-coast",
+  "slug": "epigousa-antikatastasi-kamenou-diakopti-revmatos-kranidi-coast",
+  "nameGr": "Επείγουσα Αντικατάσταση Καμένου Διακόπτη Ρεύματος στην παραλιακή ζώνη Κρανιδίου",
+  "nameEn": "Emergency Electrical Burning Switch Replacement in Κρανίδι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αντικατάσταση καμένου διακόπτη ρεύματος στην παραλιακή ζώνη Κρανιδίου για ασφαλή επαναφορά λειτουργίας χωρίς κίνδυνο.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κρανίδι επείγον",
+    "Επείγουσα Κρανίδι",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

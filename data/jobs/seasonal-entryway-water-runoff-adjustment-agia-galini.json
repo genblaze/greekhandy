@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-entryway-water-runoff-adjustment-agia-galini",
+  "slug": "epochiaki-rythmisi-aporrois-nerou-eisodou-agia-galini",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Νερού Εισόδου στην Αγία Γαλήνη",
+  "nameEn": "Seasonal Entryway Water Runoff Adjustment in Αγία Γαλήνη",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής νερού στην είσοδο στην Αγία Γαλήνη για να μη λιμνάζει νερό και γλιστράει το δάπεδο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Γαλήνη επείγον",
+    "Εποχική Αγία Γαλήνη",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

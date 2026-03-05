@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-restart-after-power-surge-agia-galini",
+  "slug": "epigousa-epanekkinsi-ac-meta-aitmi-tasis-agia-galini",
+  "nameGr": "Επείγουσα Επανεκκίνηση AC μετά από Αιχμή Τάσης στην Αγία Γαλήνη",
+  "nameEn": "Emergency AC Restart After Power Surge in Αγία Γαλήνη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επανεκκίνηση και έλεγχος AC στην Αγία Γαλήνη μετά από αιχμή τάσης για αποφυγή μόνιμης βλάβης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Γαλήνη επείγον",
+    "Επείγουσα Αγία Γαλήνη",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

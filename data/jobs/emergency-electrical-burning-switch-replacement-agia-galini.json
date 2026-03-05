@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-burning-switch-replacement-agia-galini",
+  "slug": "epigousa-antikatastasi-kamenou-diakopti-revmatos-agia-galini",
+  "nameGr": "Επείγουσα Αντικατάσταση Καμένου Διακόπτη Ρεύματος στην Αγία Γαλήνη",
+  "nameEn": "Emergency Electrical Burning Switch Replacement in Αγία Γαλήνη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αντικατάσταση καμένου διακόπτη ρεύματος στην Αγία Γαλήνη για ασφαλή επαναφορά λειτουργίας χωρίς κίνδυνο.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Γαλήνη επείγον",
+    "Επείγουσα Αγία Γαλήνη",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

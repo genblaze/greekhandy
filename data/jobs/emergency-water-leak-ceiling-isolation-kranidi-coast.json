@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-leak-ceiling-isolation-kranidi-coast",
+  "slug": "epigousa-aponosi-diarrois-nerou-stin-orofi-kranidi-coast",
+  "nameGr": "Επείγουσα Απομόνωση Διαρροής Νερού στην Οροφή στην παραλιακή ζώνη Κρανιδίου",
+  "nameEn": "Emergency Water Leak Ceiling Isolation in Κρανίδι",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απομόνωση διαρροής νερού στην οροφή στην παραλιακή ζώνη Κρανιδίου για άμεση προστασία ηλεκτρικών και επίπλων.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κρανίδι επείγον",
+    "Επείγουσα Κρανίδι",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-bleed-check-agia-galini",
+  "slug": "epochiakos-elegxos-exaerosis-epistrofis-thermansis-agia-galini",
+  "nameGr": "Εποχικός Έλεγχος Εξαέρωσης Επιστροφής Θέρμανσης στην Αγία Γαλήνη",
+  "nameEn": "Seasonal Heating Return Bleed Check in Αγία Γαλήνη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξαέρωσης επιστροφής θέρμανσης στην Αγία Γαλήνη για σταθερή κυκλοφορία και καλύτερη απόδοση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Γαλήνη επείγον",
+    "Εποχικός Αγία Γαλήνη",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

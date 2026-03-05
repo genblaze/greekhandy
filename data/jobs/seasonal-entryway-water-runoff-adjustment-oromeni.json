@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-entryway-water-runoff-adjustment-oromeni",
+  "slug": "epochiaki-rythmisi-aporrois-nerou-eisodou-oromeni",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Νερού Εισόδου στην Ορμένιο",
+  "nameEn": "Seasonal Entryway Water Runoff Adjustment in Ορμένιο",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής νερού στην είσοδο στην Ορμένιο για να μη λιμνάζει νερό και γλιστράει το δάπεδο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ορμένιο επείγον",
+    "Εποχική Ορμένιο",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

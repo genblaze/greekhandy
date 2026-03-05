@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-leak-ceiling-isolation-agia-galini",
+  "slug": "epigousa-aponosi-diarrois-nerou-stin-orofi-agia-galini",
+  "nameGr": "Επείγουσα Απομόνωση Διαρροής Νερού στην Οροφή στην Αγία Γαλήνη",
+  "nameEn": "Emergency Water Leak Ceiling Isolation in Αγία Γαλήνη",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα απομόνωση διαρροής νερού στην οροφή στην Αγία Γαλήνη για άμεση προστασία ηλεκτρικών και επίπλων.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Γαλήνη επείγον",
+    "Επείγουσα Αγία Γαλήνη",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

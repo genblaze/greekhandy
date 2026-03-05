@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-entryway-water-runoff-adjustment-kranidi-coast",
+  "slug": "epochiaki-rythmisi-aporrois-nerou-eisodou-kranidi-coast",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Νερού Εισόδου στην παραλιακή ζώνη Κρανιδίου",
+  "nameEn": "Seasonal Entryway Water Runoff Adjustment in Κρανίδι",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής νερού στην είσοδο στην παραλιακή ζώνη Κρανιδίου για να μη λιμνάζει νερό και γλιστράει το δάπεδο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Κρανίδι επείγον",
+    "Εποχική Κρανίδι",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

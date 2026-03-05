@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-bleed-check-oromeni",
+  "slug": "epochiakos-elegxos-exaerosis-epistrofis-thermansis-oromeni",
+  "nameGr": "Εποχικός Έλεγχος Εξαέρωσης Επιστροφής Θέρμανσης στην Ορμένιο",
+  "nameEn": "Seasonal Heating Return Bleed Check in Ορμένιο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξαέρωσης επιστροφής θέρμανσης στην Ορμένιο για σταθερή κυκλοφορία και καλύτερη απόδοση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Ορμένιο επείγον",
+    "Εποχικός Ορμένιο",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

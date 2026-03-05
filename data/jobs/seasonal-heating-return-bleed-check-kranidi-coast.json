@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-bleed-check-kranidi-coast",
+  "slug": "epochiakos-elegxos-exaerosis-epistrofis-thermansis-kranidi-coast",
+  "nameGr": "Εποχικός Έλεγχος Εξαέρωσης Επιστροφής Θέρμανσης στην παραλιακή ζώνη Κρανιδίου",
+  "nameEn": "Seasonal Heating Return Bleed Check in Κρανίδι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος εξαέρωσης επιστροφής θέρμανσης στην παραλιακή ζώνη Κρανιδίου για σταθερή κυκλοφορία και καλύτερη απόδοση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Κρανίδι επείγον",
+    "Εποχικός Κρανίδι",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

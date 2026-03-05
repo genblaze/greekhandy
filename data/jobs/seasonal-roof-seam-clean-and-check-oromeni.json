@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-seam-clean-and-check-oromeni",
+  "slug": "epochiakos-katharismos-kai-elegxos-arthroseon-stegis-oromeni",
+  "nameGr": "Εποχικός Καθαρισμός και Έλεγχος Αρθρώσεων Στέγης στην Ορμένιο",
+  "nameEn": "Seasonal Roof Seam Clean and Check in Ορμένιο",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός καθαρισμός και έλεγχος αρθρώσεων στέγης στην Ορμένιο πριν τις έντονες βροχοπτώσεις.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ορμένιο επείγον",
+    "Εποχικός Ορμένιο",
+    "άμεση επισκευή",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
