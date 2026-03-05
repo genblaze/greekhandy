@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-airflow-blockage-fix-astypalaia",
+  "slug": "epigousa-episkevi-emfragis-rois-aera-ac-astypalaia",
+  "nameGr": "Επείγουσα Επισκευή Εμφραγής Ροής Αέρα AC στην Αστυπάλαια",
+  "nameEn": "Emergency AC Airflow Blockage Fix in Αστυπάλαια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα αντιμετώπιση εμφραγής ροής αέρα AC στην Αστυπάλαια για γρήγορη αποκατάσταση ψύξης/θέρμανσης. SEO intent: «ac δεν φυσάει αέρα Αστυπάλαια».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "ac δεν φυσάει αέρα Αστυπάλαια",
+    "τεχνικός ac επείγον ροή αέρα",
+    "κλιματιστικό χαμηλή ροή",
+    "service φίλτρων και ανεμιστήρα ac",
+    "επισκευή airflow κλιματιστικού"
+  ],
+  "status": "researched"
+}

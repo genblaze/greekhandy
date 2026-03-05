@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-overflow-stop-fix-zagora",
+  "slug": "epigousa-episkevi-yporxeilisis-dexamennis-nerou-zagora",
+  "nameGr": "Επείγουσα Επισκευή Υπερχείλισης Δεξαμενής Νερού στη Ζαγορά",
+  "nameEn": "Emergency Water Tank Overflow Stop Fix in Ζαγορά",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή υπερχείλισης δεξαμενής νερού στη Ζαγορά για άμεση αποτροπή απωλειών και ζημιών. SEO intent: «δεξαμενή νερού υπερχειλίζει Ζαγορά».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "δεξαμενή νερού υπερχειλίζει Ζαγορά",
+    "υδραυλικός δεξαμενή επείγον",
+    "φλοτέρ δεξαμενής πρόβλημα",
+    "διακοπή υπερχείλισης νερού",
+    "service δεξαμενής κατοικίας"
+  ],
+  "status": "researched"
+}

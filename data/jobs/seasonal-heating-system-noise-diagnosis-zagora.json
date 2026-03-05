@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-system-noise-diagnosis-zagora",
+  "slug": "epochiakos-elegxos-thoryvou-systimatos-thermansis-zagora",
+  "nameGr": "Εποχικός Έλεγχος Θορύβου Συστήματος Θέρμανσης στη Ζαγορά",
+  "nameEn": "Seasonal Heating System Noise Diagnosis in Ζαγορά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θορύβου συστήματος θέρμανσης στη Ζαγορά για πρόληψη βλάβης πριν την έντονη χειμερινή χρήση. SEO intent: «θέρμανση κάνει θόρυβο Ζαγορά».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "θέρμανση κάνει θόρυβο Ζαγορά",
+    "τεχνικός θέρμανσης διάγνωση",
+    "service λέβητα προληπτικό",
+    "έλεγχος κυκλοφορητή θόρυβος",
+    "συντήρηση θέρμανσης χειμώνα"
+  ],
+  "status": "researched"
+}

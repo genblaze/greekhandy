@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-system-noise-diagnosis-astypalaia",
+  "slug": "epochiakos-elegxos-thoryvou-systimatos-thermansis-astypalaia",
+  "nameGr": "Εποχικός Έλεγχος Θορύβου Συστήματος Θέρμανσης στην Αστυπάλαια",
+  "nameEn": "Seasonal Heating System Noise Diagnosis in Αστυπάλαια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θορύβου συστήματος θέρμανσης στην Αστυπάλαια για πρόληψη βλάβης πριν την έντονη χειμερινή χρήση. SEO intent: «θέρμανση κάνει θόρυβο Αστυπάλαια».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "θέρμανση κάνει θόρυβο Αστυπάλαια",
+    "τεχνικός θέρμανσης διάγνωση",
+    "service λέβητα προληπτικό",
+    "έλεγχος κυκλοφορητή θόρυβος",
+    "συντήρηση θέρμανσης χειμώνα"
+  ],
+  "status": "researched"
+}

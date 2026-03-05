@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-meter-trip-restore-astypalaia",
+  "slug": "epigousa-apokatastasi-ptosis-metriti-revmatos-astypalaia",
+  "nameGr": "Επείγουσα Αποκατάσταση Πτώσης Μετρητή Ρεύματος στην Αστυπάλαια",
+  "nameEn": "Emergency Electrical Meter Trip Restore in Αστυπάλαια",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση πτώσης μετρητή ρεύματος στην Αστυπάλαια με ασφαλή έλεγχο αιτίας και επαναφορά παροχής. SEO intent: «έπεσε ο μετρητής ρεύματος Αστυπάλαια».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "έπεσε ο μετρητής ρεύματος Αστυπάλαια",
+    "ηλεκτρολόγος επείγον μετρητής",
+    "χωρίς ρεύμα από μετρητή",
+    "άμεση αποκατάσταση παροχής",
+    "βλάβη μετρητή ηλεκτρικού"
+  ],
+  "status": "researched"
+}

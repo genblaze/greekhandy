@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-meter-trip-restore-platanias-chanion",
+  "slug": "epigousa-apokatastasi-ptosis-metriti-revmatos-platanias-chanion",
+  "nameGr": "Επείγουσα Αποκατάσταση Πτώσης Μετρητή Ρεύματος στον Πλατανιά Χανίων",
+  "nameEn": "Emergency Electrical Meter Trip Restore in Πλατανιάς Χανίων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση πτώσης μετρητή ρεύματος στον Πλατανιά Χανίων με ασφαλή έλεγχο αιτίας και επαναφορά παροχής. SEO intent: «έπεσε ο μετρητής ρεύματος Πλατανιάς Χανίων».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "έπεσε ο μετρητής ρεύματος Πλατανιάς Χανίων",
+    "ηλεκτρολόγος επείγον μετρητής",
+    "χωρίς ρεύμα από μετρητή",
+    "άμεση αποκατάσταση παροχής",
+    "βλάβη μετρητή ηλεκτρικού"
+  ],
+  "status": "researched"
+}
