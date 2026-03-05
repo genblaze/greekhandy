@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-flow-stability-vrises-evrytania",
+  "slug": "epochiaki-statheropoiisi-rois-vroxou-epistrofis-thermansis-vrises-evrytania",
+  "nameGr": "Εποχική Σταθεροποίηση Ροής Βρόχου Επιστροφής Θέρμανσης στις Βρύσες Ευρυτανίας",
+  "nameEn": "Seasonal Heating Return Loop Flow Stability in Βρύσες Ευρυτανίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική σταθεροποίηση ροής βρόχου επιστροφής θέρμανσης στις Βρύσες Ευρυτανίας για πιο ομοιόμορφη θερμική απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Βρύσες Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-joint-fix-katochori-chanion",
+  "slug": "epigousa-episkevi-enosis-oudeterou-kentrikis-trofodosias-katochori-chanion",
+  "nameGr": "Επείγουσα Επισκευή Ένωσης Ουδετέρου Κεντρικής Τροφοδοσίας στο Κατωχώρι Χανίων",
+  "nameEn": "Emergency Electrical Main Feed Neutral Joint Fix in Κατωχώρι Χανίων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή ένωσης ουδετέρου κεντρικής τροφοδοσίας στο Κατωχώρι Χανίων για σταθερή τάση και ασφαλή λειτουργία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Κατωχώρι Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
