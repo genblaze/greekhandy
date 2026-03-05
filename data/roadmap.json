@@ -1,6 +1,45 @@
 {
   "features": [
     {
+      "id": "qa-critical-fixes-wave-16",
+      "title": "QA Critical Fixes Wave 16",
+      "pillar": "Product",
+      "priority": 1,
+      "status": "planned",
+      "owner": "greekhandy-developer",
+      "summary": "Resolve latest QA-reported trust, profile UX, and truthful form-validation flow blockers across homepage, professionals, and form submission states.",
+      "acceptanceCriteria": [
+        "Homepage hero contrast/typography is clearly readable on mobile/desktop and passes WCAG AA.",
+        "/professionals cards show no placeholder/filler trust language and hide zero-value trust widgets.",
+        "Professional profile pages hide empty media/portfolio sections and present one clear primary contact flow.",
+        "Invalid form submissions return truthful validation states (no faux-success redirects or HTTP 200 invalid flows)."
+      ],
+      "tasks": [
+        {
+          "id": "qa-critical-fixes-wave-16-task-1",
+          "source": "qa-agent",
+          "directive": "Homepage hero still fails basic readability: headline/body are ultra-light on a pale background (desktop + mobile), so the core value proposition is barely legible. Redesign hero contrast and typography hierarchy to pass WCAG AA and remove the glow haze that makes text look blurred."
+        },
+        {
+          "id": "qa-critical-fixes-wave-16-task-2",
+          "source": "qa-agent",
+          "directive": "/professionals still looks like staging data, not a trustworthy marketplace: cards expose labels like 'ΕΠΑΛΗΘΕΥΜΕΝΟ PLACEHOLDER' and trust metrics sitting at 0/100 across profiles. Remove all placeholder/filler language from public cards and hide credibility widgets until they are backed by real data."
+        },
+        {
+          "id": "qa-critical-fixes-wave-16-task-3",
+          "source": "qa-agent",
+          "directive": "Professional profile /professionals/giannis-kosta-klimatismos still ships a broken credibility layout: large empty portfolio area and stacked conversion forms create visual clutter and low trust. Hide empty media sections and simplify to one primary contact flow instead of dumping multiple competing forms in sequence."
+        },
+        {
+          "id": "qa-critical-fixes-wave-16-task-4",
+          "source": "qa-agent",
+          "directive": "Form handling is misleading and opaque: invalid POSTs to /api/professionals/register return HTTP 200 and redirect users to a thank-you page with `status=invalid`, while other invalid form submits bounce to /professionals with query flags. Implement explicit validation UX with field-level errors and truthful success/failure states instead of faux-success redirects."
+        }
+      ],
+      "createdAt": "2026-03-05T04:05:47Z",
+      "updatedAt": "2026-03-05T04:05:47Z"
+    },
+    {
       "id": "qa-critical-fixes-wave-15",
       "title": "QA Critical Fixes Wave 15",
       "pillar": "Product",
