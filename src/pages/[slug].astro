@@ -168,44 +168,69 @@ const enableCategoryServiceSelectionClarity = isCategoryPage && trustDecisionCat
 const serviceSelectionGuidanceMap = {
   ydravlikoi: {
     badge: 'Plumber clarity flow',
-    title: 'Επιλογή υδραυλικού με σιγουριά σε λίγα βήματα.',
-    intro: 'Ξεκινήστε με σαφές σύμπτωμα, περιοχή και χρονικό παράθυρο για να πάρετε πιο καθαρή πρώτη εκτίμηση.',
-    trustHeading: 'Σήματα εμπιστοσύνης',
-    trustCues: [
-      'Βλέπετε καταχωρίσεις με βασική επαλήθευση στοιχείων συνεργάτη.',
-      'Περιμένετε καθαρή αρχική ανταπόκριση για διαθεσιμότητα και βήματα εργασίας.',
-      'Ζητήστε διαφανή προσφορά με διαχωρισμό εργασίας και υλικών.'
-    ],
+    title: 'Επιλογή υδραυλικού με καθαρή απόφαση σε 4 άξονες.',
+    intro: 'Δηλώστε σύμπτωμα, περιοχή και χρόνο επίσκεψης ώστε να συγκρίνετε γρήγορα επείγον, budget, διαθεσιμότητα και εμπιστοσύνη.',
     urgencyHeading: 'Triage προτεραιότητας',
     urgencyCues: [
       { label: 'Σήμερα', text: 'για διαρροή ή αιφνίδια βλάβη που επηρεάζει άμεσα τον χώρο.' },
       { label: '24h', text: 'όταν χρειάζεστε γρήγορη επίσκεψη αλλά όχι άμεση επέμβαση.' },
       { label: 'Προγραμματισμένο', text: 'για συντήρηση, αντικατάσταση ή προληπτικό έλεγχο.' }
     ],
-    footer: 'Σωστή προτεραιότητα από την αρχή σημαίνει λιγότερες άσκοπες επικοινωνίες και πιο καθαρή απόφαση.'
+    budgetHeading: 'Οδηγός budget',
+    budgetCues: [
+      { label: 'Οικονομικό', text: 'συνήθως για μικρές παρεμβάσεις/ελέγχους.' },
+      { label: 'Μεσαίο', text: 'τυπική ζώνη για επισκευές με περιορισμένα υλικά.' },
+      { label: 'Αυξημένο', text: 'συχνό σε αντικαταστάσεις ή σύνθετες εργασίες με υλικά.' }
+    ],
+    availabilityHeading: 'Οδηγός διαθεσιμότητας',
+    availabilityCues: [
+      { label: 'Άμεσα διαθέσιμο', text: 'κατάλληλο όταν το ρίσκο ζημιάς αυξάνεται ανά ώρα.' },
+      { label: 'Μέσα στην εβδομάδα', text: 'ισορροπία ταχύτητας και κόστους για μη κρίσιμες βλάβες.' },
+      { label: 'Ευέλικτο ραντεβού', text: 'βοηθά σε καλύτερη σύγκριση για μη επείγουσες εργασίες.' }
+    ],
+    trustSnippetHeading: 'Trust snippets',
+    trustSnippets: [
+      'Βασική επαλήθευση στοιχείων πριν τη δημόσια εμφάνιση της καταχώρισης.',
+      'Καθαρή πρώτη απάντηση για διαθεσιμότητα και βασικά βήματα εργασίας.',
+      'Προσφορά με διαχωρισμό κόστους εργασίας και υλικών για ασφαλέστερη σύγκριση.'
+    ],
+    footer: 'Με σωστό triage και καθαρό πλαίσιο κόστους/διαθεσιμότητας περιορίζονται άσκοπες επικοινωνίες και η απόφαση γίνεται ταχύτερα.'
   },
   ilektrologoi: {
     badge: 'Electrician clarity flow',
-    title: 'Επιλογή ηλεκτρολόγου με καθαρή εικόνα κινδύνου και κόστους.',
-    intro: 'Δηλώστε από την αρχή ένδειξη βλάβης, πίνακα/κύκλωμα και διαθέσιμο χρόνο για ασφαλέστερη και ταχύτερη ανάθεση.',
-    trustHeading: 'Σήματα εμπιστοσύνης',
-    trustCues: [
-      'Οι εμφανιζόμενες καταχωρίσεις περνούν βασικό έλεγχο στοιχείων.',
-      'Η ποιοτική αρχική απόκριση περιλαμβάνει σαφές επόμενο βήμα και εκτίμηση χρόνου.',
-      'Προτιμήστε διαφανείς προσφορές με ξεκάθαρο εύρος εργασιών και υλικών.'
-    ],
+    title: 'Επιλογή ηλεκτρολόγου με σαφές πλαίσιο κινδύνου και κόστους.',
+    intro: 'Ξεκινήστε με ένδειξη βλάβης, πίνακα/κύκλωμα και διαθέσιμο χρόνο για να φιλτράρετε άμεσα με βάση προτεραιότητα, budget, διαθεσιμότητα και εμπιστοσύνη.',
     urgencyHeading: 'Triage προτεραιότητας',
     urgencyCues: [
       { label: 'Σήμερα', text: 'για διακοπή ρεύματος, πίνακα που πέφτει ή ένδειξη κινδύνου.' },
       { label: '24h', text: 'για βλάβες που χρειάζονται γρήγορη επίσκεψη χωρίς άμεσο ρίσκο.' },
       { label: 'Προγραμματισμένο', text: 'για αναβαθμίσεις, νέες γραμμές ή προληπτικό έλεγχο.' }
     ],
-    footer: 'Σαφής περιγραφή σημαίνει καλύτερη προτεραιοποίηση, ασφαλέστερη εκτέλεση και καθαρότερη σύγκριση.'
+    budgetHeading: 'Οδηγός budget',
+    budgetCues: [
+      { label: 'Οικονομικό', text: 'συχνά για ελέγχους ή μικρές διορθώσεις.' },
+      { label: 'Μεσαίο', text: 'τυπικό εύρος για βλάβες κυκλωμάτων και επιμέρους αντικαταστάσεις.' },
+      { label: 'Αυξημένο', text: 'αναμενόμενο σε αναβαθμίσεις πίνακα και εκτεταμένες παρεμβάσεις.' }
+    ],
+    availabilityHeading: 'Οδηγός διαθεσιμότητας',
+    availabilityCues: [
+      { label: 'Άμεσα διαθέσιμο', text: 'προτεραιότητα όταν υπάρχει ένδειξη κινδύνου ή πλήρης διακοπή.' },
+      { label: 'Μέσα στην εβδομάδα', text: 'κατάλληλο για σημαντικές αλλά μη κρίσιμες βλάβες.' },
+      { label: 'Ευέλικτο ραντεβού', text: 'βελτιώνει σύγκριση για προληπτικούς ελέγχους και αναβαθμίσεις.' }
+    ],
+    trustSnippetHeading: 'Trust snippets',
+    trustSnippets: [
+      'Οι καταχωρίσεις περνούν βασικό έλεγχο στοιχείων πριν την προβολή.',
+      'Ποιοτική πρώτη απόκριση με σαφές επόμενο βήμα και αρχική εκτίμηση χρόνου.',
+      'Διαφανές scope με διαχωρισμό εργασίας/υλικών για καθαρότερη σύγκριση προσφορών.'
+    ],
+    footer: 'Η καλύτερη απόφαση έρχεται όταν το triage, το ρίσκο ασφαλείας και το budget ευθυγραμμίζονται από το πρώτο αίτημα.'
   }
 } as const;
 const serviceSelectionGuidance = enableCategoryServiceSelectionClarity
   ? serviceSelectionGuidanceMap[category.slug as keyof typeof serviceSelectionGuidanceMap]
   : null;
+const serviceSelectionTrustSnippets = serviceSelectionGuidance?.trustSnippets || [];
 const cityTokens = ['athina', 'thessaloniki', 'patra', 'irakleio', 'larisa', 'volos', 'ioannina'];
 const cityLabelMap: Record<string, string> = {
   athina: 'Αθήνα',
@@ -612,19 +637,35 @@ const faqSchema = pageCategory.faq?.length ? {
               </div>
               <h3 class="mt-3 text-xl font-bold text-slate-900 md:text-2xl">{serviceSelectionGuidance.title}</h3>
               <p class="mt-2 text-sm leading-relaxed text-slate-600">{serviceSelectionGuidance.intro}</p>
-              <div class="mt-4 grid gap-4 lg:grid-cols-2">
-                <article class="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
-                  <p class="text-sm font-semibold text-emerald-900">{serviceSelectionGuidance.trustHeading}</p>
-                  <ul class="mt-2 space-y-2 text-sm text-emerald-900">
-                    {serviceSelectionGuidance.trustCues.map((cue) => (<li>{cue}</li>))}
-                  </ul>
-                </article>
+              <div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 <article class="rounded-xl border border-amber-200 bg-amber-50/70 p-4">
                   <p class="text-sm font-semibold text-amber-900">{serviceSelectionGuidance.urgencyHeading}</p>
                   <ul class="mt-2 space-y-2 text-sm text-amber-900">
                     {serviceSelectionGuidance.urgencyCues.map((cue) => (
                       <li><span class="font-semibold">{cue.label}:</span> {cue.text}</li>
                     ))}
+                  </ul>
+                </article>
+                <article class="rounded-xl border border-sky-200 bg-sky-50/70 p-4">
+                  <p class="text-sm font-semibold text-sky-900">{serviceSelectionGuidance.budgetHeading}</p>
+                  <ul class="mt-2 space-y-2 text-sm text-sky-900">
+                    {serviceSelectionGuidance.budgetCues.map((cue) => (
+                      <li><span class="font-semibold">{cue.label}:</span> {cue.text}</li>
+                    ))}
+                  </ul>
+                </article>
+                <article class="rounded-xl border border-cyan-200 bg-cyan-50/70 p-4">
+                  <p class="text-sm font-semibold text-cyan-900">{serviceSelectionGuidance.availabilityHeading}</p>
+                  <ul class="mt-2 space-y-2 text-sm text-cyan-900">
+                    {serviceSelectionGuidance.availabilityCues.map((cue) => (
+                      <li><span class="font-semibold">{cue.label}:</span> {cue.text}</li>
+                    ))}
+                  </ul>
+                </article>
+                <article class="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
+                  <p class="text-sm font-semibold text-emerald-900">{serviceSelectionGuidance.trustSnippetHeading}</p>
+                  <ul class="mt-2 space-y-2 text-sm text-emerald-900">
+                    {serviceSelectionGuidance.trustSnippets.map((snippet) => (<li>{snippet}</li>))}
                   </ul>
                 </article>
               </div>
@@ -766,21 +807,12 @@ const faqSchema = pageCategory.faq?.length ? {
                       .filter((metric): metric is CardMetric => Boolean(metric)),
                     ...cardMetrics.filter((metric) => !variantMeta.metricOrder.includes(metric.key))
                   ];
-                  const leadMetric = orderedMetrics[0];
-                  const secondaryMetrics = orderedMetrics.slice(1);
+                  const compactMetrics = orderedMetrics.slice(0, 4);
                   const decisionSnippet = ensureTerminalPunctuation(buildDecisionSnippet(job).replace(/^["«]+|["»]+$/g, '').trim());
-                  const contextSignals = [
-                    { label: 'Ροή υπηρεσίας', value: variantMeta.laneLabel },
-                    { label: 'Προτεραιότητα', value: getUrgencyLabel(urgencyValue) },
-                    { label: 'Περιοχή', value: cityLabel },
-                    { label: 'Διαθεσιμότητα', value: availabilityLabel }
-                  ];
-                  const credibilityCues = [
-                    { label: 'Έλεγχος καταχώρισης', value: 'Η καταχώριση περνά βασικό έλεγχο στοιχείων πριν εμφανιστεί.' },
-                    { label: variantMeta.signalLabel, value: variantMeta.signalHint },
-                    { label: 'Πλαίσιο απόφασης', value: proofContext },
-                    { label: 'Αξιολογήσεις', value: reviewContext }
-                  ];
+                  const trustSnippet = serviceSelectionTrustSnippets.length
+                    ? serviceSelectionTrustSnippets[index % serviceSelectionTrustSnippets.length]
+                    : reviewContext;
+                  const comparisonHint = budgetValue === 'high' ? proofContext : variantMeta.decisionHint;
                   const cardClass = enableTrustDecisionCardUX
                     ? variantMeta.frameClass
                     : 'border-slate-200 bg-white hover:border-blue-300';
@@ -800,53 +832,27 @@ const faqSchema = pageCategory.faq?.length ? {
                         <>
                           <div class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
                             <span class={`rounded-full border px-2.5 py-1 ${variantMeta.headingClass}`}>{variantMeta.laneLabel}</span>
-                            <span class={`rounded-full border px-2.5 py-1 ${variantMeta.signalClass}`}>{variantMeta.signalLabel}</span>
                             <span class="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-slate-700">
-                              {urgencyValue === 'urgent' ? 'Προτεραιότητα: επείγον' : 'Προτεραιότητα: προγραμματισμένο'}
+                              Προτεραιότητα: {getUrgencyLabel(urgencyValue).toLocaleLowerCase('el-GR')}
+                            </span>
+                            <span class={`rounded-full border px-2 py-0.5 ${variantMeta.signalClass}`}>
+                              Budget: {budgetLabel}
                             </span>
                           </div>
                           <h3 class="mt-3 text-base font-semibold leading-snug text-slate-900">{job.nameGr}</h3>
-                          <div class={`mt-3 rounded-lg border p-3 ${variantMeta.snippetClass}`}>
-                            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{variantMeta.snippetHeading}</p>
-                            <p class="mt-2 text-sm leading-6 text-slate-800">{decisionSnippet}</p>
-                            <dl class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                              {contextSignals.map((signal) => (
-                                <div class="rounded-lg border border-slate-200 bg-white px-2.5 py-2">
-                                  <dt class="text-[11px] uppercase tracking-wide text-slate-500">{signal.label}</dt>
-                                  <dd class="mt-0.5 text-xs font-semibold text-slate-900">{signal.value}</dd>
-                                </div>
-                              ))}
-                            </dl>
-                          </div>
-                          {leadMetric && (
-                            <div class="mt-3 rounded-lg border border-slate-300 bg-white px-3 py-3">
-                              <p class="text-xs uppercase tracking-wide text-slate-500">Κύριο κριτήριο σύγκρισης</p>
-                              <p class="mt-1 text-xs text-slate-600">{leadMetric.label}</p>
-                              <p class="mt-1 text-base font-semibold leading-snug text-slate-900">{leadMetric.value}</p>
-                            </div>
-                          )}
-                          <dl class="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                            {secondaryMetrics.map((metric) => (
+                          <p class="mt-2 text-sm leading-6 text-slate-800">{decisionSnippet}</p>
+                          <dl class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                            {compactMetrics.map((metric) => (
                               <div class="rounded-lg border border-slate-200 bg-white px-2.5 py-2">
                                 <dt class="text-xs text-slate-500">{metric.label}</dt>
                                 <dd class="mt-0.5 text-sm font-semibold text-slate-900">{metric.value}</dd>
                               </div>
                             ))}
                           </dl>
-                          <div class="mt-3 rounded-lg border border-slate-200 bg-white px-3 py-2">
-                            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{variantMeta.decisionHeading}</p>
-                            <p class="mt-1 text-sm text-slate-700">{variantMeta.decisionHint}</p>
-                          </div>
-                          <div class="mt-2 rounded-lg border border-slate-200 bg-white px-3 py-2" aria-label="Πλαίσιο αξιοπιστίας καταχώρισης">
-                            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Αποδεικτικά εμπιστοσύνης</p>
-                            <dl class="mt-2 space-y-2">
-                              {credibilityCues.map((cue) => (
-                                <div class="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2">
-                                  <dt class="text-[11px] font-semibold text-slate-600">{cue.label}</dt>
-                                  <dd class="mt-0.5 text-xs leading-relaxed text-slate-700">{cue.value}</dd>
-                                </div>
-                              ))}
-                            </dl>
+                          <div class={`mt-3 rounded-lg border px-3 py-2 ${variantMeta.snippetClass}`} aria-label="Trust snippet καταχώρισης">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{variantMeta.signalLabel}</p>
+                            <p class="mt-1 text-sm text-slate-700">{ensureTerminalPunctuation(trustSnippet)}</p>
+                            <p class="mt-1 text-xs text-slate-600">{comparisonHint}</p>
                           </div>
                         </>
                       ) : (
