@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-airlock-fix-agia-varvara-dramas",
+  "slug": "epigousa-episkevi-aerofragis-grammis-aporrois-esoterikou-ac-agia-varvara-dramas",
+  "nameGr": "Επείγουσα Επισκευή Αεροφραγής Γραμμής Απορροής Εσωτερικού AC στην Αγία Βαρβάρα Δράμας",
+  "nameEn": "Emergency AC Indoor Drainline Airlock Fix in Αγία Βαρβάρα Δράμας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αεροφραγής γραμμής απορροής εσωτερικού AC στην Αγία Βαρβάρα Δράμας για άμεση απομάκρυνση συμπυκνωμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Βαρβάρα Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

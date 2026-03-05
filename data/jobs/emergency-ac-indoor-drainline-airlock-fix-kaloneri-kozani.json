@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-airlock-fix-kaloneri-kozani",
+  "slug": "epigousa-episkevi-aerofragis-grammis-aporrois-esoterikou-ac-kaloneri-kozani",
+  "nameGr": "Επείγουσα Επισκευή Αεροφραγής Γραμμής Απορροής Εσωτερικού AC στο Καλονέρι Κοζάνης",
+  "nameEn": "Emergency AC Indoor Drainline Airlock Fix in Καλονέρι Κοζάνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αεροφραγής γραμμής απορροής εσωτερικού AC στο Καλονέρι Κοζάνης για άμεση απομάκρυνση συμπυκνωμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καλονέρι Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

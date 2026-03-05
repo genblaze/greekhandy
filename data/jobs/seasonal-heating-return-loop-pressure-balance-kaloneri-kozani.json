@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-pressure-balance-kaloneri-kozani",
+  "slug": "epochiaki-eksisorropisi-piesis-epistrofis-vroxou-thermansis-kaloneri-kozani",
+  "nameGr": "Εποχική Εξισορρόπηση Πίεσης Επιστροφής Βρόχου Θέρμανσης στο Καλονέρι Κοζάνης",
+  "nameEn": "Seasonal Heating Return Loop Pressure Balance in Καλονέρι Κοζάνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση πίεσης επιστροφής βρόχου θέρμανσης στο Καλονέρι Κοζάνης για σταθερή θερμική απόδοση σε όλο το σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλονέρι Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

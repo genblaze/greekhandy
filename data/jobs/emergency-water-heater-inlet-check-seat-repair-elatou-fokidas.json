@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-inlet-check-seat-repair-elatou-fokidas",
+  "slug": "epigousa-episkevi-edras-valvidas-eisodou-thermosifona-elatou-fokidas",
+  "nameGr": "Επείγουσα Επισκευή Έδρας Βαλβίδας Εισόδου Θερμοσίφωνα στην Ελατού Φωκίδας",
+  "nameEn": "Emergency Water Heater Inlet Check Seat Repair in Ελατού Φωκίδας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή έδρας βαλβίδας εισόδου θερμοσίφωνα στην Ελατού Φωκίδας για άμεση αποκατάσταση στεγανότητας και παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Ελατού Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

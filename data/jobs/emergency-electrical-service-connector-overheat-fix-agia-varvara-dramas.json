@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-connector-overheat-fix-agia-varvara-dramas",
+  "slug": "epigousa-episkevi-yperthermansis-syndesmou-paroxis-revmatos-agia-varvara-dramas",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Συνδέσμου Παροχής Ρεύματος στην Αγία Βαρβάρα Δράμας",
+  "nameEn": "Emergency Electrical Service Connector Overheat Fix in Αγία Βαρβάρα Δράμας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης συνδέσμου παροχής ρεύματος στην Αγία Βαρβάρα Δράμας για ασφαλή επαναφορά ηλεκτροδότησης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Βαρβάρα Δράμας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

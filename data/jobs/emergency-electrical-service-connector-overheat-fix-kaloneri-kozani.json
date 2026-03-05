@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-connector-overheat-fix-kaloneri-kozani",
+  "slug": "epigousa-episkevi-yperthermansis-syndesmou-paroxis-revmatos-kaloneri-kozani",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Συνδέσμου Παροχής Ρεύματος στο Καλονέρι Κοζάνης",
+  "nameEn": "Emergency Electrical Service Connector Overheat Fix in Καλονέρι Κοζάνης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης συνδέσμου παροχής ρεύματος στο Καλονέρι Κοζάνης για ασφαλή επαναφορά ηλεκτροδότησης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλονέρι Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

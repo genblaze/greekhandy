@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-pressure-balance-elatou-fokidas",
+  "slug": "epochiaki-eksisorropisi-piesis-epistrofis-vroxou-thermansis-elatou-fokidas",
+  "nameGr": "Εποχική Εξισορρόπηση Πίεσης Επιστροφής Βρόχου Θέρμανσης στην Ελατού Φωκίδας",
+  "nameEn": "Seasonal Heating Return Loop Pressure Balance in Ελατού Φωκίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση πίεσης επιστροφής βρόχου θέρμανσης στην Ελατού Φωκίδας για σταθερή θερμική απόδοση σε όλο το σπίτι.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ελατού Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

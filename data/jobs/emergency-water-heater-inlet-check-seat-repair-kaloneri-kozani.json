@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-inlet-check-seat-repair-kaloneri-kozani",
+  "slug": "epigousa-episkevi-edras-valvidas-eisodou-thermosifona-kaloneri-kozani",
+  "nameGr": "Επείγουσα Επισκευή Έδρας Βαλβίδας Εισόδου Θερμοσίφωνα στο Καλονέρι Κοζάνης",
+  "nameEn": "Emergency Water Heater Inlet Check Seat Repair in Καλονέρι Κοζάνης",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή έδρας βαλβίδας εισόδου θερμοσίφωνα στο Καλονέρι Κοζάνης για άμεση αποκατάσταση στεγανότητας και παροχής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Καλονέρι Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

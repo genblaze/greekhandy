@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-airlock-fix-elatou-fokidas",
+  "slug": "epigousa-episkevi-aerofragis-grammis-aporrois-esoterikou-ac-elatou-fokidas",
+  "nameGr": "Επείγουσα Επισκευή Αεροφραγής Γραμμής Απορροής Εσωτερικού AC στην Ελατού Φωκίδας",
+  "nameEn": "Emergency AC Indoor Drainline Airlock Fix in Ελατού Φωκίδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αεροφραγής γραμμής απορροής εσωτερικού AC στην Ελατού Φωκίδας για άμεση απομάκρυνση συμπυκνωμάτων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ελατού Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-connector-overheat-fix-elatou-fokidas",
+  "slug": "epigousa-episkevi-yperthermansis-syndesmou-paroxis-revmatos-elatou-fokidas",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Συνδέσμου Παροχής Ρεύματος στην Ελατού Φωκίδας",
+  "nameEn": "Emergency Electrical Service Connector Overheat Fix in Ελατού Φωκίδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης συνδέσμου παροχής ρεύματος στην Ελατού Φωκίδας για ασφαλή επαναφορά ηλεκτροδότησης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ελατού Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
