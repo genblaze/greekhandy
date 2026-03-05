@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const target = '/elaiokhrwmatistis';
+---
+
+<Layout
+  title="Ελαιοχρωματιστές | GreekHandy"
+  description="Ανακατεύθυνση στον ενημερωμένο οδηγό ελαιοχρωματιστή της GreekHandy."
+  canonical="https://greekhandy.gr/elaiokhrwmatistes"
+>
+  <main class="mx-auto max-w-3xl px-4 py-16 text-center">
+    <h1 class="text-2xl font-bold text-slate-900">Μετάβαση σε ενημερωμένη σελίδα</h1>
+    <p class="mt-3 text-sm text-slate-600">Θα μεταφερθείτε αυτόματα στη νεότερη σελίδα υπηρεσίας.</p>
+    <p class="mt-4">
+      <a href={target} class="inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700">
+        Συνέχεια
+      </a>
+    </p>
+  </main>
+
+  <meta http-equiv="refresh" content={`0;url=${target}`} />
+</Layout>

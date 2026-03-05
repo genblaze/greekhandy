@@ -318,7 +318,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio?.trim() || 'Ο επαγγελματίας είναι διαθέσιμος για ανάθεση υπηρεσιών στην περιοχή του προφίλ.'}</p>
 
       {portfolioImageSources.length === 0 && (
-        <p class="mt-3 text-xs text-slate-500">Το portfolio θα εμφανιστεί εδώ μόλις προστεθούν φωτογραφίες έργων.</p>
+        <p class="mt-3 text-xs text-slate-500">Το portfolio θα εμφανιστεί μόλις προστεθούν φωτογραφίες έργων.</p>
       )}
 
       <div class="mt-6 rounded-2xl border border-blue-200 bg-white/90 p-4 shadow-sm">
@@ -330,7 +330,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             aria-describedby="profile-primary-cta-hint profile-primary-cta-proof"
             aria-label="Βασικό βήμα: Ζητήστε υπηρεσία"
           >
-            Κύριο CTA: Ζητήστε υπηρεσία
+            Κύριο βήμα: Ζητήστε υπηρεσία
           </a>
         </div>
         <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ακολουθήστε πρώτα την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές ανοίγουν προαιρετικά χαμηλότερα, ώστε να μην διασπάται η βασική διαδρομή.</p>
@@ -865,6 +865,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
         const secondaryTabButtons = Array.from(document.querySelectorAll('[data-secondary-tab-target]'));
         const primaryBookingForm = document.querySelector('[data-booking-form]');
         const profileMediaImages = Array.from(document.querySelectorAll('[data-prof-media-img]')).filter((item) => item instanceof HTMLImageElement);
+        const portfolioSection = document.querySelector('[data-portfolio-section]');
         const portfolioGrid = document.querySelector('[data-portfolio-grid]');
         const portfolioEmpty = document.querySelector('[data-portfolio-empty]');
         const syncPortfolioState = () => {
@@ -874,6 +875,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
           const shouldShowEmpty = visibleFrames.length === 0;
           portfolioGrid.classList.toggle('hidden', shouldShowEmpty);
           portfolioEmpty.classList.toggle('hidden', !shouldShowEmpty);
+          if (portfolioSection instanceof HTMLElement) portfolioSection.classList.toggle('hidden', shouldShowEmpty);
         };
 
         const pendingForms = Array.from(document.querySelectorAll('[data-pending-form]')).filter((form) => form instanceof HTMLFormElement);
