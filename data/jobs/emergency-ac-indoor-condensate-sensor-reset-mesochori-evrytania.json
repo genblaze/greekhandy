@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-sensor-reset-mesochori-evrytania",
+  "slug": "epigousa-epanafora-aisthitira-sympyknomaton-esoterikou-ac-mesochori-evrytania",
+  "nameGr": "Επείγουσα Επαναφορά Αισθητήρα Συμπυκνωμάτων Εσωτερικού AC στο Μεσοχώρι Ευρυτανίας",
+  "nameEn": "Emergency AC Indoor Condensate Sensor Reset in Μεσοχώρι Ευρυτανίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά αισθητήρα συμπυκνωμάτων εσωτερικού AC στο Μεσοχώρι Ευρυτανίας για άμεση διακοπή λανθασμένων συναγερμών διαρροής.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μεσοχώρι Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-loop-flush-check-fragma-marathona-area",
+  "slug": "epochiakos-elegxos-ekplysis-vroxou-kalorifer-fragma-marathona-area",
+  "nameGr": "Εποχικός Έλεγχος Έκπλυσης Βρόχου Καλοριφέρ στην περιοχή Φράγματος Μαραθώνα",
+  "nameEn": "Seasonal Heating Radiator Loop Flush Check in περιοχή Φράγματος Μαραθώνα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος έκπλυσης βρόχου καλοριφέρ στην περιοχή Φράγματος Μαραθώνα για βελτιωμένη κυκλοφορία και σταθερή απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "περιοχή Φράγματος Μαραθώνα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

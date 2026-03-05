@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-inlet-check-valve-reset-alonia-imathias",
+  "slug": "epigousa-epanafora-valvidas-anepistrofis-eisodou-thermosifona-alonia-imathias",
+  "nameGr": "Επείγουσα Επαναφορά Βαλβίδας Αντεπιστροφής Εισόδου Θερμοσίφωνα στα Αλώνια Ημαθίας",
+  "nameEn": "Emergency Water Heater Inlet Check Valve Reset in Αλώνια Ημαθίας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επαναφορά βαλβίδας αντεπιστροφής εισόδου θερμοσίφωνα στα Αλώνια Ημαθίας για άμεση αποκατάσταση ασφαλούς ροής νερού.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αλώνια Ημαθίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-loop-flush-check-mesochori-evrytania",
+  "slug": "epochiakos-elegxos-ekplysis-vroxou-kalorifer-mesochori-evrytania",
+  "nameGr": "Εποχικός Έλεγχος Έκπλυσης Βρόχου Καλοριφέρ στο Μεσοχώρι Ευρυτανίας",
+  "nameEn": "Seasonal Heating Radiator Loop Flush Check in Μεσοχώρι Ευρυτανίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος έκπλυσης βρόχου καλοριφέρ στο Μεσοχώρι Ευρυτανίας για βελτιωμένη κυκλοφορία και σταθερή απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μεσοχώρι Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

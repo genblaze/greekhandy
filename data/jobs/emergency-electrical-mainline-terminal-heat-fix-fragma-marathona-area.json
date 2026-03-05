@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-mainline-terminal-heat-fix-fragma-marathona-area",
+  "slug": "epigousa-episkevi-yperthermansis-akrodexton-kentrikis-grammis-fragma-marathona-area",
+  "nameGr": "Επείγουσα Επισκευή Υπερθέρμανσης Ακροδεκτών Κεντρικής Γραμμής στην περιοχή Φράγματος Μαραθώνα",
+  "nameEn": "Emergency Electrical Mainline Terminal Heat Fix in περιοχή Φράγματος Μαραθώνα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή υπερθέρμανσης ακροδεκτών κεντρικής γραμμής στην περιοχή Φράγματος Μαραθώνα για πρόληψη πτώσεων και ασφαλή λειτουργία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "περιοχή Φράγματος Μαραθώνα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

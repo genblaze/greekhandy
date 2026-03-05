@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-loop-flush-check-alonia-imathias",
+  "slug": "epochiakos-elegxos-ekplysis-vroxou-kalorifer-alonia-imathias",
+  "nameGr": "Εποχικός Έλεγχος Έκπλυσης Βρόχου Καλοριφέρ στα Αλώνια Ημαθίας",
+  "nameEn": "Seasonal Heating Radiator Loop Flush Check in Αλώνια Ημαθίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος έκπλυσης βρόχου καλοριφέρ στα Αλώνια Ημαθίας για βελτιωμένη κυκλοφορία και σταθερή απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αλώνια Ημαθίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
