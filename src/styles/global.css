@@ -150,7 +150,7 @@ body {
 .gh-hero-title { margin-top: 1rem; max-width: 48rem; font-size: 2rem; font-weight: 800; line-height: 1.04; letter-spacing: -0.022em; color: #fff; }
 @media (min-width: 768px) { .gh-hero-title { margin-top: 1.25rem; font-size: 3.56rem; } }
 .gh-hero-help { width: 100%; border: 1px solid rgb(255 255 255 / 0.58); background: rgb(2 6 23 / 0.93); border-radius: 0.5rem; padding: 0.5rem 0.75rem; font-size: 0.78rem; line-height: 1.52; color: rgb(236 254 255); font-weight: 600; }
-.gh-hero-meta { width: 100%; font-size: 0.78rem; font-weight: 700; color: rgb(248 250 252); }
+.gh-hero-meta { width: 100%; font-size: 0.8rem; font-weight: 800; color: rgb(248 250 252); }
 .gh-hero-primary-btn {
   display: inline-flex; min-height: 2.75rem; align-items: center; border-radius: 9999px; border: 2px solid rgb(255 255 255);
   background: rgb(103 232 249); padding: 0.75rem 1.75rem; font-size: 0.88rem; font-weight: 800; text-transform: uppercase;

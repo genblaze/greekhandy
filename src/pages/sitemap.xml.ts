@@ -48,7 +48,7 @@ export const GET: APIRoute = async () => {
     professionalRoutes = [];
   }
 
-  const disallowedAliasPaths = new Set(['/epaggelmaties']);
+  const disallowedAliasPaths = new Set(['/epaggelmaties', '/professionals/register']);
 
   const allRoutes = [
     ...staticRoutes.map((route) => ({ loc: toAbsoluteUrl(route), lastmod: toIso() })),
