@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-boiler-fill-loop-seal-fix-fteri-achaias",
+  "slug": "epigousa-episkevi-steganotitas-vroxou-pliroseos-boiler-fteri-achaias",
+  "nameGr": "Επείγουσα Επισκευή Στεγανότητας Βρόχου Πλήρωσης Boiler στη Φτέρη Αχαΐας",
+  "nameEn": "Emergency Water Boiler Fill Loop Seal Fix in Φτέρη Αχαΐας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή στεγανότητας βρόχου πλήρωσης boiler στη Φτέρη Αχαΐας για άμεση αποφυγή διαρροής και διατήρηση πίεσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Φτέρη Αχαΐας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

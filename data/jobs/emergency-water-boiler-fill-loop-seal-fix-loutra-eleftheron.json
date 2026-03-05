@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-boiler-fill-loop-seal-fix-loutra-eleftheron",
+  "slug": "epigousa-episkevi-steganotitas-vroxou-pliroseos-boiler-loutra-eleftheron",
+  "nameGr": "Επείγουσα Επισκευή Στεγανότητας Βρόχου Πλήρωσης Boiler στα Λουτρά Ελευθερών",
+  "nameEn": "Emergency Water Boiler Fill Loop Seal Fix in Λουτρά Ελευθερών",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή στεγανότητας βρόχου πλήρωσης boiler στα Λουτρά Ελευθερών για άμεση αποφυγή διαρροής και διατήρηση πίεσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Λουτρά Ελευθερών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

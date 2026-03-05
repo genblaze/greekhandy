@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-slope-correction-fteri-achaias",
+  "slug": "epigousa-diorthosi-klisis-aporrois-esoterikou-ac-fteri-achaias",
+  "nameGr": "Επείγουσα Διόρθωση Κλίσης Απορροής Εσωτερικού AC στη Φτέρη Αχαΐας",
+  "nameEn": "Emergency AC Indoor Drain Slope Correction in Φτέρη Αχαΐας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διόρθωση κλίσης απορροής εσωτερικού AC στη Φτέρη Αχαΐας για άμεση αποτροπή υπερχείλισης νερών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Φτέρη Αχαΐας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-manifold-air-bleed-tune-fteri-achaias",
+  "slug": "epochiaki-rythmisi-exaerosis-syllekti-thermansis-fteri-achaias",
+  "nameGr": "Εποχική Ρύθμιση Εξαέρωσης Συλλέκτη Θέρμανσης στη Φτέρη Αχαΐας",
+  "nameEn": "Seasonal Heating Manifold Air Bleed Tune in Φτέρη Αχαΐας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση εξαέρωσης συλλέκτη θέρμανσης στη Φτέρη Αχαΐας για καλύτερη κυκλοφορία και αποδοτικότητα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Φτέρη Αχαΐας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

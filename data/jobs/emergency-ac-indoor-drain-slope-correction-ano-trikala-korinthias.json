@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-slope-correction-ano-trikala-korinthias",
+  "slug": "epigousa-diorthosi-klisis-aporrois-esoterikou-ac-ano-trikala-korinthias",
+  "nameGr": "Επείγουσα Διόρθωση Κλίσης Απορροής Εσωτερικού AC στα Άνω Τρίκαλα Κορινθίας",
+  "nameEn": "Emergency AC Indoor Drain Slope Correction in Άνω Τρίκαλα Κορινθίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διόρθωση κλίσης απορροής εσωτερικού AC στα Άνω Τρίκαλα Κορινθίας για άμεση αποτροπή υπερχείλισης νερών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Άνω Τρίκαλα Κορινθίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

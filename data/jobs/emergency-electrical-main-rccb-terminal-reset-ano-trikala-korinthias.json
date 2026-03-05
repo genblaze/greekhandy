@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-rccb-terminal-reset-ano-trikala-korinthias",
+  "slug": "epigousa-epanafora-akrodexti-kentrikou-rccb-ano-trikala-korinthias",
+  "nameGr": "Επείγουσα Επαναφορά Ακροδέκτη Κεντρικού RCCB στα Άνω Τρίκαλα Κορινθίας",
+  "nameEn": "Emergency Electrical Main RCCB Terminal Reset in Άνω Τρίκαλα Κορινθίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επαναφορά ακροδέκτη κεντρικού RCCB στα Άνω Τρίκαλα Κορινθίας για σταθερή και ασφαλή ηλεκτρική προστασία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άνω Τρίκαλα Κορινθίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

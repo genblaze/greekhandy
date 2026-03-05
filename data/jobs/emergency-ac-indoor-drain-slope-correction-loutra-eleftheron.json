@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-slope-correction-loutra-eleftheron",
+  "slug": "epigousa-diorthosi-klisis-aporrois-esoterikou-ac-loutra-eleftheron",
+  "nameGr": "Επείγουσα Διόρθωση Κλίσης Απορροής Εσωτερικού AC στα Λουτρά Ελευθερών",
+  "nameEn": "Emergency AC Indoor Drain Slope Correction in Λουτρά Ελευθερών",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διόρθωση κλίσης απορροής εσωτερικού AC στα Λουτρά Ελευθερών για άμεση αποτροπή υπερχείλισης νερών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Λουτρά Ελευθερών επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
