@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-fuse-holder-repair-ptelea-karditsas",
+  "slug": "epigousa-episkevi-vasis-asfaleias-paroxis-ptelea-karditsas",
+  "nameGr": "Επείγουσα Επισκευή Βάσης Ασφάλειας Παροχής στην Πτελέα Καρδίτσας",
+  "nameEn": "Emergency Electrical Service Fuse Holder Repair in Πτελέα Καρδίτσας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βάσης ασφάλειας παροχής στην Πτελέα Καρδίτσας για άμεση και ασφαλή επαναφορά ρεύματος στο σπίτι.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Πτελέα Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

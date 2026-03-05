@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-pan-level-correction-ptelea-karditsas",
+  "slug": "epigousa-diorthosi-stathmis-lekanis-aporrois-esoterikou-ac-ptelea-karditsas",
+  "nameGr": "Επείγουσα Διόρθωση Στάθμης Λεκάνης Απορροής Εσωτερικού AC στην Πτελέα Καρδίτσας",
+  "nameEn": "Emergency AC Indoor Drain Pan Level Correction in Πτελέα Καρδίτσας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διόρθωση στάθμης λεκάνης απορροής εσωτερικού AC στην Πτελέα Καρδίτσας για αποφυγή διαρροών στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Πτελέα Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

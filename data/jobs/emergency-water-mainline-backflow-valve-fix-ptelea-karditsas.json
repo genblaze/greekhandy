@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-mainline-backflow-valve-fix-ptelea-karditsas",
+  "slug": "epigousa-episkevi-valvidas-antistrofis-kentrikis-grammis-nerou-ptelea-karditsas",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Αντιστροφής Κεντρικής Γραμμής Νερού στην Πτελέα Καρδίτσας",
+  "nameEn": "Emergency Water Mainline Backflow Valve Fix in Πτελέα Καρδίτσας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας αντιστροφής κεντρικής γραμμής νερού στην Πτελέα Καρδίτσας για άμεση αποκατάσταση ασφαλούς ροής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Πτελέα Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

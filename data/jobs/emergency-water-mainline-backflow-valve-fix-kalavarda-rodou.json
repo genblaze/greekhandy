@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-mainline-backflow-valve-fix-kalavarda-rodou",
+  "slug": "epigousa-episkevi-valvidas-antistrofis-kentrikis-grammis-nerou-kalavarda-rodou",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Αντιστροφής Κεντρικής Γραμμής Νερού στα Καλαβάρδα Ρόδου",
+  "nameEn": "Emergency Water Mainline Backflow Valve Fix in Καλαβάρδα Ρόδου",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας αντιστροφής κεντρικής γραμμής νερού στα Καλαβάρδα Ρόδου για άμεση αποκατάσταση ασφαλούς ροής.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Καλαβάρδα Ρόδου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

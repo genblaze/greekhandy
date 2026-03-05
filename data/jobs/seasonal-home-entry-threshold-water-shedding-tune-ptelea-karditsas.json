@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-water-shedding-tune-ptelea-karditsas",
+  "slug": "epochiaki-rythmisi-aporrois-ydatos-katofliou-eisodou-ptelea-karditsas",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Ύδατος Κατωφλιού Εισόδου στην Πτελέα Καρδίτσας",
+  "nameEn": "Seasonal Home Entry Threshold Water Shedding Tune in Πτελέα Καρδίτσας",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής ύδατος κατωφλιού εισόδου στην Πτελέα Καρδίτσας για αποφυγή λιμναζόντων νερών και ολισθηρότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Πτελέα Καρδίτσας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

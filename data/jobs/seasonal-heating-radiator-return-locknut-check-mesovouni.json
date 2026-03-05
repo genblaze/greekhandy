@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-return-locknut-check-mesovouni",
+  "slug": "epochiakos-elegxos-paximadiou-epistrofis-kalorifer-mesovouni",
+  "nameGr": "Εποχικός Έλεγχος Παξιμαδιού Επιστροφής Καλοριφέρ στο Μεσοβούνι",
+  "nameEn": "Seasonal Heating Radiator Return Locknut Check in Μεσοβούνι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος παξιμαδιού επιστροφής καλοριφέρ στο Μεσοβούνι για πρόληψη διαρροών και σταθερή λειτουργία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μεσοβούνι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-water-shedding-tune-kalavarda-rodou",
+  "slug": "epochiaki-rythmisi-aporrois-ydatos-katofliou-eisodou-kalavarda-rodou",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Ύδατος Κατωφλιού Εισόδου στα Καλαβάρδα Ρόδου",
+  "nameEn": "Seasonal Home Entry Threshold Water Shedding Tune in Καλαβάρδα Ρόδου",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής ύδατος κατωφλιού εισόδου στα Καλαβάρδα Ρόδου για αποφυγή λιμναζόντων νερών και ολισθηρότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλαβάρδα Ρόδου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

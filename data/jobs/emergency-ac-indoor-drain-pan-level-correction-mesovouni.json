@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-pan-level-correction-mesovouni",
+  "slug": "epigousa-diorthosi-stathmis-lekanis-aporrois-esoterikou-ac-mesovouni",
+  "nameGr": "Επείγουσα Διόρθωση Στάθμης Λεκάνης Απορροής Εσωτερικού AC στο Μεσοβούνι",
+  "nameEn": "Emergency AC Indoor Drain Pan Level Correction in Μεσοβούνι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα διόρθωση στάθμης λεκάνης απορροής εσωτερικού AC στο Μεσοβούνι για αποφυγή διαρροών στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μεσοβούνι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

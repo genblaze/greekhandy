@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-water-shedding-tune-mesovouni",
+  "slug": "epochiaki-rythmisi-aporrois-ydatos-katofliou-eisodou-mesovouni",
+  "nameGr": "Εποχική Ρύθμιση Απορροής Ύδατος Κατωφλιού Εισόδου στο Μεσοβούνι",
+  "nameEn": "Seasonal Home Entry Threshold Water Shedding Tune in Μεσοβούνι",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ρύθμιση απορροής ύδατος κατωφλιού εισόδου στο Μεσοβούνι για αποφυγή λιμναζόντων νερών και ολισθηρότητας.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μεσοβούνι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

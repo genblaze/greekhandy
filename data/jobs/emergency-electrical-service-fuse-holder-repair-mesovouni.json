@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-fuse-holder-repair-mesovouni",
+  "slug": "epigousa-episkevi-vasis-asfaleias-paroxis-mesovouni",
+  "nameGr": "Επείγουσα Επισκευή Βάσης Ασφάλειας Παροχής στο Μεσοβούνι",
+  "nameEn": "Emergency Electrical Service Fuse Holder Repair in Μεσοβούνι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βάσης ασφάλειας παροχής στο Μεσοβούνι για άμεση και ασφαλή επαναφορά ρεύματος στο σπίτι.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μεσοβούνι επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

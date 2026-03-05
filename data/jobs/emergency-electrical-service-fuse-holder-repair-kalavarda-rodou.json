@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-fuse-holder-repair-kalavarda-rodou",
+  "slug": "epigousa-episkevi-vasis-asfaleias-paroxis-kalavarda-rodou",
+  "nameGr": "Επείγουσα Επισκευή Βάσης Ασφάλειας Παροχής στα Καλαβάρδα Ρόδου",
+  "nameEn": "Emergency Electrical Service Fuse Holder Repair in Καλαβάρδα Ρόδου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή βάσης ασφάλειας παροχής στα Καλαβάρδα Ρόδου για άμεση και ασφαλή επαναφορά ρεύματος στο σπίτι.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλαβάρδα Ρόδου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
