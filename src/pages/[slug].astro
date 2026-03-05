@@ -109,6 +109,27 @@ const pageCategory = isHeatingIntentLanding
     }
   : category;
 
+const collapseDuplicateLocationPhrase = (input?: string) => {
+  if (!input) return '';
+  let text = input.replace(/\s+/g, ' ').trim();
+  const pattern = /(στην|στη|στον|στο|σε)\s+([A-Za-zΑ-ΩΆ-Ώα-ωά-ώ0-9\-]+(?:\s+[A-Za-zΑ-ΩΆ-Ώα-ωά-ώ0-9\-]+){0,2})\s+\1\s+\2/giu;
+  for (let i = 0; i < 4; i += 1) {
+    const next = text.replace(pattern, '$1 $2');
+    if (next === text) break;
+    text = next;
+  }
+  return text;
+};
+
+const normalizedPageCategory = {
+  ...pageCategory,
+  nameGr: collapseDuplicateLocationPhrase(pageCategory.nameGr),
+  h1: collapseDuplicateLocationPhrase(pageCategory.h1),
+  heroText: collapseDuplicateLocationPhrase(pageCategory.heroText),
+  metaTitle: collapseDuplicateLocationPhrase(pageCategory.metaTitle),
+  metaDescription: collapseDuplicateLocationPhrase(pageCategory.metaDescription)
+};
+
 const trustDecisionCategorySlugs = new Set(['ydravlikoi', 'ilektrologoi']);
 const highVolumeFilterSlugs = new Set(['ydravlikoi', 'ilektrologoi']);
 const enableAdvancedCategoryUX = !isJobPage && (highVolumeFilterSlugs.has(category.slug) || subJobs.length >= 18);
@@ -146,6 +167,9 @@ const availabilityLabelMap: Record<string, string> = {
   flexible: 'Ευέλικτο ραντεβού'
 };
 const urgencyKeywords = ['amesi', 'ektakti', 'epeigon'];
+const initialVisibleContentSections = 4;
+const initialVisibleRelatedCategories = 8;
+const initialVisibleFaqItems = 6;
 const initialVisibleSubJobs = enableAdvancedCategoryUX ? 6 : 12;
 type TrustDecisionCardVariant = {
   frameClass: string;
@@ -308,9 +332,9 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': `${canonicalUrl}#service`,
-  name: pageCategory.nameGr,
+  name: normalizedPageCategory.nameGr,
   url: canonicalUrl,
-  description: pageCategory.metaDescription,
+  description: normalizedPageCategory.metaDescription,
   areaServed: { '@type': 'Country', name: 'Greece' },
   provider: {
     '@type': 'Organization',
@@ -336,7 +360,7 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: isJobPage && parentCategory ? 3 : 2,
-      name: pageCategory.nameGr,
+      name: normalizedPageCategory.nameGr,
       item: canonicalUrl
     }
   ]
@@ -346,7 +370,7 @@ const itemListSchema = !isJobPage && subJobs.length > 0
   ? {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: `Υπηρεσίες κατηγορίας ${pageCategory.nameGr}`,
+      name: `Υπηρεσίες κατηγορίας ${normalizedPageCategory.nameGr}`,
       itemListElement: subJobs.slice(0, 40).map((job: any, index: number) => ({
         '@type': 'ListItem',
         position: index + 1,
@@ -367,7 +391,7 @@ const faqSchema = pageCategory.faq?.length ? {
 } : null;
 ---
 
-<Layout title={pageCategory.metaTitle} description={pageCategory.metaDescription} canonicalUrl={canonicalUrl}>
+<Layout title={normalizedPageCategory.metaTitle} description={normalizedPageCategory.metaDescription} canonicalUrl={canonicalUrl}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -385,10 +409,10 @@ const faqSchema = pageCategory.faq?.length ? {
           <>
             <a href={`/${parentCategory.slug}`} class="hover:text-blue-700">{parentCategory.nameGr}</a>
             <span>&rsaquo;</span>
-            <span class="text-gray-900">{pageCategory.nameGr}</span>
+            <span class="text-gray-900">{normalizedPageCategory.nameGr}</span>
           </>
         ) : (
-          <span class="text-gray-900">{pageCategory.nameGr}</span>
+          <span class="text-gray-900">{normalizedPageCategory.nameGr}</span>
         )}
       </div>
     </nav>
@@ -396,8 +420,8 @@ const faqSchema = pageCategory.faq?.length ? {
     <!-- Hero -->
     <section class="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-600 px-4 py-16 text-white md:py-20">
       <div class="mx-auto max-w-5xl">
-        <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-5xl">{pageCategory.h1}</h1>
-        <p class="mt-6 max-w-4xl text-lg leading-relaxed text-blue-100">{pageCategory.heroText}</p>
+        <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-5xl">{normalizedPageCategory.h1}</h1>
+        <p class="mt-6 max-w-4xl text-lg leading-relaxed text-blue-100">{normalizedPageCategory.heroText}</p>
         {pageCategory.summary && (
           <div class="mt-6 flex flex-wrap gap-4 text-sm">
             {pageCategory.summary.priceRangeEUR && <span class="bg-blue-800 px-3 py-1 rounded-full">Κόστος: {pageCategory.summary.priceRangeEUR}</span>}
@@ -412,10 +436,13 @@ const faqSchema = pageCategory.faq?.length ? {
 
     <!-- Content Sections -->
     <section class="px-4 py-12 md:py-16">
-      <div class="mx-auto max-w-5xl space-y-6">
+      <div id="content-sections-list" class="mx-auto max-w-5xl space-y-6">
         {pageCategory.sections?.length > 0 ? (
-          pageCategory.sections.map((section: any) => (
-            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          pageCategory.sections.map((section: any, index: number) => (
+            <article
+              data-progressive-item="content-sections"
+              class={`rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8 ${index >= initialVisibleContentSections ? 'hidden' : ''}`}
+            >
               <h2 class="text-2xl font-bold text-slate-900">{section.heading}</h2>
               <p class="mt-4 leading-relaxed text-slate-700">{section.content}</p>
               {section.priceRange && (
@@ -429,6 +456,26 @@ const faqSchema = pageCategory.faq?.length ? {
           <div class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
             <p class="font-semibold text-slate-900">Περισσότερες λεπτομέρειες σύντομα.</p>
             <p class="mt-1 text-sm text-slate-600">Ετοιμάζουμε αναλυτικές ενότητες για την υπηρεσία αυτή.</p>
+          </div>
+        )}
+        {pageCategory.sections?.length > initialVisibleContentSections && (
+          <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <p class="text-xs text-slate-600" data-progressive-summary="content-sections" role="status" aria-live="polite">
+                Εμφανίζονται {Math.min(initialVisibleContentSections, pageCategory.sections.length)} από {pageCategory.sections.length} ενότητες περιεχομένου.
+              </p>
+              <button
+                type="button"
+                data-progressive-toggle="content-sections"
+                data-progressive-noun="ενότητες περιεχομένου"
+                data-initial-visible={initialVisibleContentSections}
+                aria-controls="content-sections-list"
+                aria-expanded="false"
+                class="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+              >
+                Εμφάνιση περισσότερων ενοτήτων
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -630,7 +677,7 @@ const faqSchema = pageCategory.faq?.length ? {
                   <div class="flex items-center gap-2">
                     <button type="button" data-page-prev aria-controls="subjobs-grid" aria-label="Προβολή προηγούμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Προηγούμενα</button>
                     <button type="button" data-page-next aria-controls="subjobs-grid" aria-label="Προβολή επόμενης σελίδας υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Επόμενα</button>
-                    <button type="button" data-load-more-subjobs aria-controls="subjobs-grid" aria-label="Φόρτωση περισσότερων υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
+                    <button type="button" data-load-more-subjobs aria-controls="subjobs-grid" aria-expanded="false" aria-label="Φόρτωση περισσότερων υπηρεσιών" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Φόρτωση περισσότερων</button>
                   </div>
                 </div>
                 <noscript>
@@ -843,7 +890,15 @@ const faqSchema = pageCategory.faq?.length ? {
                 : pageMessage;
             }
             if (loadMore instanceof HTMLButtonElement) {
-              loadMore.classList.toggle('hidden', matched <= pageSize || matched === 0);
+              const canExpand = matched > initialLimit;
+              const expanded = visibleLimit > initialLimit;
+              loadMore.classList.toggle('hidden', !canExpand || matched === 0);
+              loadMore.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+              if (canExpand) {
+                loadMore.textContent = expanded
+                  ? 'Εμφάνιση λιγότερων υπηρεσιών'
+                  : `Φόρτωση περισσότερων (${Math.max(matched - Math.min(initialLimit, matched), 0)})`;
+              }
             }
             if (pagePrev instanceof HTMLButtonElement) {
               pagePrev.disabled = pageStart === 0 || matched === 0;
@@ -919,7 +974,8 @@ const faqSchema = pageCategory.faq?.length ? {
 
         if (loadMore instanceof HTMLButtonElement) {
           loadMore.addEventListener('click', () => {
-            visibleLimit += initialLimit;
+            visibleLimit = visibleLimit > initialLimit ? initialLimit : cards.length;
+            pageStart = 0;
             runFilters();
           });
         }
@@ -1006,7 +1062,7 @@ const faqSchema = pageCategory.faq?.length ? {
 
         <form id="contact-form" class="rounded-2xl bg-white p-6 text-gray-900 shadow-xl md:p-8" novalidate aria-describedby="lead-consent-help lead-validation-summary">
           <input type="hidden" name="serviceSlug" value={pageCategory.slug} />
-          <input type="hidden" name="serviceName" value={pageCategory.nameGr} />
+          <input type="hidden" name="serviceName" value={normalizedPageCategory.nameGr} />
           <input type="hidden" name="pageUrl" value={canonicalUrl} />
 
           <h3 class="text-xl font-bold text-gray-900">{pageCategory.cta?.buttonText || 'Ζητήστε Προσφορά'}</h3>
