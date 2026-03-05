@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-isolator-contact-repair-agia-irini-chanion",
+  "slug": "epigousa-episkevi-epafis-kentrikou-apomonoti-revmatos-agia-irini-chanion",
+  "nameGr": "Επείγουσα Επισκευή Επαφής Κεντρικού Απομονωτή Ρεύματος στην Αγία Ειρήνη Χανίων",
+  "nameEn": "Emergency Electrical Main Isolator Contact Repair in Αγία Ειρήνη Χανίων",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή επαφής κεντρικού απομονωτή ρεύματος στην Αγία Ειρήνη Χανίων για ασφαλή και σταθερή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Ειρήνη Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

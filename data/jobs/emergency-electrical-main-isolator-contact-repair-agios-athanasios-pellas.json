@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-isolator-contact-repair-agios-athanasios-pellas",
+  "slug": "epigousa-episkevi-epafis-kentrikou-apomonoti-revmatos-agios-athanasios-pellas",
+  "nameGr": "Επείγουσα Επισκευή Επαφής Κεντρικού Απομονωτή Ρεύματος στον Άγιο Αθανάσιο Πέλλας",
+  "nameEn": "Emergency Electrical Main Isolator Contact Repair in Άγιος Αθανάσιος Πέλλας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή επαφής κεντρικού απομονωτή ρεύματος στον Άγιο Αθανάσιο Πέλλας για ασφαλή και σταθερή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Αθανάσιος Πέλλας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

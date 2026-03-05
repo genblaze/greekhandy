@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-flow-tune-agios-athanasios-pellas",
+  "slug": "epochiaki-rythmisi-rois-vroxou-epistrofis-thermansis-agios-athanasios-pellas",
+  "nameGr": "Εποχική Ρύθμιση Ροής Βρόχου Επιστροφής Θέρμανσης στον Άγιο Αθανάσιο Πέλλας",
+  "nameEn": "Seasonal Heating Return Loop Flow Tune in Άγιος Αθανάσιος Πέλλας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής βρόχου επιστροφής θέρμανσης στον Άγιο Αθανάσιο Πέλλας για σταθερή θερμική απόδοση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Αθανάσιος Πέλλας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-flow-tune-kalentzi-achaias",
+  "slug": "epochiaki-rythmisi-rois-vroxou-epistrofis-thermansis-kalentzi-achaias",
+  "nameGr": "Εποχική Ρύθμιση Ροής Βρόχου Επιστροφής Θέρμανσης στο Καλέντζι Αχαΐας",
+  "nameEn": "Seasonal Heating Return Loop Flow Tune in Καλέντζι Αχαΐας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής βρόχου επιστροφής θέρμανσης στο Καλέντζι Αχαΐας για σταθερή θερμική απόδοση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι Αχαΐας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

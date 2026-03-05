@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-isolator-contact-repair-kalentzi-achaias",
+  "slug": "epigousa-episkevi-epafis-kentrikou-apomonoti-revmatos-kalentzi-achaias",
+  "nameGr": "Επείγουσα Επισκευή Επαφής Κεντρικού Απομονωτή Ρεύματος στο Καλέντζι Αχαΐας",
+  "nameEn": "Emergency Electrical Main Isolator Contact Repair in Καλέντζι Αχαΐας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή επαφής κεντρικού απομονωτή ρεύματος στο Καλέντζι Αχαΐας για ασφαλή και σταθερή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι Αχαΐας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

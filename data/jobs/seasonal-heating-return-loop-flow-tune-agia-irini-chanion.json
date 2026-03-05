@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-loop-flow-tune-agia-irini-chanion",
+  "slug": "epochiaki-rythmisi-rois-vroxou-epistrofis-thermansis-agia-irini-chanion",
+  "nameGr": "Εποχική Ρύθμιση Ροής Βρόχου Επιστροφής Θέρμανσης στην Αγία Ειρήνη Χανίων",
+  "nameEn": "Seasonal Heating Return Loop Flow Tune in Αγία Ειρήνη Χανίων",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση ροής βρόχου επιστροφής θέρμανσης στην Αγία Ειρήνη Χανίων για σταθερή θερμική απόδοση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Ειρήνη Χανίων επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

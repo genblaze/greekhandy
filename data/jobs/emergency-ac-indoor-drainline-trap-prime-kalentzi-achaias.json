@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drainline-trap-prime-kalentzi-achaias",
+  "slug": "epigousa-epanaplirwsi-pagidas-grammis-aporrois-esoterikou-ac-kalentzi-achaias",
+  "nameGr": "Επείγουσα Επαναπλήρωση Παγίδας Γραμμής Απορροής Εσωτερικού AC στο Καλέντζι Αχαΐας",
+  "nameEn": "Emergency AC Indoor Drainline Trap Prime in Καλέντζι Αχαΐας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναπλήρωση παγίδας γραμμής απορροής εσωτερικού AC στο Καλέντζι Αχαΐας για άμεση αποφυγή διαρροών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Καλέντζι Αχαΐας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
