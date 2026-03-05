@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-tighten-agios-ioannis-evrytania",
+  "slug": "epigouso-sfiksimo-oudeterou-kentrikis-trofodosias-revmatos-agios-ioannis-evrytania",
+  "nameGr": "Επείγον Σφίξιμο Ουδετέρου Κεντρικής Τροφοδοσίας Ρεύματος στον Άγιο Ιωάννη Ευρυτανίας",
+  "nameEn": "Emergency Electrical Main Feed Neutral Tighten in Άγιος Ιωάννης Ευρυτανίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγον σφίξιμο ουδετέρου κεντρικής τροφοδοσίας ρεύματος στον Άγιο Ιωάννη Ευρυτανίας για σταθερή τάση και ασφάλεια εγκατάστασης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

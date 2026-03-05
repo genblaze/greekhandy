@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-header-temp-check-agios-ioannis-evrytania",
+  "slug": "epochiakos-elegxos-thermokrasias-epistrofis-syllekti-thermansis-agios-ioannis-evrytania",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Επιστροφής Συλλέκτη Θέρμανσης στον Άγιο Ιωάννη Ευρυτανίας",
+  "nameEn": "Seasonal Heating Return Header Temp Check in Άγιος Ιωάννης Ευρυτανίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας επιστροφής συλλέκτη θέρμανσης στον Άγιο Ιωάννη Ευρυτανίας για καλύτερη ρύθμιση και εξοικονόμηση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Ιωάννης Ευρυτανίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

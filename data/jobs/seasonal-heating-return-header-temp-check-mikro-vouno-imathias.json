@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-header-temp-check-mikro-vouno-imathias",
+  "slug": "epochiakos-elegxos-thermokrasias-epistrofis-syllekti-thermansis-mikro-vouno-imathias",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Επιστροφής Συλλέκτη Θέρμανσης στο Μικρό Βουνό Ημαθίας",
+  "nameEn": "Seasonal Heating Return Header Temp Check in Μικρό Βουνό Ημαθίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας επιστροφής συλλέκτη θέρμανσης στο Μικρό Βουνό Ημαθίας για καλύτερη ρύθμιση και εξοικονόμηση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Μικρό Βουνό Ημαθίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

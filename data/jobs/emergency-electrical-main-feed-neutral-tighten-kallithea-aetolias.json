@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-feed-neutral-tighten-kallithea-aetolias",
+  "slug": "epigouso-sfiksimo-oudeterou-kentrikis-trofodosias-revmatos-kallithea-aetolias",
+  "nameGr": "Επείγον Σφίξιμο Ουδετέρου Κεντρικής Τροφοδοσίας Ρεύματος στην Καλλιθέα Αιτωλίας",
+  "nameEn": "Emergency Electrical Main Feed Neutral Tighten in Καλλιθέα Αιτωλίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγον σφίξιμο ουδετέρου κεντρικής τροφοδοσίας ρεύματος στην Καλλιθέα Αιτωλίας για σταθερή τάση και ασφάλεια εγκατάστασης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καλλιθέα Αιτωλίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
