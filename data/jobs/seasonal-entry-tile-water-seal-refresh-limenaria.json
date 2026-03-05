@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-entry-tile-water-seal-refresh-limenaria",
+  "slug": "epochiaki-ananeosi-steganotitas-plakidiwn-eisodou-limenaria",
+  "nameGr": "Εποχική Ανανέωση Στεγανότητας Πλακιδίων Εισόδου στα Λιμενάρια",
+  "nameEn": "Seasonal Entry Tile Water Seal Refresh in Λιμενάρια",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχική ανανέωση στεγανότητας πλακιδίων εισόδου στα Λιμενάρια για προστασία από υγρασία και ολισθηρότητα.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Λιμενάρια επείγον",
+    "Εποχική Λιμενάρια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

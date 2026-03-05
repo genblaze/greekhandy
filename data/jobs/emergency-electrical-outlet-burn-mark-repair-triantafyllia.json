@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-outlet-burn-mark-repair-triantafyllia",
+  "slug": "epigousa-episkevi-prizas-me-ichni-kafsis-triantafyllia",
+  "nameGr": "Επείγουσα Επισκευή Πρίζας με Ίχνη Καύσης στα Τριανταφυλλιά",
+  "nameEn": "Emergency Electrical Outlet Burn Mark Repair in Τριανταφυλλιά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πρίζας με ίχνη καύσης στα Τριανταφυλλιά για αποφυγή βραχυκυκλώματος και πυρκαγιάς.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Τριανταφυλλιά επείγον",
+    "Επείγουσα Τριανταφυλλιά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

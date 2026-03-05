@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-topup-check-agia-roumeli",
+  "slug": "epochiakos-elegxos-symplirwsis-kyklomatos-kalorifer-agia-roumeli",
+  "nameGr": "Εποχικός Έλεγχος Συμπλήρωσης Κυκλώματος Καλοριφέρ στην Αγία Ρουμέλη",
+  "nameEn": "Seasonal Heating Radiator Top-up Check in Αγία Ρουμέλη",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος συμπλήρωσης κυκλώματος καλοριφέρ στην Αγία Ρουμέλη για σταθερή πίεση και ομαλή θέρμανση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Ρουμέλη επείγον",
+    "Εποχικός Αγία Ρουμέλη",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

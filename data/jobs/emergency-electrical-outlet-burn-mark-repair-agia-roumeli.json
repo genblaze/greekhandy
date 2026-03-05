@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-outlet-burn-mark-repair-agia-roumeli",
+  "slug": "epigousa-episkevi-prizas-me-ichni-kafsis-agia-roumeli",
+  "nameGr": "Επείγουσα Επισκευή Πρίζας με Ίχνη Καύσης στην Αγία Ρουμέλη",
+  "nameEn": "Emergency Electrical Outlet Burn Mark Repair in Αγία Ρουμέλη",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πρίζας με ίχνη καύσης στην Αγία Ρουμέλη για αποφυγή βραχυκυκλώματος και πυρκαγιάς.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Ρουμέλη επείγον",
+    "Επείγουσα Αγία Ρουμέλη",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

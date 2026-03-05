@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-outlet-burn-mark-repair-limenaria",
+  "slug": "epigousa-episkevi-prizas-me-ichni-kafsis-limenaria",
+  "nameGr": "Επείγουσα Επισκευή Πρίζας με Ίχνη Καύσης στα Λιμενάρια",
+  "nameEn": "Emergency Electrical Outlet Burn Mark Repair in Λιμενάρια",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή πρίζας με ίχνη καύσης στα Λιμενάρια για αποφυγή βραχυκυκλώματος και πυρκαγιάς.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Λιμενάρια επείγον",
+    "Επείγουσα Λιμενάρια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-supply-check-valve-jam-fix-limenaria",
+  "slug": "epigousa-episkevi-kollimatos-valvidas-paroxis-nerou-limenaria",
+  "nameGr": "Επείγουσα Επισκευή Κολλήματος Βαλβίδας Παροχής Νερού στα Λιμενάρια",
+  "nameEn": "Emergency Water Supply Check Valve Jam Fix in Λιμενάρια",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή κολλήματος βαλβίδας παροχής νερού στα Λιμενάρια για άμεση επαναφορά ροής και προστασία δικτύου.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Λιμενάρια επείγον",
+    "Επείγουσα Λιμενάρια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

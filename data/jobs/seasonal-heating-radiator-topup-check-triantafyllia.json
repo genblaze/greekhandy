@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-topup-check-triantafyllia",
+  "slug": "epochiakos-elegxos-symplirwsis-kyklomatos-kalorifer-triantafyllia",
+  "nameGr": "Εποχικός Έλεγχος Συμπλήρωσης Κυκλώματος Καλοριφέρ στα Τριανταφυλλιά",
+  "nameEn": "Seasonal Heating Radiator Top-up Check in Τριανταφυλλιά",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος συμπλήρωσης κυκλώματος καλοριφέρ στα Τριανταφυλλιά για σταθερή πίεση και ομαλή θέρμανση.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Τριανταφυλλιά επείγον",
+    "Εποχικός Τριανταφυλλιά",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
