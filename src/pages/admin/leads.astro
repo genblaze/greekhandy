@@ -2273,6 +2273,7 @@ const hasLeads = directoryData.leads.length > 0;
           if (!isUndoAvailable()) {
             setLastActionNote('Το παράθυρο αναίρεσης outreach έχει λήξει.');
             announcePolite('Η αναίρεση δεν είναι πλέον διαθέσιμη γιατί έληξε το χρονικό παράθυρο.');
+            setOperationFeedback('error', 'Η αναίρεση outreach δεν είναι πλέον διαθέσιμη.');
             renderSelectionState();
             return;
           }
@@ -2294,6 +2295,7 @@ const hasLeads = directoryData.leads.length > 0;
           const restoredCount = lastBulkOutreachSnapshot.changed;
           lastBulkOutreachSnapshot = null;
           if (liveRegion instanceof HTMLElement) liveRegion.textContent = `Ολοκληρώθηκε αναίρεση outreach για ${restoredCount} leads. Οι υπόλοιπες ενέργειες παρέμειναν ανέπαφες.`;
+          setOperationFeedback('success', `Επιτυχής αναίρεση outreach για ${restoredCount} leads.`);
           setLastActionNote(`Undo bulk outreach (${restoredCount} leads)`);
           pushBulkAudit(`Undo outreach (${restoredCount})`);
           renderSelectionState();
@@ -2335,6 +2337,9 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ενημερώθηκε segment για ${changed} leads.`
               : 'Δεν υπάρχει επιλεγμένο lead για bulk segment.';
           }
+          setOperationFeedback(changed > 0 ? 'success' : 'warn', changed > 0
+            ? `Bulk segment επιτυχές: ${changed} leads → ${segmentValue}.`
+            : 'Δεν εκτελέστηκε bulk segment: μηδενική επιλογή.');
           if (changed > 0) {
             setLastActionNote(`Bulk segment → ${segmentValue} (${changed} leads)`);
             pushBulkAudit(`Bulk segment → ${segmentValue} (${changed})`);
@@ -2379,6 +2384,9 @@ const hasLeads = directoryData.leads.length > 0;
               ? `Ορίστηκε follow-up για ${changed} leads.`
               : 'Δεν υπάρχει επιλεγμένο lead για follow-up.';
           }
+          setOperationFeedback(changed > 0 ? 'success' : 'warn', changed > 0
+            ? `Bulk follow-up επιτυχές: ${changed} leads.`
+            : 'Δεν εκτελέστηκε bulk follow-up: μηδενική επιλογή.');
           if (changed > 0) {
             setLastActionNote(`Bulk follow-up ημερομηνία (${changed} leads)`);
             pushBulkAudit(`Bulk follow-up set (${changed})`);
