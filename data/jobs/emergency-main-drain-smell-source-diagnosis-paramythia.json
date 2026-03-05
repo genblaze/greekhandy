@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-drain-smell-source-diagnosis-paramythia",
+  "slug": "epigousa-diagnosi-pigis-osmis-kentrikis-apoxeteusis-paramythia",
+  "nameGr": "Επείγουσα Διάγνωση Πηγής Οσμής Κεντρικής Αποχέτευσης στην Παραμυθιά",
+  "nameEn": "Emergency Main Drain Smell Source Diagnosis in Παραμυθιά",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα διάγνωση πηγής έντονης οσμής αποχέτευσης στην Παραμυθιά για γρήγορη αποκατάσταση υγιεινής στο σπίτι. SEO intent: «μυρωδιά αποχέτευσης σπίτι Παραμυθιά».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "μυρωδιά αποχέτευσης σπίτι Παραμυθιά",
+    "υδραυλικός οσμές λυμάτων επείγον",
+    "διάγνωση αποχέτευσης άμεσα",
+    "κακή οσμή μπάνιο λύση",
+    "έλεγχος σιφωνιών και εξαερισμού"
+  ],
+  "status": "researched"
+}

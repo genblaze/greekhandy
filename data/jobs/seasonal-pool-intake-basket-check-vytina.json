@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-pool-intake-basket-check-vytina",
+  "slug": "epochiakos-elegxos-kalathiou-eisagogis-antlias-pisinas-vytina",
+  "nameGr": "Εποχικός Έλεγχος Καλαθιού Εισαγωγής Αντλίας Πισίνας στη Βυτίνα",
+  "nameEn": "Seasonal Pool Intake Basket Check in Βυτίνα",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εποχικός έλεγχος καλαθιού εισαγωγής αντλίας πισίνας στη Βυτίνα για πρόληψη βουλωμάτων και απώλειας κυκλοφορίας. SEO intent: «αντλία πισίνας δεν τραβάει καλά Βυτίνα».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "αντλία πισίνας δεν τραβάει καλά Βυτίνα",
+    "καλάθι αντλίας πισίνας καθάρισμα",
+    "service κυκλοφορίας πισίνας",
+    "τεχνικός πισίνας προληπτικά",
+    "seasonal pool intake check"
+  ],
+  "status": "researched"
+}

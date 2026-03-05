@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-drain-smell-source-diagnosis-vytina",
+  "slug": "epigousa-diagnosi-pigis-osmis-kentrikis-apoxeteusis-vytina",
+  "nameGr": "Επείγουσα Διάγνωση Πηγής Οσμής Κεντρικής Αποχέτευσης στη Βυτίνα",
+  "nameEn": "Emergency Main Drain Smell Source Diagnosis in Βυτίνα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα διάγνωση πηγής έντονης οσμής αποχέτευσης στη Βυτίνα για γρήγορη αποκατάσταση υγιεινής στο σπίτι. SEO intent: «μυρωδιά αποχέτευσης σπίτι Βυτίνα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "μυρωδιά αποχέτευσης σπίτι Βυτίνα",
+    "υδραυλικός οσμές λυμάτων επείγον",
+    "διάγνωση αποχέτευσης άμεσα",
+    "κακή οσμή μπάνιο λύση",
+    "έλεγχος σιφωνιών και εξαερισμού"
+  ],
+  "status": "researched"
+}

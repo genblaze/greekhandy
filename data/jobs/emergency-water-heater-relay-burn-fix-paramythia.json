@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-relay-burn-fix-paramythia",
+  "slug": "epigousa-episkevi-kamenou-rele-thermosifona-paramythia",
+  "nameGr": "Επείγουσα Επισκευή Καμένου Ρελέ Θερμοσίφωνα στην Παραμυθιά",
+  "nameEn": "Emergency Water Heater Relay Burn Fix in Παραμυθιά",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή καμένου ρελέ θερμοσίφωνα στην Παραμυθιά για άμεση και ασφαλή επαναφορά ζεστού νερού. SEO intent: «θερμοσίφωνας δεν ανάβει ρελέ Παραμυθιά».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "θερμοσίφωνας δεν ανάβει ρελέ Παραμυθιά",
+    "ηλεκτρολόγος θερμοσίφωνα επείγον",
+    "καμένο ρελέ θερμοσίφωνα λύση",
+    "χωρίς ζεστό νερό άμεσα",
+    "service ηλεκτρικού θερμοσίφωνα"
+  ],
+  "status": "researched"
+}

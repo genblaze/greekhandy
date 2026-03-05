@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-pump-failure-fix-skala-lakonias",
+  "slug": "epigousa-episkevi-vlavis-antlias-aporrois-esoterikou-ac-skala-lakonias",
+  "nameGr": "Επείγουσα Επισκευή Βλάβης Αντλίας Απορροής Εσωτερικού AC στη Σκάλα Λακωνίας",
+  "nameEn": "Emergency AC Indoor Drain Pump Failure Fix in Σκάλα Λακωνίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αντλίας απορροής εσωτερικής μονάδας AC στη Σκάλα Λακωνίας για να σταματήσει η διαρροή νερού στον χώρο. SEO intent: «αντλία απορροής ac βλάβη Σκάλα Λακωνίας».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "αντλία απορροής ac βλάβη Σκάλα Λακωνίας",
+    "κλιματιστικό τρέχει νερά μέσα",
+    "τεχνικός ac επείγον διαρροή",
+    "service drain pump ac",
+    "επισκευή εσωτερικής μονάδας"
+  ],
+  "status": "researched"
+}

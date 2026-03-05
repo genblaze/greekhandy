@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-heater-relay-burn-fix-vytina",
+  "slug": "epigousa-episkevi-kamenou-rele-thermosifona-vytina",
+  "nameGr": "Επείγουσα Επισκευή Καμένου Ρελέ Θερμοσίφωνα στη Βυτίνα",
+  "nameEn": "Emergency Water Heater Relay Burn Fix in Βυτίνα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή καμένου ρελέ θερμοσίφωνα στη Βυτίνα για άμεση και ασφαλή επαναφορά ζεστού νερού. SEO intent: «θερμοσίφωνας δεν ανάβει ρελέ Βυτίνα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "θερμοσίφωνας δεν ανάβει ρελέ Βυτίνα",
+    "ηλεκτρολόγος θερμοσίφωνα επείγον",
+    "καμένο ρελέ θερμοσίφωνα λύση",
+    "χωρίς ζεστό νερό άμεσα",
+    "service ηλεκτρικού θερμοσίφωνα"
+  ],
+  "status": "researched"
+}

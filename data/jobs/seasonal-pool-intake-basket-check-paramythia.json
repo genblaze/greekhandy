@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-pool-intake-basket-check-paramythia",
+  "slug": "epochiakos-elegxos-kalathiou-eisagogis-antlias-pisinas-paramythia",
+  "nameGr": "Εποχικός Έλεγχος Καλαθιού Εισαγωγής Αντλίας Πισίνας στην Παραμυθιά",
+  "nameEn": "Seasonal Pool Intake Basket Check in Παραμυθιά",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εποχικός έλεγχος καλαθιού εισαγωγής αντλίας πισίνας στην Παραμυθιά για πρόληψη βουλωμάτων και απώλειας κυκλοφορίας. SEO intent: «αντλία πισίνας δεν τραβάει καλά Παραμυθιά».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "αντλία πισίνας δεν τραβάει καλά Παραμυθιά",
+    "καλάθι αντλίας πισίνας καθάρισμα",
+    "service κυκλοφορίας πισίνας",
+    "τεχνικός πισίνας προληπτικά",
+    "seasonal pool intake check"
+  ],
+  "status": "researched"
+}

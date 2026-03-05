@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-water-pressure-balance-check-vytina",
+  "slug": "epochiakos-elegxos-isorropias-piesis-nerou-katoikias-vytina",
+  "nameGr": "Εποχικός Έλεγχος Ισορροπίας Πίεσης Νερού Κατοικίας στη Βυτίνα",
+  "nameEn": "Seasonal Home Water Pressure Balance Check in Βυτίνα",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Εποχικός έλεγχος ισορροπίας πίεσης νερού στη Βυτίνα για σταθερή λειτουργία βρυσών, συσκευών και θερμοσίφωνα. SEO intent: «άλλη πίεση σε κάθε βρύση Βυτίνα».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "άλλη πίεση σε κάθε βρύση Βυτίνα",
+    "έλεγχος πίεσης νερού σπίτι",
+    "υδραυλικός ρύθμιση πιέσεων",
+    "service παροχών κατοικίας",
+    "προληπτική συντήρηση δικτύου νερού"
+  ],
+  "status": "researched"
+}
