@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-manifold-balance-check-mantamados",
+  "slug": "epochiakos-elegxos-isorropias-syllekti-kalorifer-mantamados",
+  "nameGr": "Εποχικός Έλεγχος Ισορροπίας Συλλέκτη Καλοριφέρ στον Μανταμάδο",
+  "nameEn": "Seasonal Radiator Manifold Balance Check in Μανταμάδος",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ισορροπίας συλλέκτη καλοριφέρ στον Μανταμάδο για ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Εποχικός Μανταμάδος",
+    "επείγον τεχνικός Μανταμάδος",
+    "service κατοικίας Μανταμάδος",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

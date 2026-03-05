@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-threshold-drain-check-mantamados",
+  "slug": "epochiakos-elegxos-aporrois-katofliou-katoikias-mantamados",
+  "nameGr": "Εποχικός Έλεγχος Απορροής Κατωφλιού Κατοικίας στον Μανταμάδο",
+  "nameEn": "Seasonal Home Threshold Drain Check in Μανταμάδος",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός έλεγχος απορροής κατωφλιού κατοικίας στον Μανταμάδο για πρόληψη εισροής νερού στην είσοδο κατά τις βροχές.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Εποχικός Μανταμάδος",
+    "επείγον τεχνικός Μανταμάδος",
+    "service κατοικίας Μανταμάδος",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

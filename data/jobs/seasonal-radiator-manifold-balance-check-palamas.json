@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-manifold-balance-check-palamas",
+  "slug": "epochiakos-elegxos-isorropias-syllekti-kalorifer-palamas",
+  "nameGr": "Εποχικός Έλεγχος Ισορροπίας Συλλέκτη Καλοριφέρ στον Παλαμά",
+  "nameEn": "Seasonal Radiator Manifold Balance Check in Παλαμάς",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ισορροπίας συλλέκτη καλοριφέρ στον Παλαμά για ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Εποχικός Παλαμάς",
+    "επείγον τεχνικός Παλαμάς",
+    "service κατοικίας Παλαμάς",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-radiator-manifold-balance-check-galatas-troizinias",
+  "slug": "epochiakos-elegxos-isorropias-syllekti-kalorifer-galatas-troizinias",
+  "nameGr": "Εποχικός Έλεγχος Ισορροπίας Συλλέκτη Καλοριφέρ στον Γαλατά Τροιζηνίας",
+  "nameEn": "Seasonal Radiator Manifold Balance Check in Γαλατάς Τροιζηνίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ισορροπίας συλλέκτη καλοριφέρ στον Γαλατά Τροιζηνίας για ομοιόμορφη θέρμανση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Εποχικός Γαλατάς Τροιζηνίας",
+    "επείγον τεχνικός Γαλατάς Τροιζηνίας",
+    "service κατοικίας Γαλατάς Τροιζηνίας",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

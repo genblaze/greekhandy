@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-threshold-drain-check-galatas-troizinias",
+  "slug": "epochiakos-elegxos-aporrois-katofliou-katoikias-galatas-troizinias",
+  "nameGr": "Εποχικός Έλεγχος Απορροής Κατωφλιού Κατοικίας στον Γαλατά Τροιζηνίας",
+  "nameEn": "Seasonal Home Threshold Drain Check in Γαλατάς Τροιζηνίας",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός έλεγχος απορροής κατωφλιού κατοικίας στον Γαλατά Τροιζηνίας για πρόληψη εισροής νερού στην είσοδο κατά τις βροχές.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Εποχικός Γαλατάς Τροιζηνίας",
+    "επείγον τεχνικός Γαλατάς Τροιζηνίας",
+    "service κατοικίας Γαλατάς Τροιζηνίας",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

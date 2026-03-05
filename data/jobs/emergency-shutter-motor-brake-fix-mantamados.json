@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-motor-brake-fix-mantamados",
+  "slug": "epigousa-episkevi-frenou-moter-rolou-mantamados",
+  "nameGr": "Επείγουσα Επισκευή Φρένου Μοτέρ Ρολού στον Μανταμάδο",
+  "nameEn": "Emergency Shutter Motor Brake Fix in Μανταμάδος",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επισκευή φρένου μοτέρ ρολού στον Μανταμάδο όταν το ρολό κατεβαίνει ανεξέλεγκτα ή δεν σταθεροποιείται.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "Επείγουσα Μανταμάδος",
+    "επείγον τεχνικός Μανταμάδος",
+    "service κατοικίας Μανταμάδος",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

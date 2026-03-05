@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electric-panel-moisture-dryout-mantamados",
+  "slug": "epigousa-apokatastasi-ygrias-pinaka-revmatos-mantamados",
+  "nameGr": "Επείγουσα Αποκατάσταση Υγρασίας Πίνακα Ρεύματος στον Μανταμάδο",
+  "nameEn": "Emergency Electric Panel Moisture Dryout in Μανταμάδος",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση υγρασίας στον πίνακα ρεύματος στον Μανταμάδο με ασφαλή έλεγχο και στεγανοποίηση κρίσιμων σημείων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Επείγουσα Μανταμάδος",
+    "επείγον τεχνικός Μανταμάδος",
+    "service κατοικίας Μανταμάδος",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

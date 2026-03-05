@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electric-panel-moisture-dryout-palamas",
+  "slug": "epigousa-apokatastasi-ygrias-pinaka-revmatos-palamas",
+  "nameGr": "Επείγουσα Αποκατάσταση Υγρασίας Πίνακα Ρεύματος στον Παλαμά",
+  "nameEn": "Emergency Electric Panel Moisture Dryout in Παλαμάς",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα αποκατάσταση υγρασίας στον πίνακα ρεύματος στον Παλαμά με ασφαλή έλεγχο και στεγανοποίηση κρίσιμων σημείων.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Επείγουσα Παλαμάς",
+    "επείγον τεχνικός Παλαμάς",
+    "service κατοικίας Παλαμάς",
+    "άμεση επισκευή",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
