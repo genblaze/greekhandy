@@ -318,7 +318,7 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
       <p class="mt-6 leading-relaxed text-gray-700">{profile.bio?.trim() || 'Ο επαγγελματίας είναι διαθέσιμος για ανάθεση υπηρεσιών στην περιοχή του προφίλ.'}</p>
 
       <div class="mt-6 rounded-2xl border border-blue-200 bg-white/90 p-4 shadow-sm">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια διαδρομή επικοινωνίας προφίλ</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Κύρια διαδρομή επικοινωνίας</p>
         <div class="mt-2 flex flex-wrap items-center gap-2.5">
           <a
             href="#primary-conversion"
@@ -329,8 +329,8 @@ const bookingStatusParam = (Astro.url.searchParams.get('bookingStatus') || Astro
             Κύριο CTA: Ζητήστε υπηρεσία
           </a>
         </div>
-        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ακολουθήστε πρώτα την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές παραμένουν διαθέσιμες χαμηλότερα ως δευτερεύουσες ενέργειες.</p>
-        <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα εμφανίζει καθαρά την πορεία του αιτήματος, ώστε να γνωρίζετε κάθε επόμενο βήμα.</p>
+        <p id="profile-primary-cta-hint" class="mt-2 text-xs text-slate-600">Για προσφορά ή ραντεβού, ξεκινήστε από την κύρια φόρμα αιτήματος. Οι υπόλοιπες επιλογές παραμένουν χαμηλότερα ως δευτερεύουσες ενέργειες.</p>
+        <p id="profile-primary-cta-proof" class="mt-1 text-xs text-blue-800">Η κύρια φόρμα δείχνει καθαρά την πορεία του αιτήματος, ώστε να γνωρίζετε τι ακολουθεί σε κάθε βήμα.</p>
         <p class="mt-1 text-xs text-slate-500">
           Δευτερεύουσες επιλογές:
           <a href="#secondary-actions" class="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900">
