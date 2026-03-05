@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pipe-union-leak-stop-agia-kyriaki-piliou",
+  "slug": "epigousa-diakopi-diarrois-enosis-solina-nerou-agia-kyriaki-piliou",
+  "nameGr": "Επείγουσα Διακοπή Διαρροής Ένωσης Σωλήνα Νερού στην Αγία Κυριακή Πηλίου",
+  "nameEn": "Emergency Water Pipe Union Leak Stop in Αγία Κυριακή Πηλίου",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα διακοπή διαρροής σε ένωση σωλήνα νερού στην Αγία Κυριακή Πηλίου για άμεση προστασία χώρου και δικτύου.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Κυριακή Πηλίου επείγον",
+    "Επείγουσα Αγία Κυριακή Πηλίου",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

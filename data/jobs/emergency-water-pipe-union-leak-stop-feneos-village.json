@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pipe-union-leak-stop-feneos-village",
+  "slug": "epigousa-diakopi-diarrois-enosis-solina-nerou-feneos-village",
+  "nameGr": "Επείγουσα Διακοπή Διαρροής Ένωσης Σωλήνα Νερού σε χωριό του Φενεού",
+  "nameEn": "Emergency Water Pipe Union Leak Stop in Φενεός",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα διακοπή διαρροής σε ένωση σωλήνα νερού σε χωριό του Φενεού για άμεση προστασία χώρου και δικτύου.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Φενεός επείγον",
+    "Επείγουσα Φενεός",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-noise-bleed-anavra",
+  "slug": "epochiaki-exaerosi-thoryvou-somaton-thermansis-anavra",
+  "nameGr": "Εποχική Εξαέρωση Θορύβου Σωμάτων Θέρμανσης στην Ανάβρα",
+  "nameEn": "Seasonal Heating Radiator Noise Bleed in Ανάβρα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξαέρωση σωμάτων θέρμανσης στην Ανάβρα για μείωση θορύβου και καλύτερη κυκλοφορία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Ανάβρα επείγον",
+    "Εποχική Ανάβρα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

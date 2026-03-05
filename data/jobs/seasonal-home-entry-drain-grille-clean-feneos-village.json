@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-drain-grille-clean-feneos-village",
+  "slug": "epochiakos-katharismos-sxaras-aporrois-eisodou-spitiou-feneos-village",
+  "nameGr": "Εποχικός Καθαρισμός Σχάρας Απορροής Εισόδου Σπιτιού σε χωριό του Φενεού",
+  "nameEn": "Seasonal Home Entry Drain Grille Clean in Φενεός",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός καθαρισμός σχάρας απορροής εισόδου κατοικίας σε χωριό του Φενεού για αποφυγή νερών και ολισθηρότητας.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Φενεός επείγον",
+    "Εποχικός Φενεός",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

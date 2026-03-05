@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-louver-motor-fix-agia-kyriaki-piliou",
+  "slug": "epigousa-episkevi-moter-perisrofis-louver-ac-agia-kyriaki-piliou",
+  "nameGr": "Επείγουσα Επισκευή Μοτέρ Περιστροφής Louver AC στην Αγία Κυριακή Πηλίου",
+  "nameEn": "Emergency AC Indoor Louver Motor Fix in Αγία Κυριακή Πηλίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή μοτέρ louver AC στην Αγία Κυριακή Πηλίου για αποκατάσταση σωστής ροής αέρα στο χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Κυριακή Πηλίου επείγον",
+    "Επείγουσα Αγία Κυριακή Πηλίου",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

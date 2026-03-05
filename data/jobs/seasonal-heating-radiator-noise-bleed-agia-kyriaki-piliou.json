@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-noise-bleed-agia-kyriaki-piliou",
+  "slug": "epochiaki-exaerosi-thoryvou-somaton-thermansis-agia-kyriaki-piliou",
+  "nameGr": "Εποχική Εξαέρωση Θορύβου Σωμάτων Θέρμανσης στην Αγία Κυριακή Πηλίου",
+  "nameEn": "Seasonal Heating Radiator Noise Bleed in Αγία Κυριακή Πηλίου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξαέρωση σωμάτων θέρμανσης στην Αγία Κυριακή Πηλίου για μείωση θορύβου και καλύτερη κυκλοφορία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Κυριακή Πηλίου επείγον",
+    "Εποχική Αγία Κυριακή Πηλίου",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

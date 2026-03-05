@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-louver-motor-fix-anavra",
+  "slug": "epigousa-episkevi-moter-perisrofis-louver-ac-anavra",
+  "nameGr": "Επείγουσα Επισκευή Μοτέρ Περιστροφής Louver AC στην Ανάβρα",
+  "nameEn": "Emergency AC Indoor Louver Motor Fix in Ανάβρα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή μοτέρ louver AC στην Ανάβρα για αποκατάσταση σωστής ροής αέρα στο χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ανάβρα επείγον",
+    "Επείγουσα Ανάβρα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

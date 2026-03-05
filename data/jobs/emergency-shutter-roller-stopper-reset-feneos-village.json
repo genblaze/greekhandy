@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-roller-stopper-reset-feneos-village",
+  "slug": "epigousa-epanafora-stopper-kylisis-rolou-feneos-village",
+  "nameGr": "Επείγουσα Επαναφορά Stopper Κύλισης Ρολού σε χωριό του Φενεού",
+  "nameEn": "Emergency Shutter Roller Stopper Reset in Φενεός",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επαναφορά stopper κύλισης ρολού σε χωριό του Φενεού όταν το ρολό δεν σταματά στη σωστή θέση.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Φενεός επείγον",
+    "Επείγουσα Φενεός",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

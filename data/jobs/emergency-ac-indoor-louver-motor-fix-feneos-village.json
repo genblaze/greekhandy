@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-louver-motor-fix-feneos-village",
+  "slug": "epigousa-episkevi-moter-perisrofis-louver-ac-feneos-village",
+  "nameGr": "Επείγουσα Επισκευή Μοτέρ Περιστροφής Louver AC σε χωριό του Φενεού",
+  "nameEn": "Emergency AC Indoor Louver Motor Fix in Φενεός",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή μοτέρ louver AC σε χωριό του Φενεού για αποκατάσταση σωστής ροής αέρα στο χώρο.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Φενεός επείγον",
+    "Επείγουσα Φενεός",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

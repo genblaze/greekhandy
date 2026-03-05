@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-earth-leak-check-anavra",
+  "slug": "epigousos-elegxos-diarrois-geiosis-kentrikis-paroxis-anavra",
+  "nameGr": "Επείγων Έλεγχος Διαρροής Γείωσης Κεντρικής Παροχής στην Ανάβρα",
+  "nameEn": "Emergency Electrical Main Earth Leak Check in Ανάβρα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος διαρροής γείωσης κεντρικής παροχής στην Ανάβρα για πρόληψη επικίνδυνων βλαβών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ανάβρα επείγον",
+    "Επείγων Ανάβρα",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

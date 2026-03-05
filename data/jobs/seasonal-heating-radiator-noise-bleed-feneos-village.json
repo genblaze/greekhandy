@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-noise-bleed-feneos-village",
+  "slug": "epochiaki-exaerosi-thoryvou-somaton-thermansis-feneos-village",
+  "nameGr": "Εποχική Εξαέρωση Θορύβου Σωμάτων Θέρμανσης σε χωριό του Φενεού",
+  "nameEn": "Seasonal Heating Radiator Noise Bleed in Φενεός",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξαέρωση σωμάτων θέρμανσης σε χωριό του Φενεού για μείωση θορύβου και καλύτερη κυκλοφορία.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Φενεός επείγον",
+    "Εποχική Φενεός",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
