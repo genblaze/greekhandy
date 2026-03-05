@@ -599,7 +599,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </p>
           <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε στοιχεία επικοινωνίας, προτιμώμενη ημέρα/ώρα και λεπτομέρειες αιτήματος, και υποβάλετε ξανά.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">
-            Η αποστολή δεν ολοκληρώθηκε. Τα στοιχεία σας παραμένουν στη φόρμα.
+            Η αποστολή δεν ολοκληρώθηκε. Τα στοιχεία σας παραμένουν στη φόρμα για άμεση επανάληψη.
             <button type="button" data-feedback-retry="booking" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
           </p>
         </div>
@@ -692,7 +692,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
               Η αποστολή του μηνύματος είναι σε εξέλιξη...
             </span>
           </p>
-          <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το μήνυμά σας στάλθηκε. Μπορείτε να συνεχίσετε από τη σελίδα συνομιλίας.</p>
+          <p data-feedback-status="submitted" class="hidden rounded-md bg-green-100 px-3 py-2 text-sm text-green-800">Το μήνυμά σας στάλθηκε επιτυχώς. Μπορείτε να συνεχίσετε από τη σελίδα συνομιλίας.</p>
           <p data-feedback-status="offline" class="hidden rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
             Δεν υπάρχει σύνδεση. Μόλις επανέλθει το δίκτυο, επιλέξτε νέα προσπάθεια.
             <button type="button" data-feedback-retry="message" class="ml-2 inline-flex rounded-md border border-amber-300 bg-white px-2 py-0.5 text-xs font-semibold text-amber-900 transition hover:bg-amber-100">Νέα προσπάθεια</button>
@@ -700,7 +700,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           <p data-feedback-status="invalid" class="hidden rounded-md bg-amber-100 px-3 py-2 text-sm text-amber-800">Ελέγξτε τα πεδία επικοινωνίας και το μήνυμα, και υποβάλετε ξανά.</p>
           <p data-feedback-status="blocked" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">Η συγκεκριμένη συνομιλία δεν είναι διαθέσιμη αυτή τη στιγμή.</p>
           <p data-feedback-status="error" class="hidden rounded-md bg-red-100 px-3 py-2 text-sm text-red-800">
-            Η αποστολή δεν ολοκληρώθηκε. Το κείμενό σας παραμένει στη φόρμα.
+            Η αποστολή δεν ολοκληρώθηκε. Το κείμενό σας παραμένει στη φόρμα για άμεση επανάληψη.
             <button type="button" data-feedback-retry="message" class="ml-2 inline-flex rounded-md border border-red-300 bg-white px-2 py-0.5 text-xs font-semibold text-red-900 transition hover:bg-red-100">Νέα προσπάθεια</button>
           </p>
         </div>

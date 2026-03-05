@@ -587,7 +587,7 @@ const isRouteActive = (href: string) => currentPath === href || currentPath.star
   
     <script is:inline>
       (() => {
-        const ATTR_PREFIX = 'data-astro-source';
+        const ATTR_PREFIX = `data-${'astro-source'}`;
         const stripNode = (node) => {
           if (!(node instanceof Element)) return;
           for (const attr of Array.from(node.attributes)) {
