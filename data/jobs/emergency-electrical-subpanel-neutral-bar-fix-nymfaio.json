@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-subpanel-neutral-bar-fix-nymfaio",
+  "slug": "epigousa-episkevi-mparas-oudeterou-ypopinaka-nymfaio",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Υποπίνακα στο Νυμφαίο",
+  "nameEn": "Emergency Electrical Subpanel Neutral Bar Fix in Νυμφαίο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου υποπίνακα στο Νυμφαίο για ασφαλή και σταθερή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Νυμφαίο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

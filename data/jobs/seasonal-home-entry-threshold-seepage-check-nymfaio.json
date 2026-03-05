@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-seepage-check-nymfaio",
+  "slug": "epochiakos-elegxos-diisthisis-katofliou-eisodou-nymfaio",
+  "nameGr": "Εποχικός Έλεγχος Διείσδυσης Κατωφλιού Εισόδου στο Νυμφαίο",
+  "nameEn": "Seasonal Home Entry Threshold Seepage Check in Νυμφαίο",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός έλεγχος διείσδυσης κατωφλιού εισόδου στο Νυμφαίο για πρόληψη υγρασίας στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Νυμφαίο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

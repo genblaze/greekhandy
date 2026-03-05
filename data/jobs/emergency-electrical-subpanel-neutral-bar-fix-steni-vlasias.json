@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-subpanel-neutral-bar-fix-steni-vlasias",
+  "slug": "epigousa-episkevi-mparas-oudeterou-ypopinaka-steni-vlasias",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Υποπίνακα στη Στενή Βλασίας",
+  "nameEn": "Emergency Electrical Subpanel Neutral Bar Fix in Στενή Βλασίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου υποπίνακα στη Στενή Βλασίας για ασφαλή και σταθερή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Στενή Βλασίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

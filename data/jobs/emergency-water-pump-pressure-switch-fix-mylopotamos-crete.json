@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pump-pressure-switch-fix-mylopotamos-crete",
+  "slug": "epigousa-episkevi-presostati-antlias-nerou-mylopotamos-crete",
+  "nameGr": "Επείγουσα Επισκευή Πρεσοστάτη Αντλίας Νερού στον Μυλοπόταμο Κρήτης",
+  "nameEn": "Emergency Water Pump Pressure Switch Fix in Μυλοπόταμος Κρήτης",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή πρεσοστάτη αντλίας νερού στον Μυλοπόταμο Κρήτης για άμεση αποκατάσταση πίεσης στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Μυλοπόταμος Κρήτης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

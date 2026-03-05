@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-manual-override-repair-nymfaio",
+  "slug": "epigousa-episkevi-mixanismou-cheirokinitis-para-kampsis-rolou-nymfaio",
+  "nameGr": "Επείγουσα Επισκευή Μηχανισμού Χειροκίνητης Παράκαμψης Ρολού στο Νυμφαίο",
+  "nameEn": "Emergency Shutter Manual Override Repair in Νυμφαίο",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επισκευή μηχανισμού χειροκίνητης παράκαμψης ρολού στο Νυμφαίο για λειτουργία όταν λείπει ρεύμα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "Νυμφαίο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

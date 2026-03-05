@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-subpanel-neutral-bar-fix-mylopotamos-crete",
+  "slug": "epigousa-episkevi-mparas-oudeterou-ypopinaka-mylopotamos-crete",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Υποπίνακα στον Μυλοπόταμο Κρήτης",
+  "nameEn": "Emergency Electrical Subpanel Neutral Bar Fix in Μυλοπόταμος Κρήτης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου υποπίνακα στον Μυλοπόταμο Κρήτης για ασφαλή και σταθερή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μυλοπόταμος Κρήτης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

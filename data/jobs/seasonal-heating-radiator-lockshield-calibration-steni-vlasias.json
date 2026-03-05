@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-lockshield-calibration-steni-vlasias",
+  "slug": "epochiaki-rythmisi-lockshield-kalorifer-steni-vlasias",
+  "nameGr": "Εποχική Ρύθμιση Lockshield Καλοριφέρ στη Στενή Βλασίας",
+  "nameEn": "Seasonal Heating Radiator Lockshield Calibration in Στενή Βλασίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση lockshield καλοριφέρ στη Στενή Βλασίας για ομοιόμορφη θέρμανση και καλύτερη απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Στενή Βλασίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

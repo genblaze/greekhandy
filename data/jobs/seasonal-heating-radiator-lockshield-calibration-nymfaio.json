@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-radiator-lockshield-calibration-nymfaio",
+  "slug": "epochiaki-rythmisi-lockshield-kalorifer-nymfaio",
+  "nameGr": "Εποχική Ρύθμιση Lockshield Καλοριφέρ στο Νυμφαίο",
+  "nameEn": "Seasonal Heating Radiator Lockshield Calibration in Νυμφαίο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ρύθμιση lockshield καλοριφέρ στο Νυμφαίο για ομοιόμορφη θέρμανση και καλύτερη απόδοση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Νυμφαίο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

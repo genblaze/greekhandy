@@ -1,0 +1,20 @@
+{
+  "id": "emergency-shutter-manual-override-repair-steni-vlasias",
+  "slug": "epigousa-episkevi-mixanismou-cheirokinitis-para-kampsis-rolou-steni-vlasias",
+  "nameGr": "Επείγουσα Επισκευή Μηχανισμού Χειροκίνητης Παράκαμψης Ρολού στη Στενή Βλασίας",
+  "nameEn": "Emergency Shutter Manual Override Repair in Στενή Βλασίας",
+  "categoryId": "aluminum-frames",
+  "categorySlug": "koufomata-alouminiou",
+  "intent": "Επείγουσα επισκευή μηχανισμού χειροκίνητης παράκαμψης ρολού στη Στενή Βλασίας για λειτουργία όταν λείπει ρεύμα.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "55-190€",
+  "demand": "high",
+  "keywords": [
+    "Στενή Βλασίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-pump-pressure-switch-fix-nymfaio",
+  "slug": "epigousa-episkevi-presostati-antlias-nerou-nymfaio",
+  "nameGr": "Επείγουσα Επισκευή Πρεσοστάτη Αντλίας Νερού στο Νυμφαίο",
+  "nameEn": "Emergency Water Pump Pressure Switch Fix in Νυμφαίο",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή πρεσοστάτη αντλίας νερού στο Νυμφαίο για άμεση αποκατάσταση πίεσης στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Νυμφαίο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

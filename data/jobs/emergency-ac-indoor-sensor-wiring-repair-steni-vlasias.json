@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-sensor-wiring-repair-steni-vlasias",
+  "slug": "epigousa-episkevi-kalodiosis-aisthitira-esoterikou-ac-steni-vlasias",
+  "nameGr": "Επείγουσα Επισκευή Καλωδίωσης Αισθητήρα Εσωτερικού AC στη Στενή Βλασίας",
+  "nameEn": "Emergency AC Indoor Sensor Wiring Repair in Στενή Βλασίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή καλωδίωσης αισθητήρα εσωτερικού AC στη Στενή Βλασίας όταν η μονάδα σβήνει ή δείχνει λάθος ένδειξη.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Στενή Βλασίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

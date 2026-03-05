@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-sensor-wiring-repair-nymfaio",
+  "slug": "epigousa-episkevi-kalodiosis-aisthitira-esoterikou-ac-nymfaio",
+  "nameGr": "Επείγουσα Επισκευή Καλωδίωσης Αισθητήρα Εσωτερικού AC στο Νυμφαίο",
+  "nameEn": "Emergency AC Indoor Sensor Wiring Repair in Νυμφαίο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή καλωδίωσης αισθητήρα εσωτερικού AC στο Νυμφαίο όταν η μονάδα σβήνει ή δείχνει λάθος ένδειξη.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Νυμφαίο επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entry-threshold-seepage-check-steni-vlasias",
+  "slug": "epochiakos-elegxos-diisthisis-katofliou-eisodou-steni-vlasias",
+  "nameGr": "Εποχικός Έλεγχος Διείσδυσης Κατωφλιού Εισόδου στη Στενή Βλασίας",
+  "nameEn": "Seasonal Home Entry Threshold Seepage Check in Στενή Βλασίας",
+  "categoryId": "tilers",
+  "categorySlug": "plakadades",
+  "intent": "Εποχικός έλεγχος διείσδυσης κατωφλιού εισόδου στη Στενή Βλασίας για πρόληψη υγρασίας στο εσωτερικό.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Στενή Βλασίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
