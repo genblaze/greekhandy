@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-zone-return-balance-agios-vlasios-magnisias",
+  "slug": "epochiaki-eksisorropisi-epistrofis-zonis-thermansis-agios-vlasios-magnisias",
+  "nameGr": "Εποχική Εξισορρόπηση Επιστροφής Ζώνης Θέρμανσης στον Άγιο Βλάσιο Μαγνησίας",
+  "nameEn": "Seasonal Heating Zone Return Balance in Άγιος Βλάσιος Μαγνησίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση επιστροφής ζώνης θέρμανσης στον Άγιο Βλάσιο Μαγνησίας για ομοιόμορφη απόδοση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Βλάσιος Μαγνησίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

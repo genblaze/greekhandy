@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-trap-reset-dendrochori-kastorias",
+  "slug": "epigousa-epanafora-pagidas-aporrois-esoterikou-ac-dendrochori-kastorias",
+  "nameGr": "Επείγουσα Επαναφορά Παγίδας Απορροής Εσωτερικού AC στο Δενδροχώρι Καστοριάς",
+  "nameEn": "Emergency AC Indoor Drain Trap Reset in Δενδροχώρι Καστοριάς",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά παγίδας απορροής εσωτερικού AC στο Δενδροχώρι Καστοριάς για άμεση αποτροπή επιστροφής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Δενδροχώρι Καστοριάς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

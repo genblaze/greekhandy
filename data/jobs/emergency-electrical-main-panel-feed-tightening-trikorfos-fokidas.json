@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-panel-feed-tightening-trikorfos-fokidas",
+  "slug": "epigouso-sfiksimo-trofodosias-kentrikou-pinaka-trikorfos-fokidas",
+  "nameGr": "Επείγον Σφίξιμο Τροφοδοσίας Κεντρικού Πίνακα στο Τρίκορφο Φωκίδας",
+  "nameEn": "Emergency Electrical Main Panel Feed Tightening in Τρίκορφο Φωκίδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγον σφίξιμο τροφοδοσίας κεντρικού πίνακα στο Τρίκορφο Φωκίδας για σταθερή ηλεκτροδότηση και αποφυγή υπερθέρμανσης.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Τρίκορφο Φωκίδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

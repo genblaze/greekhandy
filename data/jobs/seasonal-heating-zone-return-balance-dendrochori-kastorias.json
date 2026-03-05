@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-zone-return-balance-dendrochori-kastorias",
+  "slug": "epochiaki-eksisorropisi-epistrofis-zonis-thermansis-dendrochori-kastorias",
+  "nameGr": "Εποχική Εξισορρόπηση Επιστροφής Ζώνης Θέρμανσης στο Δενδροχώρι Καστοριάς",
+  "nameEn": "Seasonal Heating Zone Return Balance in Δενδροχώρι Καστοριάς",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική εξισορρόπηση επιστροφής ζώνης θέρμανσης στο Δενδροχώρι Καστοριάς για ομοιόμορφη απόδοση και χαμηλότερη κατανάλωση.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δενδροχώρι Καστοριάς επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
