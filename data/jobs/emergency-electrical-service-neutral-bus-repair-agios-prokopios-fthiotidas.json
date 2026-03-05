@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-neutral-bus-repair-agios-prokopios-fthiotidas",
+  "slug": "epigousa-episkevi-mparas-oudeterou-paroxis-agios-prokopios-fthiotidas",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Παροχής στον Άγιο Προκόπιο Φθιώτιδας",
+  "nameEn": "Emergency Electrical Service Neutral Bus Repair in Άγιος Προκόπιος Φθιώτιδας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου παροχής στον Άγιο Προκόπιο Φθιώτιδας για σταθερή και ασφαλή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Προκόπιος Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

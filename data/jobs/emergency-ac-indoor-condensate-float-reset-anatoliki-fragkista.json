@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-condensate-float-reset-anatoliki-fragkista",
+  "slug": "epigousa-epanafora-float-sympyknomaton-esoterikou-ac-anatoliki-fragkista",
+  "nameGr": "Επείγουσα Επαναφορά Float Συμπυκνωμάτων Εσωτερικού AC στην Ανατολική Φραγκίστα",
+  "nameEn": "Emergency AC Indoor Condensate Float Reset in Ανατολική Φραγκίστα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επαναφορά float συμπυκνωμάτων εσωτερικού AC στην Ανατολική Φραγκίστα για να σταματήσουν άμεσα οι διαρροές νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ανατολική Φραγκίστα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

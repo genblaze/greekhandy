@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-differential-check-kastanitsa-peloponnisou",
+  "slug": "epochiakos-elegxos-diaforas-thermokrasias-vroxou-thermansis-kastanitsa-peloponnisou",
+  "nameGr": "Εποχικός Έλεγχος Διαφοράς Θερμοκρασίας Βρόχου Θέρμανσης στην Καστάνιτσα Πελοποννήσου",
+  "nameEn": "Seasonal Heating Loop Differential Check in Καστάνιτσα Πελοποννήσου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος διαφοράς θερμοκρασίας βρόχου θέρμανσης στην Καστάνιτσα Πελοποννήσου για έγκαιρη βελτιστοποίηση απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Καστάνιτσα Πελοποννήσου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

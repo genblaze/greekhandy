@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-neutral-bus-repair-anatoliki-fragkista",
+  "slug": "epigousa-episkevi-mparas-oudeterou-paroxis-anatoliki-fragkista",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Παροχής στην Ανατολική Φραγκίστα",
+  "nameEn": "Emergency Electrical Service Neutral Bus Repair in Ανατολική Φραγκίστα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου παροχής στην Ανατολική Φραγκίστα για σταθερή και ασφαλή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Ανατολική Φραγκίστα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

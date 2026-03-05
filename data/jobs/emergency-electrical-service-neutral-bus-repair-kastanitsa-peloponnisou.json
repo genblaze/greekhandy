@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-service-neutral-bus-repair-kastanitsa-peloponnisou",
+  "slug": "epigousa-episkevi-mparas-oudeterou-paroxis-kastanitsa-peloponnisou",
+  "nameGr": "Επείγουσα Επισκευή Μπάρας Ουδετέρου Παροχής στην Καστάνιτσα Πελοποννήσου",
+  "nameEn": "Emergency Electrical Service Neutral Bus Repair in Καστάνιτσα Πελοποννήσου",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή μπάρας ουδετέρου παροχής στην Καστάνιτσα Πελοποννήσου για σταθερή και ασφαλή ηλεκτροδότηση κατοικίας.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Καστάνιτσα Πελοποννήσου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-differential-check-anatoliki-fragkista",
+  "slug": "epochiakos-elegxos-diaforas-thermokrasias-vroxou-thermansis-anatoliki-fragkista",
+  "nameGr": "Εποχικός Έλεγχος Διαφοράς Θερμοκρασίας Βρόχου Θέρμανσης στην Ανατολική Φραγκίστα",
+  "nameEn": "Seasonal Heating Loop Differential Check in Ανατολική Φραγκίστα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος διαφοράς θερμοκρασίας βρόχου θέρμανσης στην Ανατολική Φραγκίστα για έγκαιρη βελτιστοποίηση απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Ανατολική Φραγκίστα επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

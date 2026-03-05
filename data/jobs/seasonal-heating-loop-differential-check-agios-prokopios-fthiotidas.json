@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-loop-differential-check-agios-prokopios-fthiotidas",
+  "slug": "epochiakos-elegxos-diaforas-thermokrasias-vroxou-thermansis-agios-prokopios-fthiotidas",
+  "nameGr": "Εποχικός Έλεγχος Διαφοράς Θερμοκρασίας Βρόχου Θέρμανσης στον Άγιο Προκόπιο Φθιώτιδας",
+  "nameEn": "Seasonal Heating Loop Differential Check in Άγιος Προκόπιος Φθιώτιδας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος διαφοράς θερμοκρασίας βρόχου θέρμανσης στον Άγιο Προκόπιο Φθιώτιδας για έγκαιρη βελτιστοποίηση απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Άγιος Προκόπιος Φθιώτιδας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
