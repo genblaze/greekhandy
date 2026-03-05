@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entrance-joint-sanitization-anogeia",
+  "slug": "epochiaki-apolymansi-kai-syntrisi-armon-eisodou-anogeia",
+  "nameGr": "Εποχική Απολύμανση και Συντήρηση Αρμών Εισόδου στα Ανώγεια",
+  "nameEn": "Seasonal Home Entrance Joint Sanitization in Ανώγεια",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εποχική απολύμανση και συντήρηση αρμών εισόδου κατοικίας στα Ανώγεια για καθαριότητα, ασφάλεια και αντιολισθηρότητα.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Ανώγεια επείγον",
+    "Εποχική Ανώγεια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

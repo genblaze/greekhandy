@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-boiler-feed-valve-fix-kria-vrysi",
+  "slug": "epigousa-episkevi-valvidas-trofodosias-boiler-nerou-kria-vrysi",
+  "nameGr": "Επείγουσα Επισκευή Βαλβίδας Τροφοδοσίας Boiler Νερού στην Κρύα Βρύση",
+  "nameEn": "Emergency Water Boiler Feed Valve Fix in Κρύα Βρύση",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή βαλβίδας τροφοδοσίας boiler στην Κρύα Βρύση για άμεση επαναφορά παροχής και αποφυγή διαρροών.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Κρύα Βρύση επείγον",
+    "Επείγουσα Κρύα Βρύση",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

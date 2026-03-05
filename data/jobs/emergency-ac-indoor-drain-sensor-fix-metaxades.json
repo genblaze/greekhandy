@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-sensor-fix-metaxades",
+  "slug": "epigousa-episkevi-aisthitira-aporrois-esoterikou-ac-metaxades",
+  "nameGr": "Επείγουσα Επισκευή Αισθητήρα Απορροής Εσωτερικού AC στις Μεταξάδες",
+  "nameEn": "Emergency AC Indoor Drain Sensor Fix in Μεταξάδες",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αισθητήρα απορροής εσωτερικού AC στις Μεταξάδες για άμεση αποτροπή διαρροής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Μεταξάδες επείγον",
+    "Επείγουσα Μεταξάδες",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

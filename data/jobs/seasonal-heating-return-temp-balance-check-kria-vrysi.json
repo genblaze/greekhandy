@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-return-temp-balance-check-kria-vrysi",
+  "slug": "epochiakos-elegxos-isorropias-thermokrasias-epistrofis-thermansis-kria-vrysi",
+  "nameGr": "Εποχικός Έλεγχος Ισορροπίας Θερμοκρασίας Επιστροφής Θέρμανσης στην Κρύα Βρύση",
+  "nameEn": "Seasonal Heating Return Temp Balance Check in Κρύα Βρύση",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος ισορροπίας θερμοκρασίας επιστροφής θέρμανσης στην Κρύα Βρύση για καλύτερη απόδοση και οικονομία.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "Κρύα Βρύση επείγον",
+    "Εποχικός Κρύα Βρύση",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

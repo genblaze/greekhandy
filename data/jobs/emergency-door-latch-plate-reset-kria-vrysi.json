@@ -1,0 +1,20 @@
+{
+  "id": "emergency-door-latch-plate-reset-kria-vrysi",
+  "slug": "epigousa-epanafora-plate-manthalou-portas-kria-vrysi",
+  "nameGr": "Επείγουσα Επαναφορά Plate Μάνταλου Πόρτας στην Κρύα Βρύση",
+  "nameEn": "Emergency Door Latch Plate Reset in Κρύα Βρύση",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα επαναφορά plate μάνταλου πόρτας στην Κρύα Βρύση όταν η πόρτα δεν κουμπώνει σωστά και μένει ανασφάλιστη.",
+  "typicalDuration": "20-60 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "Κρύα Βρύση επείγον",
+    "Επείγουσα Κρύα Βρύση",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

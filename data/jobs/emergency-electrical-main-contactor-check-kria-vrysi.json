@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-contactor-check-kria-vrysi",
+  "slug": "epigousos-elegxos-kentrikou-contactor-pinaka-kria-vrysi",
+  "nameGr": "Επείγων Έλεγχος Κεντρικού Contactor Πίνακα στην Κρύα Βρύση",
+  "nameEn": "Emergency Electrical Main Contactor Check in Κρύα Βρύση",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος κεντρικού contactor πίνακα στην Κρύα Βρύση για άμεση σταθεροποίηση τροφοδοσίας και ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Κρύα Βρύση επείγον",
+    "Επείγων Κρύα Βρύση",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

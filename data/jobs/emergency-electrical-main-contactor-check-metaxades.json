@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-main-contactor-check-metaxades",
+  "slug": "epigousos-elegxos-kentrikou-contactor-pinaka-metaxades",
+  "nameGr": "Επείγων Έλεγχος Κεντρικού Contactor Πίνακα στις Μεταξάδες",
+  "nameEn": "Emergency Electrical Main Contactor Check in Μεταξάδες",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος κεντρικού contactor πίνακα στις Μεταξάδες για άμεση σταθεροποίηση τροφοδοσίας και ασφάλεια.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Μεταξάδες επείγον",
+    "Επείγων Μεταξάδες",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

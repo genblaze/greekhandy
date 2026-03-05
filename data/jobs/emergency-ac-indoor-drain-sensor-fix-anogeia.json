@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-sensor-fix-anogeia",
+  "slug": "epigousa-episkevi-aisthitira-aporrois-esoterikou-ac-anogeia",
+  "nameGr": "Επείγουσα Επισκευή Αισθητήρα Απορροής Εσωτερικού AC στα Ανώγεια",
+  "nameEn": "Emergency AC Indoor Drain Sensor Fix in Ανώγεια",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αισθητήρα απορροής εσωτερικού AC στα Ανώγεια για άμεση αποτροπή διαρροής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Ανώγεια επείγον",
+    "Επείγουσα Ανώγεια",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

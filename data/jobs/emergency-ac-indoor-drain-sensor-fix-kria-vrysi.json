@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-sensor-fix-kria-vrysi",
+  "slug": "epigousa-episkevi-aisthitira-aporrois-esoterikou-ac-kria-vrysi",
+  "nameGr": "Επείγουσα Επισκευή Αισθητήρα Απορροής Εσωτερικού AC στην Κρύα Βρύση",
+  "nameEn": "Emergency AC Indoor Drain Sensor Fix in Κρύα Βρύση",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα επισκευή αισθητήρα απορροής εσωτερικού AC στην Κρύα Βρύση για άμεση αποτροπή διαρροής νερού.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Κρύα Βρύση επείγον",
+    "Επείγουσα Κρύα Βρύση",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}

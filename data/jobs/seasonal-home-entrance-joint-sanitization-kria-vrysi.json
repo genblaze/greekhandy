@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-entrance-joint-sanitization-kria-vrysi",
+  "slug": "epochiaki-apolymansi-kai-syntrisi-armon-eisodou-kria-vrysi",
+  "nameGr": "Εποχική Απολύμανση και Συντήρηση Αρμών Εισόδου στην Κρύα Βρύση",
+  "nameEn": "Seasonal Home Entrance Joint Sanitization in Κρύα Βρύση",
+  "categoryId": "cleaning-services",
+  "categorySlug": "katharismoi",
+  "intent": "Εποχική απολύμανση και συντήρηση αρμών εισόδου κατοικίας στην Κρύα Βρύση για καθαριότητα, ασφάλεια και αντιολισθηρότητα.",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "Κρύα Βρύση επείγον",
+    "Εποχική Κρύα Βρύση",
+    "άμεση εξυπηρέτηση",
+    "service κατοικίας",
+    "τοπικός τεχνικός"
+  ],
+  "status": "researched"
+}
