@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-heating-valve-exercise-souli",
+  "slug": "epochiaki-energoποίηση-valvidon-thermansis-souli",
+  "nameGr": "Εποχική Ενεργοποίηση Βαλβίδων Θέρμανσης στο Σούλι",
+  "nameEn": "Seasonal Home Heating Valve Exercise in Σούλι",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ενεργοποίηση και έλεγχος βαλβίδων θέρμανσης στο Σούλι για αποφυγή κόλλησης πριν τον χειμώνα. SEO intent: «βαλβίδα καλοριφέρ κόλλησε Σούλι».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "βαλβίδα καλοριφέρ κόλλησε Σούλι",
+    "service βαλβίδων θέρμανσης",
+    "συντήρηση συστήματος θέρμανσης εποχική",
+    "τεχνικός καυστήρα προετοιμασία χειμώνα",
+    "έλεγχος κυκλώματος καλοριφέρ"
+  ],
+  "status": "researched"
+}

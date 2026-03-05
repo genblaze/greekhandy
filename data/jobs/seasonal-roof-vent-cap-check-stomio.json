@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-vent-cap-check-stomio",
+  "slug": "epochiakos-elegxos-kapelou-eksarismou-stegis-stomio",
+  "nameGr": "Εποχικός Έλεγχος Καπέλου Εξαερισμού Στέγης στο Στόμιο",
+  "nameEn": "Seasonal Roof Vent Cap Check in Στόμιο",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός έλεγχος καπέλου εξαερισμού στέγης στο Στόμιο για αποφυγή εισροής νερού και ανεπαρκούς αερισμού. SEO intent: «καπέλο εξαερισμού στέγης Στόμιο».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "καπέλο εξαερισμού στέγης Στόμιο",
+    "έλεγχος εξαερισμού οροφής",
+    "τεχνικός στέγης εποχικό check",
+    "νερό από εξαερισμό οροφής",
+    "συντήρηση roof vent"
+  ],
+  "status": "researched"
+}

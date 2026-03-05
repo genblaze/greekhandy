@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-panel-phase-loss-check-souli",
+  "slug": "epigousos-elegxos-apoleias-fasis-kentrikou-pinaka-souli",
+  "nameGr": "Επείγων Έλεγχος Απώλειας Φάσης Κεντρικού Πίνακα στο Σούλι",
+  "nameEn": "Emergency Main Panel Phase Loss Check in Σούλι",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος απώλειας φάσης στον κεντρικό πίνακα στο Σούλι για προστασία συσκευών και αποκατάσταση ρεύματος. SEO intent: «λείπει φάση ρεύματος Σούλι».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "λείπει φάση ρεύματος Σούλι",
+    "ηλεκτρολόγος απώλεια φάσης",
+    "πίνακας μονοφασικό πρόβλημα",
+    "βλάβη παροχής ρεύματος σπίτι",
+    "επείγουσα ηλεκτρολογική διάγνωση"
+  ],
+  "status": "researched"
+}

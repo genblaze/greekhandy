@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-roof-vent-cap-check-souli",
+  "slug": "epochiakos-elegxos-kapelou-eksarismou-stegis-souli",
+  "nameGr": "Εποχικός Έλεγχος Καπέλου Εξαερισμού Στέγης στο Σούλι",
+  "nameEn": "Seasonal Roof Vent Cap Check in Σούλι",
+  "categoryId": "roofing-specialists",
+  "categorySlug": "steges-skepes",
+  "intent": "Εποχικός έλεγχος καπέλου εξαερισμού στέγης στο Σούλι για αποφυγή εισροής νερού και ανεπαρκούς αερισμού. SEO intent: «καπέλο εξαερισμού στέγης Σούλι».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "40-150€",
+  "demand": "high",
+  "keywords": [
+    "καπέλο εξαερισμού στέγης Σούλι",
+    "έλεγχος εξαερισμού οροφής",
+    "τεχνικός στέγης εποχικό check",
+    "νερό από εξαερισμό οροφής",
+    "συντήρηση roof vent"
+  ],
+  "status": "researched"
+}

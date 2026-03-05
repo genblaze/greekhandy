@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-panel-phase-loss-check-stomio",
+  "slug": "epigousos-elegxos-apoleias-fasis-kentrikou-pinaka-stomio",
+  "nameGr": "Επείγων Έλεγχος Απώλειας Φάσης Κεντρικού Πίνακα στο Στόμιο",
+  "nameEn": "Emergency Main Panel Phase Loss Check in Στόμιο",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος απώλειας φάσης στον κεντρικό πίνακα στο Στόμιο για προστασία συσκευών και αποκατάσταση ρεύματος. SEO intent: «λείπει φάση ρεύματος Στόμιο».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "λείπει φάση ρεύματος Στόμιο",
+    "ηλεκτρολόγος απώλεια φάσης",
+    "πίνακας μονοφασικό πρόβλημα",
+    "βλάβη παροχής ρεύματος σπίτι",
+    "επείγουσα ηλεκτρολογική διάγνωση"
+  ],
+  "status": "researched"
+}

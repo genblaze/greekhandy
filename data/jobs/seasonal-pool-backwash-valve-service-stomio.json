@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-pool-backwash-valve-service-stomio",
+  "slug": "epochiako-service-valvidas-backwash-pisinas-stomio",
+  "nameGr": "Εποχικό Service Βαλβίδας Backwash Πισίνας στο Στόμιο",
+  "nameEn": "Seasonal Pool Backwash Valve Service in Στόμιο",
+  "categoryId": "pool-services",
+  "categorySlug": "syntirisi-pisinas",
+  "intent": "Εποχικό service βαλβίδας backwash πισίνας στο Στόμιο για σωστό καθαρισμό φίλτρου και σταθερή ροή. SEO intent: «βαλβίδα backwash πισίνας Στόμιο».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "βαλβίδα backwash πισίνας Στόμιο",
+    "service φίλτρου πισίνας εποχικό",
+    "τεχνικός πισίνας backwash",
+    "πρόβλημα καθαρισμού φίλτρου πισίνας",
+    "συντήρηση πολυβαλβίδας"
+  ],
+  "status": "researched"
+}

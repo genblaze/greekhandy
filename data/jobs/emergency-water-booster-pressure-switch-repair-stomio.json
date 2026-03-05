@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-booster-pressure-switch-repair-stomio",
+  "slug": "epigousa-episkevi-presostati-piestikou-nerou-stomio",
+  "nameGr": "Επείγουσα Επισκευή Πιεσοστάτη Πιεστικού Νερού στο Στόμιο",
+  "nameEn": "Emergency Water Booster Pressure Switch Repair in Στόμιο",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επισκευή πιεσοστάτη πιεστικού στο Στόμιο για άμεση επαναφορά πίεσης νερού στο σπίτι. SEO intent: «πιεστικό δεν σταματά Στόμιο».",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "πιεστικό δεν σταματά Στόμιο",
+    "πιεσοστάτης βλάβη Στόμιο",
+    "υδραυλικός πιεστικό επείγον",
+    "χαμηλή πίεση νερού σπίτι",
+    "service αντλίας πιεστικού"
+  ],
+  "status": "researched"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-heating-valve-exercise-stomio",
+  "slug": "epochiaki-energoποίηση-valvidon-thermansis-stomio",
+  "nameGr": "Εποχική Ενεργοποίηση Βαλβίδων Θέρμανσης στο Στόμιο",
+  "nameEn": "Seasonal Home Heating Valve Exercise in Στόμιο",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ενεργοποίηση και έλεγχος βαλβίδων θέρμανσης στο Στόμιο για αποφυγή κόλλησης πριν τον χειμώνα. SEO intent: «βαλβίδα καλοριφέρ κόλλησε Στόμιο».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "βαλβίδα καλοριφέρ κόλλησε Στόμιο",
+    "service βαλβίδων θέρμανσης",
+    "συντήρηση συστήματος θέρμανσης εποχική",
+    "τεχνικός καυστήρα προετοιμασία χειμώνα",
+    "έλεγχος κυκλώματος καλοριφέρ"
+  ],
+  "status": "researched"
+}

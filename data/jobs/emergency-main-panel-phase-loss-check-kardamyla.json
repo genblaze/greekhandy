@@ -1,0 +1,20 @@
+{
+  "id": "emergency-main-panel-phase-loss-check-kardamyla",
+  "slug": "epigousos-elegxos-apoleias-fasis-kentrikou-pinaka-kardamyla",
+  "nameGr": "Επείγων Έλεγχος Απώλειας Φάσης Κεντρικού Πίνακα στα Καρδάμυλα",
+  "nameEn": "Emergency Main Panel Phase Loss Check in Καρδάμυλα",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγων έλεγχος απώλειας φάσης στον κεντρικό πίνακα στα Καρδάμυλα για προστασία συσκευών και αποκατάσταση ρεύματος. SEO intent: «λείπει φάση ρεύματος Καρδάμυλα».",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-240€",
+  "demand": "high",
+  "keywords": [
+    "λείπει φάση ρεύματος Καρδάμυλα",
+    "ηλεκτρολόγος απώλεια φάσης",
+    "πίνακας μονοφασικό πρόβλημα",
+    "βλάβη παροχής ρεύματος σπίτι",
+    "επείγουσα ηλεκτρολογική διάγνωση"
+  ],
+  "status": "researched"
+}

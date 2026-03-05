@@ -1,0 +1,20 @@
+{
+  "id": "emergency-door-closer-hydraulic-fix-stomio",
+  "slug": "epigousa-episkevi-ydravlikou-mixanismou-portas-stomio",
+  "nameGr": "Επείγουσα Επισκευή Υδραυλικού Μηχανισμού Πόρτας στο Στόμιο",
+  "nameEn": "Emergency Door Closer Hydraulic Fix in Στόμιο",
+  "categoryId": "locksmiths",
+  "categorySlug": "kleidarades",
+  "intent": "Επείγουσα επισκευή υδραυλικού μηχανισμού πόρτας στο Στόμιο όταν η πόρτα χτυπά ή δεν κλείνει σωστά. SEO intent: «μηχανισμός πόρτας χάλασε Στόμιο».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "50-180€",
+  "demand": "high",
+  "keywords": [
+    "μηχανισμός πόρτας χάλασε Στόμιο",
+    "door closer επισκευή Στόμιο",
+    "κλειδαράς πόρτα εισόδου",
+    "πόρτα δεν κλείνει ομαλά",
+    "service υδραυλικού μηχανισμού"
+  ],
+  "status": "researched"
+}

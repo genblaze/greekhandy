@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-home-heating-valve-exercise-kardamyla",
+  "slug": "epochiaki-energoποίηση-valvidon-thermansis-kardamyla",
+  "nameGr": "Εποχική Ενεργοποίηση Βαλβίδων Θέρμανσης στα Καρδάμυλα",
+  "nameEn": "Seasonal Home Heating Valve Exercise in Καρδάμυλα",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχική ενεργοποίηση και έλεγχος βαλβίδων θέρμανσης στα Καρδάμυλα για αποφυγή κόλλησης πριν τον χειμώνα. SEO intent: «βαλβίδα καλοριφέρ κόλλησε Καρδάμυλα».",
+  "typicalDuration": "30-90 λεπτά",
+  "priceRangeEUR": "45-160€",
+  "demand": "high",
+  "keywords": [
+    "βαλβίδα καλοριφέρ κόλλησε Καρδάμυλα",
+    "service βαλβίδων θέρμανσης",
+    "συντήρηση συστήματος θέρμανσης εποχική",
+    "τεχνικός καυστήρα προετοιμασία χειμώνα",
+    "έλεγχος κυκλώματος καλοριφέρ"
+  ],
+  "status": "researched"
+}
