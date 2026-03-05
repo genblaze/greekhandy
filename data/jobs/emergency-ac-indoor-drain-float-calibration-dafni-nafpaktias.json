@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-float-calibration-dafni-nafpaktias",
+  "slug": "epigousa-vathmonomisi-float-aporrois-esoterikou-ac-dafni-nafpaktias",
+  "nameGr": "Επείγουσα Βαθμονόμηση Float Απορροής Εσωτερικού AC στη Δάφνη Ναυπακτίας",
+  "nameEn": "Emergency AC Indoor Drain Float Calibration in Δάφνη Ναυπακτίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα βαθμονόμηση float απορροής εσωτερικού AC στη Δάφνη Ναυπακτίας για αποφυγή διαρροών και ξαφνικών διακοπών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Δάφνη Ναυπακτίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

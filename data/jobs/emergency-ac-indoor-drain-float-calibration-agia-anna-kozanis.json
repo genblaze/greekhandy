@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-float-calibration-agia-anna-kozanis",
+  "slug": "epigousa-vathmonomisi-float-aporrois-esoterikou-ac-agia-anna-kozanis",
+  "nameGr": "Επείγουσα Βαθμονόμηση Float Απορροής Εσωτερικού AC στην Αγία Άννα Κοζάνης",
+  "nameEn": "Emergency AC Indoor Drain Float Calibration in Αγία Άννα Κοζάνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα βαθμονόμηση float απορροής εσωτερικού AC στην Αγία Άννα Κοζάνης για αποφυγή διαρροών και ξαφνικών διακοπών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

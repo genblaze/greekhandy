@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-pump-return-temp-check-agia-anna-kozanis",
+  "slug": "epochiakos-elegxos-thermokrasias-epistrofis-antlias-thermansis-agia-anna-kozanis",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Επιστροφής Αντλίας Θέρμανσης στην Αγία Άννα Κοζάνης",
+  "nameEn": "Seasonal Heating Pump Return Temp Check in Αγία Άννα Κοζάνης",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας επιστροφής αντλίας θέρμανσης στην Αγία Άννα Κοζάνης για έγκαιρη διάγνωση χαμηλής απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

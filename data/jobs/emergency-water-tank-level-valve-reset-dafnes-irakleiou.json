@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-level-valve-reset-dafnes-irakleiou",
+  "slug": "epigousa-epanafora-valvidas-stathmis-dexamenis-nerou-dafnes-irakleiou",
+  "nameGr": "Επείγουσα Επαναφορά Βαλβίδας Στάθμης Δεξαμενής Νερού στις Δαφνές Ηρακλείου",
+  "nameEn": "Emergency Water Tank Level Valve Reset in Δαφνές Ηρακλείου",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επαναφορά βαλβίδας στάθμης δεξαμενής νερού στις Δαφνές Ηρακλείου για άμεσο έλεγχο υπερχείλισης και σωστή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Δαφνές Ηρακλείου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

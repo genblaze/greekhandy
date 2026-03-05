@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-feed-isolator-switch-fix-agia-anna-kozanis",
+  "slug": "epigousa-episkevi-diakopti-apomonosis-trofodosias-agia-anna-kozanis",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Απομόνωσης Τροφοδοσίας στην Αγία Άννα Κοζάνης",
+  "nameEn": "Emergency Electrical Feed Isolator Switch Fix in Αγία Άννα Κοζάνης",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή διακόπτη απομόνωσης τροφοδοσίας στην Αγία Άννα Κοζάνης για ασφαλή επαναφορά ρεύματος στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

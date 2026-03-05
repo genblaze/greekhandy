@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-level-valve-reset-agia-anna-kozanis",
+  "slug": "epigousa-epanafora-valvidas-stathmis-dexamenis-nerou-agia-anna-kozanis",
+  "nameGr": "Επείγουσα Επαναφορά Βαλβίδας Στάθμης Δεξαμενής Νερού στην Αγία Άννα Κοζάνης",
+  "nameEn": "Emergency Water Tank Level Valve Reset in Αγία Άννα Κοζάνης",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επαναφορά βαλβίδας στάθμης δεξαμενής νερού στην Αγία Άννα Κοζάνης για άμεσο έλεγχο υπερχείλισης και σωστή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Αγία Άννα Κοζάνης επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

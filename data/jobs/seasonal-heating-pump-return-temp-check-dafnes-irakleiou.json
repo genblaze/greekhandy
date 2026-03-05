@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-pump-return-temp-check-dafnes-irakleiou",
+  "slug": "epochiakos-elegxos-thermokrasias-epistrofis-antlias-thermansis-dafnes-irakleiou",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Επιστροφής Αντλίας Θέρμανσης στις Δαφνές Ηρακλείου",
+  "nameEn": "Seasonal Heating Pump Return Temp Check in Δαφνές Ηρακλείου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας επιστροφής αντλίας θέρμανσης στις Δαφνές Ηρακλείου για έγκαιρη διάγνωση χαμηλής απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δαφνές Ηρακλείου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

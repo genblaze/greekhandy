@@ -1,0 +1,20 @@
+{
+  "id": "emergency-water-tank-level-valve-reset-dafni-nafpaktias",
+  "slug": "epigousa-epanafora-valvidas-stathmis-dexamenis-nerou-dafni-nafpaktias",
+  "nameGr": "Επείγουσα Επαναφορά Βαλβίδας Στάθμης Δεξαμενής Νερού στη Δάφνη Ναυπακτίας",
+  "nameEn": "Emergency Water Tank Level Valve Reset in Δάφνη Ναυπακτίας",
+  "categoryId": "plumbers",
+  "categorySlug": "ydravlikoi",
+  "intent": "Επείγουσα επαναφορά βαλβίδας στάθμης δεξαμενής νερού στη Δάφνη Ναυπακτίας για άμεσο έλεγχο υπερχείλισης και σωστή τροφοδοσία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "60-220€",
+  "demand": "high",
+  "keywords": [
+    "Δάφνη Ναυπακτίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

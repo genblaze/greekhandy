@@ -1,0 +1,20 @@
+{
+  "id": "emergency-electrical-feed-isolator-switch-fix-dafni-nafpaktias",
+  "slug": "epigousa-episkevi-diakopti-apomonosis-trofodosias-dafni-nafpaktias",
+  "nameGr": "Επείγουσα Επισκευή Διακόπτη Απομόνωσης Τροφοδοσίας στη Δάφνη Ναυπακτίας",
+  "nameEn": "Emergency Electrical Feed Isolator Switch Fix in Δάφνη Ναυπακτίας",
+  "categoryId": "electricians",
+  "categorySlug": "ilektrologoi",
+  "intent": "Επείγουσα επισκευή διακόπτη απομόνωσης τροφοδοσίας στη Δάφνη Ναυπακτίας για ασφαλή επαναφορά ρεύματος στην κατοικία.",
+  "typicalDuration": "20-90 λεπτά",
+  "priceRangeEUR": "70-250€",
+  "demand": "high",
+  "keywords": [
+    "Δάφνη Ναυπακτίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

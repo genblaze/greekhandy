@@ -1,0 +1,20 @@
+{
+  "id": "seasonal-heating-pump-return-temp-check-dafni-nafpaktias",
+  "slug": "epochiakos-elegxos-thermokrasias-epistrofis-antlias-thermansis-dafni-nafpaktias",
+  "nameGr": "Εποχικός Έλεγχος Θερμοκρασίας Επιστροφής Αντλίας Θέρμανσης στη Δάφνη Ναυπακτίας",
+  "nameEn": "Seasonal Heating Pump Return Temp Check in Δάφνη Ναυπακτίας",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Εποχικός έλεγχος θερμοκρασίας επιστροφής αντλίας θέρμανσης στη Δάφνη Ναυπακτίας για έγκαιρη διάγνωση χαμηλής απόδοσης.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "45-170€",
+  "demand": "high",
+  "keywords": [
+    "Δάφνη Ναυπακτίας επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}

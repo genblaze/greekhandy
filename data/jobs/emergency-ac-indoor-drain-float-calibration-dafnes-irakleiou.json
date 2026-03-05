@@ -1,0 +1,20 @@
+{
+  "id": "emergency-ac-indoor-drain-float-calibration-dafnes-irakleiou",
+  "slug": "epigousa-vathmonomisi-float-aporrois-esoterikou-ac-dafnes-irakleiou",
+  "nameGr": "Επείγουσα Βαθμονόμηση Float Απορροής Εσωτερικού AC στις Δαφνές Ηρακλείου",
+  "nameEn": "Emergency AC Indoor Drain Float Calibration in Δαφνές Ηρακλείου",
+  "categoryId": "hvac-technicians",
+  "categorySlug": "techniki-klimatismou",
+  "intent": "Επείγουσα βαθμονόμηση float απορροής εσωτερικού AC στις Δαφνές Ηρακλείου για αποφυγή διαρροών και ξαφνικών διακοπών.",
+  "typicalDuration": "30-120 λεπτά",
+  "priceRangeEUR": "65-230€",
+  "demand": "high",
+  "keywords": [
+    "Δαφνές Ηρακλείου επείγον",
+    "άμεση εξυπηρέτηση",
+    "τοπικός τεχνικός",
+    "service κατοικίας",
+    "επισκευή τώρα"
+  ],
+  "status": "researched"
+}
