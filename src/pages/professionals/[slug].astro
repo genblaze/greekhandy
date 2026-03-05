@@ -604,6 +604,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           </p>
         </div>
 
+        {bookingStatusParam === 'submitted' && <p class="mt-2 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800" role="status" aria-live="polite">Η καταχώριση ολοκληρώθηκε επιτυχώς. Χρησιμοποιήστε το link παρακολούθησης που λάβατε για την πορεία του αιτήματος.</p>}
         {bookingStatusParam === 'invalid' && <p class="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800" role="alert">Ελέγξτε τα στοιχεία του αιτήματος και υποβάλετε ξανά.</p>}
         {bookingStatusParam === 'error' && <p class="mt-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά χωρίς να ξαναγράψετε τα στοιχεία.</p>}
 
@@ -796,6 +797,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         const profileMediaImages = Array.from(document.querySelectorAll('[data-prof-media-img]')).filter((item) => item instanceof HTMLImageElement);
         const pendingForms = Array.from(document.querySelectorAll('[data-pending-form]')).filter((form) => form instanceof HTMLFormElement);
         const pendingTimeouts = new WeakMap();
+        const bookingValidationTimers = new WeakMap();
         const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
         const hardenProfileMedia = () => {
           for (const img of profileMediaImages) {
@@ -1079,6 +1081,19 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             announceSubmitState('Η υποβολή βρίσκεται ήδη σε εξέλιξη.', 'polite');
             return;
           }
+
+          if (groupName === 'booking') {
+            updateTrimRequiredFields(form, true);
+            updateBookingFieldValidity(form, true);
+            const firstInvalid = form.querySelector(':invalid');
+            if (firstInvalid instanceof HTMLElement) {
+              firstInvalid.focus();
+              showFeedbackStatus(groupName, 'invalid');
+              announceSubmitState('Ελέγξτε τα επισημασμένα πεδία πριν τη νέα προσπάθεια.', 'assertive');
+              return;
+            }
+          }
+
           const submitButton = form.querySelector('button[type="submit"]');
           if (!(submitButton instanceof HTMLButtonElement)) return;
           showFeedbackStatus(groupName, 'loading');
@@ -1261,7 +1276,13 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
             }
             if (event.target.hasAttribute('data-booking-validate')) {
               event.target.setAttribute('data-booking-touched', 'true');
-              updateBookingFieldValidity(form);
+              const existingTimer = bookingValidationTimers.get(form);
+              if (existingTimer) window.clearTimeout(existingTimer);
+              const timerId = window.setTimeout(() => {
+                updateBookingFieldValidity(form);
+                bookingValidationTimers.delete(form);
+              }, 220);
+              bookingValidationTimers.set(form, timerId);
             }
           });
           form.addEventListener('blur', (event) => {
