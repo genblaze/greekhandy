@@ -244,6 +244,7 @@ const hasAnyBookings = bookings.length > 0;
                   </a>
                   <span class="text-xs font-medium text-slate-500">Τρέχουσα κατάσταση: {resolution.state}</span>
                   <span class="text-xs text-slate-500" aria-describedby="booking-expected-actual-guardrail">Επιτρεπτές ενέργειες: {resolution.state === 'pending' ? 'approved, rejected, cancelled' : resolution.state === 'approved' ? 'reschedule_requested' : resolution.state === 'reschedule_requested' ? 'approved, reschedule_rejected, cancelled' : 'καμία άμεση μετάβαση'}</span>
+                  <span class="text-xs text-slate-500">Next-step: {resolution.state === 'pending' ? 'απαιτείται πρώτη απόφαση' : resolution.state === 'reschedule_requested' ? 'απαιτείται απόφαση για το αίτημα αλλαγής' : 'δεν απαιτείται νέα μετάβαση'}</span>
 
                   {transitionTargets
                     .filter((target) => target.state !== resolution.state && isAllowedTransition(resolution.state, target.state))
