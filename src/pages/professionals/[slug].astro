@@ -223,7 +223,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
       <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">{profile.name}</h1>
       <p class="mt-2 text-slate-600">{profile.city} • {profile.experienceYears} χρόνια εμπειρίας</p>
 
-      <div class="mt-4 grid gap-2 sm:grid-cols-3">
+      <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <div class="rounded-xl border border-blue-200 bg-white px-3 py-2">
           <p class="text-[11px] font-semibold uppercase tracking-wide text-blue-700">Εμπιστοσύνη</p>
           <p class="text-sm font-semibold text-slate-900">{reviewsCount} {reviewsLabel}</p>
@@ -233,8 +233,12 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
           <p class="text-sm font-semibold text-slate-900">{averageRating ? `${averageRating}/5` : 'Χωρίς βαθμολογία ακόμα'}</p>
         </div>
         <div class="rounded-xl border border-emerald-200 bg-white px-3 py-2">
-          <p class="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Κατάσταση</p>
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Επαλήθευση</p>
           <p class="text-sm font-semibold text-slate-900">{verifiedReviewsCount > 0 ? `${verifiedReviewsCount} επιβεβαιωμένες` : 'Επαληθευμένο προφίλ'}</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white px-3 py-2">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-600">Περιοχές</p>
+          <p class="text-sm font-semibold text-slate-900">{(profile.areasServed?.length || 0) > 0 ? `${profile.areasServed.length} περιοχές` : '1 βασική περιοχή'}</p>
         </div>
       </div>
 
@@ -251,7 +255,7 @@ const messageStatusParam = (Astro.url.searchParams.get('message') || '').trim();
         />
       </div>
 
-      <p class="mt-6 leading-relaxed text-gray-700">{profile.bio}</p>
+      <p class="mt-6 leading-relaxed text-gray-700">{profile.bio?.trim() || 'Ο επαγγελματίας είναι διαθέσιμος για ανάθεση υπηρεσιών στην περιοχή του προφίλ.'}</p>
 
       <div class="mt-6 rounded-2xl border border-blue-200 bg-white/90 p-4 shadow-sm">
         <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-700">Ιεραρχία ενεργειών προφίλ</p>
